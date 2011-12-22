@@ -1,5 +1,18 @@
-require "netsuite/version"
+require 'netsuite/configuration'
+require 'netsuite/errors'
+require 'netsuite/response'
+require 'netsuite/version'
 
-module Netsuite
-  # Your code goes here...
+# ACTIONS
+require 'netsuite/actions/customer/get'
+
+# MODELS
+require 'netsuite/models/customer'
+
+module NetSuite
+
+  def self.configure(&block)
+    NetSuite::Configuration.instance_eval(&block)
+  end
+
 end

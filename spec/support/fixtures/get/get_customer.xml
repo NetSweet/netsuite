@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_1220201115821392011296470399_67055c545d0</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <readResponse>
+        <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com"/>
+        <record internalId="988" externalId="100157" xsi:type="listRel:Customer" xmlns:listRel="urn:relationships_2011_2.lists.webservices.netsuite.com">
+          <listRel:entityId>100157</listRel:entityId>
+          <listRel:altName>My Customer</listRel:altName>
+          <listRel:isPerson>false</listRel:isPerson>
+          <listRel:companyName>Test Inc.</listRel:companyName>
+          <listRel:entityStatus internalId="13" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>CUSTOMER-Closed Won</platformCore:name>
+          </listRel:entityStatus>
+          <listRel:defaultAddress>123 Happy Lane, #4\nChicago IL 60616</listRel:defaultAddress>
+          <listRel:isInactive>false</listRel:isInactive>
+          <listRel:dateCreated>2011-12-15T11:56:19.000-08:00</listRel:dateCreated>
+          <listRel:emailPreference>_default</listRel:emailPreference>
+          <listRel:creditHoldOverride>_auto</listRel:creditHoldOverride>
+          <listRel:balance>100.0</listRel:balance>
+          <listRel:overdueBalance>25.0</listRel:overdueBalance>
+          <listRel:daysOverdue>93</listRel:daysOverdue>
+          <listRel:unbilledOrders>0.0</listRel:unbilledOrders>
+          <listRel:consolUnbilledOrders>0.0</listRel:consolUnbilledOrders>
+          <listRel:consolOverdueBalance>25.0</listRel:consolOverdueBalance>
+          <listRel:consolDepositBalance>0.0</listRel:consolDepositBalance>
+          <listRel:consolBalance>100.0</listRel:consolBalance>
+          <listRel:consolDaysOverdue>93</listRel:consolDaysOverdue>
+          <listRel:depositBalance>0.0</listRel:depositBalance>
+          <listRel:shipComplete>false</listRel:shipComplete>
+          <listRel:taxable>false</listRel:taxable>
+          <listRel:webLead>No</listRel:webLead>
+          <listRel:lastModifiedDate>2011-12-15T11:56:19.000-08:00</listRel:lastModifiedDate>
+          <listRel:stage>_customer</listRel:stage>
+          <listRel:isBudgetApproved>false</listRel:isBudgetApproved>
+          <listRel:addressbookList>
+            <listRel:addressbook>
+              <listRel:defaultShipping>true</listRel:defaultShipping>
+              <listRel:defaultBilling>true</listRel:defaultBilling>
+              <listRel:isResidential>false</listRel:isResidential>
+              <listRel:label>123 Happy Lane, #4</listRel:label>
+              <listRel:addr1>123 Happy Lane, #4</listRel:addr1>
+              <listRel:city>Chicago</listRel:city>
+              <listRel:zip>60616</listRel:zip>
+              <listRel:country>_unitedStates</listRel:country>
+              <listRel:addrText>123 Happy Lane, #4\nChicago IL 60616</listRel:addrText>
+              <listRel:override>false</listRel:override>
+              <listRel:internalId>567</listRel:internalId>
+              <listRel:state>IL</listRel:state>
+            </listRel:addressbook>
+          </listRel:addressbookList>
+        </record>
+      </readResponse>
+    </getResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
