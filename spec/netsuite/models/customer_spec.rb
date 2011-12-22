@@ -27,11 +27,19 @@ describe NetSuite::Customer do
     end
   end
 
-  describe '#is_person' do
-    context 'when the customer is a person' do
-      it 'returns true' do
-        customer = NetSuite::Customer.new(:is_person => true)
-        customer.is_person.should be_true
+  describe '#method_missing' do
+    context 'when calling a method that exists as an attribute' do
+      it 'returns the right value from the attributes hash' do
+        customer = NetSuite::Customer.new(:name => 'Mr. Banana')
+        customer.name.should eql('Mr. Banana')
+      end
+    end
+
+    context 'when calling a method that does not exist in the attributes hash' do
+      it 'raises a NoMethodError' do
+        lambda {
+          customer.banana
+        }.should raise_error(NoMethodError)
       end
     end
   end

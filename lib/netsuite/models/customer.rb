@@ -14,8 +14,12 @@ module NetSuite
       end
     end
 
-    def is_person
-      @attributes[:is_person]
+    def method_missing(m, *args, &block)
+      if @attributes.keys.include?(m.to_sym)
+        @attributes[m.to_sym]
+      else
+        super
+      end
     end
 
   end
