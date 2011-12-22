@@ -76,8 +76,11 @@ Or install it yourself as:
       end
     end
 
-    response = NetSuite::Actions::Customer::Add.call(:entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.', :unsubscribe => false)
-                      # => #<NetSuite::Response:0x1041f64b5>
+    response = NetSuite::Actions::Customer::Add.call(
+      :entity_id    => 'Shutter Fly',
+      :company_name => 'Shutter Fly, Inc.',
+      :unsubscribe  => false
+    )                 # => #<NetSuite::Response:0x1041f64b5>
     response.success? # => true
     response.body     # => { :internal_id => '979', :type => 'customer' }
     ```
