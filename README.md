@@ -61,13 +61,13 @@ Or install it yourself as:
               response = NetSuite::Configuration.connection.request :add do
                 soap.header =  NetSuite::Configuration.auth_header
                 soap.body = {
-                  :entityId    => 'Shutter Fly',
-                  :companyName => 'Shutter Fly, Inc',
-                  :unsubscribe => false
+                  :entityId    => @attributes[:entity_id],
+                  :companyName => @attributes[:company_name],
+                  :unsubscribe => @attributes[:unsubscribe]
                 }
               end
-              success = response.to_hash[:add_response][:write_response][:status][:@isSuccess] == 'true'
-              body    = response.to_hash[:add_response][:write_response][:baseRef]
+              success = response.to_hash[:add_response][:write_response][:status][:@is_success] == 'true'
+              body    = response.to_hash[:add_response][:write_response][:base_ref]
               NetSuite::Response.new(:success => success, :body => body)
             end
 
@@ -75,6 +75,11 @@ Or install it yourself as:
         end
       end
     end
+
+    response = NetSuite::Actions::Customer::Add.call(:entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.', :unsubscribe => false)
+                      # => #<NetSuite::Response:0x1041f64b5>
+    response.success? # => true
+    response.body     # => { :internal_id => '979', :type => 'customer' }
     ```
 
 ## Contributing
