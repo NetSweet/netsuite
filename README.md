@@ -39,6 +39,43 @@ Or install it yourself as:
 * Please submit a pull request for any models or actions that you would like to be included. The API is quite large and so we will necessarily not cover all of it.
 * Models should go into the `lib/netsuite/models/` directory.
 * Actions should be placed in their respective subdirectory under `lib/netsuite/actions`.
+* Example:
+
+    ```Ruby
+    # lib/netsuite/actions/customer/add.rb
+
+    module NetSuite
+      module Actions
+        module Customer
+          class Add
+
+            def initialize(attributes = {})
+              @attributes = attributes
+            end
+
+            def self.call(attributes)
+              new(attributes).call
+            end
+
+            def call
+              response = NetSuite::Configuration.connection.request :add do
+                soap.header =  NetSuite::Configuration.auth_header
+                soap.body = {
+                  :entityId    => 'Shutter Fly',
+                  :companyName => 'Shutter Fly, Inc',
+                  :unsubscribe => false
+                }
+              end
+              success = response.to_hash[:add_response][:write_response][:status][:@isSuccess] == 'true'
+              body    = response.to_hash[:add_response][:write_response][:baseRef]
+              NetSuite::Response.new(:success => success, :body => body)
+            end
+
+          end
+        end
+      end
+    end
+    ```
 
 ## Contributing
 
