@@ -9,6 +9,7 @@ require 'netsuite/actions/add'
 require 'netsuite/actions/get'
 
 # ENTITIES
+require 'netsuite/entities/field_support'
 require 'netsuite/entities/customer'
 
 module NetSuite
