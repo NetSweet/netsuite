@@ -23,8 +23,20 @@ describe NetSuite::Configuration do
   end
 
   describe '#wsdl' do
-    it 'returns a path to the WSDL to use for the API' do
-      config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_02\.wsdl/)
+    context 'when the wsdl has been set' do
+      before do
+        config.wsdl = 'https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl'
+      end
+
+      it 'returns a path to the WSDL to use for the API' do
+        config.wsdl.should eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
+      end
+    end
+
+    context 'when the wsdl has not been set' do
+      it 'returns a path to the WSDL to use for the API' do
+        config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_02\.wsdl/)
+      end
     end
   end
 

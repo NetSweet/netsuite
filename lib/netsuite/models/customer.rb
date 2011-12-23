@@ -6,7 +6,7 @@ module NetSuite
     end
 
     def self.get(id)
-      response = NetSuite::Actions::Customer::Get.call(id)
+      response = NetSuite::Actions::Get.call(id)
       if response.success?
         new(response.body)
       else

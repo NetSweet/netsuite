@@ -8,7 +8,7 @@ describe NetSuite::Customer do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Customer::Get.should_receive(:call).with(1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
         customer = NetSuite::Customer.get(1)
         customer.should be_kind_of(NetSuite::Customer)
         customer.is_person.should be_true
@@ -19,7 +19,7 @@ describe NetSuite::Customer do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Customer::Get.should_receive(:call).with(1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
         lambda {
           NetSuite::Customer.get(1)
         }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Customer with ID=1 could not be found')

@@ -4,7 +4,8 @@ require 'netsuite/response'
 require 'netsuite/version'
 
 # ACTIONS
-require 'netsuite/actions/customer/get'
+require 'netsuite/actions/add'
+require 'netsuite/actions/get'
 
 # MODELS
 require 'netsuite/models/customer'

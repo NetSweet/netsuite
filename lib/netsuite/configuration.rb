@@ -14,8 +14,16 @@ module NetSuite
       attributes[:connection] ||= Savon::Client.new(self.wsdl)
     end
 
-    def wsdl
-      attributes[:wsdl] ||= File.expand_path('../../../wsdl/2011_02.wsdl', __FILE__)
+    def wsdl=(wsdl)
+      attributes[:wsdl] = wsdl
+    end
+
+    def wsdl(wsdl = nil)
+      if wsdl
+        self.wsdl = wsdl
+      else
+        attributes[:wsdl] ||= File.expand_path('../../../wsdl/2011_02.wsdl', __FILE__)
+      end
     end
 
     def auth_header
