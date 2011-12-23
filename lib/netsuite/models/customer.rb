@@ -14,6 +14,11 @@ module NetSuite
       end
     end
 
+    def add
+      response = NetSuite::Actions::Add.call(@attributes)
+      response.success?
+    end
+
     def method_missing(m, *args, &block)
       if @attributes.keys.include?(m.to_sym)
         @attributes[m.to_sym]
