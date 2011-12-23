@@ -8,8 +8,8 @@ require 'netsuite/actions/support'
 require 'netsuite/actions/add'
 require 'netsuite/actions/get'
 
-# MODELS
-require 'netsuite/models/customer'
+# ENTITIES
+require 'netsuite/entities/customer'
 
 module NetSuite
 
