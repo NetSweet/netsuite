@@ -4,6 +4,7 @@ require 'netsuite/response'
 require 'netsuite/version'
 
 # ACTIONS
+require 'netsuite/actions/support'
 require 'netsuite/actions/add'
 require 'netsuite/actions/get'
 

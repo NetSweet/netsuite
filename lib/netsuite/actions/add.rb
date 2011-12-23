@@ -1,18 +1,10 @@
 module NetSuite
   module Actions
     class Add
+      include Support
 
       def initialize(attributes = {})
         @attributes = attributes
-      end
-
-      def self.call(attributes = {})
-        new(attributes).call
-      end
-
-      def call
-        @response = request
-        build_response
       end
 
       private
@@ -25,14 +17,6 @@ module NetSuite
           soap.header = auth_header
           soap.body   = request_body
         end
-      end
-
-      def connection
-        NetSuite::Configuration.connection
-      end
-
-      def auth_header
-        NetSuite::Configuration.auth_header
       end
 
       # <soap:Body>
@@ -55,10 +39,6 @@ module NetSuite
             }
           }
         }
-      end
-
-      def build_response
-        NetSuite::Response.new(:success => success?, :body => response_body)
       end
 
       def success?
