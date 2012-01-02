@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Entities::FieldSupport do
-  let(:klass) { Class.new.send(:include, NetSuite::Entities::FieldSupport) }
+describe NetSuite::FieldSupport do
+  let(:klass) { Class.new.send(:include, NetSuite::FieldSupport) }
   let(:instance) do
     obj = klass.new
     obj.stub(:attributes).and_return({})
