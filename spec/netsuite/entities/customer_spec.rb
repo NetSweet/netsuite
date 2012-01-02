@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Customer do
-  let(:customer) { NetSuite::Customer.new }
+describe NetSuite::Entities::Customer do
+  let(:customer) { NetSuite::Entities::Customer.new }
 
   it 'has all the right fields' do
     [
@@ -35,8 +35,8 @@ describe NetSuite::Customer do
 
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
-        customer = NetSuite::Customer.get(1)
-        customer.should be_kind_of(NetSuite::Customer)
+        customer = NetSuite::Entities::Customer.get(1)
+        customer.should be_kind_of(NetSuite::Entities::Customer)
         customer.is_person.should be_true
       end
     end
@@ -47,8 +47,8 @@ describe NetSuite::Customer do
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
         lambda {
-          NetSuite::Customer.get(1)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Customer with ID=1 could not be found')
+          NetSuite::Entities::Customer.get(1)
+        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Entities::Customer with ID=1 could not be found')
       end
     end
   end
@@ -63,7 +63,7 @@ describe NetSuite::Customer do
         NetSuite::Actions::Add.should_receive(:call).
             with(test_data).
             and_return(response)
-        customer = NetSuite::Customer.new(test_data)
+        customer = NetSuite::Entities::Customer.new(test_data)
         customer.add.should be_true
       end
     end
@@ -74,7 +74,7 @@ describe NetSuite::Customer do
         NetSuite::Actions::Add.should_receive(:call).
             with(test_data).
             and_return(response)
-        customer = NetSuite::Customer.new(test_data)
+        customer = NetSuite::Entities::Customer.new(test_data)
         customer.add.should be_false
       end
     end
