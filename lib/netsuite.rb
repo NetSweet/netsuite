@@ -12,6 +12,9 @@ require 'netsuite/actions/get'
 # ENTITIES
 require 'netsuite/entities/customer'
 
+# TRANSACTIONS
+require 'netsuite/transactions/invoice'
+
 module NetSuite
 
   def self.configure(&block)
