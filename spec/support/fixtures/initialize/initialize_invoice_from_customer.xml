@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_0102201215937064331518330846_2ba5246f66c</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <initializeResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <readResponse>
+        <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com"/>
+        <record xsi:type="tranSales:Invoice" xmlns:tranSales="urn:sales_2011_2.transactions.webservices.netsuite.com">
+          <tranSales:customForm internalId="101" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>RP Test  Product Invoice</platformCore:name>
+          </tranSales:customForm>
+          <tranSales:entity internalId="988" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>100157 200 Black Men of Chicago</platformCore:name>
+          </tranSales:entity>
+          <tranSales:tranDate>2012-01-02T00:00:00.000-08:00</tranSales:tranDate>
+          <tranSales:tranId>2582003</tranSales:tranId>
+          <tranSales:postingPeriod internalId="20" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>Jan 2012</platformCore:name>
+          </tranSales:postingPeriod>
+          <tranSales:dueDate>2012-01-02T00:00:00.000-08:00</tranSales:dueDate>
+          <tranSales:excludeCommission>false</tranSales:excludeCommission>
+          <tranSales:account internalId="123" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>1100 Accounts Receivable</platformCore:name>
+          </tranSales:account>
+          <tranSales:transactionBillAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
+            <platformCommon:billAddr1>3473 S Martin Luther King Dr, Ste 206</platformCommon:billAddr1>
+            <platformCommon:billCity>Chicago</platformCommon:billCity>
+            <platformCommon:billState>IL</platformCommon:billState>
+            <platformCommon:billZip>60616</platformCommon:billZip>
+            <platformCommon:billCountry>_unitedStates</platformCommon:billCountry>
+          </tranSales:transactionBillAddress>
+          <tranSales:billAddressList internalId="567" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>3473 S Martin Luther King Dr, Ste 206</platformCore:name>
+          </tranSales:billAddressList>
+          <tranSales:billAddress>3473 S Martin Luther King Dr, Ste 206 Chicago IL 60616</tranSales:billAddress>
+          <tranSales:transactionShipAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
+            <platformCommon:shipAddr1>3473 S Martin Luther King Dr, Ste 206</platformCommon:shipAddr1>
+            <platformCommon:shipCity>Chicago</platformCommon:shipCity>
+            <platformCommon:shipState>IL</platformCommon:shipState>
+            <platformCommon:shipZip>60616</platformCommon:shipZip>
+            <platformCommon:shipCountry>_unitedStates</platformCommon:shipCountry>
+            <platformCommon:shipIsResidential>false</platformCommon:shipIsResidential>
+          </tranSales:transactionShipAddress>
+          <tranSales:shipAddressList internalId="567" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:name>3473 S Martin Luther King Dr, Ste 206</platformCore:name>
+          </tranSales:shipAddressList>
+          <tranSales:shipAddress>3473 S Martin Luther King Dr, Ste 206 Chicago IL 60616</tranSales:shipAddress>
+          <tranSales:shipDate>2012-01-02T00:00:00.000-08:00</tranSales:shipDate>
+          <tranSales:subTotal>0.0</tranSales:subTotal>
+          <tranSales:syncSalesTeams>false</tranSales:syncSalesTeams>
+          <tranSales:discountTotal>0.0</tranSales:discountTotal>
+          <tranSales:taxTotal>0.0</tranSales:taxTotal>
+          <tranSales:total>0.0</tranSales:total>
+          <tranSales:itemCostDiscPrint>false</tranSales:itemCostDiscPrint>
+          <tranSales:expCostDiscPrint>false</tranSales:expCostDiscPrint>
+          <tranSales:customFieldList xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:customField internalId="custbody_3rd_party" xsi:type="platformCore:BooleanCustomFieldRef">
+              <platformCore:value>false</platformCore:value>
+            </platformCore:customField>
+          </tranSales:customFieldList>
+        </record>
+      </readResponse>
+    </initializeResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
