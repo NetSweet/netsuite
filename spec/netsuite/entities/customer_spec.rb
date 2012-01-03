@@ -5,12 +5,12 @@ describe NetSuite::Entities::Customer do
 
   it 'has all the right fields' do
     [
-      :custom_form, :entity_id, :alt_name, :is_person, :phonetic_name, :salutation, :first_name,
-      :middle_name, :last_name, :company_name, :entity_status, :parent, :phone, :fax, :email, :url,
-      :default_address, :is_inactive, :category, :title, :print_on_check_as, :alt_phone, :home_phone,
-      :mobile_phone, :alt_email, :language, :comments, :date_created, :image, :email_preference,
-      :subsidiary, :representing_subsidiary, :sales_rep, :territory, :contrib_pct, :partner,
-      :sales_group, :vat_reg_number, :account_number, :tax_exempt, :terms, :credit_limit,
+      :internal_id, :external_id, :custom_form, :entity_id, :alt_name, :is_person, :phonetic_name,
+      :salutation, :first_name, :middle_name, :last_name, :company_name, :entity_status, :parent,
+      :phone, :fax, :email, :url, :default_address, :is_inactive, :category, :title, :print_on_check_as,
+      :alt_phone, :home_phone, :mobile_phone, :alt_email, :language, :comments, :date_created, :image,
+      :email_preference, :subsidiary, :representing_subsidiary, :sales_rep, :territory, :contrib_pct,
+      :partner, :sales_group, :vat_reg_number, :account_number, :tax_exempt, :terms, :credit_limit,
       :credit_hold_override, :balance, :overdue_balance, :days_overdue, :unbilled_orders,
       :consol_unbilled_orders, :consol_overdue_balance, :consol_deposit_balance, :consol_balance,
       :consol_aging, :consol_days_overdue, :price_level, :currency, :pref_cc_processor, :deposit_balance,
