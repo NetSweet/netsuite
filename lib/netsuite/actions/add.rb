@@ -1,7 +1,7 @@
 module NetSuite
   module Actions
     class Add
-      include Support
+      include SavonSupport
 
       def initialize(attributes = {})
         @attributes = attributes

@@ -1,7 +1,7 @@
 module NetSuite
   module Actions
     class Get
-      include Support
+      include SavonSupport
 
       def initialize(id)
         @id = id

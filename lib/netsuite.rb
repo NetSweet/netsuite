@@ -3,6 +3,7 @@ require 'netsuite/errors'
 require 'netsuite/response'
 require 'netsuite/version'
 require 'netsuite/field_support'
+require 'netsuite/savon_support'
 
 # ACTIONS
 require 'netsuite/actions/support'

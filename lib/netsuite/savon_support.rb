@@ -1,6 +1,6 @@
 module NetSuite
   module Actions
-    module Support
+    module SavonSupport
 
       def self.included(base)
         base.send(:extend, ClassMethods)
