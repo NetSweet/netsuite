@@ -25,7 +25,7 @@ module NetSuite
         :gift_cert_redemption_list, :exp_cost_list, :time_list, :ship_group_list, :custom_field_list
 
       def self.initialize(customer)
-        response = NetSuite::Actions::Initialize.call(customer)
+        response = Actions::Initialize.call(customer)
         if response.success?
           new(response.body)
         else

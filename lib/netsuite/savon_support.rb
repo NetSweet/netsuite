@@ -26,15 +26,15 @@ module NetSuite
       end
 
       def connection
-        NetSuite::Configuration.connection
+        Configuration.connection
       end
 
       def auth_header
-        NetSuite::Configuration.auth_header
+        Configuration.auth_header
       end
 
       def build_response
-        NetSuite::Response.new(:success => success?, :body => response_body)
+        Response.new(:success => success?, :body => response_body)
       end
 
       def success?

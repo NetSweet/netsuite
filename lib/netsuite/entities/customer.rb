@@ -23,7 +23,7 @@ module NetSuite
         :item_pricing_list, :custom_field_list
 
       def self.get(id)
-        response = NetSuite::Actions::Get.call(id)
+        response = Actions::Get.call(id)
         if response.success?
           new(response.body)
         else
@@ -32,7 +32,7 @@ module NetSuite
       end
 
       def add
-        response = NetSuite::Actions::Add.call(@attributes)
+        response = Actions::Add.call(attributes)
         response.success?
       end
 

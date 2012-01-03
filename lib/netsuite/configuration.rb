@@ -45,7 +45,7 @@ module NetSuite
         self.email = email
       else
         attributes[:email] ||
-        raise(NetSuite::ConfigurationError,
+        raise(ConfigurationError,
           '#email is a required configuration value. Please set it by calling NetSuite::Configuration.email = "me@example.com"')
       end
     end
@@ -59,7 +59,7 @@ module NetSuite
         self.password = password
       else
         attributes[:password] ||
-        raise(NetSuite::ConfigurationError,
+        raise(ConfigurationError,
           '#password is a required configuration value. Please set it by calling NetSuite::Configuration.password = "my_pass"')
       end
     end
@@ -73,7 +73,7 @@ module NetSuite
         self.account = account
       else
         attributes[:account] ||
-        raise(NetSuite::ConfigurationError,
+        raise(ConfigurationError,
           '#account is a required configuration value. Please set it by calling NetSuite::Configuration.account = 1234')
       end
     end
