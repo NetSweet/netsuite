@@ -24,14 +24,13 @@ module NetSuite
         :sales_team_list, :partners_list, :item_list, :item_cost_list, :gift_cert_redemption_list, :exp_cost_list, :time_list,
         :ship_group_list, :custom_field_list
 
-      def initialize(attributes = {})
-        @attributes = attributes
-      end
-
-      private
-
-      def attributes
-        @attributes
+      def self.initialize(customer)
+        response = NetSuite::Actions::Initialize.call(customer)
+        if response.success?
+          new(response.body)
+        else
+          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+        end
       end
 
     end

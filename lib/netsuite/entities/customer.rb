@@ -41,12 +41,6 @@ module NetSuite
         response.success?
       end
 
-      private
-
-      def attributes
-        @attributes
-      end
-
     end
   end
 end
