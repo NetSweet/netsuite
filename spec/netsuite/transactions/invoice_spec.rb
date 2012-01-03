@@ -36,4 +36,18 @@ describe NetSuite::Transactions::Invoice do
   it 'handles the "klass" field correctly'
   # This field maps to 'class' but cannot be set as such in Ruby as it will cause runtime errors.
 
+  describe '.initialize' do
+    context 'when the request is successful' do
+      it 'returns an initialized invoice from the customer entity' do
+        NetSuite::Actions::Initialize.should_receive(:call).with(customer).and_return(response)
+        invoice = NetSuite::Transactions::Invoice.initialize(customer)
+        invoice.should be_kind_of(NetSuite::Transactions::Invoice)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      pending
+    end
+  end
+
 end
