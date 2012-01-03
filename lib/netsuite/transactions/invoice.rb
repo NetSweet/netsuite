@@ -2,6 +2,7 @@ module NetSuite
   module Transactions
     class Invoice
       include FieldSupport
+      include RecordSupport
 
       fields :internal_id, :external_id, :created_date, :last_modified_date, :custom_form, :entity, :tran_date, :tran_id,
         :source, :created_from, :posting_period, :opportunity, :department, :klass, :terms, :location, :subsidiary, :due_date,

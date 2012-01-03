@@ -32,8 +32,19 @@ module NetSuite
       end
 
       def add
-        response = Actions::Add.call(attributes)
+        response = Actions::Add.call(self)
         response.success?
+      end
+
+      def to_record
+        attributes.inject({}) do |hash, (k,v)|
+          hash.store("listRel:#{k.to_s.lower_camelcase}", v)
+          hash
+        end
+      end
+
+      def record_type
+        "listRel:#{self.class.to_s.split('::').last}"
       end
 
     end

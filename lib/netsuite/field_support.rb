@@ -1,5 +1,6 @@
 module NetSuite
   module FieldSupport
+    include AttributeSupport
 
     def self.included(base)
       base.send(:extend, ClassMethods)
@@ -18,11 +19,6 @@ module NetSuite
         send("#{k}=", v)
       end
     end
-
-    def attributes
-      @attributes ||= {}
-    end
-    private :attributes
 
     module ClassMethods
 

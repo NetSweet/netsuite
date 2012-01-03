@@ -54,29 +54,45 @@ describe NetSuite::Entities::Customer do
   end
 
   describe '#add' do
-    let(:test_data) { { :entity_id => 'TEST CUSTOMER', :is_person => true } }
+    let(:customer) { NetSuite::Entities::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
 
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(test_data).
+            with(customer).
             and_return(response)
-        customer = NetSuite::Entities::Customer.new(test_data)
         customer.add.should be_true
       end
     end
 
     context 'when the response is unsuccessful' do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(test_data).
+            with(customer).
             and_return(response)
-        customer = NetSuite::Entities::Customer.new(test_data)
         customer.add.should be_false
       end
+    end
+  end
+
+  describe '#to_record' do
+    let(:customer) { NetSuite::Entities::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
+
+    it 'returns a hash of attributes that can be used in a SOAP request' do
+      customer.to_record.should eql({
+        'listRel:entityId' => 'TEST CUSTOMER',
+        'listRel:isPerson' => true
+      })
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string type for the record to be used in a SOAP request' do
+      customer.record_type.should eql('listRel:Customer')
     end
   end
 

@@ -11,10 +11,10 @@
         <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com"/>
         <record xsi:type="tranSales:Invoice" xmlns:tranSales="urn:sales_2011_2.transactions.webservices.netsuite.com">
           <tranSales:customForm internalId="101" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
-            <platformCore:name>RP Test  Product Invoice</platformCore:name>
+            <platformCore:name>Test Product Invoice</platformCore:name>
           </tranSales:customForm>
           <tranSales:entity internalId="988" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
-            <platformCore:name>100157 200 Black Men of Chicago</platformCore:name>
+            <platformCore:name>100157 Shutter Fly</platformCore:name>
           </tranSales:entity>
           <tranSales:tranDate>2012-01-02T00:00:00.000-08:00</tranSales:tranDate>
           <tranSales:tranId>2582003</tranSales:tranId>
@@ -27,28 +27,28 @@
             <platformCore:name>1100 Accounts Receivable</platformCore:name>
           </tranSales:account>
           <tranSales:transactionBillAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
-            <platformCommon:billAddr1>3473 S Martin Luther King Dr, Ste 206</platformCommon:billAddr1>
-            <platformCommon:billCity>Chicago</platformCommon:billCity>
-            <platformCommon:billState>IL</platformCommon:billState>
-            <platformCommon:billZip>60616</platformCommon:billZip>
+            <platformCommon:billAddr1>123 Happy Lane</platformCommon:billAddr1>
+            <platformCommon:billCity>Los Angeles</platformCommon:billCity>
+            <platformCommon:billState>CA</platformCommon:billState>
+            <platformCommon:billZip>90007</platformCommon:billZip>
             <platformCommon:billCountry>_unitedStates</platformCommon:billCountry>
           </tranSales:transactionBillAddress>
           <tranSales:billAddressList internalId="567" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
-            <platformCore:name>3473 S Martin Luther King Dr, Ste 206</platformCore:name>
+            <platformCore:name>123 Happy Lane</platformCore:name>
           </tranSales:billAddressList>
-          <tranSales:billAddress>3473 S Martin Luther King Dr, Ste 206 Chicago IL 60616</tranSales:billAddress>
+          <tranSales:billAddress>123 Happy Lane, Los Angeles, CA 90007</tranSales:billAddress>
           <tranSales:transactionShipAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
-            <platformCommon:shipAddr1>3473 S Martin Luther King Dr, Ste 206</platformCommon:shipAddr1>
-            <platformCommon:shipCity>Chicago</platformCommon:shipCity>
-            <platformCommon:shipState>IL</platformCommon:shipState>
-            <platformCommon:shipZip>60616</platformCommon:shipZip>
+            <platformCommon:shipAddr1>123 Happy Lane</platformCommon:shipAddr1>
+            <platformCommon:shipCity>Los Angeles</platformCommon:shipCity>
+            <platformCommon:shipState>CA</platformCommon:shipState>
+            <platformCommon:shipZip>90007</platformCommon:shipZip>
             <platformCommon:shipCountry>_unitedStates</platformCommon:shipCountry>
             <platformCommon:shipIsResidential>false</platformCommon:shipIsResidential>
           </tranSales:transactionShipAddress>
           <tranSales:shipAddressList internalId="567" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
-            <platformCore:name>3473 S Martin Luther King Dr, Ste 206</platformCore:name>
+            <platformCore:name>123 Happy Lane</platformCore:name>
           </tranSales:shipAddressList>
-          <tranSales:shipAddress>3473 S Martin Luther King Dr, Ste 206 Chicago IL 60616</tranSales:shipAddress>
+          <tranSales:shipAddress>123 Happy Lane, Los Angeles, CA 90007</tranSales:shipAddress>
           <tranSales:shipDate>2012-01-02T00:00:00.000-08:00</tranSales:shipDate>
           <tranSales:subTotal>0.0</tranSales:subTotal>
           <tranSales:syncSalesTeams>false</tranSales:syncSalesTeams>

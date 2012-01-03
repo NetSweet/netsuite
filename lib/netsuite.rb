@@ -4,7 +4,9 @@ require 'netsuite/configuration'
 require 'netsuite/errors'
 require 'netsuite/response'
 require 'netsuite/version'
+require 'netsuite/attribute_support'
 require 'netsuite/field_support'
+require 'netsuite/record_support'
 require 'netsuite/savon_support'
 
 # ACTIONS

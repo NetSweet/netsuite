@@ -3,8 +3,8 @@ module NetSuite
     class Add
       include SavonSupport
 
-      def initialize(attributes = {})
-        @attributes = attributes
+      def initialize(obj = nil)
+        @obj = obj
       end
 
       private
@@ -29,13 +29,10 @@ module NetSuite
       # </soap:Body>
       def request_body
         {
-          'platformMsgs:record' => {
-            'listRel:entityId'    => @attributes[:entity_id],
-            'listRel:companyName' => @attributes[:company_name]
-          },
+          'platformMsgs:record' => @obj.to_record,
           :attributes! => {
             'platformMsgs:record' => {
-              'xsi:type' => 'listRel:Customer'
+              'xsi:type' => @obj.record_type
             }
           }
         }
