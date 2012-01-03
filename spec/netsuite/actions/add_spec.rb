@@ -31,6 +31,7 @@ describe NetSuite::Actions::Add do
     it 'returns a valid Response object' do
       response = NetSuite::Actions::Add.call(attributes)
       response.should be_kind_of(NetSuite::Response)
+      response.should be_success
     end
   end
 

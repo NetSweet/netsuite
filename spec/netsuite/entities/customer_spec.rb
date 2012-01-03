@@ -54,7 +54,7 @@ describe NetSuite::Entities::Customer do
   end
 
   describe '#add' do
-    let(:test_data) { { :entity_name => 'TEST CUSTOMER', :is_person => true } }
+    let(:test_data) { { :entity_id => 'TEST CUSTOMER', :is_person => true } }
 
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
