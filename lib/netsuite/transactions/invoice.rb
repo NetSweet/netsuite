@@ -4,26 +4,26 @@ module NetSuite
       include FieldSupport
       include RecordSupport
 
-      fields :created_date, :last_modified_date, :custom_form, :entity, :tran_date, :tran_id, :source, :created_from,
-        :posting_period, :opportunity, :department, :klass, :terms, :location, :subsidiary, :due_date, :discount_date,
-        :discount_amount, :sales_rep, :contrib_pct, :partner, :lead_source, :start_date, :end_date, :other_ref_name, :memo,
-        :sales_effective_date, :exclude_commission, :total_cost_estimate, :est_gross_profit, :est_gross_profit_percent,
-        :rev_rec_schedule, :rev_rec_start_date, :rev_rec_end_date, :amount_paid, :amount_remaining, :balance, :account,
-        :on_credit_hold, :exchange_rate, :currency_name, :promo_code, :discount_item, :discount_rate, :is_taxable, :tax_item,
-        :tax_rate, :to_be_printed, :to_be_emailed, :to_be_faxed, :fax, :message_sel, :message, :transaction_bill_address,
-        :bill_address_list, :bill_address, :transaction_ship_address, :ship_address_list, :ship_address, :fob, :ship_date,
-        :ship_method, :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :handling_tax_code,
-        :handling_tax_1_rate, :handling_cost, :handling_tax_2_rate, :tracking_numbers, :linked_tracking_numbers, :sales_group,
-        :sub_total, :revenue_status, :recognized_revenue, :deferred_revenue, :rev_rec_on_rev_commitment, :sync_sales_teams,
-        :discount_total, :tax_total, :alt_shipping_cost, :alt_handling_cost, :total, :status, :job, :billing_schedule, :email,
-        :tax_2_total, :vat_reg_num, :exp_cost_discount, :item_cost_discount, :time_discount, :exp_cost_disc_rate,
-        :item_cost_disc_rate, :time_disc_rate, :exp_cost_disc_amount, :exp_cost_tax_rate_1, :exp_cost_tax_rate_2,
-        :item_cost_disc_amount, :exp_cost_tax_code, :exp_cost_disc_tax_1_amt, :item_cost_tax_rate_1, :time_disc_amount,
-        :item_cost_tax_code, :exp_cost_disc_taxable, :item_cost_disc_taxable, :item_cost_tax_rate_2, :item_cost_disc_tax_1_amt,
-        :item_cost_disc_print, :time_disc_taxable, :time_tax_rate_1, :exp_cost_disc_print, :time_tax_code, :time_disc_print,
-        :gift_cert_applied, :time_disc_tax_1_amt, :tran_is_vsoe_bundle, :time_tax_rate_2, :vsoe_auto_calc, :sync_partner_teams,
-        :sales_team_list, :partners_list, :item_list, :item_cost_list, :gift_cert_redemption_list, :exp_cost_list, :time_list,
-        :ship_group_list, :custom_field_list
+      fields :account, :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
+        :bill_address_list, :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,
+        :custom_form, :deferred_revenue, :department, :discount_amount, :discount_date, :discount_item, :discount_rate,
+        :discount_total, :due_date, :email, :end_date, :entity, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
+        :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
+        :exp_cost_disc_taxable, :exp_cost_discount, :exp_cost_list, :exp_cost_tax_code, :exp_cost_tax_rate_1,
+        :exp_cost_tax_rate_2, :fax, :fob, :gift_cert_applied, :gift_cert_redemption_list, :handling_cost, :handling_tax_1_rate,
+        :handling_tax_2_rate, :handling_tax_code, :is_taxable, :item_cost_disc_amount, :item_cost_disc_print,
+        :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
+        :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :item_list, :job, :klass, :last_modified_date,
+        :lead_source, :linked_tracking_numbers, :location, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
+        :other_ref_name, :partner, :partners_list, :posting_period, :promo_code, :recognized_revenue, :rev_rec_end_date,
+        :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
+        :sales_group, :sales_rep, :sales_team_list, :ship_address, :ship_address_list, :ship_date, :ship_group_list,
+        :ship_method, :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
+        :status, :sub_total, :subsidiary, :sync_partner_teams, :sync_sales_teams, :tax_2_total, :tax_item, :tax_rate,
+        :tax_total, :terms, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
+        :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
+        :to_be_printed, :total, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
+        :transaction_bill_address, :transaction_ship_address, :vat_reg_num, :vsoe_auto_calc
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id)
