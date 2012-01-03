@@ -50,4 +50,32 @@ describe NetSuite::Transactions::Invoice do
     end
   end
 
+  describe '#add' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        invoice = NetSuite::Transactions::Invoice.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(invoice).
+            and_return(response)
+        invoice.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        invoice = NetSuite::Transactions::Invoice.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(invoice).
+            and_return(response)
+        invoice.add.should be_false
+      end
+    end
+  end
+
 end

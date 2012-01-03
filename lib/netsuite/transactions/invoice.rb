@@ -33,6 +33,11 @@ module NetSuite
         end
       end
 
+      def add
+        response = Actions::Add.call(self)
+        response.success?
+      end
+
     end
   end
 end
