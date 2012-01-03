@@ -2,6 +2,7 @@ module NetSuite
   module Entities
     class Customer
       include FieldSupport
+      include RecordSupport
 
       fields :access_role, :account_number, :addressbook_list, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
@@ -40,17 +41,6 @@ module NetSuite
       def add
         response = Actions::Add.call(self)
         response.success?
-      end
-
-      def to_record
-        attributes.inject({}) do |hash, (k,v)|
-          hash.store("listRel:#{k.to_s.lower_camelcase}", v)
-          hash
-        end
-      end
-
-      def record_type
-        "listRel:#{self.class.to_s.split('::').last}"
       end
 
     end
