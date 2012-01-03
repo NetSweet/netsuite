@@ -25,9 +25,7 @@ module NetSuite
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
-        Hash[attributes.select { |k,v| self.class.fields.include?(k) }].each do |k,v|
-          send("#{k}=", v)
-        end
+        initialize_from_attributes_hash(attributes)
       end
 
       def self.get(id)
