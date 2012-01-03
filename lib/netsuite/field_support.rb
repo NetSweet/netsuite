@@ -6,20 +6,6 @@ module NetSuite
       base.send(:extend, ClassMethods)
     end
 
-    def initialize(attributes = {})
-      attributes = attributes.inject({}) do |hash, (k,v)|
-        if k.to_s.match(/@.+/)
-          hash.store(k.to_s.delete('@').to_sym, attributes[k])
-        else
-          hash.store(k,v)
-        end
-        hash
-      end
-      Hash[attributes.select { |k,v| self.class.fields.include?(k) }].each do |k,v|
-        send("#{k}=", v)
-      end
-    end
-
     module ClassMethods
 
       def fields(*args)

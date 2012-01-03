@@ -4,24 +4,6 @@ describe NetSuite::FieldSupport do
   let(:klass) { Class.new.send(:include, NetSuite::FieldSupport) }
   let(:instance) { klass.new }
 
-  describe '#initialize' do
-    before do
-      klass.field(:banana)
-    end
-
-    it 'stores the passed in attributes into the attributes instance variable' do
-      instance = klass.new(:banana => 'for a monkey')
-      instance.send(:attributes).should eql(:banana => 'for a monkey')
-    end
-
-    it 'ignores passed in attributes that are not in the fields set' do
-      instance = klass.new(:apple => 'for a horse', :banana => 'for a monkey')
-      instance.send(:attributes).should eql(:banana => 'for a monkey')
-    end
-
-    it 'renames attributes with swirlies'
-  end
-
   describe '.fields' do
     context 'with arguments' do
       it 'calls .field with each argument passed to it' do
