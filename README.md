@@ -29,15 +29,15 @@ Or install it yourself as:
 * Retrieves the customer by internalId.
 
     ```Ruby
-    customer = NetSuite::Customer.get(4) # => #<NetSuite::Customer:0x1042f59b8>
-    customer.is_person                   # => true
+    customer = NetSuite::Records::Customer.get(4) # => #<NetSuite::Records::Customer:0x1042f59b8>
+    customer.is_person                            # => true
     ```
 
 <a name='extending'>
 ## Additions
 
 * Please submit a pull request for any models or actions that you would like to be included. The API is quite large and so we will necessarily not cover all of it.
-* Models should go into the `lib/netsuite/models/` directory.
+* Records should go into the `lib/netsuite/records/` directory.
 * Actions should be placed in their respective subdirectory under `lib/netsuite/actions`.
 * Example:
 
