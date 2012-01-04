@@ -34,7 +34,7 @@ describe NetSuite::Actions::Add do
 
   context 'Invoice' do
     let(:invoice) do
-      NetSuite::Transactions::Invoice.new(:source => 'Google', :total => 100.0)
+      NetSuite::Records::Invoice.new(:source => 'Google', :total => 100.0)
     end
 
     before do

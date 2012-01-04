@@ -17,9 +17,7 @@ require 'netsuite/actions/initialize'
 # RECORDS
 require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook_list'
-
-# TRANSACTIONS
-require 'netsuite/transactions/invoice'
+require 'netsuite/records/invoice'
 
 module NetSuite
 

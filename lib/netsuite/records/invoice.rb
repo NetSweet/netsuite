@@ -1,5 +1,5 @@
 module NetSuite
-  module Transactions
+  module Records
     class Invoice
       include FieldSupport
       include RecordSupport

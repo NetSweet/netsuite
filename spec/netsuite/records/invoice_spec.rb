@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Transactions::Invoice do
-  let(:invoice) { NetSuite::Transactions::Invoice.new }
+describe NetSuite::Records::Invoice do
+  let(:invoice) { NetSuite::Records::Invoice.new }
   let(:customer) { NetSuite::Records::Customer.new }
   let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
@@ -38,8 +38,8 @@ describe NetSuite::Transactions::Invoice do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
         NetSuite::Actions::Initialize.should_receive(:call).with(customer).and_return(response)
-        invoice = NetSuite::Transactions::Invoice.initialize(customer)
-        invoice.should be_kind_of(NetSuite::Transactions::Invoice)
+        invoice = NetSuite::Records::Invoice.initialize(customer)
+        invoice.should be_kind_of(NetSuite::Records::Invoice)
       end
     end
 
@@ -55,7 +55,7 @@ describe NetSuite::Transactions::Invoice do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        invoice = NetSuite::Transactions::Invoice.new(test_data)
+        invoice = NetSuite::Records::Invoice.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
             with(invoice).
             and_return(response)
@@ -67,7 +67,7 @@ describe NetSuite::Transactions::Invoice do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        invoice = NetSuite::Transactions::Invoice.new(test_data)
+        invoice = NetSuite::Records::Invoice.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
             with(invoice).
             and_return(response)
