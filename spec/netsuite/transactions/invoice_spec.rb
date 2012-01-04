@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe NetSuite::Transactions::Invoice do
   let(:invoice) { NetSuite::Transactions::Invoice.new }
-  let(:customer) { NetSuite::Entities::Customer.new }
+  let(:customer) { NetSuite::Records::Customer.new }
   let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
   it 'has all the right fields' do

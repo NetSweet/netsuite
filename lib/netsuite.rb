@@ -15,10 +15,8 @@ require 'netsuite/actions/get'
 require 'netsuite/actions/initialize'
 
 # RECORDS
+require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook_list'
-
-# ENTITIES
-require 'netsuite/entities/customer'
 
 # TRANSACTIONS
 require 'netsuite/transactions/invoice'

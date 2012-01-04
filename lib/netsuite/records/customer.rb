@@ -1,5 +1,5 @@
 module NetSuite
-  module Entities
+  module Records
     class Customer
       include FieldSupport
       include RecordSupport

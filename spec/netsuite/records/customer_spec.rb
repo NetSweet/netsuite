@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Entities::Customer do
-  let(:customer) { NetSuite::Entities::Customer.new }
+describe NetSuite::Records::Customer do
+  let(:customer) { NetSuite::Records::Customer.new }
 
   it 'has all the right fields' do
     [
@@ -52,8 +52,8 @@ describe NetSuite::Entities::Customer do
 
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
-        customer = NetSuite::Entities::Customer.get(1)
-        customer.should be_kind_of(NetSuite::Entities::Customer)
+        customer = NetSuite::Records::Customer.get(1)
+        customer.should be_kind_of(NetSuite::Records::Customer)
         customer.is_person.should be_true
       end
     end
@@ -64,14 +64,14 @@ describe NetSuite::Entities::Customer do
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(1).and_return(response)
         lambda {
-          NetSuite::Entities::Customer.get(1)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Entities::Customer with ID=1 could not be found')
+          NetSuite::Records::Customer.get(1)
+        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::Customer with ID=1 could not be found')
       end
     end
   end
 
   describe '#add' do
-    let(:customer) { NetSuite::Entities::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
+    let(:customer) { NetSuite::Records::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
 
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
@@ -97,7 +97,7 @@ describe NetSuite::Entities::Customer do
   end
 
   describe '#to_record' do
-    let(:customer) { NetSuite::Entities::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
+    let(:customer) { NetSuite::Records::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
       customer.to_record.should eql({

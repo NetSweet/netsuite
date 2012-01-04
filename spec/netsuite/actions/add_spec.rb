@@ -4,7 +4,7 @@ describe NetSuite::Actions::Add do
 
   context 'Customer' do
     let(:customer) do
-      NetSuite::Entities::Customer.new(:entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.')
+      NetSuite::Records::Customer.new(:entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.')
     end
 
     before do

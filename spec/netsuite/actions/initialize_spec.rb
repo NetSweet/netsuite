@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::Initialize do
-  let(:customer) { NetSuite::Entities::Customer.new(:internal_id => 1) }
+  let(:customer) { NetSuite::Records::Customer.new(:internal_id => 1) }
 
   before do
     savon.expects(:initialize).with({
