@@ -29,6 +29,10 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def addressbook_list=(attributes_or_record)
+        attributes[:addressbook_list] = NetSuite::Records::CustomerAddressbookList.new(attributes_or_record)
+      end
+
       def self.get(id)
         response = Actions::Get.call(id)
         if response.success?

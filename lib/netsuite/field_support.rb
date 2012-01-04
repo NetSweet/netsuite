@@ -10,7 +10,7 @@ module NetSuite
 
       def fields(*args)
         if args.empty?
-           @fields
+           @fields ||= {}
         else
           args.each do |arg|
             field arg
