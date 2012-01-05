@@ -25,6 +25,8 @@ module NetSuite
         :to_be_printed, :total, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
         :transaction_bill_address, :transaction_ship_address, :vat_reg_num, :vsoe_auto_calc
 
+      attr_reader :internal_id, :external_id
+
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id)
         @external_id = attributes.delete(:external_id)
