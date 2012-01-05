@@ -18,6 +18,7 @@ require 'netsuite/actions/initialize'
 require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook_list'
 require 'netsuite/records/invoice'
+require 'netsuite/records/record_ref'
 
 module NetSuite
 
