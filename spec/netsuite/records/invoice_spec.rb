@@ -7,14 +7,14 @@ describe NetSuite::Records::Invoice do
 
   it 'has all the right fields' do
     [
-      :created_date, :last_modified_date, :custom_form, :entity, :tran_date, :tran_id, :source, :created_from, :posting_period,
+      :created_date, :last_modified_date, :tran_date, :tran_id, :source, :created_from,
       :opportunity, :department, :klass, :terms, :location, :subsidiary, :due_date, :discount_date, :discount_amount, :sales_rep,
       :contrib_pct, :partner, :lead_source, :start_date, :end_date, :other_ref_name, :memo, :sales_effective_date,
       :exclude_commission, :total_cost_estimate, :est_gross_profit, :est_gross_profit_percent, :rev_rec_schedule,
-      :rev_rec_start_date, :rev_rec_end_date, :amount_paid, :amount_remaining, :balance, :account, :on_credit_hold,
+      :rev_rec_start_date, :rev_rec_end_date, :amount_paid, :amount_remaining, :balance, :on_credit_hold,
       :exchange_rate, :currency_name, :promo_code, :discount_item, :discount_rate, :is_taxable, :tax_item, :tax_rate,
-      :to_be_printed, :to_be_emailed, :to_be_faxed, :fax, :message_sel, :message, :transaction_bill_address, :bill_address_list,
-      :bill_address, :transaction_ship_address, :ship_address_list, :ship_address, :fob, :ship_date, :ship_method, :shipping_cost,
+      :to_be_printed, :to_be_emailed, :to_be_faxed, :fax, :message_sel, :message, :transaction_bill_address,
+      :bill_address, :transaction_ship_address, :ship_address, :fob, :ship_date, :ship_method, :shipping_cost,
       :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :handling_tax_code, :handling_tax_1_rate, :handling_cost,
       :handling_tax_2_rate, :tracking_numbers, :linked_tracking_numbers, :sales_group, :sub_total, :revenue_status,
       :recognized_revenue, :deferred_revenue, :rev_rec_on_rev_commitment, :sync_sales_teams, :discount_total, :tax_total,
@@ -45,6 +45,74 @@ describe NetSuite::Records::Invoice do
 
     context 'when the response is unsuccessful' do
       pending
+    end
+  end
+
+  describe 'RecordRefs' do
+    describe 'account' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.account = {
+          :@internal_id           => '123',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => '1100 Accounts Receivable'
+        }
+        invoice.account.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'bill_address_list' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.bill_address_list = {
+          :@internal_id           => '567',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => '123 Happy Lane'
+        }
+        invoice.bill_address_list.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'custom_form' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.custom_form = {
+          :@internal_id           => '101',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => 'RP Test Product Invoice'
+        }
+        invoice.custom_form.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'entity' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.entity = {
+          :@internal_id           => '988',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => '100157 Shutter Fly'
+        }
+        invoice.entity.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'posting_period' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.posting_period = {
+          :@internal_id           => '20',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => 'Jan 2012'
+        }
+        invoice.posting_period.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'ship_address_list' do
+      it 'creates a RecordRef for this attribute' do
+        invoice.ship_address_list = {
+          :@internal_id           => '567',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => '123 Happy Lane'
+        }
+        invoice.ship_address_list.should be_kind_of(NetSuite::Records::RecordRef)
+      end
     end
   end
 

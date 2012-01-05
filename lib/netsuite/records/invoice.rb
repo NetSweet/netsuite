@@ -33,6 +33,30 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def account=(attrs)
+        attributes[:account] = RecordRef.new(attrs)
+      end
+
+      def bill_address_list=(attrs)
+        attributes[:bill_address_list] = RecordRef.new(attrs)
+      end
+
+      def custom_form=(attrs)
+        attributes[:custom_form] = RecordRef.new(attrs)
+      end
+
+      def entity=(attrs)
+        attributes[:entity] = RecordRef.new(attrs)
+      end
+
+      def posting_period=(attrs)
+        attributes[:posting_period] = RecordRef.new(attrs)
+      end
+
+      def ship_address_list=(attrs)
+        attributes[:ship_address_list] = RecordRef.new(attrs)
+      end
+
       def self.initialize(customer)
         response = Actions::Initialize.call(customer)
         if response.success?

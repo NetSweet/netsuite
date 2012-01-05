@@ -9,8 +9,8 @@ describe NetSuite::Records::Customer do
       :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
       :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
-      :currency, :currency_list, :custom_field_list, :custom_form, :date_created, :days_overdue, :default_address,
-      :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id, :entity_status,
+      :currency, :currency_list, :custom_field_list, :date_created, :days_overdue, :default_address,
+      :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
       :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
       :language, :last_modified, :last_name, :last_page_visited, :last_visit, :lead_source, :middle_name, :mobile_phone,
@@ -44,6 +44,30 @@ describe NetSuite::Records::Customer do
       }
     }
     customer.addressbook_list.should be_kind_of(NetSuite::Records::CustomerAddressbookList)
+  end
+
+  describe 'RecordRefs' do
+    describe 'custom_form' do
+      it 'builds a RecordRef for this field' do
+        customer.custom_form = {
+          :@internal_id           => '3',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => 'RP Customer Form'
+        }
+        customer.custom_form.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
+
+    describe 'entity_status' do
+      it 'builds a RecordRef for this field' do
+        customer.entity_status = {
+          :@internal_id           => '13',
+          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+          :name                   => 'CUSTOMER-Closed Won'
+        }
+        customer.entity_status.should be_kind_of(NetSuite::Records::RecordRef)
+      end
+    end
   end
 
   describe '.get' do

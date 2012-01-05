@@ -29,8 +29,16 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def addressbook_list=(attributes_or_record)
-        attributes[:addressbook_list] = NetSuite::Records::CustomerAddressbookList.new(attributes_or_record)
+      def addressbook_list=(attrs)
+        attributes[:addressbook_list] = CustomerAddressbookList.new(attrs)
+      end
+
+      def custom_form=(attrs)
+        attributes[:custom_form] = RecordRef.new(attrs)
+      end
+
+      def entity_status=(attrs)
+        attributes[:entity_status] = RecordRef.new(attrs)
       end
 
       def self.get(id)
