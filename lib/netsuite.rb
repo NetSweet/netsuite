@@ -8,6 +8,7 @@ require 'netsuite/attribute_support'
 require 'netsuite/field_support'
 require 'netsuite/record_support'
 require 'netsuite/savon_support'
+require 'netsuite/record_ref_support'
 
 # ACTIONS
 require 'netsuite/actions/add'

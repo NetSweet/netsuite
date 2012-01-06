@@ -3,11 +3,12 @@ module NetSuite
     class Invoice
       include FieldSupport
       include RecordSupport
+      include RecordRefSupport
 
-      fields :account, :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
-        :bill_address_list, :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,
-        :custom_form, :deferred_revenue, :department, :discount_amount, :discount_date, :discount_item, :discount_rate,
-        :discount_total, :due_date, :email, :end_date, :entity, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
+      fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
+        :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,
+        :deferred_revenue, :department, :discount_amount, :discount_date, :discount_item, :discount_rate,
+        :discount_total, :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
         :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
         :exp_cost_disc_taxable, :exp_cost_discount, :exp_cost_list, :exp_cost_tax_code, :exp_cost_tax_rate_1,
         :exp_cost_tax_rate_2, :fax, :fob, :gift_cert_applied, :gift_cert_redemption_list, :handling_cost, :handling_tax_1_rate,
@@ -15,9 +16,9 @@ module NetSuite
         :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
         :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :item_list, :job, :klass, :last_modified_date,
         :lead_source, :linked_tracking_numbers, :location, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
-        :other_ref_name, :partner, :partners_list, :posting_period, :promo_code, :recognized_revenue, :rev_rec_end_date,
+        :other_ref_name, :partner, :partners_list, :promo_code, :recognized_revenue, :rev_rec_end_date,
         :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
-        :sales_group, :sales_rep, :sales_team_list, :ship_address, :ship_address_list, :ship_date, :ship_group_list,
+        :sales_group, :sales_rep, :sales_team_list, :ship_address, :ship_date, :ship_group_list,
         :ship_method, :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
         :status, :sub_total, :subsidiary, :sync_partner_teams, :sync_sales_teams, :tax_2_total, :tax_item, :tax_rate,
         :tax_total, :terms, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
@@ -27,34 +28,12 @@ module NetSuite
 
       attr_reader :internal_id, :external_id
 
+      record_refs :account, :bill_address_list, :custom_form, :entity, :posting_period, :ship_address_list
+
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id)
         @external_id = attributes.delete(:external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def account=(attrs)
-        attributes[:account] = RecordRef.new(attrs)
-      end
-
-      def bill_address_list=(attrs)
-        attributes[:bill_address_list] = RecordRef.new(attrs)
-      end
-
-      def custom_form=(attrs)
-        attributes[:custom_form] = RecordRef.new(attrs)
-      end
-
-      def entity=(attrs)
-        attributes[:entity] = RecordRef.new(attrs)
-      end
-
-      def posting_period=(attrs)
-        attributes[:posting_period] = RecordRef.new(attrs)
-      end
-
-      def ship_address_list=(attrs)
-        attributes[:ship_address_list] = RecordRef.new(attrs)
       end
 
       def self.initialize(customer)
