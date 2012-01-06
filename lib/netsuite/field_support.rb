@@ -10,7 +10,7 @@ module NetSuite
 
       def fields(*args)
         if args.empty?
-           @fields ||= {}
+           @fields ||= Set.new
         else
           args.each do |arg|
             field arg
@@ -20,7 +20,7 @@ module NetSuite
 
       def field(name)
         name_sym = name.to_sym
-        (@fields ||= Set.new) << name_sym
+        fields << name_sym
         define_method(name_sym) do
           attributes[name_sym]
         end

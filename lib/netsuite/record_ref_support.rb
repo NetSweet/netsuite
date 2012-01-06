@@ -15,6 +15,7 @@ module NetSuite
 
       def record_ref(name)
         name_sym = name.to_sym
+        fields << name_sym
         define_method "#{name}=" do |attrs|
           attributes[name_sym] = NetSuite::Records::RecordRef.new(attrs)
         end

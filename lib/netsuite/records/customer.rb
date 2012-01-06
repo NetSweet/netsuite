@@ -10,7 +10,7 @@ module NetSuite
         :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
         :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
         :currency, :currency_list, :custom_field_list, :date_created, :days_overdue, :default_address,
-        :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id, :entity_status,
+        :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
         :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
         :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
         :language, :last_modified, :last_name, :last_page_visited, :last_visit, :lead_source, :middle_name, :mobile_phone,
