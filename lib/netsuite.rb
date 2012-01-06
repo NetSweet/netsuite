@@ -16,10 +16,12 @@ require 'netsuite/actions/get'
 require 'netsuite/actions/initialize'
 
 # RECORDS
+require 'netsuite/records/bill_address'
 require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook_list'
 require 'netsuite/records/invoice'
 require 'netsuite/records/record_ref'
+require 'netsuite/records/ship_address'
 
 module NetSuite
 

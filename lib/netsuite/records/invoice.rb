@@ -36,6 +36,14 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def transaction_bill_address=(attrs)
+        attributes[:transaction_bill_address] = BillAddress.new(attrs)
+      end
+
+      def transaction_ship_address=(attrs)
+        attributes[:transaction_ship_address] = ShipAddress.new(attrs)
+      end
+
       def self.initialize(customer)
         response = Actions::Initialize.call(customer)
         if response.success?
