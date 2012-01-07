@@ -22,6 +22,7 @@ require 'netsuite/records/customer_addressbook_list'
 require 'netsuite/records/invoice'
 require 'netsuite/records/record_ref'
 require 'netsuite/records/ship_address'
+require 'netsuite/records/non_inventory_sale_item'
 
 module NetSuite
 
