@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_0106201212487807681436565242_d5396bca4f5</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <readResponse>
+        <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com"/>
+          <record internalId="439" externalId="2187" xsi:type="tranSales:Invoice" xmlns:tranSales="urn:sales_2011_2.transactions.webservices.netsuite.com">
+            <tranSales:createdDate>2011-12-15T16:54:12.000-08:00</tranSales:createdDate>
+            <tranSales:lastModifiedDate>2011-12-16T13:37:57.000-08:00</tranSales:lastModifiedDate>
+            <tranSales:customForm internalId="101" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>RP Test Product Invoice</platformCore:name>
+            </tranSales:customForm>
+            <tranSales:entity internalId="854" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>100023 Office</platformCore:name>
+            </tranSales:entity>
+            <tranSales:tranDate>2011-01-01T00:00:00.000-08:00</tranSales:tranDate>
+            <tranSales:tranId>2187</tranSales:tranId>
+            <tranSales:source>CSV</tranSales:source>
+            <tranSales:postingPeriod internalId="17" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>Dec 2011</platformCore:name>
+            </tranSales:postingPeriod>
+            <tranSales:class internalId="1" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>Retail</platformCore:name>
+            </tranSales:class>
+            <tranSales:dueDate>2011-01-01T00:00:00.000-08:00</tranSales:dueDate>
+            <tranSales:salesEffectiveDate>2011-01-01T00:00:00.000-08:00</tranSales:salesEffectiveDate>
+            <tranSales:excludeCommission>false</tranSales:excludeCommission>
+            <tranSales:amountPaid>0.0</tranSales:amountPaid>
+            <tranSales:amountRemaining>15993.6</tranSales:amountRemaining>
+            <tranSales:account internalId="123" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>1100 Accounts Receivable</platformCore:name>
+            </tranSales:account>
+            <tranSales:toBePrinted>false</tranSales:toBePrinted>
+            <tranSales:toBeEmailed>false</tranSales:toBeEmailed>
+            <tranSales:toBeFaxed>false</tranSales:toBeFaxed>
+            <tranSales:transactionBillAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
+              <platformCommon:billAddr1>123 Happy Lane</platformCommon:billAddr1>
+              <platformCommon:billAddr2>Attn: Accounts Payable</platformCommon:billAddr2>
+              <platformCommon:billCity>Los Angeles</platformCommon:billCity>
+              <platformCommon:billState>CA</platformCommon:billState>
+              <platformCommon:billZip>90007</platformCommon:billZip>
+              <platformCommon:billCountry>_unitedStates</platformCommon:billCountry>
+            </tranSales:transactionBillAddress>
+            <tranSales:billAddressList internalId="433" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>123 Happy Lane</platformCore:name>
+            </tranSales:billAddressList>
+            <tranSales:billAddress>123 Happy Lane Attn: Accounts Payable Los Angeles CA 90007</tranSales:billAddress>
+            <tranSales:transactionShipAddress xmlns:platformCommon="urn:common_2011_2.platform.webservices.netsuite.com">
+              <platformCommon:shipAddr1>123 Happy Lane</platformCommon:shipAddr1>
+              <platformCommon:shipAddr2>Attn: Accounts Payable</platformCommon:shipAddr2>
+              <platformCommon:shipCity>Los Angeles</platformCommon:shipCity>
+              <platformCommon:shipState>CA</platformCommon:shipState>
+              <platformCommon:shipZip>90007</platformCommon:shipZip>
+              <platformCommon:shipCountry>_unitedStates</platformCommon:shipCountry>
+              <platformCommon:shipIsResidential>false</platformCommon:shipIsResidential>
+            </tranSales:transactionShipAddress>
+            <tranSales:shipAddressList internalId="433" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+              <platformCore:name>123 Happy Lane</platformCore:name>
+            </tranSales:shipAddressList>
+          <tranSales:shipAddress>123 Happy Lane Attn: Accounts Payable Los Angeles CA 90007</tranSales:shipAddress>
+          <tranSales:shipDate>2011-12-15T00:00:00.000-08:00</tranSales:shipDate>
+          <tranSales:subTotal>15993.6</tranSales:subTotal>
+          <tranSales:revenueStatus>_completed</tranSales:revenueStatus>
+          <tranSales:syncSalesTeams>false</tranSales:syncSalesTeams>
+          <tranSales:discountTotal>0.0</tranSales:discountTotal>
+          <tranSales:taxTotal>0.0</tranSales:taxTotal>
+          <tranSales:total>15993.6</tranSales:total>
+          <tranSales:status>Open</tranSales:status>
+          <tranSales:itemCostDiscPrint>false</tranSales:itemCostDiscPrint>
+          <tranSales:expCostDiscPrint>false</tranSales:expCostDiscPrint>
+          <tranSales:itemList>
+            <tranSales:item>
+              <tranSales:item internalId="217" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+                <platformCore:name>Dummy Item For Import</platformCore:name>
+              </tranSales:item>
+              <tranSales:line>1</tranSales:line>
+              <tranSales:amount>15993.6</tranSales:amount>
+              <tranSales:quantity>1.0</tranSales:quantity>
+              <tranSales:price internalId="-1" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+                <platformCore:name>&amp;nbsp;</platformCore:name>
+              </tranSales:price>
+              <tranSales:taxCode internalId="-8" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+                <platformCore:name>-Not Taxable-</platformCore:name>
+              </tranSales:taxCode>
+            </tranSales:item>
+          </tranSales:itemList>
+          <tranSales:customFieldList xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:customField internalId="custbody_3rd_party" xsi:type="platformCore:BooleanCustomFieldRef">
+              <platformCore:value>false</platformCore:value>
+            </platformCore:customField>
+          </tranSales:customFieldList>
+        </record>
+      </readResponse>
+    </getResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

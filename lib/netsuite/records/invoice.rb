@@ -31,8 +31,8 @@ module NetSuite
       record_refs :account, :bill_address_list, :custom_form, :entity, :posting_period, :ship_address_list
 
       def initialize(attributes = {})
-        @internal_id = attributes.delete(:internal_id)
-        @external_id = attributes.delete(:external_id)
+        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
+        @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
 
@@ -42,6 +42,15 @@ module NetSuite
 
       def transaction_ship_address=(attrs)
         attributes[:transaction_ship_address] = ShipAddress.new(attrs)
+      end
+
+      def self.get(id)
+        response = Actions::Get.call(id, self)
+        if response.success?
+          new(response.body)
+        else
+          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+        end
       end
 
       def self.initialize(customer)

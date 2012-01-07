@@ -35,6 +35,29 @@ describe NetSuite::Records::Invoice do
   it 'handles the "klass" field correctly'
   # This field maps to 'class' but cannot be set as such in Ruby as it will cause runtime errors.
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
+
+      it 'returns an Invoice instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(10, NetSuite::Records::Invoice).and_return(response)
+        invoice = NetSuite::Records::Invoice.get(10)
+        invoice.should be_kind_of(NetSuite::Records::Invoice)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(10, NetSuite::Records::Invoice).and_return(response)
+        lambda {
+          NetSuite::Records::Invoice.get(10)
+        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::Invoice with ID=10 could not be found')
+      end
+    end
+  end
+
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
@@ -47,6 +70,10 @@ describe NetSuite::Records::Invoice do
     context 'when the response is unsuccessful' do
       pending
     end
+  end
+
+  describe '#add' do
+    pending
   end
 
   describe 'RecordRefs' do

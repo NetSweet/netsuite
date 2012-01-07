@@ -3,8 +3,9 @@ module NetSuite
     class Get
       include SavonSupport
 
-      def initialize(id)
-        @id = id
+      def initialize(id, klass)
+        @id    = id
+        @klass = klass
       end
 
       private
@@ -16,6 +17,10 @@ module NetSuite
           soap.header = auth_header
           soap.body   = request_body
         end
+      end
+
+      def soap_type
+        @klass.to_s.split('::').last.lower_camelcase
       end
 
       # <soap:Body>
@@ -31,7 +36,7 @@ module NetSuite
           :attributes! => {
             'platformMsgs:baseRef' => {
               :internalId => @id,
-              :type       => 'customer',
+              :type       => soap_type,
               'xsi:type'  => 'platformCore:RecordRef'
             }
           }
