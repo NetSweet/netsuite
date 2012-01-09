@@ -37,4 +37,28 @@ describe NetSuite::Records::NonInventorySaleItem do
 
   # :class RecordRef
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :manufacturer_zip => '90401' }) }
+
+      it 'returns a NonInventorySaleItem instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(20, NetSuite::Records::NonInventorySaleItem).and_return(response)
+        customer = NetSuite::Records::NonInventorySaleItem.get(20)
+        customer.should be_kind_of(NetSuite::Records::NonInventorySaleItem)
+        customer.manufacturer_zip.should eql('90401')
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(20, NetSuite::Records::NonInventorySaleItem).and_return(response)
+        lambda {
+          NetSuite::Records::NonInventorySaleItem.get(20)
+        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::NonInventorySaleItem with ID=20 could not be found')
+      end
+    end
+  end
+
 end

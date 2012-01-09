@@ -29,6 +29,15 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.get(id)
+        response = Actions::Get.call(id, self)
+        if response.success?
+          new(response.body)
+        else
+          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+        end
+      end
+
     end
   end
 end
