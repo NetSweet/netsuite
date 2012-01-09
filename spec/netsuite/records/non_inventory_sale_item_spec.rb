@@ -24,33 +24,17 @@ describe NetSuite::Records::NonInventorySaleItem do
     end
   end
 
-=begin
-  RECORD_REFS
+  it 'has the right record_refs' do
+    [
+      :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_amount, :issue_product,
+      :item_options_list, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule, :rev_rec_schedule,
+      :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail, :store_item_template,
+      :subsidiary_list, :tax_schedule, :units_type
+    ].each do |record_ref|
+      item.should have_record_ref(record_ref)
+    end
+  end
 
-  :income_account
-  :tax_schedule
-  :units_type
-  :sale_unit
-  :issue_product
-  :billing_schedule
-  :deferred_revenue_account
-  :rev_rec_schedule
-  :ship_package
-  :cost_category
-  :quantity_pricing_schedule
-  :pricing_group
-  :store_display_thumbnail
-  :store_display_image
-  :store_item_template
-  :custom_form
-  :parent
-  :department
-  :class
-  :location
-  :subsidiary_list
-  :item_options_list
-  :purchase_tax_code
-  :sales_tax_code
-=end
+  # :class RecordRef
 
 end

@@ -32,6 +32,14 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  it 'has the right record_refs' do
+    [
+      :account, :bill_address_list, :custom_form, :entity, :posting_period, :ship_address_list
+    ].each do |record_ref|
+      invoice.should have_record_ref(record_ref)
+    end
+  end
+
   it 'handles the "klass" field correctly'
   # This field maps to 'class' but cannot be set as such in Ruby as it will cause runtime errors.
 
@@ -74,74 +82,6 @@ describe NetSuite::Records::Invoice do
 
   describe '#add' do
     pending
-  end
-
-  describe 'RecordRefs' do
-    describe 'account' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.account = {
-          :@internal_id           => '123',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => '1100 Accounts Receivable'
-        }
-        invoice.account.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'bill_address_list' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.bill_address_list = {
-          :@internal_id           => '567',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => '123 Happy Lane'
-        }
-        invoice.bill_address_list.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'custom_form' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.custom_form = {
-          :@internal_id           => '101',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => 'RP Test Product Invoice'
-        }
-        invoice.custom_form.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'entity' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.entity = {
-          :@internal_id           => '988',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => '100157 Shutter Fly'
-        }
-        invoice.entity.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'posting_period' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.posting_period = {
-          :@internal_id           => '20',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => 'Jan 2012'
-        }
-        invoice.posting_period.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'ship_address_list' do
-      it 'creates a RecordRef for this attribute' do
-        invoice.ship_address_list = {
-          :@internal_id           => '567',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => '123 Happy Lane'
-        }
-        invoice.ship_address_list.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
   end
 
   it 'has a transaction_bill_address field that builds a BillAddress object' do

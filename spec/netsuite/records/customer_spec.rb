@@ -26,6 +26,14 @@ describe NetSuite::Records::Customer do
     end
   end
 
+  it 'has the right record_refs' do
+    [
+      :custom_form, :entity_status
+    ].each do |record_ref|
+      customer.should have_record_ref(record_ref)
+    end
+  end
+
   it 'has an addressbook_list field that builds a CustomerAddressbookList object' do
     customer.addressbook_list = {
       :addressbook => {
@@ -44,30 +52,6 @@ describe NetSuite::Records::Customer do
       }
     }
     customer.addressbook_list.should be_kind_of(NetSuite::Records::CustomerAddressbookList)
-  end
-
-  describe 'RecordRefs' do
-    describe 'custom_form' do
-      it 'builds a RecordRef for this field' do
-        customer.custom_form = {
-          :@internal_id           => '3',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => 'RP Customer Form'
-        }
-        customer.custom_form.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
-
-    describe 'entity_status' do
-      it 'builds a RecordRef for this field' do
-        customer.entity_status = {
-          :@internal_id           => '13',
-          :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
-          :name                   => 'CUSTOMER-Closed Won'
-        }
-        customer.entity_status.should be_kind_of(NetSuite::Records::RecordRef)
-      end
-    end
   end
 
   describe '.get' do
