@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe NetSuite::Actions::SavonSupport do
+describe NetSuite::Support::Requests do
   let(:instance) do
     obj = Object.new
-    obj.extend(NetSuite::Actions::SavonSupport)
+    obj.extend(NetSuite::Support::Requests)
     obj
   end
 

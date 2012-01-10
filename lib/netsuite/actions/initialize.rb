@@ -1,7 +1,7 @@
 module NetSuite
   module Actions
     class Initialize
-      include SavonSupport
+      include Support::Requests
 
       def initialize(obj)
         @obj = obj

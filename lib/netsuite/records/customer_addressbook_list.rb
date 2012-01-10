@@ -1,8 +1,8 @@
 module NetSuite
   module Records
     class CustomerAddressbookList
-      include FieldSupport
-      include RecordSupport
+      include Support::Fields
+      include Support::Records
 
       fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
         :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state

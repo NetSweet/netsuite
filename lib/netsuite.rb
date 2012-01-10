@@ -1,14 +1,16 @@
 require 'set'
 
+require 'netsuite/version'
 require 'netsuite/configuration'
 require 'netsuite/errors'
 require 'netsuite/response'
-require 'netsuite/version'
-require 'netsuite/attribute_support'
-require 'netsuite/field_support'
-require 'netsuite/record_support'
-require 'netsuite/savon_support'
-require 'netsuite/record_ref_support'
+
+# SUPPORT
+require 'netsuite/support/attributes'
+require 'netsuite/support/fields'
+require 'netsuite/support/record_refs'
+require 'netsuite/support/records'
+require 'netsuite/support/requests'
 
 # ACTIONS
 require 'netsuite/actions/add'

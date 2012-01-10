@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::FieldSupport do
-  let(:klass) { Class.new.send(:include, NetSuite::FieldSupport) }
+describe NetSuite::Support::Fields do
+  let(:klass) { Class.new.send(:include, NetSuite::Support::Fields) }
   let(:instance) { klass.new }
 
   describe '.fields' do

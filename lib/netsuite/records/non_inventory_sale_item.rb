@@ -1,8 +1,8 @@
 module NetSuite
   module Records
     class NonInventorySaleItem
-      include FieldSupport
-      include RecordRefSupport
+      include Support::Fields
+      include Support::RecordRefs
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
         :created_date, :custom_field_list, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,

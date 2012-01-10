@@ -1,9 +1,9 @@
 module NetSuite
   module Records
     class Invoice
-      include FieldSupport
-      include RecordSupport
-      include RecordRefSupport
+      include Support::Fields
+      include Support::RecordRefs
+      include Support::Records
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,

@@ -3,7 +3,7 @@ require 'spec_helper'
 module Foo
   module Bar
     class Baz
-      include NetSuite::RecordSupport
+      include NetSuite::Support::Records
 
       def attributes
         { :source => 'Google', :total => 100.0 }
@@ -12,7 +12,7 @@ module Foo
   end
 end
 
-describe NetSuite::RecordSupport do
+describe NetSuite::Support::Records do
   let(:instance) { Foo::Bar::Baz.new }
 
   describe '#record_type' do

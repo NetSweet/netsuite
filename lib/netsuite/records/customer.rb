@@ -1,9 +1,9 @@
 module NetSuite
   module Records
     class Customer
-      include FieldSupport
-      include RecordSupport
-      include RecordRefSupport
+      include Support::Fields
+      include Support::RecordRefs
+      include Support::Records
 
       fields :access_role, :account_number, :addressbook_list, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
