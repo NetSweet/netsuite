@@ -19,52 +19,77 @@ describe NetSuite::Records::CustomerAddressbookList do
       }
     }
   end
-  let(:record) { NetSuite::Records::CustomerAddressbookList.new(attributes) }
+  let(:list) { NetSuite::Records::CustomerAddressbookList.new(attributes) }
 
   it 'has all the right fields' do
     [
       :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
       :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state
     ].each do |field|
-      record.should have_field(field)
+      list.should have_field(field)
     end
   end
 
   describe '#initialize' do
     context 'when taking in a hash of attributes' do
       it 'sets the attributes for the object given the attributes hash' do
-        record.addr1.should eql('123 Happy Lane')
-        record.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
-        record.city.should eql('Los Angeles')
-        record.country.should eql('_unitedStates')
-        record.default_billing.should be_true
-        record.default_shipping.should be_true
-        record.is_residential.should be_false
-        record.label.should eql('123 Happy Lane')
-        record.override.should be_false
-        record.state.should eql('CA')
-        record.zip.should eql('90007')
-        record.internal_id.should eql('567')
+        list.addr1.should eql('123 Happy Lane')
+        list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
+        list.city.should eql('Los Angeles')
+        list.country.should eql('_unitedStates')
+        list.default_billing.should be_true
+        list.default_shipping.should be_true
+        list.is_residential.should be_false
+        list.label.should eql('123 Happy Lane')
+        list.override.should be_false
+        list.state.should eql('CA')
+        list.zip.should eql('90007')
+        list.internal_id.should eql('567')
       end
     end
 
     context 'when taking in a CustomerAddressbookList instance' do
       it 'sets the attributes for the object given the record attributes' do
-        old_record = NetSuite::Records::CustomerAddressbookList.new(attributes)
-        record     = NetSuite::Records::CustomerAddressbookList.new(old_record)
-        record.addr1.should eql('123 Happy Lane')
-        record.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
-        record.city.should eql('Los Angeles')
-        record.country.should eql('_unitedStates')
-        record.default_billing.should be_true
-        record.default_shipping.should be_true
-        record.is_residential.should be_false
-        record.label.should eql('123 Happy Lane')
-        record.override.should be_false
-        record.state.should eql('CA')
-        record.zip.should eql('90007')
-        record.internal_id.should eql('567')
+        old_list = NetSuite::Records::CustomerAddressbookList.new(attributes)
+        list     = NetSuite::Records::CustomerAddressbookList.new(old_list)
+        list.addr1.should eql('123 Happy Lane')
+        list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
+        list.city.should eql('Los Angeles')
+        list.country.should eql('_unitedStates')
+        list.default_billing.should be_true
+        list.default_shipping.should be_true
+        list.is_residential.should be_false
+        list.label.should eql('123 Happy Lane')
+        list.override.should be_false
+        list.state.should eql('CA')
+        list.zip.should eql('90007')
+        list.internal_id.should eql('567')
       end
+    end
+  end
+
+  describe '#to_record' do
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'listRel:addr1'           => '123 Happy Lane',
+        'listRel:addrText'        => "123 Happy Lane\nLos Angeles CA 90007",
+        'listRel:city'            => 'Los Angeles',
+        'listRel:country'         => '_unitedStates',
+        'listRel:defaultBilling'  => true,
+        'listRel:defaultShipping' => true,
+        'listRel:isResidential'   => false,
+        'listRel:label'           => '123 Happy Lane',
+        'listRel:override'        => false,
+        'listRel:state'           => 'CA',
+        'listRel:zip'             => '90007'
+      }
+      list.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string of the record SOAP type' do
+      list.record_type.should eql('listRel:CustomerAddressbookList')
     end
   end
 
