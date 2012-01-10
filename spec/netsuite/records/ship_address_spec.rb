@@ -12,4 +12,25 @@ describe NetSuite::Records::ShipAddress do
     end
   end
 
+  describe '#to_record' do
+    before do
+      ship_address.ship_attention = 'Mr. Smith'
+      ship_address.ship_zip       = '90007'
+    end
+
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'platformCommon:shipAttention' => 'Mr. Smith',
+        'platformCommon:shipZip'       => '90007'
+      }
+      ship_address.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string of the SOAP record type' do
+      ship_address.record_type.should eql('platformCommon:ShipAddress')
+    end
+  end
+
 end
