@@ -4,6 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Namespaces::TranSales
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,

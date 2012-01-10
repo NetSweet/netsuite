@@ -8,6 +8,7 @@ require 'netsuite/response'
 # NAMESPACES
 require 'netsuite/namespaces/platform_common'
 require 'netsuite/namespaces/list_rel'
+require 'netsuite/namespaces/tran_sales'
 
 # SUPPORT
 require 'netsuite/support/attributes'

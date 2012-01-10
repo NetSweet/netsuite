@@ -220,4 +220,24 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '#to_record' do
+    before do
+      invoice.email   = 'something@example.com'
+      invoice.tran_id = '4'
+    end
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'tranSales:email'  => 'something@example.com',
+        'tranSales:tranId' => '4'
+      }
+      invoice.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string representation of the SOAP type' do
+      invoice.record_type.should eql('tranSales:Invoice')
+    end
+  end
+
 end
