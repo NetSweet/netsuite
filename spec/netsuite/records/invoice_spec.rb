@@ -16,7 +16,7 @@ describe NetSuite::Records::Invoice do
       :exp_cost_tax_rate_2, :fax, :fob, :gift_cert_applied, :gift_cert_redemption_list, :handling_cost, :handling_tax_1_rate,
       :handling_tax_2_rate, :handling_tax_code, :is_taxable, :item_cost_disc_amount, :item_cost_disc_print,
       :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
-      :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :item_list, :job, :klass, :last_modified_date,
+      :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :job, :klass, :last_modified_date,
       :lead_source, :linked_tracking_numbers, :location, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
       :other_ref_name, :partner, :partners_list, :promo_code, :recognized_revenue, :rev_rec_end_date,
       :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
@@ -37,6 +37,89 @@ describe NetSuite::Records::Invoice do
       :account, :bill_address_list, :custom_form, :entity, :posting_period, :ship_address_list
     ].each do |record_ref|
       invoice.should have_record_ref(record_ref)
+    end
+  end
+
+  describe 'item_list' do
+    context 'when the attributes constitute an Array of items' do
+      it 'builds an InvoiceItemList for each list item_list field' do
+        invoice.item_list = {
+          :item => [
+            {
+              :amount => '15993.6',
+              :item   => {
+                :@internal_id           => '217',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => 'Dummy Item For Import'
+              },
+              :line  => '1',
+              :price => {
+                :@internal_id           => '-1',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => '&nbsp;'
+              },
+              :quantity => '1.0',
+              :tax_code => {
+                :@internal_id           => '-8',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => '-Not Taxable-'
+              }
+            },
+            {
+              :amount        => '499.0',
+              :defer_rev_rec => false,
+              :item          => {
+                :@internal_id           => '111',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => 'SAT Prep Course'
+              },
+              :line  => '2',
+              :price => {
+                :@internal_id           => '1',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => 'Base Price'
+              },
+              :quantity => '1.0',
+              :rate     => '499.00',
+              :tax_code => {
+                :@internal_id           => '-8',
+                :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+                :name                   => '-Not Taxable-'
+              }
+            }
+          ]
+        }
+        invoice.item_list.should be_kind_of(Array)
+        invoice.item_list.each { |il| il.should be_kind_of(NetSuite::Records::InvoiceItemList) }
+      end
+    end
+
+    context 'when the attributes constitute a single item' do
+      it 'builds an InvoiceItemList for the item_list field' do
+        invoice.item_list = {
+          :item => {
+            :amount => '15993.6',
+            :item   => {
+              :@internal_id           => '217',
+              :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+              :name                   => 'Dummy Item For Import'
+            },
+            :line  => '1',
+            :price => {
+              :@internal_id           => '-1',
+              :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+              :name                   => '&nbsp;'
+            },
+            :quantity => '1.0',
+            :tax_code => {
+              :@internal_id           => '-8',
+              :"@xmlns:platform_core" => 'urn:core_2011_2.platform.webservices.netsuite.com',
+              :name                   => '-Not Taxable-'
+            }
+          }
+        }
+        invoice.item_list.should be_kind_of(NetSuite::Records::InvoiceItemList)
+      end
     end
   end
 

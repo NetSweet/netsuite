@@ -44,6 +44,15 @@ module NetSuite
         attributes[:transaction_ship_address] = ShipAddress.new(attrs)
       end
 
+      def item_list=(attrs)
+        attributes[:item_list] = case attrs[:item]
+                                 when Hash
+                                   InvoiceItemList.new(attrs[:item])
+                                 when Array
+                                   attrs[:item].map { |item| InvoiceItemList.new(item) }
+                                 end
+      end
+
       def self.get(id)
         response = Actions::Get.call(id, self)
         if response.success?
