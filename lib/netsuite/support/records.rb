@@ -2,6 +2,7 @@ module NetSuite
   module Support
     module Records
       include Attributes
+      include Namespaces::PlatformCore
 
       def to_record
         attributes.inject({}) do |hash, (k,v)|
@@ -12,10 +13,6 @@ module NetSuite
 
       def record_type
         "#{record_namespace}:#{self.class.to_s.split('::').last}"
-      end
-
-      def record_namespace
-        'platformCore'
       end
 
     end

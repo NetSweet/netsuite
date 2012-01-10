@@ -2,6 +2,8 @@ module NetSuite
   module Records
     class RecordRef
       include Support::Attributes
+      include Support::Records
+      include Namespaces::PlatformCore
 
       attr_reader :internal_id
 

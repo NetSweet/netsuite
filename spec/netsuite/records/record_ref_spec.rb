@@ -58,4 +58,20 @@ describe NetSuite::Records::RecordRef do
     end
   end
 
+  describe '#to_record' do
+    it 'can represent itself as a SOAP record' do
+      record_ref = NetSuite::Records::RecordRef.new(:something => 'blah')
+      record = {
+        'platformCore:something' => 'blah'
+      }
+      record_ref.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string of the SOAP type' do
+      record_ref.record_type.should eql('platformCore:RecordRef')
+    end
+  end
+
 end

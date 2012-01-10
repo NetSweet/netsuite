@@ -6,6 +6,7 @@ require 'netsuite/errors'
 require 'netsuite/response'
 
 # NAMESPACES
+require 'netsuite/namespaces/platform_core'
 require 'netsuite/namespaces/platform_common'
 require 'netsuite/namespaces/list_acct_typ'
 require 'netsuite/namespaces/list_rel'
