@@ -5,6 +5,10 @@ require 'netsuite/configuration'
 require 'netsuite/errors'
 require 'netsuite/response'
 
+# NAMESPACES
+require 'netsuite/namespaces/platform_common'
+require 'netsuite/namespaces/list_rel'
+
 # SUPPORT
 require 'netsuite/support/attributes'
 require 'netsuite/support/fields'
