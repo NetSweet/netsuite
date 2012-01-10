@@ -3,6 +3,8 @@ module NetSuite
     class InvoiceItemList
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
+      include Namespaces::TranSales
 
       fields :amount, :amount_ordered, :bin_numbers, :cost_estimate, :cost_estimate_type, :current_percent, :custom_field_list,
         :defer_rev_rec, :description, :gift_cert_from, :gift_cert_message, :gift_cert_number, :gift_cert_recipient_email,
