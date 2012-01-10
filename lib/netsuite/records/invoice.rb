@@ -77,6 +77,11 @@ module NetSuite
         response.success?
       end
 
+      def to_record
+        attributes.delete(:custom_field_list)
+        super
+      end
+
     end
   end
 end

@@ -6,7 +6,14 @@ module NetSuite
 
       def to_record
         attributes.inject({}) do |hash, (k,v)|
-          hash.store("#{record_namespace}:#{k.to_s.lower_camelcase}", v)
+          kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
+          if v.respond_to?(:internal_id) && v.internal_id
+            hash[:attributes!] ||= {}
+            hash[:attributes!][kname] ||= {}
+            hash[:attributes!][kname]['internalId'] = v.internal_id
+          end
+          v = v.to_record if v.respond_to?(:to_record)
+          hash[kname] = v
           hash
         end
       end
