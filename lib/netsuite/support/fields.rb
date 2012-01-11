@@ -31,6 +31,22 @@ module NetSuite
           end
         end
 
+        def read_only_fields(*args)
+          if args.empty?
+             @read_only_fields ||= Set.new
+          else
+            args.each do |arg|
+              read_only_field arg
+            end
+          end
+        end
+
+        def read_only_field(name)
+          name_sym = name.to_sym
+          read_only_fields << name_sym
+          field name
+        end
+
       end
 
     end

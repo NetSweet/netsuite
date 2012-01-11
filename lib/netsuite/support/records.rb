@@ -5,12 +5,21 @@ module NetSuite
       include Namespaces::PlatformCore
 
       def to_record
-        attributes.inject({}) do |hash, (k,v)|
-          kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
+        attributes.reject { |k,v| self.class.read_only_fields.include?(k) }.inject({}) do |hash, (k,v)|
+          kname = if k == :klass
+                    "#{record_namespace}:class"
+                  else
+                    "#{record_namespace}:#{k.to_s.lower_camelcase}"
+                  end
           if v.respond_to?(:internal_id) && v.internal_id
             hash[:attributes!] ||= {}
             hash[:attributes!][kname] ||= {}
             hash[:attributes!][kname]['internalId'] = v.internal_id
+          end
+          if v.kind_of?(NetSuite::Records::RecordRef) && v.type
+            hash[:attributes!] ||= {}
+            hash[:attributes!][kname] ||= {}
+            hash[:attributes!][kname][:type] = v.type.lower_camelcase
           end
           v = v.to_record if v.respond_to?(:to_record)
           hash[kname] = v

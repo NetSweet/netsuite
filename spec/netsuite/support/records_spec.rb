@@ -3,6 +3,7 @@ require 'spec_helper'
 module Foo
   module Bar
     class Baz
+      include NetSuite::Support::Fields
       include NetSuite::Support::Records
 
       def attributes

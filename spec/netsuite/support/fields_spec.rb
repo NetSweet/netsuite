@@ -31,4 +31,30 @@ describe NetSuite::Support::Fields do
     end
   end
 
+  describe '.read_only_fields' do
+    context 'with arguments' do
+      it 'calls .read_only_field with each argument passed to it' do
+        [:one, :two, :three].each do |field|
+          klass.should_receive(:read_only_field).with(field)
+        end
+        klass.read_only_fields(:one, :two, :three)
+      end
+    end
+
+    context 'without arguments' do
+      it 'returns a Set of the read_only_field arguments' do
+        arguments = [:one, :two, :three]
+        klass.read_only_fields(*arguments)
+        klass.read_only_fields.should eql(Set.new(arguments))
+      end
+    end
+  end
+
+  describe '.read_only_field' do
+    it 'defines instance accessor methods for the given field' do
+      klass.should_receive(:field).with(:one)
+      klass.read_only_field(:one)
+    end
+  end
+
 end
