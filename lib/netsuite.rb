@@ -8,7 +8,7 @@ require 'netsuite/response'
 # NAMESPACES
 require 'netsuite/namespaces/platform_core'
 require 'netsuite/namespaces/platform_common'
-require 'netsuite/namespaces/list_acct_typ'
+require 'netsuite/namespaces/list_acct'
 require 'netsuite/namespaces/list_rel'
 require 'netsuite/namespaces/tran_sales'
 
@@ -32,6 +32,7 @@ require 'netsuite/records/invoice'
 require 'netsuite/records/record_ref'
 require 'netsuite/records/ship_address'
 require 'netsuite/records/non_inventory_sale_item'
+require 'netsuite/records/invoice_item'
 require 'netsuite/records/invoice_item_list'
 require 'netsuite/records/classification'
 

@@ -69,8 +69,8 @@ describe NetSuite::Records::NonInventorySaleItem do
 
     it 'can represent itself as a SOAP record' do
       record = {
-        'listAcctTyp:handlingCost' => 100.0,
-        'listAcctTyp:isOnline'     => true
+        'listAcct:handlingCost' => 100.0,
+        'listAcct:isOnline'     => true
       }
       item.to_record.should eql(record)
     end
@@ -78,7 +78,7 @@ describe NetSuite::Records::NonInventorySaleItem do
 
   describe '#record_type' do
     it 'returns a string of the SOAP type' do
-      item.record_type.should eql('listAcctTyp:NonInventorySaleItem')
+      item.record_type.should eql('listAcct:NonInventorySaleItem')
     end
   end
 

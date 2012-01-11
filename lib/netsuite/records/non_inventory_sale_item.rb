@@ -4,7 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Namespaces::ListAcctTyp
+      include Namespaces::ListAcct
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
         :created_date, :custom_field_list, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,

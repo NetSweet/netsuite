@@ -1,9 +1,9 @@
 module NetSuite
   module Namespaces
-    module ListAcctTyp
+    module ListAcct
 
       def record_namespace
-        'listAcctTyp'
+        'listAcct'
       end
 
     end
