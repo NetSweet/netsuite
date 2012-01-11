@@ -58,6 +58,16 @@ describe NetSuite::Records::RecordRef do
     end
   end
 
+  describe 'initialize from record' do
+    it 'initializes a new ref with the proper attributes from the record' do
+      record = NetSuite::Records::Classification.new(:is_inactive => false, :name => 'Retail', :internal_id => '9')
+      record_ref = NetSuite::Records::RecordRef.new(record)
+      record_ref.should be_kind_of(NetSuite::Records::RecordRef)
+      record_ref.internal_id.should eql('9')
+      record_ref.type.should eql('classification')
+    end
+  end
+
   describe '#to_record' do
     it 'can represent itself as a SOAP record' do
       record_ref = NetSuite::Records::RecordRef.new(:something => 'blah')
