@@ -48,12 +48,16 @@ module NetSuite
       end
 
       def item_list=(attrs)
-        attributes[:item_list] = case attrs[:item]
-                                 when Hash
-                                   InvoiceItemList.new(attrs[:item])
-                                 when Array
-                                   attrs[:item].map { |item| InvoiceItemList.new(item) }
-                                 end
+        attrs = attrs[:item] if Hash === attrs && attrs[:item]
+        attributes[:item_list] =
+          case attrs
+          when Hash
+            InvoiceItemList.new(attrs)
+          when Array
+            attrs.map { |item| InvoiceItemList.new(item) }
+          when NetSuite::Records::InvoiceItemList
+            attrs
+          end
       end
 
       def self.get(id)

@@ -129,6 +129,23 @@ describe NetSuite::Records::Invoice do
         invoice.item_list.should be_kind_of(NetSuite::Records::InvoiceItemList)
       end
     end
+
+    context 'when the attributes constitute a single InvoiceItemList' do
+      it 'sets the item_list value with this object' do
+        invoice_item_list = NetSuite::Records::InvoiceItemList.new
+        invoice.item_list = invoice_item_list
+        invoice.item_list.should eql(invoice_item_list)
+      end
+    end
+
+    context 'when the attributes consitute multiple InvoiceItemList objects' do
+      it 'sets the item_list value to an array of these objects' do
+        invoice_item_list = 3.times.map { NetSuite::Records::InvoiceItemList.new }
+        invoice.item_list = invoice_item_list
+        invoice.item_list.should have(3).items
+        invoice.item_list.each { |item| item.should be_kind_of(NetSuite::Records::InvoiceItemList) }
+      end
+    end
   end
 
   describe '.get' do

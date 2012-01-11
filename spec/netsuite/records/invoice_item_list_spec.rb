@@ -24,6 +24,14 @@ describe NetSuite::Records::InvoiceItemList do
     end
   end
 
+  it 'can initialize from a record' do
+    record = NetSuite::Records::InvoiceItemList.new(:amount => 123, :cost_estimate => 234)
+    list   = NetSuite::Records::InvoiceItemList.new(record)
+    list.should be_kind_of(NetSuite::Records::InvoiceItemList)
+    list.amount.should eql(123)
+    list.cost_estimate.should eql(234)
+  end
+
   # :class RecordRef
 
   describe '#to_record' do
