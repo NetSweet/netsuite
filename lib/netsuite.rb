@@ -38,6 +38,7 @@ require 'netsuite/records/non_inventory_sale_item'
 require 'netsuite/records/invoice_item'
 require 'netsuite/records/invoice_item_list'
 require 'netsuite/records/classification'
+require 'netsuite/records/custom_record'
 
 module NetSuite
 
