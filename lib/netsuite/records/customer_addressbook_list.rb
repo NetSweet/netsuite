@@ -8,7 +8,8 @@ module NetSuite
       fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
         :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state
 
-      attr_reader :internal_id
+      attr_reader   :internal_id
+      attr_accessor :external_id
 
       def initialize(attributes_or_record = {})
         case attributes_or_record

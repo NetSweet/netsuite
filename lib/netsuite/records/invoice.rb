@@ -31,7 +31,8 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :custom_form, :entity, :klass, :posting_period, :ship_address_list
 
-      attr_reader :internal_id, :external_id
+      attr_reader   :internal_id
+      attr_accessor :external_id
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

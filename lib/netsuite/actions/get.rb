@@ -35,7 +35,7 @@ module NetSuite
           'platformMsgs:baseRef' => {},
           :attributes! => {
             'platformMsgs:baseRef' => {
-              :internalId => @id,
+              :externalId => @id,
               :type       => soap_type,
               'xsi:type'  => 'platformCore:RecordRef'
             }

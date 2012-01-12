@@ -5,7 +5,8 @@ module NetSuite
 
       fields :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
 
-      attr_reader :internal_id, :external_id
+      attr_reader   :internal_id
+      attr_accessor :external_id
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
