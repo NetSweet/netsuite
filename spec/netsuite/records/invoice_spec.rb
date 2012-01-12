@@ -8,7 +8,7 @@ describe NetSuite::Records::Invoice do
   it 'has all the right fields' do
     [
       :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
-      :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,
+      :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name,
       :deferred_revenue, :department, :discount_amount, :discount_date, :discount_item, :discount_rate,
       :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
       :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
@@ -45,6 +45,12 @@ describe NetSuite::Records::Invoice do
       :account, :bill_address_list, :custom_form, :entity, :klass, :posting_period, :ship_address_list
     ].each do |record_ref|
       invoice.should have_record_ref(record_ref)
+    end
+  end
+
+  describe '#custom_field_list' do
+    it 'returns a CustomFieldList object that contains many CustomFields' do
+      invoice.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
     end
   end
 

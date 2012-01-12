@@ -7,7 +7,7 @@ module NetSuite
       include Namespaces::TranSales
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
-        :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,
+        :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name,
         :deferred_revenue, :department, :discount_amount, :discount_date, :discount_item, :discount_rate,
         :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
         :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
@@ -52,6 +52,10 @@ module NetSuite
         attributes[:item_list] ||= InvoiceItemList.new
       end
 
+      def custom_field_list
+        attributes[:custom_field_list] ||= CustomFieldList.new
+      end
+
       def self.get(id)
         response = Actions::Get.call(id, self)
         if response.success?
@@ -73,11 +77,6 @@ module NetSuite
       def add
         response = Actions::Add.call(self)
         response.success?
-      end
-
-      def to_record
-        attributes.delete(:custom_field_list)
-        super
       end
 
     end
