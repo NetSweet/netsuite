@@ -26,6 +26,7 @@ require 'netsuite/actions/initialize'
 
 # RECORDS
 require 'netsuite/records/bill_address'
+require 'netsuite/records/custom_field'
 require 'netsuite/records/custom_field_list'
 require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook'
