@@ -31,7 +31,7 @@ module NetSuite
       #   </platformMsgs:add>
       # </soap:Body>
       def request_body
-        {
+        hash = {
           'platformMsgs:record' => @obj.to_record,
           :attributes! => {
             'platformMsgs:record' => {
@@ -39,6 +39,9 @@ module NetSuite
             }
           }
         }
+        hash[:attributes!]['platformMsgs:record']['platformMsgs:internal_id'] = @obj.internal_id if @obj.respond_to?(:internal_id) && @obj.internal_id
+        hash[:attributes!]['platformMsgs:record']['platformMsgs:external_id'] = @obj.external_id if @obj.respond_to?(:external_id) && @obj.external_id
+        hash
       end
 
       def success?
