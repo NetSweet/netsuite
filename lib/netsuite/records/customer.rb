@@ -38,6 +38,10 @@ module NetSuite
         attributes[:addressbook_list] = CustomerAddressbookList.new(attrs)
       end
 
+      def addressbook_list
+        attributes[:addressbook_list] ||= CustomerAddressbookList.new
+      end
+
       def self.get(id)
         response = Actions::Get.call(id, self)
         if response.success?
