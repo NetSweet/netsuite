@@ -41,11 +41,19 @@ module NetSuite
       end
 
       def transaction_bill_address=(attrs)
-        attributes[:transaction_bill_address] = BillAddress.new(attrs)
+        attributes[:transaction_bill_address] = attrs.kind_of?(BillAddress) ? attrs : BillAddress.new(attrs)
+      end
+
+      def transaction_bill_address
+        attributes[:transaction_bill_address] ||= BillAddress.new
       end
 
       def transaction_ship_address=(attrs)
-        attributes[:transaction_ship_address] = ShipAddress.new(attrs)
+        attributes[:transaction_ship_address] = attrs.kind_of?(ShipAddress) ? attrs : ShipAddress.new(attrs)
+      end
+
+      def transaction_ship_address
+        attributes[:transaction_ship_address] ||= ShipAddress.new
       end
 
       def item_list
@@ -57,7 +65,7 @@ module NetSuite
       end
 
       def custom_field_list=(attrs)
-        attributes[:custom_field_list] = CustomFieldList.new(attrs)
+        attributes[:custom_field_list] = attrs.kind_of?(CustomFieldList) ? attrs : CustomFieldList.new(attrs)
       end
 
       def self.get(options = {})
