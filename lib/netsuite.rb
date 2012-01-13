@@ -23,6 +23,7 @@ require 'netsuite/support/requests'
 require 'netsuite/actions/add'
 require 'netsuite/actions/get'
 require 'netsuite/actions/initialize'
+require 'netsuite/actions/update'
 
 # RECORDS
 require 'netsuite/records/bill_address'
