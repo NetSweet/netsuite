@@ -39,8 +39,12 @@ module NetSuite
             }
           }
         }
-        hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = @obj.internal_id if @obj.respond_to?(:internal_id) && @obj.internal_id
-        hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = @obj.external_id if @obj.respond_to?(:external_id) && @obj.external_id
+        if @obj.respond_to?(:internal_id) && @obj.internal_id
+          hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = @obj.internal_id
+        end
+        if @obj.respond_to?(:external_id) && @obj.external_id
+          hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = @obj.external_id
+        end
         hash
       end
 
