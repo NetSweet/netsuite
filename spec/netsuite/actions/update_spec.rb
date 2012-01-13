@@ -3,9 +3,8 @@ require 'spec_helper'
 describe NetSuite::Actions::Update do
 
   context 'Customer' do
-    let(:customer) do
-      NetSuite::Records::Customer.new(:entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.')
-    end
+    let(:customer) { NetSuite::Records::Customer.new }
+    let(:attributes) { { :entity_id => 'Shutter Fly', :company_name => 'Shutter Fly, Inc.' } }
 
     before do
       savon.expects(:update).with({
@@ -22,23 +21,21 @@ describe NetSuite::Actions::Update do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Update.call(customer)
+      NetSuite::Actions::Update.call(NetSuite::Records::Customer, attributes)
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Update.call(customer)
+      response = NetSuite::Actions::Update.call(NetSuite::Records::Customer, attributes)
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end
   end
 
   context 'Invoice' do
-    let(:invoice) do
-      NetSuite::Records::Invoice.new(:source => 'Google', :total => 100.0)
-    end
+    let(:invoice) { NetSuite::Records::Invoice.new }
+    let(:attributes) { { :source => 'Google', :total => 100.0 } }
 
     before do
-      pending
       savon.expects(:update).with({
         'platformMsgs:record' => {
           'listRel:source' => 'Google',
@@ -53,11 +50,11 @@ describe NetSuite::Actions::Update do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Update.call(invoice)
+      NetSuite::Actions::Update.call(NetSuite::Records::Invoice, attributes)
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Update.call(invoice)
+      response = NetSuite::Actions::Update.call(NetSuite::Records::Invoice, attributes)
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end

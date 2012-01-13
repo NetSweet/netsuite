@@ -3,8 +3,9 @@ module NetSuite
     class Update
       include Support::Requests
 
-      def initialize(obj = nil)
-        @obj = obj
+      def initialize(klass, attributes)
+        @klass      = klass
+        @attributes = attributes
       end
 
       def request
@@ -27,20 +28,24 @@ module NetSuite
       # </platformMsgs:update>
       def request_body
         hash = {
-          'platformMsgs:record' => @obj.to_record,
+          'platformMsgs:record' => updated_record.to_record,
           :attributes! => {
             'platformMsgs:record' => {
-              'xsi:type' => @obj.record_type
+              'xsi:type' => updated_record.record_type
             }
           }
         }
-        if @obj.respond_to?(:internal_id) && @obj.internal_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = @obj.internal_id
+        if updated_record.respond_to?(:internal_id) && updated_record.internal_id
+          hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = updated_record.internal_id
         end
-        if @obj.respond_to?(:external_id) && @obj.external_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = @obj.external_id
+        if updated_record.respond_to?(:external_id) && updated_record.external_id
+          hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = updated_record.external_id
         end
         hash
+      end
+
+      def updated_record
+        @updated_record ||= @klass.new(@attributes)
       end
 
       def success?
