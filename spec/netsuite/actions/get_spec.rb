@@ -17,11 +17,11 @@ describe NetSuite::Actions::Get do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Get.call(1, NetSuite::Records::Customer)
+      NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Get.call(1, NetSuite::Records::Customer)
+      response = NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
       response.should be_kind_of(NetSuite::Response)
     end
   end
@@ -41,11 +41,11 @@ describe NetSuite::Actions::Get do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Get.call(1, NetSuite::Records::Invoice)
+      NetSuite::Actions::Get.call(NetSuite::Records::Invoice, :external_id => 1)
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Get.call(1, NetSuite::Records::Invoice)
+      response = NetSuite::Actions::Get.call(NetSuite::Records::Invoice, :external_id => 1)
       response.should be_kind_of(NetSuite::Response)
     end
   end

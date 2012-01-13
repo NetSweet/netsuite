@@ -61,7 +61,7 @@ module NetSuite
       end
 
       def self.get(id)
-        response = Actions::Get.call(id, self)
+        response = Actions::Get.call(self, :external_id => id)
         if response.success?
           new(response.body)
         else

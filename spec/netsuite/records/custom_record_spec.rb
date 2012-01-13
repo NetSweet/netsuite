@@ -20,4 +20,32 @@ describe NetSuite::Records::CustomRecord do
     end
   end
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :allow_quick_search => true }) }
+
+      it 'returns a Customer instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).
+          with(NetSuite::Records::CustomRecord, :external_id => 1, :type_id => nil, :custom => true).
+          and_return(response)
+        customer = NetSuite::Records::CustomRecord.get(1)
+        customer.should be_kind_of(NetSuite::Records::CustomRecord)
+        customer.allow_quick_search.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).
+          with(NetSuite::Records::CustomRecord, :external_id => 1, :type_id => nil, :custom => true).
+          and_return(response)
+        lambda {
+          NetSuite::Records::CustomRecord.get(1)
+        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::CustomRecord with ID=1 could not be found')
+      end
+    end
+  end
+
 end

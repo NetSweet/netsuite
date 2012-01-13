@@ -3,9 +3,9 @@ module NetSuite
     class Get
       include Support::Requests
 
-      def initialize(id, klass)
-        @id    = id
-        @klass = klass
+      def initialize(klass, options = {})
+        @klass   = klass
+        @options = options
       end
 
       private
@@ -31,16 +31,19 @@ module NetSuite
       #   </platformMsgs:get>
       # </soap:Body>
       def request_body
-        {
+        body = {
           'platformMsgs:baseRef' => {},
           :attributes! => {
             'platformMsgs:baseRef' => {
-              :externalId => @id,
-              :type       => soap_type,
-              'xsi:type'  => 'platformCore:RecordRef'
+              'xsi:type'  => (@options[:custom] ? 'platformCore:CustomRecordRef' : 'platformCore:RecordRef')
             }
           }
         }
+        body[:attributes!]['platformMsgs:baseRef']['externalId'] = @options[:external_id] if @options[:external_id]
+        body[:attributes!]['platformMsgs:baseRef']['internalId'] = @options[:internal_id] if @options[:internal_id]
+        body[:attributes!]['platformMsgs:baseRef']['typeId']     = @options[:type_id]     if @options[:type_id]
+        body[:attributes!]['platformMsgs:baseRef']['type']       = soap_type              unless @options[:custom]
+        body
       end
 
       def success?

@@ -14,6 +14,25 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.get(id, options = {})
+        options.merge!(:external_id => id) if id
+        options.merge!(:type_id => type_id) unless options[:type_id]
+        response = Actions::Get.call(self, options.merge!(:custom => true))
+        if response.success?
+          new(response.body)
+        else
+          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+        end
+      end
+
+      def self.type_id(id = nil)
+        if id
+          @type_id = id
+        else
+          @type_id
+        end
+      end
+
     end
   end
 end
