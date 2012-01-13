@@ -14,14 +14,13 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def self.get(id, options = {})
-        options.merge!(:external_id => id) if id
+      def self.get(options = {})
         options.merge!(:type_id => type_id) unless options[:type_id]
         response = Actions::Get.call(self, options.merge!(:custom => true))
         if response.success?
           new(response.body)
         else
-          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
         end
       end
 

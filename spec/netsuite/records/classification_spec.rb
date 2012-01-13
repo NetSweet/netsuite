@@ -17,7 +17,7 @@ describe NetSuite::Records::Classification do
 
       it 'returns an Invoice instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Classification, :external_id => 10).and_return(response)
-        invoice = NetSuite::Records::Classification.get(10)
+        invoice = NetSuite::Records::Classification.get(:external_id => 10)
         invoice.should be_kind_of(NetSuite::Records::Classification)
       end
     end
@@ -28,8 +28,9 @@ describe NetSuite::Records::Classification do
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Classification, :external_id => 10).and_return(response)
         lambda {
-          NetSuite::Records::Classification.get(10)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::Classification with ID=10 could not be found')
+          NetSuite::Records::Classification.get(:external_id => 10)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::Classification with OPTIONS=(.*) could not be found/)
       end
     end
   end

@@ -68,7 +68,7 @@ describe NetSuite::Records::Invoice do
 
       it 'returns an Invoice instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Invoice, :external_id => 10).and_return(response)
-        invoice = NetSuite::Records::Invoice.get(10)
+        invoice = NetSuite::Records::Invoice.get(:external_id => 10)
         invoice.should be_kind_of(NetSuite::Records::Invoice)
       end
     end
@@ -79,8 +79,9 @@ describe NetSuite::Records::Invoice do
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Invoice, :external_id => 10).and_return(response)
         lambda {
-          NetSuite::Records::Invoice.get(10)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::Invoice with ID=10 could not be found')
+          NetSuite::Records::Invoice.get(:external_id => 10)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::Invoice with OPTIONS=(.*) could not be found/)
       end
     end
   end

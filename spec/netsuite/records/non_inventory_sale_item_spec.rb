@@ -43,7 +43,7 @@ describe NetSuite::Records::NonInventorySaleItem do
 
       it 'returns a NonInventorySaleItem instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::NonInventorySaleItem, :external_id => 20).and_return(response)
-        customer = NetSuite::Records::NonInventorySaleItem.get(20)
+        customer = NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
         customer.should be_kind_of(NetSuite::Records::NonInventorySaleItem)
         customer.manufacturer_zip.should eql('90401')
       end
@@ -55,8 +55,9 @@ describe NetSuite::Records::NonInventorySaleItem do
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::NonInventorySaleItem, :external_id => 20).and_return(response)
         lambda {
-          NetSuite::Records::NonInventorySaleItem.get(20)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::NonInventorySaleItem with ID=20 could not be found')
+          NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::NonInventorySaleItem with OPTIONS=(.*) could not be found/)
       end
     end
   end

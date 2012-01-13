@@ -60,7 +60,7 @@ describe NetSuite::Records::Customer do
 
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
-        customer = NetSuite::Records::Customer.get(1)
+        customer = NetSuite::Records::Customer.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::Customer)
         customer.is_person.should be_true
       end
@@ -72,8 +72,9 @@ describe NetSuite::Records::Customer do
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
         lambda {
-          NetSuite::Records::Customer.get(1)
-        }.should raise_error(NetSuite::RecordNotFound, 'NetSuite::Records::Customer with ID=1 could not be found')
+          NetSuite::Records::Customer.get(:external_id => 1)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::Customer with OPTIONS=(.*) could not be found/)
       end
     end
   end
