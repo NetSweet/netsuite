@@ -82,7 +82,7 @@ module NetSuite
         if response.success?
           new(response.body)
         else
-          raise RecordNotFound, "#{self} with ID=#{id} could not be found"
+          raise InitializationError, "#{self}.initialize with #{customer} failed."
         end
       end
 

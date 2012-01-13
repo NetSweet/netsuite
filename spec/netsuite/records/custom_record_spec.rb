@@ -44,7 +44,7 @@ describe NetSuite::Records::CustomRecord do
         lambda {
           NetSuite::Records::CustomRecord.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
-          /NetSuite::Records::CustomRecord with OPTIONS={(.*)} could not be found/)
+          /NetSuite::Records::CustomRecord with OPTIONS=(.*) could not be found/)
       end
     end
   end
