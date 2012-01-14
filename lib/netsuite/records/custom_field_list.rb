@@ -17,7 +17,14 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:customField" => custom_fields.map(&:to_record) }
+        custom_fields.map do |custom_field|
+          {
+            "#{record_namespace}:customField" => custom_field.to_record,
+            :attributes! => {
+              "#{record_namespace}:customField" => custom_field.attributes!
+            }
+          }
+        end
       end
 
     end

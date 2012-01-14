@@ -9,7 +9,6 @@ module NetSuite
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @type        = attributes.delete(:type) || attributes.delete(:"@xsi:type")
-        @type        = @type.split(':').last if @type
         self.attributes = attributes
       end
 
@@ -20,9 +19,14 @@ module NetSuite
           hash[kname] = v
           hash
         end
-        hash_rec["#{record_namespace}:internalId"] = internal_id if internal_id
-        hash_rec["#{record_namespace}:type"]       = type if type
         hash_rec
+      end
+
+      def attributes!
+        attr_hash = {}
+        attr_hash['internalId'] = internal_id if internal_id
+        attr_hash['xsi:type']       = type        if type
+        attr_hash
       end
 
     end
