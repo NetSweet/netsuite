@@ -57,4 +57,28 @@ describe NetSuite::Records::CustomRecord do
     end
   end
 
+  describe '#add' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(record).
+            and_return(response)
+        record.add
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(record).
+            and_return(response)
+        record.add.should be_false
+      end
+    end
+  end
+
 end

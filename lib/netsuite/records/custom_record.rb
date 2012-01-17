@@ -35,6 +35,11 @@ module NetSuite
         end
       end
 
+      def add
+        response = Actions::Add.call(self)
+        response.success?
+      end
+
       def self.type_id(id = nil)
         if id
           @type_id = id
