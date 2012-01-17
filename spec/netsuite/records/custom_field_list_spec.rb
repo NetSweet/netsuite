@@ -8,10 +8,28 @@ describe NetSuite::Records::CustomFieldList do
   end
 
   describe '#to_record' do
+    before do
+      list.custom_fields << NetSuite::Records::CustomField.new(
+        :internal_id => '3',
+        :type        => 'BooleanCustomFieldRef',
+        :value       => false
+      )
+    end
+
     it 'can represent itself as a SOAP record' do
-      record = {
-        'platformCore:customField' => []
-      }
+      record = [
+        {
+          'platformCore:customField' => {
+            'platformCore:value' => false
+          },
+          :attributes! => {
+            'platformCore:customField' => {
+              'internalId' => '3',
+              'xsi:type' => 'BooleanCustomFieldRef'
+            }
+          }
+        }
+      ]
       list.to_record.should eql(record)
     end
   end
