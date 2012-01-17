@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe NetSuite::Records::CustomRecord do
   let(:record) { NetSuite::Records::CustomRecord.new }
-#<element name="customForm" type="platformCore:RecordRef" minOccurs="0"/>
-#<element name="owner" type="platformCore:RecordRef" minOccurs="0"/>
-#<element name="recType" type="platformCore:RecordRef" minOccurs="0"/>
-#<element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
 
   it 'has all the right fields' do
     [
@@ -18,6 +14,18 @@ describe NetSuite::Records::CustomRecord do
     ].each do |field|
       record.should have_field(field)
     end
+  end
+
+  it 'has all the right record_refs' do
+    [
+      :custom_form, :owner, :rec_type
+    ].each do |record_ref|
+      record.should have_record_ref(record_ref)
+    end
+  end
+
+  it 'has a custom_field_list' do
+    record.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
   end
 
   describe '.get' do
