@@ -8,7 +8,7 @@ module NetSuite
         when Hash
           custom_fields << CustomField.new(attributes[:custom_field])
         when Array
-          attributes[:custom_field].each { |custom_field| custom_fields << CustomField.new(addressbook) }
+          attributes[:custom_field].each { |custom_field| custom_fields << CustomField.new(custom_field) }
         end
       end
 
