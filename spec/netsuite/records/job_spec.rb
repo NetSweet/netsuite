@@ -109,4 +109,30 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '#add' do
+    let(:job) { NetSuite::Records::Job.new(:account_number => 7, :job_price => 10) }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(job).
+            and_return(response)
+        job.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(job).
+            and_return(response)
+        job.add.should be_false
+      end
+    end
+  end
+
 end
