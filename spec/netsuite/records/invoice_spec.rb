@@ -97,6 +97,7 @@ describe NetSuite::Records::Invoice do
         :bill_zip                 => '90007'
       }
       invoice.transaction_bill_address.should be_kind_of(NetSuite::Records::BillAddress)
+      invoice.transaction_bill_address.bill_city.should eql('Los Angeles')
     end
 
     it 'can be set with a BillAddress object' do
@@ -118,6 +119,7 @@ describe NetSuite::Records::Invoice do
         :ship_zip                 => '90007'
       }
       invoice.transaction_ship_address.should be_kind_of(NetSuite::Records::ShipAddress)
+      invoice.transaction_ship_address.ship_addr1.should eql('123 Happy Lane')
     end
 
     it 'can be set with a ShipAddress object' do
