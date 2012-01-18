@@ -29,6 +29,8 @@ module NetSuite
 
       field :transaction_bill_address, BillAddress
       field :transaction_ship_address, ShipAddress
+      field :item_list,                InvoiceItemList
+      field :custom_field_list,        CustomFieldList
 
       read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid
 
@@ -41,22 +43,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def item_list
-        attributes[:item_list] ||= InvoiceItemList.new
-      end
-
-      def item_list=(attrs)
-        attributes[:item_list] = attrs.kind_of?(InvoiceItemList) ? attrs : InvoiceItemList.new(attrs)
-      end
-
-      def custom_field_list
-        attributes[:custom_field_list] ||= CustomFieldList.new
-      end
-
-      def custom_field_list=(attrs)
-        attributes[:custom_field_list] = attrs.kind_of?(CustomFieldList) ? attrs : CustomFieldList.new(attrs)
       end
 
       def self.get(options = {})
