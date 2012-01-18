@@ -6,11 +6,10 @@ module NetSuite
       include Support::Records
       include Namespaces::ListRel
 
-      fields :access_role, :account_number, :addressbook_list, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
+      fields :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
-        :consol_aging, :consol_days_overdue,
-        :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
-        :currency, :currency_list, :custom_field_list, :date_created, :days_overdue, :default_address,
+        :consol_aging, :consol_days_overdue, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override,
+        :credit_limit, :currency, :currency_list, :custom_field_list, :date_created, :days_overdue, :default_address,
         :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
         :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
         :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
@@ -22,6 +21,8 @@ module NetSuite
         :stage, :start_date, :subscriptions_list, :subsidiary, :sync_partner_teams, :tax_exempt, :tax_item, :taxable, :terms,
         :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :url,
         :vat_reg_number, :visits, :web_lead
+
+      field :addressbook_list, CustomerAddressbookList
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
@@ -35,14 +36,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def addressbook_list=(attrs)
-        attributes[:addressbook_list] = CustomerAddressbookList.new(attrs)
-      end
-
-      def addressbook_list
-        attributes[:addressbook_list] ||= CustomerAddressbookList.new
       end
 
       def self.get(options = {})

@@ -34,24 +34,33 @@ describe NetSuite::Records::Customer do
     end
   end
 
-  it 'has an addressbook_list field that builds a CustomerAddressbookList object' do
-    customer.addressbook_list = {
-      :addressbook => {
-        :addr1            => '123 Happy Lane',
-        :addr_text        => "123 Happy Lane\nLos Angeles CA 90007",
-        :city             => 'Los Angeles',
-        :country          => '_unitedStates',
-        :default_billing  => true,
-        :default_shipping => true,
-        :internal_id      => '567',
-        :is_residential   => false,
-        :label            => '123 Happy Lane',
-        :override         => false,
-        :state            => 'CA',
-        :zip              => '90007'
+  describe '#addressbook_list' do
+    it 'can be set from attributes' do
+      customer.addressbook_list = {
+        :addressbook => {
+          :addr1            => '123 Happy Lane',
+          :addr_text        => "123 Happy Lane\nLos Angeles CA 90007",
+          :city             => 'Los Angeles',
+          :country          => '_unitedStates',
+          :default_billing  => true,
+          :default_shipping => true,
+          :internal_id      => '567',
+          :is_residential   => false,
+          :label            => '123 Happy Lane',
+          :override         => false,
+          :state            => 'CA',
+          :zip              => '90007'
+        }
       }
-    }
-    customer.addressbook_list.should be_kind_of(NetSuite::Records::CustomerAddressbookList)
+      customer.addressbook_list.should be_kind_of(NetSuite::Records::CustomerAddressbookList)
+      customer.addressbook_list.addressbooks.length.should eql(1)
+    end
+
+    it 'can be set from a CustomerAddressbookList object' do
+      customer_addressbook_list = NetSuite::Records::CustomerAddressbookList.new
+      customer.addressbook_list = customer_addressbook_list
+      customer.addressbook_list.should eql(customer_addressbook_list)
+    end
   end
 
   describe '.get' do
