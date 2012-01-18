@@ -52,7 +52,14 @@ describe NetSuite::Configuration do
         'platformMsgs:passport' => {
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
-          'platformCore:account'  => '1234'
+          'platformCore:account'  => '1234',
+          'platformCore:role'     => {},
+          :attributes! => {
+            'platformCore:role' => {
+              :internalId => '3',
+              :type       => 'role'
+            }
+          }
         }
       })
     end

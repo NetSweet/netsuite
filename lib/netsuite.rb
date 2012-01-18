@@ -11,6 +11,7 @@ require 'netsuite/namespaces/platform_common'
 require 'netsuite/namespaces/list_acct'
 require 'netsuite/namespaces/list_rel'
 require 'netsuite/namespaces/tran_sales'
+require 'netsuite/namespaces/setup_custom'
 
 # SUPPORT
 require 'netsuite/support/attributes'
@@ -40,6 +41,8 @@ require 'netsuite/records/invoice_item'
 require 'netsuite/records/invoice_item_list'
 require 'netsuite/records/classification'
 require 'netsuite/records/custom_record'
+require 'netsuite/records/custom_record_type'
+require 'netsuite/records/custom_record_ref'
 
 module NetSuite
 

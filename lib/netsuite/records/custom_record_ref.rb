@@ -1,12 +1,12 @@
 module NetSuite
   module Records
-    class RecordRef
+    class CustomRecordRef
       include Support::Fields
       include Support::Records
       include Namespaces::PlatformCore
 
-      attr_reader   :internal_id, :type
-      attr_accessor :external_id
+      attr_reader   :internal_id
+      attr_accessor :external_id, :type_id
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
@@ -15,13 +15,13 @@ module NetSuite
           attributes.delete(:"@xmlns:platform_core")
           @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
           @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
-          @type        = attributes.delete(:type) || attributes.delete(:@type)
-          @attributes  = attributes
+          @type_id     = attributes.delete(:type_id) || attributes.delete(:@type_id)
+          initialize_from_attributes_hash(attributes)
         else
           record = attributes_or_record
           @internal_id = record.internal_id if record.respond_to?(:internal_id)
           @external_id = record.external_id if record.respond_to?(:external_id)
-          @type        = record.class.to_s.split('::').last.lower_camelcase
+          @type_id     = record.class.type_id if record.respond_to?(:type_id) && record.class.type_id
         end
       end
 
@@ -31,14 +31,6 @@ module NetSuite
         else
           super
         end
-      end
-
-      def attributes!
-        hash = {}
-        hash[:internalId] = @internal_id if @internal_id
-        hash[:externalId] = @external_id if @external_id
-        hash[:type]       = @type        if @type
-        hash
       end
 
     end

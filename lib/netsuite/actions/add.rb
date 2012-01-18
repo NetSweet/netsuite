@@ -17,6 +17,7 @@ module NetSuite
           soap.namespaces['xmlns:tranSales']      = 'urn:sales_2011_2.transactions.webservices.netsuite.com'
           soap.namespaces['xmlns:platformCommon'] = 'urn:common_2011_2.platform.webservices.netsuite.com'
           soap.namespaces['xmlns:listAcct']       = 'urn:accounting_2011_2.lists.webservices.netsuite.com'
+          soap.namespaces['xmlns:setupCustom']    = 'urn:customization_2011_2.setup.webservices.netsuite.com'
           soap.header = auth_header
           soap.body   = request_body
         end
@@ -31,21 +32,20 @@ module NetSuite
       #   </platformMsgs:add>
       # </soap:Body>
       def request_body
-        hash = {
+        body = {
           'platformMsgs:record' => @obj.to_record,
           :attributes! => {
-            'platformMsgs:record' => {
-              'xsi:type' => @obj.record_type
-            }
+            'platformMsgs:record' => {}
           }
         }
-        if @obj.respond_to?(:internal_id) && @obj.internal_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = @obj.internal_id
-        end
-        if @obj.respond_to?(:external_id) && @obj.external_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = @obj.external_id
-        end
-        hash
+        body[:attributes!]['platformMsgs:record']['externalId'] = @obj.external_id   if @obj.respond_to?(:external_id) && @obj.external_id
+        body[:attributes!]['platformMsgs:record']['internalId'] = @obj.internal_id   if @obj.respond_to?(:internal_id) && @obj.internal_id
+        body[:attributes!]['platformMsgs:record']['xsi:type']   = @obj.kind_of?(NetSuite::Records::CustomRecord) ? @obj.record_type : soap_type
+        body
+      end
+
+      def soap_type
+        @obj.class.to_s.split('::').last.lower_camelcase
       end
 
       def success?

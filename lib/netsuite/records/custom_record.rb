@@ -3,6 +3,8 @@ module NetSuite
     class CustomRecord
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
+      include Namespaces::SetupCustom
 
       fields :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :created,
         :custom_field_list, :custom_record_id, :description, :disclaimer, :enabl_email_merge, :enable_numbering,
@@ -13,7 +15,12 @@ module NetSuite
 
       record_refs :custom_form, :owner, :rec_type
 
+      attr_reader :internal_id
+      attr_accessor :external_id
+
       def initialize(attributes = {})
+        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
+        @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
 
@@ -46,6 +53,10 @@ module NetSuite
         else
           @type_id
         end
+      end
+
+      def record_type
+        "#{record_namespace}:CustomRecord"
       end
 
     end

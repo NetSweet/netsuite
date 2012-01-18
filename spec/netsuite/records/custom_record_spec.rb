@@ -18,7 +18,7 @@ describe NetSuite::Records::CustomRecord do
 
   it 'has all the right record_refs' do
     [
-      :custom_form, :owner, :rec_type
+      :custom_form, :owner
     ].each do |record_ref|
       record.should have_record_ref(record_ref)
     end

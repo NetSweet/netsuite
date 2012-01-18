@@ -31,9 +31,17 @@ module NetSuite
         'platformMsgs:passport' => {
           'platformCore:email'    => email,
           'platformCore:password' => password,
-          'platformCore:account'  => account.to_s
+          'platformCore:account'  => account.to_s,
+          'platformCore:role'     => role.to_record,
+          :attributes! => {
+            'platformCore:role' => role.attributes!
+          }
         }
       }
+    end
+
+    def role
+      attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
     end
 
     def email=(email)
