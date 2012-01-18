@@ -12,6 +12,7 @@ require 'netsuite/namespaces/list_acct'
 require 'netsuite/namespaces/list_rel'
 require 'netsuite/namespaces/tran_sales'
 require 'netsuite/namespaces/setup_custom'
+require 'netsuite/namespaces/tran_cust'
 
 # SUPPORT
 require 'netsuite/support/attributes'

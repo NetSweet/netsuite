@@ -85,4 +85,52 @@ describe NetSuite::Records::CustomerPayment do
     end
   end
 
+  describe '#add' do
+    let(:test_data) { { :cc_name => 'Ryan Moran', :cc_number => '1234567890123456' } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        payment = NetSuite::Records::CustomerPayment.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(payment).
+            and_return(response)
+        payment.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        pyament = NetSuite::Records::CustomerPayment.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(payment).
+            and_return(response)
+        payment.add.should be_false
+      end
+    end
+  end
+
+  describe '#to_record' do
+    before do
+      payment.cc_name   = 'Ryan Moran'
+      payment.cc_number = '1234567890123456'
+    end
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'tranCust:ccName'   => 'Ryan Moran',
+        'tranCust:ccNumber' => '1234567890123456'
+      }
+      payment.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string representation of the SOAP type' do
+      payment.record_type.should eql('tranCust:CustomerPayment')
+    end
+  end
+
 end
