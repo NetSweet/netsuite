@@ -43,6 +43,7 @@ require 'netsuite/records/classification'
 require 'netsuite/records/custom_record'
 require 'netsuite/records/custom_record_type'
 require 'netsuite/records/custom_record_ref'
+require 'netsuite/records/job'
 
 module NetSuite
 

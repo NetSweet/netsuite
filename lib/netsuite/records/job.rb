@@ -1,0 +1,22 @@
+module NetSuite
+  module Records
+    class Job
+      include Support::Fields
+
+      fields :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time,
+        :alt_name, :alt_phone, :bill_pay, :calculated_end_date, :calculated_end_date_baseline, :comments, :company_name,
+        :date_created, :default_address, :email, :end_date, :entity_id, :estimated_cost, :estimated_gross_profit,
+        :estimated_gross_profit_percent, :estimated_labor_cost, :estimated_labor_cost_baseline, :estimated_labor_revenue,
+        :estimated_revenue, :estimated_time, :fax, :fx_rate, :include_crm_tasks_in_totals, :is_exempt_time, :is_inactive,
+        :is_productive_time, :is_utilized_time, :job_price, :last_baseline_date, :last_modified_date, :limit_time_to_assignees,
+        :materialize_time, :opening_balance, :opening_balance_account, :opening_balance_date, :percent_complete,
+        :percent_time_complete, :phone, :phonetic_name, :projected_end_date, :projected_end_date_baseline, :start_date,
+        :start_date_baseline
+
+      def initialize(attributes = {})
+        initialize_from_attributes_hash(attributes)
+      end
+
+    end
+  end
+end
