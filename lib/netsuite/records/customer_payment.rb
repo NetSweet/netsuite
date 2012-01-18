@@ -10,6 +10,8 @@ module NetSuite
         :last_modified_date, :memo, :payment, :pending, :pn_ref_num, :status, :three_d_status_code, :total, :tran_date,
         :unapplied, :undep_funds, :valid_from
 
+      field :custom_field_list, CustomFieldList
+
       record_refs :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass,
         :location, :payment_method, :posting_period, :subsidiary
 
