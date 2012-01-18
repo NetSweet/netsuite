@@ -49,6 +49,7 @@ require 'netsuite/records/custom_record'
 require 'netsuite/records/custom_record_type'
 require 'netsuite/records/job'
 require 'netsuite/records/customer_payment'
+require 'netsuite/records/payment_method'
 
 module NetSuite
 
