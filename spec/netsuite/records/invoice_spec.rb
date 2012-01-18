@@ -49,16 +49,81 @@ describe NetSuite::Records::Invoice do
   end
 
   describe '#custom_field_list' do
-    it 'returns a CustomFieldList object that contains many CustomFields' do
+    it 'can be set from attributes' do
+      attributes = {
+        :custom_field => {
+          :amount => 10
+        }
+      }
+      invoice.custom_field_list = attributes
       invoice.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
+      invoice.custom_field_list.custom_fields.length.should eql(1)
+    end
+
+    it 'can be set from a CustomFieldList object' do
+      custom_field_list = NetSuite::Records::CustomFieldList.new
+      invoice.custom_field_list = custom_field_list
+      invoice.custom_field_list.should eql(custom_field_list)
     end
   end
 
-  describe 'item_list' do
-    context 'when the attributes constitute an Array of items' do
-      it 'builds an InvoiceItemList for each list item_list field' do
-        invoice.item_list.should be_kind_of(NetSuite::Records::InvoiceItemList)
-      end
+  describe '#item_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :item => {
+          :amount => 10
+        }
+      }
+      invoice.item_list = attributes
+      invoice.item_list.should be_kind_of(NetSuite::Records::InvoiceItemList)
+      invoice.item_list.items.length.should eql(1)
+    end
+
+    it 'can be set from a CustomFieldList object' do
+      item_list = NetSuite::Records::InvoiceItemList.new
+      invoice.item_list = item_list
+      invoice.item_list.should eql(item_list)
+    end
+  end
+
+  describe '#transaction_bill_address' do
+    it 'has a transaction_bill_address field that builds a BillAddress object from attributes' do
+      invoice.transaction_bill_address = {
+        :"@xmlns:platform_common" => 'urn:common_2011_2.platform.webservices.netsuite.com',
+        :bill_addr1               => '123 Happy Lane',
+        :bill_city                => 'Los Angeles',
+        :bill_country             => '_unitedStates',
+        :bill_state               => 'CA',
+        :bill_zip                 => '90007'
+      }
+      invoice.transaction_bill_address.should be_kind_of(NetSuite::Records::BillAddress)
+    end
+
+    it 'can be set with a BillAddress object' do
+      bill_address = NetSuite::Records::BillAddress.new
+      invoice.transaction_bill_address = bill_address
+      invoice.transaction_bill_address.should eql(bill_address)
+    end
+  end
+
+  describe '#transaction_ship_address' do
+    it 'has a transaction_ship_address field that builds a ShipAddress object from attributes' do
+      invoice.transaction_ship_address = {
+        :"@xmlns:platform_common" => 'urn:common_2011_2.platform.webservices.netsuite.com',
+        :ship_addr1               => '123 Happy Lane',
+        :ship_city                => 'Los Angeles',
+        :ship_country             => '_unitedStates',
+        :ship_is_residential      => false,
+        :ship_state               => 'CA',
+        :ship_zip                 => '90007'
+      }
+      invoice.transaction_ship_address.should be_kind_of(NetSuite::Records::ShipAddress)
+    end
+
+    it 'can be set with a ShipAddress object' do
+      ship_address = NetSuite::Records::ShipAddress.new
+      invoice.transaction_ship_address = ship_address
+      invoice.transaction_ship_address.should eql(ship_address)
     end
   end
 
@@ -98,35 +163,6 @@ describe NetSuite::Records::Invoice do
     context 'when the response is unsuccessful' do
       pending
     end
-  end
-
-  describe '#add' do
-    pending
-  end
-
-  it 'has a transaction_bill_address field that builds a BillAddress object' do
-    invoice.transaction_bill_address = {
-      :"@xmlns:platform_common" => 'urn:common_2011_2.platform.webservices.netsuite.com',
-      :bill_addr1               => '123 Happy Lane',
-      :bill_city                => 'Los Angeles',
-      :bill_country             => '_unitedStates',
-      :bill_state               => 'CA',
-      :bill_zip                 => '90007'
-    }
-    invoice.transaction_bill_address.should be_kind_of(NetSuite::Records::BillAddress)
-  end
-
-  it 'has a transaction_ship_address field that builds a ShipAddress object' do
-    invoice.transaction_ship_address = {
-      :"@xmlns:platform_common" => 'urn:common_2011_2.platform.webservices.netsuite.com',
-      :ship_addr1               => '123 Happy Lane',
-      :ship_city                => 'Los Angeles',
-      :ship_country             => '_unitedStates',
-      :ship_is_residential      => false,
-      :ship_state               => 'CA',
-      :ship_zip                 => '90007'
-    }
-    invoice.transaction_ship_address.should be_kind_of(NetSuite::Records::ShipAddress)
   end
 
   describe '#add' do

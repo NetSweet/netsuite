@@ -61,7 +61,7 @@ module NetSuite
       end
 
       def item_list=(attrs)
-        attributes[:item_list] = InvoiceItemList.new(attrs)
+        attributes[:item_list] = attrs.kind_of?(InvoiceItemList) ? attrs : InvoiceItemList.new(attrs)
       end
 
       def custom_field_list
