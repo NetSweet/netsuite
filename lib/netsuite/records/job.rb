@@ -3,6 +3,7 @@ module NetSuite
     class Job
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
       include Namespaces::ListRel
 
       fields :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time,

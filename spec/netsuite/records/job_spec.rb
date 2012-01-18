@@ -135,4 +135,21 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '#to_record' do
+    let(:job) { NetSuite::Records::Job.new(:entity_id => 'TEST JOB', :account_number => 7) }
+
+    it 'returns a hash of attributes that can be used in a SOAP request' do
+      job.to_record.should eql({
+        'listRel:entityId'      => 'TEST JOB',
+        'listRel:accountNumber' => 7
+      })
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string type for the record to be used in a SOAP request' do
+      job.record_type.should eql('listRel:Job')
+    end
+  end
+
 end
