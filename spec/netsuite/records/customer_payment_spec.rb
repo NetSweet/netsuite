@@ -44,4 +44,29 @@ describe NetSuite::Records::CustomerPayment do
     end
   end
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :memo => 'This is a memo' }) }
+
+      it 'returns an CustomerPayment instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerPayment, :external_id => 7).and_return(response)
+        payment = NetSuite::Records::CustomerPayment.get(:external_id => 7)
+        payment.should be_kind_of(NetSuite::Records::CustomerPayment)
+        payment.memo.should eql('This is a memo')
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerPayment, :external_id => 8).and_return(response)
+        lambda {
+          NetSuite::Records::CustomerPayment.get(:external_id => 8)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::CustomerPayment with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
 end
