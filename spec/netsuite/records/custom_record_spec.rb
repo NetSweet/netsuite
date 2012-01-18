@@ -24,8 +24,23 @@ describe NetSuite::Records::CustomRecord do
     end
   end
 
-  it 'has a custom_field_list' do
-    record.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
+  describe '#custom_field_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :custom_field => {
+          :amount => 10
+        }
+      }
+      record.custom_field_list = attributes
+      record.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
+      record.custom_field_list.custom_fields.length.should eql(1)
+    end
+
+    it 'can be set from a CustomFieldList object' do
+      custom_field_list = NetSuite::Records::CustomFieldList.new
+      record.custom_field_list = custom_field_list
+      record.custom_field_list.should eql(custom_field_list)
+    end
   end
 
   describe '.get' do

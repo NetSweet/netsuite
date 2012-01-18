@@ -7,11 +7,13 @@ module NetSuite
       include Namespaces::SetupCustom
 
       fields :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :created,
-        :custom_field_list, :custom_record_id, :description, :disclaimer, :enabl_email_merge, :enable_numbering,
-        :include_name, :is_available_offline, :is_inactive, :is_numbering_updateable, :is_ordered, :last_modified, :name,
+        :custom_record_id, :description, :disclaimer, :enabl_email_merge, :enable_numbering, :include_name,
+        :is_available_offline, :is_inactive, :is_numbering_updateable, :is_ordered, :last_modified, :name,
         :numbering_current_number, :numbering_init, :numbering_min_digits, :numbering_prefix, :numbering_suffix,
         :record_name, :script_id, :show_creation_date, :show_creation_date_on_list, :show_id, :show_last_modified_on_list,
         :show_last_modified, :show_notes, :show_owner, :show_owner_allow_change, :show_owner_on_list, :use_permissions
+
+      field :custom_field_list, CustomFieldList
 
       record_refs :custom_form, :owner, :rec_type
 
@@ -22,14 +24,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def custom_field_list
-        attributes[:custom_field_list] ||= CustomFieldList.new
-      end
-
-      def custom_field_list=(attrs)
-        attributes[:custom_field_list] = attrs.kind_of?(CustomFieldList) ? attrs : CustomFieldList.new(attrs)
       end
 
       def self.get(options = {})
