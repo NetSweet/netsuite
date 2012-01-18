@@ -3,8 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::CustomRecordType do
   let(:record_type) { NetSuite::Records::CustomRecordType.new }
 
-# <element name="owner" type="platformCore:RecordRef" minOccurs="0"/>
-
 # <element name="fieldList" type="setupCustom:CustomRecordTypeFieldList" minOccurs="0"/>
 # <element name="tabsList" type="setupCustom:CustomRecordTypeTabsList" minOccurs="0"/>
 # <element name="sublistsList" type="setupCustom:CustomRecordTypeSublistsList" minOccurs="0"/>
@@ -25,6 +23,14 @@ describe NetSuite::Records::CustomRecordType do
       :show_last_modified_on_list, :show_notes, :show_owner, :show_owner_allow_change, :show_owner_on_list, :use_permissions
     ].each do |field|
       record_type.should have_field(field)
+    end
+  end
+
+  it 'has all the right record refs' do
+    [
+      :owner
+    ].each do |record_ref|
+      record_type.should have_record_ref(record_ref)
     end
   end
 
