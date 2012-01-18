@@ -3,23 +3,11 @@ require 'spec_helper'
 describe NetSuite::Records::Job do
   let(:job) { NetSuite::Records::Job.new }
 
-  #<element name="customForm" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="entityStatus" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="parent" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="category" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="workplace" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="language" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="currency" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="jobType" type="platformCore:RecordRef" minOccurs="0"/>
   #<element name="estimatedTimeOverride" type="platformCore:Duration" minOccurs="0"/>
   #<element name="emailPreference" type="listRelTyp:EmailPreference" minOccurs="0"/>
-  #<element name="subsidiary" type="platformCore:RecordRef" minOccurs="0"/>
   #<element name="jobBillingType" type="listRelTyp:JobBillingType" minOccurs="0"/>
-  #<element name="billingSchedule" type="platformCore:RecordRef" minOccurs="0"/>
-  #<element name="jobItem" type="platformCore:RecordRef" minOccurs="0"/>
   #<element name="actualTime" type="platformCore:Duration" minOccurs="0"/>
   #<element name="timeRemaining" type="platformCore:Duration" minOccurs="0"/>
-  #<element name="estimateRevRecTemplate" type="platformCore:RecordRef" minOccurs="0"/>
   #<element name="globalSubscriptionStatus" type="platformCommonTyp:GlobalSubscriptionStatus" minOccurs="0"/>
   #<element name="jobResourcesList" type="listRel:JobResourcesList" minOccurs="0"/>
   #<element name="addressbookList" type="listRel:JobAddressbookList" minOccurs="0"/>
@@ -39,6 +27,14 @@ describe NetSuite::Records::Job do
       :projected_end_date, :projected_end_date_baseline, :start_date, :start_date_baseline
     ].each do |field|
       job.should have_field(field)
+    end
+  end
+
+  it 'has all the right record refs' do
+    [
+      :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item, :job_type, :language, :parent, :subsidiary, :workplace
+    ].each do |record_ref|
+      job.should have_record_ref(record_ref)
     end
   end
 

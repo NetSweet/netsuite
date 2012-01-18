@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class Job
       include Support::Fields
+      include Support::RecordRefs
 
       fields :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time,
         :alt_name, :alt_phone, :bill_pay, :calculated_end_date, :calculated_end_date_baseline, :comments, :company_name,
@@ -12,6 +13,9 @@ module NetSuite
         :materialize_time, :opening_balance, :opening_balance_account, :opening_balance_date, :percent_complete,
         :percent_time_complete, :phone, :phonetic_name, :projected_end_date, :projected_end_date_baseline, :start_date,
         :start_date_baseline
+
+      record_refs :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item,
+        :job_type, :language, :parent, :subsidiary, :workplace
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
