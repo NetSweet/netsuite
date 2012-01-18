@@ -19,15 +19,25 @@ module NetSuite
           end
         end
 
-        def field(name)
+        def field(name, klass = nil)
           name_sym = name.to_sym
           fields << name_sym
-          define_method(name_sym) do
-            attributes[name_sym]
-          end
+          if klass
+            define_method(name_sym) do
+              attributes[name_sym] ||= klass.new
+            end
 
-          define_method("#{name_sym}=") do |value|
-            attributes[name_sym] = value
+            define_method("#{name_sym}=") do |value|
+              attributes[name_sym] = value.kind_of?(klass) ? value : klass.new(value)
+            end
+          else
+            define_method(name_sym) do
+              attributes[name_sym]
+            end
+
+            define_method("#{name_sym}=") do |value|
+              attributes[name_sym] = value
+            end
           end
         end
 

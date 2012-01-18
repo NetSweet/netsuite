@@ -27,6 +27,9 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
         :transaction_bill_address, :transaction_ship_address, :vat_reg_num, :vsoe_auto_calc
 
+      field :transaction_bill_address, BillAddress
+      field :transaction_ship_address, ShipAddress
+
       read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid
 
       record_refs :account, :bill_address_list, :custom_form, :entity, :klass, :posting_period, :ship_address_list
@@ -38,22 +41,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def transaction_bill_address=(attrs)
-        attributes[:transaction_bill_address] = attrs.kind_of?(BillAddress) ? attrs : BillAddress.new(attrs)
-      end
-
-      def transaction_bill_address
-        attributes[:transaction_bill_address] ||= BillAddress.new
-      end
-
-      def transaction_ship_address=(attrs)
-        attributes[:transaction_ship_address] = attrs.kind_of?(ShipAddress) ? attrs : ShipAddress.new(attrs)
-      end
-
-      def transaction_ship_address
-        attributes[:transaction_ship_address] ||= ShipAddress.new
       end
 
       def item_list

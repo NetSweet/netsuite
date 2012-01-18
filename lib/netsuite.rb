@@ -26,23 +26,25 @@ require 'netsuite/actions/get'
 require 'netsuite/actions/initialize'
 require 'netsuite/actions/update'
 
-# RECORDS
+# SUBRECORDS
 require 'netsuite/records/bill_address'
 require 'netsuite/records/custom_field'
 require 'netsuite/records/custom_field_list'
-require 'netsuite/records/customer'
 require 'netsuite/records/customer_addressbook'
 require 'netsuite/records/customer_addressbook_list'
-require 'netsuite/records/invoice'
-require 'netsuite/records/record_ref'
 require 'netsuite/records/ship_address'
-require 'netsuite/records/non_inventory_sale_item'
+require 'netsuite/records/record_ref'
 require 'netsuite/records/invoice_item'
 require 'netsuite/records/invoice_item_list'
+require 'netsuite/records/custom_record_ref'
+
+# RECORDS
+require 'netsuite/records/customer'
+require 'netsuite/records/invoice'
+require 'netsuite/records/non_inventory_sale_item'
 require 'netsuite/records/classification'
 require 'netsuite/records/custom_record'
 require 'netsuite/records/custom_record_type'
-require 'netsuite/records/custom_record_ref'
 require 'netsuite/records/job'
 
 module NetSuite
