@@ -3,19 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::CustomerPayment do
   let(:payment) { NetSuite::Records::CustomerPayment.new }
 
-#  <element name="customForm" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="arAcct" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="customer" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="postingPeriod" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="paymentMethod" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="creditCard" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="creditCardProcessor" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="account" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="subsidiary" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="class" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="department" type="platformCore:RecordRef" minOccurs="0"/>
-#  <element name="location" type="platformCore:RecordRef" minOccurs="0"/>
-
 #  <element name="applyList" type="tranCust:CustomerPaymentApplyList" minOccurs="0"/>
 #  <element name="creditList" type="tranCust:CustomerPaymentCreditList" minOccurs="0"/>
 #  <element name="depositList" type="tranCust:CustomerPaymentDepositList" minOccurs="0"/>
@@ -28,6 +15,14 @@ describe NetSuite::Records::CustomerPayment do
       :pending, :pn_ref_num, :status, :three_d_status_code, :total, :tran_date, :unapplied, :undep_funds, :valid_from
     ].each do |field|
       payment.should have_field(field)
+    end
+  end
+
+  it 'has all the right record refs' do
+    [
+      :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location, :payment_method, :posting_period, :subsidiary
+    ].each do |record_ref|
+      payment.should have_record_ref(record_ref)
     end
   end
 
