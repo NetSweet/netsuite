@@ -3,11 +3,8 @@ require 'spec_helper'
 describe NetSuite::Records::Job do
   let(:job) { NetSuite::Records::Job.new }
 
-  #<element name="estimatedTimeOverride" type="platformCore:Duration" minOccurs="0"/>
   #<element name="emailPreference" type="listRelTyp:EmailPreference" minOccurs="0"/>
   #<element name="jobBillingType" type="listRelTyp:JobBillingType" minOccurs="0"/>
-  #<element name="actualTime" type="platformCore:Duration" minOccurs="0"/>
-  #<element name="timeRemaining" type="platformCore:Duration" minOccurs="0"/>
   #<element name="globalSubscriptionStatus" type="platformCommonTyp:GlobalSubscriptionStatus" minOccurs="0"/>
   #<element name="jobResourcesList" type="listRel:JobResourcesList" minOccurs="0"/>
   #<element name="addressbookList" type="listRel:JobAddressbookList" minOccurs="0"/>
@@ -35,6 +32,57 @@ describe NetSuite::Records::Job do
       :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item, :job_type, :language, :parent, :subsidiary, :workplace
     ].each do |record_ref|
       job.should have_record_ref(record_ref)
+    end
+  end
+
+  describe '#estimated_time_override' do
+    it 'can be set from attributes' do
+      attributes = {
+        :time_span => 10
+      }
+      job.estimated_time_override = attributes
+      job.estimated_time_override.should be_kind_of(NetSuite::Records::Duration)
+      job.estimated_time_override.time_span.should eql(10)
+    end
+
+    it 'can be set from a Duration object' do
+      duration = NetSuite::Records::Duration.new
+      job.estimated_time_override = duration
+      job.estimated_time_override.should eql(duration)
+    end
+  end
+
+  describe '#actual_time' do
+    it 'can be set from attributes' do
+      attributes = {
+        :time_span => 20
+      }
+      job.actual_time = attributes
+      job.actual_time.should be_kind_of(NetSuite::Records::Duration)
+      job.actual_time.time_span.should eql(20)
+    end
+
+    it 'can be set from a Duration object' do
+      duration = NetSuite::Records::Duration.new
+      job.actual_time = duration
+      job.actual_time.should eql(duration)
+    end
+  end
+
+  describe '#time_remaining' do
+    it 'can be set from attributes' do
+      attributes = {
+        :time_span => 30
+      }
+      job.time_remaining = attributes
+      job.time_remaining.should be_kind_of(NetSuite::Records::Duration)
+      job.time_remaining.time_span.should eql(30)
+    end
+
+    it 'can be set from a Duration object' do
+      duration = NetSuite::Records::Duration.new
+      job.time_remaining = duration
+      job.time_remaining.should eql(duration)
     end
   end
 

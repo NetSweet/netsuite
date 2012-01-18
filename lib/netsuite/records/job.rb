@@ -14,6 +14,10 @@ module NetSuite
         :percent_time_complete, :phone, :phonetic_name, :projected_end_date, :projected_end_date_baseline, :start_date,
         :start_date_baseline
 
+      field :estimated_time_override, Duration
+      field :actual_time,             Duration
+      field :time_remaining,          Duration
+
       record_refs :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item,
         :job_type, :language, :parent, :subsidiary, :workplace
 
