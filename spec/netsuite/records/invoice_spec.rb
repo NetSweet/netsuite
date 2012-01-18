@@ -156,7 +156,7 @@ describe NetSuite::Records::Invoice do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(customer).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::Invoice, customer).and_return(response)
         invoice = NetSuite::Records::Invoice.initialize(customer)
         invoice.should be_kind_of(NetSuite::Records::Invoice)
       end

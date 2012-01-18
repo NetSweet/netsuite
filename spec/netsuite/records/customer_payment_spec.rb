@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe NetSuite::Records::CustomerPayment do
   let(:payment) { NetSuite::Records::CustomerPayment.new }
+  let(:invoice) { NetSuite::Records::Invoice.new }
+  let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
 #  <element name="applyList" type="tranCust:CustomerPaymentApplyList" minOccurs="0"/>
 #  <element name="creditList" type="tranCust:CustomerPaymentCreditList" minOccurs="0"/>
@@ -66,6 +68,20 @@ describe NetSuite::Records::CustomerPayment do
         }.should raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomerPayment with OPTIONS=(.*) could not be found/)
       end
+    end
+  end
+
+  describe '.initialize' do
+    context 'when the request is successful' do
+      it 'returns an initialized invoice from the customer entity' do
+        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CustomerPayment, invoice).and_return(response)
+        payment = NetSuite::Records::CustomerPayment.initialize(invoice)
+        payment.should be_kind_of(NetSuite::Records::CustomerPayment)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      pending
     end
   end
 

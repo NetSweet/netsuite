@@ -3,8 +3,9 @@ module NetSuite
     class Initialize
       include Support::Requests
 
-      def initialize(obj)
-        @obj = obj
+      def initialize(klass, object)
+        @klass  = klass
+        @object = object
       end
 
       def request
@@ -26,12 +27,12 @@ module NetSuite
       def request_body
         {
           'platformMsgs:initializeRecord' => {
-            'platformCore:type'      => 'invoice',
+            'platformCore:type'      => @klass.to_s.split('::').last.lower_camelcase,
             'platformCore:reference' => {},
             :attributes!             => {
               'platformCore:reference' => {
-                'internalId' => @obj.internal_id,
-                :type        => @obj.class.to_s.split('::').last.lower_camelcase
+                'internalId' => @object.internal_id,
+                :type        => @object.class.to_s.split('::').last.lower_camelcase
               }
             }
           }
