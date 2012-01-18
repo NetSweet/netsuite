@@ -84,4 +84,29 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
+
+      it 'returns a Job instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1).and_return(response)
+        job = NetSuite::Records::Job.get(:external_id => 1)
+        job.should be_kind_of(NetSuite::Records::Job)
+        job.account_number.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1).and_return(response)
+        lambda {
+          NetSuite::Records::Job.get(:external_id => 1)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::Job with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
 end
