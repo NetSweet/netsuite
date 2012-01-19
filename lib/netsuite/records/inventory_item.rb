@@ -3,6 +3,8 @@ module NetSuite
     class InventoryItem
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
+      include Namespaces::ListAcct
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
@@ -46,6 +48,11 @@ module NetSuite
         else
           raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
         end
+      end
+
+      def add
+        response = Actions::Add.call(self)
+        response.success?
       end
 
     end

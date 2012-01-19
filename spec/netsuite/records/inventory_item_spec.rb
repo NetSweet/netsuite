@@ -77,4 +77,50 @@ describe NetSuite::Records::InventoryItem do
     end
   end
 
+  describe '#add' do
+    let(:item) { NetSuite::Records::InventoryItem.new(:cost => 100, :is_inactive => false) }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.add.should be_false
+      end
+    end
+  end
+
+  describe '#to_record' do
+    before do
+      item.cost = 100
+      item.is_inactive = false
+    end
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'listAcct:cost'       => 100,
+        'listAcct:isInactive' => false
+      }
+      item.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string representation of the SOAP type' do
+      item.record_type.should eql('listAcct:InventoryItem')
+    end
+  end
+
 end
