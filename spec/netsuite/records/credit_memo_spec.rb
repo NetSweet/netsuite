@@ -75,4 +75,52 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  describe '#add' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        memo = NetSuite::Records::CreditMemo.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(memo).
+            and_return(response)
+        memo.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        memo = NetSuite::Records::CreditMemo.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(memo).
+            and_return(response)
+        memo.add.should be_false
+      end
+    end
+  end
+
+  describe '#to_record' do
+    before do
+      memo.email   = 'something@example.com'
+      memo.tran_id = '4'
+    end
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'tranCust:email'  => 'something@example.com',
+        'tranCust:tranId' => '4'
+      }
+      memo.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string representation of the SOAP type' do
+      memo.record_type.should eql('tranCust:CreditMemo')
+    end
+  end
+
 end
