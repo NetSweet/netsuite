@@ -9,21 +9,14 @@ describe NetSuite::Records::JournalEntryLineList do
 
   describe '#to_record' do
     before do
-      pending
-      list.lines << NetSuite::Records::JournalEntryLine.new
+      list.lines << NetSuite::Records::JournalEntryLine.new(:memo => 'This is a memo')
     end
 
     it 'can represent itself as a SOAP record' do
       record = [
         {
-          'tranGeneral:JournalEntryLine' => {
-            'platformCore:value' => false
-          },
-          :attributes! => {
-            'tranGeneral:JournalEntryLine' => {
-              'internalId' => '3',
-              'xsi:type'   => 'BooleanCustomFieldRef'
-            }
+          'tranGeneral:line' => {
+            'tranGeneral:memo' => 'This is a memo'
           }
         }
       ]

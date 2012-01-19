@@ -110,4 +110,21 @@ describe NetSuite::Records::JournalEntry do
     end
   end
 
+  describe '#to_record' do
+    let(:entry) { NetSuite::Records::JournalEntry.new(:tran_id => '1234', :approved => true) }
+
+    it 'returns a hash of attributes that can be used in a SOAP request' do
+      entry.to_record.should eql({
+        'tranGeneral:tranId'   => '1234',
+        'tranGeneral:approved' => true
+      })
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string type for the record to be used in a SOAP request' do
+      entry.record_type.should eql('tranGeneral:JournalEntry')
+    end
+  end
+
 end

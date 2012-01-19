@@ -3,7 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::JournalEntryLine do
   let(:line) { NetSuite::Records::JournalEntryLine.new }
 
-# <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
   it 'has all the right fields' do
     [
       :credit, :debit, :eliminate, :end_date, :gross_amt, :memo, :residual, :start_date, :tax1_amt, :tax_rate1
@@ -36,6 +35,23 @@ describe NetSuite::Records::JournalEntryLine do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       line.custom_field_list = custom_field_list
       line.custom_field_list.should eql(custom_field_list)
+    end
+  end
+
+  describe '#to_record' do
+    let(:line) { NetSuite::Records::JournalEntryLine.new(:memo => 'This is a memo', :eliminate => true) }
+
+    it 'returns a hash of attributes that can be used in a SOAP request' do
+      line.to_record.should eql({
+        'tranGeneral:memo'      => 'This is a memo',
+        'tranGeneral:eliminate' => true
+      })
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string type for the record to be used in a SOAP request' do
+      line.record_type.should eql('tranGeneral:JournalEntryLine')
     end
   end
 

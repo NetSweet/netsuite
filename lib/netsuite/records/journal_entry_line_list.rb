@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class JournalEntryLineList
       include Support::Fields
+      include Namespaces::TranGeneral
 
       def initialize(attributes = {})
         case attributes[:line]
@@ -14,6 +15,12 @@ module NetSuite
 
       def lines
         @lines ||= []
+      end
+
+      def to_record
+        lines.map do |line|
+          { "#{record_namespace}:line" => line.to_record }
+        end
       end
 
     end

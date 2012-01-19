@@ -3,6 +3,8 @@ module NetSuite
     class JournalEntry
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
+      include Namespaces::TranGeneral
 
       fields :approved, :created_date, :exchange_rate, :last_modified_date, :reversal_date, :reversal_defer, :reversal_entry,
         :tran_date, :tran_id
