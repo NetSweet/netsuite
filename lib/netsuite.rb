@@ -1,60 +1,64 @@
 require 'set'
 
 require 'netsuite/version'
-require 'netsuite/configuration'
 require 'netsuite/errors'
-require 'netsuite/response'
-
-# NAMESPACES
-require 'netsuite/namespaces/platform_core'
-require 'netsuite/namespaces/platform_common'
-require 'netsuite/namespaces/list_acct'
-require 'netsuite/namespaces/list_rel'
-require 'netsuite/namespaces/tran_sales'
-require 'netsuite/namespaces/setup_custom'
-require 'netsuite/namespaces/tran_cust'
-
-# SUPPORT
-require 'netsuite/support/attributes'
-require 'netsuite/support/fields'
-require 'netsuite/support/record_refs'
-require 'netsuite/support/records'
-require 'netsuite/support/requests'
-
-# ACTIONS
-require 'netsuite/actions/add'
-require 'netsuite/actions/get'
-require 'netsuite/actions/initialize'
-require 'netsuite/actions/update'
-
-# SUBRECORDS
-require 'netsuite/records/bill_address'
-require 'netsuite/records/custom_field'
-require 'netsuite/records/custom_field_list'
-require 'netsuite/records/customer_addressbook'
-require 'netsuite/records/customer_addressbook_list'
-require 'netsuite/records/ship_address'
-require 'netsuite/records/record_ref'
-require 'netsuite/records/invoice_item'
-require 'netsuite/records/invoice_item_list'
-require 'netsuite/records/custom_record_ref'
-require 'netsuite/records/duration'
-
-# RECORDS
-require 'netsuite/records/customer'
-require 'netsuite/records/invoice'
-require 'netsuite/records/non_inventory_sale_item'
-require 'netsuite/records/classification'
-require 'netsuite/records/custom_record'
-require 'netsuite/records/custom_record_type'
-require 'netsuite/records/job'
-require 'netsuite/records/customer_payment'
-require 'netsuite/records/payment_method'
-require 'netsuite/records/credit_memo'
-require 'netsuite/records/location'
-require 'netsuite/records/journal_entry'
 
 module NetSuite
+  autoload :Configuration, 'netsuite/configuration'
+  autoload :Response,      'netsuite/response'
+
+  module Namespaces
+    autoload :ListAcct,       'netsuite/namespaces/list_acct'
+    autoload :ListRel,        'netsuite/namespaces/list_rel'
+    autoload :PlatformCore,   'netsuite/namespaces/platform_core'
+    autoload :PlatformCommon, 'netsuite/namespaces/platform_common'
+    autoload :TranSales,      'netsuite/namespaces/tran_sales'
+    autoload :TranCust,       'netsuite/namespaces/tran_cust'
+    autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+  end
+
+  module Support
+    autoload :Attributes, 'netsuite/support/attributes'
+    autoload :Fields,     'netsuite/support/fields'
+    autoload :RecordRefs, 'netsuite/support/record_refs'
+    autoload :Records,    'netsuite/support/records'
+    autoload :Requests,   'netsuite/support/requests'
+  end
+
+  module Actions
+    autoload :Add,        'netsuite/actions/add'
+    autoload :Get,        'netsuite/actions/get'
+    autoload :Initialize, 'netsuite/actions/initialize'
+    autoload :Update,     'netsuite/actions/update'
+  end
+
+  module Records
+    autoload :BillAddress,             'netsuite/records/bill_address'
+    autoload :Classification,          'netsuite/records/classification'
+    autoload :CreditMemo,              'netsuite/records/credit_memo'
+    autoload :Customer,                'netsuite/records/customer'
+    autoload :CustomerAddressbook,     'netsuite/records/customer_addressbook'
+    autoload :CustomerAddressbookList, 'netsuite/records/customer_addressbook_list'
+    autoload :CustomerPayment,         'netsuite/records/customer_payment'
+    autoload :CustomField,             'netsuite/records/custom_field'
+    autoload :CustomFieldList,         'netsuite/records/custom_field_list'
+    autoload :CustomRecord,            'netsuite/records/custom_record'
+    autoload :CustomRecordRef,         'netsuite/records/custom_record_ref'
+    autoload :CustomRecordType,        'netsuite/records/custom_record_type'
+    autoload :Duration,                'netsuite/records/duration'
+    autoload :Invoice,                 'netsuite/records/invoice'
+    autoload :InvoiceItem,             'netsuite/records/invoice_item'
+    autoload :InvoiceItemList,         'netsuite/records/invoice_item_list'
+    autoload :Job,                     'netsuite/records/job'
+    autoload :JournalEntry,            'netsuite/records/journal_entry'
+    autoload :JournalEntryLine,        'netsuite/records/journal_entry_line'
+    autoload :JournalEntryLineList,    'netsuite/records/journal_entry_line_list'
+    autoload :Location,                'netsuite/records/location'
+    autoload :NonInventorySaleItem,    'netsuite/records/non_inventory_sale_item'
+    autoload :PaymentMethod,           'netsuite/records/payment_method'
+    autoload :RecordRef,               'netsuite/records/record_ref'
+    autoload :ShipAddress,             'netsuite/records/ship_address'
+  end
 
   def self.configure(&block)
     NetSuite::Configuration.instance_eval(&block)

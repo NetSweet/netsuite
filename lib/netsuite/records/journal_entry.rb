@@ -8,6 +8,7 @@ module NetSuite
         :tran_date, :tran_id
 
       field :custom_field_list, CustomFieldList
+      field :line_list,         JournalEntryLineList
 
       record_refs :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc,
         :posting_period, :subsidiary, :to_subsidiary

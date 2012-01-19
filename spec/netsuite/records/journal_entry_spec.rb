@@ -3,7 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::JournalEntry do
   let(:entry) { NetSuite::Records::JournalEntry.new }
 
-# <element name="lineList" type="tranGeneral:JournalEntryLineList" minOccurs="0"/>
   it 'has all the right fields' do
     [
      :approved, :created_date, :exchange_rate, :last_modified_date, :reversal_date,
@@ -38,6 +37,25 @@ describe NetSuite::Records::JournalEntry do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       entry.custom_field_list = custom_field_list
       entry.custom_field_list.should eql(custom_field_list)
+    end
+  end
+
+  describe '#line_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :line => {
+
+        }
+      }
+      entry.line_list = attributes
+      entry.line_list.should be_kind_of(NetSuite::Records::JournalEntryLineList)
+      entry.line_list.lines.length.should eql(1)
+    end
+
+    it 'can be set from a JournalEntryLineList object' do
+      line_list = NetSuite::Records::JournalEntryLineList.new
+      entry.line_list = line_list
+      entry.line_list.should eql(line_list)
     end
   end
 
