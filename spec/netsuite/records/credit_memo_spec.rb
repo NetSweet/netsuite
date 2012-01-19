@@ -33,4 +33,30 @@ describe NetSuite::Records::CreditMemo do
 # <element name="partnersList" type="tranCust:CreditMemoPartnersList" minOccurs="0"/>
 # <element name="applyList" type="tranCust:CreditMemoApplyList" minOccurs="0"/>
 # <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
+
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :alt_shipping_cost => 100 }) }
+
+      it 'returns a CreditMemo instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CreditMemo, :external_id => 1).and_return(response)
+        memo = NetSuite::Records::CreditMemo.get(:external_id => 1)
+        memo.should be_kind_of(NetSuite::Records::CreditMemo)
+        memo.alt_shipping_cost.should eql(100)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CreditMemo, :external_id => 1).and_return(response)
+        lambda {
+          NetSuite::Records::CreditMemo.get(:external_id => 1)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::CreditMemo with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
 end
