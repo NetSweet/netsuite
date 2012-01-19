@@ -50,6 +50,7 @@ require 'netsuite/records/custom_record_type'
 require 'netsuite/records/job'
 require 'netsuite/records/customer_payment'
 require 'netsuite/records/payment_method'
+require 'netsuite/records/credit_memo'
 
 module NetSuite
 
