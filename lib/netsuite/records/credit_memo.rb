@@ -31,6 +31,15 @@ module NetSuite
         end
       end
 
+      def self.initialize(object)
+        response = Actions::Initialize.call(self, object)
+        if response.success?
+          new(response.body)
+        else
+          raise InitializationError, "#{self}.initialize with #{object} failed."
+        end
+      end
+
     end
   end
 end

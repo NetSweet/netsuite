@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe NetSuite::Records::CreditMemo do
   let(:memo) { NetSuite::Records::CreditMemo.new }
+  let(:customer) { NetSuite::Records::Customer.new }
+  let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
   it 'has all the right fields' do
     [
@@ -56,6 +58,20 @@ describe NetSuite::Records::CreditMemo do
         }.should raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CreditMemo with OPTIONS=(.*) could not be found/)
       end
+    end
+  end
+
+  describe '.initialize' do
+    context 'when the request is successful' do
+      it 'returns an initialized credit memo from the customer entity' do
+        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CreditMemo, customer).and_return(response)
+        invoice = NetSuite::Records::CreditMemo.initialize(customer)
+        invoice.should be_kind_of(NetSuite::Records::CreditMemo)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      pending
     end
   end
 
