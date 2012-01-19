@@ -52,6 +52,7 @@ require 'netsuite/records/customer_payment'
 require 'netsuite/records/payment_method'
 require 'netsuite/records/credit_memo'
 require 'netsuite/records/location'
+require 'netsuite/records/journal_entry'
 
 module NetSuite
 
