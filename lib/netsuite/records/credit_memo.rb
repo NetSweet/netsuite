@@ -22,7 +22,12 @@ module NetSuite
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
         :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
 
+      attr_reader :internal_id
+      attr_accessor :external_id
+
       def initialize(attributes = {})
+        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
+        @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
 
