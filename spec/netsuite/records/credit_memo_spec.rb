@@ -18,34 +18,16 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
-# <element name="customForm" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="entity" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="createdFrom" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="postingPeriod" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="department" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="class" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="location" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="subsidiary" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="job" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="salesRep" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="partner" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="leadSource" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="account" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="promoCode" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="discountItem" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="taxItem" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="messageSel" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="billAddressList" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="shipMethod" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="shippingTaxCode" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="handlingTaxCode" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="salesGroup" type="platformCore:RecordRef" minOccurs="0"/>
-# <element name="giftCert" type="platformCore:RecordRef" minOccurs="0"/>
-
+  it 'has all the right record refs' do
+    [
+      :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert, :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code, :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
+    ].each do |record_ref|
+      memo.should have_record_ref(record_ref)
+    end
+  end
 
 # <element name="transactionBillAddress" type="platformCommon:BillAddress" minOccurs="0"/>
 # <element name="revenueStatus" type="platformCommonTyp:RevenueStatus" minOccurs="0"/>
-
 # <element name="salesTeamList" type="tranCust:CreditMemoSalesTeamList" minOccurs="0"/>
 # <element name="itemList" type="tranCust:CreditMemoItemList" minOccurs="0"/>
 # <element name="partnersList" type="tranCust:CreditMemoPartnersList" minOccurs="0"/>

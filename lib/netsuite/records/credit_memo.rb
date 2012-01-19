@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class CreditMemo
       include Support::Fields
+      include Support::RecordRefs
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :applied, :auto_apply, :balance,
         :bill_address, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :discount_total, :email,
@@ -12,6 +13,10 @@ module NetSuite
         :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :tax_total, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :unapplied, :vat_reg_num,
         :vsoe_auto_calc
+
+      record_refs :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert,
+        :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
+        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
