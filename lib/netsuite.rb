@@ -47,6 +47,7 @@ module NetSuite
     autoload :CustomerAddressbookList, 'netsuite/records/customer_addressbook_list'
     autoload :CustomerPayment,         'netsuite/records/customer_payment'
     autoload :Duration,                'netsuite/records/duration'
+    autoload :InventoryItem,           'netsuite/records/inventory_item'
     autoload :Invoice,                 'netsuite/records/invoice'
     autoload :InvoiceItem,             'netsuite/records/invoice_item'
     autoload :InvoiceItemList,         'netsuite/records/invoice_item_list'
