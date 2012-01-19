@@ -51,4 +51,30 @@ describe NetSuite::Records::InventoryItem do
 # <element name="matrixOptionList" type="listAcct:MatrixOptionList" minOccurs="0"/>
 # <element name="presentationItemList" type="listAcct:PresentationItemList" minOccurs="0"/>
 # <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
+
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :cost => 100 }) }
+
+      it 'returns a InventoryItem instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::InventoryItem, :external_id => 1).and_return(response)
+        item = NetSuite::Records::InventoryItem.get(:external_id => 1)
+        item.should be_kind_of(NetSuite::Records::InventoryItem)
+        item.cost.should eql(100)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::InventoryItem, :external_id => 1).and_return(response)
+        lambda {
+          NetSuite::Records::InventoryItem.get(:external_id => 1)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::InventoryItem with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
 end
