@@ -41,4 +41,55 @@ describe NetSuite::Records::JournalEntry do
     end
   end
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :approved => true }) }
+
+      it 'returns a JournalEntry instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::JournalEntry, :external_id => 1).and_return(response)
+        customer = NetSuite::Records::JournalEntry.get(:external_id => 1)
+        customer.should be_kind_of(NetSuite::Records::JournalEntry)
+        customer.approved.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::JournalEntry, :external_id => 1).and_return(response)
+        lambda {
+          NetSuite::Records::JournalEntry.get(:external_id => 1)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::JournalEntry with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
+  describe '#add' do
+    let(:entry) { NetSuite::Records::JournalEntry.new(:approved => true) }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(entry).
+            and_return(response)
+        entry.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(entry).
+            and_return(response)
+        entry.add.should be_false
+      end
+    end
+  end
+
 end
