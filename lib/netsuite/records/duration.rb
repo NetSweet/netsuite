@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class Duration
       include Support::Fields
+      include Support::Records
 
       fields :time_span, :unit
 
