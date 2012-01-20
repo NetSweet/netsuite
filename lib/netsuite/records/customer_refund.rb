@@ -17,6 +17,15 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.get(options = {})
+        response = Actions::Get.call(self, options)
+        if response.success?
+          new(response.body)
+        else
+          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+        end
+      end
+
     end
   end
 end

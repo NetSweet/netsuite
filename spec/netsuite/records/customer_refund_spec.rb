@@ -44,4 +44,28 @@ describe NetSuite::Records::CustomerRefund do
     end
   end
 
+  describe '.get' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
+
+      it 'returns an CustomerRefund instance populated with the data from the response object' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerRefund, :external_id => 10).and_return(response)
+        refund = NetSuite::Records::CustomerRefund.get(:external_id => 10)
+        refund.should be_kind_of(NetSuite::Records::CustomerRefund)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerRefund, :external_id => 10).and_return(response)
+        lambda {
+          NetSuite::Records::CustomerRefund.get(:external_id => 10)
+        }.should raise_error(NetSuite::RecordNotFound,
+          /NetSuite::Records::CustomerRefund with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
 end
