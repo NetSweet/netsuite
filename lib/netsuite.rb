@@ -34,6 +34,7 @@ module NetSuite
   end
 
   module Records
+    autoload :Account,                 'netsuite/records/account'
     autoload :BillAddress,             'netsuite/records/bill_address'
     autoload :Classification,          'netsuite/records/classification'
     autoload :CreditMemo,              'netsuite/records/credit_memo'
