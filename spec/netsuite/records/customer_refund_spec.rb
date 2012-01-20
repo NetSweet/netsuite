@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe NetSuite::Records::CustomerRefund do
   let(:refund) { NetSuite::Records::CustomerRefund.new }
+  let(:memo) { NetSuite::Records::CreditMemo.new }
+  let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
   # <element name="applyList" type="tranCust:CustomerRefundApplyList" minOccurs="0"/>
   # <element name="depositList" type="tranCust:CustomerRefundDepositList" minOccurs="0"/>
@@ -65,6 +67,20 @@ describe NetSuite::Records::CustomerRefund do
         }.should raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomerRefund with OPTIONS=(.*) could not be found/)
       end
+    end
+  end
+
+  describe '.initialize' do
+    context 'when the request is successful' do
+      it 'returns an initialized invoice from the customer entity' do
+        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CustomerRefund, memo).and_return(response)
+        refund = NetSuite::Records::CustomerRefund.initialize(memo)
+        refund.should be_kind_of(NetSuite::Records::CustomerRefund)
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      pending
     end
   end
 
