@@ -2,6 +2,7 @@ require 'set'
 
 require 'netsuite/version'
 require 'netsuite/errors'
+require 'netsuite/xml_logger'
 
 module NetSuite
   autoload :Configuration, 'netsuite/configuration'
@@ -66,6 +67,9 @@ module NetSuite
 
   def self.configure(&block)
     NetSuite::Configuration.instance_eval(&block)
+    Savon.configure do |config|
+      config.logger = NetSuite::XmlLogger.new(STDOUT)
+    end
   end
 
 end
