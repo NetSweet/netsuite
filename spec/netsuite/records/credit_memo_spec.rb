@@ -41,7 +41,9 @@ describe NetSuite::Records::CreditMemo do
     end
 
     it 'can be set from a CreditMemoItemList object' do
-      pending
+      item_list = NetSuite::Records::CreditMemoItemList.new
+      memo.item_list = item_list
+      memo.item_list.should eql(item_list)
     end
   end
 
