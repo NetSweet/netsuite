@@ -5,7 +5,6 @@ describe NetSuite::Records::CustomerRefund do
   let(:memo) { NetSuite::Records::CreditMemo.new }
   let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
-  # <element name="applyList" type="tranCust:CustomerRefundApplyList" minOccurs="0"/>
   # <element name="depositList" type="tranCust:CustomerRefundDepositList" minOccurs="0"/>
 
   it 'has all the right fields' do
@@ -46,6 +45,44 @@ describe NetSuite::Records::CustomerRefund do
     end
   end
 
+  describe '#apply_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :apply => {
+          :amount => 10
+        }
+      }
+      refund.apply_list = attributes
+      refund.apply_list.should be_kind_of(NetSuite::Records::CustomerRefundApplyList)
+      refund.apply_list.applies.length.should eql(1)
+    end
+
+    it 'can be set from a CustomerRefundApplyList object' do
+      apply_list = NetSuite::Records::CustomerRefundApplyList.new
+      refund.apply_list = apply_list
+      refund.apply_list.should eql(apply_list)
+    end
+  end
+
+  describe '#deposit_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :customer_refund_deposit => {
+          :apply => false
+        }
+      }
+      refund.deposit_list = attributes
+      refund.deposit_list.should be_kind_of(NetSuite::Records::CustomerRefundDepositList)
+      refund.deposit_list.deposits.length.should eql(1)
+    end
+
+    it 'can be set from a CustomerRefundDepositList object' do
+      deposit_list = NetSuite::Records::CustomerRefundDepositList.new
+      refund.deposit_list = deposit_list
+      refund.deposit_list.should eql(deposit_list)
+    end
+  end
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
@@ -81,6 +118,54 @@ describe NetSuite::Records::CustomerRefund do
 
     context 'when the response is unsuccessful' do
       pending
+    end
+  end
+
+  describe '#add' do
+    let(:test_data) { { :memo => 'This is a memo', :balance => 100 } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        refund = NetSuite::Records::CustomerRefund.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(refund).
+            and_return(response)
+        refund.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        refund = NetSuite::Records::Invoice.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(refund).
+            and_return(response)
+        refund.add.should be_false
+      end
+    end
+  end
+
+  describe '#to_record' do
+    before do
+      refund.memo    = 'This is a memo'
+      refund.balance = 100
+    end
+    it 'can represent itself as a SOAP record' do
+      record = {
+        'tranCust:memo'    => 'This is a memo',
+        'tranCust:balance' => 100
+      }
+      refund.to_record.should eql(record)
+    end
+  end
+
+  describe '#record_type' do
+    it 'returns a string representation of the SOAP type' do
+      refund.record_type.should eql('tranCust:CustomerRefund')
     end
   end
 
