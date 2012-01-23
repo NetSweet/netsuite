@@ -19,7 +19,8 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :vsoe_auto_calc
 
-      field :item_list, CreditMemoItemList
+      field :item_list,  CreditMemoItemList
+      field :apply_list, CreditMemoApplyList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 

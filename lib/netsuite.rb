@@ -40,6 +40,8 @@ module NetSuite
     autoload :BillAddress,               'netsuite/records/bill_address'
     autoload :Classification,            'netsuite/records/classification'
     autoload :CreditMemo,                'netsuite/records/credit_memo'
+    autoload :CreditMemoApply,           'netsuite/records/credit_memo_apply'
+    autoload :CreditMemoApplyList,       'netsuite/records/credit_memo_apply_list'
     autoload :CreditMemoItem,            'netsuite/records/credit_memo_item'
     autoload :CreditMemoItemList,        'netsuite/records/credit_memo_item_list'
     autoload :CustomField,               'netsuite/records/custom_field'

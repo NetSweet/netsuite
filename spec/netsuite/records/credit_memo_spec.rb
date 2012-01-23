@@ -47,11 +47,29 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  describe '#apply_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :apply => {
+          :job => 'something'
+        }
+      }
+      memo.apply_list = attributes
+      memo.apply_list.should be_kind_of(NetSuite::Records::CreditMemoApplyList)
+      memo.apply_list.applies.length.should eql(1)
+    end
+
+    it 'can be set from a CreditMemoApplyList object' do
+      apply_list = NetSuite::Records::CreditMemoApplyList.new
+      memo.apply_list = apply_list
+      memo.apply_list.should eql(apply_list)
+    end
+  end
+
 # <element name="transactionBillAddress" type="platformCommon:BillAddress" minOccurs="0"/>
 # <element name="revenueStatus" type="platformCommonTyp:RevenueStatus" minOccurs="0"/>
 # <element name="salesTeamList" type="tranCust:CreditMemoSalesTeamList" minOccurs="0"/>
 # <element name="partnersList" type="tranCust:CreditMemoPartnersList" minOccurs="0"/>
-# <element name="applyList" type="tranCust:CreditMemoApplyList" minOccurs="0"/>
 # <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
 
   describe '.get' do
