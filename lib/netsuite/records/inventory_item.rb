@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::ListAcct
+
+      actions :get, :add
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
@@ -44,20 +47,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
       end
 
     end

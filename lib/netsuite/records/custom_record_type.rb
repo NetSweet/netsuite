@@ -3,6 +3,9 @@ module NetSuite
     class CustomRecordType
       include Support::Fields
       include Support::RecordRefs
+      include Support::Actions
+
+      actions :get
 
       fields :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :description,
         :disclaimer, :enable_mail_merge, :enable_numbering, :include_name, :is_available_offline, :is_inactive,
@@ -20,15 +23,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
       end
 
     end

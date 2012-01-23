@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::TranGeneral
+
+      actions :get, :add
 
       fields :approved, :created_date, :exchange_rate, :last_modified_date, :reversal_date, :reversal_defer, :reversal_entry,
         :tran_date, :tran_id
@@ -17,20 +20,6 @@ module NetSuite
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
       end
 
     end

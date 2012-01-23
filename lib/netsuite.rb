@@ -20,6 +20,7 @@ module NetSuite
   end
 
   module Support
+    autoload :Actions,    'netsuite/support/actions'
     autoload :Attributes, 'netsuite/support/attributes'
     autoload :Fields,     'netsuite/support/fields'
     autoload :RecordRefs, 'netsuite/support/record_refs'

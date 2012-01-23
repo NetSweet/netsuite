@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::TranCust
+
+      actions :get, :add, :initialize
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
         :bill_address, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email,
@@ -29,29 +32,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def self.initialize(object)
-        response = Actions::Initialize.call(self, object)
-        if response.success?
-          new(response.body)
-        else
-          raise InitializationError, "#{self}.initialize with #{object} failed."
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
       end
 
     end

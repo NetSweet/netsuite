@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::TranCust
+
+      actions :get, :initialize, :add
 
       fields :address, :balance, :cc_approved, :cc_expire_date, :cc_name, :cc_number, :cc_street, :cc_zip_code, :charge_it,
         :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :last_modified_date, :memo, :pn_ref_num, :status,
@@ -21,29 +24,6 @@ module NetSuite
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def self.initialize(object)
-        response = Actions::Initialize.call(self, object)
-        if response.success?
-          new(response.body)
-        else
-          raise InitializationError, "#{self}.initialize with #{object} failed."
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
       end
 
     end

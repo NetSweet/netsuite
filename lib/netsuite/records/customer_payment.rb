@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::TranCust
+
+      actions :get, :initialize, :add
 
       fields :auth_code, :auto_apply, :cc_approved, :cc_avs_street_match, :cc_avs_zip_match,
         :cc_expire_date, :cc_name, :cc_number, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code,
@@ -26,29 +29,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def self.initialize(object)
-        response = Actions::Initialize.call(self, object)
-        if response.success?
-          new(response.body)
-        else
-          raise InitializationError, "#{self}.initialize with #{object} failed."
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
       end
 
     end

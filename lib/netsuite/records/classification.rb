@@ -2,6 +2,9 @@ module NetSuite
   module Records
     class Classification
       include Support::Fields
+      include Support::Actions
+
+      actions :get
 
       fields :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
 
@@ -12,15 +15,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.get(options = {})
-        response = Actions::Get.call(self, options)
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
       end
 
     end

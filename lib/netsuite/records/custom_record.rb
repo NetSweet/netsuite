@@ -4,7 +4,10 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
+      include Support::Actions
       include Namespaces::SetupCustom
+
+      actions :get, :add
 
       fields :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :created,
         :custom_record_id, :description, :disclaimer, :enabl_email_merge, :enable_numbering, :include_name,
@@ -28,17 +31,8 @@ module NetSuite
 
       def self.get(options = {})
         options.merge!(:type_id => type_id) unless options[:type_id]
-        response = Actions::Get.call(self, options.merge!(:custom => true))
-        if response.success?
-          new(response.body)
-        else
-          raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-        end
-      end
-
-      def add
-        response = Actions::Add.call(self)
-        response.success?
+        options.merge!(:custom => true)
+        super(options)
       end
 
       def self.type_id(id = nil)
