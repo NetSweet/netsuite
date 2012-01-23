@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Netsuite::VERSION
 
   gem.add_dependency 'savon', '0.9.7'
+  gem.add_dependency 'nokogiri'
 
   gem.add_development_dependency 'rspec',               '2.8.0'
   gem.add_development_dependency 'autotest-standalone', '4.5.9'
