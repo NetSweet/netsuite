@@ -28,10 +28,26 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  describe '#item_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :item => {
+          :amount => 10
+        }
+      }
+      memo.item_list = attributes
+      memo.item_list.should be_kind_of(NetSuite::Records::CreditMemoItemList)
+      memo.item_list.items.length.should eql(1)
+    end
+
+    it 'can be set from a CreditMemoItemList object' do
+      pending
+    end
+  end
+
 # <element name="transactionBillAddress" type="platformCommon:BillAddress" minOccurs="0"/>
 # <element name="revenueStatus" type="platformCommonTyp:RevenueStatus" minOccurs="0"/>
 # <element name="salesTeamList" type="tranCust:CreditMemoSalesTeamList" minOccurs="0"/>
-# <element name="itemList" type="tranCust:CreditMemoItemList" minOccurs="0"/>
 # <element name="partnersList" type="tranCust:CreditMemoPartnersList" minOccurs="0"/>
 # <element name="applyList" type="tranCust:CreditMemoApplyList" minOccurs="0"/>
 # <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
