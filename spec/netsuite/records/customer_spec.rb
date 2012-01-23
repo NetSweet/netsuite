@@ -114,6 +114,30 @@ describe NetSuite::Records::Customer do
     end
   end
 
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(customer).
+            and_return(response)
+        customer.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(customer).
+            and_return(response)
+        customer.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     let(:customer) { NetSuite::Records::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
 

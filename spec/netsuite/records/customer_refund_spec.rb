@@ -140,11 +140,37 @@ describe NetSuite::Records::CustomerRefund do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        refund = NetSuite::Records::Invoice.new(test_data)
+        refund = NetSuite::Records::CustomerRefund.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
             with(refund).
             and_return(response)
         refund.add.should be_false
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        refund = NetSuite::Records::CustomerRefund.new
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(refund).
+            and_return(response)
+        refund.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        refund = NetSuite::Records::CustomerRefund.new
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(refund).
+            and_return(response)
+        refund.delete.should be_false
       end
     end
   end

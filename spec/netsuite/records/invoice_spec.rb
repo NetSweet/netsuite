@@ -195,6 +195,32 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        invoice = NetSuite::Records::Invoice.new
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(invoice).
+            and_return(response)
+        invoice.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        invoice = NetSuite::Records::Invoice.new
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(invoice).
+            and_return(response)
+        invoice.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     before do
       invoice.email   = 'something@example.com'

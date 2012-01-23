@@ -103,6 +103,30 @@ describe NetSuite::Records::InventoryItem do
     end
   end
 
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     before do
       item.cost = 100

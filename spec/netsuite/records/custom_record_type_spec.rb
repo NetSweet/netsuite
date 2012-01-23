@@ -63,4 +63,52 @@ describe NetSuite::Records::CustomRecordType do
     end
   end
 
+    describe '#add' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(record_type).
+            and_return(response)
+        record_type.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(record_type).
+            and_return(response)
+        record_type.add.should be_false
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(record_type).
+            and_return(response)
+        record_type.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(record_type).
+            and_return(response)
+        record_type.delete.should be_false
+      end
+    end
+  end
+
 end

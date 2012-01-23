@@ -135,6 +135,30 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(job).
+            and_return(response)
+        job.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(job).
+            and_return(response)
+        job.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     let(:job) { NetSuite::Records::Job.new(:entity_id => 'TEST JOB', :account_number => 7) }
 

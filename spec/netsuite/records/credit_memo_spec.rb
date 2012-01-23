@@ -139,6 +139,34 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  describe '#delete' do
+    let(:test_data) { { :internal_id => '1' } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        memo = NetSuite::Records::CreditMemo.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(memo).
+            and_return(response)
+        memo.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        memo = NetSuite::Records::CreditMemo.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(memo).
+            and_return(response)
+        memo.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     before do
       memo.email   = 'something@example.com'

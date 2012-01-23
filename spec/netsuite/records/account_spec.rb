@@ -48,4 +48,60 @@ describe NetSuite::Records::Account do
     end
   end
 
+  describe '#add' do
+    let(:test_data) { { :acct_name => 'Test Account', :description => 'An example account' } }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        account = NetSuite::Records::Account.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(account).
+            and_return(response)
+        account.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        account = NetSuite::Records::Account.new(test_data)
+        NetSuite::Actions::Add.should_receive(:call).
+            with(account).
+            and_return(response)
+        account.add.should be_false
+      end
+    end
+  end
+
+  describe '#delete' do
+    let(:test_data) { { :internal_id => '1' } }
+
+    context 'when the response is successful' do
+      let(:response)  { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        account = NetSuite::Records::Account.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(account).
+            and_return(response)
+        account.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        account = NetSuite::Records::Account.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(account).
+            and_return(response)
+        account.delete.should be_false
+      end
+    end
+  end
+
 end

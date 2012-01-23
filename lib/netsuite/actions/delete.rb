@@ -29,7 +29,7 @@ module NetSuite
           :attributes! => {
             'platformMsgs:baseRef' => {
               'internalId' => @object.internal_id,
-              'type'       => @object.class.to_s.lower_camelcase,
+              'type'       => @object.record_type,
               'xsi:type'   => 'platformCore:RecordRef'
             }
           }

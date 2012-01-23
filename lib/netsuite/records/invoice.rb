@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :initialize, :add
+      actions :get, :initialize, :add, :delete
 
       fields :alt_handling_cost, :alt_shipping_cost, :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name, :custom_field_list,

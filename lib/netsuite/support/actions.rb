@@ -26,6 +26,8 @@ module NetSuite
             define_add(instance_module)
           when :initialize
             define_initialize(class_module)
+          when :delete
+            define_delete(instance_module)
           else
             raise "Unknown action: #{action.inspect}"
           end
@@ -69,6 +71,15 @@ module NetSuite
               else
                 raise InitializationError, "#{self}.initialize with #{object} failed."
               end
+            end
+          end
+        end
+
+        def define_delete(instance_module)
+          instance_module.module_eval do
+            define_method :delete do
+              response = NetSuite::Actions::Delete.call(self)
+              response.success?
             end
           end
         end

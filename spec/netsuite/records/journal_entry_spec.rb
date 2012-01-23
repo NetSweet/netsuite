@@ -110,6 +110,30 @@ describe NetSuite::Records::JournalEntry do
     end
   end
 
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(entry).
+            and_return(response)
+        entry.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(entry).
+            and_return(response)
+        entry.delete.should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     let(:entry) { NetSuite::Records::JournalEntry.new(:tran_id => '1234', :approved => true) }
 

@@ -35,4 +35,32 @@ describe NetSuite::Records::Classification do
     end
   end
 
+  describe '#delete' do
+    let(:test_data) { { :internal_id => '1' } }
+
+    context 'when the response is successful' do
+      let(:response)  { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        classification = NetSuite::Records::Classification.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(classification).
+            and_return(response)
+        classification.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        classification = NetSuite::Records::Classification.new(test_data)
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(classification).
+            and_return(response)
+        classification.delete.should be_false
+      end
+    end
+  end
+
 end

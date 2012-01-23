@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::SetupCustom
 
-      actions :get, :add
+      actions :get, :add, :delete
 
       fields :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :created,
         :custom_record_id, :description, :disclaimer, :enabl_email_merge, :enable_numbering, :include_name,
