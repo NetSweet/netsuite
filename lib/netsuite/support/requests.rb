@@ -22,7 +22,7 @@ module NetSuite
       private
 
       def request
-        raise NotImplementedError
+        raise NotImplementedError, 'Please implement a #request method'
       end
 
       def connection
@@ -38,11 +38,11 @@ module NetSuite
       end
 
       def success?
-        raise NotImplementedError
+        raise NotImplementedError, 'Please implement a #success? method'
       end
 
       def response_body
-        raise NotImplementedError
+        raise NotImplementedError, 'Please implement a #response_body method'
       end
 
     end
