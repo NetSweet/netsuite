@@ -77,8 +77,12 @@ module NetSuite
 
         def define_delete(instance_module)
           instance_module.module_eval do
-            define_method :delete do
-              response = NetSuite::Actions::Delete.call(self)
+            define_method :delete do |*options|
+              response = if options.empty?
+                           NetSuite::Actions::Delete.call(self)
+                         else
+                          NetSuite::Actions::Delete.call(self, *options)
+                         end
               response.success?
             end
           end

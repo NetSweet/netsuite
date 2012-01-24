@@ -102,7 +102,7 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(record).
+            with(record, { :custom => true }).
             and_return(response)
         record.delete.should be_true
       end
@@ -113,7 +113,7 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(record).
+            with(record, { :custom => true }).
             and_return(response)
         record.delete.should be_false
       end

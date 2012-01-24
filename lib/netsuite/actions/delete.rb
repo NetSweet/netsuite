@@ -3,8 +3,9 @@ module NetSuite
     class Delete
       include Support::Requests
 
-      def initialize(object = nil)
-        @object = object
+      def initialize(object = nil, options = {})
+        @object  = object
+        @options = options
       end
 
       private
@@ -18,22 +19,35 @@ module NetSuite
         end
       end
 
+      def soap_type
+        @object.class.to_s.split('::').last.lower_camelcase
+      end
+
       # <soap:Body>
       #   <platformMsgs:delete>
       #     <platformMsgs:baseRef internalId="980" type="customer" xsi:type="platformCore:RecordRef"/>
       #   </platformMsgs:delete>
       # </soap:Body>
       def request_body
-        {
+        body = {
           'platformMsgs:baseRef' => {},
           :attributes! => {
             'platformMsgs:baseRef' => {
-              'internalId' => @object.internal_id,
-              'type'       => @object.class.to_s.split('::').last.lower_camelcase,
-              'xsi:type'   => 'platformCore:RecordRef'
+              'xsi:type'   => (@options[:custom] ? 'platformCore:CustomRecordRef' : 'platformCore:RecordRef')
             }
           }
         }
+        if @object.respond_to?(:external_id) && @object.external_id
+          body[:attributes!]['platformMsgs:baseRef']['externalId'] = @object.external_id
+        end
+        if @object.respond_to?(:internal_id) && @object.internal_id
+          body[:attributes!]['platformMsgs:baseRef']['internalId'] = @object.internal_id
+        end
+        if @object.class.respond_to?(:type_id) && @object.class.type_id
+          body[:attributes!]['platformMsgs:baseRef']['typeId'] = @object.class.type_id
+        end
+        body[:attributes!]['platformMsgs:baseRef']['type'] = soap_type unless @options[:custom]
+        body
       end
 
       def response_hash

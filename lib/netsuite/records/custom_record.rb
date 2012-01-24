@@ -31,8 +31,11 @@ module NetSuite
 
       def self.get(options = {})
         options.merge!(:type_id => type_id) unless options[:type_id]
-        options.merge!(:custom => true)
-        super(options)
+        super(options.merge(:custom => true))
+      end
+
+      def delete
+        super(:custom => true)
       end
 
       def self.type_id(id = nil)
