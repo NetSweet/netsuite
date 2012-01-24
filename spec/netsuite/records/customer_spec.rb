@@ -9,7 +9,7 @@ describe NetSuite::Records::Customer do
       :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
       :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
-      :currency, :currency_list, :custom_field_list, :date_created, :days_overdue, :default_address,
+      :currency, :currency_list, :date_created, :days_overdue, :default_address,
       :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
       :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
@@ -60,6 +60,25 @@ describe NetSuite::Records::Customer do
       customer_addressbook_list = NetSuite::Records::CustomerAddressbookList.new
       customer.addressbook_list = customer_addressbook_list
       customer.addressbook_list.should eql(customer_addressbook_list)
+    end
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :custom_field => {
+          :value => 10
+        }
+      }
+      customer.custom_field_list = attributes
+      customer.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
+      customer.custom_field_list.custom_fields.length.should eql(1)
+    end
+
+    it 'can be set from a CustomFieldList object' do
+      custom_field_list = NetSuite::Records::CustomFieldList.new
+      customer.custom_field_list = custom_field_list
+      customer.custom_field_list.should eql(custom_field_list)
     end
   end
 
