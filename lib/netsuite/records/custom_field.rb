@@ -25,7 +25,7 @@ module NetSuite
       def attributes!
         attr_hash = {}
         attr_hash['internalId'] = internal_id if internal_id
-        attr_hash['xsi:type']       = type        if type
+        attr_hash['xsi:type']   = type        if type
         attr_hash
       end
 
