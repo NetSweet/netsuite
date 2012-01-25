@@ -17,14 +17,14 @@ module NetSuite
       end
 
       def to_record
-        custom_fields.map do |custom_field|
-          {
+        custom_fields.map { |custom_field|
+          Gyoku.xml({
             "#{record_namespace}:customField" => custom_field.to_record,
             :attributes! => {
               "#{record_namespace}:customField" => custom_field.attributes!
             }
-          }
-        end
+          })
+        }.join
       end
 
     end

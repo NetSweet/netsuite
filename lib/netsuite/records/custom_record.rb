@@ -50,6 +50,12 @@ module NetSuite
         "#{record_namespace}:CustomRecord"
       end
 
+      def to_record
+        rec = super
+        rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        rec
+      end
+
     end
   end
 end
