@@ -59,13 +59,22 @@ module NetSuite
       end
 
       module Support
-        def get(options = {})
-          response = NetSuite::Actions::Get.call(self, options)
-          if response.success?
-           new(response.body)
-          else
-           raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+
+        def self.included(base)
+          base.extend(ClassMethods)
+        end
+
+        module ClassMethods
+
+          def get(options = {})
+            response = NetSuite::Actions::Get.call(self, options)
+            if response.success?
+             new(response.body)
+            else
+             raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+            end
           end
+
         end
       end
 

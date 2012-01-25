@@ -52,13 +52,27 @@ module NetSuite
       end
 
       module Support
-        def initialize(object)
-          response = NetSuite::Actions::Initialize.call(self, object)
-          if response.success?
-            new(response.body)
-          else
-            raise InitializationError, "#{self}.initialize with #{object} failed."
+
+        def self.included(base)
+          (class << base; self; end).instance_eval do # We have to do this because Class has a private
+            define_method :initialize do |*args|      # #initialize method that this method will override.
+              super(*args)
+            end
           end
+          base.extend(ClassMethods)
+        end
+
+        module ClassMethods
+
+          def initialize(object)
+            response = NetSuite::Actions::Initialize.call(self, object)
+            if response.success?
+              new(response.body)
+            else
+              raise InitializationError, "#{self}.initialize with #{object} failed."
+            end
+          end
+
         end
       end
 
