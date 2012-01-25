@@ -62,6 +62,13 @@ module NetSuite
         @response_hash ||= @response.to_hash[:add_response][:write_response]
       end
 
+      module Support
+        def add
+          response = NetSuite::Actions::Add.call(self)
+          response.success?
+        end
+      end
+
     end
   end
 end

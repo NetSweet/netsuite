@@ -51,6 +51,17 @@ module NetSuite
         @response_body ||= response_hash[:record]
       end
 
+      module Support
+        def initialize(object)
+          response = NetSuite::Actions::Initialize.call(self, object)
+          if response.success?
+            new(response.body)
+          else
+            raise InitializationError, "#{self}.initialize with #{object} failed."
+          end
+        end
+      end
+
     end
   end
 end

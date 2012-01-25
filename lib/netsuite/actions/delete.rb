@@ -62,6 +62,17 @@ module NetSuite
         @response_body ||= response_hash[:base_ref]
       end
 
+      module Support
+        def delete(options = {})
+          response =  if options.empty?
+                        NetSuite::Actions::Delete.call(self)
+                      else
+                        NetSuite::Actions::Delete.call(self, options)
+                      end
+          response.success?
+        end
+      end
+
     end
   end
 end

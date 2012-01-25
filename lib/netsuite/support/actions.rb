@@ -9,95 +9,30 @@ module NetSuite
       module ClassMethods
 
         def actions(*args)
-          instance_module = Module.new
-          class_module    = Module.new
           args.each do |action|
-            define_action(instance_module, class_module, action)
+            action(action)
           end
-          self.send(:include, instance_module)
-          self.send(:extend, class_module)
         end
 
-        def define_action(instance_module, class_module, action)
-          case action
+        def action(name)
+          case name
           when :get
-            define_get(class_module)
+            self.extend(NetSuite::Actions::Get::Support)
           when :add
-            define_add(instance_module)
-          when :initialize
-            define_initialize(class_module)
+            self.send(:include, NetSuite::Actions::Add::Support)
           when :delete
-            define_delete(instance_module)
+            self.send(:include, NetSuite::Actions::Delete::Support)
           when :update
-            define_update(instance_module)
+            self.send(:include, NetSuite::Actions::Update::Support)
+          when :initialize
+            (class << self; self; end).instance_eval do # We have to do this because Class has a private
+              define_method :initialize do |*args|      # #initialize method that this method will override.
+                super(*args)
+              end
+            end
+            self.extend(NetSuite::Actions::Initialize::Support)
           else
-            raise "Unknown action: #{action.inspect}"
-          end
-        end
-
-        def define_get(class_module)
-          class_module.module_eval do
-            define_method :get do |*args|
-              options, *ignored = *args
-              response = NetSuite::Actions::Get.call(self, options)
-              if response.success?
-               new(response.body)
-              else
-               raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
-              end
-            end
-          end
-        end
-
-        def define_add(instance_module)
-          instance_module.module_eval do
-            define_method :add do
-              response = NetSuite::Actions::Add.call(self)
-              response.success?
-            end
-          end
-        end
-
-        def define_initialize(class_module)
-          (class << self; self; end).instance_eval do
-            define_method :initialize do |*args|
-              super(*args)
-            end
-          end
-
-          class_module.module_eval do
-            define_method :initialize do |object|
-              response = NetSuite::Actions::Initialize.call(self, object)
-              if response.success?
-                new(response.body)
-              else
-                raise InitializationError, "#{self}.initialize with #{object} failed."
-              end
-            end
-          end
-        end
-
-        def define_delete(instance_module)
-          instance_module.module_eval do
-            define_method :delete do |*options|
-              response = if options.empty?
-                           NetSuite::Actions::Delete.call(self)
-                         else
-                          NetSuite::Actions::Delete.call(self, *options)
-                         end
-              response.success?
-            end
-          end
-        end
-
-        def define_update(instance_module)
-          instance_module.module_eval do
-            define_method :update do |options|
-              options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
-              options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
-              response = NetSuite::Actions::Update.call(self.class, options)
-              response.success?
-            end
+            raise "Unknown action: #{name.inspect}"
           end
         end
 
