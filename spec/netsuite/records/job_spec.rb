@@ -159,6 +159,28 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '.update' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1, :account_number => 7).and_return(response)
+        job = NetSuite::Records::Job.new(:external_id => 1)
+        job.update(:account_number => 7).should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'raises a RecordNotFound exception' do
+        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::Job, :internal_id => 1, :account_number => 7).and_return(response)
+        job = NetSuite::Records::Job.new(:internal_id => 1)
+        job.update(:account_number => 7).should be_false
+      end
+    end
+  end
+
   describe '#to_record' do
     let(:job) { NetSuite::Records::Job.new(:entity_id => 'TEST JOB', :account_number => 7) }
 

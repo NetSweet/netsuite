@@ -28,6 +28,8 @@ module NetSuite
             define_initialize(class_module)
           when :delete
             define_delete(instance_module)
+          when :update
+            define_update(instance_module)
           else
             raise "Unknown action: #{action.inspect}"
           end
@@ -83,6 +85,17 @@ module NetSuite
                          else
                           NetSuite::Actions::Delete.call(self, *options)
                          end
+              response.success?
+            end
+          end
+        end
+
+        def define_update(instance_module)
+          instance_module.module_eval do
+            define_method :update do |options|
+              options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
+              options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
+              response = NetSuite::Actions::Update.call(self.class, options)
               response.success?
             end
           end
