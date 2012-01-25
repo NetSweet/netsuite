@@ -177,13 +177,13 @@ describe NetSuite::Records::CustomerRefund do
 
   describe '#to_record' do
     before do
-      refund.memo    = 'This is a memo'
-      refund.balance = 100
+      refund.memo       = 'This is a memo'
+      refund.cc_zip_code = '10101'
     end
     it 'can represent itself as a SOAP record' do
       record = {
-        'tranCust:memo'    => 'This is a memo',
-        'tranCust:balance' => 100
+        'tranCust:memo'      => 'This is a memo',
+        'tranCust:ccZipCode' => '10101'
       }
       refund.to_record.should eql(record)
     end
