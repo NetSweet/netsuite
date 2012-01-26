@@ -12,6 +12,8 @@ module NetSuite
         :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral, :vsoe_delivered,
         :vsoe_permit_discount, :vsoe_price
 
+      field :custom_field_list, CustomFieldList
+
       record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
 
       def initialize(attributes = {})
