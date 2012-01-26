@@ -26,6 +26,11 @@ module NetSuite
             hash[:attributes!][kname] ||= {}
             hash[:attributes!][kname]['type'] = v.type.lower_camelcase
           end
+          if v.kind_of?(NetSuite::Records::CustomRecordRef) && v.type_id
+            hash[:attributes!] ||= {}
+            hash[:attributes!][kname] ||= {}
+            hash[:attributes!][kname]['typeId'] = v.type_id.lower_camelcase
+          end
           if Array === v
             v = v.map { |i| i.respond_to?(:to_record) ? i.to_record : i }
           else

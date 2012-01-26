@@ -21,7 +21,7 @@ module NetSuite
           record = attributes_or_record
           @internal_id = record.internal_id if record.respond_to?(:internal_id)
           @external_id = record.external_id if record.respond_to?(:external_id)
-          @type_id     = record.class.type_id if record.respond_to?(:type_id) && record.class.type_id
+          @type_id     = record.class.type_id if record.class.respond_to?(:type_id) && record.class.type_id
         end
       end
 
