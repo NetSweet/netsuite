@@ -27,15 +27,13 @@ describe NetSuite::Records::NonInventorySaleItem do
   it 'has the right record_refs' do
     [
       :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_amount, :issue_product,
-      :item_options_list, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule, :rev_rec_schedule,
-      :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail, :store_item_template,
-      :subsidiary_list, :tax_schedule, :units_type
+      :item_options_list, :klass, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule,
+      :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail,
+      :store_item_template, :subsidiary_list, :tax_schedule, :units_type
     ].each do |record_ref|
       item.should have_record_ref(record_ref)
     end
   end
-
-  # :class RecordRef
 
   describe '.get' do
     context 'when the response is successful' do

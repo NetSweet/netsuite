@@ -5,8 +5,6 @@ describe NetSuite::Records::CustomerRefund do
   let(:memo) { NetSuite::Records::CreditMemo.new }
   let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
-  # <element name="depositList" type="tranCust:CustomerRefundDepositList" minOccurs="0"/>
-
   it 'has all the right fields' do
     [
       :address, :balance, :cc_approved, :cc_expire_date, :cc_name, :cc_number, :cc_street, :cc_zip_code, :charge_it,

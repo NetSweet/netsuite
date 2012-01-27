@@ -22,7 +22,9 @@ describe NetSuite::Records::CreditMemo do
 
   it 'has all the right record refs' do
     [
-      :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert, :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code, :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
+      :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert,
+      :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
+      :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
     ].each do |record_ref|
       memo.should have_record_ref(record_ref)
     end
@@ -66,11 +68,30 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
-# <element name="transactionBillAddress" type="platformCommon:BillAddress" minOccurs="0"/>
-# <element name="revenueStatus" type="platformCommonTyp:RevenueStatus" minOccurs="0"/>
-# <element name="salesTeamList" type="tranCust:CreditMemoSalesTeamList" minOccurs="0"/>
-# <element name="partnersList" type="tranCust:CreditMemoPartnersList" minOccurs="0"/>
-# <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
+  describe '#transaction_bill_address' do
+    it 'can be set from attributes'
+    it 'can be set from a BillAddress object'
+  end
+
+  describe '#revenue_status' do
+    it 'can be set from attributes'
+    it 'can be set from a RevenueStatus object'
+  end
+
+  describe '#sales_team_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CreditMemoSalesTeamList object'
+  end
+
+  describe '#partners_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CreditMemoPartnersList object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
+  end
 
   describe '.get' do
     context 'when the response is successful' do

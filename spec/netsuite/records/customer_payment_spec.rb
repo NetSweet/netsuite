@@ -5,9 +5,6 @@ describe NetSuite::Records::CustomerPayment do
   let(:invoice) { NetSuite::Records::Invoice.new }
   let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
-#  <element name="applyList" type="tranCust:CustomerPaymentApplyList" minOccurs="0"/>
-#  <element name="creditList" type="tranCust:CustomerPaymentCreditList" minOccurs="0"/>
-#  <element name="depositList" type="tranCust:CustomerPaymentDepositList" minOccurs="0"/>
   it 'has all the right fields' do
     [
       :applied, :auth_code, :auto_apply, :balance, :cc_approved, :cc_avs_street_match, :cc_avs_zip_match, :cc_expire_date,
@@ -44,6 +41,21 @@ describe NetSuite::Records::CustomerPayment do
       payment.custom_field_list = custom_field_list
       payment.custom_field_list.should eql(custom_field_list)
     end
+  end
+
+  describe '#apply_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomerPaymentApplyList object'
+  end
+
+  describe '#credit_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomerPaymentCreditList object'
+  end
+
+  describe '#deposit_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomerPaymentDepositList object'
   end
 
   describe '.get' do

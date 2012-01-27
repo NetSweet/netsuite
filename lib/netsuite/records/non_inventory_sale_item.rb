@@ -26,9 +26,9 @@ module NetSuite
         :vsoe_permit_discount, :vsoe_price, :weight, :weight_unit, :weight_units
 
       record_refs :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_amount,
-        :issue_product, :item_options_list, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule,
-        :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail,
-        :store_item_template, :subsidiary_list, :tax_schedule, :units_type
+        :issue_product, :item_options_list, :klass, :location, :parent, :pricing_group, :purchase_tax_code,
+        :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image,
+        :store_display_thumbnail, :store_item_template, :subsidiary_list, :tax_schedule, :units_type
 
       attr_reader   :internal_id
       attr_accessor :external_id

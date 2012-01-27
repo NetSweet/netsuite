@@ -3,8 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::PaymentMethod do
   let(:payment_method) { NetSuite::Records::PaymentMethod.new }
 
-# <element name="merchantAccountsList" type="platformCore:RecordRefList" minOccurs="0"/>
-
   it 'has all the right fields' do
     [
       :credit_card, :express_checkout_arrangement, :is_debit_card, :is_inactive, :is_online, :name, :pay_pal_email_address,
@@ -20,6 +18,11 @@ describe NetSuite::Records::PaymentMethod do
     ].each do |record_ref|
       payment_method.should have_record_ref(record_ref)
     end
+  end
+
+  describe '#merchant_accounts_list' do
+    it 'can be set from attributes'
+    it 'can be set from a RecordRefList object'
   end
 
   describe '.get' do
