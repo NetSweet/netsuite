@@ -90,7 +90,7 @@ Or install it yourself as:
   * The Initialize Action duck-punches the .initialize method on any class that includes it.
     This has not proven to be a issue yet, but should be taken into account when analyzing any
     strange issues with the gem.
-  * So records define a 'class' field. Defining a 'class' field on a record overrides the
+  * Some records define a 'class' field. Defining a 'class' field on a record overrides the
     #class and #class= methods for this class. This is very obviously a problem.  You can,
     instead, define a 'klass' field that will be turned into 'class' before being submitted
     to the API. The Invoice record has an example of this.
