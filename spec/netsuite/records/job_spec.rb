@@ -3,12 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::Job do
   let(:job) { NetSuite::Records::Job.new }
 
-  #<element name="jobResourcesList" type="listRel:JobResourcesList" minOccurs="0"/>
-  #<element name="addressbookList" type="listRel:JobAddressbookList" minOccurs="0"/>
-  #<element name="milestonesList" type="listRel:JobMilestonesList" minOccurs="0"/>
-  #<element name="creditCardsList" type="listRel:JobCreditCardsList" minOccurs="0"/>
-  #<element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
-
   it 'has all the right fields' do
     [
       :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time, :alt_name,
@@ -82,6 +76,31 @@ describe NetSuite::Records::Job do
       job.time_remaining = duration
       job.time_remaining.should eql(duration)
     end
+  end
+
+  describe '#job_resources_list' do
+    it 'can be set from attributes'
+    it 'can be set from a JobResourcesList object'
+  end
+
+  describe '#addressbook_list' do
+    it 'can be set from attributes'
+    it 'can be set from a JobAddressbookList object'
+  end
+
+  describe '#milestones_list' do
+    it 'can be set from attributes'
+    it 'can be set from a JobMilestonesList object'
+  end
+
+  describe '#credit_cards_list' do
+    it 'can be set from attributes'
+    it 'can be set from a JobCreditCardsList object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
   end
 
   describe '.get' do

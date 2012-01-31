@@ -39,18 +39,65 @@ describe NetSuite::Records::InventoryItem do
     end
   end
 
-# <element name="pricingMatrix" type="listAcct:PricingMatrix" minOccurs="0"/>
-# <element name="productFeedList" type="listAcct:ProductFeedList" minOccurs="0"/>
-# <element name="subsidiaryList" type="platformCore:RecordRefList" minOccurs="0"/>
-# <element name="itemOptionsList" type="listAcct:ItemOptionsList" minOccurs="0"/>
-# <element name="itemVendorList" type="listAcct:ItemVendorList" minOccurs="0"/>
-# <element name="siteCategoryList" type="listAcct:SiteCategoryList" minOccurs="0"/>
-# <element name="translationsList" type="listAcct:TranslationList" minOccurs="0"/>
-# <element name="binNumberList" type="listAcct:InventoryItemBinNumberList" minOccurs="0"/>
-# <element name="locationsList" type="listAcct:InventoryItemLocationsList" minOccurs="0"/>
-# <element name="matrixOptionList" type="listAcct:MatrixOptionList" minOccurs="0"/>
-# <element name="presentationItemList" type="listAcct:PresentationItemList" minOccurs="0"/>
-# <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
+  describe '#pricing_matrix' do
+    it 'can be set from attributes'
+    it 'can be set from a PricingMatrix object'
+  end
+
+  describe '#product_feed_list' do
+    it 'can be set from attributes'
+    it 'can be set from a ProductFeedList object'
+  end
+
+  describe '#subsidiary_list' do
+    it 'can be set from attributes'
+    it 'can be set from a RecordRefList object'
+  end
+
+  describe '#item_options_list' do
+    it 'can be set from attributes'
+    it 'can be set from a ItemOptionsList object'
+  end
+
+  describe '#item_vendor_list' do
+    it 'can be set from attributes'
+    it 'can be set from an ItemVendorList object'
+  end
+
+  describe '#site_category_list' do
+    it 'can be set from attributes'
+    it 'can be set from a SiteCategoryList object'
+  end
+
+  describe '#translations_list' do
+    it 'can be set from attributes'
+    it 'can be set from a TranslationList object'
+  end
+
+  describe '#bin_number_list' do
+    it 'can be set from attributes'
+    it 'can be set from an InventoryItemBinNumberList object'
+  end
+
+  describe '#locations_list' do
+    it 'can be set from attributes'
+    it 'can be set from an InventoryItemLocationsList object'
+  end
+
+  describe '#matrix_option_list' do
+    it 'can be set from attributes'
+    it 'can be set from a MatrixOptionList object'
+  end
+
+  describe '#presentation_item_list' do
+    it 'can be set from attributes'
+    it 'can be set from a PresentationItemList object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
+  end
 
   describe '.get' do
     context 'when the response is successful' do

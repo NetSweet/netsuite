@@ -3,10 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::CreditMemoItem do
   let(:item) { NetSuite::Records::CreditMemoItem.new }
 
-# <element name="options" type="platformCore:CustomFieldList" minOccurs="0"/>
-# <element name="inventoryDetail" type="platformCommon:InventoryDetail" minOccurs="0"/>
-# <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
-
   it 'has all the right fields' do
     [
       :amount, :bin_numbers, :cost_estimate, :cost_estimate_type, :defer_rev_rec, :description, :gift_cert_from,
@@ -25,6 +21,21 @@ describe NetSuite::Records::CreditMemoItem do
     ].each do |record_ref|
       item.should have_record_ref(record_ref)
     end
+  end
+
+  describe '#options' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
+  end
+
+  describe '#inventory_detail' do
+    it 'can be set from attributes'
+    it 'can be set from an InventoryDetail object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
   end
 
 end

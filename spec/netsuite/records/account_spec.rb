@@ -3,9 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::Account do
   let(:account) { NetSuite::Records::Account.new }
 
-# <element name="subsidiaryList" type="platformCore:RecordRefList" minOccurs="0"/>
-# <element name="translationsList" type="listAcct:AccountTranslationList" minOccurs="0"/>
-# <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
   it 'has all the right fields' do
     [
       :acct_name, :acct_number, :acct_type, :cash_flow_rate, :cur_doc_num, :description, :eliminate, :exchange_rate,
@@ -21,6 +18,21 @@ describe NetSuite::Records::Account do
     ].each do |record_ref|
       account.should have_record_ref(record_ref)
     end
+  end
+
+  describe '#subsidiary_list' do
+    it 'can be set from attributes'
+    it 'can be set from a RecordRefList object'
+  end
+
+  describe '#translations_list' do
+    it 'can be set from attributes'
+    it 'can be set from an AccountTranslationList object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
   end
 
   describe '.get' do

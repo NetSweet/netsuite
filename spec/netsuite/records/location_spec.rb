@@ -3,9 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::Location do
   let(:location) { NetSuite::Records::Location.new }
 
-  # <element name="classTranslationList" type="listAcct:ClassTranslationList" minOccurs="0"/>
-  # <element name="subsidiaryList" type="platformCore:RecordRefList" minOccurs="0"/>
-  # <element name="customFieldList" type="platformCore:CustomFieldList" minOccurs="0"/>
   it 'has all the right attributes' do
     [
       :addr1, :addr2, :addr3, :addr_phone, :addr_text, :addressee, :attention, :city, :country, :include_children, :is_inactive,
@@ -21,6 +18,21 @@ describe NetSuite::Records::Location do
     ].each do |record_ref|
       location.should have_record_ref(record_ref)
     end
+  end
+
+  describe '#class_translation_list' do
+    it 'can be set from attributes'
+    it 'can be set from a ClassTranslationList object'
+  end
+
+  describe '#subsidiary_list' do
+    it 'can be set from attributes'
+    it 'can be set from a RecordRefList object'
+  end
+
+  describe '#custom_field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomFieldList object'
   end
 
   describe '.get' do

@@ -3,17 +3,6 @@ require 'spec_helper'
 describe NetSuite::Records::CustomRecordType do
   let(:record_type) { NetSuite::Records::CustomRecordType.new }
 
-# <element name="fieldList" type="setupCustom:CustomRecordTypeFieldList" minOccurs="0"/>
-# <element name="tabsList" type="setupCustom:CustomRecordTypeTabsList" minOccurs="0"/>
-# <element name="sublistsList" type="setupCustom:CustomRecordTypeSublistsList" minOccurs="0"/>
-# <element name="formsList" type="setupCustom:CustomRecordTypeFormsList" minOccurs="0"/>
-# <element name="onlineFormsList" type="setupCustom:CustomRecordTypeOnlineFormsList" minOccurs="0"/>
-# <element name="permissionsList" type="setupCustom:CustomRecordTypePermissionsList" minOccurs="0"/>
-# <element name="linksList" type="setupCustom:CustomRecordTypeLinksList" minOccurs="0"/>
-# <element name="managersList" type="setupCustom:CustomRecordTypeManagersList" minOccurs="0"/>
-# <element name="childrenList" type="setupCustom:CustomRecordTypeChildrenList" minOccurs="0"/>
-# <element name="parentsList" type="setupCustom:CustomRecordTypeParentsList" minOccurs="0"/>
-# <element name="translationsList" type="setupCustom:CustomRecordTypeTranslationsList" minOccurs="0"/>
   it 'has all the right fields' do
     [
       :allow_attachments, :allow_inline_editing, :allow_numbering_override, :allow_quick_search, :description, :disclaimer,
@@ -32,6 +21,61 @@ describe NetSuite::Records::CustomRecordType do
     ].each do |record_ref|
       record_type.should have_record_ref(record_ref)
     end
+  end
+
+  describe '#field_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeFieldList object'
+  end
+
+  describe '#tabs_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeTabsList object'
+  end
+
+  describe '#sublists_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeSublistsList object'
+  end
+
+  describe '#forms_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeFormsList object'
+  end
+
+  describe '#online_forms_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeOnlineFormsList object'
+  end
+
+  describe '#permissions_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypePermissionsList object'
+  end
+
+  describe '#links_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeLinksList object'
+  end
+
+  describe '#managers_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeManagersList object'
+  end
+
+  describe '#children_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeChildrenList object'
+  end
+
+  describe '#parents_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeParentsList object'
+  end
+
+  describe '#translations_list' do
+    it 'can be set from attributes'
+    it 'can be set from a CustomRecordTypeTranslationsList object'
   end
 
   describe '.get' do
