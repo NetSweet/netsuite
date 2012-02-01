@@ -72,7 +72,7 @@ module NetSuite
     autoload :NonInventorySaleItem,       'netsuite/records/non_inventory_sale_item'
     autoload :PaymentMethod,              'netsuite/records/payment_method'
     autoload :RecordRef,                  'netsuite/records/record_ref'
-    autoload :RevenueRecognitionTemplate, 'netsuite/records/revenue_recognition_template'
+    autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :ShipAddress,                'netsuite/records/ship_address'
   end
 
