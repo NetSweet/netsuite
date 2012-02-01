@@ -13,13 +13,12 @@ describe NetSuite::Records::JournalEntryLineList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
+      record = 
         {
-          'tranGeneral:line' => {
+          'tranGeneral:line' => [{
             'tranGeneral:memo' => 'This is a memo'
-          }
+          }]
         }
-      ]
       list.to_record.should eql(record)
     end
   end

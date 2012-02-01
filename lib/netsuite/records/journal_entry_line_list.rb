@@ -3,24 +3,28 @@ module NetSuite
     class JournalEntryLineList
       include Support::Fields
       include Namespaces::TranGeneral
+      
+      fields :line
 
       def initialize(attributes = {})
-        case attributes[:line]
+        initialize_from_attributes_hash(attributes)
+      end
+
+      def line=(lines)
+        case lines
         when Hash
-          lines << JournalEntryLine.new(attributes[:line])
+          self.lines << JournalEntryLine.new(lines)
         when Array
-          attributes[:line].each { |line| lines << JournalEntryLine.new(line) }
+          lines.each { |line| self.lines << JournalEntryLine.new(line) }
         end
       end
 
       def lines
-        @lines ||= []
+        @items ||= []
       end
 
       def to_record
-        lines.map do |line|
-          { "#{record_namespace}:line" => line.to_record }
-        end
+        { "#{record_namespace}:line" => lines.map(&:to_record) }
       end
 
     end
