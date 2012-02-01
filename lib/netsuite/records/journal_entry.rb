@@ -18,9 +18,14 @@ module NetSuite
       record_refs :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc,
         :posting_period, :subsidiary, :to_subsidiary
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
+      attr_reader   :internal_id
+      attr_accessor :external_id
+
+        def initialize(attributes = {})
+          @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
+          @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
+          initialize_from_attributes_hash(attributes)
+        end
 
       def to_record
         rec = super
