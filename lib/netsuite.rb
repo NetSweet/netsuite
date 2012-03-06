@@ -38,6 +38,7 @@ module NetSuite
 
   module Records
     autoload :Account,                    'netsuite/records/account'
+    autoload :AccountingPeriod,           'netsuite/records/accounting_period'
     autoload :BillAddress,                'netsuite/records/bill_address'
     autoload :Classification,             'netsuite/records/classification'
     autoload :CreditMemo,                 'netsuite/records/credit_memo'
