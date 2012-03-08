@@ -39,9 +39,18 @@ module NetSuite
         }
       }
     end
-
-    def role
-      attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
+    
+    def role=(role)
+      attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
+    end
+    
+    def role(role = nil)
+      if role
+        self.role = role
+      else 
+        attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role') if not attributes[:role]
+        attributes[:role]
+      end
     end
 
     def email=(email)
