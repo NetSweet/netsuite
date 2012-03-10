@@ -48,8 +48,7 @@ module NetSuite
       if role
         self.role = role
       else 
-        attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role') if not attributes[:role]
-        attributes[:role]
+        attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
       end
     end
 
