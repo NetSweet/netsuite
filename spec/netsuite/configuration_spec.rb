@@ -128,4 +128,20 @@ describe NetSuite::Configuration do
     end
   end
 
+
+  describe '#role' do
+    context 'when no role is defined' do
+      it 'defaults to "3"' do
+        config.role.internal_id.should == "3"
+      end
+    end
+  end
+  
+  describe '#role=' do
+    it 'sets the role according to the input value' do
+      config.role = "6"
+      config.role.internal_id.should == "6"
+    end
+  end
+
 end
