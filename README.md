@@ -29,7 +29,7 @@ Or install it yourself as:
 * Retrieves the customer by internalId.
 
     ```Ruby
-    customer = NetSuite::Records::Customer.get(4) # => #<NetSuite::Records::Customer:0x1042f59b8>
+    customer = NetSuite::Records::Customer.get(:internal_id => 4) # => #<NetSuite::Records::Customer:0x1042f59b8>
     customer.is_person                            # => true
     ```
 
