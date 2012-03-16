@@ -13,6 +13,18 @@ module NetSuite
     def connection
       attributes[:connection] ||= Savon::Client.new(self.wsdl)
     end
+    
+    def api_version(version = nil)
+      if version
+        self.api_version = version
+      else
+        attributes[:api_version] ||= '2011_2'
+      end
+    end
+
+    def api_version=(version)
+      attributes[:api_version] = version
+    end
 
     def wsdl=(wsdl)
       attributes[:wsdl] = wsdl
@@ -22,7 +34,7 @@ module NetSuite
       if wsdl
         self.wsdl = wsdl
       else
-        attributes[:wsdl] ||= File.expand_path('../../../wsdl/2011_02.wsdl', __FILE__)
+        attributes[:wsdl] ||= File.expand_path("../../../wsdl/#{api_version}.wsdl", __FILE__)
       end
     end
 

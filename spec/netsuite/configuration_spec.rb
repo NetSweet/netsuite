@@ -35,7 +35,7 @@ describe NetSuite::Configuration do
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_02\.wsdl/)
+        config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
       end
     end
   end
@@ -141,6 +141,23 @@ describe NetSuite::Configuration do
     it 'sets the role according to the input value' do
       config.role = "6"
       config.role.internal_id.should == "6"
+    end
+  end
+
+  describe '#api_version' do
+    context 'when no api_version is defined' do
+      it 'defaults to 2011_2' do
+        config.api_version.should == '2011_2'
+      end
+    end
+  end
+
+  describe '#api_version=' do
+    context 'when api version is defined' do
+      it 'sets the api_version of the application' do
+        config.api_version = '2012_1'
+        config.api_version.should == '2012_1'
+      end
     end
   end
 
