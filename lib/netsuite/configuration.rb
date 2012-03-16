@@ -14,8 +14,16 @@ module NetSuite
       attributes[:connection] ||= Savon::Client.new(self.wsdl)
     end
     
-    def api_version
-      "2012_1"
+    def api_version(version = nil)
+      if version
+        self.api_version = version
+      else
+        attributes[:api_version] ||= '2011_2'
+      end
+    end
+
+    def api_version=(version)
+      attributes[:api_version] = version
     end
 
     def wsdl=(wsdl)
