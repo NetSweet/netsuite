@@ -26,7 +26,7 @@ describe NetSuite::Records::NonInventorySaleItem do
 
   it 'has the right record_refs' do
     [
-      :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_amount, :issue_product,
+      :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_account, :issue_product,
       :item_options_list, :klass, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule,
       :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail,
       :store_item_template, :subsidiary_list, :tax_schedule, :units_type
@@ -56,6 +56,56 @@ describe NetSuite::Records::NonInventorySaleItem do
           NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
         }.should raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::NonInventorySaleItem with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
+  describe '#add' do
+    # let(:item) { NetSuite::Records::NonInventorySaleItem.new(:cost => 100, :is_inactive => false) }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.add.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Add.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.add.should be_false
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.delete.should be_true
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        NetSuite::Actions::Delete.should_receive(:call).
+            with(item).
+            and_return(response)
+        item.delete.should be_false
       end
     end
   end
