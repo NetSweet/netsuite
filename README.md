@@ -102,3 +102,14 @@ Or install it yourself as:
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Fields and RecordRefs
+
+Note that some record attributes are specified as Fields while others are specified as RecordRefs. In some cases
+attributes are actually RecordRefs in the schema, but we indicate them as Fields. Our experience has shown
+this works as long as the attribute is only read from and is not written to. Writing a value for an attribute
+that has been wrongly specified will result in an error. Be careful when initializing objects from other objects --
+they may carry attributes that write to the new object.
+
+As we build up this gem we will replace these inconsistent Fields with RecordRefs. Feel free to contribute new Record 
+definitions to help us along.

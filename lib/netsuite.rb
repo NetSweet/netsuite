@@ -60,6 +60,7 @@ module NetSuite
     autoload :CustomerRefundApplyList,    'netsuite/records/customer_refund_apply_list'
     autoload :CustomerRefundDeposit,      'netsuite/records/customer_refund_deposit'
     autoload :CustomerRefundDepositList,  'netsuite/records/customer_refund_deposit_list'
+    autoload :Department,                 'netsuite/records/department'
     autoload :Duration,                   'netsuite/records/duration'
     autoload :InventoryItem,              'netsuite/records/inventory_item'
     autoload :Invoice,                    'netsuite/records/invoice'
@@ -75,6 +76,7 @@ module NetSuite
     autoload :RecordRef,                  'netsuite/records/record_ref'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :ShipAddress,                'netsuite/records/ship_address'
+    autoload :Term,                       'netsuite/records/term'
   end
 
   def self.configure(&block)
