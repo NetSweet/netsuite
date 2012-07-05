@@ -1,8 +1,8 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'netsuite'
+$LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..') ))
+
 require 'rspec'
 require 'rspec/autorun'
+require 'netsuite'
 require 'savon_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
