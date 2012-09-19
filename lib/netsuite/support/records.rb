@@ -6,11 +6,9 @@ module NetSuite
 
       def to_record
         attributes.reject { |k,v| self.class.read_only_fields.include?(k) }.inject({}) do |hash, (k,v)|
-          kname = if k == :klass
-                    "#{record_namespace}:class"
-                  else
-                    "#{record_namespace}:#{k.to_s.lower_camelcase}"
-                  end
+          kname = "#{record_namespace}:"
+          kname += k == :klass ? 'class' : k.to_s.lower_camelcase
+
           to_attributes!(hash, kname, v)
           if Array === v
             v = v.map { |i| i.respond_to?(:to_record) ? i.to_record : i }
