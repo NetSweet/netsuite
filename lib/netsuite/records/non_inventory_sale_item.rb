@@ -30,6 +30,8 @@ module NetSuite
         :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image,
         :store_display_thumbnail, :store_item_template, :subsidiary_list, :tax_schedule, :units_type
 
+      field :pricing_matrix, PricingMatrix
+
       attr_reader   :internal_id
       attr_accessor :external_id
 
