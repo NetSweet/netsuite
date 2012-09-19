@@ -43,6 +43,7 @@ module NetSuite
       field :pricing_matrix, PricingMatrix
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
+      field :pricing_matrix, PricingMatrix
       
       attr_reader :internal_id
       attr_accessor :external_id

@@ -23,8 +23,9 @@ describe NetSuite::Records::NonInventorySaleItem do
       item.should have_field(field)
     end
 
-    item.pricing_matrix.class.should == NetSuite::Records::PricingMatrix
+    # TODO there is a probably a more robust way to test this
     item.custom_field_list.class.should == NetSuite::Records::CustomFieldList
+    item.pricing_matrix.class.should == NetSuite::Records::PricingMatrix
   end
 
   it 'has the right record_refs' do
