@@ -12,7 +12,7 @@ module NetSuite
         end
         
         @custom_fields_assoc = Hash.new
-        @custom_fields.each { |custom_field| @custom_fields_assoc[custom_field.internal_id.to_sym] = custom_field }
+        custom_fields.each { |custom_field| @custom_fields_assoc[custom_field.internal_id.to_sym] = custom_field }
       end
 
       def custom_fields
