@@ -31,7 +31,8 @@ module NetSuite
         :store_display_thumbnail, :store_item_template, :subsidiary_list, :tax_schedule, :units_type
 
       field :pricing_matrix, PricingMatrix
-
+      field :custom_field_list, CustomFieldList
+      
       attr_reader   :internal_id
       attr_accessor :external_id
 

@@ -10,10 +10,23 @@ module NetSuite
         when Array
           attributes[:custom_field].each { |custom_field| custom_fields << CustomField.new(custom_field) }
         end
+        
+        @custom_fields_assoc = Hash.new
+        @custom_fields.each { |custom_field| @custom_fields_assoc[custom_field.internal_id.to_sym] = custom_field }
       end
 
       def custom_fields
         @custom_fields ||= []
+      end
+      
+      def method_missing(sym, *args, &block)
+        return @custom_fields_assoc[sym] if @custom_fields_assoc.include? sym
+        super(sym, *args, &block)
+      end
+
+      def respond_to?(sym, include_private = false)
+        return true if @custom_fields_assoc.include? sym
+        super
       end
 
       def to_record
