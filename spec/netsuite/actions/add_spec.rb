@@ -14,7 +14,7 @@ describe NetSuite::Actions::Add do
           'listRel:companyName' => 'Shutter Fly, Inc.'
         },
         :attributes! => {
-          'platformMsgs:baseRef' => {
+          'platformMsgs:record' => {
             'xsi:type' => 'listRel:Customer'
           }
         }

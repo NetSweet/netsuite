@@ -8,8 +8,8 @@ describe NetSuite::Actions::Get do
         'platformMsgs:baseRef' => {},
         :attributes! => {
           'platformMsgs:baseRef' => {
-            :externalId => 1,
-            :type       => 'customer',
+            'externalId' => 1,
+            'type'       => 'customer',
             'xsi:type'  => 'platformCore:RecordRef'
           }
         }
