@@ -3,6 +3,7 @@ require 'set'
 require 'netsuite/version'
 require 'netsuite/errors'
 require 'netsuite/xml_logger'
+require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
   autoload :Configuration, 'netsuite/configuration'
