@@ -32,8 +32,8 @@ describe NetSuite::Actions::Get do
         'platformMsgs:baseRef' => {},
         :attributes! => {
           'platformMsgs:baseRef' => {
-            :externalId => 10,
-            :type       => 'invoice',
+            'externalId' => 1,
+            'type'       => 'invoice',
             'xsi:type'  => 'platformCore:RecordRef'
           }
         }
