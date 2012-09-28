@@ -38,6 +38,7 @@ module NetSuite
   end
 
   module Records
+    autoload :AssemblyItem,               'netsuite/records/assembly_item'
     autoload :Account,                    'netsuite/records/account'
     autoload :AccountingPeriod,           'netsuite/records/accounting_period'
     autoload :BillAddress,                'netsuite/records/bill_address'
