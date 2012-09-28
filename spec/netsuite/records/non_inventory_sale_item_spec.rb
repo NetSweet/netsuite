@@ -13,7 +13,7 @@ describe NetSuite::Records::NonInventorySaleItem do
       :matrix_type, :max_donation_amount, :meta_tag_html, :minimum_quantity, :minimum_quantity_units, :mpn,
       :mult_manufacture_addr, :nex_tag_category, :no_price_message, :offer_support, :on_special, :out_of_stock_behavior,
       :out_of_stock_message, :overall_quantity_pricing_type, :page_title, :preference_criterion, :presentation_item_list,
-      :prices_include_tax, :pricing_matrix, :producer, :product_feed_list, :rate, :related_items_description, :sales_description,
+      :prices_include_tax, :producer, :product_feed_list, :rate, :related_items_description, :sales_description,
       :schedule_b_code, :schedule_b_number, :schedule_b_quantity, :search_keywords, :ship_individually, :shipping_cost,
       :shipping_cost_units, :shopping_dot_com_category, :shopzilla_category_id, :show_default_donation_amount,
       :site_category_list, :sitemap_priority, :soft_descriptor, :specials_description, :stock_description, :store_description,
@@ -22,6 +22,8 @@ describe NetSuite::Records::NonInventorySaleItem do
     ].each do |field|
       item.should have_field(field)
     end
+
+    item.pricing_matrix.class.should == NetSuite::Records::PricingMatrix
   end
 
   it 'has the right record_refs' do
