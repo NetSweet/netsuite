@@ -18,6 +18,7 @@ Or install it yourself as:
 
     $ gem install netsuite
 
+This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/RevolutionPrep/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 ## Usage
 
 ### Customer
