@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.unshift File.expand_path("../lib", __FILE__)
-require 'netsuite/version'
+require File.expand_path('../lib/netsuite/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['Ryan Moran']
@@ -16,10 +15,11 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Netsuite::VERSION
 
-  gem.add_dependency 'savon', '0.9.9'
-  gem.add_dependency 'nokogiri'
+  gem.add_runtime_dependency 'savon', '~> 1.1'
+  gem.add_runtime_dependency 'nokogiri', '~> 1.5'
 
-  gem.add_development_dependency 'rspec',               '2.8.0'
-  gem.add_development_dependency 'autotest-standalone', '4.5.9'
-  gem.add_development_dependency 'savon_spec',          '0.1.6'
+  gem.add_development_dependency 'rspec',                 '~> 2.10'
+  gem.add_development_dependency 'rake',                  '~> 0.9'
+  gem.add_development_dependency 'savon_spec',            '~> 1.3'
+  gem.add_development_dependency 'autotest-standalone',   '~> 4.5'
 end

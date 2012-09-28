@@ -6,13 +6,11 @@ describe NetSuite::Actions::Initialize do
   before do
     savon.expects(:initialize).with({
       'platformMsgs:initializeRecord' => {
-        'platformCore:type' => 'invoice',
-        'platformCore:reference' => {
-          'platformCore:name' => 'Ryan Moran'
-        },
+        'platformCore:type' => 'customer',
+        'platformCore:reference' => {},
         :attributes! => {
           'platformCore:reference' => {
-            'internalId' => '1',
+            'internalId' => 1,
             :type        => 'customer'
           }
         }

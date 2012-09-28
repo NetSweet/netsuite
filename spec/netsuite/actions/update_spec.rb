@@ -13,7 +13,7 @@ describe NetSuite::Actions::Update do
           'listRel:companyName' => 'Shutter Fly, Inc.'
         },
         :attributes! => {
-          'platformMsgs:baseRef' => {
+          'platformMsgs:record' => {
             'xsi:type' => 'listRel:Customer'
           }
         }
@@ -38,12 +38,11 @@ describe NetSuite::Actions::Update do
     before do
       savon.expects(:update).with({
         'platformMsgs:record' => {
-          'listRel:source' => 'Google',
-          'listRel:total'  => 100.0
+          'tranSales:source' => 'Google',
         },
         :attributes! => {
-          'platformMsgs:baseRef' => {
-            'xsi:type' => 'listRel:Invoice'
+          'platformMsgs:record' => {
+            'xsi:type' => 'tranSales:Invoice'
           }
         }
       }).returns(:update_invoice)
