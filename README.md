@@ -21,11 +21,29 @@ Or install it yourself as:
 This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/RevolutionPrep/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 ## Usage
 
+### Configuration
+```ruby
+NetSuite.configure do
+  reset!
+  
+  api_version	'2012_1'
+  
+  # specify full wsdl URL for sandbox / production switching
+  wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+  
+  # login information
+  email    		'email@domain.com'
+  password 		'password'
+  account   	'12345'
+  role      	1111
+end
+```
+
 ### Customer
 
 * Initializing a customer can be done using a hash of attributes.
 
-#### Get
+### Get
 
 * Retrieves the customer by internalId.
 
@@ -34,7 +52,6 @@ This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/R
     customer.is_person                            # => true
     ```
 
-<a name='extending'>
 ## Additions
 
 * Please submit a pull request for any models or actions that you would like to be included. The API is quite large and so we will necessarily not cover all of it.
@@ -100,9 +117,10 @@ This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/R
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Write new test and ensure that `bundle exec rspec` doesn't fail
+4. Commit your changes (`git commit -am 'Added some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 ## Fields and RecordRefs
 
