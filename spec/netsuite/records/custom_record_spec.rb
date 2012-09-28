@@ -28,12 +28,14 @@ describe NetSuite::Records::CustomRecord do
     it 'can be set from attributes' do
       attributes = {
         :custom_field => {
-          :amount => 10
+          :amount => 10,
+          :internal_id => 'custfield_amount'
         }
       }
       record.custom_field_list = attributes
       record.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
       record.custom_field_list.custom_fields.length.should eql(1)
+      record.custom_field_list.custfield_amount.attributes[:amount].should eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do

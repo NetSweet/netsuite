@@ -41,6 +41,7 @@ module NetSuite
         :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor
 
       field :pricing_matrix, PricingMatrix
+      field :custom_field_list, CustomFieldList
 
       attr_reader :internal_id
       attr_accessor :external_id

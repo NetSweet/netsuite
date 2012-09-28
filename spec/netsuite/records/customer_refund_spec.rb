@@ -28,7 +28,8 @@ describe NetSuite::Records::CustomerRefund do
     it 'can be set from attributes' do
       attributes = {
         :custom_field => {
-          :amount => 10
+          :amount => 10,
+          :internal_id => 'custfield_amount'
         }
       }
       refund.custom_field_list = attributes
