@@ -40,6 +40,8 @@ module NetSuite
         :stock_unit, :store_display_image, :store_display_thumbnail, :store_item_template, :supply_lot_sizing_method,
         :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor
 
+      field :pricing_matrix, PricingMatrix
+
       attr_reader :internal_id
       attr_accessor :external_id
 

@@ -74,6 +74,7 @@ module NetSuite
     autoload :Location,                   'netsuite/records/location'
     autoload :NonInventorySaleItem,       'netsuite/records/non_inventory_sale_item'
     autoload :PaymentMethod,              'netsuite/records/payment_method'
+    autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
     autoload :RecordRef,                  'netsuite/records/record_ref'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :ShipAddress,                'netsuite/records/ship_address'
