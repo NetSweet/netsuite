@@ -67,7 +67,8 @@ describe NetSuite::Records::Customer do
     it 'can be set from attributes' do
       attributes = {
         :custom_field => {
-          :value => 10
+          :value => 10,
+          :internal_id => 'custfield_something'
         }
       }
       customer.custom_field_list = attributes

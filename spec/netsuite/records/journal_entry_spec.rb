@@ -25,12 +25,14 @@ describe NetSuite::Records::JournalEntry do
     it 'can be set from attributes' do
       attributes = {
         :custom_field => {
-          :amount => 10
+          :amount => 10,
+          :internal_id => 'custfield_amount'
         }
       }
       entry.custom_field_list = attributes
       entry.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
       entry.custom_field_list.custom_fields.length.should eql(1)
+      entry.custom_field_list.custfield_amount.attributes[:amount].should eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do

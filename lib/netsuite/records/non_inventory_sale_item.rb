@@ -10,7 +10,7 @@ module NetSuite
       actions :get, :add, :delete
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
-        :created_date, :custom_field_list, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
+        :created_date, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
         :featured_description, :handling_cost, :handling_cost_units, :include_children, :is_donation_item, :is_fulfillable,
         :is_gco_compliant, :is_inactive, :is_online, :is_taxable, :item_id, :last_modified_date, :manufacturer,
         :manufacturer_addr1, :manufacturer_city, :manufacturer_state, :manufacturer_tariff, :manufacturer_tax_id,
@@ -31,7 +31,8 @@ module NetSuite
         :store_display_thumbnail, :store_item_template, :subsidiary_list, :tax_schedule, :units_type
 
       field :pricing_matrix, PricingMatrix
-
+      field :custom_field_list, CustomFieldList
+      
       attr_reader   :internal_id
       attr_accessor :external_id
 

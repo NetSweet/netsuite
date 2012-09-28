@@ -37,12 +37,14 @@ describe NetSuite::Records::InvoiceItem do
     it 'can be set from attributes' do
       attributes = {
         :custom_field => {
-          :value => 10
+          :value => 10,
+          :internal_id => 'custfield_value'
         }
       }
       item.custom_field_list = attributes
       item.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
       item.custom_field_list.custom_fields.length.should eql(1)
+      item.custom_field_list.custfield_value.attributes[:value].should eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do
