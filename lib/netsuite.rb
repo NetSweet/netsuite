@@ -79,6 +79,9 @@ module NetSuite
     autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
     autoload :RecordRef,                  'netsuite/records/record_ref'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
+    autoload :SalesOrder,                 'netsuite/records/sales_order'
+    autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
+    autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :Term,                       'netsuite/records/term'
   end
