@@ -87,7 +87,7 @@ module NetSuite
 
               response_list
             else
-              raise RecordNotFound
+              raise ArgumentError
             end
           end
         end
