@@ -79,10 +79,12 @@ module NetSuite
             if response.success?
               response_list = []
 
-              response.body[:record_list].each do |record|
-                puts record.inspect
+              puts response.body[:record_list]
+
+              #response.body[:record_list].each do |record|
+              #  puts record.inspect
                 #response_list << new(record)
-              end
+              #end
 
               response_list
             else
