@@ -14,6 +14,7 @@ module NetSuite
 
 				def call
 					response = NetSuite::Configuration.connection.request :search do
+						soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.header = NetSuite::Configuration.auth_header
 						soap.body = fields
 					end
