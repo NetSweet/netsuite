@@ -5,8 +5,6 @@ module NetSuite
 	module Actions
 		module Customer
 			class Search
-				attr_accessor :fields
-
 				def initialize(fields = {})
 					@fields = fields
 				end
@@ -23,25 +21,25 @@ module NetSuite
 
 						soap.header = NetSuite::Configuration.auth_header
 						
-						soap.body = request_body(@fields)
+						soap.body = request_body
 					end
 				end
 
 				private
 
-				def soap_type(object)
-        	object.class.to_s.split('::').last.lower_camelcase
+				def soap_type
+        	self.class.to_s.split('::').last.lower_camelcase
       	end
 
-	      def request_body(fields)
+	      def request_body
 	        buffer = ''
         	
-        	record_type = soap_type(self)
+        	record_type = soap_type
         	
         	xml = Builder::XmlMarkup.new(target: buffer)
         	
         	xml.platformMsgs(:searchRecord, 'xsi:type' => 'listRel:CustomerSearch') do |customer_search|
-        		fields.each do |field_name, field_value|
+        		@fields.each do |field_name, field_value|
         			# TODO: allow for different search operators
         			customer_search.listRel(field_name.to_sym, operator: 'contains') do |operator|
         				operator.platformCore :searchValue, field_value
