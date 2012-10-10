@@ -5,8 +5,9 @@ module NetSuite
 	module Actions
 		module Customer
 			class Search
+				attr_accessor :fields
+
 				def initialize(fields = {})
-					puts fields
 					@fields = fields
 				end
 
@@ -19,8 +20,9 @@ module NetSuite
 						soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
+
 						soap.header = NetSuite::Configuration.auth_header
-						puts @fields
+						
 						soap.body = request_body(@fields)
 					end
 				end
