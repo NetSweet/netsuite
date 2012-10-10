@@ -4,8 +4,6 @@ module NetSuite
 	module Actions
 		module Customer
 			class Search
-				attr_accessor :fields
-
 				def initialize(fields = {})
 					@fields = fields
 				end
