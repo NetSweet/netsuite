@@ -38,6 +38,10 @@ module NetSuite
     autoload :Update,     'netsuite/actions/update'
   end
 
+  module Customer
+    autoload :Search, 'netsuite/actions/customer/search'
+  end
+
   module Records
     autoload :AssemblyItem,               'netsuite/records/assembly_item'
     autoload :Account,                    'netsuite/records/account'
