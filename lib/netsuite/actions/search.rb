@@ -80,7 +80,8 @@ module NetSuite
               response_list = []
 
               response.body[:record_list].each do |record|
-                response_list << new(record)
+                puts record.inspect
+                #response_list << new(record)
               end
 
               response_list
