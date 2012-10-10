@@ -79,8 +79,8 @@ module NetSuite
             if response.success?
               response_list = []
 
-              response.body[:record_list].each do |search_response|
-                puts search_response.inspect
+              response.body[:record_list].each do |record|
+                response_list << new(record)
               end
 
               response_list
