@@ -27,7 +27,7 @@ module NetSuite
 				private
 
 				def soap_type(object)
-        	object.klass.to_s.split('::').last.lower_camelcase
+        	object.class.to_s.split('::').last.lower_camelcase
       	end
 
 	      def request_body(fields)
