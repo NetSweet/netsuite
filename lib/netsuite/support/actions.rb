@@ -18,6 +18,8 @@ module NetSuite
           case name
           when :get
             self.send(:include, NetSuite::Actions::Get::Support)
+          when :search
+            self.send(:include, NetSuite::Actions::Search::Support)
           when :add
             self.send(:include, NetSuite::Actions::Add::Support)
           when :delete
