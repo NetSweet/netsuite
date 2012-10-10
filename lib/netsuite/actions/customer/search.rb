@@ -42,6 +42,8 @@ module NetSuite
           xml.searchRecord('xsi:type' => 'listRel:CustomerSearch') do |search_record|
             search_record.basic('xsi:type' => 'platformCommon:CustomerSearchBasic') do |basic|
               @fields.each do |field_name, field_value|
+              	# TODO: Add ability to use other operators
+              	# TODO: Add ability to use other field types
                 basic.method_missing(field_name, {
                   operator: 'contains',
                   'xsi:type' => 'platformCore:SearchStringField'
