@@ -79,7 +79,7 @@ module NetSuite
             if response.success?
               response_list = []
 
-              response[:record_list].each do |search_response|
+              response_body[:record_list].each do |search_response|
                 response_list << new(search_response[:record])
               end
 
