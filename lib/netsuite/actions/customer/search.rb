@@ -20,8 +20,8 @@ module NetSuite
 						soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
 						soap.header = NetSuite::Configuration.auth_header
-						soap.body = request_body(@fields)
 						puts @fields
+						soap.body = request_body(@fields)
 					end
 				end
 
