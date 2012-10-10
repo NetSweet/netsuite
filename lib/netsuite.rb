@@ -36,10 +36,10 @@ module NetSuite
     autoload :Get,        'netsuite/actions/get'
     autoload :Initialize, 'netsuite/actions/initialize'
     autoload :Update,     'netsuite/actions/update'
-  end
 
-  module Customer
-    autoload :Search, 'netsuite/actions/customer/search'
+    module Customer
+      autoload :Search, 'netsuite/actions/customer/search'
+    end
   end
 
   module Records
