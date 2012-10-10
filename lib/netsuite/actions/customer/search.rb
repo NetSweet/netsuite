@@ -18,6 +18,7 @@ module NetSuite
 						soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 						soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
+						soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
 
 						soap.header = NetSuite::Configuration.auth_header
 						
@@ -38,8 +39,8 @@ module NetSuite
 
           xml = Builder::XmlMarkup.new(target: buffer)
 
-          xml.searchRecord('xsi:type' => 'CustomerSearch') do |search_record|
-            search_record.basic('xsi:type' => 'CustomerSearchBasic') do |basic|
+          xml.searchRecord('xsi:type' => 'listRel:CustomerSearch') do |search_record|
+            search_record.basic('xsi:type' => 'platformCommon:CustomerSearchBasic') do |basic|
               @fields.each do |field_name, field_value|
                 basic.method_missing(field_name, {
                   operator: 'contains',
