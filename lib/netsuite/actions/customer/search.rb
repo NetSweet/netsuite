@@ -1,10 +1,12 @@
 # TODO: Tests
 # TODO: DBC
+# TODO: Integrate with rest of gem
 module NetSuite
 	module Actions
 		module Customer
 			class Search
 				def initialize(fields = {})
+					puts fields
 					@fields = fields
 				end
 
@@ -19,6 +21,7 @@ module NetSuite
 						soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
 						soap.header = NetSuite::Configuration.auth_header
 						soap.body = request_body(@fields)
+						puts @fields
 					end
 				end
 
