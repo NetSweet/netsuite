@@ -32,22 +32,26 @@ module NetSuite
       	end
 
 	      def request_body
-	        buffer = ''
-        	
-        	record_type = soap_type
-        	
-        	xml = Builder::XmlMarkup.new(target: buffer)
-        	
-        	xml.platformMsgs(:searchRecord, 'xsi:type' => 'listRel:CustomerSearch') do |customer_search|
-        		@fields.each do |field_name, field_value|
-        			# TODO: allow for different search operators
-        			customer_search.listRel(field_name.to_sym, operator: 'contains') do |operator|
-        				operator.platformCore :searchValue, field_value
-        			end
-        		end
-        	end
+          buffer = ''
 
-        	buffer
+          record_type = soap_type
+
+          xml = Builder::XmlMarkup.new(target: buffer)
+
+          xml.searchRecord('xsi:type' => 'CustomerSearch') do |search_record|
+            search_record.basic('xsi:type' => 'CustomerSearchBasic') do |basic|
+              @fields.each do |field_name, field_value|
+                basic.method_missing(field_name, {
+                  operator: 'contains',
+                  'xsi:type' => 'platformCore:SearchStringField'
+                }) do |_field_name|
+                  _field_name.platformCore :searchValue, field_value
+                end
+              end
+            end
+          end
+
+          buffer
 	      end
 			end
 		end
