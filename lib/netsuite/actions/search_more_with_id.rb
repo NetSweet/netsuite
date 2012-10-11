@@ -64,7 +64,7 @@ module NetSuite
         end
 
         module ClassMethods
-          def search_more(options = { })
+          def search_more_with_id(options = { })
             response = NetSuite::Actions::SearchMoreWithId.call(self, options)
             
             if response.success?
