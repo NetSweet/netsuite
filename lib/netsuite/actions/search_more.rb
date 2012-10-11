@@ -2,14 +2,14 @@
 # TODO: DBC
 module NetSuite
 	module Actions
-		class Search
+		class SearchMore
       include Support::Requests
 
-			def initialize(klass, options = { })
-				@klass = klass
+      def initialize(klass, options = { })
+      	@klass = klass
 
-        @options = options
-			end
+      	@options = options
+      end
 
       private
 
@@ -18,7 +18,7 @@ module NetSuite
       end
 
       def request
-        connection.request :search do
+        connection.request :search_more do
           soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
@@ -30,27 +30,13 @@ module NetSuite
         end
       end
 
+      # TODO: Consistent use of namespace qualifying
       def request_body
         buffer = ''
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
-        # TODO: Add ability to use other record types
-        # TODO: Consistent use of namespace qualifying
-        xml.searchRecord('xsi:type' => 'listRel:CustomerSearch') do |search_record|
-          search_record.basic('xsi:type' => 'platformCommon:CustomerSearchBasic') do |basic|
-            @options.each do |field_name, field_value|
-            	# TODO: Add ability to use other operators
-            	# TODO: Add ability to use other field types
-              basic.method_missing(field_name, {
-                operator: 'contains',
-                'xsi:type' => 'platformCore:SearchStringField'
-              }) do |_field_name|
-                _field_name.platformCore :searchValue, field_value
-              end
-            end
-          end
-        end
+        xml.platformMsgs(:page_index, @options[:page].present? @options[:page] : 2)
 
         buffer
       end
@@ -60,7 +46,7 @@ module NetSuite
       end
 
       def response_hash
-        @response_hash = @response[:search_response][:search_result]
+        @response_hash = @response[:search_more_response][:search_result]
       end
 
       def success?
@@ -78,8 +64,8 @@ module NetSuite
         end
 
         module ClassMethods
-          def search(options = { })
-            response = NetSuite::Actions::Search.call(self, options)
+          def search_more(options = { })
+            response = NetSuite::Actions::SearchMore.call(self, options)
             
             if response.success?
               response_list = []
@@ -97,6 +83,6 @@ module NetSuite
           end
         end
       end
-		end
-	end
+    end
+  end
 end
