@@ -12,11 +12,7 @@ module NetSuite
       end
 
       private
-
-      def soap_type
-        @klass.to_s.split('::').last.lower_camelcase
-      end
-
+      
       def request
         connection.request :search_more_with_id do
           soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"

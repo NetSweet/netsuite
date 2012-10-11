@@ -13,8 +13,8 @@ module NetSuite
 
       private
 
-      def soap_type
-        @klass.to_s.split('::').last.lower_camelcase
+      def soap_record_type
+        @klass.to_s.split('::').last
       end
 
       def request
@@ -35,10 +35,9 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
-        # TODO: Add ability to use other record types
         # TODO: Consistent use of namespace qualifying
-        xml.searchRecord('xsi:type' => 'listRel:CustomerSearch') do |search_record|
-          search_record.basic('xsi:type' => 'platformCommon:CustomerSearchBasic') do |basic|
+        xml.searchRecord('xsi:type' => "listRel:#{soap_record_type}Search") do |search_record|
+          search_record.basic('xsi:type' => "platformCommon:#{soap_record_type}SearchBasic") do |basic|
             @options.each do |field_name, field_value|
             	# TODO: Add ability to use other operators
             	# TODO: Add ability to use other field types
