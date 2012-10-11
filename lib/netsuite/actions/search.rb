@@ -94,7 +94,7 @@ module NetSuite
             response = NetSuite::Actions::Search.call(self, options)
             
             if response.success?
-              puts response.search_id
+              puts response.header[:search_id]
               puts response.more?
 
               response_list = []
