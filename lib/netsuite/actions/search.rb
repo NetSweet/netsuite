@@ -60,7 +60,7 @@ module NetSuite
       end
 
       def response_body_hash
-        puts @response.inspect
+        puts @response.headers
 
         @response_body_hash = @response[:search_response][:search_result]
       end
