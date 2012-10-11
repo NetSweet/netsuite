@@ -55,13 +55,23 @@ module NetSuite
         buffer
       end
 
+      def response_header
+        @response_header ||= response_header_hash
+      end
+
+      def response_header_hash
+        @response_header_hash = @response.header[:document_info]
+      end
+
+      def search_id
+        @search_id ||= response_header[:search_id]
+      end
+
       def response_body
         @response_body ||= response_body_hash
       end
 
       def response_body_hash
-        puts @response.headers
-
         @response_body_hash = @response[:search_response][:search_result]
       end
 
@@ -84,6 +94,9 @@ module NetSuite
             response = NetSuite::Actions::Search.call(self, options)
             
             if response.success?
+              puts response.search_id
+              puts response.more?
+
               response_list = []
 
               response.body[:record_list][:record].each do |record|
