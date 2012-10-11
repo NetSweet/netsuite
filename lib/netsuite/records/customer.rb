@@ -42,6 +42,10 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.custom_soap_search_record_type
+        "listRel:CustomerSearch"
+      end
+
       def to_record
         rec = super
         if rec["#{record_namespace}:customFieldList"]
@@ -49,7 +53,6 @@ module NetSuite
         end
         rec
       end
-
     end
   end
 end

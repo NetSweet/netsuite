@@ -35,10 +35,9 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
-        # TODO: Add ability to use other record types
         # TODO: Consistent use of namespace qualifying
-        xml.searchRecord('xsi:type' => "listRel:#{soap_record_type}Search") do |search_record|
-          search_record.basic('xsi:type' => "platformCommon:#{soap_record_type}SearchBasic") do |basic|
+        xml.searchRecord('xsi:type' => @klass.custom_soap_search_record_type) do |search_record|
+          search_record.basic('xsi:type' => "platformCommon:#{@klass.respond_to?(:custom_soap_basic_search_record_type) ? @klass.custom_soap_basic_search_record_type : soap_record_type}SearchBasic") do |basic|
             @options.each do |field_name, field_value|
             	# TODO: Add ability to use other operators
             	# TODO: Add ability to use other field types
