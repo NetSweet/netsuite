@@ -20,8 +20,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::Get::Support)
           when :search
             self.send(:include, NetSuite::Actions::Search::Support)
-          when :search_more
-            self.send(:include, NetSuite::Actions::SearchMore::Support)
+          when :search_more_with_id
+            self.send(:include, NetSuite::Actions::SearchMoreWithId::Support)
           when :add
             self.send(:include, NetSuite::Actions::Add::Support)
           when :delete

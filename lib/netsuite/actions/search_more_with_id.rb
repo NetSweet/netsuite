@@ -2,7 +2,7 @@
 # TODO: DBC
 module NetSuite
 	module Actions
-		class SearchMore
+		class SearchMoreWithId
       include Support::Requests
 
       def initialize(klass, options = { })
@@ -18,7 +18,7 @@ module NetSuite
       end
 
       def request
-        connection.request :search_more do
+        connection.request :search_more_with_id do
           soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
@@ -42,20 +42,20 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash
+        @response_body ||= response_body_hash
       end
 
-      def response_hash
-        @response_hash = @response[:search_more_response][:search_result]
+      def response_body_hash
+        @response_body_hash = @response[:search_more_with_id_response][:search_result]
       end
 
       def success?
-        @success ||= response_hash[:status][:@is_success] == 'true'
+        @success ||= response_body_hash[:status][:@is_success] == 'true'
       end
 
       # TODO: Refactor
       def more?
-        @more ||= response_hash[:page_index] < response_hash[:total_pages]
+        @more ||= response_body_hash[:page_index] < response_body_hash[:total_pages]
       end
 
       module Support
@@ -65,7 +65,7 @@ module NetSuite
 
         module ClassMethods
           def search_more(options = { })
-            response = NetSuite::Actions::SearchMore.call(self, options)
+            response = NetSuite::Actions::SearchMoreWithId.call(self, options)
             
             if response.success?
               response_list = []

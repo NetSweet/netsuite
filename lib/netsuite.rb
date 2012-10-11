@@ -37,7 +37,7 @@ module NetSuite
     autoload :Initialize, 'netsuite/actions/initialize'
     autoload :Update,     'netsuite/actions/update'
     autoload :Search, 'netsuite/actions/search'
-    autoload :SearchMore, 'netsuite/actions/search_more'
+    autoload :SearchMoreWithId, 'netsuite/actions/search_more_with_id'
   end
 
   module Records

@@ -56,20 +56,20 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash
+        @response_body ||= response_body_hash
       end
 
-      def response_hash
-        @response_hash = @response[:search_response][:search_result]
+      def response_body_hash
+        @response_body_hash = @response[:search_response][:search_result]
       end
 
       def success?
-        @success ||= response_hash[:status][:@is_success] == 'true'
+        @success ||= response_body_hash[:status][:@is_success] == 'true'
       end
 
       # TODO: Refactor
       def more?
-        @more ||= response_hash[:page_index] < response_hash[:total_pages]
+        @more ||= response_body_hash[:page_index] < response_body_hash[:total_pages]
       end
 
       module Support
