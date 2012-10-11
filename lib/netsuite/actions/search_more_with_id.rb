@@ -36,6 +36,7 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
+        xml.platformMsgs(:searchId, @options[:search_id])
         xml.platformMsgs(:pageIndex, @options[:page].present? ? @options[:page] : 2)
 
         buffer
