@@ -68,6 +68,8 @@ module NetSuite
           def search_more_with_id(options = { })
             response = NetSuite::Actions::SearchMoreWithId.call(self, options)
             
+            response_hash = { }
+
             if response.success?
               response_list = []
 
@@ -77,7 +79,14 @@ module NetSuite
                 response_list << entity
               end
 
-              response_list
+              page_index = response.body[:page_index]
+              total_pages = response.body[:total_pages]
+
+              response_hash[:page_index] = page_index
+              response_hash[:total_pages] = total_pages
+              response_hash[:entities] = response_list
+
+              response_hash
             else
               raise ArgumentError
             end

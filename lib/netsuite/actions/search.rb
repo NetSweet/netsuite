@@ -63,10 +63,6 @@ module NetSuite
         @response_header_hash = @response.header[:document_info]
       end
 
-      def search_id
-        @search_id ||= response_header[:search_id]
-      end
-
       def response_body
         @response_body ||= response_body_hash
       end
@@ -79,11 +75,6 @@ module NetSuite
         @success ||= response_body_hash[:status][:@is_success] == 'true'
       end
 
-      # TODO: Refactor
-      def more?
-        @more ||= response_body_hash[:page_index] < response_body_hash[:total_pages]
-      end
-
       module Support
         def self.included(base)
           base.extend(ClassMethods)
@@ -93,11 +84,9 @@ module NetSuite
           def search(options = { })
             response = NetSuite::Actions::Search.call(self, options)
             
-            if response.success?
-              puts response.header.inspect
-              puts response.header[:search_id]
-              puts response.more?
+            response_hash = { }
 
+            if response.success?
               response_list = []
 
               response.body[:record_list][:record].each do |record|
@@ -106,7 +95,16 @@ module NetSuite
                 response_list << entity
               end
 
-              response_list
+              search_id = response.header[:ns_id]
+              page_index = response.body[:page_index]
+              total_pages = response.body[:total_pages]
+
+              response_hash[:search_id] = search_id
+              response_hash[:page_index] = page_index
+              response_hash[:total_pages] = total_pages
+              response_hash[:entities] = response_list
+
+              response_hash
             else
               raise ArgumentError
             end
