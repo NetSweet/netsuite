@@ -56,9 +56,9 @@ module NetSuite
         'Transaction'
       end
 
-      #def self.default_search_options
-       # { recordType: { value: 'tranSales:Invoice', operator: 'is' } }
-      #end
+      def self.default_search_options
+        { type: { type: 'platformCore:SearchEnumMultiSelectField', operator: 'anyOf', value: 'invoice' } }
+      end
 
       def to_record
         rec = super
