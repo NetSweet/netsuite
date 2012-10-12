@@ -26,7 +26,9 @@ module NetSuite
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
           soap.header = auth_header.merge({
-            body_fields_only: false
+            search_preferences: {
+              body_fields_only: false
+            }
           })
           
           soap.body = request_body
