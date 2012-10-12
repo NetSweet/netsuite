@@ -89,6 +89,7 @@ module NetSuite
           base.extend(ClassMethods)
         end
 
+        # TODO: Rename page_index to page
         module ClassMethods
           def search(options = { })
             response = NetSuite::Actions::Search.call(self, options)

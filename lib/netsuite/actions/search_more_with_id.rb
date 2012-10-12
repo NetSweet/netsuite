@@ -61,6 +61,7 @@ module NetSuite
           base.extend(ClassMethods)
         end
 
+        # TODO: Rename page_index to page
         module ClassMethods
           def search_more_with_id(options = { })
             response = NetSuite::Actions::SearchMoreWithId.call(self, options)

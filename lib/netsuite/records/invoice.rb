@@ -57,7 +57,14 @@ module NetSuite
       end
 
       def self.default_search_options
-        { type: { type: 'platformCore:SearchEnumMultiSelectField', operator: 'anyOf', value: 'invoice' } }
+        {
+          type:
+          {
+            type: 'platformCore:SearchEnumMultiSelectField',
+            operator: 'anyOf',
+            value: 'invoice'
+          }
+        }
       end
 
       def to_record
