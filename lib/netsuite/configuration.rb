@@ -2,6 +2,8 @@ module NetSuite
   module Configuration
     extend self
 
+    READ_TIMEOUT = 300
+
     def reset!
       attributes.clear
     end
@@ -11,7 +13,13 @@ module NetSuite
     end
 
     def connection
-      attributes[:connection] ||= Savon::Client.new(self.wsdl)
+      unless attributes[:connection].present?
+        attributes[:connection] = Savon::Client.new(self.wsdl)
+
+        attributes[:connection].http.read_timeout = READ_TIMEOUT
+      end
+
+      attributes[:connection]
     end
     
     def api_version(version = nil)
