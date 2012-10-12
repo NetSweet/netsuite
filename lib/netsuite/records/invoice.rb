@@ -28,7 +28,7 @@ module NetSuite
         :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
         :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
-        :transaction_bill_address, :transaction_ship_address, :vat_reg_num, :vsoe_auto_calc
+        :transaction_bill_address, :transaction_ship_address, :user_total, :vat_reg_num, :vsoe_auto_calc
 
       field :transaction_bill_address, BillAddress
       field :transaction_ship_address, ShipAddress
