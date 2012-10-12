@@ -57,7 +57,7 @@ module NetSuite
       end
 
       def self.default_search_options
-        { recordType: { value: 'Invoice', operator: 'is' } }
+        { recordType: { value: 'tranSales:Invoice', operator: 'is' } }
       end
 
       def to_record
