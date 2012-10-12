@@ -5,6 +5,8 @@ module NetSuite
 		class Search
       include Support::Requests
 
+      PAGE_SIZE = 500
+
 			def initialize(klass, options = { })
 				@klass = klass
 
@@ -27,7 +29,8 @@ module NetSuite
 
           soap.header = auth_header.merge({
             search_preferences: {
-              body_fields_only: false
+              body_fields_only: false,
+              page_size: PAGE_SIZE
             }
           })
           
