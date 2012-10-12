@@ -56,6 +56,10 @@ module NetSuite
         'Transaction'
       end
 
+      def self.default_search_options
+        { recordType: { value: 'Invoice', operator: 'is' } }
+      end
+
       def to_record
         rec = super
         if rec["#{record_namespace}:customFieldList"]
