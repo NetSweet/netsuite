@@ -65,8 +65,8 @@ module NetSuite
               search_record.method_missing(join_name, 'xsi:type' => join_options['xsi:type']) do |join|
                 clean_join_options = join_options[:join].except(:field_name, :value)
 
-                join.method_missing(join_options[:join][:field_name],  clean_join_options) do |_field_name|
-                  _field_name.platformCore(:searchValue, join_options[:join][:value])
+                join.method_missing(join_options[:join][:field_name], clean_join_options) do |_field_name|
+                  #_field_name.platformCore(:searchValue, join_options[:join][:value])
                 end
               end
             end
