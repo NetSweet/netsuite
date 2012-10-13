@@ -27,7 +27,7 @@ module NetSuite
 
           soap.header = auth_header
 
-          if @options[:body_fields_only].present?
+          if @options.any? and @options[:body_fields_only].present?
             soap.header.merge!({
               search_preferences: {
                 body_fields_only: @options[:body_fields_only]
