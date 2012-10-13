@@ -21,13 +21,11 @@ module NetSuite
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
-          if @options and @options[:body_fields_only].present?
-            soap.header.merge!({
-              search_preferences: {
-                bodyFieldsOnly: @options[:body_fields_only]
-              }
-            })
-          end
+          soap.header = auth_header.merge({
+            search_preferences: {
+              body_fields_only: @options.present? ? (@options[:body_fields_only].present? ? @options[:body_fields_only] : true) : true
+            }
+          })
           
           soap.body = request_body
         end
