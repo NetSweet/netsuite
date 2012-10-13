@@ -37,7 +37,6 @@ module NetSuite
         xml = Builder::XmlMarkup.new(target: buffer)
 
         # TODO: Consistent use of namespace qualifying
-        # TODO: Allow for joins
         xml.searchRecord('xsi:type' => @klass.custom_soap_search_record_type) do |search_record|
           search_record.basic('xsi:type' => "platformCommon:#{@klass.respond_to?(:custom_soap_basic_search_record_type) ? @klass.custom_soap_basic_search_record_type : soap_record_type}SearchBasic") do |basic|
             basic_options = @options.except(:joins)
@@ -58,6 +57,7 @@ module NetSuite
             end
           end
 
+          # TODO: Allow for multiple options for each join
           if @options[:joins].present? and @options[:joins].any?
             joins_options = @options[:joins]
 
@@ -111,10 +111,12 @@ module NetSuite
             if response.success?
               response_list = []
 
-              response.body[:record_list][:record].each do |record|
-                entity = new(record)
+              if response.body[:record_list]
+                response.body[:record_list][:record].each do |record|
+                  entity = new(record)
 
-                response_list << entity
+                  response_list << entity
+                end
               end
 
               search_id = response.header[:ns_id]
