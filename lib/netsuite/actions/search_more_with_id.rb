@@ -24,7 +24,7 @@ module NetSuite
           if @options and @options[:body_fields_only].present?
             soap.header.merge!({
               search_preferences: {
-                body_fields_only: @options[:body_fields_only]
+                bodyFieldsOnly: @options[:body_fields_only]
               }
             })
           end
