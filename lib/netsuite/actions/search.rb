@@ -39,13 +39,11 @@ module NetSuite
         # TODO: Consistent use of namespace qualifying
         xml.searchRecord('xsi:type' => @klass.custom_soap_search_record_type) do |search_record|
           search_record.basic('xsi:type' => "platformCommon:#{@klass.respond_to?(:custom_soap_basic_search_record_type) ? @klass.custom_soap_basic_search_record_type : soap_record_type}SearchBasic") do |basic|
-            basic_options = @options.except(:joins)
-
             if @klass.respond_to?(:default_search_options)
-              basic_options.merge!(@klass.default_search_options)
+              @options.merge!(@klass.default_search_options)
             end
 
-            basic_options.each do |field_name, field_options|
+            @options.each do |field_name, field_options|
               field_hash = {
                 operator: field_options[:operator],
                 'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
@@ -53,21 +51,6 @@ module NetSuite
 
               basic.method_missing(field_name, field_hash) do |_field_name|
                 _field_name.platformCore(:searchValue, field_options[:value])
-              end
-            end
-          end
-
-          # TODO: Allow for multiple options for each join
-          if @options[:joins].present? and @options[:joins].any?
-            joins_options = @options[:joins]
-
-            joins_options.each do |join_name, join_options|
-              search_record.method_missing(join_name, 'xsi:type' => join_options['xsi:type']) do |join|
-                clean_join_options = join_options[:join].except(:field_name, :value)
-
-                join.method_missing(join_options[:join][:field_name], clean_join_options) do |_field_name|
-                  #_field_name.platformCore(:searchValue, join_options[:join][:value])
-                end
               end
             end
           end
