@@ -59,7 +59,22 @@ module NetSuite
         else
           xml.searchRecord('xsi:type' => 'tranSales:TransactionSearchAdvanced') do |search_record|
             search_record.criteria do |criteria|
-              criteria.basic
+              criteria.basic do |basic|
+                if @klass.respond_to?(:default_search_options)
+                  @options.merge!(@klass.default_search_options)
+                end
+
+                @options.each do |field_name, field_options|
+                  field_hash = {
+                    operator: field_options[:operator],
+                    'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
+                  }
+
+                  basic.method_missing(field_name, field_hash) do |_field_name|
+                    _field_name.platformCore(:searchValue, field_options[:value])
+                  end
+                end
+              end
             end
 
             search_record.columns do |columns|
