@@ -55,16 +55,16 @@ module NetSuite
                 end
               end
             end
-          else
-            xml.searchRecord('xsi:type' => 'tranSales:TransactionSearchAdvanced') do |search_record|
-              search_record.criteria do |criteria|
-                criteria.basic
-              end
+          end
+        else
+          xml.searchRecord('xsi:type' => 'tranSales:TransactionSearchAdvanced') do |search_record|
+            search_record.criteria do |criteria|
+              criteria.basic
+            end
 
-              search_record.columns do |columns|
-                columns.itemJoin do |item_join|
-                  item_join.displayName
-                end
+            search_record.columns do |columns|
+              columns.itemJoin do |item_join|
+                item_join.displayName
               end
             end
           end
