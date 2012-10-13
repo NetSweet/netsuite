@@ -79,7 +79,7 @@ module NetSuite
 
             search_record.columns do |columns|
               columns.itemJoin do |item_join|
-                item_join.displayName
+                item_join.itemId
               end
             end
           end
