@@ -37,7 +37,7 @@ module NetSuite
         xml = Builder::XmlMarkup.new(target: buffer)
 
         # TODO: Consistent use of namespace qualifying
-        # TODO: Account for no criteria/columns
+        # TODO: Allow for easier way to specify criteria and columns
         xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
           search_record.criteria do |criteria|
             criteria.basic do |basic|
