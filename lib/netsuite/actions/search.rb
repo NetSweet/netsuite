@@ -18,34 +18,16 @@ module NetSuite
       end
 
       def request
-        if !@options.nil? and @options[:body_fields_only] == false
-          connection.request :search do
-            soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
-            soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
-            
-            soap.header = auth_header.merge({
-              search_preferences: {
-                body_fields_only: false
-              }
-            })
-            
-            soap.body = request_body
-          end
-        else
-          connection.request :search do
-            soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-            soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
-            soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
-            
-            soap.header = auth_header
-            
-            soap.body = request_body
-          end
+        connection.request :search do
+          soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
+          soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
+
+          soap.header = auth_header
+          
+          soap.body = request_body
         end
       end
 
@@ -61,7 +43,7 @@ module NetSuite
               @options.merge!(@klass.default_search_options)
             end
 
-            @options.except(:body_fields_only).each do |field_name, field_options|
+            @options.each do |field_name, field_options|
               field_hash = {
                 operator: field_options[:operator],
                 'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
