@@ -63,10 +63,12 @@ module NetSuite
           end
 
           search_record.columns do |columns|
-            @options[:columns].each do |result_type, result_columns|
-              columns.method_missing(result_type) do |_result_type|
-                result_columns.each do |result_column|
-                  _result_type.method_missing(result_column)
+            @options[:columns].present?
+              @options[:columns].each do |result_type, result_columns|
+                columns.method_missing(result_type) do |_result_type|
+                  result_columns.each do |result_column|
+                    _result_type.method_missing(result_column)
+                  end
                 end
               end
             end
