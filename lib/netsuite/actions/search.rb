@@ -53,18 +53,20 @@ module NetSuite
               }
 
               basic.method_missing(field_name, field_hash) do |_field_name|
-                _field_name.platformCore :searchValue, field_options[:value]
+                _field_name.platformCore(:searchValue, field_options[:value])
               end
             end
           end
-          
+
           if @options[:joins].present? and @options[:joins].any?
             joins_options = @options[:joins]
 
             joins_options.each do |join_name, join_options|
-              search_record.method_missing(join_name, 'xsi:type' => join_options['xsi_type']) do |join|
-                join.method_missing(join_options[:join][:field_name],  join_options[:join].except([:field_name, :value])) do |_field_name|
-                  _field_name.platformCore :searchValue, join_options[:join][:value]
+              search_record.method_missing(join_name, 'xsi:type' => join_options['xsi:type']) do |join|
+                clean_join_options = join_options[:join].except([:field_name, :value])
+
+                join.method_missing(join_options[:join][:field_name],  clean_join_options) do |_field_name|
+                  _field_name.platformCore(:searchValue, join_options[:join][:value])
                 end
               end
             end
