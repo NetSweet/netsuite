@@ -26,6 +26,14 @@ module NetSuite
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
           soap.header = auth_header
+
+          if @options[:body_fields_only].present?
+            soap.header.merge!({
+              search_preferences: {
+                body_fields_only: @options[:body_fields_only]
+              }
+            })
+          end
           
           soap.body = request_body
         end
