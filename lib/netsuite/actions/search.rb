@@ -25,7 +25,11 @@ module NetSuite
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
-          soap.header = auth_header
+          soap.header = auth_header.merge({
+            search_preferences: {
+              body_fields_only: false
+            }
+          })
           
           soap.body = request_body
         end
@@ -36,7 +40,7 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
-        if false
+        if true
           # TODO: Consistent use of namespace qualifying
           xml.searchRecord('xsi:type' => @klass.custom_soap_search_record_type) do |search_record|
             search_record.basic('xsi:type' => "platformCommon:#{@klass.respond_to?(:custom_soap_basic_search_record_type) ? @klass.custom_soap_basic_search_record_type : soap_record_type}SearchBasic") do |basic|
