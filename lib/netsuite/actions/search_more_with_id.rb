@@ -71,10 +71,12 @@ module NetSuite
             if response.success?
               response_list = []
 
-              response.body[:record_list][:record].each do |record|
-                entity = new(record)
+              if response.body[:record_list]
+                response.body[:record_list][:record].each do |record|
+                  entity = new(record)
 
-                response_list << entity
+                  response_list << entity
+                end
               end
 
               page_index = response.body[:page_index]
