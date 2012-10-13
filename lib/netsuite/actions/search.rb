@@ -79,7 +79,7 @@ module NetSuite
 
             search_record.columns do |columns|
               columns.basic do |basic|
-                basic.created_date
+                basic.dateCreated
               end
               columns.customerJoin do |customer_join|
                 customer_join.internalId
