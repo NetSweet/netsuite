@@ -18,7 +18,7 @@ module NetSuite
       end
 
       def request
-        if !@options.nil? and !@options[:body_fields_only]
+        if !@options.nil? and @options[:body_fields_only] == false
           connection.request :search do
             soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
             soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
