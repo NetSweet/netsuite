@@ -42,7 +42,11 @@ module NetSuite
           search_record.criteria do |criteria|
             criteria.basic do |basic|
               if @klass.respond_to?(:default_search_options)
-                @options[:criteria].merge!(@klass.default_search_options)
+                if @options[:criteria].present?
+                  @options[:criteria].merge!(@klass.default_search_options)
+                else
+                  @options[:criteria] = @klass.default_search_options
+                end
               end
 
               @options[:criteria].each do |field_name, field_options|
