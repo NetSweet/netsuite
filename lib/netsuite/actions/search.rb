@@ -51,7 +51,7 @@ module NetSuite
               @options.merge!(@klass.default_search_options)
             end
 
-            @options.each do |field_name, field_options|
+            @options.except(:body_fields_only).each do |field_name, field_options|
               field_hash = {
                 operator: field_options[:operator],
                 'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
