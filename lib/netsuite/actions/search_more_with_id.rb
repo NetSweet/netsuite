@@ -23,7 +23,7 @@ module NetSuite
 
           soap.header = auth_header.merge({
             search_preferences: {
-              body_fields_only: @options.present? ? (@options[:body_fields_only].present? ? @options[:body_fields_only] : true) : true
+              body_fields_only: @options.present? ? (@options[:body_fields_only].nil? ? true : @options[:body_fields_only]) : true
             }
           })
           
