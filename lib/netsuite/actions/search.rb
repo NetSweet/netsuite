@@ -78,6 +78,12 @@ module NetSuite
             end
 
             search_record.columns do |columns|
+              columns.basic do |basic|
+                basic.created_date
+              end
+              columns.customerJoin do |customer_join|
+                customer_join.internalId
+              end
               columns.itemJoin do |item_join|
                 item_join.itemId
               end
