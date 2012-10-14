@@ -47,6 +47,8 @@ module NetSuite
                 else
                   @options[:criteria] = @klass.default_search_options
                 end
+              else
+                @options[:criteria] = { }
               end
 
               @options[:criteria].each do |field_name, field_options|
