@@ -51,9 +51,13 @@ module NetSuite
               end
 
               @options[:criteria].each do |field_name, field_options|
-                field_hash = {
-                  'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
-                }
+                field_hash = { }
+
+                if field_options[:type].present?
+                  field_hash.merge!({
+                    'xsi:type' => field_options[:type]
+                  })
+                end
 
                 if field_options[:operator].present?
                   field_hash.merge!({
