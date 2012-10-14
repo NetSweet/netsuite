@@ -61,7 +61,7 @@ module NetSuite
           },
           account: {
             type: 'platformCore:SearchColumnSelectField',
-            operator: 'anyOf',
+            operator: 'is',
             value: '1100 Accounts Receivable'
           }
 
