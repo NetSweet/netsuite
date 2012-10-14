@@ -70,7 +70,7 @@ module NetSuite
             criteria.accountJoin do |account_join|
               account_join.type({
                 'xsi:type' => 'platformCore:SearchEnumMultiSelectField',
-                operator: 'anyOf'
+                operator: 'noneOf'
               }) do |_type|
                 _type.platformCore(:searchValue, '_accountsReceivable')
               end
