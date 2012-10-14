@@ -57,7 +57,12 @@ module NetSuite
           type: {
             type: 'platformCore:SearchEnumMultiSelectField',
             operator: 'anyOf',
-            value: 'invoice'
+            value: '_invoice'
+          },
+          accountType: {
+            type: 'platformCore:SearchMultiSelectField',
+            operator: 'anyOf',
+            value: 'Accounts Receivable'
           }
         }
       end
