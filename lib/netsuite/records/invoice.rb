@@ -60,8 +60,8 @@ module NetSuite
             value: 'invoice'
           },
           account: {
-            type: 'platformCore:SearchColumnSelectField',
-            operator: 'is',
+            type: 'platformCore:SearchMultiSelectField',
+            operator: 'anyOf',
             value: '1100 Accounts Receivable'
           }
 
