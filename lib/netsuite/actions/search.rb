@@ -39,7 +39,7 @@ module NetSuite
         # TODO: Make setting of criteria and columns easier
         xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
           search_record.criteria do |criteria|
-            criteria.basic do |basic|
+            criteria.method_missing('tranSales:basic') do |basic|
               if @klass.respond_to?(:default_search_options)
                 if @options[:criteria].present?
                   @options[:criteria].merge!(@klass.default_search_options)
