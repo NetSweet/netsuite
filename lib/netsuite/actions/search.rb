@@ -36,6 +36,7 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
+        # TODO: When searching invoices allow for multiple basic search criteria to be set
         # TODO: Make setting of criteria and columns easier
         xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
           search_record.criteria do |criteria|
@@ -49,13 +50,9 @@ module NetSuite
               @options[:criteria] = { }
             end
 
-            puts @options[:criteria].inspect
-
             @options[:criteria].each do |criteria_type, _criteria|
               criteria.method_missing(criteria_type) do |_criteria_type|
                 _criteria.each do |criteria_name, criteria_options|
-                  puts 1
-                  puts criteria_options.inspect
                   criteria_hash = {
                     'xsi:type' => criteria_options[:type]
                   }
