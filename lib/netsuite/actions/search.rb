@@ -63,7 +63,7 @@ module NetSuite
                     })
                   end
 
-                  _criteria_type.method_missing(criteria_name, criteria_options) do |_criteria_name|
+                  _criteria_type.method_missing(criteria_name, criteria_hash) do |_criteria_name|
                     _criteria_name.platformCore(:searchValue, criteria_options[:value])
                   end
                 end
