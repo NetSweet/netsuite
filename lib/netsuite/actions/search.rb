@@ -36,22 +36,15 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
-        # TODO: Consistent use of namespace qualifying
-        # TODO: Allow for easier way to specify criteria and columns
-        xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
-          search_record.criteria do |criteria|
-            criteria.basic do |basic|
+        if true
+          # TODO: Consistent use of namespace qualifying
+          xml.searchRecord('xsi:type' => @klass.custom_soap_search_record_type) do |search_record|
+            search_record.basic('xsi:type' => "platformCommon:#{@klass.respond_to?(:custom_soap_basic_search_record_type) ? @klass.custom_soap_basic_search_record_type : soap_record_type}SearchBasic") do |basic|
               if @klass.respond_to?(:default_search_options)
-                if @options[:criteria].present?
-                  @options[:criteria].merge!(@klass.default_search_options)
-                else
-                  @options[:criteria] = @klass.default_search_options
-                end
-              else
-                @options[:criteria] = { }
+                @options.merge!(@klass.default_search_options)
               end
 
-              @options[:criteria].each do |field_name, field_options|
+              @options.each do |field_name, field_options|
                 field_hash = {
                   operator: field_options[:operator],
                   'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
@@ -63,15 +56,36 @@ module NetSuite
               end
             end
           end
+        else
+          xml.searchRecord('xsi:type' => 'tranSales:TransactionSearchAdvanced') do |search_record|
+            search_record.criteria do |criteria|
+              criteria.basic do |basic|
+                if @klass.respond_to?(:default_search_options)
+                  @options.merge!(@klass.default_search_options)
+                end
 
-          search_record.columns do |columns|
-            if @options[:columns].present?
-              @options[:columns].each do |result_type, result_columns|
-                columns.method_missing(result_type) do |_result_type|
-                  result_columns.each do |result_column|
-                    _result_type.method_missing(result_column)
+                @options.each do |field_name, field_options|
+                  field_hash = {
+                    operator: field_options[:operator],
+                    'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
+                  }
+
+                  basic.method_missing(field_name, field_hash) do |_field_name|
+                    _field_name.platformCore(:searchValue, field_options[:value])
                   end
                 end
+              end
+            end
+
+            search_record.columns do |columns|
+              columns.basic do |basic|
+                basic.dateCreated
+              end
+              columns.customerJoin do |customer_join|
+                customer_join.internalId
+              end
+              columns.itemJoin do |item_join|
+                item_join.itemId
               end
             end
           end

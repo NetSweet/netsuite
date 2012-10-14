@@ -48,8 +48,12 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def self.custom_soap_advanced_search_record_type
-        'tranSales:TransactionSearchAdvanced'
+      def self.custom_soap_search_record_type
+        "tranSales:TransactionSearch"
+      end
+
+      def self.custom_soap_basic_search_record_type
+        'Transaction'
       end
 
       def self.default_search_options
