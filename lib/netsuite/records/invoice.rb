@@ -59,7 +59,7 @@ module NetSuite
             operator: 'anyOf',
             value: 'invoice'
           },
-          acctType: {
+          accountType: {
             type: 'platformCore:SearchMultiSelectField',
             operator: 'anyOf',
             value: '_accountsReceivable'
