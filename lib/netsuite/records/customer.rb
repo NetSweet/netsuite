@@ -42,8 +42,8 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def self.custom_soap_search_record_type
-        "listRel:CustomerSearch"
+      def self.custom_soap_advanced_search_record_type
+        'listRel:CustomerSearchAdvanced'
       end
 
       def to_record
