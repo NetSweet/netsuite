@@ -59,10 +59,10 @@ module NetSuite
             operator: 'anyOf',
             value: 'invoice'
           },
-          account: {
+          accountType: {
             type: 'platformCore:SearchMultiSelectField',
             operator: 'anyOf',
-            value: '1100 Accounts Receivable'
+            value: 'accounts receivable'
           }
 
         }
