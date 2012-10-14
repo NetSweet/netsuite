@@ -39,40 +39,33 @@ module NetSuite
         # TODO: Make setting of criteria and columns easier
         xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
           search_record.criteria do |criteria|
-            criteria.basic do |basic|
-              if @klass.respond_to?(:default_search_options)
-                if @options[:criteria].present?
-                  @options[:criteria].merge!(@klass.default_search_options)
-                else
-                  @options[:criteria] = @klass.default_search_options
-                end
+            if @klass.respond_to?(:default_search_options)
+              if @options[:criteria].present?
+                @options[:criteria].merge!(@klass.default_search_options)
               else
-                @options[:criteria] = { }
+                @options[:criteria] = @klass.default_search_options
               end
-
-              @options[:criteria].each do |field_name, field_options|
-                field_hash = {
-                  'xsi:type' => field_options[:type] || 'platformCore:SearchStringField'
-                }
-
-                if field_options[:operator].present?
-                  field_hash.merge!({
-                    operator: field_options[:operator]
-                  })
-                end
-
-                basic.method_missing(field_name, field_hash) do |_field_name|
-                  _field_name.platformCore(:searchValue, field_options[:value])
-                end
-              end
+            else
+              @options[:criteria] = { }
             end
 
-            criteria.accountJoin do |account_join|
-              account_join.type({
-                'xsi:type' => 'platformCore:SearchEnumMultiSelectField',
-                operator: 'noneOf'
-              }) do |_type|
-                _type.platformCore(:searchValue, '_accountsReceivable')
+            @options[:criteria].each do |criteria_type, criteria|
+              criteria.method_missing(criteria_type) do |_criteria_type|
+                criteria.each do |criteria_name, criteria_options|
+                  criteria_hash = {
+                    'xsi:type' => criteria_options[:type]
+                  }
+
+                  if criteria_options[:operator].present?
+                    criteria_hash.merge!({
+                      operator: criteria_options[:operator]
+                    })
+                  end
+
+                  _criteria_type.method_missing(criteria_name, criteria_options) do |_criteria_name|
+                    _criteria_name.platformCore(:searchValue, criteria_options[:value])
+                  end
+                end
               end
             end
           end
