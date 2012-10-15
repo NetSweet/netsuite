@@ -69,15 +69,13 @@ module NetSuite
             response_hash = { }
 
             if response.success?
-              response_list = []
+              search_results = []
 
               if response.body[:search_row_list].present?
                 response.body[:search_row_list][:search_row].each do |record|
-                  puts record.inspect
+                  search_result = SearchResult.new(record)
 
-                  entity = new(record)
-
-                  response_list << entity
+                  search_results << search_result
                 end
               end
 
@@ -86,7 +84,7 @@ module NetSuite
 
               response_hash[:page_index] = page_index
               response_hash[:total_pages] = total_pages
-              response_hash[:entities] = response_list
+              response_hash[:search_results] = search_results
 
               response_hash
             else

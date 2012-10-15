@@ -28,6 +28,7 @@ module NetSuite
     autoload :RecordRefs, 'netsuite/support/record_refs'
     autoload :Records,    'netsuite/support/records'
     autoload :Requests,   'netsuite/support/requests'
+    autoload :SearchResult, 'netsuite/records/search_result'
   end
 
   module Actions
