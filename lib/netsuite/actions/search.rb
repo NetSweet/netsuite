@@ -124,7 +124,7 @@ module NetSuite
 
               if response.body[:search_row_list].present?
                 response.body[:search_row_list][:search_row].each do |record|
-                  entity = SearchResult.new(record)
+                  search_result = NetSuite::Support::SearchResult.new(record)
 
                   search_results << search_result
                 end
