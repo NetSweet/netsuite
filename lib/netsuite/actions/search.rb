@@ -1,5 +1,4 @@
 # TODO: Tests
-# TODO: DBC
 module NetSuite
 	module Actions
 		class Search
@@ -26,7 +25,7 @@ module NetSuite
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
           soap.header = auth_header
-          
+
           soap.body = request_body
         end
       end
@@ -114,9 +113,39 @@ module NetSuite
 
         # TODO: Rename page_index to page
         module ClassMethods
+          # Preconditions
+          # => options is a Hash with the following format:
+          #      {
+          #        criteria: {
+          #          basic: {
+          #            type: {
+          #              type: 'platformCore:SearchEnumMultiSelectField',
+          #              operator: 'anyOf',
+          #              value: '_invoice'
+          #            }
+          #          },
+          #          accountJoin: {
+          #            type: {
+          #              type: 'platformCore:SearchEnumMultiSelectField',
+          #              operator: 'anyOf',
+          #              value: '_accountsReceivable'
+          #            }
+          #          }
+          #        },
+          #        columns: {
+          #          basic: ['internalId', 'total', 'dateCreated'],
+          #          customerJoin: ['internalId']
+          #        }
+          #      }
+          # Postconditions
+          # => Hash with the following keys:
+          #      * search_id which is a string
+          #      * page_index which is an integer
+          #      * total_pages which is an integer
+          #      * search_results containing array of SearchResult's
           def search(options = { })
             response = NetSuite::Actions::Search.call(self, options)
-            
+
             response_hash = { }
 
             if response.success?

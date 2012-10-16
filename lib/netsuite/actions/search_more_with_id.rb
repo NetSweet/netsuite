@@ -12,7 +12,7 @@ module NetSuite
       end
 
       private
-      
+
       def request
         connection.request(:search_more_with_id) do
           soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
@@ -22,7 +22,7 @@ module NetSuite
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
           soap.header = auth_header
-          
+
           soap.body = request_body
         end
       end
@@ -63,9 +63,17 @@ module NetSuite
 
         # TODO: Rename page_index to page
         module ClassMethods
+          # Preconditions
+          # => options[:search_id] is a string
+          # => options[:page], optional, is an integer
+          # Postconditions
+          # => Hash with the following keys:
+          #      * page_index which is an integer
+          #      * total_pages which is an integer
+          #      * search_results containing array of SearchResult's
           def search_more_with_id(options = { })
             response = NetSuite::Actions::SearchMoreWithId.call(self, options)
-            
+
             response_hash = { }
 
             if response.success?
