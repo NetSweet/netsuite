@@ -24,7 +24,11 @@ module NetSuite
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
-          soap.header = auth_header
+          soap.header = auth_header.merge({
+            search_preferences: {
+              page_size: 500
+            }
+          })
 
           soap.body = request_body
         end
