@@ -21,7 +21,7 @@ module NetSuite
 
       attributes[:connection]
     end
-    
+
     def api_version(version = nil)
       if version
         self.api_version = version
@@ -59,17 +59,13 @@ module NetSuite
         }
       }
     end
-    
+
     def role=(role)
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
-    
+
     def role(role = nil)
-      if role
-        self.role = role
-      else 
-        attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
-      end
+      self.role = role
     end
 
     def email=(email)
