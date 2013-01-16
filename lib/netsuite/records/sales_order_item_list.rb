@@ -12,6 +12,15 @@ module NetSuite
         end
       end
 
+      def item=(items)
+        case items
+        when Hash
+          self.items << SalesOrderItem.new(items)
+        when Array
+          items.each { |item| self.items << SalesOrderItem.new(item) }
+        end
+      end
+
       def items
         @items ||= []
       end
