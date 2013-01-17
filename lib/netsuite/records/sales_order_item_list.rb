@@ -1,15 +1,13 @@
 module NetSuite
   module Records
     class SalesOrderItemList
+      include Support::Fields
       include Namespaces::TranSales
 
+      fields :item
+
       def initialize(attributes = {})
-        case attributes[:item]
-        when Hash
-          items << SalesOrderItem.new(attributes[:item])
-        when Array
-          attributes[:item].each { |item| items << SalesOrderItem.new(item) }
-        end
+        initialize_from_attributes_hash(attributes)
       end
 
       def item=(items)
@@ -26,9 +24,7 @@ module NetSuite
       end
 
       def to_record
-        items.map do |item|
-          { "#{record_namespace}:item" => item.to_record }
-        end
+        { "#{record_namespace}:item" => items.map(&:to_record) }
       end
 
     end

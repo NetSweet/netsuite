@@ -16,8 +16,17 @@ module NetSuite
 
       record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
+      def initialize(attributes_or_record = {})
+        case attributes_or_record
+        when Hash
+          initialize_from_attributes_hash(attributes_or_record)
+        when self.class
+          initialize_from_record(attributes_or_record)
+        end
+      end
+
+      def initialize_from_record(record)
+        self.attributes = record.send(:attributes)
       end
 
       def to_record
