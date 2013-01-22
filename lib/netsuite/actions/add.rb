@@ -20,6 +20,7 @@ module NetSuite
           soap.namespaces['xmlns:tranCust']       = "urn:customers_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
           soap.namespaces['xmlns:setupCustom']    = "urn:customization_#{NetSuite::Configuration.api_version}.setup.webservices.netsuite.com"
           soap.namespaces['xmlns:tranGeneral']    = "urn:general_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
+          soap.namespaces['xmlns:tranInvt']       = "urn:inventory_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
           soap.header = auth_header
           soap.body   = request_body
         end
