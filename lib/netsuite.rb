@@ -85,6 +85,10 @@ module NetSuite
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :Term,                       'netsuite/records/term'
+    autoload :TransferOrder,              'netsuite/records/transfer_order'
+    autoload :TransferOrderItem,          'netsuite/records/transfer_order_item'
+    autoload :TransferOrderItemList,      'netsuite/records/transfer_order_item_list'
+    autoload :TransferOrderStatus,        'netsuite/records/transfer_order_status'
   end
 
   def self.configure(&block)
