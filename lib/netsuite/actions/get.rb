@@ -67,6 +67,8 @@ module NetSuite
         module ClassMethods
 
           def get(options = {})
+            options = { :internal_id => options } unless options.is_a?(Hash)
+
             response = NetSuite::Actions::Get.call(self, options)
             if response.success?
              new(response.body)
