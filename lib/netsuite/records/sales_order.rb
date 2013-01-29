@@ -21,6 +21,7 @@ module NetSuite
 
       field :transaction_bill_address, BillAddress
       field :item_list,                SalesOrderItemList
+      field :custom_field_list,        CustomFieldList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 
