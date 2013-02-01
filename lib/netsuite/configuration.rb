@@ -2,7 +2,7 @@ module NetSuite
   module Configuration
     extend self
 
-    READ_TIMEOUT = 1000
+    READ_TIMEOUT = 5000
 
     def reset!
       attributes.clear
