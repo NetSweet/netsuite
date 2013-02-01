@@ -58,7 +58,7 @@ module NetSuite
             type: {
               type: 'platformCore:SearchEnumMultiSelectField',
               operator: 'anyOf',
-              value: '_invoice'
+              value: '_cashSale'
             }
           }
         }
