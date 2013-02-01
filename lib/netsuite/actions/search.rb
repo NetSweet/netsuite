@@ -26,7 +26,7 @@ module NetSuite
 
           soap.header = auth_header.merge({
             'platformMsgs:searchPreferences' => {
-              'pageSize' => 10
+              'pageSize' => 300
             }
           })
 

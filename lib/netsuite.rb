@@ -84,7 +84,6 @@ module NetSuite
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :Term,                       'netsuite/records/term'
-    autoload :Transaction,                       'netsuite/records/transaction'
   end
 
   def self.configure(&block)
