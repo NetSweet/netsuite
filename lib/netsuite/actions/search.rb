@@ -49,8 +49,6 @@ module NetSuite
               else
                 @options[:criteria] = @klass.default_search_options
               end
-            else
-              @options[:criteria] = { }
             end
 
             @options[:criteria].each do |criteria_type, _criteria|
