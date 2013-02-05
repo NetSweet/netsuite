@@ -51,6 +51,10 @@ module NetSuite
               end
             end
 
+            unless @options[:criteria]
+              @options[:criteria] = { }
+            end
+
             @options[:criteria].each do |criteria_type, _criteria|
               criteria.method_missing(criteria_type) do |_criteria_type|
                 _criteria.each do |criteria_name, criteria_options|
