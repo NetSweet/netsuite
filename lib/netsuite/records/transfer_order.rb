@@ -13,7 +13,7 @@ module NetSuite
         :status, :ship_address, :fob, :tran_date, :tran_id, :source, :order_status,
         :memo, :ship_date, :tracking_numbers, :linked_tracking_numbers, :ship_complete,
         :alt_shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :handling_tax1_rate,
-        :handling_tax2_rate, :total, :order_status
+        :handling_tax2_rate, :total, :order_status, :klass
 
       field :custom_field_list, CustomFieldList
       field :item_list, TransferOrderItemList
