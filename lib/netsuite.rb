@@ -11,6 +11,7 @@ module NetSuite
   autoload :Response,      'netsuite/response'
 
   module Namespaces
+    autoload :ActSched,       'netsuite/namespaces/act_sched'
     autoload :ListAcct,       'netsuite/namespaces/list_acct'
     autoload :ListRel,        'netsuite/namespaces/list_rel'
     autoload :PlatformCommon, 'netsuite/namespaces/platform_common'
@@ -83,6 +84,7 @@ module NetSuite
     autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
     autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
     autoload :ShipAddress,                'netsuite/records/ship_address'
+    autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
   end
 
