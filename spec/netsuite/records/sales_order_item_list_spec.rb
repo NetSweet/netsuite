@@ -15,13 +15,11 @@ describe NetSuite::Records::SalesOrderItemList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranSales:item' => {
-            'tranSales:rate' => 10
-          }
-        }
-      ]
+      record =  {
+        'tranSales:item' => [{
+          'tranSales:rate' => 10
+        }]
+      }
       list.to_record.should eql(record)
     end
   end

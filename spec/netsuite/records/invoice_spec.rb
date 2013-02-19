@@ -8,7 +8,7 @@ describe NetSuite::Records::Invoice do
   it 'has all the right fields' do
     [
       :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :balance, :bill_address,
-      :billing_schedule, :contrib_pct, :created_date, :created_from, :currency_name,
+      :billing_schedule, :contrib_pct, :created_date, :currency_name,
       :deferred_revenue, :discount_amount, :discount_date, :discount_item, :discount_rate,
       :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
       :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
@@ -17,12 +17,12 @@ describe NetSuite::Records::Invoice do
       :handling_tax_2_rate, :handling_tax_code, :is_taxable, :item_cost_disc_amount, :item_cost_disc_print,
       :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
       :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :job, :last_modified_date,
-      :lead_source, :linked_tracking_numbers, :location, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
+      :lead_source, :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
       :other_ref_name, :partner, :partners_list, :promo_code, :recognized_revenue, :rev_rec_end_date,
       :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
-      :sales_group, :sales_rep, :sales_team_list, :ship_address, :ship_date, :ship_group_list,
-      :ship_method, :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
-      :status, :subsidiary, :sync_partner_teams, :sync_sales_teams, :tax_2_total, :tax_item, :tax_rate,
+      :sales_group, :sales_team_list, :ship_address, :ship_date, :ship_group_list,
+      :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
+      :status, :subsidiary, :sync_partner_teams, :sync_sales_teams, :tax_2_total, :tax_rate,
       :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
       :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
       :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
@@ -42,7 +42,8 @@ describe NetSuite::Records::Invoice do
 
   it 'has the right record_refs' do
     [
-      :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms
+      :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
+      :created_from, :location, :sales_rep, :ship_method, :tax_item
     ].each do |record_ref|
       invoice.should have_record_ref(record_ref)
     end
