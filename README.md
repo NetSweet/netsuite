@@ -1,8 +1,8 @@
-# Netsuite
+# NetSuite Ruby SuiteTalk Gem
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API. Wow, that is a mouthful.
 * The gem does not cover the entire API, only the subset that we have found useful to cover so far.
-* [Extending the wrapper](#extending) is pretty simple. See below for an example.
+* Extending the wrapper is pretty simple. See below for an example.
 
 ## Installation
 
@@ -19,6 +19,16 @@ Or install it yourself as:
     $ gem install netsuite
 
 This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/RevolutionPrep/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
+
+## Testing
+Before contributing a patch make sure all existing tests pass.
+
+```
+git clone git://github.com/iloveitaly/netsuite.git
+cd netsuite
+bundle
+bundle exec rspec
+```
 ## Usage
 
 ### Configuration
@@ -48,8 +58,13 @@ end
 * Retrieves the customer by internalId.
 
     ```Ruby
-    customer = NetSuite::Records::Customer.get(:internal_id => 4) # => #<NetSuite::Records::Customer:0x1042f59b8>
-    customer.is_person                            # => true
+    customer = NetSuite::Records::Customer.get(:internal_id => 4)
+    # => #<NetSuite::Records::Customer:0x1042f59b8>
+    customer.is_person
+    # => true
+    
+    # or
+    NetSuite::Records::Customer.get(4).is_person
     ```
 
 ## Additions
