@@ -6,9 +6,9 @@ module NetSuite
       def initialize(attributes = {})
         case attributes[:custom_field]
         when Hash
-          custom_fields << CustomField.new(attributes[:custom_field])
+          extract_custom_field(attributes[:custom_field])
         when Array
-          attributes[:custom_field].each { |custom_field| custom_fields << CustomField.new(custom_field) }
+          attributes[:custom_field].each { |custom_field| extract_custom_field(custom_field) }
         end
         
         @custom_fields_assoc = Hash.new
@@ -40,6 +40,15 @@ module NetSuite
         }.join
       end
 
+      private
+        def extract_custom_field(custom_field_data)
+          # TODO this needs to be cleaned up & tested; very messy
+          if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
+            custom_field_data[:value] = CustomRecordRef.new(custom_field_data.delete(:value))
+          end
+
+          custom_fields << CustomField.new(custom_field_data)
+        end
     end
   end
 end
