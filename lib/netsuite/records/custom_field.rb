@@ -12,6 +12,10 @@ module NetSuite
         self.attributes = attributes
       end
 
+      def value
+        attributes[:value]
+      end
+
       def to_record
         hash_rec = attributes.inject({}) do |hash, (k,v)|
           kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
