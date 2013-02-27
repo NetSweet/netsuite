@@ -11,9 +11,14 @@ module NetSuite
     end
 
     def connection
-      attributes[:connection] ||= Savon::Client.new(self.wsdl)
+      unless attributes[:connection]
+        attributes[:connection] = Savon::Client.new(self.wsdl)
+        attributes[:connection].http.read_timeout = read_timeout
+      end
+
+      attributes[:connection]
     end
-    
+
     def api_version(version = nil)
       if version
         self.api_version = version
@@ -103,6 +108,18 @@ module NetSuite
         attributes[:account] ||
         raise(ConfigurationError,
           '#account is a required configuration value. Please set it by calling NetSuite::Configuration.account = 1234')
+      end
+    end
+
+    def read_timeout=(timeout)
+      attributes[:read_timeout] = timeout
+    end
+
+    def read_timeout(timeout = nil)
+      if timeout
+        self.read_timeout = timeout
+      else
+        attributes[:read_timeout] ||= 60
       end
     end
 
