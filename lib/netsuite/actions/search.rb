@@ -26,7 +26,7 @@ module NetSuite
 
           soap.header = auth_header.merge({
             'platformMsgs:searchPreferences' => {
-              'pageSize' => 300
+              'pageSize' => 10
             }
           })
 
@@ -45,7 +45,7 @@ module NetSuite
           search_record.criteria do |criteria|
             if @klass.respond_to?(:default_search_options)
               if @options[:criteria].present?
-                @options[:criteria].merge!(@klass.default_search_options)
+                @options[:criteria] = @klass.default_search_options.merge(@options[:criteria])
               else
                 @options[:criteria] = @klass.default_search_options
               end
@@ -56,6 +56,7 @@ module NetSuite
             end
 
             @options[:criteria].each do |criteria_type, _criteria|
+              
               criteria.method_missing(criteria_type) do |_criteria_type|
                 _criteria.each do |criteria_name, criteria_options|
                   criteria_hash = {
