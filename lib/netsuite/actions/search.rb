@@ -39,20 +39,14 @@ module NetSuite
 
         xml = Builder::XmlMarkup.new(target: buffer)
 
+        @options[:criteria] ||= {}
+
         # TODO: When searching invoices allow for multiple basic search criteria to be set
         # TODO: Make setting of criteria and columns easier
         xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
           search_record.criteria do |criteria|
             if @klass.respond_to?(:default_search_options)
-              if @options[:criteria].present?
-                @options[:criteria].merge!(@klass.default_search_options)
-              else
-                @options[:criteria] = @klass.default_search_options
-              end
-            end
-
-            unless @options[:criteria]
-              @options[:criteria] = { }
+              @options[:criteria].merge!(@klass.default_search_options)
             end
 
             @options[:criteria].each do |criteria_type, _criteria|
@@ -62,10 +56,8 @@ module NetSuite
                     'xsi:type' => criteria_options[:type]
                   }
 
-                  if criteria_options[:operator].present?
-                    criteria_hash.merge!({
-                      operator: criteria_options[:operator]
-                    })
+                  if !!criteria_options[:operator] && !criteria_options[:operator].empty?
+                    criteria_hash.merge!({ operator: criteria_options[:operator] })
                   end
 
                   _criteria_type.method_missing(criteria_name, criteria_hash) do |_criteria_name|
@@ -77,15 +69,13 @@ module NetSuite
           end
 
           search_record.columns do |columns|
-            if @options[:columns].present?
-              @options[:columns].each do |result_type, result_columns|
-                columns.method_missing(result_type) do |_result_type|
-                  result_columns.each do |result_column|
-                    _result_type.method_missing(result_column)
-                  end
+            @options[:columns].each do |result_type, result_columns|
+              columns.method_missing(result_type) do |_result_type|
+                result_columns.each do |result_column|
+                  _result_type.method_missing(result_column)
                 end
               end
-            end
+            end if !!@options[:columns] && !@options[:columns].empty?
           end
         end
 
