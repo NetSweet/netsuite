@@ -26,7 +26,7 @@ module NetSuite
 
           soap.header = auth_header.merge({
             'platformMsgs:searchPreferences' => {
-              'pageSize' => 300
+              'pageSize' => 10
             }
           })
 
@@ -80,6 +80,47 @@ module NetSuite
         end
 
         buffer
+
+        # <soap:Body>
+        # <platformMsgs:search>
+        # <searchRecord xsi:type="ContactSearch">
+        #   <customerJoin xsi:type="CustomerSearchBasic">
+        #     <email operator="contains" xsi:type="platformCore:SearchStringField">
+        #     <platformCore:searchValue>shutterfly.com</platformCore:searchValue>
+        #     <email>
+        #   <customerJoin>
+        # </searchRecord>
+        # </search>
+        # </soap:Body>
+
+        # this is the hash that the above code needs to spit out
+        # I don't want to have to create seperate objects for *everything*
+        
+        {
+          'searchRecord' => {
+            'listRel:customerJoin' => {
+              'platformCommon:email' => {
+                'platformCore:searchValue' => 'gmail.com'
+              },
+              :attributes! => {
+                'platformCommon:email' => {
+                  'operator' => 'contains',
+                  'xsi:type' => 'platformCore:SearchStringField'
+                }
+              }
+            },
+            :attributes! => {
+              'customerJoin' => {
+                'xsi:type' => "listRel:CustomerSearchBasic"
+              }
+            }
+          },
+          :attributes! => {
+            'searchRecord' => {
+              'xsi:type' => 'listRel:ContactSearch'
+            },
+          }
+        }
       end
 
       def response_header
@@ -147,7 +188,7 @@ module NetSuite
             if response.success?
               search_results = []
 
-              if response.body[:search_row_list].present?
+              if !!response.body[:search_row_list] && !response.body[:search_row_list].empty?
                 response.body[:search_row_list][:search_row].each do |record|
                   search_result = NetSuite::Support::SearchResult.new(record)
 

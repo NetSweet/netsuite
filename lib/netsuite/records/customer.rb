@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :search, :search_more_with_id
 
       fields :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
@@ -48,6 +48,10 @@ module NetSuite
           rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
         end
         rec
+      end
+
+      def self.custom_soap_advanced_search_record_type
+        'listRel:CustomerSearchAdvanced'
       end
 
     end
