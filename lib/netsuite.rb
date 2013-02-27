@@ -29,6 +29,7 @@ module NetSuite
     autoload :RecordRefs, 'netsuite/support/record_refs'
     autoload :Records,    'netsuite/support/records'
     autoload :Requests,   'netsuite/support/requests'
+    autoload :SearchResult, 'netsuite/support/search_result'
   end
 
   module Actions
@@ -37,6 +38,8 @@ module NetSuite
     autoload :Get,        'netsuite/actions/get'
     autoload :Initialize, 'netsuite/actions/initialize'
     autoload :Update,     'netsuite/actions/update'
+    autoload :Search, 'netsuite/actions/search'
+    autoload :SearchMoreWithId, 'netsuite/actions/search_more_with_id'
   end
 
   module Records
@@ -94,6 +97,7 @@ module NetSuite
     autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
     autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
     autoload :Term,                       'netsuite/records/term'
+    autoload :Transaction,                'netsuite/records/transaction'
     autoload :TransferOrder,              'netsuite/records/transfer_order'
     autoload :TransferOrderItem,          'netsuite/records/transfer_order_item'
     autoload :TransferOrderItemList,      'netsuite/records/transfer_order_item_list'

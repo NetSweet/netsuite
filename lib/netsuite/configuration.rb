@@ -2,6 +2,8 @@ module NetSuite
   module Configuration
     extend self
 
+    READ_TIMEOUT = 1000
+
     def reset!
       attributes.clear
     end
@@ -11,9 +13,15 @@ module NetSuite
     end
 
     def connection
-      attributes[:connection] ||= Savon::Client.new(self.wsdl)
+      unless attributes[:connection].present?
+        attributes[:connection] = Savon::Client.new(self.wsdl)
+
+        attributes[:connection].http.read_timeout = READ_TIMEOUT
+      end
+
+      attributes[:connection]
     end
-    
+
     def api_version(version = nil)
       if version
         self.api_version = version
@@ -39,29 +47,30 @@ module NetSuite
     end
 
     def auth_header
-      attributes[:auth_header] ||= {
+      auth_header_hash = {
         'platformMsgs:passport' => {
           'platformCore:email'    => email,
           'platformCore:password' => password,
-          'platformCore:account'  => account.to_s,
-          'platformCore:role'     => role.to_record,
-          :attributes! => {
-            'platformCore:role' => role.attributes!
-          }
+          'platformCore:account'  => account.to_s
         }
       }
+
+      if role
+        auth_header_hash['platformMsgs:password'].merge!('platformCore:role' => role.to_record,
+          :attributes! => {
+            'platformCore:role' => role.attributes!
+        })
+      end
+
+      attributes[:auth_header] ||= auth_header_hash
     end
-    
+
     def role=(role)
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
-    
+
     def role(role = nil)
-      if role
-        self.role = role
-      else 
-        attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
-      end
+      self.role = role
     end
 
     def email=(email)
