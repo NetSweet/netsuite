@@ -90,6 +90,7 @@ module NetSuite
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
+    autoload :Transaction,                'netsuite/records/transaction'
   end
 
   def self.configure(&block)
