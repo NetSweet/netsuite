@@ -29,14 +29,17 @@ module NetSuite
     autoload :RecordRefs, 'netsuite/support/record_refs'
     autoload :Records,    'netsuite/support/records'
     autoload :Requests,   'netsuite/support/requests'
+    autoload :SearchResult, 'netsuite/support/search_result'
   end
 
   module Actions
-    autoload :Add,        'netsuite/actions/add'
-    autoload :Delete,     'netsuite/actions/delete'
-    autoload :Get,        'netsuite/actions/get'
-    autoload :Initialize, 'netsuite/actions/initialize'
-    autoload :Update,     'netsuite/actions/update'
+    autoload :Add,              'netsuite/actions/add'
+    autoload :Delete,           'netsuite/actions/delete'
+    autoload :Get,              'netsuite/actions/get'
+    autoload :Initialize,       'netsuite/actions/initialize'
+    autoload :Update,           'netsuite/actions/update'
+    autoload :Search,           'netsuite/actions/search'
+    autoload :SearchMoreWithId, 'netsuite/actions/search_more_with_id'
   end
 
   module Records
