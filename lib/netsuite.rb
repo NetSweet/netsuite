@@ -64,6 +64,7 @@ module NetSuite
     autoload :CustomerRefundApplyList,    'netsuite/records/customer_refund_apply_list'
     autoload :CustomerRefundDeposit,      'netsuite/records/customer_refund_deposit'
     autoload :CustomerRefundDepositList,  'netsuite/records/customer_refund_deposit_list'
+    autoload :ContactList,                'netsuite/records/contact_list'
     autoload :Contact,                    'netsuite/records/contact'
     autoload :Department,                 'netsuite/records/department'
     autoload :Duration,                   'netsuite/records/duration'
