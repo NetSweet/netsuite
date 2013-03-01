@@ -26,7 +26,7 @@ module NetSuite
 
           soap.header = auth_header.merge({
             'platformMsgs:searchPreferences' => {
-              'pageSize' => 10
+              'pageSize' => 5
             }
           })
 
@@ -95,7 +95,12 @@ module NetSuite
 
         # this is the hash that the above code needs to spit out
         # I don't want to have to create seperate objects for *everything*
-        
+
+        # binding.pry
+        example = @klass.new
+        namespace = example.record_namespace
+        class_name = @klass.to_s.split("::").last
+
         {
           'searchRecord' => {
             'listRel:customerJoin' => {
@@ -121,6 +126,36 @@ module NetSuite
             },
           }
         }
+
+        # customer search
+
+        {
+          'searchRecord' => {
+            "#{namespace}:basic" => {
+              'platformCommon:email' => {
+                'platformCore:searchValue' => 'gmail.com'
+              },
+              :attributes! => {
+                'platformCommon:email' => {
+                  'operator' => 'contains',
+                  'xsi:type' => 'platformCore:SearchStringField'
+                }
+              }
+            },
+            :attributes! => {
+              'customerJoin' => {
+                'xsi:type' => "#{namespace}:#{class_name}SearchBasic"
+              }
+            }
+          },
+          :attributes! => {
+            'searchRecord' => {
+              # ex: listRel:CustomerSearch
+              'xsi:type' => "#{namespace}:#{class_name}Search"
+            },
+          }
+        }
+
       end
 
       def response_header
@@ -132,15 +167,15 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_body_hash
+        @response_body ||= search_result
       end
 
-      def response_body_hash
-        @response_body_hash = @response[:search_response][:search_result]
+      def search_result
+        @search_result = @response[:search_response][:search_result]
       end
 
       def success?
-        @success ||= response_body_hash[:status][:@is_success] == 'true'
+        @success ||= search_result[:status][:@is_success] == 'true'
       end
 
       module Support
@@ -183,31 +218,10 @@ module NetSuite
           def search(options = { })
             response = NetSuite::Actions::Search.call(self, options)
 
-            response_hash = { }
-
             if response.success?
-              search_results = []
-
-              if !!response.body[:search_row_list] && !response.body[:search_row_list].empty?
-                response.body[:search_row_list][:search_row].each do |record|
-                  search_result = NetSuite::Support::SearchResult.new(record)
-
-                  search_results << search_result
-                end
-              end
-
-              search_id = response.header[:ns_id]
-              page_index = response.body[:page_index]
-              total_pages = response.body[:total_pages]
-
-              response_hash[:search_id] = search_id
-              response_hash[:page_index] = page_index
-              response_hash[:total_pages] = total_pages
-              response_hash[:search_results] = search_results
-
-              response_hash
+              NetSuite::Support::SearchResult.new(response, self)
             else
-              raise ArgumentError
+              false
             end
           end
         end
