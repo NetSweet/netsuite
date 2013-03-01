@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :search
 
       fields :salutation, :first_name, :middle_name, :last_name, :title, :phone, :fax, :email, :default_address,
              :entity_id, :phonetic_name, :alt_email, :office_phone, :home_phone, :mobile_phone, :supervisor_phone,
