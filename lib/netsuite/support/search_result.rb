@@ -2,6 +2,7 @@ module NetSuite
   module Support
     class SearchResult
       attr_accessor :response
+      attr_reader :total_records
 
       # header from a basic customer search:
 
@@ -15,9 +16,16 @@ module NetSuite
 
       def initialize(response, result_class)
         @response = response
+        @total_records = response.body[:total_records].to_i
 
-        response.body[:record_list][:record].each do |record|
-          results << result_class.new(record)
+        if @total_records > 0
+          if @total_records == 1
+            [response.body[:record_list][:record]]
+          else
+            response.body[:record_list][:record]
+          end.each do |record|
+            results << result_class.new(record)
+          end
         end
 
         # search_results = []
