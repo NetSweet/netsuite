@@ -77,6 +77,7 @@ module NetSuite
     autoload :JournalEntry,               'netsuite/records/journal_entry'
     autoload :JournalEntryLine,           'netsuite/records/journal_entry_line'
     autoload :JournalEntryLineList,       'netsuite/records/journal_entry_line_list'
+    autoload :KitItem,                    'netsuite/records/kit_item'
     autoload :Location,                   'netsuite/records/location'
     autoload :NonInventorySaleItem,       'netsuite/records/non_inventory_sale_item'
     autoload :PaymentMethod,              'netsuite/records/payment_method'
