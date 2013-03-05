@@ -8,6 +8,8 @@ module NetSuite
       attr_reader   :internal_id
       attr_accessor :external_id, :type_id
 
+      fields :name
+
       def initialize(attributes_or_record = {})
         case attributes_or_record
         when Hash
