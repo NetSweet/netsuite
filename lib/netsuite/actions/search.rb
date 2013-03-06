@@ -41,7 +41,11 @@ module NetSuite
 
         # TODO: When searching invoices allow for multiple basic search criteria to be set
         # TODO: Make setting of criteria and columns easier
-        xml.searchRecord('xsi:type' => @klass.custom_soap_advanced_search_record_type) do |search_record|
+        search_record_attr = {'xsi:type' => @klass.custom_soap_advanced_search_record_type}
+        unless @options[:saved_search_id].blank?
+          search_record_attr['savedSearchId'] = @options[:saved_search_id]
+        end
+        xml.searchRecord(search_record_attr) do |search_record|
           search_record.criteria do |criteria|
             if @klass.respond_to?(:default_search_options)
               if @options[:criteria].present?
