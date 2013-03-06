@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :add, :update, :delete
+      actions :get, :search, :search_more_with_id, :initialize, :add, :update, :delete
 
       fields :created_date, :last_modifiedDate, :created_from_ship_group,
         :transaction_ship_address, :ship_address, :ship_status, :saturday_delivery_ups,
@@ -42,6 +42,10 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.custom_soap_advanced_search_record_type
+        'tranSales:TransactionSearchAdvanced'
       end
 
       def to_record
