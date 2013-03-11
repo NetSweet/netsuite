@@ -13,12 +13,16 @@ module NetSuite
       end
 
       def to_record
-        hash_rec = attributes.inject({}) do |hash, (k,v)|
-          kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
-          to_attributes!(hash, kname, v)
-          v = v.to_record if v.respond_to?(:to_record)
-          hash[kname] = v
-          hash
+        unless type == "platformCore:SelectCustomFieldRef"
+          hash_rec = attributes.inject({}) do |hash, (k,v)|
+            kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
+            to_attributes!(hash, kname, v)
+            v = v.to_record if v.respond_to?(:to_record)
+            hash[kname] = v
+            hash
+          end
+        else
+          hash_rec = {:value => {:internal_id => attributes[:value][:@internal_id]}}
         end
         hash_rec
       end

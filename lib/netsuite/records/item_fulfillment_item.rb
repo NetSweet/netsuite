@@ -8,7 +8,7 @@ module NetSuite
 
 
       fields :job_name, :item_receive, :item_name, :description,
-        :location, :on_hand, :quantity, :units_display, :create_po,
+        :on_hand, :quantity, :units_display, :create_po,
         :inventory_detail, :bin_numbers, :serial_numbers, :po_num,
         :order_line, :quantity_remaining, :ship_group, :item_is_fulfilled
 
