@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranInvt
 
-      actions :get, :add, :delete, :update
+      actions :get, :add, :delete, :update, :search
 
       fields :created_date, :last_modified_date, :shipping_cost, :sub_total,
         :status, :ship_address, :fob, :tran_date, :tran_id, :source, :order_status,
