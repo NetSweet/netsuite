@@ -28,7 +28,7 @@ module NetSuite
             end
 
             define_method("#{name_sym}=") do |value|
-              attributes[name_sym] = value.kind_of?(klass) ? value : klass.new(value)
+              attributes[name_sym] = value.kind_of?(klass) || value.nil? ? value : klass.new(value)
             end
           else
             define_method(name_sym) do
