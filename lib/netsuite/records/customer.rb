@@ -50,10 +50,6 @@ module NetSuite
         rec
       end
 
-      def self.custom_soap_advanced_search_record_type
-        'listRel:CustomerSearchAdvanced'
-      end
-
     end
   end
 end
