@@ -99,7 +99,7 @@ module NetSuite
   def self.configure(&block)
     NetSuite::Configuration.instance_eval(&block)
     Savon.configure do |config|
-      config.logger = NetSuite::XmlLogger.new(STDOUT)
+      config.logger = NetSuite::Configuration.logger
     end
   end
 

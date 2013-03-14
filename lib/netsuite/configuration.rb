@@ -142,5 +142,18 @@ module NetSuite
       end
     end
 
+    def log=(path)
+      attributes[:log] = path
+    end
+
+    def log(path = nil)
+      self.log = path if path
+      attributes[:log]
+    end
+
+    def logger
+      attributes[:logger] ||= NetSuite::XmlLogger.new (log && !log.empty?) ? log : STDOUT
+    end
+
   end
 end
