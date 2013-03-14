@@ -14,7 +14,7 @@ module NetSuite
 
       field :contact_list, ContactList
 
-      record_refs :assigned, :owner
+      record_refs :assigned, :owner, :company, :contact
 
       attr_reader   :internal_id
       attr_accessor :external_id
