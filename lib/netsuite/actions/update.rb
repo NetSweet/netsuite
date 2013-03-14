@@ -16,6 +16,7 @@ module NetSuite
           soap.namespaces['xmlns:tranSales']      = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
           soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:listAcct']       = "urn:accounting_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
+          soap.namespaces['xmlns:actSched']       = "urn:scheduling_#{NetSuite::Configuration.api_version}.activities.webservices.netsuite.com"
           soap.namespaces['xmlns:tranCust']       = "urn:customers_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
           soap.namespaces['xmlns:setupCustom']    = "urn:customization_#{NetSuite::Configuration.api_version}.setup.webservices.netsuite.com"
           soap.header = auth_header
