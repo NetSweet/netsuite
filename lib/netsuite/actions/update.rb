@@ -14,6 +14,7 @@ module NetSuite
           soap.namespaces['xmlns:platformCore']   = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:listRel']        = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranSales']      = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
+          soap.namespaces['xmlns:tranInvt']       = "urn:inventory_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
           soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:listAcct']       = "urn:accounting_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranCust']       = "urn:customers_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
