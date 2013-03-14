@@ -38,6 +38,13 @@ describe NetSuite::Configuration do
         config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
       end
     end
+
+    context 'when the wsdl has not been set, but the API has been set' do
+      it 'should correctly return the full HTTP sandbox URL' do
+        config.api_version = '2013_1'
+        config.wsdl.should eql('https://webservices.netsuite.com/wsdl/v2013_1_0/netsuite.wsdl')
+      end
+    end
   end
 
   describe '#auth_header' do

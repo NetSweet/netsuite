@@ -31,6 +31,18 @@ module NetSuite
       attributes[:api_version] = version
     end
 
+    def sandbox=(flag)
+      attributes[:flag] = flag
+    end
+
+    def sandbox(flag = nil)
+      if flag.nil?
+        attributes[:flag] ||= false
+      else
+        self.sandbox = true
+      end
+    end
+
     def wsdl=(wsdl)
       attributes[:wsdl] = wsdl
     end
@@ -39,7 +51,14 @@ module NetSuite
       if wsdl
         self.wsdl = wsdl
       else
-        attributes[:wsdl] ||= File.expand_path("../../../wsdl/#{api_version}.wsdl", __FILE__)
+        if sandbox
+          wsdl_path = "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+        else
+          wsdl_path = File.expand_path("../../../wsdl/#{api_version}.wsdl", __FILE__)
+          wsdl_path = "https://webservices.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl" unless File.exists? wsdl_path
+        end
+
+        attributes[:wsdl] ||= wsdl_path
       end
     end
 
