@@ -85,6 +85,8 @@ task.add
 
 # this will only work on OS X, open a browser to the record that was just created
 `open https://system.sandbox.netsuite.com/app/crm/calendar/task.nl?id=#{invoice.internal_id}`
+
+task.update :message => 'New Message'
 ```
 
 
