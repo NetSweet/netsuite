@@ -4,9 +4,27 @@ module NetSuite
       include Namespaces::ActSched
 
       def initialize(attributes = {})
-        # TODO look into the possibility of just pulling out the internal_id from the passed record data
-        # I believe this is all NS needs, and I've had trouble passing an entire record into the list
+        # - the contact list on the NS GUI doesn't show the assigned contact which shows up in the XML
+        # - you can't add an arbitary number of contacts through the NS GUI
+
+        # TODO the contact list doesn't really work because of the strange XML below (2 assigned companies, one contact)
         
+        # <actSched:contactList>
+        #   <actSched:contact>
+        #     <actSched:company xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com" internalId="12345">
+        #       <platformCore:name>10001 Another Customer</platformCore:name>
+        #     </actSched:company>
+        #   </actSched:contact>
+        #   <actSched:contact>
+        #     <actSched:company xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com" internalId="12346">
+        #       <platformCore:name>31500 A Customer</platformCore:name>
+        #     </actSched:company>
+        #     <actSched:contact xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com" internalId="12347">
+        #       <platformCore:name>A Person</platformCore:name>
+        #     </actSched:contact>
+        #   </actSched:contact>
+        # </actSched:contactList>
+
         case attributes[:contact]
         when Hash
           contacts << Contact.new(attributes[:contact])
