@@ -1,9 +1,11 @@
 module NetSuite
   module Records
     class ItemFulfillmentPackageList
+      include Support::Fields
+      include Namespaces::TranSales
 
       def initialize(attributes = {})
-        case attributes[:package]
+        case attributes[:package].class
         when Hash
           package << ItemFulfillmentPackage.new(attributes[:package])
         when Array

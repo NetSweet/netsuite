@@ -80,6 +80,8 @@ module NetSuite
     autoload :ItemFulfillment,            'netsuite/records/item_fulfillment'
     autoload :ItemFulfillmentItem,        'netsuite/records/item_fulfillment_item'
     autoload :ItemFulfillmentItemList,    'netsuite/records/item_fulfillment_item_list'
+    autoload :ItemFulfillmentPackage,     'netsuite/records/item_fulfillment_package'
+    autoload :ItemFulfillmentPackageList, 'netsuite/records/item_fulfillment_package_list'
     autoload :ItemReceipt,                'netsuite/records/item_receipt'
     autoload :ItemReceiptExpense,         'netsuite/records/item_receipt_expense'
     autoload :ItemReceiptExpenseList,     'netsuite/records/item_receipt_expense_list'
