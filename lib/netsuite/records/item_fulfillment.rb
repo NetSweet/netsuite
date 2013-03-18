@@ -25,11 +25,12 @@ module NetSuite
         :third_party_acct_fed_ex, :third_party_country_fed_ex, :third_party_type_fed_ex,
         :shipment_weight_fed_ex, :terms_of_sale_fed_ex, :terms_freight_charge_fed_ex,
         :terms_insurance_charge_fed_ex, :tran_date, :tran_id, :generate_integrated_shipper_label,
-        :shipping_cost, :handling_cost, :memo, :package_list, :package_ups_list, :package_usps_list,
+        :shipping_cost, :handling_cost, :memo, :package_ups_list, :package_usps_list,
         :package_fed_ex_list, :item_list, :ship_group_list
 
       field :custom_field_list, CustomFieldList
       field :item_list, ItemFulfillmentItemList
+      field :package_list, ItemFulfillmentPackageList
 
       record_refs :custom_form, :posting_period, :entity, :created_from, :partner,
         :ship_address_list, :ship_method, :transfer_location
