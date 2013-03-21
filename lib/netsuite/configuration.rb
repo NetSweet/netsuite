@@ -39,7 +39,7 @@ module NetSuite
       if flag.nil?
         attributes[:flag] ||= false
       else
-        self.sandbox = true
+        self.sandbox = flag
       end
     end
 
