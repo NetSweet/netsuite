@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :initialize, :add, :delete
 
-      fields :alt_handling_cost, :balance, :bill_address,
+      fields :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :currency_name, :custom_field_list,
         :deferred_revenue, :discount_amount, :discount_date, :discount_item, :discount_rate,
         :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
@@ -36,7 +36,7 @@ module NetSuite
       field :custom_field_list,        CustomFieldList
 
       read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid,
-                       :alt_shipping_cost, :gift_cert_applied, :tax_rate, :handling_cost
+                       :alt_shipping_cost, :gift_cert_applied, :tax_rate, :handling_cost, :alt_handling_cost
 
       record_refs :account, :bill_address_list, :custom_form, :department, :entity, :klass, :partner,
                   :posting_period, :ship_address_list, :terms, :location, :sales_rep, :tax_item, :created_from,
