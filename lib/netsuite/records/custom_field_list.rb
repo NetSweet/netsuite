@@ -30,14 +30,14 @@ module NetSuite
       end
 
       def to_record
-        custom_fields.map { |custom_field|
-          Gyoku.xml({
+        custom_fields.inject([]) do |list, custom_field|
+          list << {
             "#{record_namespace}:customField" => custom_field.to_record,
             :attributes! => {
               "#{record_namespace}:customField" => custom_field.attributes!
             }
-          })
-        }.join
+          }
+        end
       end
 
       private
