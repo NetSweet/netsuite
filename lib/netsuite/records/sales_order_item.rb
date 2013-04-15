@@ -9,7 +9,7 @@ module NetSuite
       fields :amount, :bin_numbers, :cost_estimate, :cost_estimate_type, :defer_rev_rec, :description, :gift_cert_from,
         :gift_cert_message, :gift_cert_number, :gift_cert_recipient_email, :gift_cert_recipient_name, :gross_amt, :is_taxable,
         :line, :order_line, :quantity, :rate, :rev_rec_end_date, :rev_rec_start_date, :rev_rec_term_in_months, :serial_numbers,
-        :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral, :vsoe_delivered,
+        :shipping_cost, :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral, :vsoe_delivered,
         :vsoe_permit_discount, :vsoe_price
 
       field :custom_field_list, CustomFieldList
