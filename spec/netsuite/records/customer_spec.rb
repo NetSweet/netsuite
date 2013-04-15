@@ -14,7 +14,7 @@ describe NetSuite::Records::Customer do
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
       :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
       :language, :last_modified, :last_name, :last_page_visited, :last_visit, :lead_source, :middle_name, :mobile_phone,
-      :opening_balance, :opening_balance_account, :opening_balance_date, :overdue_balance, :parent, :partner, :partners_list,
+      :opening_balance, :opening_balance_account, :opening_balance_date, :overdue_balance, :parent, :partners_list,
       :password, :password_2, :phone, :phonetic_name, :pref_cc_processor, :price_level, :print_on_check_as,
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_rep, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
@@ -28,7 +28,7 @@ describe NetSuite::Records::Customer do
 
   it 'has the right record_refs' do
     [
-      :custom_form, :entity_status
+      :custom_form, :entity_status, :partner
     ].each do |record_ref|
       customer.should have_record_ref(record_ref)
     end
