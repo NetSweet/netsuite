@@ -17,7 +17,15 @@ describe NetSuite::Records::CustomFieldList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = "<platformCore:customField internalId=\"3\" xsi:type=\"BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField>"
+      record = [
+        {
+          "platformCore:customField" => {"platformCore:value"=>false},
+          :attributes! => {
+            "platformCore:customField" => {"internalId"=>"3", "xsi:type"=>"BooleanCustomFieldRef"}
+          }
+        }
+      ]
+      
       list.to_record.should eql(record)
     end
   end
