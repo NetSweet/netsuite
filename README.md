@@ -87,6 +87,19 @@ task.add
 `open https://system.sandbox.netsuite.com/app/crm/calendar/task.nl?id=#{invoice.internal_id}`
 
 task.update :message => 'New Message'
+
+# basic search
+search = NetSuite::Records::Customer.search({
+  basic: [
+    {
+      field: 'companyName',
+      operator: 'contains',
+      value: company_name
+    }
+  ]
+})
+
+`open https://system.netsuite.com/app/common/entity/custjob.nl?id=#{search.results.first.internal_id}`
 ```
 
 
