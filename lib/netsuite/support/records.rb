@@ -10,11 +10,13 @@ module NetSuite
           kname += k == :klass ? 'class' : k.to_s.lower_camelcase
 
           to_attributes!(hash, kname, v)
+
           if Array === v
             v = v.map { |i| i.respond_to?(:to_record) ? i.to_record : i }
-          else
-            v = v.to_record if v.respond_to?(:to_record)
+          elsif v.respond_to?(:to_record)
+            v = v.to_record
           end
+          
           hash[kname] = v
           hash
         end
