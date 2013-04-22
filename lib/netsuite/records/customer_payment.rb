@@ -12,12 +12,13 @@ module NetSuite
       fields :auth_code, :auto_apply, :cc_approved, :cc_avs_street_match, :cc_avs_zip_match,
         :cc_expire_date, :cc_name, :cc_number, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code,
         :charge_it, :check_num, :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :ignore_avs,
-        :last_modified_date, :memo, :payment, :pending, :pn_ref_num, :status, :three_d_status_code, :tran_date,
+        :last_modified_date, :memo, :payment, :pn_ref_num, :status, :three_d_status_code, :tran_date,
         :undep_funds, :valid_from
 
       field :custom_field_list, CustomFieldList
+      field :apply_list,        CustomerPaymentApplyList
 
-      read_only_fields :applied, :balance, :total, :unapplied
+      read_only_fields :applied, :balance, :pending, :total, :unapplied
 
       record_refs :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass,
         :location, :payment_method, :posting_period, :subsidiary
