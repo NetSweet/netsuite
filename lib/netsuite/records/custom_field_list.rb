@@ -30,14 +30,18 @@ module NetSuite
       end
 
       def to_record
-        custom_fields.inject([]) do |list, custom_field|
-          list << {
-            "#{record_namespace}:customField" => custom_field.to_record,
-            :attributes! => {
-              "#{record_namespace}:customField" => custom_field.attributes!
+        # TODO this is the best way I could find to handle this, there *has* to be a better way
+        # http://stackoverflow.com/questions/7001957/savon-array-of-xml-tags
+
+        {
+          "#{record_namespace}:customField" => custom_fields.map(&:to_record),
+          :attributes! => {
+            "#{record_namespace}:customField" => {
+              'internalId' => custom_fields.map(&:internal_id),
+              'xsi:type' => custom_fields.map(&:type)
             }
           }
-        end
+        }
       end
 
       private

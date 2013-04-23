@@ -16,23 +16,6 @@ module NetSuite
         attributes[:value]
       end
 
-      def to_record
-        attributes.inject({}) do |hash, (k,v)|
-          kname = "#{record_namespace}:#{k.to_s.lower_camelcase}"
-          to_attributes!(hash, kname, v)
-          v = v.to_record if v.respond_to?(:to_record)
-          hash[kname] = v
-          hash
-        end
-      end
-
-      def attributes!
-        attr_hash = {}
-        attr_hash['internalId'] = internal_id if internal_id
-        attr_hash['xsi:type']   = type        if type
-        attr_hash
-      end
-
     end
   end
 end
