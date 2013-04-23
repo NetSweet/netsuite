@@ -10,7 +10,7 @@ module NetSuite
       @attributes ||= {}
     end
 
-    def connection(params)
+    def connection(params = {})
       Savon.client({
           wsdl: wsdl,
           read_timeout: read_timeout,

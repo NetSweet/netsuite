@@ -18,6 +18,11 @@ describe NetSuite::Configuration do
 
   describe '#connection' do
     it 'returns a Savon::Client object that allows requests to the service' do
+      # reset clears out the password info
+      config.email 'me@example.com'
+      config.password 'me@example.com'
+      config.account 1023
+
       config.connection.should be_kind_of(Savon::Client)
     end
   end
