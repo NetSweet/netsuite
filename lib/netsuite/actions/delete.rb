@@ -11,12 +11,12 @@ module NetSuite
       private
 
       def request
-        connection.request :platformMsgs, :delete do
-          soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.header = auth_header
-          soap.body   = request_body
-        end
+        NetSuite::Configuration.connection(
+          namespaces: {
+            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          },
+        ).call :delete, :message => request_body
       end
 
       def soap_type
@@ -37,16 +37,21 @@ module NetSuite
             }
           }
         }
+
         if @object.respond_to?(:external_id) && @object.external_id
           body[:attributes!]['platformMsgs:baseRef']['externalId'] = @object.external_id
         end
+
         if @object.respond_to?(:internal_id) && @object.internal_id
           body[:attributes!]['platformMsgs:baseRef']['internalId'] = @object.internal_id
         end
+
         if @object.class.respond_to?(:type_id) && @object.class.type_id
           body[:attributes!]['platformMsgs:baseRef']['typeId'] = @object.class.type_id
         end
+
         body[:attributes!]['platformMsgs:baseRef']['type'] = soap_type unless @options[:custom]
+
         body
       end
 
