@@ -9,13 +9,13 @@ module NetSuite
       end
 
       def request
-        connection.request :platformMsgs, :initialize do
-          soap.namespaces['xmlns:platformMsgs']    = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCore']    = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCoreTyp'] = "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.header = auth_header
-          soap.body   = request_body
-        end
+        NetSuite::Configuration.connection(
+          namespaces: {
+            'xmlns:platformMsgs'    => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore'    => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCoreTyp' => "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+          },
+        ).call :initialize, :message => request_body
       end
 
       # <platformMsgs:initializeRecord>

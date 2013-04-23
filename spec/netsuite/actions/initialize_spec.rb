@@ -1,10 +1,13 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::Initialize do
+  before(:all) { savon.mock! }
+  after(:all) { savon.unmock! }
+
   let(:customer) { NetSuite::Records::Customer.new(:internal_id => 1) }
 
   before do
-    savon.expects(:initialize).with({
+    savon.expects(:initialize).with(:message => {
       'platformMsgs:initializeRecord' => {
         'platformCore:type' => 'customer',
         'platformCore:reference' => {},
@@ -15,7 +18,7 @@ describe NetSuite::Actions::Initialize do
           }
         }
       }
-    }).returns(:initialize_invoice_from_customer)
+    }).returns(File.read('spec/support/fixtures/initialize/initialize_invoice_from_customer.xml'))
   end
 
   it 'makes a valid request to the NetSuite API' do
