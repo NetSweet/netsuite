@@ -10,13 +10,14 @@ module NetSuite
       @attributes ||= {}
     end
 
-    def connection
-      unless attributes[:connection]
-        attributes[:connection] = Savon::Client.new(self.wsdl)
-        attributes[:connection].http.read_timeout = read_timeout
-      end
-
-      attributes[:connection]
+    def connection(params)
+      Savon.client({
+          wsdl: wsdl,
+          read_timeout: read_timeout,
+          soap_header: auth_header,
+          pretty_print_xml: true,
+          # open_timeout: ???
+      }.merge(params))
     end
 
     def api_version(version = nil)

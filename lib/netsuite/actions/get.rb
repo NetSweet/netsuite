@@ -11,12 +11,12 @@ module NetSuite
       private
 
       def request
-        connection.request :platformMsgs, :get do
-          soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.header = auth_header
-          soap.body   = request_body
-        end
+        NetSuite::Configuration.connection(
+          namespaces: {
+            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          },
+        ).call :get, message: request_body#, message_tag: :platformMsgs
       end
 
       def soap_type
@@ -55,7 +55,7 @@ module NetSuite
       end
 
       def response_hash
-        @response_hash = @response[:get_response][:read_response]
+        @response_hash = @response.body[:get_response][:read_response]
       end
 
       module Support

@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::Get do
+  before(:all) { savon.mock!  }
+  after(:all) { savon.unmock! }
 
   describe 'Customer' do
     before do
-      savon.expects(:get).with({
+      message = {
         'platformMsgs:baseRef' => {},
         :attributes! => {
           'platformMsgs:baseRef' => {
@@ -13,7 +15,9 @@ describe NetSuite::Actions::Get do
             'xsi:type'  => 'platformCore:RecordRef'
           }
         }
-      }).returns(:get_customer)
+      }
+
+      savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
     end
 
     it 'makes a valid request to the NetSuite API' do
@@ -28,7 +32,7 @@ describe NetSuite::Actions::Get do
 
   describe 'Invoice' do
     before do
-      savon.expects(:get).with({
+      savon.expects(:get).with(:message => {
         'platformMsgs:baseRef' => {},
         :attributes! => {
           'platformMsgs:baseRef' => {
@@ -37,7 +41,7 @@ describe NetSuite::Actions::Get do
             'xsi:type'  => 'platformCore:RecordRef'
           }
         }
-      }).returns(:get_invoice)
+      }).returns(File.read('spec/support/fixtures/get/get_invoice.xml'))
     end
 
     it 'makes a valid request to the NetSuite API' do
