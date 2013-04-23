@@ -41,9 +41,9 @@ module NetSuite
       def self.type_id(id = nil)
         if id
           @type_id = id
-        else
-          @type_id
         end
+
+        @type_id
       end
 
       def record_type
