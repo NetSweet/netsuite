@@ -12,24 +12,23 @@ module NetSuite
       private
 
       def request
-        # need to do this outside the block below because of variable scoping
-        preferences = (@options[:preferences] || {}).inject({}) do |h, (k, v)|
+        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteFlex/WebServices/STP_SettingSearchPreferences.html#N2028598271-3
+        preferences = NetSuite::Configuration.auth_header
+        preferences = preferences.merge((@options[:preferences] || {}).inject({}) do |h, (k, v)|
           h[k.to_s.lower_camelcase] = v
           h
-        end
+        end)
 
-        connection.request(:search) do
-          soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:platformCommon'] = "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
-          soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
-
-          # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteFlex/WebServices/STP_SettingSearchPreferences.html#N2028598271-3
-          soap.header = auth_header.merge(preferences.empty? ? {} : { 'platformMsgs:searchPreferences' => preferences })
-
-          soap.body = request_body
-        end
+        NetSuite::Configuration.connection(
+          namespaces: {
+            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCommon' => "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:listRel' => "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
+            'xmlns:tranSales' => "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
+          },
+          soap_header: preferences
+        ).call :search, :message => request_body
       end
 
       # basic search XML
@@ -97,7 +96,7 @@ module NetSuite
       end
 
       def search_result
-        @search_result = @response[:search_response][:search_result]
+        @search_result = @response.body[:search_response][:search_result]
       end
 
       def success?
