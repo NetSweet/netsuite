@@ -10,7 +10,7 @@ module NetSuite
       actions :get, :search, :search_more_with_id, :add, :delete
 
       fields :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
-        :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
+        :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
         :consol_aging, :consol_days_overdue, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override,
         :credit_limit, :currency, :currency_list, :date_created, :days_overdue, :default_address,
         :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
@@ -31,9 +31,9 @@ module NetSuite
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
 
-      record_refs :custom_form, :entity_status, :terms
+      record_refs :custom_form, :entity_status, :terms, :category
 
-      attr_reader   :internal_id
+      attr_accessor :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
