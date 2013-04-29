@@ -1,11 +1,14 @@
 module NetSuite
   module Records
-    class Category
+    class CustomerCategory
       include Support::Fields
       include Support::RecordRefs
       include Support::Actions
+      include Namespaces::Accounting
 
       actions :get, :add, :delete
+
+      fields :name
       
       attr_reader :internal_id
       attr_accessor :external_id
