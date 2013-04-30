@@ -36,7 +36,7 @@ module NetSuite
         :ship_address_list, :ship_method, :transfer_location
 
 
-      attr_reader   :internal_id
+      attr_accessor :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})

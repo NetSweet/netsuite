@@ -55,6 +55,12 @@ module NetSuite
 
       def success?
         @success ||= response_hash[:status][:@is_success] == 'true'
+        if @success
+          if @object.respond_to?(:internal_id=)
+            @object.internal_id = response_hash[:base_ref][:@internal_id]
+          end
+        end
+        @success
       end
 
       def response_body

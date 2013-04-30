@@ -4,7 +4,6 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Actions
-      include Namespaces::Accounting
 
       actions :get, :add, :delete
 

@@ -28,7 +28,7 @@ module NetSuite
           :total, :rev_rec_start_date, :rev_rec_end_date, :paypal_process, :three_d_status_code,
           :interco_status, :debit_card_issue_no, :last_modified_date, :pn_ref_number, :status,
           :tax2_total, :valid_from, :vat_reg_num, :gift_cert_applied, :tran_is_vsoe_bundle,
-          :vsoe_auto_calc, :sync_partner_teams, :klass
+          :vsoe_auto_calc, :sync_partner_teams, :transaction_ship_address, :klass
 
       field :custom_field_list, CustomFieldList
       field :item_list, SalesOrderItemList
@@ -40,7 +40,7 @@ module NetSuite
         :credit_card_processor, :rev_rec_schedule, :billing_schedule, :department,
         :subsidiary, :interco_transaction, :location, :terms
 
-      attr_reader   :internal_id
+      attr_accessor :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
