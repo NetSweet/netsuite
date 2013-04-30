@@ -16,6 +16,7 @@ module NetSuite
           read_timeout: read_timeout,
           soap_header: auth_header,
           pretty_print_xml: true,
+          logger: logger
           # open_timeout: ???
       }.merge(params))
     end
@@ -153,7 +154,7 @@ module NetSuite
     end
 
     def logger
-      attributes[:logger] ||= NetSuite::XmlLogger.new (log && !log.empty?) ? log : STDOUT
+      attributes[:logger] ||= ::Logger.new (log && !log.empty?) ? log : $stdout
     end
 
   end
