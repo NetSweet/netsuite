@@ -5,10 +5,11 @@ module NetSuite
       include Namespaces::TranSales
 
       def initialize(attributes = {})
-        case attributes[:package].class
-        when Hash
+        att_class = attributes[:package].class
+        case att_class.to_s
+        when "Hash"
           package << ItemFulfillmentPackage.new(attributes[:package])
-        when Array
+        when "Array"
           attributes[:package].each { |inv|
             package << ItemFulfillmentPackage.new(inv)
           }
