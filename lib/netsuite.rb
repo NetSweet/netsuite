@@ -75,6 +75,8 @@ module NetSuite
     autoload :InventoryAdjustment,        'netsuite/records/inventory_adjustment'
     autoload :InventoryAdjustmentInventory,  'netsuite/records/inventory_adjustment_inventory'
     autoload :InventoryAdjustmentInventoryList,  'netsuite/records/inventory_adjustment_inventory_list'
+    autoload :InventoryItemLocations,     'netsuite/records/inventory_item_locations'
+    autoload :InventoryItemLocationsList, 'netsuite/records/inventory_item_locations_list'
     autoload :Invoice,                    'netsuite/records/invoice'
     autoload :InvoiceItem,                'netsuite/records/invoice_item'
     autoload :InvoiceItemList,            'netsuite/records/invoice_item_list'

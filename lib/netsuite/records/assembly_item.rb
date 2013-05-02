@@ -41,6 +41,7 @@ module NetSuite
         :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor
 
       field :custom_field_list, CustomFieldList
+      field :locations_list, InventoryItemLocationsList
 
       attr_reader :internal_id
       attr_accessor :external_id
