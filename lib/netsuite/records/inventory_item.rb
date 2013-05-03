@@ -52,6 +52,10 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.custom_soap_advanced_search_record_type
+        'listAcct:ItemSearchAdvanced'
+      end
+
     end
   end
 end
