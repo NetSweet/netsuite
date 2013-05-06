@@ -19,13 +19,16 @@ module NetSuite
           h
         end)
 
+        api_version = NetSuite::Configuration.api_version
+
         NetSuite::Configuration.connection(
           namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCommon' => "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:listRel' => "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
-            'xmlns:tranSales' => "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
+            'xmlns:platformMsgs' => "urn:messages_#{api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCommon' => "urn:common_#{api_version}.platform.webservices.netsuite.com",
+            'xmlns:listRel' => "urn:relationships_#{api_version}.lists.webservices.netsuite.com",
+            'xmlns:tranSales' => "urn:sales_#{api_version}.transactions.webservices.netsuite.com",
+            'xmlns:setupCustom' => "urn:customization_#{api_version}.setup.webservices.netsuite.com"
           },
           soap_header: preferences
         ).call :search, :message => request_body
@@ -59,15 +62,25 @@ module NetSuite
 
         criteria.each_pair do |condition_category, conditions|
           search_record["#{namespace}:#{condition_category}"] = conditions.inject({}) do |h, condition|
-            h["platformCommon:#{condition[:field]}"] = {
-              "platformCore:searchValue" => condition[:value]
-            }
+            element_name = "platformCommon:#{condition[:field]}"
 
-            (h[:attributes!] ||= {}).merge!({
-              "platformCommon:#{condition[:field]}" => {
-                'operator' => condition[:operator]
+            case condition[:field]
+            when 'recType'
+              # TODO this seems a bit brittle, look into a way to handle this better
+              h[element_name] = {
+                :@internalId => condition[:value].internal_id
               }
-            })
+            else
+              h[element_name] = {
+                "platformCore:searchValue" => condition[:value]
+              }
+
+              (h[:attributes!] ||= {}).merge!({
+                element_name => {
+                  'operator' => condition[:operator]
+                }
+              })
+            end
 
             h
           end
