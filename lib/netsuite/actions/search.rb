@@ -70,6 +70,43 @@ module NetSuite
               h[element_name] = {
                 :@internalId => condition[:value].internal_id
               }
+            when 'customFieldList'
+              # there isn't a clean way to do lists of the same element
+              # Gyoku doesn't seem support the nice :@attribute and :content! syntax for lists of elements of the same name
+              # https://github.com/savonrb/gyoku/issues/18#issuecomment-17825848
+
+              custom_field_list = condition[:value].map do |h|
+                if h[:value].is_a?(Array) && h[:value].first.respond_to?(:to_record)
+                  {
+                    "platformCore:searchValue" => h[:value].map(&:to_record),
+                    :attributes! => {
+                      'platformCore:searchValue' => {
+                        'internalId' => h[:value].map(&:internal_id)
+                      }
+                    }
+                  }
+                elsif h[:value].respond_to?(:to_record)
+                  {
+                    "platformCore:searchValue" => {
+                      :content! => h[:value].to_record,
+                      :@internalId => h[:value].internal_id
+                    }
+                  }
+                else
+                  { "platformCore:searchValue" => h[:value] }
+                end
+              end
+
+              h[element_name] = {
+                'platformCore:customField' => custom_field_list,
+                :attributes! => {
+                  'platformCore:customField' => {
+                    'internalId' => condition[:value].map { |h| h[:field] },
+                    'operator' => condition[:value].map { |h| h[:operator] },
+                    'xsi:type' => condition[:value].map { |h| "platformCore:#{h[:type]}" }
+                  }
+                }
+              }
             else
               h[element_name] = {
                 "platformCore:searchValue" => condition[:value]

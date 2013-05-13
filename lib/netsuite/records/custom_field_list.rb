@@ -30,8 +30,10 @@ module NetSuite
       end
 
       def to_record
-        # TODO this is the best way I could find to handle this, there *has* to be a better way
+        # this is the best way I could find to handle this
+        # but until the gyoku is taken care of I don't think there is a better way
         # http://stackoverflow.com/questions/7001957/savon-array-of-xml-tags
+        # https://github.com/savonrb/gyoku/issues/18#issuecomment-17825848
 
         {
           "#{record_namespace}:customField" => custom_fields.map(&:to_record),
