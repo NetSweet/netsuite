@@ -4,6 +4,8 @@ module NetSuite
       include Support::Fields
       include Namespaces::TranSales
 
+      fields :replace_all
+
       def initialize(attributes = {})
         case attributes[:item]
         when Hash
