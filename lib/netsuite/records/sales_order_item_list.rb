@@ -10,9 +10,9 @@ module NetSuite
       def initialize(attributes = {})
         case attributes[:item]
         when Hash
-          item << ItemFulfillmentItem.new(attributes[:item])
+          item << SalesOrderItem.new(attributes[:item])
         when Array
-          attributes[:item].each { |inv| item << ItemFulfillmentItem.new(inv) }
+          attributes[:item].each { |inv| item << SalesOrderItem.new(inv) }
         end
       end
 
