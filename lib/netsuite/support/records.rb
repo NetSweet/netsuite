@@ -31,6 +31,11 @@ module NetSuite
           hash[:attributes!][kname] ||= {}
           hash[:attributes!][kname]['externalId'] = v.external_id
         end
+        if v.respond_to?(:replace_all) && !v.replace_all.blank?
+          hash[:attributes!] ||= {}
+          hash[:attributes!][kname] ||= {}
+          hash[:attributes!][kname]['replaceAll'] = v.replace_all
+        end
         if v.kind_of?(NetSuite::Records::RecordRef) && v.type
           hash[:attributes!] ||= {}
           hash[:attributes!][kname] ||= {}

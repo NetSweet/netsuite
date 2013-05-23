@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class SalesOrderItemList
       include Support::Fields
+      include Support::Records
       include Namespaces::TranSales
 
       fields :replace_all
