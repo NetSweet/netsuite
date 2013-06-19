@@ -14,19 +14,16 @@ describe NetSuite::Records::CustomFieldList do
         :type        => 'BooleanCustomFieldRef',
         :value       => false
       )
+      list.custom_fields << NetSuite::Records::CustomField.new(
+        :internal_id => '4',
+        :type        => 'BooleanCustomFieldRef',
+        :value       => true
+      )
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          "platformCore:customField" => {"platformCore:value"=>false},
-          :attributes! => {
-            "platformCore:customField" => {"internalId"=>"3", "xsi:type"=>"BooleanCustomFieldRef"}
-          }
-        }
-      ]
-      
-      list.to_record.should eql(record)
+      list.to_record.length.should == 2
+      Gyoku.xml(list.to_record[0]).should == '<platformCore:customField internalId="3" xsi:type="BooleanCustomFieldRef">false</platformCore:customField>'
     end
   end
 
