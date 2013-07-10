@@ -52,14 +52,7 @@ describe NetSuite::Configuration do
         'platformMsgs:passport' => {
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
-          'platformCore:account'  => '1234',
-          'platformCore:role'     => {},
-          :attributes! => {
-            'platformCore:role' => {
-              :internalId => '3',
-              :type       => 'role'
-            }
-          }
+          'platformCore:account'  => '1234'
         }
       })
     end
@@ -131,12 +124,12 @@ describe NetSuite::Configuration do
 
   describe '#role' do
     context 'when no role is defined' do
-      it 'defaults to "3"' do
-        config.role.internal_id.should == "3"
+      it 'should not default to anything' do
+        config.role.should be_nil
       end
     end
   end
-  
+
   describe '#role=' do
     it 'sets the role according to the input value' do
       config.role = "6"

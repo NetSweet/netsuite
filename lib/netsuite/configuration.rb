@@ -13,7 +13,7 @@ module NetSuite
     end
 
     def connection
-      unless attributes[:connection].present?
+      unless attributes[:connection]
         attributes[:connection] = Savon::Client.new(self.wsdl)
 
         attributes[:connection].http.read_timeout = READ_TIMEOUT
@@ -69,8 +69,8 @@ module NetSuite
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
 
-    def role(role = nil)
-      self.role = role
+    def role
+      attributes[:role]
     end
 
     def email=(email)
