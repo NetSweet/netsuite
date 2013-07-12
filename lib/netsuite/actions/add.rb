@@ -22,6 +22,7 @@ module NetSuite
             'xmlns:tranCust'       => "urn:customers_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
             'xmlns:setupCustom'    => "urn:customization_#{NetSuite::Configuration.api_version}.setup.webservices.netsuite.com",
             'xmlns:tranGeneral'    => "urn:general_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
+            'xmlns:listSupport'    => "urn:support_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
           },
         ).call :add, :message => request_body
       end
