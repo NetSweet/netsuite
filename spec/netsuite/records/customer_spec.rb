@@ -6,7 +6,7 @@ describe NetSuite::Records::Customer do
   it 'has all the right fields' do
     [
       :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
-      :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
+      :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
       :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
       :currency, :currency_list, :date_created, :days_overdue, :default_address,
@@ -18,7 +18,7 @@ describe NetSuite::Records::Customer do
       :password, :password_2, :phone, :phonetic_name, :pref_cc_processor, :price_level, :print_on_check_as,
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_rep, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
-      :stage, :start_date, :subscriptions_list, :subsidiary, :sync_partner_teams, :tax_exempt, :tax_item, :taxable, :terms,
+      :stage, :start_date, :subscriptions_list, :subsidiary, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
       :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
       :vat_reg_number, :visits, :web_lead
     ].each do |field|
@@ -28,7 +28,7 @@ describe NetSuite::Records::Customer do
 
   it 'has the right record_refs' do
     [
-      :custom_form, :entity_status
+      :custom_form, :entity_status, :category, :terms
     ].each do |record_ref|
       customer.should have_record_ref(record_ref)
     end

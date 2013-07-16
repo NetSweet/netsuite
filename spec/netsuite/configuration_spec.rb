@@ -45,6 +45,7 @@ describe NetSuite::Configuration do
       config.email    = 'user@example.com'
       config.password = 'myPassword'
       config.account  = 1234
+      config.role     = 5
     end
 
     it 'returns a hash representation of the authentication header' do
@@ -54,14 +55,10 @@ describe NetSuite::Configuration do
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
           'platformCore:role'     => {},
-          :attributes! => {
-            'platformCore:role' => {
-              :internalId => '3',
-              :type       => 'role'
-            }
+          :attributes!            => {
+            "platformCore:role"=>{:internalId=>5, :type=>"role"}
           }
-        }
-      })
+        }})
     end
   end
 
@@ -131,12 +128,15 @@ describe NetSuite::Configuration do
 
   describe '#role' do
     context 'when no role is defined' do
-      it 'defaults to "3"' do
-        config.role.internal_id.should == "3"
+      it 'raises a ConfigurationError' do
+        lambda {
+          config.role
+        }.should raise_error(NetSuite::ConfigurationError,
+          '#role is a required configuration value. Please set it by calling NetSuite::Configuration.role = 5')
       end
     end
   end
-  
+
   describe '#role=' do
     it 'sets the role according to the input value' do
       config.role = "6"

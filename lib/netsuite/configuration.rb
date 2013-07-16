@@ -13,12 +13,12 @@ module NetSuite
     end
 
     def connection
-      unless attributes[:connection].present?
+      unless attributes[:connection]
         attributes[:connection] = Savon::Client.new(self.wsdl)
 
         attributes[:connection].http.read_timeout = READ_TIMEOUT
       end
-
+      attributes[:connection].http.headers.delete("Cookie")
       attributes[:connection]
     end
 
@@ -54,14 +54,12 @@ module NetSuite
           'platformCore:account'  => account.to_s
         }
       }
-
       if role
-        auth_header_hash['platformMsgs:password'].merge!('platformCore:role' => role.to_record,
+        auth_header_hash['platformMsgs:passport'].merge!('platformCore:role' => role.to_record,
           :attributes! => {
             'platformCore:role' => role.attributes!
         })
       end
-
       attributes[:auth_header] ||= auth_header_hash
     end
 
@@ -70,7 +68,14 @@ module NetSuite
     end
 
     def role(role = nil)
-      self.role = role
+      if role
+        self.role = role
+      else
+        attributes[:role] ||
+        raise(ConfigurationError,
+          '#role is a required configuration value. Please set it by calling NetSuite::Configuration.role = 5') 
+      end
+
     end
 
     def email=(email)
