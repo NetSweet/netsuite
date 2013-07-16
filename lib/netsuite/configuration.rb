@@ -18,7 +18,7 @@ module NetSuite
 
         attributes[:connection].http.read_timeout = READ_TIMEOUT
       end
-
+      attributes[:connection].http.headers.delete("Cookie")
       attributes[:connection]
     end
 
@@ -54,14 +54,12 @@ module NetSuite
           'platformCore:account'  => account.to_s
         }
       }
-
       if role
-        auth_header_hash['platformMsgs:password'].merge!('platformCore:role' => role.to_record,
+        auth_header_hash['platformMsgs:passport'].merge!('platformCore:role' => role.to_record,
           :attributes! => {
             'platformCore:role' => role.attributes!
         })
       end
-
       attributes[:auth_header] ||= auth_header_hash
     end
 
@@ -69,8 +67,15 @@ module NetSuite
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
 
-    def role
-      attributes[:role]
+    def role(role = nil)
+      if role
+        self.role = role
+      else
+        attributes[:role] ||
+        raise(ConfigurationError,
+          '#role is a required configuration value. Please set it by calling NetSuite::Configuration.role = 5') 
+      end
+
     end
 
     def email=(email)
