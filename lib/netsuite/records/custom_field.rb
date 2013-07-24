@@ -22,7 +22,7 @@ module NetSuite
             hash
           end
         else
-          hash_rec = {:value => {:internal_id => attributes[:value][:@internal_id]}}
+          hash_rec = {:value => {:internal_id => attributes[:value][:@internal_id] || attributes[:value][:internal_id] }}
         end
         hash_rec
       end
