@@ -15,9 +15,9 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :inventory_list,    InventoryAdjustmentInventoryList
 
-      record_refs :account, :customer, :department, :location, :custom_field_list
+      record_refs :account, :customer, :department, :location, :adj_location
 
-      attr_reader   :internal_id
+      attr_accessor :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
