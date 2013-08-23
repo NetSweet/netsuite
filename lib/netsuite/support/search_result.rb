@@ -19,14 +19,34 @@ module NetSuite
         @total_records = response.body[:total_records].to_i
 
         if @total_records > 0
-          if @total_records == 1
-            [response.body[:record_list][:record]]
+          if response.body.has_key?(:record_list)
+            # basic search results
+            record_list = response.body[:record_list][:record]
+            record_list = [record_list] if @total_records == 1
+            record_list.each do |record|
+              results << result_class.new(record)
+            end
+
+          elsif response.body.has_key? :search_row_list
+            # advanced search results
+            record_list = response.body[:search_row_list][:search_row]
+            record_list = [record_list] if @total_records == 1
+            record_list.each do |record|
+              record[:basic].each_pair do |k,v|
+                # for some reason all the return values are wrapped in a SearchValue element
+                # this extracts the value from the SearchValue element to make results easier to work with
+                if v.is_a?(Hash) && v.has_key?(:search_value)
+                  record[:basic][k] = v[:search_value]
+                end
+              end
+              results << result_class.new(record[:basic])
+            end
           else
-            response.body[:record_list][:record]
-          end.each do |record|
-            results << result_class.new(record)
+            raise "uncaught search result"
           end
         end
+
+        # TODO remove commented code when searching implementation is final
 
         # search_results = []
 
@@ -55,11 +75,11 @@ module NetSuite
       end
 
       def next_page
-        
+        # TODO need to pass to a searchMoreWithId
       end
 
       def all_pages
-        
+        # next_page until nil and then collect all the results
       end
 
     end
