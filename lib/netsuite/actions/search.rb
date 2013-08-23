@@ -53,18 +53,29 @@ module NetSuite
       # </soap:Body>
 
       def request_body
+        # only use :criteria when specifying search options (:page_size, etc)
         criteria = @options[:criteria] || @options
 
-        # TODO wish there was a cleaner way to do this: we need the namespace of the record
+        # TODO find cleaner solution. We need the namespace of the record, which is a instance method
         example_instance = @klass.new
         namespace = example_instance.record_namespace
 
-        # extract the class name without the module
+        # extract the class name
         class_name = @klass.to_s.split("::").last
 
         search_record = {}
 
         criteria.each_pair do |condition_category, conditions|
+          # TODO a bit hacky, but this works for what I need now for saved search
+          if condition_category == :saved
+            return {
+              'searchRecord' => {
+                '@savedSearchId' => conditions,
+                '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced"
+              }
+            }
+          end
+
           search_record["#{namespace}:#{condition_category}"] = conditions.inject({}) do |h, condition|
             element_name = "platformCommon:#{condition[:field]}"
 
