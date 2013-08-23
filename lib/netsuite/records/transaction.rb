@@ -1,3 +1,5 @@
+# TODO specs
+
 module NetSuite
   module Records
     class Transaction
@@ -7,7 +9,9 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :search, :search_more_with_id, :initialize, :add, :delete
+      actions :get, :initialize, :add, :delete, :search
+
+      record_refs :klass
 
       attr_reader   :internal_id
       attr_accessor :external_id
@@ -16,10 +20,6 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.custom_soap_advanced_search_record_type
-        'tranSales:TransactionSearchAdvanced'
       end
 
       def to_record
