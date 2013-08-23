@@ -12,12 +12,16 @@ module NetSuite
       private
 
       def request
-        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteFlex/WebServices/STP_SettingSearchPreferences.html#N2028598271-3
+        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
+        # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
+        
         preferences = NetSuite::Configuration.auth_header
-        preferences = preferences.merge((@options[:preferences] || {}).inject({}) do |h, (k, v)|
-          h[k.to_s.lower_camelcase] = v
-          h
-        end)
+        preferences = preferences.merge(
+          (@options[:preferences] || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+            h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
+            h
+          end
+        )
 
         api_version = NetSuite::Configuration.api_version
 
