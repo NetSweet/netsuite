@@ -3,6 +3,7 @@ module NetSuite
     class Account
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
       include Support::Actions
 
       actions :get, :add, :delete
