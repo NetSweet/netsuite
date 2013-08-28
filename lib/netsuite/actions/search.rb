@@ -64,18 +64,9 @@ module NetSuite
         class_name = @klass.to_s.split("::").last
 
         search_record = {}
+        saved_search_id = criteria.delete(:saved)
 
         criteria.each_pair do |condition_category, conditions|
-          # TODO a bit hacky, but this works for what I need now for saved search
-          if condition_category == :saved
-            return {
-              'searchRecord' => {
-                '@savedSearchId' => conditions,
-                '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced"
-              }
-            }
-          end
-
           search_record["#{namespace}:#{condition_category}"] = conditions.inject({}) do |h, condition|
             element_name = "platformCommon:#{condition[:field]}"
 
@@ -86,6 +77,8 @@ module NetSuite
                 :@internalId => condition[:value].internal_id
               }
             when 'customFieldList'
+              # === START CUSTOM FIELD
+
               # there isn't a clean way to do lists of the same element
               # Gyoku doesn't seem support the nice :@attribute and :content! syntax for lists of elements of the same name
               # https://github.com/savonrb/gyoku/issues/18#issuecomment-17825848
@@ -122,30 +115,56 @@ module NetSuite
                   }
                 }
               }
-            else
-              h[element_name] = {
-                "platformCore:searchValue" => condition[:value]
-              }
 
-              (h[:attributes!] ||= {}).merge!({
-                element_name => {
-                  'operator' => condition[:operator]
+              # === END CUSTOM FIELD
+            else
+              if condition[:value].is_a?(Array) && condition[:value].first.respond_to?(:to_record)
+                # TODO need to update to the latest savon so we don't need to duplicate the same workaround above again
+                
+                # h[element_name] = {
+                #   "platformCore:searchValue" => {
+                #     :content! => condition[:value].map(&:to_record),
+                #     '@internalId' => condition[:value].internal_id,
+                #     '@operator' => condition[:operator]
+                #   }
+                # }
+              else
+                h[element_name] = {
+                  "platformCore:searchValue" => condition[:value]
                 }
-              })
+
+                (h[:attributes!] ||= {}).merge!({
+                  element_name => {
+                    'operator' => condition[:operator]
+                  }
+                })
+              end
             end
 
             h
           end
         end
 
-        {
-          'searchRecord' => search_record,
-          :attributes! => {
+        if saved_search_id
+          {
             'searchRecord' => {
-              'xsi:type' => "#{namespace}:#{class_name}Search"
-            },
+              '@savedSearchId' => saved_search_id,
+              '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced",
+              :content! => {
+                "#{namespace}:criteria" => search_record
+              }
+            }
           }
-        }
+        else
+          {
+            'searchRecord' => search_record,
+            :attributes! => {
+              'searchRecord' => {
+                'xsi:type' => "#{namespace}:#{class_name}Search"
+              },
+            }
+          }
+        end
       end
 
       def response_header
@@ -167,6 +186,11 @@ module NetSuite
       def success?
         @success ||= search_result[:status][:@is_success] == 'true'
       end
+
+      protected
+        def method_name
+          
+        end
 
       module Support
         def self.included(base)
