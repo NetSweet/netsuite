@@ -47,6 +47,7 @@ module NetSuite
     autoload :AccountingPeriod,           'netsuite/records/accounting_period'
     autoload :BillAddress,                'netsuite/records/bill_address'
     autoload :BinNumberList,              'netsuite/records/bin_number_list'
+    autoload :CashSale,                   'netsuite/records/cash_sale'
     autoload :Classification,             'netsuite/records/classification'
     autoload :CreditMemo,                 'netsuite/records/credit_memo'
     autoload :CreditMemoApply,            'netsuite/records/credit_memo_apply'
