@@ -1,0 +1,87 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2012_1.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3603434_08292013908151921913870884_2f1b68b787b4d</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <searchResponse xmlns="urn:messages_2012_1.platform.webservices.netsuite.com">
+      <platformCore:searchResult xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>2</platformCore:totalRecords>
+        <platformCore:pageSize>1000</platformCore:pageSize>
+        <platformCore:totalPages>1</platformCore:totalPages>
+        <platformCore:pageIndex>1</platformCore:pageIndex>
+        <platformCore:searchId>WEBSERVICES_3603434_08292013908151921913870884_2f1b68b787b4d</platformCore:searchId>
+        <platformCore:searchRowList>
+          <platformCore:searchRow xmlns:listRel="urn:relationships_2012_1.lists.webservices.netsuite.com" xsi:type="listRel:CustomerSearchRow">
+            <listRel:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+              <platformCommon:altName>
+                <platformCore:searchValue>A Awesome Name</platformCore:searchValue>
+              </platformCommon:altName>
+              <platformCommon:billCity>
+                <platformCore:searchValue>A City</platformCore:searchValue>
+              </platformCommon:billCity>
+              <platformCommon:billState>
+                <platformCore:searchValue>PA</platformCore:searchValue>
+              </platformCommon:billState>
+              <platformCommon:billZipCode>
+                <platformCore:searchValue>29999</platformCore:searchValue>
+              </platformCommon:billZipCode>
+              <platformCommon:email>
+                <platformCore:searchValue>email@gmail.com</platformCore:searchValue>
+              </platformCommon:email>
+              <platformCommon:entityId>
+                <platformCore:searchValue>12625</platformCore:searchValue>
+              </platformCommon:entityId>
+              <platformCommon:phone>
+                <platformCore:searchValue>444-444-4444</platformCore:searchValue>
+              </platformCommon:phone>
+            </listRel:basic>
+            <listRel:contactJoin xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+              <platformCommon:email>
+                <platformCore:searchValue>email@gmail.com</platformCore:searchValue>
+              </platformCommon:email>
+              <platformCommon:entityId>
+                <platformCore:searchValue>Carmina</platformCore:searchValue>
+              </platformCommon:entityId>
+            </listRel:contactJoin>
+          </platformCore:searchRow>
+          <platformCore:searchRow xmlns:listRel="urn:relationships_2012_1.lists.webservices.netsuite.com" xsi:type="listRel:CustomerSearchRow">
+            <listRel:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+              <platformCommon:altName>
+                <platformCore:searchValue>A Less Awesome Name</platformCore:searchValue>
+              </platformCommon:altName>
+              <platformCommon:billCity>
+                <platformCore:searchValue>A Less Awesome City</platformCore:searchValue>
+              </platformCommon:billCity>
+              <platformCommon:billState>
+                <platformCore:searchValue>NY</platformCore:searchValue>
+              </platformCommon:billState>
+              <platformCommon:billZipCode>
+                <platformCore:searchValue>19999</platformCore:searchValue>
+              </platformCommon:billZipCode>
+              <platformCommon:email>
+                <platformCore:searchValue>alessawesome@gmail.com</platformCore:searchValue>
+              </platformCommon:email>
+              <platformCommon:entityId>
+                <platformCore:searchValue>12625</platformCore:searchValue>
+              </platformCommon:entityId>
+              <platformCommon:phone>
+                <platformCore:searchValue>555-555-5555</platformCore:searchValue>
+              </platformCommon:phone>
+            </listRel:basic>
+            <listRel:contactJoin xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+              <platformCommon:email>
+                <platformCore:searchValue>alessawesome@gmail.com</platformCore:searchValue>
+              </platformCommon:email>
+              <platformCommon:entityId>
+                <platformCore:searchValue>Bill Murphy</platformCore:searchValue>
+              </platformCommon:entityId>
+            </listRel:contactJoin>
+          </platformCore:searchRow>
+        </platformCore:searchRowList>
+      </platformCore:searchResult>
+    </searchResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
