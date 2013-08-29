@@ -11,14 +11,12 @@ describe NetSuite::Actions::Update do
     before do
       savon.expects(:update).with(:message => {
         'platformMsgs:record' => {
-          'listRel:entityId'    => 'Shutter Fly',
-          'listRel:companyName' => 'Shutter Fly, Inc.'
+          :content! => {
+            'listRel:entityId'    => 'Shutter Fly',
+            'listRel:companyName' => 'Shutter Fly, Inc.',
+          },
+          '@xsi:type' => 'listRel:Customer'
         },
-        :attributes! => {
-          'platformMsgs:record' => {
-            'xsi:type' => 'listRel:Customer'
-          }
-        }
       }).returns(File.read('spec/support/fixtures/update/update_customer.xml'))
     end
 
@@ -40,13 +38,11 @@ describe NetSuite::Actions::Update do
     before do
       savon.expects(:update).with(:message => {
         'platformMsgs:record' => {
-          'tranSales:source' => 'Google',
+          :content! => {
+            'tranSales:source' => 'Google',
+          },
+          '@xsi:type' => 'tranSales:Invoice'
         },
-        :attributes! => {
-          'platformMsgs:record' => {
-            'xsi:type' => 'tranSales:Invoice'
-          }
-        }
       }).returns(File.read('spec/support/fixtures/update/update_invoice.xml'))
     end
 

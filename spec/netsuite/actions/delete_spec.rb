@@ -11,14 +11,11 @@ describe NetSuite::Actions::Delete do
 
     before do
       savon.expects(:delete).with(:message => {
-        'platformMsgs:baseRef' => {},
-        :attributes! => {
-          'platformMsgs:baseRef' => {
-            'internalId' => '980',
-            'type'       => 'customer',
-            'xsi:type'   => 'platformCore:RecordRef'
-          }
-        }
+        'platformMsgs:baseRef' => {
+          '@internalId' => '980',
+          '@type'       => 'customer',
+          '@xsi:type'   => 'platformCore:RecordRef'
+        },
       }).returns(File.read('spec/support/fixtures/delete/delete_customer.xml'))
     end
 

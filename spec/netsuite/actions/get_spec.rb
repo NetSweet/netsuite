@@ -8,14 +8,11 @@ describe NetSuite::Actions::Get do
     context 'retrieving with externalId' do
       before do
         message = {
-          'platformMsgs:baseRef' => {},
-          :attributes! => {
-            'platformMsgs:baseRef' => {
-              'externalId' => 1,
-              'type'       => 'customer',
-              'xsi:type'  => 'platformCore:RecordRef'
-            }
-          }
+          'platformMsgs:baseRef' => {
+            '@externalId' => 1,
+            '@type'       => 'customer',
+            '@xsi:type'  => 'platformCore:RecordRef'
+          },
         }
 
         savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
@@ -34,14 +31,11 @@ describe NetSuite::Actions::Get do
     context "retrieving with internalId" do
       before do
         message = {
-          'platformMsgs:baseRef' => {},
-          :attributes! => {
-            'platformMsgs:baseRef' => {
-              'internalId' => 1,
-              'type'       => 'customer',
-              'xsi:type'  => 'platformCore:RecordRef'
-            }
-          }
+          'platformMsgs:baseRef' => {
+            '@internalId' => 1,
+            '@type'       => 'customer',
+            '@xsi:type'   => 'platformCore:RecordRef'
+          },
         }
 
         savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
@@ -57,14 +51,11 @@ describe NetSuite::Actions::Get do
   describe 'Invoice' do
     before do
       savon.expects(:get).with(:message => {
-        'platformMsgs:baseRef' => {},
-        :attributes! => {
-          'platformMsgs:baseRef' => {
-            'externalId' => 1,
-            'type'       => 'invoice',
-            'xsi:type'  => 'platformCore:RecordRef'
-          }
-        }
+        'platformMsgs:baseRef' => {
+          '@externalId' => 1,
+          '@type'       => 'invoice',
+          '@xsi:type'  => 'platformCore:RecordRef'
+        },
       }).returns(File.read('spec/support/fixtures/get/get_invoice.xml'))
     end
 
