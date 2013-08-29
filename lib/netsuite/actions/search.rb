@@ -120,14 +120,18 @@ module NetSuite
             else
               if condition[:value].is_a?(Array) && condition[:value].first.respond_to?(:to_record)
                 # TODO need to update to the latest savon so we don't need to duplicate the same workaround above again
+                # TODO it's possible that this might break, not sure if platformCore:SearchMultiSelectField is the right type in every situation
                 
-                # h[element_name] = {
-                #   "platformCore:searchValue" => {
-                #     :content! => condition[:value].map(&:to_record),
-                #     '@internalId' => condition[:value].internal_id,
-                #     '@operator' => condition[:operator]
-                #   }
-                # }
+                h[element_name] = {
+                  '@operator' => condition[:operator],
+                  '@xsi:type' => 'platformCore:SearchMultiSelectField',
+                  "platformCore:searchValue" => {
+                    :content! => condition[:value].map(&:to_record),
+                    '@internalId' => condition[:value].map(&:internal_id),
+                    '@xsi:type' => 'platformCore:RecordRef',
+                    '@type' => 'account'
+                  }
+                }
               else
                 h[element_name] = {
                   "platformCore:searchValue" => condition[:value]
