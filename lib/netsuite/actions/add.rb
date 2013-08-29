@@ -37,20 +37,18 @@ module NetSuite
 
       def request_body
         hash = {
-          'platformMsgs:record' => @object.to_record,
-          :attributes! => {
-            'platformMsgs:record' => {
-              'xsi:type' => @object.record_type
-            }
+          'platformMsgs:record' => {
+            :content! => @object.to_record,
+            '@xsi:type' => @object.record_type
           }
         }
 
         if @object.respond_to?(:internal_id) && @object.internal_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:internalId'] = @object.internal_id
+          hash['platformMsgs:record']['@platformMsgs:internalId'] = @object.internal_id
         end
 
         if @object.respond_to?(:external_id) && @object.external_id
-          hash[:attributes!]['platformMsgs:record']['platformMsgs:externalId'] = @object.external_id
+          hash['platformMsgs:record']['@platformMsgs:externalId'] = @object.external_id
         end
         
         hash

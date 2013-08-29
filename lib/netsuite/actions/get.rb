@@ -32,17 +32,14 @@ module NetSuite
       # </soap:Body>
       def request_body
         body = {
-          'platformMsgs:baseRef' => {},
-          :attributes! => {
-            'platformMsgs:baseRef' => {
-              'xsi:type'  => (@options[:custom] ? 'platformCore:CustomRecordRef' : 'platformCore:RecordRef')
-            }
+          'platformMsgs:baseRef' => {
+            '@xsi:type'  => (@options[:custom] ? 'platformCore:CustomRecordRef' : 'platformCore:RecordRef')
           }
         }
-        body[:attributes!]['platformMsgs:baseRef']['externalId'] = @options[:external_id] if @options[:external_id]
-        body[:attributes!]['platformMsgs:baseRef']['internalId'] = @options[:internal_id] if @options[:internal_id]
-        body[:attributes!]['platformMsgs:baseRef']['typeId']     = @options[:type_id]     if @options[:type_id]
-        body[:attributes!]['platformMsgs:baseRef']['type']       = soap_type              unless @options[:custom]
+        body['platformMsgs:baseRef']['@externalId'] = @options[:external_id] if @options[:external_id]
+        body['platformMsgs:baseRef']['@internalId'] = @options[:internal_id] if @options[:internal_id]
+        body['platformMsgs:baseRef']['@typeId']     = @options[:type_id]     if @options[:type_id]
+        body['platformMsgs:baseRef']['@type']       = soap_type              unless @options[:custom]
         body
       end
 

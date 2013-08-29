@@ -157,11 +157,9 @@ module NetSuite
           }
         else
           {
-            'searchRecord' => search_record,
-            :attributes! => {
-              'searchRecord' => {
-                'xsi:type' => "#{namespace}:#{class_name}Search"
-              },
+            'searchRecord' => {
+              :content! => search_record,
+              '@xsi:type' => "#{namespace}:#{class_name}Search"
             }
           }
         end
