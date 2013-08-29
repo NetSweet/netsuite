@@ -30,15 +30,14 @@ module NetSuite
       end
 
       def to_record
-        # this is the best way I could find to handle this
-        # but until the gyoku is taken care of I don't think there is a better way
-        # http://stackoverflow.com/questions/7001957/savon-array-of-xml-tags
-        # https://github.com/savonrb/gyoku/issues/18#issuecomment-17825848
-
         custom_fields.map do |custom_field|
           {
             "#{record_namespace}:customField" => {
-              :content! => custom_field.value.to_s,
+              :content! => {
+                # TODO we need to implement to_record on custom field to handle the
+                # SelectCustomFieldRef custom field; right now setting that won't work
+                "platformCore:value" => custom_field.value.to_s
+              },
               '@internalId' => custom_field.internal_id,
               '@xsi:type' => custom_field.type
             }
