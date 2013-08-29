@@ -5,28 +5,52 @@ describe NetSuite::Actions::Get do
   after(:all) { savon.unmock! }
 
   describe 'Customer' do
-    before do
-      message = {
-        'platformMsgs:baseRef' => {},
-        :attributes! => {
-          'platformMsgs:baseRef' => {
-            'externalId' => 1,
-            'type'       => 'customer',
-            'xsi:type'  => 'platformCore:RecordRef'
+    context 'retrieving with externalId' do
+      before do
+        message = {
+          'platformMsgs:baseRef' => {},
+          :attributes! => {
+            'platformMsgs:baseRef' => {
+              'externalId' => 1,
+              'type'       => 'customer',
+              'xsi:type'  => 'platformCore:RecordRef'
+            }
           }
         }
-      }
 
-      savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
+        savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
+      end
+
+      it 'makes a valid request to the NetSuite API' do
+        NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
+      end
+
+      it 'returns a valid Response object' do
+        response = NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
+        response.should be_kind_of(NetSuite::Response)
+      end
     end
 
-    it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
-    end
+    context "retrieving with internalId" do
+      before do
+        message = {
+          'platformMsgs:baseRef' => {},
+          :attributes! => {
+            'platformMsgs:baseRef' => {
+              'internalId' => 1,
+              'type'       => 'customer',
+              'xsi:type'  => 'platformCore:RecordRef'
+            }
+          }
+        }
 
-    it 'returns a valid Response object' do
-      response = NetSuite::Actions::Get.call(NetSuite::Records::Customer, :external_id => 1)
-      response.should be_kind_of(NetSuite::Response)
+        savon.expects(:get).with(:message => message).returns(File.read('spec/support/fixtures/get/get_customer.xml'))
+      end
+
+      it "makes a valid request to the NetSuite API" do
+        customer = NetSuite::Records::Customer.get(1)
+        customer.balance.should == '100.0'
+      end
     end
   end
 
