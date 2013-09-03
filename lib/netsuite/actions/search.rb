@@ -1,14 +1,14 @@
 # TODO: Tests
 module NetSuite
-	module Actions
-		class Search
+  module Actions
+    class Search
       include Support::Requests
 
-			def initialize(klass, options = { })
-				@klass = klass
+      def initialize(klass, options = { })
+        @klass = klass
 
         @options = options
-			end
+      end
 
       private
 
@@ -61,7 +61,7 @@ module NetSuite
             end
 
             @options[:criteria].each do |criteria_type, _criteria|
-              
+
               criteria.method_missing(criteria_type) do |_criteria_type|
                 _criteria.each do |criteria_name, criteria_options|
                   criteria_hash = {
@@ -75,7 +75,13 @@ module NetSuite
                   end
 
                   _criteria_type.method_missing(criteria_name, criteria_hash) do |_criteria_name|
-                    _criteria_name.platformCore(:searchValue, criteria_options[:value])
+                    if criteria_options[:value].is_a? Array
+                      criteria_options[:value].each do |_value|
+                        _criteria_name.platformCore(:searchValue, _value)
+                      end
+                    elsif criteria_options[:value].is_a? String
+                      _criteria_name.platformCore(:searchValue, criteria_options[:value])
+                    end
                   end
                 end
               end
@@ -187,6 +193,6 @@ module NetSuite
           end
         end
       end
-		end
-	end
+    end
+  end
 end
