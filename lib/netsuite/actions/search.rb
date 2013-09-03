@@ -132,6 +132,12 @@ module NetSuite
                     '@type' => 'account'
                   }
                 }
+              elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
+                h[element_name] = {
+                  '@operator' => condition[:operator],
+                  "platformCore:searchValue" => condition[:value].first.to_s,
+                  "platformCore:searchValue2" => condition[:value].last.to_s
+                }
               else
                 h[element_name] = {
                   "platformCore:searchValue" => condition[:value]
