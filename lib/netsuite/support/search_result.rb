@@ -48,16 +48,6 @@ module NetSuite
 
         # TODO remove commented code when searching implementation is final
 
-        # search_results = []
-
-        # if !!response.body[:search_row_list] && !response.body[:search_row_list].empty?
-        #   response.body[:search_row_list][:search_row].each do |record|
-        #     search_result = NetSuite::Support::SearchResult.new(record)
-
-        #     search_results << search_result
-        #   end
-        # end
-
         # search_id = response.header[:ns_id]
         # page_index = response.body[:page_index]
         # total_pages = response.body[:total_pages]
@@ -66,7 +56,6 @@ module NetSuite
         # response_hash[:page_index] = page_index
         # response_hash[:total_pages] = total_pages
         # response_hash[:search_results] = search_results
-        # puts response.body
         # response_hash
       end
 

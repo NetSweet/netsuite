@@ -1,5 +1,6 @@
-# TODO: Tests
-# TODO: DBC
+# TODO Tests
+# TODO this is broken with the current search implementation
+
 module NetSuite
   module Actions
     class SearchMoreWithId

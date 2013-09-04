@@ -1,4 +1,5 @@
 # TODO specs
+# TODO a transaction is actually the superclass of a SalesOrder, this is backwards
 
 module NetSuite
   module Records

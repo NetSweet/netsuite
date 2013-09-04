@@ -1,4 +1,3 @@
-# TODO: Tests
 module NetSuite
   module Actions
     class Search
@@ -83,6 +82,8 @@ module NetSuite
               # Gyoku doesn't seem support the nice :@attribute and :content! syntax for lists of elements of the same name
               # https://github.com/savonrb/gyoku/issues/18#issuecomment-17825848
 
+              # TODO with the latest version of savon we can easily improve the code here, should be rewritten with new attribute syntax
+
               custom_field_list = condition[:value].map do |h|
                 if h[:value].is_a?(Array) && h[:value].first.respond_to?(:to_record)
                   {
@@ -133,6 +134,8 @@ module NetSuite
                   }
                 }
               elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
+                # date ranges are handled via searchValue (start range) and searchValue2 (end range)
+
                 h[element_name] = {
                   '@operator' => condition[:operator],
                   "platformCore:searchValue" => condition[:value].first.to_s,
