@@ -23,23 +23,32 @@ module NetSuite
             # basic search results
             record_list = response.body[:record_list][:record]
             record_list = [record_list] if @total_records == 1
+
             record_list.each do |record|
               results << result_class.new(record)
             end
-
           elsif response.body.has_key? :search_row_list
             # advanced search results
             record_list = response.body[:search_row_list][:search_row]
             record_list = [record_list] if @total_records == 1
             record_list.each do |record|
               record[:basic].each_pair do |k,v|
-                # for some reason all the return values are wrapped in a SearchValue element
-                # this extracts the value from the SearchValue element to make results easier to work with
+                # all return values are wrapped in a <SearchValue/>
+                # extract the value from <SearchValue/> to make results easier to work with
+
                 if v.is_a?(Hash) && v.has_key?(:search_value)
-                  record[:basic][k] = v[:search_value]
+                  # search return values that are just internalIds are stored as attributes on the searchValue element
+                  if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
+                    record[:basic][k] = v[:search_value][:'@internal_id']
+                  else
+                    record[:basic][k] = v[:search_value]
+                  end
                 end
               end
-              results << result_class.new(record[:basic])
+
+              result_wrapper = result_class.new(record.delete(:basic))
+              result_wrapper.search_joins = record
+              results << result_wrapper
             end
           else
             raise "uncaught search result"

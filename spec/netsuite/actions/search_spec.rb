@@ -127,6 +127,16 @@ describe NetSuite::Actions::Search do
     end
   end
 
+  context "advanced search" do
+    it "should handle search column definitions" do
+      
+    end
+    
+    it "should handle joined search results" do
+      
+    end
+  end
+
   context "basic search" do
     it "should handle searching basic fields" do
       
