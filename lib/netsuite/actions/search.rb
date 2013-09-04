@@ -52,21 +52,26 @@ module NetSuite
       # </soap:Body>
 
       def request_body
-        # only use :criteria when specifying search options (:page_size, etc)
+        # columns is only needed for advanced search results
+        columns = @options[:columns] || {}
         criteria = @options[:criteria] || @options
 
-        # TODO find cleaner solution. We need the namespace of the record, which is a instance method
+        # TODO find cleaner solution for pulling the namespace of the record, which is a instance method
         example_instance = @klass.new
         namespace = example_instance.record_namespace
 
         # extract the class name
         class_name = @klass.to_s.split("::").last
 
-        search_record = {}
+        criteria_structure = {}
+        columns_structure = columns
         saved_search_id = criteria.delete(:saved)
 
+        # TODO this whole thing needs to be refactored so we can apply some of the same logic to the 
+        #      column creation xml
+
         criteria.each_pair do |condition_category, conditions|
-          search_record["#{namespace}:#{condition_category}"] = conditions.inject({}) do |h, condition|
+          criteria_structure["#{namespace}:#{condition_category}"] = conditions.inject({}) do |h, condition|
             element_name = "platformCommon:#{condition[:field]}"
 
             case condition[:field]
@@ -158,20 +163,33 @@ module NetSuite
           end
         end
 
+        # TODO this needs to be DRYed up a bit
+
         if saved_search_id
           {
             'searchRecord' => {
               '@savedSearchId' => saved_search_id,
               '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced",
               :content! => {
-                "#{namespace}:criteria" => search_record
+                "#{namespace}:criteria" => criteria_structure
+                # TODO need to optionally support columns here
+              }
+            }
+          }
+        elsif !columns_structure.empty?
+          {
+            'searchRecord' => {
+              '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced",
+              :content! => {
+                "#{namespace}:criteria" => criteria_structure,
+                "#{namespace}:columns" => columns_structure
               }
             }
           }
         else
           {
             'searchRecord' => {
-              :content! => search_record,
+              :content! => criteria_structure,
               '@xsi:type' => "#{namespace}:#{class_name}Search"
             }
           }
