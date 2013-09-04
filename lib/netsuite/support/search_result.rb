@@ -31,17 +31,26 @@ module NetSuite
             # advanced search results
             record_list = response.body[:search_row_list][:search_row]
             record_list = [record_list] if @total_records == 1
-            record_list.each do |record|
-              record[:basic].each_pair do |k,v|
-                # all return values are wrapped in a <SearchValue/>
-                # extract the value from <SearchValue/> to make results easier to work with
 
-                if v.is_a?(Hash) && v.has_key?(:search_value)
-                  # search return values that are just internalIds are stored as attributes on the searchValue element
-                  if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
-                    record[:basic][k] = v[:search_value][:'@internal_id']
-                  else
-                    record[:basic][k] = v[:search_value]
+            record_list.each do |record|
+              # TODO because of customFieldList we need to either make this recursive
+              #      or handle the customFieldList as a special case
+
+              record.each_pair do |search_group, search_data|
+                # skip all attributes: look for :basic and all :xxx_join
+                next if search_group.to_s.start_with?('@')
+
+                record[search_group].each_pair do |k, v|
+                  # all return values are wrapped in a <SearchValue/>
+                  # extract the value from <SearchValue/> to make results easier to work with
+
+                  if v.is_a?(Hash) && v.has_key?(:search_value)
+                    # search return values that are just internalIds are stored as attributes on the searchValue element
+                    if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
+                      record[search_group][k] = v[:search_value][:'@internal_id']
+                    else
+                      record[search_group][k] = v[:search_value]
+                    end
                   end
                 end
               end
@@ -55,7 +64,7 @@ module NetSuite
           end
         end
 
-        # TODO remove commented code when searching implementation is final
+        # TODO make meta data associated with search result easily accessible
 
         # search_id = response.header[:ns_id]
         # page_index = response.body[:page_index]
