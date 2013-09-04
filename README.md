@@ -100,6 +100,133 @@ search = NetSuite::Records::Customer.search({
 })
 
 `open https://system.netsuite.com/app/common/entity/custjob.nl?id=#{search.results.first.internal_id}`
+
+# advanced search building on saved search
+search = NetSuite::Records::Customer.search({
+  saved: 500,	# your saved search internalId
+  basic: [
+    {
+      field: 'entityId',
+      operator: 'hasKeywords',
+      value: 'Assumption',
+    },
+    {
+      field: 'stage',
+      operator: 'anyOf',
+      type: 'SearchMultiSelectCustomField',
+      value: [
+        '_lead', '_customer'
+      ]
+    },
+    {
+      field: 'customFieldList',
+      value: [
+        {
+          field: 'custentity_acustomfield',
+          operator: 'anyOf',
+          # type is needed for multiselect fields
+          type: 'SearchMultiSelectCustomField',
+          value: [
+            NetSuite::Records::CustomRecordRef.new(:internal_id => 1),
+            NetSuite::Records::CustomRecordRef.new(:internal_id => 2),
+          ]
+        }
+      ]
+    }
+  ]
+})
+
+# advanced search from stratch
+search = NetSuite::Records::Transaction.search({
+  criteria: {
+    basic: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        type: 'SearchEnumMultiSelectField',
+        value: [ "_invoice", "_salesOrder" ]
+      },
+      {
+        field: 'tranDate',
+        operator: 'within',
+        # this is needed for date range search requests, for date requests with a single param type is not needed
+        type: 'SearchDateField',
+        value: [
+          # the following format is equivilent to ISO 8601
+          # Date.parse("1/1/2012").strftime("%Y-%m-%dT%H:%M:%S%z"),
+          # Date.parse("30/07/2013").strftime("%Y-%m-%dT%H:%M:%S%z")
+
+          # need to require the time library for this to work
+          Time.parse("01/01/2012").iso8601,
+          Time.parse("30/07/2013").iso8601,
+
+          # or you can use a string. Note that the format below is different from the format of the above code
+          # but it matches exactly what NS returns 
+          # "2012-01-01T22:00:00.000-07:00",
+          # "2013-07-30T22:00:00.000-07:00"
+        ]
+      }
+    ],
+
+
+    # equivilent to the 'Account' label in the GUI
+    accountJoin: [
+      {
+        field: 'internalId',
+        operator: 'noneOf',
+        value: [ NetSuite::Records::Account.new(:internal_id => 215) ]
+      }
+    ],
+
+    itemJoin: [
+      {
+        field: 'customFieldList',
+        value: [
+          {
+            field: 'custitem_apcategoryforsales',
+            operator: 'anyOf',
+            type: 'SearchMultiSelectCustomField',
+            value: [
+              NetSuite::Records::Customer.new(:internal_id => 1),
+              NetSuite::Records::Customer.new(:internal_id => 2),
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  
+  # the column syntax is a WIP. This will change in the future
+  columns: {
+    'tranSales:basic' => [
+      'platformCommon:internalId/' => {},
+      'platformCommon:email/' => {},
+      'platformCommon:tranDate/' => {}
+    ],
+    'tranSales:accountJoin' => [
+      'platformCommon:internalId/' => {}
+    ],
+    'tranSales:contactPrimaryJoin' => [
+      'platformCommon:internalId/' => {}
+    ],
+    'tranSales:customerJoin' => [
+      'platformCommon:internalId/' => {}
+    ],
+    'tranSales:itemJoin' => [
+      'platformCommon:customFieldList' => [
+        'platformCore:customField/' => {
+          '@internalId' => 'custitem_apcategoryforsales',
+          '@xsi:type' => "platformCore:SearchColumnSelectCustomField"
+        }
+      ]
+    ]
+  },
+
+  preferences: {
+    page_size: 10
+  }
+})
+
 ```
 
 
