@@ -1,4 +1,19 @@
 # TODO: Tests
+#
+module MyBuilder
+  gem_directory = Gem.loaded_specs['builder'].full_gem_path
+  module_eval(File.read(gem_directory + "/lib/builder/blankslate.rb"))
+  module_eval(File.read(gem_directory + "/lib/builder/xmlbase.rb"))
+  module_eval(File.read(gem_directory + "/lib/builder/xmlmarkup.rb"))
+  module_eval(File.read(gem_directory + "/lib/builder/xchar.rb"))
+end
+
+class Builder::XmlBase
+  def self.cache_method_calls
+    true
+  end
+end
+
 module NetSuite
   module Actions
     class Search
@@ -38,7 +53,7 @@ module NetSuite
       def request_body
         buffer = ''
 
-        xml = Builder::XmlMarkup.new(target: buffer)
+        xml = MyBuilder::Builder::XmlMarkup.new(target: buffer)
 
         # TODO: When searching invoices allow for multiple basic search criteria to be set
         # TODO: Make setting of criteria and columns easier
