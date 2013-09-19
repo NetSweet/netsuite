@@ -13,7 +13,7 @@ module NetSuite
       def request
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
-        
+
         preferences = NetSuite::Configuration.auth_header
         preferences = preferences.merge(
           (@options[:preferences] || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
@@ -67,7 +67,7 @@ module NetSuite
         columns_structure = columns
         saved_search_id = criteria.delete(:saved)
 
-        # TODO this whole thing needs to be refactored so we can apply some of the same logic to the 
+        # TODO this whole thing needs to be refactored so we can apply some of the same logic to the
         #      column creation xml
 
         criteria.each_pair do |condition_category, conditions|
@@ -127,7 +127,7 @@ module NetSuite
               if condition[:value].is_a?(Array) && condition[:value].first.respond_to?(:to_record)
                 # TODO need to update to the latest savon so we don't need to duplicate the same workaround above again
                 # TODO it's possible that this might break, not sure if platformCore:SearchMultiSelectField is the right type in every situation
-                
+
                 h[element_name] = {
                   '@operator' => condition[:operator],
                   '@xsi:type' => 'platformCore:SearchMultiSelectField',
@@ -148,14 +148,10 @@ module NetSuite
                 }
               else
                 h[element_name] = {
-                  "platformCore:searchValue" => condition[:value]
+                  :content! => { "platformCore:searchValue" => condition[:value] },
                 }
 
-                (h[:attributes!] ||= {}).merge!({
-                  element_name => {
-                    'operator' => condition[:operator]
-                  }
-                })
+                h[element_name][:@operator] = condition[:operator] if condition[:operator]
               end
             end
 
@@ -218,7 +214,7 @@ module NetSuite
 
       protected
         def method_name
-          
+
         end
 
       module Support
