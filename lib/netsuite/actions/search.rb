@@ -34,7 +34,7 @@ module NetSuite
             'xmlns:setupCustom' => "urn:customization_#{api_version}.setup.webservices.netsuite.com"
           },
           soap_header: preferences
-        ).call :search, :message => request_body
+        ).call (@options.has_key?(:search_id)? :search_more_with_id : :search), :message => request_body
       end
 
       # basic search XML
@@ -52,6 +52,13 @@ module NetSuite
       # </soap:Body>
 
       def request_body
+        if @options.has_key?(:search_id)
+          return {
+            'pageIndex' => @options[:page_index],
+            'searchId' => @options[:search_id],
+          }
+        end
+
         # columns is only needed for advanced search results
         columns = @options[:columns] || {}
         criteria = @options[:criteria] || @options
@@ -205,7 +212,11 @@ module NetSuite
       end
 
       def search_result
-        @search_result = @response.body[:search_response][:search_result]
+        @search_result = if @response.body.has_key?(:search_more_with_id_response)
+          @response.body[:search_more_with_id_response]
+        else
+          @response.body[:search_response]
+        end[:search_result]
       end
 
       def success?

@@ -15,6 +15,7 @@ module NetSuite
       #   <platformCore:searchId>WEBSERVICES_738944_SB2_03012013650784545962753432_28d96bd280</platformCore:searchId>
 
       def initialize(response, result_class)
+        @result_class = result_class
         @response = response
         @total_records = response.body[:total_records].to_i
 
@@ -63,30 +64,27 @@ module NetSuite
             raise "uncaught search result"
           end
         end
-
-        # TODO make meta data associated with search result easily accessible
-
-        # search_id = response.header[:ns_id]
-        # page_index = response.body[:page_index]
-        # total_pages = response.body[:total_pages]
-
-        # response_hash[:search_id] = search_id
-        # response_hash[:page_index] = page_index
-        # response_hash[:total_pages] = total_pages
-        # response_hash[:search_results] = search_results
-        # response_hash
       end
 
       def results
         @results ||= []
       end
 
-      def next_page
-        # TODO need to pass to a searchMoreWithId
-      end
+      def results_in_batches
+        begin
+          yield results
 
-      def all_pages
-        # next_page until nil and then collect all the results
+          current_page = @response.body[:page_index].to_i
+
+          next_search = @result_class.search(
+            search_id: @response.body[:search_id],
+            page_index: current_page + 1
+          )
+
+          @results = next_search.results
+          @response = next_search.response
+
+        end while @response.body[:total_pages].to_i != current_page
       end
 
     end
