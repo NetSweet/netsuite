@@ -227,6 +227,27 @@ search = NetSuite::Records::Transaction.search({
   }
 })
 
+# basic search with pagination / SearchMorewithId
+search = NetSuite::Records::Customer.search(
+  criteria: {
+    basic: [
+      {
+        # no operator for booleans
+        field: 'isInactive',
+        value: false,
+      },
+    ]
+  },
+
+  preferences: {
+    page_size: 10,
+  }
+)
+
+search.results_in_batches do |batch|
+  puts batch.map(&:internal_id)
+end
+
 ```
 
 
