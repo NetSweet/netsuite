@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :add, :update, :delete, :search
+      actions :get, :get_list, :add, :update, :delete, :search
 
       fields :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,

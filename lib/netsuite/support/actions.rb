@@ -18,6 +18,8 @@ module NetSuite
           case name
           when :get
             self.send(:include, NetSuite::Actions::Get::Support)
+          when :get_list
+            self.send(:include, NetSuite::Actions::GetList::Support)
           when :get_select_value
             self.send(:include, NetSuite::Actions::GetSelectValue::Support)
           when :search
