@@ -71,20 +71,17 @@ module NetSuite
       end
 
       def results_in_batches
-        begin
+        while @response.body[:total_pages] != @response.body[:page_index]
           yield results
-
-          current_page = @response.body[:page_index].to_i
 
           next_search = @result_class.search(
             search_id: @response.body[:search_id],
-            page_index: current_page + 1
+            page_index: @response.body[:page_index].to_i + 1
           )
 
           @results = next_search.results
           @response = next_search.response
-
-        end while @response.body[:total_pages].to_i != current_page
+        end
       end
 
     end
