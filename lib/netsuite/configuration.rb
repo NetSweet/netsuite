@@ -12,12 +12,13 @@ module NetSuite
 
     def connection(params = {})
       Savon.client({
-          wsdl: wsdl,
-          read_timeout: read_timeout,
-          soap_header: auth_header,
-          pretty_print_xml: true,
-          logger: logger
-          # open_timeout: ???
+        wsdl: wsdl,
+        read_timeout: read_timeout,
+        namespaces: namespaces,
+        soap_header: auth_header,
+        pretty_print_xml: true,
+        logger: logger
+        # open_timeout: ???
       }.merge(params))
     end
 
@@ -77,7 +78,19 @@ module NetSuite
         }
       }
     end
-    
+
+    def namespaces
+      {
+        'xmlns:platformMsgs'   => "urn:messages_#{api_version}.platform.webservices.netsuite.com",
+        'xmlns:platformCore'   => "urn:core_#{api_version}.platform.webservices.netsuite.com",
+        'xmlns:platformCommon' => "urn:common_#{api_version}.platform.webservices.netsuite.com",
+        'xmlns:listRel'        => "urn:relationships_#{api_version}.lists.webservices.netsuite.com",
+        'xmlns:tranSales'      => "urn:sales_#{api_version}.transactions.webservices.netsuite.com",
+        'xmlns:actSched'       => "urn:scheduling_#{api_version}.activities.webservices.netsuite.com",
+        'xmlns:setupCustom'    => "urn:customization_#{api_version}.setup.webservices.netsuite.com",
+      }
+    end
+
     def role=(role)
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
