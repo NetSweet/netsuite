@@ -16,7 +16,7 @@ module NetSuite
             'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           },
-        ).call :get, message: request_body#, message_tag: :platformMsgs
+        ).call :get, message: request_body
       end
 
       def soap_type

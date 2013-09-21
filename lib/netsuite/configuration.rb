@@ -81,11 +81,11 @@ module NetSuite
     def role=(role)
       attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
     end
-    
+
     def role(role = nil)
       if role
         self.role = role
-      else 
+      else
         attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
       end
     end
