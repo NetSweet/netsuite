@@ -1,3 +1,5 @@
+# TODO needs spec
+
 module NetSuite
   module Records
     class BaseRefList
@@ -16,7 +18,7 @@ module NetSuite
       def base_ref=(refs)
         case refs
         when Hash
-          self.refs << RecordRef.new(refs)
+          self.base_ref << RecordRef.new(refs)
         when Array
           refs.each { |ref| self.base_ref << RecordRef.new(ref) }
         end

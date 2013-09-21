@@ -40,12 +40,11 @@ module NetSuite
         module ClassMethods
 
           def get_select_value(options = {})
-            validate_arguments_exist(options, :field, :recordType)
-
             message = {
-              :pageIndex => (options.delete(:pageIndex) || 1),
-              :fieldDescription => field_description(options)
+              pageIndex: (options.delete(:pageIndex) || 1),
+              fieldDescription: field_description(options)
             }
+
             response = NetSuite::Actions::GetSelectValue.call(self, message)
 
             if response.success?
@@ -56,19 +55,13 @@ module NetSuite
           end
 
           private
-
-          def field_description(options)
-            options.inject({}) do |h, (k, v)|
-              h["platformCore:#{k}"] = v
-              h
+            # TODO this goes against the design of the rest of the gem; should be removed in the future
+            def field_description(options)
+              options.inject({}) do |h, (k, v)|
+                h["platformCore:#{k}"] = v
+                h
+              end
             end
-          end
-
-          def validate_arguments_exist(options, *args)
-            args.each do |arg|
-              raise(ArgumentError, ":#{arg} is a required parameter") unless options[arg]
-            end
-          end
 
         end
       end
