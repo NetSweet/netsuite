@@ -97,7 +97,7 @@ module NetSuite
                     elsif criteria_options[:value].is_a? String
                       _criteria_name.platformCore(:searchValue, criteria_options[:value])
                     elsif criteria_options[:value].is_a? Hash
-                      _criteria_name.platformCore(:searchValue, nil) do |_searchValue|
+                      _criteria_name.platformCore(:searchValue) do |_searchValue|
                         criteria_options[:value].each do |key, value|
                           _searchValue.method_missing(key, value)
                         end
