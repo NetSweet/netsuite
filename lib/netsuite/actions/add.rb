@@ -10,21 +10,7 @@ module NetSuite
       private
 
       def request
-        NetSuite::Configuration.connection(
-          namespaces: {
-            'xmlns:platformMsgs'   => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore'   => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:listRel'        => "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
-            'xmlns:tranSales'      => "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
-            'xmlns:platformCommon' => "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:listAcct'       => "urn:accounting_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
-            'xmlns:actSched'       => "urn:scheduling_#{NetSuite::Configuration.api_version}.activities.webservices.netsuite.com",
-            'xmlns:tranCust'       => "urn:customers_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
-            'xmlns:setupCustom'    => "urn:customization_#{NetSuite::Configuration.api_version}.setup.webservices.netsuite.com",
-            'xmlns:tranGeneral'    => "urn:general_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
-            'xmlns:listSupport'    => "urn:support_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
-          },
-        ).call :add, :message => request_body
+        NetSuite::Configuration.connection.call :add, :message => request_body
       end
 
       # <soap:Body>
