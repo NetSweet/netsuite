@@ -71,10 +71,7 @@ module NetSuite
           'platformCore:email'    => email,
           'platformCore:password' => password,
           'platformCore:account'  => account.to_s,
-          'platformCore:role'     => role.to_record,
-          :attributes! => {
-            'platformCore:role' => role.attributes!
-          }
+          'platformCore:role'     => { :'@type' => 'role', :@internalId => role }
         }
       }
     end
@@ -92,14 +89,14 @@ module NetSuite
     end
 
     def role=(role)
-      attributes[:role] = NetSuite::Records::RecordRef.new(:internal_id => role, :type => 'role')
+      attributes[:role] = role
     end
 
     def role(role = nil)
       if role
         self.role = role
       else
-        attributes[:role] ||= NetSuite::Records::RecordRef.new(:internal_id => '3', :type => 'role')
+        attributes[:role] ||= '3'
       end
     end
 

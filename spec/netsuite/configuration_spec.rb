@@ -66,13 +66,7 @@ describe NetSuite::Configuration do
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
-          'platformCore:role'     => {},
-          :attributes! => {
-            'platformCore:role' => {
-              :internalId => '3',
-              :type       => 'role'
-            }
-          }
+          'platformCore:role'     => { :@type => 'role', :internalId => '3' },
         }
       })
     end
@@ -145,7 +139,7 @@ describe NetSuite::Configuration do
   describe '#role' do
     context 'when no role is defined' do
       it 'defaults to "3"' do
-        config.role.internal_id.should == "3"
+        config.role.should == "3"
       end
     end
   end
@@ -153,7 +147,7 @@ describe NetSuite::Configuration do
   describe '#role=' do
     it 'sets the role according to the input value' do
       config.role = "6"
-      config.role.internal_id.should == "6"
+      config.role.should == "6"
     end
   end
 

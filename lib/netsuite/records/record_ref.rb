@@ -33,14 +33,6 @@ module NetSuite
         end
       end
 
-      def attributes!
-        hash = {}
-        hash[:internalId] = @internal_id if @internal_id
-        hash[:externalId] = @external_id if @external_id
-        hash[:type]       = @type        if @type
-        hash
-      end
-
     end
   end
 end
