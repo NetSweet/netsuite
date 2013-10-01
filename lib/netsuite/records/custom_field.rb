@@ -4,7 +4,8 @@ module NetSuite
       include Support::Fields
       include Support::Records
 
-      attr_reader :internal_id, :type
+      attr_reader :internal_id
+      attr_accessor :type
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
