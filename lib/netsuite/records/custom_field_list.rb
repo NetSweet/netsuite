@@ -75,6 +75,9 @@ module NetSuite
                field_value.is_a?(Time),
                field_value.is_a?(Date)
             'DateCustomFieldRef'
+          when field_value.is_a?(FalseClass),
+               field_value.is_a?(TrueClass)
+            'BooleanCustomFieldRef'
           else
             'StringCustomFieldRef'
           end
