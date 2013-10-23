@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :add, :delete, :update, :search
 
-      fields :tran_id, :tran_date, :memo,
+      fields :tran_id, :tran_date, :memo, :expand_assembly,
         :start_date, :end_date, :quantity, :klass
 
       field :custom_field_list, CustomFieldList
