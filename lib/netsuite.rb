@@ -45,6 +45,7 @@ module NetSuite
 
   module Records
     autoload :AssemblyItem,               'netsuite/records/assembly_item'
+    autoload :AssemblyBuild,              'netsuite/records/assembly_build'
     autoload :Account,                    'netsuite/records/account'
     autoload :AccountingPeriod,           'netsuite/records/accounting_period'
     autoload :BillAddress,                'netsuite/records/bill_address'
@@ -115,6 +116,7 @@ module NetSuite
     autoload :TransferOrderItem,          'netsuite/records/transfer_order_item'
     autoload :TransferOrderItemList,      'netsuite/records/transfer_order_item_list'
     autoload :TransferOrderStatus,        'netsuite/records/transfer_order_status'
+    autoload :WorkOrder,                  'netsuite/records/work_order'
   end
 
   def self.configure(&block)
