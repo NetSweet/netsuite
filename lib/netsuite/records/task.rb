@@ -10,7 +10,8 @@ module NetSuite
       actions :get, :add, :search, :delete, :update
 
       fields :title, :send_email, :message, :status, :access_level, :reminder_type,
-             :reminder_minutes, :start_date, :end_date, :due_date, :timed_event
+             :reminder_minutes, :start_date, :end_date, :due_date, :timed_event,
+             :created_date, :last_modified_date
 
       field :contact_list, ContactList
 
