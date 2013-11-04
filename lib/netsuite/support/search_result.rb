@@ -82,6 +82,8 @@ module NetSuite
           @results = next_search.results
           @response = next_search.response
         end
+
+        yield results
       end
 
     end
