@@ -248,6 +248,12 @@ search.results_in_batches do |batch|
   puts batch.map(&:internal_id)
 end
 
+# making a call that hasn't been implemented yet
+NetSuite::Configuration.connection.call :get_customization_id, message: {
+  'platformMsgs:customizationType' => { '@getCustomizationType' => 'customRecordType'},
+  'platformMsgs:includeInactives' => 'false'
+}
+
 ```
 
 
