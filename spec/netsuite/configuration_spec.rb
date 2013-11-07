@@ -66,7 +66,7 @@ describe NetSuite::Configuration do
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
-          'platformCore:role'     => { :@type => 'role', :internalId => '3' },
+          'platformCore:role'     => { :@type => 'role', :@internalId => '3' },
         }
       })
     end
