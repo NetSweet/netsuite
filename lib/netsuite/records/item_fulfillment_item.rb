@@ -23,6 +23,16 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def to_record
+        rec = super
+        if rec["#{record_namespace}:customFieldList"]
+          rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        end
+        if rec["#{record_namespace}:options"]
+          rec["#{record_namespace}:options!"] = rec.delete("#{record_namespace}:options")
+        end
+        rec
+      end
 
     end
   end
