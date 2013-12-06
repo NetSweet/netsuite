@@ -71,6 +71,8 @@ module NetSuite
       end
 
       def results_in_batches
+        return if self.total_records.zero?
+
         while @response.body[:total_pages] != @response.body[:page_index]
           yield results
 
