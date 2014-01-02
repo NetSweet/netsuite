@@ -31,13 +31,8 @@ describe NetSuite::Actions::Search do
       result.results.first.email.should == 'aemail@gmail.com'
     end
 
-    it "should handle a ID search with basic params" do
-      
-    end
-
-    it "should handle a search with joined params" do
-      
-    end
+    pending "should handle a ID search with basic params"
+    pending "should handle a search with joined params"
 
     it "should handle a search with joined params containing custom field search" do
       savon.expects(:search).with(:message => {
@@ -140,22 +135,12 @@ describe NetSuite::Actions::Search do
   end
 
   context "advanced search" do
-    it "should handle search column definitions" do
-      
-    end
-    
-    it "should handle joined search results" do
-      
-    end
+    pending "should handle search column definitions"
+    pending "should handle joined search results"
   end
 
   context "basic search" do
-    it "should handle searching basic fields" do
-      
-    end
-
-    it "should handle searching with joined fields" do
-      
-    end
+    pending "should handle searching basic fields"
+    pending "should handle searching with joined fields"
   end
 end
