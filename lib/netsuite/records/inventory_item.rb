@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :search
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
@@ -54,6 +54,9 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.search_class_name
+        "Item"
+      end
     end
   end
 end

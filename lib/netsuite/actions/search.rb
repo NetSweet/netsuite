@@ -8,8 +8,15 @@ module NetSuite
         @options = options
       end
 
-      private
+      def class_name
+        @class_name ||= if @klass.respond_to? :search_class_name
+          @klass.search_class_name
+        else
+          @klass.to_s.split("::").last
+        end
+      end
 
+      private
       def request
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
@@ -56,9 +63,7 @@ module NetSuite
         # TODO find cleaner solution for pulling the namespace of the record, which is a instance method
         example_instance = @klass.new
         namespace = example_instance.record_namespace
-
         # extract the class name
-        class_name = @klass.to_s.split("::").last
 
         criteria_structure = {}
         columns_structure = columns

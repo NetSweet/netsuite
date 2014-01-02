@@ -4,6 +4,18 @@ describe NetSuite::Actions::Search do
   before(:all) { savon.mock! }
   after(:all) { savon.unmock! }
 
+  context "search class name" do
+    it "infers class name if class doesn't specify search class" do
+      instance = described_class.new NetSuite::Records::Customer
+      expect(instance.class_name).to eq "Customer"
+    end
+
+    it "gets class name from search class specified" do
+      instance = described_class.new NetSuite::Records::InventoryItem
+      expect(instance.class_name).to eq NetSuite::Records::InventoryItem.search_class_name
+    end
+  end
+
   context "saved search" do
     it "should handle a ID only search" do
       savon.expects(:search).with(:message => {
