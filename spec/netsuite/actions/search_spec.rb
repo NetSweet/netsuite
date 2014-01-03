@@ -17,7 +17,7 @@ describe NetSuite::Actions::Search do
   end
 
   context "saved search" do
-    it "should handle a ID only search" do
+    before do
       savon.expects(:search).with(:message => {
         'searchRecord' => {
           '@xsi:type'           => 'listRel:CustomerSearchAdvanced',
@@ -25,10 +25,21 @@ describe NetSuite::Actions::Search do
           :content!             => { "listRel:criteria" => {} }
         },
       }).returns(File.read('spec/support/fixtures/search/saved_search_customer.xml'))
+    end
 
+    it "should handle a ID only search" do
       result = NetSuite::Records::Customer.search(saved: 500)
       result.results.size.should == 1
       result.results.first.email.should == 'aemail@gmail.com'
+    end
+
+    it "merges preferences gracefully" do
+      expect {
+          NetSuite::Records::Customer.search(
+            saved: 500,
+            preferences: { page_size: 20 }
+          )
+      }.not_to raise_error
     end
 
     pending "should handle a ID search with basic params"
