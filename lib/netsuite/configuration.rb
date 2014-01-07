@@ -17,8 +17,8 @@ module NetSuite
         namespaces: namespaces,
         soap_header: auth_header,
         pretty_print_xml: true,
-        logger: logger
-        # open_timeout: ???
+        logger: logger,
+        log_level: log_level,
       }.merge(params))
     end
 
@@ -167,9 +167,21 @@ module NetSuite
       attributes[:log]
     end
 
-    def logger
-      attributes[:logger] ||= ::Logger.new (log && !log.empty?) ? log : $stdout
+    def logger(value = nil)
+      attributes[:logger] = if value.nil?
+        ::Logger.new((log && !log.empty?) ? log : $stdout)
+      else
+        value
+      end
     end
 
+    def log_level(value = nil)
+      self.log_level = value || :debug
+      attributes[:log_level]
+    end
+
+    def log_level=(value)
+      attributes[:log_level] ||= value
+    end
   end
 end
