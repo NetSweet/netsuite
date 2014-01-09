@@ -15,7 +15,7 @@ module NetSuite
         :quantity_packed, :quantity_picked, :tax1_amt, :tax_rate1, :tax_rate2, :gift_cert_from,
         :gift_cert_recipient_name, :gift_cert_recipient_email, :gift_cert_message, :gift_cert_number,
         :ship_group, :item_is_fulfilled, :vsoe_is_estimate, :vsoe_price, :vsoe_allocation,
-        :vsoe_deferral, :vsoe_permit_discount, :vsoe_delivered, :expected_ship_date
+        :vsoe_deferral, :vsoe_permit_discount, :vsoe_delivered, :expected_ship_date, :klass
 
       record_refs :job, :item, :units, :price, :department, :location, :created_po,
         :po_vendor, :rev_rec_schedule, :billing_schedule, :tax_code, :ship_address,
