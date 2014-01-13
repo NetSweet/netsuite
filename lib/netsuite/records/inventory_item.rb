@@ -7,7 +7,20 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :add, :delete, :search
+      # NOTE NetSuite doesn't have a InventoryItemSearch object. So we use
+      # the ItemSearch instead. In order to actually get Inventory Items only
+      # you will still have to specify the type:
+      #
+      #   basic: [
+      #     {
+      #       field: 'type',
+      #       operator: 'anyOf',
+      #       type: 'SearchEnumMultiSelectField',
+      #       value: ['_inventoryItem']
+      #     }
+      #  ]
+      #
+      actions :get, :add, :delete, :search, :update
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
