@@ -92,6 +92,7 @@ module NetSuite
     autoload :JournalEntryLineList,       'netsuite/records/journal_entry_line_list'
     autoload :KitItem,                    'netsuite/records/kit_item'
     autoload :Location,                   'netsuite/records/location'
+    autoload :LocationsList,              'netsuite/records/locations_list'
     autoload :NonInventorySaleItem,       'netsuite/records/non_inventory_sale_item'
     autoload :PaymentMethod,              'netsuite/records/payment_method'
     autoload :PhoneCall,                  'netsuite/records/phone_call'
