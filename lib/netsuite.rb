@@ -66,6 +66,7 @@ module NetSuite
     autoload :Customer,                   'netsuite/records/customer'
     autoload :CustomerAddressbook,        'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,    'netsuite/records/customer_addressbook_list'
+    autoload :CustomerDeposit,            'netsuite/records/customer_deposit'
     autoload :CustomerPayment,            'netsuite/records/customer_payment'
     autoload :CustomerPaymentApply,       'netsuite/records/customer_payment_apply'
     autoload :CustomerPaymentApplyList,   'netsuite/records/customer_payment_apply_list'
