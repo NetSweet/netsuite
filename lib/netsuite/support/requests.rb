@@ -26,7 +26,7 @@ module NetSuite
       end
 
       def build_response
-        Response.new(:success => success?, header: response_header, :body => response_body)
+        Response.new(success: success?, header: response_header, body: response_body, error: response_error)
       end
 
       def success?
@@ -35,6 +35,10 @@ module NetSuite
 
       # Only care about headers in Search class for now
       def response_header
+        nil
+      end
+
+      def response_error
         nil
       end
 

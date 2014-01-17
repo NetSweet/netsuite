@@ -3,6 +3,8 @@ module NetSuite
     class Add
       include Support::Requests
 
+      attr_reader :response_hash
+
       def initialize(object = nil)
         @object = object
       end
@@ -37,7 +39,7 @@ module NetSuite
         if @object.respond_to?(:external_id) && @object.external_id
           hash['platformMsgs:record']['@platformMsgs:externalId'] = @object.external_id
         end
-        
+
         hash
       end
 
@@ -47,6 +49,10 @@ module NetSuite
 
       def response_body
         @response_body ||= response_hash[:base_ref]
+      end
+
+      def response_error
+        @response_error ||= NetSuite::Error.new(response_hash[:status][:status_detail]) if response_hash[:status][:status_detail]
       end
 
       def response_hash
@@ -61,6 +67,7 @@ module NetSuite
             @internal_id = response.body[:@internal_id]
             true
           else
+            @error = response.error
             false
           end
         end

@@ -2,6 +2,8 @@ module NetSuite
   module Support
     module Actions
 
+      attr_accessor :error
+
       def self.included(base)
         base.send(:extend, ClassMethods)
       end
