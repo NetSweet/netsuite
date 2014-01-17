@@ -1,0 +1,19 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0120201413459254121612426069_c2488</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <addResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <writeResponse>
+        <platformCore:status xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com" isSuccess="false">
+          <platformCore:statusDetail type="ERROR">
+            <platformCore:code>INVALID_INITIALIZE_REF</platformCore:code>
+            <platformCore:message>You can not initialize invoice: invalid reference 7281.</platformCore:message>
+          </platformCore:statusDetail>
+        </platformCore:status>
+      </writeResponse>
+    </addResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
