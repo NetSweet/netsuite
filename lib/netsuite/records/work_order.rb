@@ -15,7 +15,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :assembly_item, AssemblyItem
 
-      record_refs :location, :department
+      record_refs :location, :department, :subsidiary
 
       attr_accessor :internal_id
       attr_accessor :external_id
