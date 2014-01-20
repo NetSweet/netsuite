@@ -74,7 +74,7 @@ describe NetSuite::Actions::Add do
 
       it 'provides an error method on the object with details about the error' do
         invoice.add
-        error = invoice.error
+        error = invoice.errors.first
 
         error.should be_kind_of(NetSuite::Error)
         error.type.should eq('ERROR')
@@ -84,7 +84,32 @@ describe NetSuite::Actions::Add do
 
       it 'provides an error method on the response' do
         response = NetSuite::Actions::Add.call(invoice)
-        response.error.should be_kind_of(NetSuite::Error)
+        response.errors.first.should be_kind_of(NetSuite::Error)
+      end
+    end
+
+    context 'when not successful with multiple errors' do
+      before do
+        savon.expects(:add).with(:message => {
+          'platformMsgs:record' => {
+            :content! => {
+              'tranSales:source' => 'Google'
+            },
+            '@xsi:type' => 'tranSales:Invoice'
+          },
+        }).returns(File.read('spec/support/fixtures/add/add_invoice_multiple_errors.xml'))
+      end
+
+      it 'provides an error method on the object with details about the error' do
+        invoice.add
+        invoice.errors.length.should eq(2)
+
+        error = invoice.errors.first
+
+        error.should be_kind_of(NetSuite::Error)
+        error.type.should eq('ERROR')
+        error.code.should eq('ERROR')
+        error.message.should eq('Some message')
       end
     end
   end
