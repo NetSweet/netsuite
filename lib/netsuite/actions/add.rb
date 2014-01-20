@@ -51,23 +51,34 @@ module NetSuite
         @response_body ||= response_hash[:base_ref]
       end
 
-      def response_error
-        @response_error ||= NetSuite::Error.new(response_hash[:status][:status_detail]) if response_hash[:status][:status_detail]
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
       end
 
       def response_hash
         @response_hash ||= @response.to_hash[:add_response][:write_response]
       end
 
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.class == Hash
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
+      end
+
       module Support
         def add
           response = NetSuite::Actions::Add.call(self)
+
+          @errors = response.errors
 
           if response.success?
             @internal_id = response.body[:@internal_id]
             true
           else
-            @error = response.error
             false
           end
         end

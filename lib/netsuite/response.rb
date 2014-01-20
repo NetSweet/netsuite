@@ -1,12 +1,12 @@
 module NetSuite
   class Response
-    attr_accessor :header, :body, :error
+    attr_accessor :header, :body, :errors
 
     def initialize(attributes = {})
-      @success = attributes[:success]
-      @header  = attributes[:header]
-      @body    = attributes[:body]
-      @error   = attributes[:error]
+      @success  = attributes[:success]
+      @header   = attributes[:header]
+      @body     = attributes[:body]
+      @errors   = attributes[:errors]
     end
 
     def success!
