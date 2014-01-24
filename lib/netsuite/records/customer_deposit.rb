@@ -19,7 +19,7 @@ module NetSuite
 
       fields :custom_form, :payment, :tran_date, :exchange_rate
 
-      record_refs :customer, :sales_order
+      record_refs :customer, :sales_order, :account
 
       attr_reader :internal_id
       attr_accessor :external_id
