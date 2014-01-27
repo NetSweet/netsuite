@@ -19,6 +19,7 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :vsoe_auto_calc
 
+      field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress
       field :item_list,                SalesOrderItemList
       field :custom_field_list,        CustomFieldList

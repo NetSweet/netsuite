@@ -63,6 +63,11 @@ describe NetSuite::Records::SalesOrder do
     it 'can be set from a BillAddress object'
   end
 
+  describe '#transaction_ship_address' do
+    it 'can be set from attributes'
+    it 'can be set from a ShipAddress object'
+  end
+
   describe '#revenue_status' do
     it 'can be set from attributes'
     it 'can be set from a RevenueStatus object'
