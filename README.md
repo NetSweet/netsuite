@@ -254,6 +254,8 @@ NetSuite::Configuration.connection.call :get_customization_id, message: {
   'platformMsgs:includeInactives' => 'false'
 }
 
+server_time_response = NetSuite::Configuration.connection.call :get_server_time
+server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
 ```
 
 
