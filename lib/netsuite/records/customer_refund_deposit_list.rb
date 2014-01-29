@@ -22,7 +22,7 @@ module NetSuite
       end
  
       def to_record
-        super.merge({ "#{record_namespace}:customerRefundDeposit" => deposits.first.to_record })
+        super.merge({ "#{record_namespace}:customerRefundDeposit" => deposits.map(&:to_record) })
       end
     end
   end
