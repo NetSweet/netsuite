@@ -13,13 +13,11 @@ describe NetSuite::Records::CustomerRefundDepositList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranCust:customerRefundDeposit' => {
-            'tranCust:apply' => false
-          }
-        }
-      ]
+      record = {
+        'tranCust:customerRefundDeposit' => [{
+          'tranCust:apply' => false
+        }]
+      }
       list.to_record.should eql(record)
     end
   end
