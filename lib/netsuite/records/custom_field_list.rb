@@ -18,6 +18,14 @@ module NetSuite
       def custom_fields
         @custom_fields ||= []
       end
+
+      # In case you want to get only MultiSelectCustomFieldRef for example:
+      #
+      #   list.custom_fields_by_type "MultiSelectCustomFieldRef"
+      #
+      def custom_fields_by_type(type)
+        custom_fields.select { |field| field.type == "platformCore:#{type}" }
+      end
       
       def method_missing(sym, *args, &block)
         # read custom field if already set
