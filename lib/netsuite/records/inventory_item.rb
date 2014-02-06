@@ -57,6 +57,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
       field :locations_list, LocationsList
+      field :matrix_option_list, MatrixOptionList
       
       attr_reader :internal_id
       attr_accessor :external_id
