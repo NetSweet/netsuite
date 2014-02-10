@@ -7,6 +7,24 @@ describe NetSuite::Records::CustomFieldList do
     list.custom_fields.should be_kind_of(Array)
   end
 
+  context 'writing convience methods' do
+    it "should create a custom field entry when none exists" do
+      list.custrecord_somefield = 'a value'
+      list.custom_fields.size.should == 1
+      list.custom_fields.first.value.should == 'a value'
+      list.custom_fields.first.type.should == 'platformCore:StringCustomFieldRef'
+    end
+
+    it "should convert a list of numbers into a list of custom field refs" do
+      list.custrecord_somefield = [1,2]
+      list.custom_fields.first.type.should == 'platformCore:MultiSelectCustomFieldRef'
+      list.custom_fields.first.value.map(&:to_record).should eql([
+        NetSuite::Records::CustomRecordRef.new(:internal_id => 1),
+        NetSuite::Records::CustomRecordRef.new(:internal_id => 2)
+      ].map(&:to_record))
+    end
+  end
+
   describe '#to_record' do
     before do
       list.custom_fields << NetSuite::Records::CustomField.new(
