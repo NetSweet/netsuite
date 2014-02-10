@@ -256,7 +256,13 @@ NetSuite::Configuration.connection.call :get_customization_id, message: {
 
 server_time_response = NetSuite::Configuration.connection.call :get_server_time
 server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
+
+# using get_select_value with a custom record
+NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custrecord_something',
+  customRecordType: {
+    '@internalId' => 10,
+    '@xsi:type' => 'customRecord'
+  }
+)
 ```
-
-
-
