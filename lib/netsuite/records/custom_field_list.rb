@@ -51,6 +51,8 @@ module NetSuite
           "#{record_namespace}:customField" => custom_fields.map do |custom_field|
             if custom_field.value.respond_to?(:to_record)
               custom_field_value = custom_field.value.to_record
+            elsif custom_field.value.is_a?(Array)
+              custom_field_value = custom_field.value.map(&:to_record)
             else
               custom_field_value = custom_field.value.to_s
             end
@@ -77,6 +79,8 @@ module NetSuite
         def create_custom_field(internal_id, field_value)
           # all custom fields need types; infer type based on class sniffing
           field_type = case
+          when field_value.is_a?(Array)
+            'MultiSelectCustomFieldRef'
           when field_value.is_a?(Hash)
             'SelectCustomFieldRef'
           when field_value.is_a?(DateTime),
@@ -98,6 +102,17 @@ module NetSuite
             CustomRecordRef.new(field_value)
           when field_value.is_a?(Time)
             field_value.iso8601
+          when field_value.is_a?(Array)
+            # sniff the first element of the array; if an int or string then assume internalId
+            # and create record refs pointing to the given IDs
+
+            if !field_value.empty? && (field_value.first.is_a?(String) || field_value.first.kind_of?(Integer))
+              field_value.map do |v|
+                NetSuite::Records::CustomRecordRef.new(internal_id: v)
+              end
+            else
+              field_value
+            end
           else
             field_value
           end
