@@ -203,4 +203,15 @@ describe NetSuite::Records::SalesOrder do
     end
   end
 
+  pending "closing a sales order" do
+    it "closes each line to close the sales order" do
+      attributes = sales_order.attributes
+      attributes[:item_list].items.each do |item|
+        item.is_closed = true
+        item.attributes = item.attributes.slice(:line, :is_closed)
+      end
+
+      sales_order.update({ item_list: attributes[:item_list] })
+    end
+  end
 end
