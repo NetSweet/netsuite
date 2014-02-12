@@ -14,9 +14,11 @@ module NetSuite
         attributes.select { |k,v| self.class.fields.include?(k) }.each do |k,v|
           send("#{k}=", v)
         end
-        self.klass = attributes[:class] if attributes[:class]
-      end
 
+        if attributes[:class] && self.class.fields.include?(:klass)
+          self.klass = attributes[:class]
+        end
+      end
     end
   end
 end
