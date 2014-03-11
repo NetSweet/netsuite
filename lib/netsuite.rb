@@ -105,6 +105,7 @@ module NetSuite
     autoload :SalesOrder,                 'netsuite/records/sales_order'
     autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
     autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
+    autoload :ServiceSaleItem,            'netsuite/records/service_sale_item'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :SupportCase,                'netsuite/records/support_case'
     autoload :Task,                       'netsuite/records/task'
