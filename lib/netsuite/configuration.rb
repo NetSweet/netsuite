@@ -86,6 +86,7 @@ module NetSuite
         'xmlns:actSched'       => "urn:scheduling_#{api_version}.activities.webservices.netsuite.com",
         'xmlns:setupCustom'    => "urn:customization_#{api_version}.setup.webservices.netsuite.com",
         'xmlns:listAcct'       => "urn:accounting_#{api_version}.lists.webservices.netsuite.com",
+        'xmlns:tranBank'       => "urn:bank_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:tranCust'       => "urn:customers_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:listSupport'    => "urn:support_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:tranGeneral'    => "urn:general_#{api_version}.transactions.webservices.netsuite.com",
