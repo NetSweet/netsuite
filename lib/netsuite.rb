@@ -81,6 +81,8 @@ module NetSuite
     autoload :Contact,                    'netsuite/records/contact'
     autoload :Department,                 'netsuite/records/department'
     autoload :Deposit,                    'netsuite/records/deposit'
+    autoload :DepositPayment,             'netsuite/records/deposit_payment'
+    autoload :DepositPaymentList,         'netsuite/records/deposit_payment_list'
     autoload :Duration,                   'netsuite/records/duration'
     autoload :InventoryItem,              'netsuite/records/inventory_item'
     autoload :Invoice,                    'netsuite/records/invoice'
