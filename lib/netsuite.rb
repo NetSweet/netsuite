@@ -110,6 +110,7 @@ module NetSuite
     autoload :Employee,                   'netsuite/records/employee'
     autoload :ProjectTask,                'netsuite/records/project_task'
     autoload :TimeBill,                   'netsuite/records/time_bill'
+    autoload :JobStatus,                  'netsuite/records/job_status'
   end
 
   def self.configure(&block)

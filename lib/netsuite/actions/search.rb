@@ -142,11 +142,19 @@ module NetSuite
               elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
                 # date ranges are handled via searchValue (start range) and searchValue2 (end range)
 
-                h[element_name] = {
-                  '@operator' => condition[:operator],
-                  "platformCore:searchValue" => condition[:value].first.to_s,
-                  "platformCore:searchValue2" => condition[:value].last.to_s
-                }
+                values = condition[:value].compact
+                if values.size == 1
+                  h[element_name] = {
+                    '@operator' => condition[:operator],
+                    "platformCore:predefinedSearchValue" => values.first.to_s
+                  }
+                else
+                  h[element_name] = {
+                    '@operator' => condition[:operator],
+                    "platformCore:searchValue" => values.first.to_s,
+                    "platformCore:searchValue2" => values.last.to_s
+                  }
+                end
               else
                 h[element_name] = {
                   :content! => { "platformCore:searchValue" => condition[:value] },
