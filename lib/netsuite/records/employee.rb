@@ -11,7 +11,7 @@ module NetSuite
 
       fields :salutation, :first_name, :middle_name, :last_name, :email, :alt_name,
         :phone, :fax, :default_address, :is_inactive, :last_modified_date, :date_created, :phonetic_name,
-        :initials, :entity_id
+        :initials, :location, :subsidiary, :entity_id
 
       attr_reader :internal_id
       attr_accessor :external_id
