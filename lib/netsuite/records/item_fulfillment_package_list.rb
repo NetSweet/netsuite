@@ -5,23 +5,23 @@ module NetSuite
       include Support::Records
       include Namespaces::TranSales
 
-      fields :item
+      fields :package
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
       end
 
-      def item=(items)
-        case items
+      def package=(packages)
+        case packages
         when Hash
-          self.items << ItemFulfillmentPackage.new(items)
+          self.packages << ItemFulfillmentPackage.new(packages)
         when Array
-          items.each { |item| self.items << ItemFulfillmentPackage.new(item) }
+          packages.each { |package| self.packages << ItemFulfillmentPackage.new(package) }
         end
       end
 
-      def items
-        @items ||= []
+      def packages
+        @packages ||= []
       end
 
       def to_record
