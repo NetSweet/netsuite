@@ -1,16 +1,17 @@
 module NetSuite
   module Records
-  	class ItemFulfillment
-		include Support::Fields
-		include Support::RecordRefs
-		include Support::Records
-		include Support::Actions
-		include Namespaces::TranSales
+    class ItemFulfillment
+      include Support::Fields
+      include Support::RecordRefs
+      include Support::Records
+      include Support::Actions
+      include Namespaces::TranSales
 
-  		actions :get, :add, :initialize, :delete
+      actions :get, :add, :initialize, :delete, :search
 
       fields :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
-        :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential
+        :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential,
+        :ship_status
 
       read_only_fields :handling_cost
 
@@ -39,6 +40,9 @@ module NetSuite
         rec
       end
 
-  	end
+      def self.search_class_name
+        "Transaction"
+      end
+    end
   end
 end
