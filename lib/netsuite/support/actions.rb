@@ -30,6 +30,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::SearchMoreWithId::Support)
           when :add
             self.send(:include, NetSuite::Actions::Add::Support)
+          when :upsert
+            self.send(:include, NetSuite::Actions::Upsert::Support)
           when :delete
             self.send(:include, NetSuite::Actions::Delete::Support)
           when :update
