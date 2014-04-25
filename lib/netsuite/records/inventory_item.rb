@@ -20,7 +20,7 @@ module NetSuite
       #     }
       #  ]
       #
-      actions :get, :add, :delete, :search, :update
+      actions :get, :add, :delete, :search, :update, :upsert
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
