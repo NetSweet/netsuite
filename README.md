@@ -265,4 +265,13 @@ NetSuite::Records::BaseRefList.get_select_value(
     '@xsi:type' => 'customRecord'
   }
 )
+
+# updating a custom field list
+# you need to push ALL the values of ALL of the custom fields that you want set on the record
+# you can't just push the values of the fields that you want to update: all of the values of
+# other fields will then fall back to their default values
+contact = NetSuite::Records::Contact.get(12345)
+contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
+contact.custom_field_list.custentity_abooleanfield = true
+contact.update(custom_field_list: contact.custom_field_list)
 ```
