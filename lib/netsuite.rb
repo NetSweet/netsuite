@@ -22,6 +22,8 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+    autoload :ListEmp,        'netsuite/namespaces/list_emp'
+    autoload :TranEmp,        'netsuite/namespaces/tran_emp'
   end
 
   module Support
@@ -116,6 +118,10 @@ module NetSuite
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
     autoload :Transaction,                'netsuite/records/transaction'
+    autoload :Employee,                   'netsuite/records/employee'
+    autoload :ProjectTask,                'netsuite/records/project_task'
+    autoload :TimeBill,                   'netsuite/records/time_bill'
+    autoload :JobStatus,                  'netsuite/records/job_status'
   end
 
   def self.configure(&block)
