@@ -8,6 +8,16 @@ module NetSuite
       fields :package
 
       def initialize(attributes = {})
+        if attributes.keys != [:package] && attributes.first
+
+          transformed_attrs = {}
+          attributes.first.last.each do |k, v|
+            transformed_attrs.merge!(k[0..-5].to_sym => v)
+          end
+
+          attributes = { package: transformed_attrs }
+        end
+
         initialize_from_attributes_hash(attributes)
       end
 
