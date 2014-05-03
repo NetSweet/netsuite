@@ -33,6 +33,9 @@ bundle exec rspec
 ## Usage
 
 ### Configuration
+
+Not sure how to find your account id? Search for "web service preferences" in the NetSuite global search.
+
 ```ruby
 NetSuite.configure do
   reset!
