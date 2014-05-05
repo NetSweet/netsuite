@@ -8,14 +8,15 @@ module NetSuite
 
       module ClassMethods
 
-        def call(*args)
-          new(*args).call
+        def call(options, credentials={})
+          raise ArgumentError, "options should be an array" unless options.is_a?(Array)
+          new(*options).call(credentials)
         end
 
       end
 
-      def call
-        @response = request
+      def call(credentials={})
+        @response = request(credentials)
         build_response
       end
 
