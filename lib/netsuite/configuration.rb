@@ -10,12 +10,17 @@ module NetSuite
       @attributes ||= {}
     end
 
-    def connection(params = {})
+    def connection(params={}, credentials={})
+      if [:email, :password, :account].all? {|s| credentials.key? s}
+        auth_header_val = auth_header(credentials[:email], credentials[:password], credentials[:account], false)
+      else
+        auth_header_val = auth_header
+      end
       Savon.client({
         wsdl: wsdl,
         read_timeout: read_timeout,
         namespaces: namespaces,
-        soap_header: auth_header,
+        soap_header: auth_header_val,
         pretty_print_xml: true,
         logger: logger,
         log_level: log_level,
@@ -65,8 +70,9 @@ module NetSuite
       end
     end
 
-    def auth_header
-      attributes[:auth_header] ||= {
+    def auth_header(email=email, password=password, account=account, cache=true)
+      return attributes[:auth_header] if attributes[:auth_header] and cache
+      auth_header = {
         'platformMsgs:passport' => {
           'platformCore:email'    => email,
           'platformCore:password' => password,
@@ -74,6 +80,8 @@ module NetSuite
           'platformCore:role'     => { :'@type' => 'role', :@internalId => role }
         }
       }
+      attributes[:auth_header] = auth_header if cache
+      auth_header
     end
 
     def namespaces
