@@ -24,7 +24,7 @@ module NetSuite
         pretty_print_xml: true,
         logger: logger,
         log_level: log_level,
-      }.merge(params))
+      }.update(params))
     end
 
     def api_version(version = nil)

@@ -10,8 +10,8 @@ module NetSuite
 
       private
 
-      def request
-        NetSuite::Configuration.connection.call :get_list, :message => request_body
+      def request(credentials={})
+        NetSuite::Configuration.connection({}, credentials).call(:get_list, :message => request_body)
       end
 
       def request_body
@@ -59,8 +59,8 @@ module NetSuite
         end
 
         module ClassMethods
-          def get_list(options = { })
-            response = NetSuite::Actions::GetList.call(self, options)
+          def get_list(options = { }, credentials={})
+            response = NetSuite::Actions::GetList.call([self, options], credentials)
 
             if response.success?
               response.body.map do |record|

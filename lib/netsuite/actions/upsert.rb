@@ -11,8 +11,8 @@ module NetSuite
 
       private
 
-      def request
-        NetSuite::Configuration.connection.call :upsert, :message => request_body
+      def request(credentials={})
+        NetSuite::Configuration.connection({}, credentials).call :upsert, :message => request_body
       end
 
       # <soap:Body>
@@ -70,8 +70,8 @@ module NetSuite
       end
 
       module Support
-        def upsert
-          response = NetSuite::Actions::Upsert.call(self)
+        def upsert(credentials={})
+          response = NetSuite::Actions::Upsert.call([self], credentials)
 
           @errors = response.errors
 
