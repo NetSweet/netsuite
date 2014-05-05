@@ -11,8 +11,8 @@ module NetSuite
 
       private
 
-      def request(params={})
-        NetSuite::Configuration.connection(params).call(:add, :message => request_body)
+      def request(credentials={})
+        NetSuite::Configuration.connection({}, credentials).call(:add, :message => request_body)
       end
 
       # <soap:Body>
@@ -70,8 +70,8 @@ module NetSuite
       end
 
       module Support
-        def add(params={})
-          response = NetSuite::Actions::Add.call(self, params)
+        def add(credentials={})
+          response = NetSuite::Actions::Add.call([self], credentials)
 
           @errors = response.errors
 

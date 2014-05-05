@@ -14,7 +14,12 @@ module NetSuite
 
       private
 
-      def request
+      def request(credentials={})
+        if [:email, :password, :account].all? {|s| credentials.key? s}
+          auth_header_val = NetSuite::Configuration.auth_header(credentials[:email], credentials[:password], credentials[:account], false)
+        else
+          auth_header_val = NetSuite::Configuration.auth_header
+        end
         connection.request(:search_more_with_id) do
           soap.namespaces['xmlns:platformMsgs'] = "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
           soap.namespaces['xmlns:platformCore'] = "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
@@ -22,7 +27,7 @@ module NetSuite
           soap.namespaces['xmlns:listRel'] = "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com"
           soap.namespaces['xmlns:tranSales'] = "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com"
 
-          soap.header = auth_header
+          soap.header = auth_header_val
 
           soap.body = request_body
         end
@@ -72,8 +77,8 @@ module NetSuite
           #      * page_index which is an integer
           #      * total_pages which is an integer
           #      * search_results containing array of SearchResult's
-          def search_more_with_id(options = { })
-            response = NetSuite::Actions::SearchMoreWithId.call(self, options)
+          def search_more_with_id(options = { }, credentials={})
+            response = NetSuite::Actions::SearchMoreWithId.call([self, options], credentials)
 
             response_hash = { }
 
