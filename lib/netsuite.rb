@@ -45,6 +45,7 @@ module NetSuite
     autoload :Upsert,           'netsuite/actions/upsert'
     autoload :Search,           'netsuite/actions/search'
     autoload :SearchMoreWithId, 'netsuite/actions/search_more_with_id'
+    autoload :Login,            'netsuite/actions/login'
   end
 
   module Records
