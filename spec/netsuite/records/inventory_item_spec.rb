@@ -104,7 +104,7 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :cost => 100 }) }
 
       it 'returns a InventoryItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::InventoryItem, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
         item = NetSuite::Records::InventoryItem.get(:external_id => 1)
         item.should be_kind_of(NetSuite::Records::InventoryItem)
         item.cost.should eql(100)
@@ -115,7 +115,7 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::InventoryItem, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::InventoryItem.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -132,7 +132,7 @@ describe NetSuite::Records::InventoryItem do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.add.should be_true
       end
@@ -143,7 +143,7 @@ describe NetSuite::Records::InventoryItem do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.add.should be_false
       end
@@ -156,7 +156,7 @@ describe NetSuite::Records::InventoryItem do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.delete.should be_true
       end
@@ -167,7 +167,7 @@ describe NetSuite::Records::InventoryItem do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.delete.should be_false
       end

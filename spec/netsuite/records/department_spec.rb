@@ -24,7 +24,7 @@ describe NetSuite::Records::Department do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Department 1' }) }
 
       it 'returns a Department instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Department, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
         department = NetSuite::Records::Department.get(:external_id => 1)
         department.should be_kind_of(NetSuite::Records::Department)
         department.name.should eql('Department 1')
@@ -35,7 +35,7 @@ describe NetSuite::Records::Department do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Department, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Department.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -53,7 +53,7 @@ describe NetSuite::Records::Department do
       it 'returns true' do
         department = NetSuite::Records::Department.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(department).
+            with([department], {}).
             and_return(response)
         department.add.should be_true
       end
@@ -65,7 +65,7 @@ describe NetSuite::Records::Department do
       it 'returns false' do
         department = NetSuite::Records::Department.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(department).
+            with([department], {}).
             and_return(response)
         department.add.should be_false
       end
@@ -81,7 +81,7 @@ describe NetSuite::Records::Department do
       it 'returns true' do
         department = NetSuite::Records::Department.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(department).
+            with([department], {}).
             and_return(response)
         department.delete.should be_true
       end
@@ -93,7 +93,7 @@ describe NetSuite::Records::Department do
       it 'returns false' do
         department = NetSuite::Records::Department.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(department).
+            with([department], {}).
             and_return(response)
         department.delete.should be_false
       end

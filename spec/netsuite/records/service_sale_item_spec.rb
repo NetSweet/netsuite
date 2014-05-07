@@ -40,7 +40,7 @@ describe NetSuite::Records::ServiceSaleItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :item_id => 'penguins' }) }
 
       it 'returns a ServiceSaleItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::ServiceSaleItem, :external_id => 20).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::ServiceSaleItem, :external_id => 20], {}).and_return(response)
         customer = NetSuite::Records::ServiceSaleItem.get(:external_id => 20)
         customer.should be_kind_of(NetSuite::Records::ServiceSaleItem)
         customer.item_id.should eql('penguins')
@@ -51,7 +51,7 @@ describe NetSuite::Records::ServiceSaleItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::ServiceSaleItem, :external_id => 20).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::ServiceSaleItem, :external_id => 20], {}).and_return(response)
         lambda {
           NetSuite::Records::ServiceSaleItem.get(:external_id => 20)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -68,7 +68,7 @@ describe NetSuite::Records::ServiceSaleItem do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.add.should be_true
       end
@@ -79,7 +79,7 @@ describe NetSuite::Records::ServiceSaleItem do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.add.should be_false
       end
@@ -92,7 +92,7 @@ describe NetSuite::Records::ServiceSaleItem do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.delete.should be_true
       end
@@ -103,7 +103,7 @@ describe NetSuite::Records::ServiceSaleItem do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
         item.delete.should be_false
       end

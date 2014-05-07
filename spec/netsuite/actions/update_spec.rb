@@ -21,11 +21,11 @@ describe NetSuite::Actions::Update do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Update.call(NetSuite::Records::Customer, attributes)
+      NetSuite::Actions::Update.call([NetSuite::Records::Customer, attributes])
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Update.call(NetSuite::Records::Customer, attributes)
+      response = NetSuite::Actions::Update.call([NetSuite::Records::Customer, attributes])
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end
@@ -47,11 +47,11 @@ describe NetSuite::Actions::Update do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Update.call(NetSuite::Records::Invoice, attributes)
+      NetSuite::Actions::Update.call([NetSuite::Records::Invoice, attributes])
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Update.call(NetSuite::Records::Invoice, attributes)
+      response = NetSuite::Actions::Update.call([NetSuite::Records::Invoice, attributes])
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end

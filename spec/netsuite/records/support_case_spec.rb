@@ -46,7 +46,7 @@ describe NetSuite::Records::SupportCase do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :title => 'Case title' }) }
 
       it 'returns a SupportCase instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::SupportCase, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::SupportCase, :external_id => 1], {}).and_return(response)
         support_case = NetSuite::Records::SupportCase.get(:external_id => 1)
         support_case.should be_kind_of(NetSuite::Records::SupportCase)
         support_case.title.should == 'Case title'
@@ -57,7 +57,7 @@ describe NetSuite::Records::SupportCase do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::SupportCase, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::SupportCase, :external_id => 1], {}).and_return(response)
         lambda {
           NetSuite::Records::SupportCase.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -74,7 +74,7 @@ describe NetSuite::Records::SupportCase do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(support_case).
+            with([support_case], {}).
             and_return(response)
         support_case.add.should be_true
       end
@@ -85,7 +85,7 @@ describe NetSuite::Records::SupportCase do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(support_case).
+            with([support_case], {}).
             and_return(response)
         support_case.add.should be_false
       end
@@ -98,7 +98,7 @@ describe NetSuite::Records::SupportCase do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(support_case).
+            with([support_case], {}).
             and_return(response)
         support_case.delete.should be_true
       end
@@ -109,7 +109,7 @@ describe NetSuite::Records::SupportCase do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(support_case).
+            with([support_case], {}).
             and_return(response)
         support_case.delete.should be_false
       end
@@ -121,7 +121,7 @@ describe NetSuite::Records::SupportCase do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :title => 'Case title' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::SupportCase, :external_id => 1, :title => 'Case title').and_return(response)
+        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::SupportCase, :external_id => 1, :title => 'Case title'], {}).and_return(response)
         support_case = NetSuite::Records::SupportCase.new(:external_id => 1)
         support_case.update(:title => 'Case title').should be_true
       end
@@ -131,7 +131,7 @@ describe NetSuite::Records::SupportCase do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::SupportCase, :internal_id => 1, :title => 'Case title').and_return(response)
+        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::SupportCase, :internal_id => 1, :title => 'Case title'], {}).and_return(response)
         support_case = NetSuite::Records::SupportCase.new(:internal_id => 1)
         support_case.update(:title => 'Case title').should be_false
       end

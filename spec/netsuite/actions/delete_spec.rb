@@ -20,11 +20,11 @@ describe NetSuite::Actions::Delete do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Delete.call(customer)
+      NetSuite::Actions::Delete.call([customer])
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Delete.call(customer)
+      response = NetSuite::Actions::Delete.call([customer])
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end

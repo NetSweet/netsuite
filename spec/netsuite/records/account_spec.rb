@@ -40,7 +40,7 @@ describe NetSuite::Records::Account do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :acct_name => 'Account 1' }) }
 
       it 'returns a Account instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Account, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
         account = NetSuite::Records::Account.get(:external_id => 1)
         account.should be_kind_of(NetSuite::Records::Account)
         account.acct_name.should eql('Account 1')
@@ -51,7 +51,7 @@ describe NetSuite::Records::Account do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Account, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Account.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -69,7 +69,7 @@ describe NetSuite::Records::Account do
       it 'returns true' do
         account = NetSuite::Records::Account.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(account).
+            with([account], {}).
             and_return(response)
         account.add.should be_true
       end
@@ -81,7 +81,7 @@ describe NetSuite::Records::Account do
       it 'returns false' do
         account = NetSuite::Records::Account.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(account).
+            with([account], {}).
             and_return(response)
         account.add.should be_false
       end
@@ -97,7 +97,7 @@ describe NetSuite::Records::Account do
       it 'returns true' do
         account = NetSuite::Records::Account.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(account).
+            with([account], {}).
             and_return(response)
         account.delete.should be_true
       end
@@ -109,7 +109,7 @@ describe NetSuite::Records::Account do
       it 'returns false' do
         account = NetSuite::Records::Account.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(account).
+            with([account], {}).
             and_return(response)
         account.delete.should be_false
       end

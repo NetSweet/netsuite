@@ -66,7 +66,7 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :approved => true }) }
 
       it 'returns a JournalEntry instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::JournalEntry, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::JournalEntry.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::JournalEntry)
         customer.approved.should be_true
@@ -77,7 +77,7 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::JournalEntry, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::JournalEntry.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -94,7 +94,7 @@ describe NetSuite::Records::JournalEntry do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(entry).
+            with([entry], {}).
             and_return(response)
         entry.add.should be_true
       end
@@ -105,7 +105,7 @@ describe NetSuite::Records::JournalEntry do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(entry).
+            with([entry], {}).
             and_return(response)
         entry.add.should be_false
       end
@@ -118,7 +118,7 @@ describe NetSuite::Records::JournalEntry do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(entry).
+            with([entry], {}).
             and_return(response)
         entry.delete.should be_true
       end
@@ -129,7 +129,7 @@ describe NetSuite::Records::JournalEntry do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(entry).
+            with([entry], {}).
             and_return(response)
         entry.delete.should be_false
       end
