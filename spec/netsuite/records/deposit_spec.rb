@@ -44,13 +44,13 @@ describe NetSuite::Records::Deposit do
 
   describe '.get' do
     context 'when the response is successful' do
-      let(:response) { NetSuite::Response.new(:success => true, :body => { :alt_shipping_cost => 100 }) }
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :memo => 'transfer for subscriptions' }) }
 
       it 'returns a Deposit instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Deposit, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Deposit, {:external_id => 1}], {}).and_return(response)
         deposit = NetSuite::Records::Deposit.get(:external_id => 1)
         deposit.should be_kind_of(NetSuite::Records::Deposit)
-        deposit.alt_shipping_cost.should eql(100)
+        deposit.memo.should eql('transfer for subscriptions')
       end
     end
 
@@ -58,7 +58,7 @@ describe NetSuite::Records::Deposit do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Deposit, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Deposit, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Deposit.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -76,7 +76,7 @@ describe NetSuite::Records::Deposit do
       it 'returns true' do
         deposit = NetSuite::Records::Deposit.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(deposit).
+            with([deposit], {}).
             and_return(response)
         deposit.add.should be_true
       end
@@ -88,7 +88,7 @@ describe NetSuite::Records::Deposit do
       it 'returns false' do
         deposit = NetSuite::Records::Deposit.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(deposit).
+            with([deposit], {}).
             and_return(response)
         deposit.add.should be_false
       end
@@ -104,7 +104,7 @@ describe NetSuite::Records::Deposit do
       it 'returns true' do
         deposit = NetSuite::Records::Deposit.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(deposit).
+            with([deposit], {}).
             and_return(response)
         deposit.delete.should be_true
       end
@@ -116,7 +116,7 @@ describe NetSuite::Records::Deposit do
       it 'returns false' do
         deposit = NetSuite::Records::Deposit.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(deposit).
+            with([deposit], {}).
             and_return(response)
         deposit.delete.should be_false
       end
@@ -125,12 +125,12 @@ describe NetSuite::Records::Deposit do
 
   describe '#to_record' do
     before do
-      deposit.email   = 'something@example.com'
+      deposit.memo   = 'something@example.com'
       deposit.tran_id = '4'
     end
     it 'can represent itself as a SOAP record' do
       record = {
-        'tranBank:email'  => 'something@example.com',
+        'tranBank:memo'  => 'something@example.com',
         'tranBank:tranId' => '4'
       }
       deposit.to_record.should eql(record)

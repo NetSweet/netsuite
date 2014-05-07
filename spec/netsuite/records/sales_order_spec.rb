@@ -93,7 +93,7 @@ describe NetSuite::Records::SalesOrder do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :alt_shipping_cost => 100 }) }
 
       it 'returns a SalesOrder instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::SalesOrder, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::SalesOrder, :external_id => 1], {}).and_return(response)
         salesorder = NetSuite::Records::SalesOrder.get(:external_id => 1)
         salesorder.should be_kind_of(NetSuite::Records::SalesOrder)
         salesorder.alt_shipping_cost.should eql(100)
@@ -104,7 +104,7 @@ describe NetSuite::Records::SalesOrder do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::SalesOrder, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::SalesOrder, :external_id => 1], {}).and_return(response)
         lambda {
           NetSuite::Records::SalesOrder.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -116,7 +116,7 @@ describe NetSuite::Records::SalesOrder do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized sales order from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::SalesOrder, customer).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::SalesOrder, customer], {}).and_return(response)
         salesorder = NetSuite::Records::SalesOrder.initialize(customer)
         salesorder.should be_kind_of(NetSuite::Records::SalesOrder)
       end
@@ -136,7 +136,7 @@ describe NetSuite::Records::SalesOrder do
       it 'returns true' do
         salesorder = NetSuite::Records::SalesOrder.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(salesorder).
+            with([salesorder], {}).
             and_return(response)
         salesorder.add.should be_true
       end
@@ -148,7 +148,7 @@ describe NetSuite::Records::SalesOrder do
       it 'returns false' do
         salesorder = NetSuite::Records::SalesOrder.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(salesorder).
+            with([salesorder], {}).
             and_return(response)
         salesorder.add.should be_false
       end
@@ -164,7 +164,7 @@ describe NetSuite::Records::SalesOrder do
       it 'returns true' do
         salesorder = NetSuite::Records::SalesOrder.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(salesorder).
+            with([salesorder], {}).
             and_return(response)
         salesorder.delete.should be_true
       end
@@ -176,7 +176,7 @@ describe NetSuite::Records::SalesOrder do
       it 'returns false' do
         salesorder = NetSuite::Records::SalesOrder.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(salesorder).
+            with([salesorder], {}).
             and_return(response)
         salesorder.delete.should be_false
       end

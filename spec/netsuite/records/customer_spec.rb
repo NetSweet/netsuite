@@ -88,7 +88,7 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::Customer.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::Customer)
         customer.is_person.should be_true
@@ -99,7 +99,7 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Customer.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -116,7 +116,7 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
         customer.add.should be_true
       end
@@ -127,7 +127,7 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
         customer.add.should be_false
       end
@@ -140,7 +140,7 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
         customer.delete.should be_true
       end
@@ -151,7 +151,7 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
         customer.delete.should be_false
       end

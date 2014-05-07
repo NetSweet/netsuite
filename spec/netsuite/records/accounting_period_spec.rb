@@ -24,7 +24,7 @@ describe NetSuite::Records::AccountingPeriod do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :period_name => 'Accounting Period 1' }) }
 
       it 'returns a Account instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::AccountingPeriod, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::AccountingPeriod, {:external_id => 1}], {}).and_return(response)
         accounting_period = NetSuite::Records::AccountingPeriod.get(:external_id => 1)
         accounting_period.should be_kind_of(NetSuite::Records::AccountingPeriod)
         accounting_period.period_name.should eql('Accounting Period 1')
@@ -35,7 +35,7 @@ describe NetSuite::Records::AccountingPeriod do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::AccountingPeriod, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::AccountingPeriod, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::AccountingPeriod.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -53,7 +53,7 @@ describe NetSuite::Records::AccountingPeriod do
       it 'returns true' do
         accounting_period = NetSuite::Records::AccountingPeriod.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(accounting_period).
+            with([accounting_period], {}).
             and_return(response)
         accounting_period.add.should be_true
       end
@@ -65,7 +65,7 @@ describe NetSuite::Records::AccountingPeriod do
       it 'returns false' do
         accounting_period = NetSuite::Records::AccountingPeriod.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(accounting_period).
+            with([accounting_period], {}).
             and_return(response)
         accounting_period.add.should be_false
       end
@@ -81,7 +81,7 @@ describe NetSuite::Records::AccountingPeriod do
       it 'returns true' do
         accounting_period = NetSuite::Records::AccountingPeriod.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(accounting_period).
+            with([accounting_period], {}).
             and_return(response)
         accounting_period.delete.should be_true
       end
@@ -93,7 +93,7 @@ describe NetSuite::Records::AccountingPeriod do
       it 'returns false' do
         accounting_period = NetSuite::Records::AccountingPeriod.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(accounting_period).
+            with([accounting_period], {}).
             and_return(response)
         accounting_period.delete.should be_false
       end

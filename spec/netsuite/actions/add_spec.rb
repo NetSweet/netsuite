@@ -22,11 +22,11 @@ describe NetSuite::Actions::Add do
     end
 
     it 'makes a valid request to the NetSuite API' do
-      NetSuite::Actions::Add.call(customer)
+      NetSuite::Actions::Add.call([customer])
     end
 
     it 'returns a valid Response object' do
-      response = NetSuite::Actions::Add.call(customer)
+      response = NetSuite::Actions::Add.call([customer])
       response.should be_kind_of(NetSuite::Response)
       response.should be_success
     end
@@ -50,11 +50,11 @@ describe NetSuite::Actions::Add do
       end
 
       it 'makes a valid request to the NetSuite API' do
-        NetSuite::Actions::Add.call(invoice)
+        NetSuite::Actions::Add.call([invoice])
       end
 
       it 'returns a valid Response object' do
-        response = NetSuite::Actions::Add.call(invoice)
+        response = NetSuite::Actions::Add.call([invoice])
         response.should be_kind_of(NetSuite::Response)
         response.should be_success
       end
@@ -83,7 +83,7 @@ describe NetSuite::Actions::Add do
       end
 
       it 'provides an error method on the response' do
-        response = NetSuite::Actions::Add.call(invoice)
+        response = NetSuite::Actions::Add.call([invoice])
         response.errors.first.should be_kind_of(NetSuite::Error)
       end
     end
