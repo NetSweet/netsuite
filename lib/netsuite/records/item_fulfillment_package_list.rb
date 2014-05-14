@@ -46,7 +46,7 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:package" => items.map(&:to_record) }
+        { "#{record_namespace}:package" => packages.map(&:to_record) }
       end
     end
   end
