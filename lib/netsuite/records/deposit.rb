@@ -14,8 +14,8 @@ module NetSuite
       record_refs :custom_form, :account, :posting_period, :subsidiary, :department, :klass, :location
 
       field :payment_list,      DepositPaymentList
-      # field :other_list, DepositOtherList
-      # field :cash_back_list, DepositCashBackList
+      field :other_list,        DepositOtherList
+      field :cash_back_list,    DepositCashBackList
       field :custom_field_list, CustomFieldList
 
       attr_reader   :internal_id
