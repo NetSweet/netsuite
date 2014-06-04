@@ -123,7 +123,7 @@ describe NetSuite::Records::SalesOrder do
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
@@ -203,7 +203,7 @@ describe NetSuite::Records::SalesOrder do
     end
   end
 
-  pending "closing a sales order" do
+  skip "closing a sales order" do
     it "closes each line to close the sales order" do
       attributes = sales_order.attributes
       attributes[:item_list].items.each do |item|

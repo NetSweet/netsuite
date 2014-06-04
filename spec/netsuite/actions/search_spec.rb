@@ -42,8 +42,8 @@ describe NetSuite::Actions::Search do
       }.not_to raise_error
     end
 
-    pending "should handle a ID search with basic params"
-    pending "should handle a search with joined params"
+    skip "should handle a ID search with basic params"
+    skip "should handle a search with joined params"
 
     it "should handle a search with joined params containing custom field search" do
       savon.expects(:search).with(:message => {
@@ -146,12 +146,12 @@ describe NetSuite::Actions::Search do
   end
 
   context "advanced search" do
-    pending "should handle search column definitions"
-    pending "should handle joined search results"
+    skip "should handle search column definitions"
+    skip "should handle joined search results"
   end
 
   context "basic search" do
-    pending "should handle searching basic fields"
-    pending "should handle searching with joined fields"
+    skip "should handle searching basic fields"
+    skip "should handle searching with joined fields"
   end
 end

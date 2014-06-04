@@ -166,7 +166,7 @@ describe NetSuite::Records::Invoice do
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 

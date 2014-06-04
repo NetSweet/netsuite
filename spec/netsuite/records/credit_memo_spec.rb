@@ -128,7 +128,7 @@ describe NetSuite::Records::CreditMemo do
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
