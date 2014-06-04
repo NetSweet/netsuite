@@ -15,6 +15,16 @@ describe NetSuite::Records::CustomFieldList do
       list.custom_fields.first.type.should == 'platformCore:StringCustomFieldRef'
     end
 
+    it "should handle date custom field creation" do
+      list.custrecord_somefield = Date.parse("12/12/2012")
+      list.custom_fields.first.value.should == '2012-12-12T00:00:00+00:00'
+    end
+
+    it "should handle datetime custom field creation" do
+      list.custrecord_somefield = DateTime.parse("12/12/2012 10:05am")
+      list.custom_fields.first.value.should == '2012-12-12T10:05:00+00:00'
+    end
+
     it "should convert a list of numbers into a list of custom field refs" do
       list.custrecord_somefield = [1,2]
       list.custom_fields.first.type.should == 'platformCore:MultiSelectCustomFieldRef'

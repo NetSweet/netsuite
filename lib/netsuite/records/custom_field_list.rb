@@ -100,6 +100,8 @@ module NetSuite
           custom_field_value = case 
           when field_value.is_a?(Hash)
             CustomRecordRef.new(field_value)
+          when field_value.is_a?(Date)
+            field_value.to_datetime.iso8601
           when field_value.is_a?(Time)
             field_value.iso8601
           when field_value.is_a?(Array)
