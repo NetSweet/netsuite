@@ -277,4 +277,14 @@ contact = NetSuite::Records::Contact.get(12345)
 contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
 contact.custom_field_list.custentity_abooleanfield = true
 contact.update(custom_field_list: contact.custom_field_list)
+
+# the getList operation
+NetSuite::Records::CustomRecord.get_list(
+  # netsuite internalIDs
+  list: [1,2,3],
+  # only needed for a custom record
+  type_id: 1234
+).each do |record|
+  # do your thing...
+end
 ```
