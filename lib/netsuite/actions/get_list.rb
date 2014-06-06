@@ -15,24 +15,37 @@ module NetSuite
       end
 
       def request_body
-        if @options[:type_id]
-          type = @options[:type_id]
-          record_type = 'platformCore:CustomRecordRef'
-        else
-          type = @klass.to_s.split('::').last.lower_camelcase
-          record_type = 'platformCore:RecordRef'
-        end
+        # list of all netsuite types; useful for debugging
+        # https://webservices.netsuite.com/xsd/platform/v2014_1_0/coreTypes.xsd
 
         list = @options.is_a?(Hash) ? @options[:list] : @options
 
-        {
-          baseRef: list.map do |internal_id|
+        formatted_list = if @options[:type_id]
+          type = @options[:type_id]
+          record_type = 'platformCore:CustomRecordRef'
+
+          list.map do |internal_id|
             {
               '@internalId' => internal_id,
               '@typeId' => type,
               '@xsi:type' => record_type
             }
           end
+        else
+          type = @klass.to_s.split('::').last.lower_camelcase
+          record_type = 'platformCore:RecordRef'
+
+          list.map do |internal_id|
+            {
+              '@internalId' => internal_id,
+              '@type' => type,
+              '@xsi:type' => record_type
+            }
+          end
+        end
+
+        {
+          baseRef: formatted_list
         }
       end
 
