@@ -20,13 +20,8 @@ module NetSuite
       def request(credentials={})
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
-        if [:email, :password, :account].all? {|s| credentials.key? s}
-          auth_header_val = NetSuite::Configuration.auth_header(credentials[:email], credentials[:password], credentials[:account], false)
-        else
-          auth_header_val = NetSuite::Configuration.auth_header
-        end
-        preferences = auth_header_val
-        preferences = preferences.merge(
+
+        preferences = NetSuite::Configuration.auth_header(credentials).update(
           (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
             h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
             h
