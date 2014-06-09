@@ -287,4 +287,23 @@ NetSuite::Records::CustomRecord.get_list(
 ).each do |record|
   # do your thing...
 end
+
+# getting a custom record
+record = NetSuite::Records::CustomRecord.get(
+  # custom record type
+  type_id: 10,
+  # reference to instance of the custom record type
+  internal_id: 100
+)
+
+# adding a custom record
+record = NetSuite::Records::CustomRecord.new
+record.rec_type = NetSuite::Records::CustomRecord.new(internal_id: 10)
+record.custom_field_list.custrecord_locationstate = "New Jersey"
+record.add
+
+# updating a custom record
+record = NetSuite::Records::CustomRecord.new(internal_id: 100)
+record.custom_field_list.custrecord_locationstate = "New Jersey"
+record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
 ```
