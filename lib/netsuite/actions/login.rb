@@ -3,7 +3,7 @@ module NetSuite
     class Login
 
       def self.call(credentials)
-        passport = NetSuite::Configuration.auth_header.dup
+        passport = NetSuite::Configuration.auth_header(credentials).dup
         passport['platformMsgs:passport']['platformCore:email'] = credentials[:email] || ''
         passport['platformMsgs:passport']['platformCore:password'] = credentials[:password] || ''
 
