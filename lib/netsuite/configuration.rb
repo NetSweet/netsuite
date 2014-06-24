@@ -19,6 +19,7 @@ module NetSuite
         pretty_print_xml: true,
         logger: logger,
         log_level: log_level,
+        log: !silent,   # turn off logging entirely if configured
       }.update(params))
     end
 
@@ -174,6 +175,15 @@ module NetSuite
       else
         value
       end
+    end
+
+    def silent(value=nil)
+      self.silent = value if value
+      attributes[:silent]
+    end
+
+    def silent=(value)
+      attributes[:silent] ||= value
     end
 
     def log_level(value = nil)
