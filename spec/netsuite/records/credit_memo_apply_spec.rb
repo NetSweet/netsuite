@@ -7,7 +7,7 @@ describe NetSuite::Records::CreditMemoApply do
     [
       :amount, :apply, :apply_date, :currency, :doc, :due, :job, :line, :ref_num, :total, :type
     ].each do |field|
-      apply.should have_field(field)
+      expect(apply).to have_field(field)
     end
   end
 

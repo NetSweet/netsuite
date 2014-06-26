@@ -26,25 +26,25 @@ describe NetSuite::Records::CustomerAddressbook do
       :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
       :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state
     ].each do |field|
-      list.should have_field(field)
+      expect(list).to have_field(field)
     end
   end
 
   describe '#initialize' do
     context 'when taking in a hash of attributes' do
       it 'sets the attributes for the object given the attributes hash' do
-        list.addr1.should eql('123 Happy Lane')
-        list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
-        list.city.should eql('Los Angeles')
-        list.country.should eql('_unitedStates')
-        list.default_billing.should be_true
-        list.default_shipping.should be_true
-        list.is_residential.should be_false
-        list.label.should eql('123 Happy Lane')
-        list.override.should be_false
-        list.state.should eql('CA')
-        list.zip.should eql('90007')
-        list.internal_id.should eql('567')
+        expect(list.addr1).to eql('123 Happy Lane')
+        expect(list.addr_text).to eql("123 Happy Lane\nLos Angeles CA 90007")
+        expect(list.city).to eql('Los Angeles')
+        expect(list.country).to eql('_unitedStates')
+        expect(list.default_billing).to be_truthy
+        expect(list.default_shipping).to be_truthy
+        expect(list.is_residential).to be_falsey
+        expect(list.label).to eql('123 Happy Lane')
+        expect(list.override).to be_falsey
+        expect(list.state).to eql('CA')
+        expect(list.zip).to eql('90007')
+        expect(list.internal_id).to eql('567')
       end
     end
 
@@ -52,18 +52,18 @@ describe NetSuite::Records::CustomerAddressbook do
       it 'sets the attributes for the object given the record attributes' do
         old_list = NetSuite::Records::CustomerAddressbook.new(attributes)
         list     = NetSuite::Records::CustomerAddressbook.new(old_list)
-        list.addr1.should eql('123 Happy Lane')
-        list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
-        list.city.should eql('Los Angeles')
-        list.country.should eql('_unitedStates')
-        list.default_billing.should be_true
-        list.default_shipping.should be_true
-        list.is_residential.should be_false
-        list.label.should eql('123 Happy Lane')
-        list.override.should be_false
-        list.state.should eql('CA')
-        list.zip.should eql('90007')
-        list.internal_id.should eql('567')
+        expect(list.addr1).to eql('123 Happy Lane')
+        expect(list.addr_text).to eql("123 Happy Lane\nLos Angeles CA 90007")
+        expect(list.city).to eql('Los Angeles')
+        expect(list.country).to eql('_unitedStates')
+        expect(list.default_billing).to be_truthy
+        expect(list.default_shipping).to be_truthy
+        expect(list.is_residential).to be_falsey
+        expect(list.label).to eql('123 Happy Lane')
+        expect(list.override).to be_falsey
+        expect(list.state).to eql('CA')
+        expect(list.zip).to eql('90007')
+        expect(list.internal_id).to eql('567')
       end
     end
   end
@@ -83,13 +83,13 @@ describe NetSuite::Records::CustomerAddressbook do
         'listRel:state'           => 'CA',
         'listRel:zip'             => '90007'
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string of the record SOAP type' do
-      list.record_type.should eql('listRel:CustomerAddressbook')
+      expect(list.record_type).to eql('listRel:CustomerAddressbook')
     end
   end
 

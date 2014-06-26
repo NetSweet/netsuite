@@ -11,7 +11,7 @@ describe NetSuite::Records::SalesOrderItem do
       :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral, :vsoe_delivered, :vsoe_permit_discount,
       :vsoe_price
     ].each do |field|
-      item.should have_field(field)
+      expect(item).to have_field(field)
     end
   end
 
@@ -19,7 +19,7 @@ describe NetSuite::Records::SalesOrderItem do
     [
       :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 

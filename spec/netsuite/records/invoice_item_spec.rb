@@ -13,7 +13,7 @@ describe NetSuite::Records::InvoiceItem do
       :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral, :vsoe_delivered, :vsoe_permit_discount,
       :vsoe_price
     ].each do |field|
-      item.should have_field(field)
+      expect(item).to have_field(field)
     end
   end
 
@@ -22,16 +22,16 @@ describe NetSuite::Records::InvoiceItem do
       :department, :item, :job, :location, :price, :rev_rec_schedule, :ship_address, :ship_method, :tax_code, :units,
       :klass
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 
   it 'can initialize from a record' do
     record = NetSuite::Records::InvoiceItem.new(:amount => 123, :cost_estimate => 234)
     item   = NetSuite::Records::InvoiceItem.new(record)
-    item.should be_kind_of(NetSuite::Records::InvoiceItem)
-    item.amount.should eql(123)
-    item.cost_estimate.should eql(234)
+    expect(item).to be_kind_of(NetSuite::Records::InvoiceItem)
+    expect(item.amount).to eql(123)
+    expect(item.cost_estimate).to eql(234)
   end
 
   describe '#custom_field_list' do
@@ -43,15 +43,15 @@ describe NetSuite::Records::InvoiceItem do
         }
       }
       item.custom_field_list = attributes
-      item.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      item.custom_field_list.custom_fields.length.should eql(1)
-      item.custom_field_list.custfield_value.attributes[:value].should eq(10)
+      expect(item.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(item.custom_field_list.custom_fields.length).to eql(1)
+      expect(item.custom_field_list.custfield_value.attributes[:value]).to eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       item.custom_field_list = custom_field_list
-      item.custom_field_list.should eql(custom_field_list)
+      expect(item.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -66,13 +66,13 @@ describe NetSuite::Records::InvoiceItem do
         'tranSales:amount'      => '7',
         'tranSales:description' => 'Some thingy'
       }
-      item.to_record.should eql(record)
+      expect(item.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string of the SOAP record type' do
-      item.record_type.should eql('tranSales:InvoiceItem')
+      expect(item.record_type).to eql('tranSales:InvoiceItem')
     end
   end
 

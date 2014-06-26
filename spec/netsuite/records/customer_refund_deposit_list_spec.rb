@@ -4,7 +4,7 @@ describe NetSuite::Records::CustomerRefundDepositList do
   let(:list) { NetSuite::Records::CustomerRefundDepositList.new }
 
   it 'has a deposits attribute' do
-    list.deposits.should be_kind_of(Array)
+    expect(list.deposits).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -18,7 +18,7 @@ describe NetSuite::Records::CustomerRefundDepositList do
           'tranCust:apply' => false
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 

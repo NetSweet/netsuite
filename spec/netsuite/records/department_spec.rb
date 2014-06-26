@@ -7,7 +7,7 @@ describe NetSuite::Records::Department do
     [
       :name, :is_inactive
     ].each do |field|
-      department.should have_field(field)
+      expect(department).to have_field(field)
     end
   end
 
@@ -15,7 +15,7 @@ describe NetSuite::Records::Department do
     [
       :parent
     ].each do |record_ref|
-      department.should have_record_ref(record_ref)
+      expect(department).to have_record_ref(record_ref)
     end
   end
 
@@ -24,10 +24,10 @@ describe NetSuite::Records::Department do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Department 1' }) }
 
       it 'returns a Department instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
         department = NetSuite::Records::Department.get(:external_id => 1)
-        department.should be_kind_of(NetSuite::Records::Department)
-        department.name.should eql('Department 1')
+        expect(department).to be_kind_of(NetSuite::Records::Department)
+        expect(department.name).to eql('Department 1')
       end
     end
 
@@ -35,10 +35,10 @@ describe NetSuite::Records::Department do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Department, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::Department.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Department with OPTIONS=(.*) could not be found/)
       end
     end
@@ -52,10 +52,10 @@ describe NetSuite::Records::Department do
 
       it 'returns true' do
         department = NetSuite::Records::Department.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([department], {}).
             and_return(response)
-        department.add.should be_true
+        expect(department.add).to be_truthy
       end
     end
 
@@ -64,10 +64,10 @@ describe NetSuite::Records::Department do
 
       it 'returns false' do
         department = NetSuite::Records::Department.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([department], {}).
             and_return(response)
-        department.add.should be_false
+        expect(department.add).to be_falsey
       end
     end
   end
@@ -80,10 +80,10 @@ describe NetSuite::Records::Department do
 
       it 'returns true' do
         department = NetSuite::Records::Department.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([department], {}).
             and_return(response)
-        department.delete.should be_true
+        expect(department.delete).to be_truthy
       end
     end
 
@@ -92,10 +92,10 @@ describe NetSuite::Records::Department do
 
       it 'returns false' do
         department = NetSuite::Records::Department.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([department], {}).
             and_return(response)
-        department.delete.should be_false
+        expect(department.delete).to be_falsey
       end
     end
   end

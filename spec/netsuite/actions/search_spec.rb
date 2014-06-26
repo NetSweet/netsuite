@@ -30,8 +30,8 @@ describe NetSuite::Actions::Search do
 
       it "should handle a ID only search" do
         result = NetSuite::Records::Customer.search(saved: 500)
-        result.results.size.should == 1
-        result.results.first.email.should == 'aemail@gmail.com'
+        expect(result.results.size).to eq(1)
+        expect(result.results.first.email).to eq('aemail@gmail.com')
       end
 
       it "merges preferences gracefully" do
@@ -137,9 +137,9 @@ describe NetSuite::Actions::Search do
         ]
       })
 
-      search.results.size.should == 2
-      search.results.first.alt_name.should == 'A Awesome Name'
-      search.results.last.email.should == 'alessawesome@gmail.com'
+      expect(search.results.size).to eq(2)
+      expect(search.results.first.alt_name).to eq('A Awesome Name')
+      expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end
   end
 
