@@ -66,7 +66,7 @@ describe NetSuite::Configuration do
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
-          'platformCore:role'     => { :@type => 'role', :@internalId => '3' },
+          'platformCore:role'     => { :@internalId => '3' },
         }
       })
     end
@@ -143,7 +143,7 @@ describe NetSuite::Configuration do
       end
     end
   end
-  
+
   describe '#role=' do
     it 'sets the role according to the input value' do
       config.role = "6"
