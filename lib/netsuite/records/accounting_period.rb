@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :upsert
 
       fields :allow_non_gl_changes, :end_date, :is_adjust, :is_quarter, :is_year, :period_name, :start_date
 

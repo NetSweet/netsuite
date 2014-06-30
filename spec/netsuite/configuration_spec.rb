@@ -66,7 +66,28 @@ describe NetSuite::Configuration do
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
-          'platformCore:role'     => { :@type => 'role', :@internalId => '3' },
+          'platformCore:role'     => { :@internalId => '3' },
+        }
+      })
+    end
+  end
+
+  describe '#soap_header' do
+    before do
+      config.email    = 'user@example.com'
+      config.password = 'myPassword'
+      config.account  = 1234
+    end
+
+    it 'adds a new header to the soap header' do
+      config.soap_header = {
+        'platformMsgs:preferences' => {
+          'platformMsgs:ignoreReadOnlyFields' => true,
+        }
+      }
+      config.soap_header.should eql({
+        'platformMsgs:preferences' => {
+          'platformMsgs:ignoreReadOnlyFields' => true,
         }
       })
     end
