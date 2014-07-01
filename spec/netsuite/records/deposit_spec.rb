@@ -42,6 +42,24 @@ describe NetSuite::Records::Deposit do
     end
   end
 
+  describe '#cash_back_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        amount: 100,
+        memo: "test"
+      }
+      deposit.cash_back_list.cashback = attributes
+      deposit.cash_back_list.should be_kind_of(NetSuite::Records::DepositCashBackList)
+      deposit.cash_back_list.cashbacks.length.should eql(1)
+    end
+
+    it 'can be set from a DepositCashBackList object' do
+      item_list = NetSuite::Records::DepositCashBackList.new
+      deposit.cash_back_list = item_list
+      deposit.cash_back_list.should eql(item_list)
+    end
+  end
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :memo => 'transfer for subscriptions' }) }
