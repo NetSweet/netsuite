@@ -15,7 +15,7 @@ module NetSuite
 
       fields :amount, :memo
 
-      record_refs :account, :department, :class, :location
+      record_refs :account, :department, :klass, :location
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
