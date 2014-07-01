@@ -72,6 +72,27 @@ describe NetSuite::Configuration do
     end
   end
 
+  describe '#soap_header' do
+    before do
+      config.email    = 'user@example.com'
+      config.password = 'myPassword'
+      config.account  = 1234
+    end
+
+    it 'adds a new header to the soap header' do
+      config.soap_header = {
+        'platformMsgs:preferences' => {
+          'platformMsgs:ignoreReadOnlyFields' => true,
+        }
+      }
+      config.soap_header.should eql({
+        'platformMsgs:preferences' => {
+          'platformMsgs:ignoreReadOnlyFields' => true,
+        }
+      })
+    end
+  end
+
   describe '#email' do
     context 'when the email has been set' do
       before do
