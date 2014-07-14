@@ -22,6 +22,7 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+    autoload :ListMkt,        'netsuite/namespaces/list_mkt'
   end
 
   module Support
@@ -113,6 +114,7 @@ module NetSuite
     autoload :PaymentMethod,              'netsuite/records/payment_method'
     autoload :PhoneCall,                  'netsuite/records/phone_call'
     autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
+    autoload :PromotionCode,              'netsuite/records/promotion_code'
     autoload :RecordRef,                  'netsuite/records/record_ref'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :SalesOrder,                 'netsuite/records/sales_order'

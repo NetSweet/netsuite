@@ -103,6 +103,7 @@ module NetSuite
         'xmlns:tranCust'       => "urn:customers_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:listSupport'    => "urn:support_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:tranGeneral'    => "urn:general_#{api_version}.transactions.webservices.netsuite.com",
+        'xmlns:listMkt'        => "urn:marketing_#{api_version}.lists.webservices.netsuite.com",
       }
     end
 
