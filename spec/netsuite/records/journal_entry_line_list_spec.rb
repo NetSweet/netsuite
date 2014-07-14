@@ -4,7 +4,7 @@ describe NetSuite::Records::JournalEntryLineList do
   let(:list) { NetSuite::Records::JournalEntryLineList.new }
 
   it 'has a custom_fields attribute' do
-    list.lines.should be_kind_of(Array)
+    expect(list.lines).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -19,7 +19,7 @@ describe NetSuite::Records::JournalEntryLineList do
             'tranGeneral:memo' => 'This is a memo'
           }]
         }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 

@@ -8,7 +8,7 @@ describe NetSuite::Records::Account do
       :acct_name, :acct_number, :acct_type, :cash_flow_rate, :cur_doc_num, :description, :eliminate, :exchange_rate,
       :general_rate, :include_children, :inventory, :is_inactive, :opening_balance, :revalue, :tran_date
     ].each do |field|
-      account.should have_field(field)
+      expect(account).to have_field(field)
     end
   end
 
@@ -16,7 +16,7 @@ describe NetSuite::Records::Account do
     [
       :billable_expenses_acct, :category1099misc, :currency, :deferral_acct, :department, :klass, :location, :parent
     ].each do |record_ref|
-      account.should have_record_ref(record_ref)
+      expect(account).to have_record_ref(record_ref)
     end
   end
 
@@ -40,10 +40,10 @@ describe NetSuite::Records::Account do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :acct_name => 'Account 1' }) }
 
       it 'returns a Account instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
         account = NetSuite::Records::Account.get(:external_id => 1)
-        account.should be_kind_of(NetSuite::Records::Account)
-        account.acct_name.should eql('Account 1')
+        expect(account).to be_kind_of(NetSuite::Records::Account)
+        expect(account.acct_name).to eql('Account 1')
       end
     end
 
@@ -51,10 +51,10 @@ describe NetSuite::Records::Account do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Account, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::Account.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Account with OPTIONS=(.*) could not be found/)
       end
     end
@@ -68,10 +68,10 @@ describe NetSuite::Records::Account do
 
       it 'returns true' do
         account = NetSuite::Records::Account.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([account], {}).
             and_return(response)
-        account.add.should be_true
+        expect(account.add).to be_truthy
       end
     end
 
@@ -80,10 +80,10 @@ describe NetSuite::Records::Account do
 
       it 'returns false' do
         account = NetSuite::Records::Account.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([account], {}).
             and_return(response)
-        account.add.should be_false
+        expect(account.add).to be_falsey
       end
     end
   end
@@ -96,10 +96,10 @@ describe NetSuite::Records::Account do
 
       it 'returns true' do
         account = NetSuite::Records::Account.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([account], {}).
             and_return(response)
-        account.delete.should be_true
+        expect(account.delete).to be_truthy
       end
     end
 
@@ -108,10 +108,10 @@ describe NetSuite::Records::Account do
 
       it 'returns false' do
         account = NetSuite::Records::Account.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([account], {}).
             and_return(response)
-        account.delete.should be_false
+        expect(account.delete).to be_falsey
       end
     end
   end

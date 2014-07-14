@@ -10,9 +10,9 @@ describe NetSuite::Configuration do
   describe '#reset!' do
     it 'clears the attributes hash' do
       config.attributes[:blah] = 'something'
-      config.attributes.should_not be_empty
+      expect(config.attributes).not_to be_empty
       config.reset!
-      config.attributes.should be_empty
+      expect(config.attributes).to be_empty
     end
   end
 
@@ -23,7 +23,7 @@ describe NetSuite::Configuration do
       config.password 'me@example.com'
       config.account 1023
 
-      config.connection.should be_kind_of(Savon::Client)
+      expect(config.connection).to be_kind_of(Savon::Client)
     end
   end
 
@@ -34,13 +34,13 @@ describe NetSuite::Configuration do
       end
 
       it 'returns a path to the WSDL to use for the API' do
-        config.wsdl.should eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
+        expect(config.wsdl).to eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
       end
     end
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        config.wsdl.should match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
+        expect(config.wsdl).to match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
       end
     end
 
@@ -48,7 +48,7 @@ describe NetSuite::Configuration do
       it 'should correctly return the full HTTP sandbox URL' do
         config.api_version '2013_1'
         config.sandbox false
-        config.wsdl.should eql('https://webservices.netsuite.com/wsdl/v2013_1_0/netsuite.wsdl')
+        expect(config.wsdl).to eql('https://webservices.netsuite.com/wsdl/v2013_1_0/netsuite.wsdl')
       end
     end
   end
@@ -61,12 +61,12 @@ describe NetSuite::Configuration do
     end
 
     it 'returns a hash representation of the authentication header' do
-      config.auth_header.should eql({
+      expect(config.auth_header).to eql({
         'platformMsgs:passport' => {
           'platformCore:email'    => 'user@example.com',
           'platformCore:password' => 'myPassword',
           'platformCore:account'  => '1234',
-          'platformCore:role'     => { :@type => 'role', :@internalId => '3' },
+          'platformCore:role'     => { :@internalId => '3' },
         }
       })
     end
@@ -79,15 +79,15 @@ describe NetSuite::Configuration do
       end
 
       it 'returns the email' do
-        config.email.should eql('test@example.com')
+        expect(config.email).to eql('test@example.com')
       end
     end
 
     context 'when the email has not been set' do
       it 'raises a ConfigurationError' do
-        lambda {
+        expect {
           config.email
-        }.should raise_error(NetSuite::ConfigurationError,
+        }.to raise_error(NetSuite::ConfigurationError,
           '#email is a required configuration value. Please set it by calling NetSuite::Configuration.email = "me@example.com"')
       end
     end
@@ -100,15 +100,15 @@ describe NetSuite::Configuration do
       end
 
       it 'returns the password' do
-        config.password.should eql('password')
+        expect(config.password).to eql('password')
       end
     end
 
     context 'when the password has not been set' do
       it 'raises a ConfigurationError' do
-        lambda {
+        expect {
           config.password
-        }.should raise_error(NetSuite::ConfigurationError,
+        }.to raise_error(NetSuite::ConfigurationError,
           '#password is a required configuration value. Please set it by calling NetSuite::Configuration.password = "my_pass"')
       end
     end
@@ -121,15 +121,15 @@ describe NetSuite::Configuration do
       end
 
       it 'returns the account' do
-        config.account.should eql(4321)
+        expect(config.account).to eql(4321)
       end
     end
 
     context 'when the account has not been set' do
       it 'raises a ConfigurationError' do
-        lambda {
+        expect {
           config.account
-        }.should raise_error(NetSuite::ConfigurationError,
+        }.to raise_error(NetSuite::ConfigurationError,
           '#account is a required configuration value. Please set it by calling NetSuite::Configuration.account = 1234')
       end
     end
@@ -139,22 +139,22 @@ describe NetSuite::Configuration do
   describe '#role' do
     context 'when no role is defined' do
       it 'defaults to "3"' do
-        config.role.should == "3"
+        expect(config.role).to eq("3")
       end
     end
   end
-  
+
   describe '#role=' do
     it 'sets the role according to the input value' do
       config.role = "6"
-      config.role.should == "6"
+      expect(config.role).to eq("6")
     end
   end
 
   describe '#api_version' do
     context 'when no api_version is defined' do
       it 'defaults to 2011_2' do
-        config.api_version.should == '2011_2'
+        expect(config.api_version).to eq('2011_2')
       end
     end
   end
@@ -163,7 +163,7 @@ describe NetSuite::Configuration do
     context 'when api version is defined' do
       it 'sets the api_version of the application' do
         config.api_version = '2012_1'
-        config.api_version.should == '2012_1'
+        expect(config.api_version).to eq('2012_1')
       end
     end
   end

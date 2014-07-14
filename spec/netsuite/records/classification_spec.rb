@@ -7,7 +7,7 @@ describe NetSuite::Records::Classification do
     [
       :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
     ].each do |field|
-      classification.should have_field(field)
+      expect(classification).to have_field(field)
     end
   end
 
@@ -16,9 +16,9 @@ describe NetSuite::Records::Classification do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Retail' }) }
 
       it 'returns an Invoice instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Classification, {:external_id => 10}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Classification, {:external_id => 10}], {}).and_return(response)
         invoice = NetSuite::Records::Classification.get(:external_id => 10)
-        invoice.should be_kind_of(NetSuite::Records::Classification)
+        expect(invoice).to be_kind_of(NetSuite::Records::Classification)
       end
     end
 
@@ -26,10 +26,10 @@ describe NetSuite::Records::Classification do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Classification, {:external_id => 10}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Classification, {:external_id => 10}], {}).and_return(response)
+        expect {
           NetSuite::Records::Classification.get(:external_id => 10)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Classification with OPTIONS=(.*) could not be found/)
       end
     end
@@ -43,10 +43,10 @@ describe NetSuite::Records::Classification do
 
       it 'returns true' do
         classification = NetSuite::Records::Classification.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([classification], {}).
             and_return(response)
-        classification.delete.should be_true
+        expect(classification.delete).to be_truthy
       end
     end
 
@@ -55,10 +55,10 @@ describe NetSuite::Records::Classification do
 
       it 'returns false' do
         classification = NetSuite::Records::Classification.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([classification], {}).
             and_return(response)
-        classification.delete.should be_false
+        expect(classification.delete).to be_falsey
       end
     end
   end

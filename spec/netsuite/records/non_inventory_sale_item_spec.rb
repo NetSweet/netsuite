@@ -20,12 +20,12 @@ describe NetSuite::Records::NonInventorySaleItem do
       :store_detailed_description, :store_display_name, :translations_list, :upc_code, :url_component, :use_marginal_rates,
       :vsoe_deferral, :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :weight, :weight_unit, :weight_units
     ].each do |field|
-      item.should have_field(field)
+      expect(item).to have_field(field)
     end
 
     # TODO there is a probably a more robust way to test this
-    item.custom_field_list.class.should == NetSuite::Records::CustomFieldList
-    item.pricing_matrix.class.should == NetSuite::Records::PricingMatrix
+    expect(item.custom_field_list.class).to eq(NetSuite::Records::CustomFieldList)
+    expect(item.pricing_matrix.class).to eq(NetSuite::Records::PricingMatrix)
   end
 
   it 'has the right record_refs' do
@@ -35,7 +35,7 @@ describe NetSuite::Records::NonInventorySaleItem do
       :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail,
       :store_item_template, :subsidiary_list, :tax_schedule, :units_type
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 
@@ -44,10 +44,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :manufacturer_zip => '90401' }) }
 
       it 'returns a NonInventorySaleItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
         customer = NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
-        customer.should be_kind_of(NetSuite::Records::NonInventorySaleItem)
-        customer.manufacturer_zip.should eql('90401')
+        expect(customer).to be_kind_of(NetSuite::Records::NonInventorySaleItem)
+        expect(customer.manufacturer_zip).to eql('90401')
       end
     end
 
@@ -55,10 +55,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
+        expect {
           NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::NonInventorySaleItem with OPTIONS=(.*) could not be found/)
       end
     end
@@ -71,10 +71,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_true
+        expect(item.add).to be_truthy
       end
     end
 
@@ -82,10 +82,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_false
+        expect(item.add).to be_falsey
       end
     end
   end
@@ -95,10 +95,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_true
+        expect(item.delete).to be_truthy
       end
     end
 
@@ -106,10 +106,10 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_false
+        expect(item.delete).to be_falsey
       end
     end
   end
@@ -125,13 +125,13 @@ describe NetSuite::Records::NonInventorySaleItem do
         'listAcct:handlingCost' => 100.0,
         'listAcct:isOnline'     => true
       }
-      item.to_record.should eql(record)
+      expect(item.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string of the SOAP type' do
-      item.record_type.should eql('listAcct:NonInventorySaleItem')
+      expect(item.record_type).to eql('listAcct:NonInventorySaleItem')
     end
   end
 

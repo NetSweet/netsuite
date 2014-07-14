@@ -10,9 +10,9 @@ describe NetSuite::Records::CustomerPayment do
       :applied, :auth_code, :auto_apply, :balance, :cc_approved, :cc_avs_street_match, :cc_avs_zip_match, :cc_expire_date,
       :cc_name, :cc_number, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code, :charge_it, :check_num,
       :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :ignore_avs, :last_modified_date, :memo, :payment,
-      :skip, :pn_ref_num, :status, :three_d_status_code, :total, :tran_date, :unapplied, :undep_funds, :valid_from
+      :pending, :pn_ref_num, :status, :three_d_status_code, :total, :tran_date, :unapplied, :undep_funds, :valid_from
     ].each do |field|
-      payment.should have_field(field)
+      expect(payment).to have_field(field)
     end
   end
 
@@ -20,7 +20,7 @@ describe NetSuite::Records::CustomerPayment do
     [
       :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location, :payment_method, :posting_period, :subsidiary
     ].each do |record_ref|
-      payment.should have_record_ref(record_ref)
+      expect(payment).to have_record_ref(record_ref)
     end
   end
 
@@ -33,14 +33,14 @@ describe NetSuite::Records::CustomerPayment do
         }
       }
       payment.custom_field_list = attributes
-      payment.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      payment.custom_field_list.custom_fields.length.should eql(1)
+      expect(payment.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(payment.custom_field_list.custom_fields.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       payment.custom_field_list = custom_field_list
-      payment.custom_field_list.should eql(custom_field_list)
+      expect(payment.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -64,10 +64,10 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :memo => 'This is a memo' }) }
 
       it 'returns an CustomerPayment instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 7}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 7}], {}).and_return(response)
         payment = NetSuite::Records::CustomerPayment.get(:external_id => 7)
-        payment.should be_kind_of(NetSuite::Records::CustomerPayment)
-        payment.memo.should eql('This is a memo')
+        expect(payment).to be_kind_of(NetSuite::Records::CustomerPayment)
+        expect(payment.memo).to eql('This is a memo')
       end
     end
 
@@ -75,10 +75,10 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 8}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 8}], {}).and_return(response)
+        expect {
           NetSuite::Records::CustomerPayment.get(:external_id => 8)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomerPayment with OPTIONS=(.*) could not be found/)
       end
     end
@@ -87,9 +87,9 @@ describe NetSuite::Records::CustomerPayment do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::CustomerPayment, invoice], {}).and_return(response)
+        expect(NetSuite::Actions::Initialize).to receive(:call).with([NetSuite::Records::CustomerPayment, invoice], {}).and_return(response)
         payment = NetSuite::Records::CustomerPayment.initialize(invoice)
-        payment.should be_kind_of(NetSuite::Records::CustomerPayment)
+        expect(payment).to be_kind_of(NetSuite::Records::CustomerPayment)
       end
     end
 
@@ -106,10 +106,10 @@ describe NetSuite::Records::CustomerPayment do
 
       it 'returns true' do
         payment = NetSuite::Records::CustomerPayment.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.add.should be_true
+        expect(payment.add).to be_truthy
       end
     end
 
@@ -118,10 +118,10 @@ describe NetSuite::Records::CustomerPayment do
 
       it 'returns false' do
         payment = NetSuite::Records::CustomerPayment.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.add.should be_false
+        expect(payment.add).to be_falsey
       end
     end
   end
@@ -131,10 +131,10 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.delete.should be_true
+        expect(payment.delete).to be_truthy
       end
     end
 
@@ -142,10 +142,10 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.delete.should be_false
+        expect(payment.delete).to be_falsey
       end
     end
   end
@@ -160,13 +160,13 @@ describe NetSuite::Records::CustomerPayment do
         'tranCust:ccName'   => 'Ryan Moran',
         'tranCust:ccNumber' => '1234567890123456'
       }
-      payment.to_record.should eql(record)
+      expect(payment.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string representation of the SOAP type' do
-      payment.record_type.should eql('tranCust:CustomerPayment')
+      expect(payment.record_type).to eql('tranCust:CustomerPayment')
     end
   end
 

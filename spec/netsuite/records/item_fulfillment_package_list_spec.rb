@@ -4,7 +4,7 @@ describe NetSuite::Records::ItemFulfillmentPackageList do
   let(:list) { NetSuite::Records::ItemFulfillmentPackageList.new }
 
   it 'has a packages attribute' do
-    list.packages.should be_kind_of(Array)
+    expect(list.packages).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -21,7 +21,7 @@ describe NetSuite::Records::ItemFulfillmentPackageList do
           ]
         }
       
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end

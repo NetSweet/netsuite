@@ -17,29 +17,31 @@ describe NetSuite::Actions::Search do
   end
 
   context "saved search" do
-    before do
-      savon.expects(:search).with(:message => {
-        'searchRecord' => {
-          '@xsi:type'           => 'listRel:CustomerSearchAdvanced',
-          '@savedSearchId'      => 500,
-          :content!             => { "listRel:criteria" => {} }
-        },
-      }).returns(File.read('spec/support/fixtures/search/saved_search_customer.xml'))
-    end
+    context "with no params" do
+      before do
+        savon.expects(:search).with(:message => {
+          'searchRecord' => {
+            '@xsi:type'           => 'listRel:CustomerSearchAdvanced',
+            '@savedSearchId'      => 500,
+            :content!             => { "listRel:criteria" => {} }
+          },
+        }).returns(File.read('spec/support/fixtures/search/saved_search_customer.xml'))
+      end
 
-    it "should handle a ID only search" do
-      result = NetSuite::Records::Customer.search(saved: 500)
-      result.results.size.should == 1
-      result.results.first.email.should == 'aemail@gmail.com'
-    end
+      it "should handle a ID only search" do
+        result = NetSuite::Records::Customer.search(saved: 500)
+        expect(result.results.size).to eq(1)
+        expect(result.results.first.email).to eq('aemail@gmail.com')
+      end
 
-    it "merges preferences gracefully" do
-      expect {
-          NetSuite::Records::Customer.search(
-            saved: 500,
-            preferences: { page_size: 20 }
-          )
-      }.not_to raise_error
+      it "merges preferences gracefully" do
+        expect {
+            NetSuite::Records::Customer.search(
+              saved: 500,
+              preferences: { page_size: 20 }
+            )
+        }.not_to raise_error
+      end
     end
 
     skip "should handle a ID search with basic params"
@@ -54,23 +56,19 @@ describe NetSuite::Actions::Search do
             "listRel:criteria" => {
               "listRel:basic" => {
                 "platformCommon:entityId" => {
-                  "platformCore:searchValue" => "New Keywords"
+                  :content! => {"platformCore:searchValue" => "New Keywords"},
+                  :"@operator" => "hasKeywords"
                 },
-
-                :attributes! => {
-                  "platformCommon:entityId" => { "operator" => "hasKeywords" },
-                  "platformCommon:stage" => { "operator" => "anyOf" }
+                "platformCommon:stage" => {
+                  :content! => {"platformCore:searchValue"=>["_lead", "_customer"]},
+                  :"@operator" => "anyOf"
                 },
-
-                "platformCommon:stage" => { "platformCore:searchValue" => ["_lead", "_customer"] },
                 "platformCommon:customFieldList" => {
                   "platformCore:customField" => [
                     {
-                      "platformCore:searchValue" => [{}, {}],
+                      "platformCore:searchValue" => [{:"@internalId" => 4}, {:"@internalId" => 11}],
                       :attributes! => {
-                        "platformCore:searchValue" => {
-                          "internalId" => [4, 11]
-                        }
+                        "platformCore:searchValue" => { "internalId" => [4, 11] }
                       }
                     },
                     {
@@ -139,9 +137,9 @@ describe NetSuite::Actions::Search do
         ]
       })
 
-      search.results.size.should == 2
-      search.results.first.alt_name.should == 'A Awesome Name'
-      search.results.last.email.should == 'alessawesome@gmail.com'
+      expect(search.results.size).to eq(2)
+      expect(search.results.first.alt_name).to eq('A Awesome Name')
+      expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end
   end
 
