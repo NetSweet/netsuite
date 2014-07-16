@@ -8,7 +8,7 @@ describe NetSuite::Support::RecordRefs do
     it 'assigns a nil value for a field with a specified class' do
       klass.field(:record_test, NetSuite::Records::RecordRef)
       instance.record_test = nil
-      instance.attributes.has_key?(:record_test).should be_false
+      instance.attributes.has_key?(:record_test).should be_falsey
     end
   end
 end

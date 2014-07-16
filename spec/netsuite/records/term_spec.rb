@@ -48,7 +48,7 @@ describe NetSuite::Records::Term do
         NetSuite::Actions::Add.should_receive(:call).
             with([term], {}).
             and_return(response)
-        term.add.should be_true
+        term.add.should be_truthy
       end
     end
 
@@ -60,7 +60,7 @@ describe NetSuite::Records::Term do
         NetSuite::Actions::Add.should_receive(:call).
             with([term], {}).
             and_return(response)
-        term.add.should be_false
+        term.add.should be_falsey
       end
     end
   end
@@ -76,7 +76,7 @@ describe NetSuite::Records::Term do
         NetSuite::Actions::Delete.should_receive(:call).
             with([term], {}).
             and_return(response)
-        term.delete.should be_true
+        term.delete.should be_truthy
       end
     end
 
@@ -88,7 +88,7 @@ describe NetSuite::Records::Term do
         NetSuite::Actions::Delete.should_receive(:call).
             with([term], {}).
             and_return(response)
-        term.delete.should be_false
+        term.delete.should be_falsey
       end
     end
   end

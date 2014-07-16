@@ -131,7 +131,7 @@ describe NetSuite::Records::CustomerRefund do
         NetSuite::Actions::Add.should_receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.add.should be_true
+        refund.add.should be_truthy
       end
     end
 
@@ -143,7 +143,7 @@ describe NetSuite::Records::CustomerRefund do
         NetSuite::Actions::Add.should_receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.add.should be_false
+        refund.add.should be_falsey
       end
     end
   end
@@ -157,7 +157,7 @@ describe NetSuite::Records::CustomerRefund do
         NetSuite::Actions::Delete.should_receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.delete.should be_true
+        refund.delete.should be_truthy
       end
     end
 
@@ -169,7 +169,7 @@ describe NetSuite::Records::CustomerRefund do
         NetSuite::Actions::Delete.should_receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.delete.should be_false
+        refund.delete.should be_falsey
       end
     end
   end

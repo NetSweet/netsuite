@@ -69,7 +69,7 @@ describe NetSuite::Records::JournalEntry do
         NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::JournalEntry.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::JournalEntry)
-        customer.approved.should be_true
+        customer.approved.should be_truthy
       end
     end
 
@@ -96,7 +96,7 @@ describe NetSuite::Records::JournalEntry do
         NetSuite::Actions::Add.should_receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.add.should be_true
+        entry.add.should be_truthy
       end
     end
 
@@ -107,7 +107,7 @@ describe NetSuite::Records::JournalEntry do
         NetSuite::Actions::Add.should_receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.add.should be_false
+        entry.add.should be_falsey
       end
     end
   end
@@ -120,7 +120,7 @@ describe NetSuite::Records::JournalEntry do
         NetSuite::Actions::Delete.should_receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.delete.should be_true
+        entry.delete.should be_truthy
       end
     end
 
@@ -131,7 +131,7 @@ describe NetSuite::Records::JournalEntry do
         NetSuite::Actions::Delete.should_receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.delete.should be_false
+        entry.delete.should be_falsey
       end
     end
   end

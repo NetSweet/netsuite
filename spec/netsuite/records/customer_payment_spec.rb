@@ -109,7 +109,7 @@ describe NetSuite::Records::CustomerPayment do
         NetSuite::Actions::Add.should_receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.add.should be_true
+        payment.add.should be_truthy
       end
     end
 
@@ -121,7 +121,7 @@ describe NetSuite::Records::CustomerPayment do
         NetSuite::Actions::Add.should_receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.add.should be_false
+        payment.add.should be_falsey
       end
     end
   end
@@ -134,7 +134,7 @@ describe NetSuite::Records::CustomerPayment do
         NetSuite::Actions::Delete.should_receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.delete.should be_true
+        payment.delete.should be_truthy
       end
     end
 
@@ -145,7 +145,7 @@ describe NetSuite::Records::CustomerPayment do
         NetSuite::Actions::Delete.should_receive(:call).
             with([payment], {}).
             and_return(response)
-        payment.delete.should be_false
+        payment.delete.should be_falsey
       end
     end
   end
