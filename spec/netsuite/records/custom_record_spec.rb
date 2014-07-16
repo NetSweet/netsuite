@@ -55,7 +55,7 @@ describe NetSuite::Records::CustomRecord do
           and_return(response)
         customer = NetSuite::Records::CustomRecord.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::CustomRecord)
-        customer.allow_quick_search.should be_true
+        customer.allow_quick_search.should be_truthy
       end
     end
 
@@ -82,7 +82,7 @@ describe NetSuite::Records::CustomRecord do
         NetSuite::Actions::Add.should_receive(:call).
             with([record], {}).
             and_return(response)
-        record.add.should be_true
+        record.add.should be_truthy
       end
     end
 
@@ -93,7 +93,7 @@ describe NetSuite::Records::CustomRecord do
         NetSuite::Actions::Add.should_receive(:call).
             with([record], {}).
             and_return(response)
-        record.add.should be_false
+        record.add.should be_falsey
       end
     end
   end
@@ -106,7 +106,7 @@ describe NetSuite::Records::CustomRecord do
         NetSuite::Actions::Delete.should_receive(:call).
             with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_true
+        record.delete.should be_truthy
       end
     end
 
@@ -117,7 +117,7 @@ describe NetSuite::Records::CustomRecord do
         NetSuite::Actions::Delete.should_receive(:call).
             with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_false
+        record.delete.should be_falsey
       end
     end
   end

@@ -46,7 +46,7 @@ describe NetSuite::Records::Classification do
         NetSuite::Actions::Delete.should_receive(:call).
             with([classification], {}).
             and_return(response)
-        classification.delete.should be_true
+        classification.delete.should be_truthy
       end
     end
 
@@ -58,7 +58,7 @@ describe NetSuite::Records::Classification do
         NetSuite::Actions::Delete.should_receive(:call).
             with([classification], {}).
             and_return(response)
-        classification.delete.should be_false
+        classification.delete.should be_falsey
       end
     end
   end

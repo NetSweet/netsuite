@@ -5,8 +5,8 @@ describe NetSuite::Records::SupportCase do
 
   it 'has all the right fields' do
     [
-      :end_date, :incoming_message, :outgoing_message, :search_solution, :email_form, 
-      :internal_only, :title, :case_number, :start_date, :email, :phone, :inbound_email, 
+      :end_date, :incoming_message, :outgoing_message, :search_solution, :email_form,
+      :internal_only, :title, :case_number, :start_date, :email, :phone, :inbound_email,
       :is_inactive, :help_desk
     ].each do |field|
       support_case.should have_field(field)
@@ -76,7 +76,7 @@ describe NetSuite::Records::SupportCase do
         NetSuite::Actions::Add.should_receive(:call).
             with([support_case], {}).
             and_return(response)
-        support_case.add.should be_true
+        support_case.add.should be_truthy
       end
     end
 
@@ -87,7 +87,7 @@ describe NetSuite::Records::SupportCase do
         NetSuite::Actions::Add.should_receive(:call).
             with([support_case], {}).
             and_return(response)
-        support_case.add.should be_false
+        support_case.add.should be_falsey
       end
     end
   end
@@ -100,7 +100,7 @@ describe NetSuite::Records::SupportCase do
         NetSuite::Actions::Delete.should_receive(:call).
             with([support_case], {}).
             and_return(response)
-        support_case.delete.should be_true
+        support_case.delete.should be_truthy
       end
     end
 
@@ -111,7 +111,7 @@ describe NetSuite::Records::SupportCase do
         NetSuite::Actions::Delete.should_receive(:call).
             with([support_case], {}).
             and_return(response)
-        support_case.delete.should be_false
+        support_case.delete.should be_falsey
       end
     end
   end
@@ -123,7 +123,7 @@ describe NetSuite::Records::SupportCase do
       it 'returns true' do
         NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::SupportCase, :external_id => 1, :title => 'Case title'], {}).and_return(response)
         support_case = NetSuite::Records::SupportCase.new(:external_id => 1)
-        support_case.update(:title => 'Case title').should be_true
+        support_case.update(:title => 'Case title').should be_truthy
       end
     end
 
@@ -133,7 +133,7 @@ describe NetSuite::Records::SupportCase do
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::SupportCase, :internal_id => 1, :title => 'Case title'], {}).and_return(response)
         support_case = NetSuite::Records::SupportCase.new(:internal_id => 1)
-        support_case.update(:title => 'Case title').should be_false
+        support_case.update(:title => 'Case title').should be_falsey
       end
     end
   end

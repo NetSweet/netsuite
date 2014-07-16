@@ -55,7 +55,7 @@ describe NetSuite::Records::Department do
         NetSuite::Actions::Add.should_receive(:call).
             with([department], {}).
             and_return(response)
-        department.add.should be_true
+        department.add.should be_truthy
       end
     end
 
@@ -67,7 +67,7 @@ describe NetSuite::Records::Department do
         NetSuite::Actions::Add.should_receive(:call).
             with([department], {}).
             and_return(response)
-        department.add.should be_false
+        department.add.should be_falsey
       end
     end
   end
@@ -83,7 +83,7 @@ describe NetSuite::Records::Department do
         NetSuite::Actions::Delete.should_receive(:call).
             with([department], {}).
             and_return(response)
-        department.delete.should be_true
+        department.delete.should be_truthy
       end
     end
 
@@ -95,7 +95,7 @@ describe NetSuite::Records::Department do
         NetSuite::Actions::Delete.should_receive(:call).
             with([department], {}).
             and_return(response)
-        department.delete.should be_false
+        department.delete.should be_falsey
       end
     end
   end

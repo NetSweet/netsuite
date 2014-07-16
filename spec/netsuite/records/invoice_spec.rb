@@ -181,7 +181,7 @@ describe NetSuite::Records::Invoice do
         NetSuite::Actions::Add.should_receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.add.should be_true
+        invoice.add.should be_truthy
       end
     end
 
@@ -193,7 +193,7 @@ describe NetSuite::Records::Invoice do
         NetSuite::Actions::Add.should_receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.add.should be_false
+        invoice.add.should be_falsey
       end
     end
   end
@@ -207,7 +207,7 @@ describe NetSuite::Records::Invoice do
         NetSuite::Actions::Delete.should_receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_true
+        invoice.delete.should be_truthy
       end
     end
 
@@ -219,7 +219,7 @@ describe NetSuite::Records::Invoice do
         NetSuite::Actions::Delete.should_receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_false
+        invoice.delete.should be_falsey
       end
     end
   end
