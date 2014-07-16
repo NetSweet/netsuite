@@ -22,6 +22,7 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+    autoload :ListMkt,        'netsuite/namespaces/list_mkt'
   end
 
   module Support
@@ -55,6 +56,7 @@ module NetSuite
     autoload :BillAddress,                'netsuite/records/bill_address'
     autoload :BinNumberList,              'netsuite/records/bin_number_list'
     autoload :CashSale,                   'netsuite/records/cash_sale'
+    autoload :Campaign,                   'netsuite/records/campaign'
     autoload :Classification,             'netsuite/records/classification'
     autoload :CreditMemo,                 'netsuite/records/credit_memo'
     autoload :CreditMemoApply,            'netsuite/records/credit_memo_apply'
