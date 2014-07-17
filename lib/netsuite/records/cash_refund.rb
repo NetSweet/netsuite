@@ -9,7 +9,7 @@ module NetSuite
 
       actions :add, :get, :delete
 
-      fields :tran_date
+      fields :tran_date, :to_be_emailed
 
       field :item_list, CashRefundItemList
       field :custom_field_list, CustomFieldList
