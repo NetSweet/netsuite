@@ -15,7 +15,7 @@ module NetSuite
         wsdl: wsdl,
         read_timeout: read_timeout,
         namespaces: namespaces,
-        soap_header: auth_header(credentials),
+        soap_header: auth_header(credentials).update(soap_header),
         pretty_print_xml: true,
         logger: logger,
         log_level: log_level,
@@ -63,6 +63,18 @@ module NetSuite
         end
 
         attributes[:wsdl] ||= wsdl_path
+      end
+    end
+
+    def soap_header=(headers)
+      attributes[:soap_header] = headers
+    end
+
+    def soap_header(headers = nil)
+      if headers
+        self.soap_header = headers
+      else
+        attributes[:soap_header] ||= {}
       end
     end
 
