@@ -94,6 +94,7 @@ module NetSuite
     autoload :DepositOtherList,           'netsuite/records/deposit_other_list'
     autoload :DepositCashBack,            'netsuite/records/deposit_cash_back'
     autoload :DepositCashBackList,        'netsuite/records/deposit_cash_back_list'
+    autoload :DiscountItem,               'netsuite/records/discount_item'
     autoload :Duration,                   'netsuite/records/duration'
     autoload :InventoryItem,              'netsuite/records/inventory_item'
     autoload :Invoice,                    'netsuite/records/invoice'
