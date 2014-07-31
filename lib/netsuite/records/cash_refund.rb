@@ -1,16 +1,20 @@
 module NetSuite
   module Records
-    class AccountingPeriod
+    class CashRefund
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
       include Support::Actions
-      include Namespaces::ListAcct
+      include Namespaces::TranCust
 
-      actions :get, :add, :delete, :search, :upsert
+      actions :add, :get, :delete
 
-      fields :allow_non_gl_changes, :end_date, :is_adjust, :is_quarter, :is_year, :period_name, :start_date
+      fields :tran_date, :to_be_emailed
 
-      record_refs :parent
+      field :item_list, CashRefundItemList
+      field :custom_field_list, CustomFieldList
+
+      record_refs :entity, :custom_form, :payment_method, :created_from
 
       attr_reader :internal_id
       attr_accessor :external_id

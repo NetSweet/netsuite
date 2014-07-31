@@ -91,7 +91,7 @@ describe NetSuite::Records::Customer do
         NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::Customer.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::Customer)
-        customer.is_person.should be_true
+        customer.is_person.should be_truthy
       end
     end
 
@@ -118,7 +118,7 @@ describe NetSuite::Records::Customer do
         NetSuite::Actions::Add.should_receive(:call).
             with([customer], {}).
             and_return(response)
-        customer.add.should be_true
+        customer.add.should be_truthy
       end
     end
 
@@ -129,7 +129,7 @@ describe NetSuite::Records::Customer do
         NetSuite::Actions::Add.should_receive(:call).
             with([customer], {}).
             and_return(response)
-        customer.add.should be_false
+        customer.add.should be_falsey
       end
     end
   end
@@ -142,7 +142,7 @@ describe NetSuite::Records::Customer do
         NetSuite::Actions::Delete.should_receive(:call).
             with([customer], {}).
             and_return(response)
-        customer.delete.should be_true
+        customer.delete.should be_truthy
       end
     end
 
@@ -153,7 +153,7 @@ describe NetSuite::Records::Customer do
         NetSuite::Actions::Delete.should_receive(:call).
             with([customer], {}).
             and_return(response)
-        customer.delete.should be_false
+        customer.delete.should be_falsey
       end
     end
   end

@@ -15,6 +15,7 @@ module NetSuite
     autoload :ListAcct,       'netsuite/namespaces/list_acct'
     autoload :ListRel,        'netsuite/namespaces/list_rel'
     autoload :ListSupport,    'netsuite/namespaces/list_support'
+    autoload :ListWebsite,    'netsuite/namespaces/list_website'
     autoload :PlatformCommon, 'netsuite/namespaces/platform_common'
     autoload :PlatformCore,   'netsuite/namespaces/platform_core'
     autoload :TranBank,       'netsuite/namespaces/tran_bank'
@@ -22,6 +23,7 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+    autoload :ListMkt,        'netsuite/namespaces/list_mkt'
   end
 
   module Support
@@ -55,6 +57,10 @@ module NetSuite
     autoload :BillAddress,                'netsuite/records/bill_address'
     autoload :BinNumberList,              'netsuite/records/bin_number_list'
     autoload :CashSale,                   'netsuite/records/cash_sale'
+    autoload :CashRefund,                 'netsuite/records/cash_refund'
+    autoload :CashRefundItem,             'netsuite/records/cash_refund_item'
+    autoload :CashRefundItemList,         'netsuite/records/cash_refund_item_list'
+    autoload :Campaign,                   'netsuite/records/campaign'
     autoload :Classification,             'netsuite/records/classification'
     autoload :CreditMemo,                 'netsuite/records/credit_memo'
     autoload :CreditMemoApply,            'netsuite/records/credit_memo_apply'
@@ -110,6 +116,7 @@ module NetSuite
     autoload :PaymentMethod,              'netsuite/records/payment_method'
     autoload :PhoneCall,                  'netsuite/records/phone_call'
     autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
+    autoload :PromotionCode,              'netsuite/records/promotion_code'
     autoload :RecordRef,                  'netsuite/records/record_ref'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :SalesOrder,                 'netsuite/records/sales_order'
@@ -117,6 +124,7 @@ module NetSuite
     autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
     autoload :ServiceSaleItem,            'netsuite/records/service_sale_item'
     autoload :ShipAddress,                'netsuite/records/ship_address'
+    autoload :SiteCategory,               'netsuite/records/site_category'
     autoload :SupportCase,                'netsuite/records/support_case'
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'

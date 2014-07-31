@@ -33,7 +33,7 @@ describe NetSuite::Records::PaymentMethod do
         NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::PaymentMethod, :external_id => 10], {}).and_return(response)
         payment_method = NetSuite::Records::PaymentMethod.get(:external_id => 10)
         payment_method.should be_kind_of(NetSuite::Records::PaymentMethod)
-        payment_method.is_debit_card.should be_true
+        payment_method.is_debit_card.should be_truthy
       end
     end
 

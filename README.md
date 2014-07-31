@@ -306,4 +306,12 @@ record.add
 record = NetSuite::Records::CustomRecord.new(internal_id: 100)
 record.custom_field_list.custrecord_locationstate = "New Jersey"
 record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
+
+# getting a list of states
+states = NetSuite::Configuration.connection.call(:get_all, message: {
+  'platformCore:record' => {
+    '@recordType' => 'state'
+  }
+})
+states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
 ```

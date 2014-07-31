@@ -17,7 +17,7 @@ module NetSuite
 
       actions :add, :get, :upsert
 
-      fields :custom_form, :payment, :tran_date, :exchange_rate, :undep_funds
+      fields :custom_form, :payment, :tran_date, :exchange_rate, :undep_funds, :memo
 
       record_refs :customer, :sales_order, :account
 

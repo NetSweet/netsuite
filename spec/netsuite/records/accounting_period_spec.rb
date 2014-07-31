@@ -44,6 +44,42 @@ describe NetSuite::Records::AccountingPeriod do
     end
   end
 
+  describe ".search" do
+    context 'when the response is successful' do
+
+      it 'returns a Account instance populated with the data from the response object' do
+        body = {
+          total_records: 2,
+          record_list: {
+            record: [
+              {period_name: "Accounting Period 1"},
+              {period_name: "Accounting Period 2"}
+            ]
+          }
+        }
+
+        allow(NetSuite::Actions::Search).to receive(:call).with(
+          [NetSuite::Records::AccountingPeriod, {:external_id => 1}], {}
+        ).and_return(
+          NetSuite::Response.new(:success => true, :body => body)
+        )
+
+        search_result = NetSuite::Records::AccountingPeriod.search(:external_id => 1)
+
+        expect(search_result).to be_a NetSuite::Support::SearchResult
+        expect(search_result.total_records).to eq 2
+
+        period1, period2 = search_result.results
+
+        expect(period1).to be_a NetSuite::Records::AccountingPeriod
+        expect(period1.period_name).to eq 'Accounting Period 1'
+
+        expect(period2).to be_a NetSuite::Records::AccountingPeriod
+        expect(period2.period_name).to eq 'Accounting Period 2'
+      end
+    end
+  end
+
   describe '#add' do
     let(:test_data) { { :acct_name => 'Test Accounting Period', :description => 'An example accounting period' } }
 
@@ -55,7 +91,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Add.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.add.should be_true
+        accounting_period.add.should be_truthy
       end
     end
 
@@ -67,7 +103,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Add.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.add.should be_false
+        accounting_period.add.should be_falsey
       end
     end
   end
@@ -83,7 +119,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Delete.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.delete.should be_true
+        accounting_period.delete.should be_truthy
       end
     end
 
@@ -95,9 +131,8 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Delete.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.delete.should be_false
+        accounting_period.delete.should be_falsey
       end
     end
   end
-
 end
