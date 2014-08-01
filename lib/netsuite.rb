@@ -60,6 +60,7 @@ module NetSuite
     autoload :AccountingPeriod,           'netsuite/records/accounting_period'
     autoload :BaseRefList,                'netsuite/records/base_ref_list'
     autoload :BillAddress,                'netsuite/records/bill_address'
+    autoload :BillingSchedule,            'netsuite/records/billing_schedule'
     autoload :BinNumberList,              'netsuite/records/bin_number_list'
     autoload :CashSale,                   'netsuite/records/cash_sale'
     autoload :CashRefund,                 'netsuite/records/cash_refund'
