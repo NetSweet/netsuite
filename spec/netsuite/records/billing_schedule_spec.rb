@@ -6,8 +6,8 @@ describe NetSuite::Records::BillingSchedule do
   it 'has all the right fields' do
     [
       :bill_for_actuals, :day_period, :frequency, :in_arrears, :initial_amount, :is_inactive,
-      :is_public, :milestone_list, :month_dom, :month_dow, :month_dowim, :month_mode, :name,
-      :number_remaining, :recurrence_dow_mask_list, :recurrence_list, :repeat_every, 
+      :is_public, :month_dom, :month_dow, :month_dowim, :month_mode, :name,
+      :number_remaining, :recurrence_dow_mask_list, :repeat_every, 
       :schedule_type, :series_start_date, :year_dom, :year_dow,
       :year_dowim, :year_dowim_month, :year_mode, :year_month
     ].each do |field|
@@ -20,6 +20,28 @@ describe NetSuite::Records::BillingSchedule do
       :initial_terms, :project, :recurrence_terms, :transaction
     ].each do |record_ref|
       billing_schedule.should have_record_ref(record_ref)
+    end
+  end
+
+  describe '#milestone_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :comments => "comment"
+      }
+      billing_schedule.milestone_list.milestone = attributes
+      billing_schedule.milestone_list.should be_kind_of(NetSuite::Records::BillingScheduleMilestoneList)
+      billing_schedule.milestone_list.milestones.length.should eql(1)
+    end
+  end
+  
+  describe '#recurrence_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :amount => 10
+      }
+      billing_schedule.recurrence_list.recurrence = attributes
+      billing_schedule.recurrence_list.should be_kind_of(NetSuite::Records::BillingScheduleRecurrenceList)
+      billing_schedule.recurrence_list.recurrences.length.should eql(1)
     end
   end
 
