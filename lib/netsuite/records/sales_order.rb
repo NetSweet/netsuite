@@ -10,7 +10,7 @@ module NetSuite
       actions :get, :add, :initialize, :delete, :update, :upsert, :search
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
-        :bill_address, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
+        :bill_address, :cc_approved, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
         :est_gross_profit, :est_gross_profit_percent, :exchange_rate, :exclude_commission, :fax, :gift_cert_applied,
         :gift_cert_available, :gift_cert_total, :handling_cost, :handling_tax1_rate, :handling_tax2_rate, :is_taxable,
         :last_modified_date, :memo, :message, :on_credit_hold, :order_status, :other_ref_num, :recognized_revenue,

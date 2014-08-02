@@ -17,7 +17,7 @@ describe NetSuite::Records::SalesOrder do
       :shipping_tax2_rate, :source, :start_date, :status, :sub_total, :sync_partner_teams,
       :sync_sales_teams, :tax2_total, :tax_rate, :tax_total, :to_be_emailed, :to_be_faxed, :to_be_printed,
       :total, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :unapplied, :vat_reg_num,
-      :vsoe_auto_calc
+      :vsoe_auto_calc, :cc_approved
     ].each do |field|
       salesorder.should have_field(field)
     end
