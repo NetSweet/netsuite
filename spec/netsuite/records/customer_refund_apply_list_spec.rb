@@ -15,9 +15,9 @@ describe NetSuite::Records::CustomerRefundApplyList do
     it 'can represent itself as a SOAP record' do
       record = [
         {
-          'tranCust:apply' => {
+          'tranCust:apply' => [{
             'tranCust:amount' => 10
-          }
+          }]
         }
       ]
       list.to_record.should eql(record)
