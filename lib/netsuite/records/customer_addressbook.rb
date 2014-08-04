@@ -42,6 +42,19 @@ module NetSuite
         @internal_id          = obj.internal_id
       end
 
+      def country=(country)
+        if country.nil?
+          attributes.delete(:country)
+        else
+          attributes[:country] = country_enum country
+        end
+      end
+
+      def country_enum iso_country_code
+        @@iso_country_code_to_enum ||= YAML.load_file(File.join(File.dirname(__FILE__),"../yaml/iso_country_code_to_enum.yml"))
+        @@iso_country_code_to_enum[iso_country_code] || iso_country_code
+      end
+
     end
   end
 end
