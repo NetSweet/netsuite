@@ -91,7 +91,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Add.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.add.should be_true
+        accounting_period.add.should be_truthy
       end
     end
 
@@ -103,7 +103,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Add.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.add.should be_false
+        accounting_period.add.should be_falsey
       end
     end
   end
@@ -119,7 +119,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Delete.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.delete.should be_true
+        accounting_period.delete.should be_truthy
       end
     end
 
@@ -131,7 +131,7 @@ describe NetSuite::Records::AccountingPeriod do
         NetSuite::Actions::Delete.should_receive(:call).
             with([accounting_period], {}).
             and_return(response)
-        accounting_period.delete.should be_false
+        accounting_period.delete.should be_falsey
       end
     end
   end

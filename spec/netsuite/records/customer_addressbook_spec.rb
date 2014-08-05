@@ -37,11 +37,11 @@ describe NetSuite::Records::CustomerAddressbook do
         list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
         list.city.should eql('Los Angeles')
         list.country.should eql('_unitedStates')
-        list.default_billing.should be_true
-        list.default_shipping.should be_true
-        list.is_residential.should be_false
+        list.default_billing.should be_truthy
+        list.default_shipping.should be_truthy
+        list.is_residential.should be_falsey
         list.label.should eql('123 Happy Lane')
-        list.override.should be_false
+        list.override.should be_falsey
         list.state.should eql('CA')
         list.zip.should eql('90007')
         list.internal_id.should eql('567')
@@ -56,11 +56,11 @@ describe NetSuite::Records::CustomerAddressbook do
         list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
         list.city.should eql('Los Angeles')
         list.country.should eql('_unitedStates')
-        list.default_billing.should be_true
-        list.default_shipping.should be_true
-        list.is_residential.should be_false
+        list.default_billing.should be_truthy
+        list.default_shipping.should be_truthy
+        list.is_residential.should be_falsey
         list.label.should eql('123 Happy Lane')
-        list.override.should be_false
+        list.override.should be_falsey
         list.state.should eql('CA')
         list.zip.should eql('90007')
         list.internal_id.should eql('567')

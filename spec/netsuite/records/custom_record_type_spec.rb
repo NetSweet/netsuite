@@ -88,7 +88,7 @@ describe NetSuite::Records::CustomRecordType do
           and_return(response)
         record_type = NetSuite::Records::CustomRecordType.get(:external_id => 1)
         record_type.should be_kind_of(NetSuite::Records::CustomRecordType)
-        record_type.allow_attachments.should be_true
+        record_type.allow_attachments.should be_truthy
       end
     end
 
@@ -115,7 +115,7 @@ describe NetSuite::Records::CustomRecordType do
         NetSuite::Actions::Add.should_receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.add.should be_true
+        record_type.add.should be_truthy
       end
     end
 
@@ -126,7 +126,7 @@ describe NetSuite::Records::CustomRecordType do
         NetSuite::Actions::Add.should_receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.add.should be_false
+        record_type.add.should be_falsey
       end
     end
   end
@@ -139,7 +139,7 @@ describe NetSuite::Records::CustomRecordType do
         NetSuite::Actions::Delete.should_receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.delete.should be_true
+        record_type.delete.should be_truthy
       end
     end
 
@@ -150,7 +150,7 @@ describe NetSuite::Records::CustomRecordType do
         NetSuite::Actions::Delete.should_receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.delete.should be_false
+        record_type.delete.should be_falsey
       end
     end
   end

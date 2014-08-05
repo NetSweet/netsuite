@@ -134,7 +134,7 @@ describe NetSuite::Records::InventoryItem do
         NetSuite::Actions::Add.should_receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_true
+        item.add.should be_truthy
       end
     end
 
@@ -145,7 +145,7 @@ describe NetSuite::Records::InventoryItem do
         NetSuite::Actions::Add.should_receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_false
+        item.add.should be_falsey
       end
     end
   end
@@ -158,7 +158,7 @@ describe NetSuite::Records::InventoryItem do
         NetSuite::Actions::Delete.should_receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_true
+        item.delete.should be_truthy
       end
     end
 
@@ -169,7 +169,7 @@ describe NetSuite::Records::InventoryItem do
         NetSuite::Actions::Delete.should_receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_false
+        item.delete.should be_falsey
       end
     end
   end

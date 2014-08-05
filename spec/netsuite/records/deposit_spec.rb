@@ -78,7 +78,7 @@ describe NetSuite::Records::Deposit do
         NetSuite::Actions::Add.should_receive(:call).
             with([deposit], {}).
             and_return(response)
-        deposit.add.should be_true
+        deposit.add.should be_truthy
       end
     end
 
@@ -90,7 +90,7 @@ describe NetSuite::Records::Deposit do
         NetSuite::Actions::Add.should_receive(:call).
             with([deposit], {}).
             and_return(response)
-        deposit.add.should be_false
+        deposit.add.should be_falsey
       end
     end
   end
@@ -106,7 +106,7 @@ describe NetSuite::Records::Deposit do
         NetSuite::Actions::Delete.should_receive(:call).
             with([deposit], {}).
             and_return(response)
-        deposit.delete.should be_true
+        deposit.delete.should be_truthy
       end
     end
 
@@ -118,7 +118,7 @@ describe NetSuite::Records::Deposit do
         NetSuite::Actions::Delete.should_receive(:call).
             with([deposit], {}).
             and_return(response)
-        deposit.delete.should be_false
+        deposit.delete.should be_falsey
       end
     end
   end

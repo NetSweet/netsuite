@@ -143,7 +143,7 @@ describe NetSuite::Records::CreditMemo do
         NetSuite::Actions::Add.should_receive(:call).
             with([memo], {}).
             and_return(response)
-        memo.add.should be_true
+        memo.add.should be_truthy
       end
     end
 
@@ -155,7 +155,7 @@ describe NetSuite::Records::CreditMemo do
         NetSuite::Actions::Add.should_receive(:call).
             with([memo], {}).
             and_return(response)
-        memo.add.should be_false
+        memo.add.should be_falsey
       end
     end
   end
@@ -171,7 +171,7 @@ describe NetSuite::Records::CreditMemo do
         NetSuite::Actions::Delete.should_receive(:call).
             with([memo], {}).
             and_return(response)
-        memo.delete.should be_true
+        memo.delete.should be_truthy
       end
     end
 
@@ -183,7 +183,7 @@ describe NetSuite::Records::CreditMemo do
         NetSuite::Actions::Delete.should_receive(:call).
             with([memo], {}).
             and_return(response)
-        memo.delete.should be_false
+        memo.delete.should be_falsey
       end
     end
   end

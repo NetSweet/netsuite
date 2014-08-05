@@ -71,7 +71,7 @@ describe NetSuite::Records::Account do
         NetSuite::Actions::Add.should_receive(:call).
             with([account], {}).
             and_return(response)
-        account.add.should be_true
+        account.add.should be_truthy
       end
     end
 
@@ -83,7 +83,7 @@ describe NetSuite::Records::Account do
         NetSuite::Actions::Add.should_receive(:call).
             with([account], {}).
             and_return(response)
-        account.add.should be_false
+        account.add.should be_falsey
       end
     end
   end
@@ -99,7 +99,7 @@ describe NetSuite::Records::Account do
         NetSuite::Actions::Delete.should_receive(:call).
             with([account], {}).
             and_return(response)
-        account.delete.should be_true
+        account.delete.should be_truthy
       end
     end
 
@@ -111,7 +111,7 @@ describe NetSuite::Records::Account do
         NetSuite::Actions::Delete.should_receive(:call).
             with([account], {}).
             and_return(response)
-        account.delete.should be_false
+        account.delete.should be_falsey
       end
     end
   end
