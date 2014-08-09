@@ -9,7 +9,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/sitecategory.html
 
-      actions :get, :add, :delete, :update, :upsert, :search
+      actions :get, :get_list, :add, :delete, :update, :upsert, :search
 
       fields :description, :exclude_from_site_map, :is_inactive, :is_online,
         :item_id, :meta_tag_html, :page_title, :presentation_item_list,

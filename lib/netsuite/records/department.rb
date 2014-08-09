@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
 
-      actions :get, :add, :delete, :upsert
+      actions :get, :get_list, :add, :delete, :upsert
 
       fields :name, :is_inactive
       
