@@ -283,7 +283,11 @@ NetSuite::Records::CustomRecord.get_list(
   # netsuite internalIDs
   list: [1,2,3],
   # only needed for a custom record
-  type_id: 1234
+  type_id: 1234,
+  # list represents external IDs (defaults to false)
+  use_external_id: true,
+  # allow inclomplete results (defaults to false)
+  allow_incomplete: true
 ).each do |record|
   # do your thing...
 end

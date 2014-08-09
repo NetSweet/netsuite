@@ -19,14 +19,14 @@ module NetSuite
         # https://webservices.netsuite.com/xsd/platform/v2014_1_0/coreTypes.xsd
 
         list = @options.is_a?(Hash) ? @options[:list] : @options
-
+        id_ref = @options[:use_external_id] ? '@externalId' : '@internalId'
         formatted_list = if @options[:type_id]
           type = @options[:type_id]
           record_type = 'platformCore:CustomRecordRef'
 
           list.map do |internal_id|
             {
-              '@internalId' => internal_id,
+              id_ref => internal_id,
               '@typeId' => type,
               '@xsi:type' => record_type
             }
@@ -37,7 +37,7 @@ module NetSuite
 
           list.map do |internal_id|
             {
-              '@internalId' => internal_id,
+              id_ref => internal_id,
               '@type' => type,
               '@xsi:type' => record_type
             }
@@ -62,8 +62,12 @@ module NetSuite
       end
 
       def success?
-        # each returned record has its own status; for now if one fails, the entire operation has failed
-        @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?
+        # each returned record has its own status; 
+        if @options[:allow_incomplete] 
+          @success ||= !response_body.detect { |r| r[:status][:@is_success] == 'true' }.nil?
+        else
+          @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?
+        end
       end
 
       module Support
@@ -76,8 +80,9 @@ module NetSuite
             response = NetSuite::Actions::GetList.call([self, options], credentials)
 
             if response.success?
-              response.body.map do |record|
-                new(record[:record])
+              response.body.inject([]) do |arr, record|
+                arr << new(record[:record]) unless record[:status][:@is_success] != 'true'
+                arr
               end
             else
               false
