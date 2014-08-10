@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :add, :delete, :upsert
+      actions :get, :add, :delete, :search, :upsert
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
         :created_date, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
@@ -43,6 +43,9 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.search_class_name
+        "Item"
+      end
     end
   end
 end
