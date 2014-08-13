@@ -59,6 +59,8 @@ module NetSuite
 
       def response_body
         @response_body ||= @response.body[:get_list_response][:read_response_list][:read_response]
+        @response_body = [@response_body] unless @response_body.is_a? Array
+        @response_body
       end
 
       def success?
