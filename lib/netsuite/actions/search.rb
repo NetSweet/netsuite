@@ -153,6 +153,13 @@ module NetSuite
                   "platformCore:searchValue" => condition[:value].first.to_s,
                   "platformCore:searchValue2" => condition[:value].last.to_s
                 }
+              elsif condition[:value].is_a?(Array) && condition[:operator] == 'between'
+
+                h[element_name] = {
+                  '@operator' => condition[:operator],
+                  "platformCore:searchValue" => condition[:value].first.to_s,
+                  "platformCore:searchValue2" => condition[:value].last.to_s
+                }
               else
                 h[element_name] = {
                   :content! => { "platformCore:searchValue" => condition[:value] },
