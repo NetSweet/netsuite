@@ -4,7 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::Actions
 
-      actions :get, :delete
+      actions :get, :get_list, :delete, :upsert
 
       fields :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
 

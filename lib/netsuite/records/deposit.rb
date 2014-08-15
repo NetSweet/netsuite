@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranBank
 
-      actions :get, :add, :delete
+      actions :get, :get_list, :add, :delete, :upsert
 
       fields :created_date, :last_modified_date, :currency_name, :tran_id, :total, :tran_date, :memo, :to_be_printed
 

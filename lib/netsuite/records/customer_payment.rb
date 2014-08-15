@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranCust
 
-      actions :get, :initialize, :add, :delete
+      actions :get, :get_list, :initialize, :add, :delete, :upsert
 
       fields :auth_code, :auto_apply, :cc_approved, :cc_avs_street_match, :cc_avs_zip_match,
         :cc_expire_date, :cc_name, :cc_number, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code,
