@@ -30,6 +30,7 @@ module NetSuite
     autoload :Actions,    'netsuite/support/actions'
     autoload :Attributes, 'netsuite/support/attributes'
     autoload :Fields,     'netsuite/support/fields'
+    autoload :GenericList,'netsuite/support/generic_list'
     autoload :RecordRefs, 'netsuite/support/record_refs'
     autoload :Records,    'netsuite/support/records'
     autoload :Requests,   'netsuite/support/requests'
