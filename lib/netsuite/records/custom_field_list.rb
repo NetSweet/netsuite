@@ -19,6 +19,11 @@ module NetSuite
         @custom_fields ||= []
       end
 
+      def delete_custom_field(field)
+        custom_fields.delete_if { |c| c.internal_id.to_sym == field }
+        @custom_fields_assoc.delete(field)
+      end
+
       # In case you want to get only MultiSelectCustomFieldRef for example:
       #
       #   list.custom_fields_by_type "MultiSelectCustomFieldRef"
@@ -35,7 +40,9 @@ module NetSuite
 
         # write custom field
         if sym.to_s.end_with?('=')
-          return create_custom_field(sym.to_s[0..-2], args.first)
+          field_name = sym.to_s[0..-2]
+          delete_custom_field(field_name.to_sym)
+          return create_custom_field(field_name, args.first)
         end
 
         super(sym, *args, &block)
