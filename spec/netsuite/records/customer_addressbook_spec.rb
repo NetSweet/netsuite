@@ -94,6 +94,14 @@ describe NetSuite::Records::CustomerAddressbook do
         addressbook.country.should eql "_unitedStates"
       end
     end
+
+    context "when the country code is a YAML reserved word (NO)" do
+      it "is converted to the appropriate NetSuite enum value" do
+        addressbook = NetSuite::Records::CustomerAddressbook.new country: "NO"
+        addressbook.country.should eql "_norway"
+      end
+    end
+
     it "can be specified as the NetSuite enum value" do
       addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
       addressbook.country.should eql "_unitedStates"
