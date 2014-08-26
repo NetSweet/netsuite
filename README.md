@@ -127,13 +127,18 @@ search = NetSuite::Records::Customer.search({
         {
           field: 'custentity_acustomfield',
           operator: 'anyOf',
-          # type is needed for multiselect fields
+          # type is needed for all search fields
           type: 'SearchMultiSelectCustomField',
           value: [
             NetSuite::Records::CustomRecordRef.new(:internal_id => 1),
             NetSuite::Records::CustomRecordRef.new(:internal_id => 2),
           ]
-        }
+        },
+	{
+	  field: 'custbody_internetorder',
+	  type: 'SearchBooleanCustomField',
+	  value: true
+	}
       ]
     }
   ]
