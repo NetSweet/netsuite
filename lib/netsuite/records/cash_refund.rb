@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranCust
 
-      actions :add, :get, :delete, :initialize
+      actions :add, :get, :delete, :initialize, :upsert
 
       fields :tran_date, :to_be_emailed, :memo
 
