@@ -5,18 +5,19 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::Inventory
+      include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :search
 
       fields :buildable, :built, :created_date, :end_date, :expanded_assembly,
-        :firmed, :is_wip, :item_list, :last_modified_date, :memo,
-        :order_status, :partners_list, :quantity, :sales_team_list,
-        :source_transaction_id, :source_transaction_line, :special_order,
-        :start_date, :status, :tran_date, :tran_id
+        :firmed, :is_wip, :last_modified_date, :memo, :order_status,
+        :partners_list, :quantity, :sales_team_list, :source_transaction_id,
+        :source_transaction_line, :special_order, :start_date, :status,
+        :tran_date, :tran_id
 
       field :custom_field_list, CustomFieldList
       field :options,           CustomFieldList
+      field :item_list,         WorkOrderItemList
 
       record_refs :assembly_item, :created_from, :custom_form,
         :department, :entity, :job, :location, :manufacturing_routing,
