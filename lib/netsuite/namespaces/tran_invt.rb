@@ -1,9 +1,11 @@
 module NetSuite
   module Namespaces
-    module Inventory
+    module TranInvt
+
       def record_namespace
-        'inventory'
+        'tranInvt'
       end
+
     end
   end
 end

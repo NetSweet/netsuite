@@ -5,8 +5,8 @@ describe NetSuite::Records::WorkOrder do
 
   [
     :buildable, :built, :created_date, :end_date, :expanded_assembly, :firmed,
-    :is_wip, :item_list, :last_modified_date, :memo, :order_status,
-    :partners_list, :quantity, :sales_team_list, :source_transaction_id,
+    :is_wip, :last_modified_date, :memo, :order_status, :partners_list,
+    :quantity, :sales_team_list, :source_transaction_id,
     :source_transaction_line, :special_order, :start_date, :status, :tran_date,
     :tran_id
   ].each do |field|
@@ -42,6 +42,26 @@ describe NetSuite::Records::WorkOrder do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       work_order.custom_field_list = custom_field_list
       work_order.custom_field_list.should eql(custom_field_list)
+    end
+  end
+
+  describe '#item_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        item: {
+          :averageCost => 10,
+          :internal_id => 'itemAbc123'
+        }
+      }
+      work_order.item_list = attributes
+      work_order.item_list.should be_kind_of(NetSuite::Records::WorkOrderItemList)
+      work_order.item_list.items.length.should eql(1)
+    end
+
+    it 'can be set from a WorkOrderItemList object' do
+      order_item_list = NetSuite::Records::WorkOrderItemList.new
+      work_order.item_list = order_item_list
+      work_order.item_list.should eq(order_item_list)
     end
   end
 
