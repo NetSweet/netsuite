@@ -16,6 +16,7 @@ module NetSuite
     autoload :ListRel,        'netsuite/namespaces/list_rel'
     autoload :ListSupport,    'netsuite/namespaces/list_support'
     autoload :ListWebsite,    'netsuite/namespaces/list_website'
+    autoload :Inventory,      'netsuite/namespaces/inventory'
     autoload :PlatformCommon, 'netsuite/namespaces/platform_common'
     autoload :PlatformCore,   'netsuite/namespaces/platform_core'
     autoload :TranBank,       'netsuite/namespaces/tran_bank'
@@ -132,6 +133,7 @@ module NetSuite
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
     autoload :Transaction,                'netsuite/records/transaction'
+    autoload :WorkOrder,                  'netsuite/records/work_order'
   end
 
   def self.configure(&block)
