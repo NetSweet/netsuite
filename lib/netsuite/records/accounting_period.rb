@@ -4,8 +4,9 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Actions
+      include Namespaces::ListAcct
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :upsert, :search
 
       fields :allow_non_gl_changes, :end_date, :is_adjust, :is_quarter, :is_year, :period_name, :start_date
 
@@ -19,7 +20,6 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
-
     end
   end
 end

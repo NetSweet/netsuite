@@ -14,10 +14,4 @@ describe NetSuite::Records::PhoneCall do
       phone_call.should have_record_ref(rr)
     end
   end
-
-  describe 'to_record' do
-    it 'should be verified with our params' do
-      fail 'Not Verified.'
-    end
-  end
 end

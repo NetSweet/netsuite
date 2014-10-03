@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ActSched
 
-      actions :get, :add, :search, :delete, :update
+      actions :get, :add, :search, :delete, :update, :upsert
 
       fields :title, :send_email, :message, :status, :access_level, :reminder_type,
              :reminder_minutes, :start_date, :end_date, :due_date, :timed_event,

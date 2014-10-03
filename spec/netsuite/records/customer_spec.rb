@@ -6,19 +6,19 @@ describe NetSuite::Records::Customer do
   it 'has all the right fields' do
     [
       :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
-      :buying_reason, :buying_time_frame, :campaign_category, :category, :click_stream, :comments, :company_name,
+      :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
       :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
       :currency, :currency_list, :date_created, :days_overdue, :default_address,
       :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
       :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
-      :language, :last_modified_date, :last_name, :last_page_visited, :last_visit, :lead_source, :middle_name, :mobile_phone,
+      :language, :last_modified_date, :last_name, :last_page_visited, :last_visit, :middle_name, :mobile_phone,
       :opening_balance, :opening_balance_account, :opening_balance_date, :overdue_balance, :parent, :partners_list,
-      :password, :password2, :phone, :phonetic_name, :pref_cc_processor, :price_level, :print_on_check_as,
+      :password, :password2, :phone, :phonetic_name, :pref_cc_processor,:print_on_check_as,
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_rep, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
-      :stage, :start_date, :subscriptions_list, :subsidiary, :sync_partner_teams, :tax_exempt, :tax_item, :taxable, :terms,
+      :stage, :start_date, :subscriptions_list, :sync_partner_teams, :tax_exempt, :tax_item, :taxable, :terms,
       :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
       :vat_reg_number, :visits, :web_lead
     ].each do |field|
@@ -88,10 +88,10 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::Customer.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::Customer)
-        customer.is_person.should be_true
+        customer.is_person.should be_truthy
       end
     end
 
@@ -99,7 +99,7 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Customer, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Customer.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -116,9 +116,9 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
-        customer.add.should be_true
+        customer.add.should be_truthy
       end
     end
 
@@ -127,9 +127,9 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
-        customer.add.should be_false
+        customer.add.should be_falsey
       end
     end
   end
@@ -140,9 +140,9 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
-        customer.delete.should be_true
+        customer.delete.should be_truthy
       end
     end
 
@@ -151,9 +151,9 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(customer).
+            with([customer], {}).
             and_return(response)
-        customer.delete.should be_false
+        customer.delete.should be_falsey
       end
     end
   end

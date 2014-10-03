@@ -64,7 +64,7 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :memo => 'This is a memo' }) }
 
       it 'returns an CustomerPayment instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerPayment, :external_id => 7).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 7}], {}).and_return(response)
         payment = NetSuite::Records::CustomerPayment.get(:external_id => 7)
         payment.should be_kind_of(NetSuite::Records::CustomerPayment)
         payment.memo.should eql('This is a memo')
@@ -75,7 +75,7 @@ describe NetSuite::Records::CustomerPayment do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerPayment, :external_id => 8).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerPayment, {:external_id => 8}], {}).and_return(response)
         lambda {
           NetSuite::Records::CustomerPayment.get(:external_id => 8)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -87,14 +87,14 @@ describe NetSuite::Records::CustomerPayment do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CustomerPayment, invoice).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::CustomerPayment, invoice], {}).and_return(response)
         payment = NetSuite::Records::CustomerPayment.initialize(invoice)
         payment.should be_kind_of(NetSuite::Records::CustomerPayment)
       end
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
@@ -107,9 +107,9 @@ describe NetSuite::Records::CustomerPayment do
       it 'returns true' do
         payment = NetSuite::Records::CustomerPayment.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(payment).
+            with([payment], {}).
             and_return(response)
-        payment.add.should be_true
+        payment.add.should be_truthy
       end
     end
 
@@ -119,9 +119,9 @@ describe NetSuite::Records::CustomerPayment do
       it 'returns false' do
         payment = NetSuite::Records::CustomerPayment.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(payment).
+            with([payment], {}).
             and_return(response)
-        payment.add.should be_false
+        payment.add.should be_falsey
       end
     end
   end
@@ -132,9 +132,9 @@ describe NetSuite::Records::CustomerPayment do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(payment).
+            with([payment], {}).
             and_return(response)
-        payment.delete.should be_true
+        payment.delete.should be_truthy
       end
     end
 
@@ -143,9 +143,9 @@ describe NetSuite::Records::CustomerPayment do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(payment).
+            with([payment], {}).
             and_return(response)
-        payment.delete.should be_false
+        payment.delete.should be_falsey
       end
     end
   end

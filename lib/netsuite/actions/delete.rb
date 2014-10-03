@@ -10,13 +10,13 @@ module NetSuite
 
       private
 
-      def request
+      def request(credentials={})
         NetSuite::Configuration.connection(
-          namespaces: {
+          {namespaces: {
             'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          },
-        ).call :delete, :message => request_body
+          }}, credentials
+        ).call :delete, message: request_body
       end
 
       def soap_type
@@ -65,11 +65,11 @@ module NetSuite
       end
 
       module Support
-        def delete(options = {})
+        def delete(options = {}, credentials={})
           response =  if options.empty?
-                        NetSuite::Actions::Delete.call(self)
+                        NetSuite::Actions::Delete.call([self], credentials)
                       else
-                        NetSuite::Actions::Delete.call(self, options)
+                        NetSuite::Actions::Delete.call([self, options], credentials)
                       end
           response.success?
         end

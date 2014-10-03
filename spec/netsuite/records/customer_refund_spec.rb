@@ -87,7 +87,7 @@ describe NetSuite::Records::CustomerRefund do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns an CustomerRefund instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerRefund, :external_id => 10).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
         refund = NetSuite::Records::CustomerRefund.get(:external_id => 10)
         refund.should be_kind_of(NetSuite::Records::CustomerRefund)
       end
@@ -97,7 +97,7 @@ describe NetSuite::Records::CustomerRefund do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CustomerRefund, :external_id => 10).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
         lambda {
           NetSuite::Records::CustomerRefund.get(:external_id => 10)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -109,14 +109,14 @@ describe NetSuite::Records::CustomerRefund do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CustomerRefund, memo).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::CustomerRefund, memo], {}).and_return(response)
         refund = NetSuite::Records::CustomerRefund.initialize(memo)
         refund.should be_kind_of(NetSuite::Records::CustomerRefund)
       end
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
@@ -129,9 +129,9 @@ describe NetSuite::Records::CustomerRefund do
       it 'returns true' do
         refund = NetSuite::Records::CustomerRefund.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(refund).
+            with([refund], {}).
             and_return(response)
-        refund.add.should be_true
+        refund.add.should be_truthy
       end
     end
 
@@ -141,9 +141,9 @@ describe NetSuite::Records::CustomerRefund do
       it 'returns false' do
         refund = NetSuite::Records::CustomerRefund.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(refund).
+            with([refund], {}).
             and_return(response)
-        refund.add.should be_false
+        refund.add.should be_falsey
       end
     end
   end
@@ -155,9 +155,9 @@ describe NetSuite::Records::CustomerRefund do
       it 'returns true' do
         refund = NetSuite::Records::CustomerRefund.new
         NetSuite::Actions::Delete.should_receive(:call).
-            with(refund).
+            with([refund], {}).
             and_return(response)
-        refund.delete.should be_true
+        refund.delete.should be_truthy
       end
     end
 
@@ -167,9 +167,9 @@ describe NetSuite::Records::CustomerRefund do
       it 'returns false' do
         refund = NetSuite::Records::CustomerRefund.new
         NetSuite::Actions::Delete.should_receive(:call).
-            with(refund).
+            with([refund], {}).
             and_return(response)
-        refund.delete.should be_false
+        refund.delete.should be_falsey
       end
     end
   end

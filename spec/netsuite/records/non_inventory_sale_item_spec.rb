@@ -44,7 +44,7 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :manufacturer_zip => '90401' }) }
 
       it 'returns a NonInventorySaleItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::NonInventorySaleItem, :external_id => 20).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
         customer = NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
         customer.should be_kind_of(NetSuite::Records::NonInventorySaleItem)
         customer.manufacturer_zip.should eql('90401')
@@ -55,7 +55,7 @@ describe NetSuite::Records::NonInventorySaleItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::NonInventorySaleItem, :external_id => 20).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::NonInventorySaleItem, {:external_id => 20}], {}).and_return(response)
         lambda {
           NetSuite::Records::NonInventorySaleItem.get(:external_id => 20)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -72,9 +72,9 @@ describe NetSuite::Records::NonInventorySaleItem do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
-        item.add.should be_true
+        item.add.should be_truthy
       end
     end
 
@@ -83,9 +83,9 @@ describe NetSuite::Records::NonInventorySaleItem do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
-        item.add.should be_false
+        item.add.should be_falsey
       end
     end
   end
@@ -96,9 +96,9 @@ describe NetSuite::Records::NonInventorySaleItem do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
-        item.delete.should be_true
+        item.delete.should be_truthy
       end
     end
 
@@ -107,9 +107,9 @@ describe NetSuite::Records::NonInventorySaleItem do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(item).
+            with([item], {}).
             and_return(response)
-        item.delete.should be_false
+        item.delete.should be_falsey
       end
     end
   end

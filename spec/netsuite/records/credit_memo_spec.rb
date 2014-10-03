@@ -98,7 +98,7 @@ describe NetSuite::Records::CreditMemo do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :alt_shipping_cost => 100 }) }
 
       it 'returns a CreditMemo instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CreditMemo, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CreditMemo, {:external_id => 1}], {}).and_return(response)
         memo = NetSuite::Records::CreditMemo.get(:external_id => 1)
         memo.should be_kind_of(NetSuite::Records::CreditMemo)
         memo.alt_shipping_cost.should eql(100)
@@ -109,7 +109,7 @@ describe NetSuite::Records::CreditMemo do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::CreditMemo, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CreditMemo, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::CreditMemo.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -121,14 +121,14 @@ describe NetSuite::Records::CreditMemo do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized credit memo from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::CreditMemo, customer).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::CreditMemo, customer], {}).and_return(response)
         invoice = NetSuite::Records::CreditMemo.initialize(customer)
         invoice.should be_kind_of(NetSuite::Records::CreditMemo)
       end
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
@@ -141,9 +141,9 @@ describe NetSuite::Records::CreditMemo do
       it 'returns true' do
         memo = NetSuite::Records::CreditMemo.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(memo).
+            with([memo], {}).
             and_return(response)
-        memo.add.should be_true
+        memo.add.should be_truthy
       end
     end
 
@@ -153,9 +153,9 @@ describe NetSuite::Records::CreditMemo do
       it 'returns false' do
         memo = NetSuite::Records::CreditMemo.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(memo).
+            with([memo], {}).
             and_return(response)
-        memo.add.should be_false
+        memo.add.should be_falsey
       end
     end
   end
@@ -169,9 +169,9 @@ describe NetSuite::Records::CreditMemo do
       it 'returns true' do
         memo = NetSuite::Records::CreditMemo.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(memo).
+            with([memo], {}).
             and_return(response)
-        memo.delete.should be_true
+        memo.delete.should be_truthy
       end
     end
 
@@ -181,9 +181,9 @@ describe NetSuite::Records::CreditMemo do
       it 'returns false' do
         memo = NetSuite::Records::CreditMemo.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(memo).
+            with([memo], {}).
             and_return(response)
-        memo.delete.should be_false
+        memo.delete.should be_falsey
       end
     end
   end

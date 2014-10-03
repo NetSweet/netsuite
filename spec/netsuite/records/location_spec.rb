@@ -40,7 +40,7 @@ describe NetSuite::Records::Location do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :city => 'Los Angeles' }) }
 
       it 'returns a Location instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Location, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Location, {:external_id => 1}], {}).and_return(response)
         location = NetSuite::Records::Location.get(:external_id => 1)
         location.should be_kind_of(NetSuite::Records::Location)
         location.city.should eql('Los Angeles')
@@ -51,7 +51,7 @@ describe NetSuite::Records::Location do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Location, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Location, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Location.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,

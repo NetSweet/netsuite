@@ -51,11 +51,11 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns a Customer instance populated with the data from the response object' do
         NetSuite::Actions::Get.should_receive(:call).
-          with(NetSuite::Records::CustomRecord, :external_id => 1, :type_id => nil, :custom => true).
+          with([NetSuite::Records::CustomRecord, {:external_id => 1, :type_id => nil, :custom => true}], {}).
           and_return(response)
         customer = NetSuite::Records::CustomRecord.get(:external_id => 1)
         customer.should be_kind_of(NetSuite::Records::CustomRecord)
-        customer.allow_quick_search.should be_true
+        customer.allow_quick_search.should be_truthy
       end
     end
 
@@ -64,7 +64,7 @@ describe NetSuite::Records::CustomRecord do
 
       it 'raises a RecordNotFound exception' do
         NetSuite::Actions::Get.should_receive(:call).
-          with(NetSuite::Records::CustomRecord, :external_id => 1, :type_id => nil, :custom => true).
+          with([NetSuite::Records::CustomRecord, {:external_id => 1, :type_id => nil, :custom => true}], {}).
           and_return(response)
         lambda {
           NetSuite::Records::CustomRecord.get(:external_id => 1)
@@ -80,9 +80,9 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(record).
+            with([record], {}).
             and_return(response)
-        record.add.should be_true
+        record.add.should be_truthy
       end
     end
 
@@ -91,9 +91,9 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(record).
+            with([record], {}).
             and_return(response)
-        record.add.should be_false
+        record.add.should be_falsey
       end
     end
   end
@@ -104,9 +104,9 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(record, { :custom => true }).
+            with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_true
+        record.delete.should be_truthy
       end
     end
 
@@ -115,9 +115,9 @@ describe NetSuite::Records::CustomRecord do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(record, { :custom => true }).
+            with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_false
+        record.delete.should be_falsey
       end
     end
   end

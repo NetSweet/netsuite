@@ -8,8 +8,8 @@ module NetSuite
         @attributes = attributes
       end
 
-      def request
-        NetSuite::Configuration.connection.call :update, :message => request_body
+      def request(credentials={})
+        NetSuite::Configuration.connection({}, credentials).call :update, :message => request_body
       end
 
       # <platformMsgs:update>
@@ -32,7 +32,7 @@ module NetSuite
         if updated_record.respond_to?(:external_id) && updated_record.external_id
           hash['platformMsgs:record']['@platformMsgs:externalId'] = updated_record.external_id
         end
-        
+
         hash
       end
 
@@ -53,10 +53,10 @@ module NetSuite
       end
 
       module Support
-        def update(options = {})
+        def update(options = {}, credentials={})
           options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
           options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
-          response = NetSuite::Actions::Update.call(self.class, options)
+          response = NetSuite::Actions::Update.call([self.class, options], credentials)
           response.success?
         end
       end

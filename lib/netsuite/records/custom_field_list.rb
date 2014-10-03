@@ -18,6 +18,19 @@ module NetSuite
       def custom_fields
         @custom_fields ||= []
       end
+
+      def delete_custom_field(field)
+        custom_fields.delete_if { |c| c.internal_id.to_sym == field }
+        @custom_fields_assoc.delete(field)
+      end
+
+      # In case you want to get only MultiSelectCustomFieldRef for example:
+      #
+      #   list.custom_fields_by_type "MultiSelectCustomFieldRef"
+      #
+      def custom_fields_by_type(type)
+        custom_fields.select { |field| field.type == "platformCore:#{type}" }
+      end
       
       def method_missing(sym, *args, &block)
         # read custom field if already set
@@ -27,7 +40,9 @@ module NetSuite
 
         # write custom field
         if sym.to_s.end_with?('=')
-          return create_custom_field(sym.to_s[0..-2], args.first)
+          field_name = sym.to_s[0..-2]
+          delete_custom_field(field_name.to_sym)
+          return create_custom_field(field_name, args.first)
         end
 
         super(sym, *args, &block)
@@ -43,6 +58,8 @@ module NetSuite
           "#{record_namespace}:customField" => custom_fields.map do |custom_field|
             if custom_field.value.respond_to?(:to_record)
               custom_field_value = custom_field.value.to_record
+            elsif custom_field.value.is_a?(Array)
+              custom_field_value = custom_field.value.map(&:to_record)
             else
               custom_field_value = custom_field.value.to_s
             end
@@ -69,6 +86,8 @@ module NetSuite
         def create_custom_field(internal_id, field_value)
           # all custom fields need types; infer type based on class sniffing
           field_type = case
+          when field_value.is_a?(Array)
+            'MultiSelectCustomFieldRef'
           when field_value.is_a?(Hash)
             'SelectCustomFieldRef'
           when field_value.is_a?(DateTime),
@@ -88,8 +107,21 @@ module NetSuite
           custom_field_value = case 
           when field_value.is_a?(Hash)
             CustomRecordRef.new(field_value)
+          when field_value.is_a?(Date)
+            field_value.to_datetime.iso8601
           when field_value.is_a?(Time)
             field_value.iso8601
+          when field_value.is_a?(Array)
+            # sniff the first element of the array; if an int or string then assume internalId
+            # and create record refs pointing to the given IDs
+
+            if !field_value.empty? && (field_value.first.is_a?(String) || field_value.first.kind_of?(Integer))
+              field_value.map do |v|
+                NetSuite::Records::CustomRecordRef.new(internal_id: v)
+              end
+            else
+              field_value
+            end
           else
             field_value
           end

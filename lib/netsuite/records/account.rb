@@ -5,8 +5,9 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
+      include Namespaces::ListAcct
 
-      actions :get, :add, :delete
+      actions :get, :add, :delete, :search, :upsert
 
       fields :acct_name, :acct_number, :acct_type, :cash_flow_rate, :cur_doc_num, :description, :eliminate, :exchange_rate,
         :general_rate, :include_children, :inventory, :is_inactive, :opening_balance, :revalue, :tran_date

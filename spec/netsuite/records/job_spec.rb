@@ -108,10 +108,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
 
       it 'returns a Job instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
         job = NetSuite::Records::Job.get(:external_id => 1)
         job.should be_kind_of(NetSuite::Records::Job)
-        job.account_number.should be_true
+        job.account_number.should be_truthy
       end
     end
 
@@ -119,7 +119,7 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Job.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -136,9 +136,9 @@ describe NetSuite::Records::Job do
 
       it 'returns true' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(job).
+            with([job], {}).
             and_return(response)
-        job.add.should be_true
+        job.add.should be_truthy
       end
     end
 
@@ -147,9 +147,9 @@ describe NetSuite::Records::Job do
 
       it 'returns false' do
         NetSuite::Actions::Add.should_receive(:call).
-            with(job).
+            with([job], {}).
             and_return(response)
-        job.add.should be_false
+        job.add.should be_falsey
       end
     end
   end
@@ -160,9 +160,9 @@ describe NetSuite::Records::Job do
 
       it 'returns true' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(job).
+            with([job], {}).
             and_return(response)
-        job.delete.should be_true
+        job.delete.should be_truthy
       end
     end
 
@@ -171,9 +171,9 @@ describe NetSuite::Records::Job do
 
       it 'returns false' do
         NetSuite::Actions::Delete.should_receive(:call).
-            with(job).
+            with([job], {}).
             and_return(response)
-        job.delete.should be_false
+        job.delete.should be_falsey
       end
     end
   end
@@ -183,9 +183,9 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
 
       it 'returns true' do
-        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::Job, :external_id => 1, :account_number => 7).and_return(response)
+        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1, :account_number => 7}], {}).and_return(response)
         job = NetSuite::Records::Job.new(:external_id => 1)
-        job.update(:account_number => 7).should be_true
+        job.update(:account_number => 7).should be_truthy
       end
     end
 
@@ -193,9 +193,9 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Update.should_receive(:call).with(NetSuite::Records::Job, :internal_id => 1, :account_number => 7).and_return(response)
+        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::Job, {:internal_id => 1, :account_number => 7}], {}).and_return(response)
         job = NetSuite::Records::Job.new(:internal_id => 1)
-        job.update(:account_number => 7).should be_false
+        job.update(:account_number => 7).should be_falsey
       end
     end
   end

@@ -9,5 +9,5 @@ Dir['spec/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   config.mock_framework = :rspec
-  config.color_enabled = true
+  config.color = true
 end

@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012020141341351370832200514_6a6fc5</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <addResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <writeResponse>
+        <platformCore:status xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com" isSuccess="false">
+          <platformCore:statusDetail type="ERROR">
+            <platformCore:code>ERROR</platformCore:code>
+            <platformCore:message>Some message</platformCore:message>
+          </platformCore:statusDetail>
+          <platformCore:statusDetail type="ERROR">
+            <platformCore:code>ERROR</platformCore:code>
+            <platformCore:message>Some message 2</platformCore:message>
+          </platformCore:statusDetail>
+        </platformCore:status>
+        <baseRef internalId="999" type="invoice" xsi:type="ns2:RecordRef" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="urn:core_2_5.platform.webservices.netsuite.com"/>
+      </writeResponse>
+    </addResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

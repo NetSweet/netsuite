@@ -8,13 +8,13 @@ module NetSuite
         @object = object
       end
 
-      def request
+      def request(credentials={})
         NetSuite::Configuration.connection(
-          namespaces: {
+          {namespaces: {
             'xmlns:platformMsgs'    => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCore'    => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCoreTyp' => "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-          },
+          }}, credentials
         ).call :initialize, :message => request_body
       end
 
@@ -64,8 +64,8 @@ module NetSuite
 
         module ClassMethods
 
-          def initialize(object)
-            response = NetSuite::Actions::Initialize.call(self, object)
+          def initialize(object, credentials={})
+            response = NetSuite::Actions::Initialize.call([self, object], credentials)
             if response.success?
               new(response.body)
             else

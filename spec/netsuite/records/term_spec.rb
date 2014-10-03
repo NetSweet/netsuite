@@ -17,7 +17,7 @@ describe NetSuite::Records::Term do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Term 1' }) }
 
       it 'returns a Term instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Term, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Term, {:external_id => 1}], {}).and_return(response)
         term = NetSuite::Records::Term.get(:external_id => 1)
         term.should be_kind_of(NetSuite::Records::Term)
         term.name.should eql('Term 1')
@@ -28,7 +28,7 @@ describe NetSuite::Records::Term do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Term, :external_id => 1).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Term, {:external_id => 1}], {}).and_return(response)
         lambda {
           NetSuite::Records::Term.get(:external_id => 1)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -46,9 +46,9 @@ describe NetSuite::Records::Term do
       it 'returns true' do
         term = NetSuite::Records::Term.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(term).
+            with([term], {}).
             and_return(response)
-        term.add.should be_true
+        term.add.should be_truthy
       end
     end
 
@@ -58,9 +58,9 @@ describe NetSuite::Records::Term do
       it 'returns false' do
         term = NetSuite::Records::Term.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(term).
+            with([term], {}).
             and_return(response)
-        term.add.should be_false
+        term.add.should be_falsey
       end
     end
   end
@@ -74,9 +74,9 @@ describe NetSuite::Records::Term do
       it 'returns true' do
         term = NetSuite::Records::Term.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(term).
+            with([term], {}).
             and_return(response)
-        term.delete.should be_true
+        term.delete.should be_truthy
       end
     end
 
@@ -86,9 +86,9 @@ describe NetSuite::Records::Term do
       it 'returns false' do
         term = NetSuite::Records::Term.new(test_data)
         NetSuite::Actions::Delete.should_receive(:call).
-            with(term).
+            with([term], {}).
             and_return(response)
-        term.delete.should be_false
+        term.delete.should be_falsey
       end
     end
   end

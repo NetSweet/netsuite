@@ -10,16 +10,17 @@ module NetSuite
       @attributes ||= {}
     end
 
-    def connection(params = {})
+    def connection(params={}, credentials={})
       Savon.client({
         wsdl: wsdl,
         read_timeout: read_timeout,
         namespaces: namespaces,
-        soap_header: auth_header,
+        soap_header: auth_header(credentials).update(soap_header),
         pretty_print_xml: true,
         logger: logger,
         log_level: log_level,
-      }.merge(params))
+        log: !silent,   # turn off logging entirely if configured
+      }.update(params))
     end
 
     def api_version(version = nil)
@@ -65,13 +66,25 @@ module NetSuite
       end
     end
 
-    def auth_header
-      attributes[:auth_header] ||= {
+    def soap_header=(headers)
+      attributes[:soap_header] = headers
+    end
+
+    def soap_header(headers = nil)
+      if headers
+        self.soap_header = headers
+      else
+        attributes[:soap_header] ||= {}
+      end
+    end
+
+    def auth_header(credentials={})
+      {
         'platformMsgs:passport' => {
-          'platformCore:email'    => email,
-          'platformCore:password' => password,
-          'platformCore:account'  => account.to_s,
-          'platformCore:role'     => { :'@type' => 'role', :@internalId => role }
+          'platformCore:email'    => credentials[:email] || email,
+          'platformCore:password' => credentials[:password] || password,
+          'platformCore:account'  => credentials[:account] || account.to_s,
+          'platformCore:role'     => { :@internalId => credentials[:role] || role }
         }
       }
     end
@@ -86,9 +99,12 @@ module NetSuite
         'xmlns:actSched'       => "urn:scheduling_#{api_version}.activities.webservices.netsuite.com",
         'xmlns:setupCustom'    => "urn:customization_#{api_version}.setup.webservices.netsuite.com",
         'xmlns:listAcct'       => "urn:accounting_#{api_version}.lists.webservices.netsuite.com",
+        'xmlns:tranBank'       => "urn:bank_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:tranCust'       => "urn:customers_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:listSupport'    => "urn:support_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:tranGeneral'    => "urn:general_#{api_version}.transactions.webservices.netsuite.com",
+        'xmlns:listMkt'        => "urn:marketing_#{api_version}.lists.webservices.netsuite.com",
+        'xmlns:listWebsite'    => "urn:website_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:listEmp'        => "urn:employees_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:tranEmp'        => "urn:employees_#{api_version}.transactions.webservices.netsuite.com",
       }
@@ -175,6 +191,15 @@ module NetSuite
       else
         value
       end
+    end
+
+    def silent(value=nil)
+      self.silent = value if value
+      attributes[:silent]
+    end
+
+    def silent=(value)
+      attributes[:silent] ||= value
     end
 
     def log_level(value = nil)

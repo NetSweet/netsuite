@@ -137,7 +137,7 @@ describe NetSuite::Records::Invoice do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns an Invoice instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Invoice, :external_id => 10).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
         invoice = NetSuite::Records::Invoice.get(:external_id => 10)
         invoice.should be_kind_of(NetSuite::Records::Invoice)
       end
@@ -147,7 +147,7 @@ describe NetSuite::Records::Invoice do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with(NetSuite::Records::Invoice, :external_id => 10).and_return(response)
+        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
         lambda {
           NetSuite::Records::Invoice.get(:external_id => 10)
         }.should raise_error(NetSuite::RecordNotFound,
@@ -159,14 +159,14 @@ describe NetSuite::Records::Invoice do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with(NetSuite::Records::Invoice, customer).and_return(response)
+        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::Invoice, customer], {}).and_return(response)
         invoice = NetSuite::Records::Invoice.initialize(customer)
         invoice.should be_kind_of(NetSuite::Records::Invoice)
       end
     end
 
     context 'when the response is unsuccessful' do
-      pending
+      skip
     end
   end
 
@@ -179,9 +179,9 @@ describe NetSuite::Records::Invoice do
       it 'returns true' do
         invoice = NetSuite::Records::Invoice.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(invoice).
+            with([invoice], {}).
             and_return(response)
-        invoice.add.should be_true
+        invoice.add.should be_truthy
       end
     end
 
@@ -191,9 +191,9 @@ describe NetSuite::Records::Invoice do
       it 'returns false' do
         invoice = NetSuite::Records::Invoice.new(test_data)
         NetSuite::Actions::Add.should_receive(:call).
-            with(invoice).
+            with([invoice], {}).
             and_return(response)
-        invoice.add.should be_false
+        invoice.add.should be_falsey
       end
     end
   end
@@ -205,9 +205,9 @@ describe NetSuite::Records::Invoice do
       it 'returns true' do
         invoice = NetSuite::Records::Invoice.new
         NetSuite::Actions::Delete.should_receive(:call).
-            with(invoice).
+            with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_true
+        invoice.delete.should be_truthy
       end
     end
 
@@ -217,9 +217,9 @@ describe NetSuite::Records::Invoice do
       it 'returns false' do
         invoice = NetSuite::Records::Invoice.new
         NetSuite::Actions::Delete.should_receive(:call).
-            with(invoice).
+            with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_false
+        invoice.delete.should be_falsey
       end
     end
   end

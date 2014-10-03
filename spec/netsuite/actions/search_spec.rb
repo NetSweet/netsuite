@@ -17,33 +17,35 @@ describe NetSuite::Actions::Search do
   end
 
   context "saved search" do
-    before do
-      savon.expects(:search).with(:message => {
-        'searchRecord' => {
-          '@xsi:type'           => 'listRel:CustomerSearchAdvanced',
-          '@savedSearchId'      => 500,
-          :content!             => { "listRel:criteria" => {} }
-        },
-      }).returns(File.read('spec/support/fixtures/search/saved_search_customer.xml'))
+    context "with no params" do
+      before do
+        savon.expects(:search).with(:message => {
+          'searchRecord' => {
+            '@xsi:type'           => 'listRel:CustomerSearchAdvanced',
+            '@savedSearchId'      => 500,
+            :content!             => { "listRel:criteria" => {} }
+          },
+        }).returns(File.read('spec/support/fixtures/search/saved_search_customer.xml'))
+      end
+
+      it "should handle a ID only search" do
+        result = NetSuite::Records::Customer.search(saved: 500)
+        result.results.size.should == 1
+        result.results.first.email.should == 'aemail@gmail.com'
+      end
+
+      it "merges preferences gracefully" do
+        expect {
+            NetSuite::Records::Customer.search(
+              saved: 500,
+              preferences: { page_size: 20 }
+            )
+        }.not_to raise_error
+      end
     end
 
-    it "should handle a ID only search" do
-      result = NetSuite::Records::Customer.search(saved: 500)
-      result.results.size.should == 1
-      result.results.first.email.should == 'aemail@gmail.com'
-    end
-
-    it "merges preferences gracefully" do
-      expect {
-          NetSuite::Records::Customer.search(
-            saved: 500,
-            preferences: { page_size: 20 }
-          )
-      }.not_to raise_error
-    end
-
-    pending "should handle a ID search with basic params"
-    pending "should handle a search with joined params"
+    skip "should handle a ID search with basic params"
+    skip "should handle a search with joined params"
 
     it "should handle a search with joined params containing custom field search" do
       savon.expects(:search).with(:message => {
@@ -54,23 +56,19 @@ describe NetSuite::Actions::Search do
             "listRel:criteria" => {
               "listRel:basic" => {
                 "platformCommon:entityId" => {
-                  "platformCore:searchValue" => "New Keywords"
+                  :content! => {"platformCore:searchValue" => "New Keywords"},
+                  :"@operator" => "hasKeywords"
                 },
-
-                :attributes! => {
-                  "platformCommon:entityId" => { "operator" => "hasKeywords" },
-                  "platformCommon:stage" => { "operator" => "anyOf" }
+                "platformCommon:stage" => {
+                  :content! => {"platformCore:searchValue"=>["_lead", "_customer"]},
+                  :"@operator" => "anyOf"
                 },
-
-                "platformCommon:stage" => { "platformCore:searchValue" => ["_lead", "_customer"] },
                 "platformCommon:customFieldList" => {
                   "platformCore:customField" => [
                     {
-                      "platformCore:searchValue" => [{}, {}],
+                      "platformCore:searchValue" => [{:"@internalId" => 4}, {:"@internalId" => 11}],
                       :attributes! => {
-                        "platformCore:searchValue" => {
-                          "internalId" => [4, 11]
-                        }
+                        "platformCore:searchValue" => { "internalId" => [4, 11] }
                       }
                     },
                     {
@@ -146,12 +144,12 @@ describe NetSuite::Actions::Search do
   end
 
   context "advanced search" do
-    pending "should handle search column definitions"
-    pending "should handle joined search results"
+    skip "should handle search column definitions"
+    skip "should handle joined search results"
   end
 
   context "basic search" do
-    pending "should handle searching basic fields"
-    pending "should handle searching with joined fields"
+    skip "should handle searching basic fields"
+    skip "should handle searching with joined fields"
   end
 end

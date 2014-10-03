@@ -7,10 +7,10 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :add, :initialize, :delete, :update, :search
+      actions :get, :add, :initialize, :delete, :update, :upsert, :search
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
-        :bill_address, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
+        :bill_address, :cc_approved, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
         :est_gross_profit, :est_gross_profit_percent, :exchange_rate, :exclude_commission, :fax, :gift_cert_applied,
         :gift_cert_available, :gift_cert_total, :handling_cost, :handling_tax1_rate, :handling_tax2_rate, :is_taxable,
         :last_modified_date, :memo, :message, :on_credit_hold, :order_status, :other_ref_num, :recognized_revenue,
@@ -19,6 +19,7 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :vsoe_auto_calc
 
+      field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress
       field :item_list,                SalesOrderItemList
       field :custom_field_list,        CustomFieldList
@@ -27,7 +28,7 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :created_from, :currency, :custom_form, :department, :discount_item, :entity, :gift_cert,
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :opportunity, :partner, :posting_period, :promo_code,
-        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :terms, :tax_item
+        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :terms, :tax_item, :payment_method
 
       attr_reader :internal_id
       attr_accessor :external_id
