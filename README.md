@@ -127,13 +127,18 @@ search = NetSuite::Records::Customer.search({
         {
           field: 'custentity_acustomfield',
           operator: 'anyOf',
-          # type is needed for multiselect fields
+          # type is needed for all search fields
           type: 'SearchMultiSelectCustomField',
           value: [
             NetSuite::Records::CustomRecordRef.new(:internal_id => 1),
             NetSuite::Records::CustomRecordRef.new(:internal_id => 2),
           ]
-        }
+        },
+	{
+	  field: 'custbody_internetorder',
+	  type: 'SearchBooleanCustomField',
+	  value: true
+	}
       ]
     }
   ]
@@ -314,4 +319,27 @@ states = NetSuite::Configuration.connection.call(:get_all, message: {
   }
 })
 states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
+
+# item search
+NetSuite::Records::InventoryItem.search({
+  criteria: {
+    basic: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        type: 'SearchEnumMultiSelectField',
+        value: [
+          '_inventoryItem',
+
+          # note that the naming conventions aren't consistent: AssemblyItem != _assemblyItem
+          '_assembly'
+        ]
+      },
+      {
+        field: 'isInactive',
+        value: false
+      }
+    ]
+  }
+}).results.first
 ```
