@@ -44,6 +44,7 @@ module NetSuite
       field :bin_number_list, BinNumberList
       field :pricing_matrix, PricingMatrix
       field :member_list, MemberList
+      field :subsidiary_list, RecordRefList
 
       attr_reader :internal_id
       attr_accessor :external_id

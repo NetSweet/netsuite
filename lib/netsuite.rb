@@ -123,6 +123,7 @@ module NetSuite
     autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
     autoload :PromotionCode,              'netsuite/records/promotion_code'
     autoload :RecordRef,                  'netsuite/records/record_ref'
+    autoload :RecordRefList,              'netsuite/records/record_ref_list'
     autoload :RevRecTemplate,             'netsuite/records/rev_rec_template'
     autoload :SalesOrder,                 'netsuite/records/sales_order'
     autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
