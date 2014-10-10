@@ -19,4 +19,20 @@ describe NetSuite::Records::AssemblyItem do
       expect(item.member_list.item_member.first.quantity).to eq(20)
     end
   end
+
+  describe '#subsidiary_list' do
+    it 'creates record refs from attributes' do
+      item = described_class.new({
+        subsidiary_list: {
+          record_ref: [
+            { internal_id: 1 },
+            { internal_id: 2 },
+          ]
+        }
+      })
+
+      expect(item.subsidiary_list.record_ref[0].internal_id).to eq(1)
+      expect(item.subsidiary_list.record_ref[1].internal_id).to eq(2)
+    end
+  end
 end
