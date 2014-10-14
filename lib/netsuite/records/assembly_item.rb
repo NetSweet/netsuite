@@ -14,7 +14,7 @@ module NetSuite
         :costing_method_display, :country_of_manufacture, :created_date, :currency, :date_converted_to_inv,
         :default_return_cost, :demand_modifier, :display_name, :dont_show_price, :enforce_min_qty_internally,
         :exclude_from_sitemap, :featured_description, :fixed_lot_size, :handling_cost, :handling_cost_units, :include_children,
-        :is_donation_item, :is_drop_ship_item, :is_gco_compliant, :is_inactive, :is_online, :is_special_order_item, :is_taxable,
+        :is_donation_item, :is_drop_ship_item, :is_gco_compliant, :is_inactive, :is_online, :is_special_order_item, :is_special_work_order_item, :is_taxable,
         :item_id, :last_modified_date, :last_purchase_price, :lead_time, :manufacturer, :manufacturer_addr1, :manufacturer_city,
         :manufacturer_state, :manufacturer_tariff, :manufacturer_tax_id, :manufacturer_zip, :match_bill_to_receipt,
         :matrix_type, :max_donation_amount, :meta_tag_html, :minimum_quantity, :minimum_quantity_units, :mpn,
