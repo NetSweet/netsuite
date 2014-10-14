@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :delete, :update, :upsert, :search
 
-      fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
+      fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost, :build_entire_assembly,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
         :costing_method_display, :country_of_manufacture, :created_date, :currency, :date_converted_to_inv,
         :default_return_cost, :demand_modifier, :display_name, :dont_show_price, :enforce_min_qty_internally,
