@@ -3,6 +3,8 @@ module NetSuite
     class InventoryAssignmentList
       include Namespaces::PlatformCommon
 
+      attr_accessor :replace
+
       def initialize(attributes = {})
         case attributes[:assignment]
         when Hash
@@ -12,6 +14,7 @@ module NetSuite
             assignments << InventoryAssignment.new(item)
           end
         end
+        @replace = attributes[:replace]
       end
 
       def assignments
@@ -19,7 +22,11 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:inventoryAssignment" => assignments.map(&:to_record) }
+        rec = {
+          "#{record_namespace}:inventoryAssignment" => assignments.map(&:to_record),
+        }
+        rec[:@replaceAll] = true if @replace
+        rec
       end
     end
   end
