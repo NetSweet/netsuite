@@ -37,5 +37,24 @@ describe NetSuite::Records::InventoryAssignmentList do
       list.to_record.should eql(record)
     end
 
+    it 'accepts replacing all' do
+      list = NetSuite::Records::InventoryAssignmentList.new(
+        :inventory_assignment => {
+          :quantity => 1
+        },
+        :replace_all => true,
+      )
+
+      record = {
+        'tranInvt:inventoryAssignment' => [{
+          'platformCommon:quantity' => 1
+        }],
+        :@replaceAll => true,
+      }
+
+      list.to_record.should eql(record)
+    end
+
+
   end
 end
