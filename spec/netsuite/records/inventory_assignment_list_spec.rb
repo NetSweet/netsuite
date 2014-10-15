@@ -15,13 +15,12 @@ describe NetSuite::Records::InventoryAssignmentList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranInvt:inventoryAssignment' => {
-            'platformCommon:quantity' => 1
-          }
-        }
-      ]
+
+      record = {
+        'platformCommon:inventoryAssignment' => [{
+          'platformCommon:quantity' => 1
+        }]
+      }
       list.to_record.should eql(record)
     end
   end

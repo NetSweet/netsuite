@@ -15,14 +15,13 @@ describe NetSuite::Records::CreditMemoApplyList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranCust:apply' => {
-            'tranCust:job' => 'something'
-          }
-        }
-      ]
-      expect(list.to_record).to eql(record)
+      record = {
+        'tranCust:apply' => [{
+          'tranCust:job' => 'something'
+        }]
+      }
+
+      expect(list.to_record.should).tq eq(record)
     end
   end
 end

@@ -26,7 +26,6 @@ module NetSuite
       def to_record
         { "#{record_namespace}:apply" => applies.map(&:to_record) }
       end
-
     end
   end
 end

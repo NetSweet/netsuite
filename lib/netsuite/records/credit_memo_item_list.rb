@@ -17,11 +17,8 @@ module NetSuite
       end
 
       def to_record
-        items.map do |item|
-          { "#{record_namespace}:item" => item.to_record }
-        end
+        { "#{record_namespace}:item" => items.map(&:to_record) }
       end
-
     end
   end
 end
