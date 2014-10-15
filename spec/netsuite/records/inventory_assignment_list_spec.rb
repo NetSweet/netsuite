@@ -23,5 +23,19 @@ describe NetSuite::Records::InventoryAssignmentList do
       }
       list.to_record.should eql(record)
     end
+
+    it 'can represent replacing all' do
+      list.replace = true
+
+      record = {
+        'platformCommon:inventoryAssignment' => [{
+          'platformCommon:quantity' => 1
+        }],
+        :@replaceAll => true,
+      }
+
+      list.to_record.should eql(record)
+    end
+
   end
 end
