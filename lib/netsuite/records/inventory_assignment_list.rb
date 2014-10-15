@@ -19,11 +19,8 @@ module NetSuite
       end
 
       def to_record
-        assignments.map do |item|
-          { "#{record_namespace}:inventoryAssignment" => item.to_record }
-        end
+        { "#{record_namespace}:inventoryAssignment" => assignments.map(&:to_record) }
       end
-
     end
   end
 end
