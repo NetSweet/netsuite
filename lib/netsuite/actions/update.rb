@@ -3,6 +3,8 @@ module NetSuite
     class Update
       include Support::Requests
 
+      attr_reader :response_hash
+
       def initialize(klass, attributes)
         @klass      = klass
         @attributes = attributes
@@ -48,8 +50,22 @@ module NetSuite
         @response_body ||= response_hash[:base_ref]
       end
 
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
+      end
+
       def response_hash
         @response_hash ||= @response.to_hash[:update_response][:write_response]
+      end
+
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.class == Hash
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
       end
 
       module Support
@@ -57,6 +73,7 @@ module NetSuite
           options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
           options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
           response = NetSuite::Actions::Update.call([self.class, options], credentials)
+          @errors = response.errors
           response.success?
         end
       end

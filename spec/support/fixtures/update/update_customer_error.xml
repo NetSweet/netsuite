@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_011220127305624241236468140_8ef09e2dc9b2</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <updateResponse xmlns="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <writeResponse>
+        <platformCore:status isSuccess="false" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com">
+            <platformCore:statusDetail type="ERROR">
+                <platformCore:code>INSUFFICIENT_PERMISSION</platformCore:code>
+                <platformCore:message>You do not have permissions to set a value for element addrtext due to one of the following reasons: 1) The field is read-only; 2) An associated feature is disabled; 3) The field is available either when a record is created or updated, but not in both cases.</platformCore:message>
+            </platformCore:statusDetail>
+        </platformCore:status>
+        <baseRef internalId="329" externalId="100001" type="customer" xsi:type="platformCore:RecordRef" xmlns:platformCore="urn:core_2011_2.platform.webservices.netsuite.com"/>
+      </writeResponse>
+    </updateResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
