@@ -69,12 +69,15 @@ end
 #### CRUD Operations
 
 ```ruby
-# retrieve a customer
+# get a customer
 customer = NetSuite::Records::Customer.get(:internal_id => 4)
 customer.is_person
 
 # or
 NetSuite::Records::Customer.get(4).is_person
+
+# get a list of customers
+customers = NetSuite::Records::Customer.get_list(:list => [4, 5, 6])
 
 # randomly assign a task
 customer_support_reps = [12345, 12346]
@@ -92,7 +95,6 @@ task.add
 `open https://system.sandbox.netsuite.com/app/crm/calendar/task.nl?id=#{invoice.internal_id}`
 
 task.update :message => 'New Message'
-
 
 # using get_select_value with a custom record
 NetSuite::Records::BaseRefList.get_select_value(
@@ -112,22 +114,20 @@ contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
 contact.custom_field_list.custentity_abooleanfield = true
 contact.update(custom_field_list: contact.custom_field_list)
 
-# the getList operation
-NetSuite::Records::CustomRecord.get_list(
-  # netsuite internalIDs
-  list: [1,2,3],
-  # only needed for a custom record
-  type_id: 1234
-).each do |record|
-  # do your thing...
-end
-
 # getting a custom record
 record = NetSuite::Records::CustomRecord.get(
   # custom record type
   type_id: 10,
   # reference to instance of the custom record type
   internal_id: 100
+)
+
+# getting a list of custom records
+records = NetSuite::Records::CustomRecord.get_list(
+  # netsuite internalIDs
+  list: [1,2,3],
+  # only needed for a custom record
+  type_id: 1234
 )
 
 # adding a custom record
@@ -159,8 +159,17 @@ search = NetSuite::Records::Customer.search({
 
 `open https://system.netsuite.com/app/common/entity/custjob.nl?id=#{search.results.first.internal_id}`
 
+# searching for custom records
+NetSuite::Records::CustomRecord.search(basic: [
+{
+        field: 'recType',
+        operator: 'is',
+        # custom record type
+        value: NetSuite::Records::CustomRecordRef.new(:internal_id => 10),
+}]).results
+
 # advanced search building on saved search
-search = NetSuite::Records::Customer.search({
+NetSuite::Records::Customer.search({
   saved: 500,	# your saved search internalId
   basic: [
     {
@@ -197,10 +206,10 @@ search = NetSuite::Records::Customer.search({
       ]
     }
   ]
-})
+}).results
 
 # advanced search from scratch
-search = NetSuite::Records::Transaction.search({
+NetSuite::Records::Transaction.search({
   criteria: {
     basic: [
       {
@@ -287,7 +296,7 @@ search = NetSuite::Records::Transaction.search({
   preferences: {
     page_size: 10
   }
-})
+}).results
 
 # basic search with pagination / SearchMorewithId
 search = NetSuite::Records::Customer.search(
@@ -309,15 +318,6 @@ search = NetSuite::Records::Customer.search(
 search.results_in_batches do |batch|
   puts batch.map(&:internal_id)
 end
-
-# searching for custom records
-records = NetSuite::Records::CustomRecord.search(basic: [
-{
-        field: 'recType',
-        operator: 'is',
-        # custom record type
-        value: NetSuite::Records::CustomRecordRef.new(:internal_id => 10),
-}])
 
 # item search
 NetSuite::Records::InventoryItem.search({
