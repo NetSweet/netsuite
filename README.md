@@ -66,6 +66,8 @@ end
 
 ### Examples
 
+#### CRUD Operations
+
 ```ruby
 # retrieve a customer
 customer = NetSuite::Records::Customer.get(:internal_id => 4)
@@ -91,6 +93,59 @@ task.add
 
 task.update :message => 'New Message'
 
+
+# using get_select_value with a custom record
+NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custrecord_something',
+  customRecordType: {
+    '@internalId' => 10,
+    '@xsi:type' => 'customRecord'
+  }
+)
+
+# updating a custom field list
+# you need to push ALL the values of ALL of the custom fields that you want set on the record
+# you can't just push the values of the fields that you want to update: all of the values of
+# other fields will then fall back to their default values
+contact = NetSuite::Records::Contact.get(12345)
+contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
+contact.custom_field_list.custentity_abooleanfield = true
+contact.update(custom_field_list: contact.custom_field_list)
+
+# the getList operation
+NetSuite::Records::CustomRecord.get_list(
+  # netsuite internalIDs
+  list: [1,2,3],
+  # only needed for a custom record
+  type_id: 1234
+).each do |record|
+  # do your thing...
+end
+
+# getting a custom record
+record = NetSuite::Records::CustomRecord.get(
+  # custom record type
+  type_id: 10,
+  # reference to instance of the custom record type
+  internal_id: 100
+)
+
+# adding a custom record
+record = NetSuite::Records::CustomRecord.new
+record.rec_type = NetSuite::Records::CustomRecord.new(internal_id: 10)
+record.custom_field_list.custrecord_locationstate = "New Jersey"
+record.add
+
+# updating a custom record
+record = NetSuite::Records::CustomRecord.new(internal_id: 100)
+record.custom_field_list.custrecord_locationstate = "New Jersey"
+record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
+
+```
+
+#### Searching
+
+```ruby
 # basic search
 search = NetSuite::Records::Customer.search({
   basic: [
@@ -144,7 +199,7 @@ search = NetSuite::Records::Customer.search({
   ]
 })
 
-# advanced search from stratch
+# advanced search from scratch
 search = NetSuite::Records::Transaction.search({
   criteria: {
     basic: [
@@ -175,7 +230,6 @@ search = NetSuite::Records::Transaction.search({
         ]
       }
     ],
-
 
     # equivilent to the 'Account' label in the GUI
     accountJoin: [
@@ -256,69 +310,14 @@ search.results_in_batches do |batch|
   puts batch.map(&:internal_id)
 end
 
-# making a call that hasn't been implemented yet
-NetSuite::Configuration.connection.call :get_customization_id, message: {
-  'platformMsgs:customizationType' => { '@getCustomizationType' => 'customRecordType'},
-  'platformMsgs:includeInactives' => 'false'
-}
-
-server_time_response = NetSuite::Configuration.connection.call :get_server_time
-server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
-
-# using get_select_value with a custom record
-NetSuite::Records::BaseRefList.get_select_value(
-  field: 'custrecord_something',
-  customRecordType: {
-    '@internalId' => 10,
-    '@xsi:type' => 'customRecord'
-  }
-)
-
-# updating a custom field list
-# you need to push ALL the values of ALL of the custom fields that you want set on the record
-# you can't just push the values of the fields that you want to update: all of the values of
-# other fields will then fall back to their default values
-contact = NetSuite::Records::Contact.get(12345)
-contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
-contact.custom_field_list.custentity_abooleanfield = true
-contact.update(custom_field_list: contact.custom_field_list)
-
-# the getList operation
-NetSuite::Records::CustomRecord.get_list(
-  # netsuite internalIDs
-  list: [1,2,3],
-  # only needed for a custom record
-  type_id: 1234
-).each do |record|
-  # do your thing...
-end
-
-# getting a custom record
-record = NetSuite::Records::CustomRecord.get(
-  # custom record type
-  type_id: 10,
-  # reference to instance of the custom record type
-  internal_id: 100
-)
-
-# adding a custom record
-record = NetSuite::Records::CustomRecord.new
-record.rec_type = NetSuite::Records::CustomRecord.new(internal_id: 10)
-record.custom_field_list.custrecord_locationstate = "New Jersey"
-record.add
-
-# updating a custom record
-record = NetSuite::Records::CustomRecord.new(internal_id: 100)
-record.custom_field_list.custrecord_locationstate = "New Jersey"
-record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
-
-# getting a list of states
-states = NetSuite::Configuration.connection.call(:get_all, message: {
-  'platformCore:record' => {
-    '@recordType' => 'state'
-  }
-})
-states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
+# searching for custom records
+records = NetSuite::Records::CustomRecord.search(basic: [
+{
+        field: 'recType',
+        operator: 'is',
+        # custom record type
+        value: NetSuite::Records::CustomRecordRef.new(:internal_id => 10),
+}])
 
 # item search
 NetSuite::Records::InventoryItem.search({
@@ -342,4 +341,25 @@ NetSuite::Records::InventoryItem.search({
     ]
   }
 }).results.first
+```
+
+#### Non-standard Operations
+
+```ruby
+# making a call that hasn't been implemented yet
+NetSuite::Configuration.connection.call :get_customization_id, message: {
+  'platformMsgs:customizationType' => { '@getCustomizationType' => 'customRecordType'},
+  'platformMsgs:includeInactives' => 'false'
+}
+
+server_time_response = NetSuite::Configuration.connection.call :get_server_time
+server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
+
+# getting a list of states
+states = NetSuite::Configuration.connection.call(:get_all, message: {
+  'platformCore:record' => {
+    '@recordType' => 'state'
+  }
+})
+states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
 ```
