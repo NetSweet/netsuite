@@ -128,6 +128,7 @@ module NetSuite
     autoload :ServiceSaleItem,            'netsuite/records/service_sale_item'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :SiteCategory,               'netsuite/records/site_category'
+    autoload :Subsidiary,                 'netsuite/records/subsidiary'
     autoload :SupportCase,                'netsuite/records/support_case'
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
