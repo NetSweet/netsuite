@@ -30,6 +30,14 @@ describe NetSuite::Records::CustomerAddressbook do
     end
   end
 
+  it 'has all the right read_only_fields' do
+    [
+      :addr_text
+    ].each do |field|
+      NetSuite::Records::CustomerAddressbook.should have_read_only_field(field)
+    end
+  end
+
   describe '#initialize' do
     context 'when taking in a hash of attributes' do
       it 'sets the attributes for the object given the attributes hash' do
@@ -72,7 +80,6 @@ describe NetSuite::Records::CustomerAddressbook do
     it 'can represent itself as a SOAP record' do
       record = {
         'listRel:addr1'           => '123 Happy Lane',
-        'listRel:addrText'        => "123 Happy Lane\nLos Angeles CA 90007",
         'listRel:city'            => 'Los Angeles',
         'listRel:country'         => '_unitedStates',
         'listRel:defaultBilling'  => true,
