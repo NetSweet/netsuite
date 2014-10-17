@@ -6,7 +6,9 @@ module NetSuite
       include Namespaces::ListRel
 
       fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
-        :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state
+        :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :override, :state
+
+      read_only_fields :addr_text
 
       attr_reader   :internal_id
       attr_accessor :external_id
