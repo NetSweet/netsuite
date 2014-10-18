@@ -67,11 +67,20 @@ module NetSuite
               custom_field_value = custom_field.value.to_s
             end
 
-            {
+            base = {
               "platformCore:value" => custom_field_value,
-              '@internalId' => custom_field.internal_id,
               '@xsi:type' => custom_field.type
             }
+
+            if custom_field.internal_id
+              base['@internalId'] = custom_field.internal_id
+            end
+
+            if custom_field.script_id
+              base['@scriptId'] = custom_field.script_id
+            end
+
+            base
           end
         }
       end
