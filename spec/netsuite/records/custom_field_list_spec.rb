@@ -47,6 +47,11 @@ describe NetSuite::Records::CustomFieldList do
         :type        => 'SelectCustomFieldRef',
         :value       => NetSuite::Records::CustomRecordRef.new(:internal_id => 13, :name => "The Name")
       )
+      list.custom_fields << NetSuite::Records::CustomField.new(
+        :script_id   => 'custbody_accountclassification',
+        :type        => 'SelectCustomFieldRef',
+        :value       => NetSuite::Records::CustomRecordRef.new(:internal_id => 11, :name => "The Game")
+      )
     end
 
     it 'can represent itself as a SOAP record' do
@@ -61,6 +66,11 @@ describe NetSuite::Records::CustomFieldList do
             '@internalId' => 'custbody_salesclassification',
             '@xsi:type' => 'SelectCustomFieldRef',
             "platformCore:value"=>{"platformCore:name"=>"The Name", :@internalId=>13}
+          },
+          {
+            '@scriptId' => 'custbody_accountclassification',
+            '@xsi:type' => 'SelectCustomFieldRef',
+            "platformCore:value"=>{"platformCore:name"=>"The Game", :@internalId=>11}
           }
         ]
       }
