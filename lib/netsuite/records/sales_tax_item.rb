@@ -7,8 +7,8 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :get_select_value, :add, :delete, :update,
-        :upsert, :search
+      actions :get, :get_list, :get_all, :get_select_value, :add, :delete,
+        :update, :upsert
 
       fields :item_id, :display_name, :description, :rate, :is_inactive,
         :effective_from, :valid_until, :include_children, :eccode,
