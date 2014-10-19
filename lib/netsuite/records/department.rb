@@ -4,11 +4,13 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Actions
+      include Namespaces::ListAcct
 
-      actions :get, :add, :delete, :upsert
+      actions :get, :get_list, :get_select_value, :add, :delete, :upsert,
+        :search, :update
 
       fields :name, :is_inactive
-      
+
       record_refs :parent
 
       attr_reader :internal_id
