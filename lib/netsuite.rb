@@ -41,6 +41,7 @@ module NetSuite
     autoload :Add,              'netsuite/actions/add'
     autoload :Delete,           'netsuite/actions/delete'
     autoload :Get,              'netsuite/actions/get'
+    autoload :GetAll,           'netsuite/actions/get_all'
     autoload :GetList,          'netsuite/actions/get_list'
     autoload :GetSelectValue,   'netsuite/actions/get_select_value'
     autoload :Initialize,       'netsuite/actions/initialize'
