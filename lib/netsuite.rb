@@ -125,6 +125,7 @@ module NetSuite
     autoload :SalesOrder,                 'netsuite/records/sales_order'
     autoload :SalesOrderItem,             'netsuite/records/sales_order_item'
     autoload :SalesOrderItemList,         'netsuite/records/sales_order_item_list'
+    autoload :SalesTaxItem,               'netsuite/records/sales_tax_item'
     autoload :ServiceSaleItem,            'netsuite/records/service_sale_item'
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :SiteCategory,               'netsuite/records/site_category'
