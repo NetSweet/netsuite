@@ -129,6 +129,7 @@ module NetSuite
     autoload :ShipAddress,                'netsuite/records/ship_address'
     autoload :SiteCategory,               'netsuite/records/site_category'
     autoload :SupportCase,                'netsuite/records/support_case'
+    autoload :TaxType,                    'netsuite/records/tax_type'
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
     autoload :Transaction,                'netsuite/records/transaction'
