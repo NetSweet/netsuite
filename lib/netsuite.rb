@@ -48,6 +48,7 @@ module NetSuite
     autoload :Initialize,       'netsuite/actions/initialize'
     autoload :Update,           'netsuite/actions/update'
     autoload :Upsert,           'netsuite/actions/upsert'
+    autoload :UpsertList,       'netsuite/actions/upsert_list'
     autoload :Search,           'netsuite/actions/search'
     autoload :Login,            'netsuite/actions/login'
   end
