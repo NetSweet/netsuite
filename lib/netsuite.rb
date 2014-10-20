@@ -12,6 +12,7 @@ module NetSuite
 
   module Namespaces
     autoload :ActSched,       'netsuite/namespaces/act_sched'
+    autoload :FileCabinet,    'netsuite/namespaces/file_cabinet'
     autoload :ListAcct,       'netsuite/namespaces/list_acct'
     autoload :ListRel,        'netsuite/namespaces/list_rel'
     autoload :ListSupport,    'netsuite/namespaces/list_support'
@@ -99,6 +100,7 @@ module NetSuite
     autoload :DepositCashBackList,        'netsuite/records/deposit_cash_back_list'
     autoload :DiscountItem,               'netsuite/records/discount_item'
     autoload :Duration,                   'netsuite/records/duration'
+    autoload :File,                       'netsuite/records/file'
     autoload :InventoryItem,              'netsuite/records/inventory_item'
     autoload :Invoice,                    'netsuite/records/invoice'
     autoload :InvoiceItem,                'netsuite/records/invoice_item'
