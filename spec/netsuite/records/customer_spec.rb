@@ -181,18 +181,15 @@ describe NetSuite::Records::Customer do
 
     context 'with one customer' do
       before do
-        savon.expects(:upsert_list).with(:message => [
+        savon.expects(:upsert_list).with(:message =>
           {
-            'record' => {
-              :content! => {
-                'listRel:entityId'    => 'Target',
-                'listRel:companyName' => 'Target'
-              },
+            'record' => [{
+              'listRel:entityId'    => 'Target',
+              'listRel:companyName' => 'Target',
               '@xsi:type' => 'listRel:Customer',
               '@externalId' => 'ext2'
-            }
-          }
-        ]).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
+            }]
+        }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
       end
 
       it 'returns collection with one Customer instances populated with the data from the response object' do
@@ -212,28 +209,22 @@ describe NetSuite::Records::Customer do
 
     context 'with two customers' do
       before do
-        savon.expects(:upsert_list).with(:message => [
+        savon.expects(:upsert_list).with(:message =>
           {
-            'record' => {
-              :content! => {
+            'record' => [{
                 'listRel:entityId'    => 'Shutter Fly',
-                'listRel:companyName' => 'Shutter Fly, Inc.'
+                'listRel:companyName' => 'Shutter Fly, Inc.',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext1'
               },
-              '@xsi:type' => 'listRel:Customer',
-              '@externalId' => 'ext1'
-            }
-          },
-          {
-            'record' => {
-              :content! => {
+              {
                 'listRel:entityId'    => 'Target',
-                'listRel:companyName' => 'Target'
-              },
-              '@xsi:type' => 'listRel:Customer',
-              '@externalId' => 'ext2'
-            }
-          }
-        ]).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
+                'listRel:companyName' => 'Target',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext2'
+              }
+            ]
+        }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
       end
 
       it 'returns collection of Customer instances populated with the data from the response object' do

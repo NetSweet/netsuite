@@ -13,18 +13,15 @@ describe NetSuite::Actions::UpsertList do
       end
 
       before do
-        savon.expects(:upsert_list).with(:message => [
+        savon.expects(:upsert_list).with(:message =>
           {
-            'record' => {
-              :content! => {
-                'listRel:entityId'    => 'Target',
-                'listRel:companyName' => 'Target'
-              },
+            'record' => [{
+              'listRel:entityId'    => 'Target',
+              'listRel:companyName' => 'Target',
               '@xsi:type' => 'listRel:Customer',
               '@externalId' => 'ext2'
-            }
-          }
-        ]).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
+            }]
+          }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
       end
 
       it 'makes a valid request to the NetSuite API' do
@@ -47,28 +44,22 @@ describe NetSuite::Actions::UpsertList do
       end
 
       before do
-        savon.expects(:upsert_list).with(:message => [
+        savon.expects(:upsert_list).with(:message =>
           {
-            'record' => {
-              :content! => {
+            'record' => [{
                 'listRel:entityId'    => 'Shutter Fly',
-                'listRel:companyName' => 'Shutter Fly, Inc.'
+                'listRel:companyName' => 'Shutter Fly, Inc.',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext1'
               },
-              '@xsi:type' => 'listRel:Customer',
-              '@externalId' => 'ext1'
-            }
-          },
-          {
-            'record' => {
-              :content! => {
+              {
                 'listRel:entityId'    => 'Target',
-                'listRel:companyName' => 'Target'
-              },
-              '@xsi:type' => 'listRel:Customer',
-              '@externalId' => 'ext2'
-            }
-          }
-        ]).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
+                'listRel:companyName' => 'Target',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext2'
+              }
+            ]
+          }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
       end
 
       it 'makes a valid request to the NetSuite API' do
