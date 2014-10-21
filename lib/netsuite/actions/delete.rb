@@ -1,3 +1,4 @@
+# https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/delete.html
 module NetSuite
   module Actions
     class Delete
