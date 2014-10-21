@@ -179,7 +179,38 @@ describe NetSuite::Records::Customer do
     before { savon.mock! }
     after { savon.unmock! }
 
-    context 'when the response is successful' do
+    context 'with one customer' do
+      before do
+        savon.expects(:upsert_list).with(:message => [
+          {
+            'record' => {
+              :content! => {
+                'listRel:entityId'    => 'Target',
+                'listRel:companyName' => 'Target'
+              },
+              '@xsi:type' => 'listRel:Customer',
+              '@externalId' => 'ext2'
+            }
+          }
+        ]).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
+      end
+
+      it 'returns collection with one Customer instances populated with the data from the response object' do
+        customers = NetSuite::Records::Customer.upsert_list([
+          {
+            external_id: 'ext2',
+            entity_id: 'Target',
+            company_name: 'Target'
+          }
+        ])
+        shutter_fly = customers[0]
+        expect(shutter_fly).to be_kind_of(NetSuite::Records::Customer)
+        expect(shutter_fly.entity_id).to eq('Target')
+        expect(shutter_fly.internal_id).to eq('974')
+      end
+    end
+
+    context 'with two customers' do
       before do
         savon.expects(:upsert_list).with(:message => [
           {
