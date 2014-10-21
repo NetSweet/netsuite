@@ -342,4 +342,24 @@ NetSuite::Records::InventoryItem.search({
     ]
   }
 }).results.first
+
+# set body_fields_only = false to include the majority of lists associated with records in the XML response
+# Some lists you just can't include with searches (a customer's AddressBookList, for example)
+
+# In order to get the full record data for those records whose lists aren't included when body_fields_only = false
+# you will have to run a get_list call on the resulting internalIds returned from the search you've executed
+
+search = NetSuite::Records::File.search({
+  preferences: {
+    body_fields_only: false,
+    page_size: 20
+  }
+})
+
+search.results_in_batches do |batch|
+  batch.each do |file|
+    next unless file.file_type == "_JAVASCRIPT"
+    puts Base64.decode64(file.content)
+  end
+end
 ```
