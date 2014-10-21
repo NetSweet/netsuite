@@ -46,7 +46,7 @@ module NetSuite
       end
 
       def response_hash
-        @response_hash ||= @response.body[:upsert_list_response][:write_response_list][:write_response]
+        @response_hash ||= Array[@response.body[:upsert_list_response][:write_response_list][:write_response]].flatten
       end
 
       def response_body
