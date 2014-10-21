@@ -29,20 +29,19 @@ module NetSuite
       #   </upsertList>
       # </soap:Body>
       def request_body
-        @objects.map do |o|
-          hash = {
-            'record' => {
-              :content! => o.to_record,
-              '@xsi:type' => o.record_type
-            }
-          }
+        attrs = @objects.map do |o|
+          hash = o.to_record.merge({
+            '@xsi:type' => o.record_type
+          })
 
           if o.respond_to?(:external_id) && o.external_id
-            hash['record']['@externalId'] = o.external_id
+            hash['@externalId'] = o.external_id
           end
 
           hash
         end
+
+        { 'record' => attrs }
       end
 
       def response_hash
