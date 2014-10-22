@@ -10,7 +10,7 @@ module NetSuite
         when Array
           attributes[:custom_field].each { |custom_field| extract_custom_field(custom_field) }
         end
-        
+
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
           reference_id = custom_field.script_id || custom_field.internal_id
@@ -34,7 +34,7 @@ module NetSuite
       def custom_fields_by_type(type)
         custom_fields.select { |field| field.type == "platformCore:#{type}" }
       end
-      
+
       def method_missing(sym, *args, &block)
         # read custom field if already set
         if @custom_fields_assoc.include?(sym)
@@ -87,14 +87,17 @@ module NetSuite
 
       private
         def extract_custom_field(custom_field_data)
-          # TODO this seems brittle, but might sufficient, watch out for this if something breaks
-          attrs = custom_field_data.clone
+          if custom_field_data.kind_of?(CustomField)
+            custom_fields << custom_field_data
+          else
+            attrs = custom_field_data.clone
 
-          if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
-            attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
+            if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
+              attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
+            end
+
+            custom_fields << CustomField.new(attrs)
           end
-
-          custom_fields << CustomField.new(attrs)
         end
 
         def create_custom_field(internal_id, field_value)

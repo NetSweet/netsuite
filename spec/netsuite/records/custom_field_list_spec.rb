@@ -7,6 +7,13 @@ describe NetSuite::Records::CustomFieldList do
     list.custom_fields.should be_kind_of(Array)
   end
 
+  it 'accepts a collection of CustomField records' do
+    field = NetSuite::Records::CustomField.new({:value=>{:internal_id=>"5", :type_id=>"103"},
+             :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
+    list = described_class.new(custom_field: [field])
+    expect(list.custom_fields).to eq([field])
+  end
+
   context 'initializing with custom field attributes without a type' do
     it 'does not mutate the attributes' do
       field = {:value=>{:internal_id=>"5", :type_id=>"103"},
