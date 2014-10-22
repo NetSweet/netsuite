@@ -88,11 +88,13 @@ module NetSuite
       private
         def extract_custom_field(custom_field_data)
           # TODO this seems brittle, but might sufficient, watch out for this if something breaks
+          attrs = custom_field_data.clone
+
           if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
-            custom_field_data[:value] = CustomRecordRef.new(custom_field_data.delete(:value))
+            attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
           end
 
-          custom_fields << CustomField.new(custom_field_data)
+          custom_fields << CustomField.new(attrs)
         end
 
         def create_custom_field(internal_id, field_value)

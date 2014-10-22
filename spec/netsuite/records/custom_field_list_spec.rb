@@ -7,6 +7,26 @@ describe NetSuite::Records::CustomFieldList do
     list.custom_fields.should be_kind_of(Array)
   end
 
+  context 'initializing with custom field attributes without a type' do
+    it 'does not mutate the attributes' do
+      field = {:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category"}
+      described_class.new(custom_field: [field])
+      expect(field).to eq({:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category"})
+    end
+  end
+
+  context 'initializing with custom field attributes and a type' do
+    it 'does not mutate the attributes' do
+      field = {:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"}
+      described_class.new(custom_field: [field])
+      expect(field).to eq({:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
+    end
+  end
+
   context 'writing convience methods' do
     it "should create a custom field entry when none exists" do
       list.custrecord_somefield = 'a value'
