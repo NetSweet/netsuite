@@ -10,14 +10,26 @@ module NetSuite
         when Array
           attributes[:addressbook].each { |addressbook| addressbooks << CustomerAddressbook.new(addressbook) }
         end
+
+        @replace_all = true
       end
 
       def addressbooks
         @addressbooks ||= []
       end
 
+      def replace_all
+        @replace_all
+      end
+
+      def replace_all= new_replace_all
+        @replace_all = !!new_replace_all
+      end
+
       def to_record
-        { "#{record_namespace}:addressbook" => addressbooks.map(&:to_record) }
+        { "#{record_namespace}:addressbook" => addressbooks.map(&:to_record),
+          "#{record_namespace}:replaceAll" => @replace_all
+        }
       end
 
     end

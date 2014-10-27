@@ -10,9 +10,27 @@ describe NetSuite::Records::CustomerAddressbookList do
   describe '#to_record' do
     it 'can represent itself as a SOAP record' do
       record = {
-        'listRel:addressbook' => []
+        'listRel:addressbook' => [],
+        'listRel:replaceAll' => true
       }
       list.to_record.should eql(record)
+    end
+  end
+
+  describe "#replace_all" do
+    it "returns true by default" do
+      list.replace_all.should eql(true)
+    end
+
+    it "can be changed via accessor" do
+      list.replace_all = false
+
+      list.replace_all.should eql(false)
+    end
+
+    it "coerces to a boolean" do
+      list.replace_all = "goober"
+      list.replace_all.should eql(true)
     end
   end
 
