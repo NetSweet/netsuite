@@ -117,7 +117,7 @@ module NetSuite
                 'platformCore:customField' => custom_field_list,
                 :attributes! => {
                   'platformCore:customField' => {
-                    'internalId' => condition[:value].map { |h| h[:field] },
+                    'scriptId' => condition[:value].map { |h| h[:field] },
                     'operator' => condition[:value].map { |h| h[:operator] },
                     'xsi:type' => condition[:value].map { |h| "platformCore:#{h[:type]}" }
                   }
