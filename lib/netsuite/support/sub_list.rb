@@ -1,15 +1,11 @@
 module NetSuite
   module Support
-    class GenericList
+    class Sublist
       include Support::Fields
 
       class << self
 
-        def list_class(klass)
-          @list_class = klass
-        end
-
-        def list_key(key)
+        def sublist(key, klass)
           field key
 
           define_method(:sublist_key) { key }
@@ -18,7 +14,7 @@ module NetSuite
             list = [ list ] if !list.is_a?(Array)
 
             @list = list.map do |item|
-              @@list_class.new(item)
+              klass.new(item)
             end
           end
 
@@ -32,7 +28,6 @@ module NetSuite
       field :replace_all
 
       def initialize(attributes = {})
-        binding.pry
         initialize_from_attributes_hash(attributes)
       end
 
