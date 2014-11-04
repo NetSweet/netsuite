@@ -1,28 +1,49 @@
 module NetSuite
   module Support
     class GenericList
+      include Support::Fields
 
-      # This is very experimental: idea to replace many of the 
-      # generic list classes that are cluttering up the code base
+      class << self
 
-      attr_accessor :list
+        def list_class(klass)
+          @list_class = klass
+        end
 
-      def initialize(attributes = {})
+        def list_key(key)
+          field key
 
-        @list_key = attributes.keys.first
+          define_method(:sublist_key) { key }
 
-        list = attributes[@list_key]
-        list = [ list ] if !list.is_a?(Array)
+          define_method("#{key}=") do |list|
+            list = [ list ] if !list.is_a?(Array)
 
-        @list = list.map do |item|
-          NetSuite::Records::RecordRef.new(item)
+            @list = list.map do |item|
+              @@list_class.new(item)
+            end
+          end
+
+          define_method("#{key}") do
+            @list ||= []
+          end
         end
 
       end
 
+      field :replace_all
+
+      def initialize(attributes = {})
+        binding.pry
+        initialize_from_attributes_hash(attributes)
+      end
+
       def to_record
-        # TODO need a way to infer record namespace
-        { "#{record_namespace}:item" => @list.map(&:to_record) }
+        rec = { "#{record_namespace}:#{sublist_key}" => send(self.sublist_key).map(&:to_record) }
+
+        if !replace_all.nil?
+          rec["#{record_namespace}:replaceAll"] = replace_all
+        end
+
+        rec
       end
 
     end
