@@ -14,7 +14,7 @@ module NetSuite
       Savon.client({
         wsdl: wsdl,
         ssl_ca_cert_file: ssl_ca_cert_file,
-        ssl_verify_mode: ssl_verify_mode,
+        ssl_verify_mode: (ssl_verify_mode || :peer),
         ssl_version: ssl_version,
         read_timeout: read_timeout,
         namespaces: namespaces,
