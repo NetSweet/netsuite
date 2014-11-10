@@ -15,7 +15,7 @@ module NetSuite
         wsdl: wsdl,
         ssl_ca_cert_file: ssl_ca_cert_file,
         ssl_verify_mode: ssl_verify_mode,
-        ssl_version: ssl_version
+        ssl_version: ssl_version,
         read_timeout: read_timeout,
         namespaces: namespaces,
         soap_header: auth_header(credentials),
