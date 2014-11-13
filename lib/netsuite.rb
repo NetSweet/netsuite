@@ -72,6 +72,8 @@ module NetSuite
     autoload :BillingScheduleRecurrenceList,    'netsuite/records/billing_schedule_recurrence_list'
     autoload :BinNumberList,                    'netsuite/records/bin_number_list'
     autoload :CashSale,                         'netsuite/records/cash_sale'
+    autoload :CashSaleItem,                     'netsuite/records/cash_sale_item'
+    autoload :CashSaleItemList,                 'netsuite/records/cash_sale_item_list'
     autoload :CashRefund,                       'netsuite/records/cash_refund'
     autoload :CashRefundItem,                   'netsuite/records/cash_refund_item'
     autoload :CashRefundItemList,               'netsuite/records/cash_refund_item_list'
