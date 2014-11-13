@@ -16,8 +16,8 @@ describe NetSuite::Records::CashSaleItemList do
 
     it 'can represent itself as a SOAP record' do
       record =  {
-        'tranCust:item' => [{
-          'tranCust:amount' => 10
+        'tranSales:item' => [{
+          'tranSales:amount' => 10
         }]
       }
       expect(list.to_record).to eql(record)

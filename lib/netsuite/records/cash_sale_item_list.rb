@@ -1,7 +1,7 @@
 module NetSuite
   module Records
     class CashSaleItemList
-      include Namespaces::TranCust
+      include Namespaces::TranSales
 
       def initialize(attributes = {})
         case attributes[:item]

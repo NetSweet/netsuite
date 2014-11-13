@@ -4,7 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Namespaces::TranCust
+      include Namespaces::TranSales
 
       fields :amount, :amount_ordered, :bin_numbers, :cost_estimate, :current_percent, :defer_rev_rec, :description, :exclude_from_rate_request,
         :gift_cert_from, :gift_cert_message, :gift_cert_number, :gift_cert_recipient_email, :gift_cert_recipient_name, :gross_amt, :is_taxable,
