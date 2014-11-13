@@ -27,6 +27,7 @@ module NetSuite
       field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress
       field :custom_field_list,        CustomFieldList
+      field :item_list,                CashSaleItemList
 
       record_refs :account, :bill_address_list, :billing_schedule, :created_from, :credit_card, :credit_card_processor, :currency, :custom_form,
         :department, :discount_item, :entity, :exp_cost_discount, :exp_cost_tax_code, :handling_tax_code, :item_cost_discount, :item_cost_tax_code,
