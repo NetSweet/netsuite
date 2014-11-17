@@ -52,6 +52,25 @@ module NetSuite
         @response_body ||= response_hash.map { |h| h[:base_ref] }
       end
 
+      def response_errors
+        if response_hash.any? { |h| h[:status] && h[:status][:status_detail] }
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
+          error_obj = obj[:status][:status_detail]
+          error_obj = [error_obj] if error_obj.class == Hash
+          errors = error_obj.map do |error|
+            NetSuite::Error.new(error)
+          end
+
+          [obj[:base_ref][:@external_id], errors]
+        end
+        Hash[errors]
+      end
+
       def success?
         @success ||= response_hash.all? { |h| h[:status][:@is_success] == 'true' }
       end

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::UpsertList do
-  before(:all) { savon.mock! }
-  after(:all) { savon.unmock! }
+  before { savon.mock! }
+  after { savon.unmock! }
 
   context 'Customers' do
     context 'one customer' do
@@ -71,6 +71,42 @@ describe NetSuite::Actions::UpsertList do
         response.should be_kind_of(NetSuite::Response)
         response.should be_success
       end
+    end
+  end
+
+  context 'with errors' do
+    let(:customers) do
+      [
+        NetSuite::Records::Customer.new(external_id: 'ext1-bad', entity_id: 'Shutter Fly', company_name: 'Shutter Fly, Inc.'),
+        NetSuite::Records::Customer.new(external_id: 'ext2-bad', entity_id: 'Target', company_name: 'Target')
+      ]
+    end
+
+    before do
+      savon.expects(:upsert_list).with(:message =>
+        {
+          'record' => [{
+            'listRel:entityId'    => 'Shutter Fly',
+            'listRel:companyName' => 'Shutter Fly, Inc.',
+            '@xsi:type' => 'listRel:Customer',
+            '@externalId' => 'ext1-bad'
+          },
+          {
+            'listRel:entityId'    => 'Target',
+            'listRel:companyName' => 'Target',
+            '@xsi:type' => 'listRel:Customer',
+            '@externalId' => 'ext2-bad'
+          }
+          ]
+        }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_with_errors.xml'))
+    end
+
+    it 'constructs error objects' do
+      response = NetSuite::Actions::UpsertList.call(customers)
+      expect(response.errors.keys).to match_array(['ext1', 'ext2'])
+      expect(response.errors['ext1'].first.code).to eq('USER_ERROR')
+      expect(response.errors['ext1'].first.message).to eq('Please enter value(s) for: Item')
+      expect(response.errors['ext1'].first.type).to eq('ERROR')
     end
   end
 end
