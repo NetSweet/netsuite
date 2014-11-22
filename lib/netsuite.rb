@@ -33,7 +33,7 @@ module NetSuite
     autoload :Attributes, 'netsuite/support/attributes'
     autoload :Base,       'netsuite/support/base'
     autoload :Fields,     'netsuite/support/fields'
-    autoload :Sublist,    'netsuite/support/sub_list'
+    autoload :Sublist,    'netsuite/support/sublist'
     autoload :RecordRefs, 'netsuite/support/record_refs'
     autoload :Records,    'netsuite/support/records'
     autoload :Requests,   'netsuite/support/requests'
