@@ -5,13 +5,13 @@ module NetSuite
       include Support::Records
       include Namespaces::ListRel
 
+      # internalId is a bit strange on this record
+      # https://github.com/NetSweet/netsuite/wiki/Miscellaneous-Web-Services-Quirks#customer
+
       fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
-        :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :override, :state
+        :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :override, :state, :internal_id
 
       read_only_fields :addr_text
-
-      attr_reader   :internal_id
-      attr_accessor :external_id
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
@@ -19,7 +19,6 @@ module NetSuite
           initialize_from_record(attributes_or_record)
         when Hash
           attributes_or_record = attributes_or_record[:addressbook] if attributes_or_record[:addressbook]
-          @internal_id = attributes_or_record.delete(:internal_id)
           initialize_from_attributes_hash(attributes_or_record)
         end
       end
@@ -41,7 +40,7 @@ module NetSuite
         self.addr_text        = obj.addr_text
         self.override         = obj.override
         self.state            = obj.state
-        @internal_id          = obj.internal_id
+        self.internal_id      = obj.internal_id
       end
 
     end
