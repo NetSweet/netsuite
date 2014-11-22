@@ -2,21 +2,19 @@
 
 module NetSuite
   module Support
-    class Base
 
+    class Base
+      include Support::Records
       include Support::Fields
 
-      attr_reader   :internal_id
-      attr_accessor :external_id
-
-      field :custom_field_list, NetSuite::Records::CustomFieldList
-
       def initialize(attributes = {})
+        # not all records have external/internal ID
+        # we extract them here, but it's up to the subclass to create the accessors
+
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
-
     end
     
   end
