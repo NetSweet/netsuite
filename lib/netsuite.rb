@@ -25,6 +25,7 @@ module NetSuite
     autoload :TranInvt,       'netsuite/namespaces/tran_invt'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
+    autoload :ListEmp,        'netsuite/namespaces/list_emp'
     autoload :ListMkt,        'netsuite/namespaces/list_mkt'
   end
 
@@ -110,6 +111,7 @@ module NetSuite
     autoload :DepositCashBackList,              'netsuite/records/deposit_cash_back_list'
     autoload :DiscountItem,                     'netsuite/records/discount_item'
     autoload :Duration,                         'netsuite/records/duration'
+    autoload :Employee,                         'netsuite/records/employee'
     autoload :File,                             'netsuite/records/file'
     autoload :InventoryAssignment,              'netsuite/records/inventory_assignment'
     autoload :InventoryAssignmentList,          'netsuite/records/inventory_assignment_list'
