@@ -139,6 +139,7 @@ module NetSuite
     autoload :MatrixOptionList,                 'netsuite/records/matrix_option_list'
     autoload :MemberList,                       'netsuite/records/member_list'
     autoload :NonInventorySaleItem,             'netsuite/records/non_inventory_sale_item'
+    autoload :Partner,                          'netsuite/records/partner'
     autoload :PaymentMethod,                    'netsuite/records/payment_method'
     autoload :PhoneCall,                        'netsuite/records/phone_call'
     autoload :PricingMatrix,                    'netsuite/records/pricing_matrix'

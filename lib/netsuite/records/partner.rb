@@ -1,11 +1,11 @@
 module NetSuite
   module Records
 
-    class Employee < Support::Base
+    class Partner < Support::Base
       include Support::Actions
-      include Namespaces::ListEmp
+      include Namespaces::ListRel
 
-      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/script/record/employee.html
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/partner.html
 
       actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
