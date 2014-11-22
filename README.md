@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/NetSweet/netsuite.svg)](https://travis-ci.org/NetSweet/netsuite)
+
 # NetSuite Ruby SuiteTalk Gem
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API. Wow, that is a mouthful.
