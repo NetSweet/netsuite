@@ -84,6 +84,8 @@ module NetSuite
     autoload :CustomRecord,                     'netsuite/records/custom_record'
     autoload :CustomRecordRef,                  'netsuite/records/custom_record_ref'
     autoload :CustomRecordType,                 'netsuite/records/custom_record_type'
+    autoload :CustomListCustomValue,            'netsuite/records/custom_list_custom_value'
+    autoload :CustomListCustomValueList,        'netsuite/records/custom_list_custom_value_list'
     autoload :Customer,                         'netsuite/records/customer'
     autoload :CustomerAddressbook,              'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,          'netsuite/records/customer_addressbook_list'

@@ -12,7 +12,7 @@ module NetSuite
       fields :description, :name, :is_ordered, :script_id, :convert_to_custom_record,
              :is_inactive
 
-      field :custom_value_list, NetSuite::Support::GenericList
+      field :custom_value_list, NetSuite::Records::CustomListCustomValueList
 
       attr_reader :internal_id
       attr_accessor :external_id
