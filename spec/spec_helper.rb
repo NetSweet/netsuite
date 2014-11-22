@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..') ))
 
 require 'rspec'
 require 'netsuite'
+require 'pry'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
