@@ -88,7 +88,8 @@ describe NetSuite::Records::CustomerAddressbook do
         'listRel:label'           => '123 Happy Lane',
         'listRel:override'        => false,
         'listRel:state'           => 'CA',
-        'listRel:zip'             => '90007'
+        'listRel:zip'             => '90007',
+        "listRel:internalId"      => "567"
       }
       list.to_record.should eql(record)
     end
