@@ -11,7 +11,7 @@ describe NetSuite::Records::WorkOrderItem do
     :quantity_committed, :quantity_on_hand, :serial_numbers
   ].each do |field|
     it "has the #{field} field" do
-      work_order.should have_field(field)
+      expect(work_order).to have_field(field)
     end
   end
 
@@ -32,14 +32,14 @@ describe NetSuite::Records::WorkOrderItem do
         }
       }
       work_order.custom_field_list = attributes
-      work_order.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      work_order.custom_field_list.custom_fields.length.should eql(1)
+      expect(work_order.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(work_order.custom_field_list.custom_fields.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       work_order.custom_field_list = custom_field_list
-      work_order.custom_field_list.should eql(custom_field_list)
+      expect(work_order.custom_field_list).to eql(custom_field_list)
     end
   end
 end

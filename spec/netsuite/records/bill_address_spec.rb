@@ -8,7 +8,7 @@ describe NetSuite::Records::BillAddress do
       :bill_attention, :bill_addressee, :bill_phone, :bill_addr1, :bill_addr2,
       :bill_addr3, :bill_city, :bill_state, :bill_zip, :bill_country
     ].each do |field|
-      bill_address.should have_field(field)
+      expect(bill_address).to have_field(field)
     end
   end
 
@@ -39,13 +39,13 @@ describe NetSuite::Records::BillAddress do
         'platformCommon:billZip'       => '90007',
         'platformCommon:billCountry'   => '_unitedStates'
       }
-      bill_address.to_record.should eql(record)
+      expect(bill_address.to_record).to eql(record)
     end
   end
 
   describe 'record_namespace' do
     it 'belongs to the platformCommon namespace' do
-      bill_address.record_namespace.should eql('platformCommon')
+      expect(bill_address.record_namespace).to eql('platformCommon')
     end
   end
 

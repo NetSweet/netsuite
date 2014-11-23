@@ -11,7 +11,7 @@ describe NetSuite::Records::CustomRecordType do
       :record_name, :script_id, :show_creation_date, :show_creation_date_on_list, :show_id, :show_last_modified,
       :show_last_modified_on_list, :show_notes, :show_owner, :show_owner_allow_change, :show_owner_on_list, :use_permissions
     ].each do |field|
-      record_type.should have_field(field)
+      expect(record_type).to have_field(field)
     end
   end
 
@@ -19,7 +19,7 @@ describe NetSuite::Records::CustomRecordType do
     [
       :owner
     ].each do |record_ref|
-      record_type.should have_record_ref(record_ref)
+      expect(record_type).to have_record_ref(record_ref)
     end
   end
 
@@ -83,12 +83,12 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :allow_attachments => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).
+        expect(NetSuite::Actions::Get).to receive(:call).
           with([NetSuite::Records::CustomRecordType, :external_id => 1], {}).
           and_return(response)
         record_type = NetSuite::Records::CustomRecordType.get(:external_id => 1)
-        record_type.should be_kind_of(NetSuite::Records::CustomRecordType)
-        record_type.allow_attachments.should be_truthy
+        expect(record_type).to be_kind_of(NetSuite::Records::CustomRecordType)
+        expect(record_type.allow_attachments).to be_truthy
       end
     end
 
@@ -96,12 +96,12 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).
+        expect(NetSuite::Actions::Get).to receive(:call).
           with([NetSuite::Records::CustomRecordType, :external_id => 1], {}).
           and_return(response)
-        lambda {
+        expect {
           NetSuite::Records::CustomRecordType.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomRecordType with OPTIONS=(.*) could not be found/)
       end
     end
@@ -112,10 +112,10 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.add.should be_truthy
+        expect(record_type.add).to be_truthy
       end
     end
 
@@ -123,10 +123,10 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.add.should be_falsey
+        expect(record_type.add).to be_falsey
       end
     end
   end
@@ -136,10 +136,10 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.delete.should be_truthy
+        expect(record_type.delete).to be_truthy
       end
     end
 
@@ -147,10 +147,10 @@ describe NetSuite::Records::CustomRecordType do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([record_type], {}).
             and_return(response)
-        record_type.delete.should be_falsey
+        expect(record_type.delete).to be_falsey
       end
     end
   end

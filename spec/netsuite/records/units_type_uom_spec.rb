@@ -8,7 +8,7 @@ describe NetSuite::Records::UnitsTypeUom do
       :abbreviation, :base_unit, :conversion_rate, :plural_abbreviation,
       :plural_name, :unit_name
     ].each do |field|
-      uom.should have_field(field)
+      expect(uom).to have_field(field)
     end
   end
 end
