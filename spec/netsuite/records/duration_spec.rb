@@ -7,7 +7,7 @@ describe NetSuite::Records::Duration do
     [
       :time_span, :unit
     ].each do |field|
-      duration.should have_field(field)
+      expect(duration).to have_field(field)
     end
   end
 

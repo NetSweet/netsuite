@@ -24,7 +24,7 @@ describe NetSuite::Actions::Get do
 
       it 'returns a valid Response object' do
         response = NetSuite::Actions::Get.call([NetSuite::Records::Customer, :external_id => 1])
-        response.should be_kind_of(NetSuite::Response)
+        expect(response).to be_kind_of(NetSuite::Response)
       end
     end
 
@@ -43,7 +43,7 @@ describe NetSuite::Actions::Get do
 
       it "makes a valid request to the NetSuite API" do
         customer = NetSuite::Records::Customer.get(1)
-        customer.balance.should == '100.0'
+        expect(customer.balance).to eq('100.0')
       end
     end
   end
@@ -65,7 +65,7 @@ describe NetSuite::Actions::Get do
 
     it 'returns a valid Response object' do
       response = NetSuite::Actions::Get.call([NetSuite::Records::Invoice, :external_id => 1])
-      response.should be_kind_of(NetSuite::Response)
+      expect(response).to be_kind_of(NetSuite::Response)
     end
   end
 

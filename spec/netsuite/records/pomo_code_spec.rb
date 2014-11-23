@@ -8,7 +8,7 @@ describe NetSuite::Records::PromotionCode do
              :exclude_items, :is_inactive, :is_public, :minimum_order_amount, :name, :number_to_generate,
              :rate, :start_date
     ].each do |field|
-      promo_code.should have_field(field)
+      expect(promo_code).to have_field(field)
     end
   end
 
@@ -17,10 +17,10 @@ describe NetSuite::Records::PromotionCode do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :code => 'SUMMERSALE' }) }
 
       it 'returns a Campaign instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::PromotionCode, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::PromotionCode, {:external_id => 1}], {}).and_return(response)
         promo_code = NetSuite::Records::PromotionCode.get(:external_id => 1)
-        promo_code.should be_kind_of(NetSuite::Records::PromotionCode)
-        promo_code.code.should eql('SUMMERSALE')
+        expect(promo_code).to be_kind_of(NetSuite::Records::PromotionCode)
+        expect(promo_code.code).to eql('SUMMERSALE')
       end
     end
 
@@ -28,10 +28,10 @@ describe NetSuite::Records::PromotionCode do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::PromotionCode, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::PromotionCode, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::PromotionCode.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::PromotionCode with OPTIONS=(.*) could not be found/)
       end
     end

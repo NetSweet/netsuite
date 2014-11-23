@@ -8,7 +8,7 @@ describe NetSuite::Records::ShipAddress do
       :ship_attention, :ship_addressee, :ship_phone, :ship_addr1, :ship_addr2, :ship_addr3,
       :ship_city, :ship_state, :ship_zip, :ship_country, :ship_is_residential
     ].each do |field|
-      ship_address.should have_field(field)
+      expect(ship_address).to have_field(field)
     end
   end
 
@@ -23,13 +23,13 @@ describe NetSuite::Records::ShipAddress do
         'platformCommon:shipAttention' => 'Mr. Smith',
         'platformCommon:shipZip'       => '90007'
       }
-      ship_address.to_record.should eql(record)
+      expect(ship_address.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string of the SOAP record type' do
-      ship_address.record_type.should eql('platformCommon:ShipAddress')
+      expect(ship_address.record_type).to eql('platformCommon:ShipAddress')
     end
   end
 

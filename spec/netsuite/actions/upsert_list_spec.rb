@@ -30,8 +30,8 @@ describe NetSuite::Actions::UpsertList do
 
       it 'returns a valid Response object' do
         response = NetSuite::Actions::UpsertList.call(customers)
-        response.should be_kind_of(NetSuite::Response)
-        response.should be_success
+        expect(response).to be_kind_of(NetSuite::Response)
+        expect(response).to be_success
       end
     end
 
@@ -68,8 +68,8 @@ describe NetSuite::Actions::UpsertList do
 
       it 'returns a valid Response object' do
         response = NetSuite::Actions::UpsertList.call(customers)
-        response.should be_kind_of(NetSuite::Response)
-        response.should be_success
+        expect(response).to be_kind_of(NetSuite::Response)
+        expect(response).to be_success
       end
     end
   end

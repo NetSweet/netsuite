@@ -27,8 +27,8 @@ describe NetSuite::Actions::Add do
 
     it 'returns a valid Response object' do
       response = NetSuite::Actions::Add.call([customer])
-      response.should be_kind_of(NetSuite::Response)
-      response.should be_success
+      expect(response).to be_kind_of(NetSuite::Response)
+      expect(response).to be_success
     end
   end
 
@@ -55,8 +55,8 @@ describe NetSuite::Actions::Add do
 
       it 'returns a valid Response object' do
         response = NetSuite::Actions::Add.call([invoice])
-        response.should be_kind_of(NetSuite::Response)
-        response.should be_success
+        expect(response).to be_kind_of(NetSuite::Response)
+        expect(response).to be_success
       end
     end
 
@@ -76,15 +76,15 @@ describe NetSuite::Actions::Add do
         invoice.add
         error = invoice.errors.first
 
-        error.should be_kind_of(NetSuite::Error)
-        error.type.should eq('ERROR')
-        error.code.should eq('INVALID_INITIALIZE_REF')
-        error.message.should eq('You can not initialize invoice: invalid reference 7281.')
+        expect(error).to be_kind_of(NetSuite::Error)
+        expect(error.type).to eq('ERROR')
+        expect(error.code).to eq('INVALID_INITIALIZE_REF')
+        expect(error.message).to eq('You can not initialize invoice: invalid reference 7281.')
       end
 
       it 'provides an error method on the response' do
         response = NetSuite::Actions::Add.call([invoice])
-        response.errors.first.should be_kind_of(NetSuite::Error)
+        expect(response.errors.first).to be_kind_of(NetSuite::Error)
       end
     end
 
@@ -102,14 +102,14 @@ describe NetSuite::Actions::Add do
 
       it 'provides an error method on the object with details about the error' do
         invoice.add
-        invoice.errors.length.should eq(2)
+        expect(invoice.errors.length).to eq(2)
 
         error = invoice.errors.first
 
-        error.should be_kind_of(NetSuite::Error)
-        error.type.should eq('ERROR')
-        error.code.should eq('ERROR')
-        error.message.should eq('Some message')
+        expect(error).to be_kind_of(NetSuite::Error)
+        expect(error.type).to eq('ERROR')
+        expect(error.code).to eq('ERROR')
+        expect(error.message).to eq('Some message')
       end
     end
   end

@@ -32,8 +32,8 @@ describe NetSuite::Actions::Update do
 
       it 'returns a valid Response object' do
         response = NetSuite::Actions::Update.call([NetSuite::Records::Customer, attributes])
-        response.should be_kind_of(NetSuite::Response)
-        response.should be_success
+        expect(response).to be_kind_of(NetSuite::Response)
+        expect(response).to be_success
       end
 
     end
@@ -48,15 +48,15 @@ describe NetSuite::Actions::Update do
         customer.update(attributes)
         error = customer.errors.first
 
-        error.should be_kind_of(NetSuite::Error)
-        error.type.should eq('ERROR')
-        error.code.should eq('INSUFFICIENT_PERMISSION')
-        error.message.should eq('You do not have permissions to set a value for element addrtext due to one of the following reasons: 1) The field is read-only; 2) An associated feature is disabled; 3) The field is available either when a record is created or updated, but not in both cases.')
+        expect(error).to be_kind_of(NetSuite::Error)
+        expect(error.type).to eq('ERROR')
+        expect(error.code).to eq('INSUFFICIENT_PERMISSION')
+        expect(error.message).to eq('You do not have permissions to set a value for element addrtext due to one of the following reasons: 1) The field is read-only; 2) An associated feature is disabled; 3) The field is available either when a record is created or updated, but not in both cases.')
       end
 
       it 'provides an errors method on the response' do
         response = NetSuite::Actions::Update.call([NetSuite::Records::Customer, attributes])
-        response.errors.first.should be_kind_of(NetSuite::Error)
+        expect(response.errors.first).to be_kind_of(NetSuite::Error)
       end
 
     end
@@ -69,19 +69,19 @@ describe NetSuite::Actions::Update do
 
       it 'provides an errors method on the object with details about the errors' do
         customer.update(attributes)
-        customer.errors.length.should eq(2)
+        expect(customer.errors.length).to eq(2)
 
         first_error = customer.errors.first
-        first_error.should be_kind_of(NetSuite::Error)
-        first_error.type.should eq('ERROR')
-        first_error.code.should eq('First error code')
-        first_error.message.should eq('First error message')
+        expect(first_error).to be_kind_of(NetSuite::Error)
+        expect(first_error.type).to eq('ERROR')
+        expect(first_error.code).to eq('First error code')
+        expect(first_error.message).to eq('First error message')
 
         second_error = customer.errors.last
-        second_error.should be_kind_of(NetSuite::Error)
-        second_error.type.should eq('WARNING')
-        second_error.code.should eq('Second error code')
-        second_error.message.should eq('Second error message')
+        expect(second_error).to be_kind_of(NetSuite::Error)
+        expect(second_error.type).to eq('WARNING')
+        expect(second_error.code).to eq('Second error code')
+        expect(second_error.message).to eq('Second error message')
 
       end
     end

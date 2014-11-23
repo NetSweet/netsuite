@@ -7,7 +7,7 @@ describe NetSuite::Records::UnitsType do
     [
       :is_inactive, :name
     ].each do |field|
-      units_type.should have_field(field)
+      expect(units_type).to have_field(field)
     end
   end
 
@@ -20,14 +20,14 @@ describe NetSuite::Records::UnitsType do
         }
       }]
       units_type.uom_list.uom = attributes
-      units_type.uom_list.should be_kind_of(NetSuite::Records::UnitsTypeUomList)
-      units_type.uom_list.uom.length.should eql(1)
+      expect(units_type.uom_list).to be_kind_of(NetSuite::Records::UnitsTypeUomList)
+      expect(units_type.uom_list.uom.length).to eql(1)
     end
 
     it 'can be set from a units_typeItemList object' do
       item_list = NetSuite::Records::UnitsTypeUomList.new
       units_type.uom_list = item_list
-      units_type.uom_list.should eql(item_list)
+      expect(units_type.uom_list).to eql(item_list)
     end
   end
 end
