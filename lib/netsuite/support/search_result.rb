@@ -2,7 +2,9 @@ module NetSuite
   module Support
     class SearchResult
       attr_accessor :response
+
       attr_reader :total_records
+      attr_reader :total_pages
 
       # header from a basic customer search:
 
