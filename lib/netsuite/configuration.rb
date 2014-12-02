@@ -106,7 +106,8 @@ module NetSuite
         'xmlns:tranGeneral'    => "urn:general_#{api_version}.transactions.webservices.netsuite.com",
         'xmlns:listMkt'        => "urn:marketing_#{api_version}.lists.webservices.netsuite.com",
         'xmlns:listWebsite'    => "urn:website_#{api_version}.lists.webservices.netsuite.com",
-        'xmlns:fileCabinet'    => "urn:filecabinet_#{api_version}.documents.webservices.netsuite.com"
+        'xmlns:fileCabinet'    => "urn:filecabinet_#{api_version}.documents.webservices.netsuite.com",
+        'xmlns:listEmp'        => "urn:employees_#{api_version}.lists.webservices.netsuite.com"
       }
     end
 
