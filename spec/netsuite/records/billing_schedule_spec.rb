@@ -11,7 +11,7 @@ describe NetSuite::Records::BillingSchedule do
       :schedule_type, :series_start_date, :year_dom, :year_dow,
       :year_dowim, :year_dowim_month, :year_mode, :year_month
     ].each do |field|
-      billing_schedule.should have_field(field)
+      expect(billing_schedule).to have_field(field)
     end
   end
 
@@ -19,7 +19,7 @@ describe NetSuite::Records::BillingSchedule do
     [
       :initial_terms, :project, :recurrence_terms, :transaction
     ].each do |record_ref|
-      billing_schedule.should have_record_ref(record_ref)
+      expect(billing_schedule).to have_record_ref(record_ref)
     end
   end
 
@@ -29,8 +29,8 @@ describe NetSuite::Records::BillingSchedule do
         :comments => "comment"
       }
       billing_schedule.milestone_list.milestone = attributes
-      billing_schedule.milestone_list.should be_kind_of(NetSuite::Records::BillingScheduleMilestoneList)
-      billing_schedule.milestone_list.milestones.length.should eql(1)
+      expect(billing_schedule.milestone_list).to be_kind_of(NetSuite::Records::BillingScheduleMilestoneList)
+      expect(billing_schedule.milestone_list.milestones.length).to eql(1)
     end
   end
   
@@ -40,8 +40,8 @@ describe NetSuite::Records::BillingSchedule do
         :amount => 10
       }
       billing_schedule.recurrence_list.recurrence = attributes
-      billing_schedule.recurrence_list.should be_kind_of(NetSuite::Records::BillingScheduleRecurrenceList)
-      billing_schedule.recurrence_list.recurrences.length.should eql(1)
+      expect(billing_schedule.recurrence_list).to be_kind_of(NetSuite::Records::BillingScheduleRecurrenceList)
+      expect(billing_schedule.recurrence_list.recurrences.length).to eql(1)
     end
   end
 
@@ -50,10 +50,10 @@ describe NetSuite::Records::BillingSchedule do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Billing Scheduleing 1' }) }
 
       it 'returns a Billing Schedule instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::BillingSchedule, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::BillingSchedule, {:external_id => 1}], {}).and_return(response)
         billing_schedule = NetSuite::Records::BillingSchedule.get(:external_id => 1)
-        billing_schedule.should be_kind_of(NetSuite::Records::BillingSchedule)
-        billing_schedule.name.should eql('Billing Scheduleing 1')
+        expect(billing_schedule).to be_kind_of(NetSuite::Records::BillingSchedule)
+        expect(billing_schedule.name).to eql('Billing Scheduleing 1')
       end
     end
 
@@ -61,10 +61,10 @@ describe NetSuite::Records::BillingSchedule do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::BillingSchedule, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::BillingSchedule, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::BillingSchedule.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::BillingSchedule with OPTIONS=(.*) could not be found/)
       end
     end
@@ -114,10 +114,10 @@ describe NetSuite::Records::BillingSchedule do
 
       it 'returns true' do
         billing_schedule = NetSuite::Records::BillingSchedule.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([billing_schedule], {}).
             and_return(response)
-        billing_schedule.add.should be_truthy
+        expect(billing_schedule.add).to be_truthy
       end
     end
 
@@ -126,10 +126,10 @@ describe NetSuite::Records::BillingSchedule do
 
       it 'returns false' do
         billing_schedule = NetSuite::Records::BillingSchedule.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([billing_schedule], {}).
             and_return(response)
-        billing_schedule.add.should be_falsey
+        expect(billing_schedule.add).to be_falsey
       end
     end
   end
@@ -142,10 +142,10 @@ describe NetSuite::Records::BillingSchedule do
 
       it 'returns true' do
         billing_schedule = NetSuite::Records::BillingSchedule.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([billing_schedule], {}).
             and_return(response)
-        billing_schedule.delete.should be_truthy
+        expect(billing_schedule.delete).to be_truthy
       end
     end
 
@@ -154,10 +154,10 @@ describe NetSuite::Records::BillingSchedule do
 
       it 'returns false' do
         billing_schedule = NetSuite::Records::BillingSchedule.new(test_data)
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([billing_schedule], {}).
             and_return(response)
-        billing_schedule.delete.should be_falsey
+        expect(billing_schedule.delete).to be_falsey
       end
     end
   end

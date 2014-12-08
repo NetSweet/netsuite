@@ -11,7 +11,7 @@ describe NetSuite::Records::WorkOrder do
     :tran_id
   ].each do |field|
     it "has the #{field} field" do
-      work_order.should have_field(field)
+      expect(work_order).to have_field(field)
     end
   end
 
@@ -34,14 +34,14 @@ describe NetSuite::Records::WorkOrder do
         }
       }
       work_order.custom_field_list = attributes
-      work_order.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      work_order.custom_field_list.custom_fields.length.should eql(1)
+      expect(work_order.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(work_order.custom_field_list.custom_fields.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       work_order.custom_field_list = custom_field_list
-      work_order.custom_field_list.should eql(custom_field_list)
+      expect(work_order.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -54,14 +54,14 @@ describe NetSuite::Records::WorkOrder do
         }
       }
       work_order.item_list = attributes
-      work_order.item_list.should be_kind_of(NetSuite::Records::WorkOrderItemList)
-      work_order.item_list.items.length.should eql(1)
+      expect(work_order.item_list).to be_kind_of(NetSuite::Records::WorkOrderItemList)
+      expect(work_order.item_list.items.length).to eql(1)
     end
 
     it 'can be set from a WorkOrderItemList object' do
       order_item_list = NetSuite::Records::WorkOrderItemList.new
       work_order.item_list = order_item_list
-      work_order.item_list.should eq(order_item_list)
+      expect(work_order.item_list).to eq(order_item_list)
     end
   end
 
@@ -70,10 +70,10 @@ describe NetSuite::Records::WorkOrder do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :buildable => 100 }) }
 
       it 'returns a WorkOrder instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::WorkOrder, :external_id => 1], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::WorkOrder, :external_id => 1], {}).and_return(response)
         salesorder = NetSuite::Records::WorkOrder.get(:external_id => 1)
-        salesorder.should be_kind_of(NetSuite::Records::WorkOrder)
-        salesorder.buildable.should eql(100)
+        expect(salesorder).to be_kind_of(NetSuite::Records::WorkOrder)
+        expect(salesorder.buildable).to eql(100)
       end
     end
 
@@ -81,10 +81,10 @@ describe NetSuite::Records::WorkOrder do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::WorkOrder, :external_id => 1], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::WorkOrder, :external_id => 1], {}).and_return(response)
+        expect {
           NetSuite::Records::WorkOrder.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::WorkOrder with OPTIONS=(.*) could not be found/)
       end
     end

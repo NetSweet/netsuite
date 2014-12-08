@@ -7,7 +7,7 @@ describe NetSuite::Records::RevRecTemplate do
     [
       :name, :is_inactive
     ].each do |field|
-      template.should have_field(field)
+      expect(template).to have_field(field)
     end
   end
 
@@ -16,10 +16,10 @@ describe NetSuite::Records::RevRecTemplate do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'A template' }) }
 
       it 'returns an RevRecTemplate instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::RevRecTemplate, :external_id => 10], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::RevRecTemplate, :external_id => 10], {}).and_return(response)
         template = NetSuite::Records::RevRecTemplate.get(:external_id => 10)
-        template.should be_kind_of(NetSuite::Records::RevRecTemplate)
-        template.name.should eql('A template')
+        expect(template).to be_kind_of(NetSuite::Records::RevRecTemplate)
+        expect(template.name).to eql('A template')
       end
     end
 
@@ -27,10 +27,10 @@ describe NetSuite::Records::RevRecTemplate do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::RevRecTemplate, :external_id => 10], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::RevRecTemplate, :external_id => 10], {}).and_return(response)
+        expect {
           NetSuite::Records::RevRecTemplate.get(:external_id => 10)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::RevRecTemplate with OPTIONS=(.*) could not be found/)
       end
     end

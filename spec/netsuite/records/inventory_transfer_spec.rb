@@ -7,7 +7,7 @@ describe NetSuite::Records::InventoryTransfer do
     [
       :created_date, :last_modified_date, :tran_date, :tran_id, :memo
     ].each do |field|
-      inventory_transfer.should have_field(field)
+      expect(inventory_transfer).to have_field(field)
     end
   end
 
@@ -15,7 +15,7 @@ describe NetSuite::Records::InventoryTransfer do
     [
       :posting_period, :location, :transfer_location, :department, :subsidiary
     ].each do |record_ref|
-      inventory_transfer.should have_record_ref(record_ref)
+      expect(inventory_transfer).to have_record_ref(record_ref)
     end
   end
 
@@ -37,8 +37,8 @@ describe NetSuite::Records::InventoryTransfer do
         }]
       }
       inventory_transfer.inventory_list = attributes
-      inventory_transfer.inventory_list.should be_kind_of(NetSuite::Records::InventoryTransferInventoryList)
-      inventory_transfer.inventory_list.inventory.length.should eql(1)
+      expect(inventory_transfer.inventory_list).to be_kind_of(NetSuite::Records::InventoryTransferInventoryList)
+      expect(inventory_transfer.inventory_list.inventory.length).to eql(1)
 
       expect(
         inventory_transfer.inventory_list.inventory.first.inventory_detail.inventory_assignment_list.inventory_assignment.first.quantity
@@ -52,7 +52,7 @@ describe NetSuite::Records::InventoryTransfer do
     it 'can be set from a InventoryTransferInventoryList object' do
       inventory_list = NetSuite::Records::InventoryTransferInventoryList.new
       inventory_transfer.inventory_list = inventory_list
-      inventory_transfer.inventory_list.should eql(inventory_list)
+      expect(inventory_transfer.inventory_list).to eql(inventory_list)
     end
   end
 end

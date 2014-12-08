@@ -4,7 +4,7 @@ describe NetSuite::Records::CustomerAddressbookList do
   let(:list) { NetSuite::Records::CustomerAddressbookList.new }
 
   it 'has an addressbooks attribute' do
-    list.addressbooks.should be_kind_of(Array)
+    expect(list.addressbooks).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -12,7 +12,7 @@ describe NetSuite::Records::CustomerAddressbookList do
       record = {
         'listRel:addressbook' => []
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 

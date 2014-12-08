@@ -7,7 +7,7 @@ describe NetSuite::Records::CustomerRefundDeposit do
     [
       :amount, :apply, :currency, :deposit_date, :doc, :line, :ref_num, :remaining, :total
     ].each do |field|
-      deposit.should have_field(field)
+      expect(deposit).to have_field(field)
     end
   end
 

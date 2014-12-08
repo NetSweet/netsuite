@@ -7,9 +7,9 @@ describe NetSuite::Records::BillingScheduleRecurrenceList do
   it 'can have recurrences be added to it' do
     list.recurrences << recurrence
     recurrence_list = list.recurrences
-    recurrence_list.should be_kind_of(Array)
-    recurrence_list.length.should eql(1)
-    recurrence_list.each { |i| i.should be_kind_of(NetSuite::Records::BillingScheduleRecurrence) }
+    expect(recurrence_list).to be_kind_of(Array)
+    expect(recurrence_list.length).to eql(1)
+    recurrence_list.each { |i| expect(i).to be_kind_of(NetSuite::Records::BillingScheduleRecurrence) }
   end
 
   describe '#to_record' do
@@ -17,7 +17,7 @@ describe NetSuite::Records::BillingScheduleRecurrenceList do
       record = {
         'listAcct:billingScheduleRecurrence' => []
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 
