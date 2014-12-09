@@ -8,14 +8,13 @@ module NetSuite
         def sublist(key, klass)
           field key
 
+          # TODO setting class methods might be better? How to reach into the subclass?
+
           define_method(:sublist_key) { key }
+          define_method(:sublist_class) { klass }
 
           define_method("#{key}=") do |list|
-            list = [ list ] if !list.is_a?(Array)
-
-            @list = list.map do |item|
-              klass.new(item)
-            end
+            self.process_sublist(list)
           end
 
           define_method("#{key}") do
@@ -40,6 +39,15 @@ module NetSuite
 
         rec
       end
+
+      protected
+        def process_sublist(list)
+          list = [ list ] if !list.is_a?(Array)
+
+          @list = list.map do |item|
+            self.sublist_class.new(item)
+          end
+        end
 
     end
   end
