@@ -11,6 +11,8 @@ module NetSuite
 
       fields :phone, :first_name, :last_name, :is_inactive, :email
 
+      field :roles_list, RoleList
+
       attr_reader   :internal_id
     end
 
