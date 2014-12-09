@@ -24,7 +24,7 @@ describe NetSuite::Records::CustomerAddressbook do
   it 'has all the right fields' do
     [
       :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
-      :phone, :addr1, :addr2, :addr3, :city, :zip, :country, :addr_text, :override, :state
+      :phone, :addr1, :addr2, :addr3, :city, :zip, :addr_text, :override, :state
     ].each do |field|
       list.should have_field(field)
     end
@@ -44,7 +44,7 @@ describe NetSuite::Records::CustomerAddressbook do
         list.addr1.should eql('123 Happy Lane')
         list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
         list.city.should eql('Los Angeles')
-        list.country.should eql('_unitedStates')
+        list.country.to_record.should eql('_unitedStates')
         list.default_billing.should be_truthy
         list.default_shipping.should be_truthy
         list.is_residential.should be_falsey
@@ -63,7 +63,7 @@ describe NetSuite::Records::CustomerAddressbook do
         list.addr1.should eql('123 Happy Lane')
         list.addr_text.should eql("123 Happy Lane\nLos Angeles CA 90007")
         list.city.should eql('Los Angeles')
-        list.country.should eql('_unitedStates')
+        list.country.to_record.should eql('_unitedStates')
         list.default_billing.should be_truthy
         list.default_shipping.should be_truthy
         list.is_residential.should be_falsey
@@ -92,6 +92,27 @@ describe NetSuite::Records::CustomerAddressbook do
         "listRel:internalId"      => "567"
       }
       list.to_record.should eql(record)
+    end
+  end
+
+  describe "#country" do
+    context "when it's specified as a 2 character ISO code" do
+      it "is converted to the appropriate NetSuite enum value" do
+        addressbook = NetSuite::Records::CustomerAddressbook.new country: "US"
+        addressbook.to_record["listRel:country"].should eql "_unitedStates"
+      end
+    end
+
+    context "when the country code is a YAML reserved word (NO)" do
+      it "is converted to the appropriate NetSuite enum value" do
+        addressbook = NetSuite::Records::CustomerAddressbook.new country: "NO"
+        addressbook.to_record["listRel:country"].should eql "_norway"
+      end
+    end
+
+    it "can be specified as the NetSuite enum value" do
+      addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
+      addressbook.to_record["listRel:country"].should eql "_unitedStates"
     end
   end
 
