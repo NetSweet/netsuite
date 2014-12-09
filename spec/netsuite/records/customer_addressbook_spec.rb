@@ -95,6 +95,27 @@ describe NetSuite::Records::CustomerAddressbook do
     end
   end
 
+  describe "#country" do
+    context "when it's specified as a 2 character ISO code" do
+      it "is converted to the appropriate NetSuite enum value" do
+        addressbook = NetSuite::Records::CustomerAddressbook.new country: "US"
+        addressbook.country.should eql "_unitedStates"
+      end
+    end
+
+    context "when the country code is a YAML reserved word (NO)" do
+      it "is converted to the appropriate NetSuite enum value" do
+        addressbook = NetSuite::Records::CustomerAddressbook.new country: "NO"
+        addressbook.country.should eql "_norway"
+      end
+    end
+
+    it "can be specified as the NetSuite enum value" do
+      addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
+      addressbook.country.should eql "_unitedStates"
+    end
+  end
+
   describe '#record_type' do
     it 'returns a string of the record SOAP type' do
       list.record_type.should eql('listRel:CustomerAddressbook')
