@@ -9,12 +9,11 @@ module NetSuite
 
       actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
-      # See https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/customer.html
-      # for the complete list of attributes their descriptions
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/customer.html
 
       fields :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
-        :consol_aging, :consol_days_overdue, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override,
+        :consol_aging, :consol_days_overdue, :contrib_pct, :credit_cards_list, :credit_hold_override,
         :credit_limit, :currency, :currency_list, :date_created, :days_overdue, :default_address,
         :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
         :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
@@ -30,6 +29,7 @@ module NetSuite
 
       field :addressbook_list,  CustomerAddressbookList
       field :custom_field_list, CustomFieldList
+      field :contact_roles_list, ContactAccessRolesList
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders

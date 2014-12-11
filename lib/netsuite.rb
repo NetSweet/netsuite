@@ -102,6 +102,8 @@ module NetSuite
     autoload :CustomerRefundDepositList,        'netsuite/records/customer_refund_deposit_list'
     autoload :ContactList,                      'netsuite/records/contact_list'
     autoload :Contact,                          'netsuite/records/contact'
+    autoload :ContactAccessRoles,               'netsuite/records/contact_access_roles'
+    autoload :ContactAccessRolesList,           'netsuite/records/contact_access_roles_list'
     autoload :Department,                       'netsuite/records/department'
     autoload :Deposit,                          'netsuite/records/deposit'
     autoload :DepositPayment,                   'netsuite/records/deposit_payment'
