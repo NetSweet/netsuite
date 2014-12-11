@@ -19,7 +19,9 @@ module NetSuite
       def initialize(response, result_class)
         @result_class = result_class
         @response = response
+        
         @total_records = response.body[:total_records].to_i
+        @total_pages = response.body[:total_pages].to_i
 
         if @total_records > 0
           if response.body.has_key?(:record_list)
