@@ -8,7 +8,7 @@ describe NetSuite::Records::Customer do
       :access_role, :account_number, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
       :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
-      :consol_unbilled_orders, :contact_roles_list, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
+      :consol_unbilled_orders, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
       :currency, :currency_list, :date_created, :days_overdue, :default_address,
       :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
@@ -33,6 +33,8 @@ describe NetSuite::Records::Customer do
       customer.should have_record_ref(record_ref)
     end
   end
+
+  # TODO test contact_roles_list
 
   describe '#addressbook_list' do
     it 'can be set from attributes' do
