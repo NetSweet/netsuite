@@ -167,6 +167,7 @@ module NetSuite
     autoload :UnitsType,                        'netsuite/records/units_type'
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
     autoload :UnitsTypeUom,                     'netsuite/records/units_type_uom'
+    autoload :Vendor,                           'netsuite/records/vendor'
     autoload :WorkOrder,                        'netsuite/records/work_order'
     autoload :WorkOrderItem,                    'netsuite/records/work_order_item'
     autoload :WorkOrderItemList,                'netsuite/records/work_order_item_list'
