@@ -86,7 +86,7 @@ customer_support_reps = [12345, 12346]
 
 task = NetSuite::Records::Task.new(
 	:title => 'Take Care of a Customer',
-	:assigned => NetSuite::Records::RecordRef.new(customer_support_reps.sample),
+	:assigned => NetSuite::Records::RecordRef.new(internal_id: customer_support_reps.sample),
 	:due_date => DateTime.now + 1,
 	:message => "Take care of this"
 )
