@@ -114,6 +114,12 @@ describe NetSuite::Records::CustomerAddressbook do
       addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
       addressbook.to_record["listRel:country"].should eql "_unitedStates"
     end
+
+    it "can be unspecified" do
+      addressbook = NetSuite::Records::CustomerAddressbook.new country: ''
+      addressbook.country.to_record.should eql ""
+      addressbook.to_record["listRel:country"].should eql ""
+    end
   end
 
   describe '#record_type' do
