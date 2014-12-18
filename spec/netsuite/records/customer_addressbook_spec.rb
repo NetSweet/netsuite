@@ -113,6 +113,10 @@ describe NetSuite::Records::CustomerAddressbook do
     it "can be specified as the NetSuite enum value" do
       addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
       addressbook.to_record["listRel:country"].should eql "_unitedStates"
+
+      # country with two uppercase letters (looks like ISO2)
+      addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedKingdomGB"
+      addressbook.to_record["listRel:country"].should eql "_unitedKingdomGB"
     end
 
     it "can be unspecified" do
