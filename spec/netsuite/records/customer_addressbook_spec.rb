@@ -44,7 +44,7 @@ describe NetSuite::Records::CustomerAddressbook do
         expect(list.addr1).to eql('123 Happy Lane')
         expect(list.addr_text).to eql("123 Happy Lane\nLos Angeles CA 90007")
         expect(list.city).to eql('Los Angeles')
-        expect(list.country).to eql('_unitedStates')
+        expect(list.country.to_record).to eql('_unitedStates')
         expect(list.default_billing).to be_truthy
         expect(list.default_shipping).to be_truthy
         expect(list.is_residential).to be_falsey
@@ -63,7 +63,7 @@ describe NetSuite::Records::CustomerAddressbook do
         expect(list.addr1).to eql('123 Happy Lane')
         expect(list.addr_text).to eql("123 Happy Lane\nLos Angeles CA 90007")
         expect(list.city).to eql('Los Angeles')
-        expect(list.country).to eql('_unitedStates')
+        expect(list.country.to_record).to eql('_unitedStates')
         expect(list.default_billing).to be_truthy
         expect(list.default_shipping).to be_truthy
         expect(list.is_residential).to be_falsey
