@@ -4,6 +4,24 @@ describe NetSuite::Actions::Search do
   before(:all) { savon.mock! }
   after(:all) { savon.unmock! }
 
+  it "handles custom auth credentials" do
+    allow(NetSuite::Configuration).to receive(:connection).and_return(double().as_null_object)
+
+    NetSuite::Records::Customer.search({}, {
+      email: 'fake@domain.com',
+      password: 'fake'
+    })
+
+    expect(NetSuite::Configuration).to have_received(:connection).with({:soap_header=>{
+      "platformMsgs:passport"=>{
+        "platformCore:email"=>"fake@domain.com",
+        "platformCore:password"=>"fake",
+        "platformCore:account"=>"1234",
+        "platformCore:role"=>{:@internalId=>"3"}
+      }, "platformMsgs:SearchPreferences"=>{}}}
+    )
+  end
+
   context "search class name" do
     it "infers class name if class doesn't specify search class" do
       instance = described_class.new NetSuite::Records::Customer
