@@ -65,8 +65,12 @@ module NetSuite
       end
 
       def success?
-        # each returned record has its own status; for now if one fails, the entire operation has failed
-        @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?
+        # each returned record has its own status; 
+        if @options[:allow_incomplete] 
+          @success ||= !response_body.detect { |r| r[:status][:@is_success] == 'true' }.nil?
+        else
+          @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?
+        end
       end
 
       module Support
@@ -79,8 +83,9 @@ module NetSuite
             response = NetSuite::Actions::GetList.call([self, options], credentials)
 
             if response.success?
-              response.body.map do |record|
-                new(record[:record])
+              response.body.inject([]) do |arr, record|
+                arr << new(record[:record]) unless record[:status][:@is_success] != 'true'
+                arr
               end
             else
               false

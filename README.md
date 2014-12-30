@@ -363,6 +363,18 @@ search.results_in_batches do |batch|
     puts Base64.decode64(file.content)
   end
 end
+
+# the getList operation
+NetSuite::Records::CustomRecord.get_list(
+  # netsuite internalIDs
+  list: [1,2,3],
+  # only needed for a custom record
+  type_id: 1234,
+  # allow inclomplete results (defaults to false)
+  allow_incomplete: true
+).each do |record|
+  # do your thing...
+end
 ```
 
 #### Non-standard Operations
