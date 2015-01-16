@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :initialize, :add, :delete, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :upsert
 
       fields :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :currency_name, :custom_field_list,

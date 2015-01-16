@@ -1,9 +1,7 @@
 module NetSuite
   module Records
-    class File
-      include Support::Fields
+    class File < NetSuite::Support::Base
       include Support::RecordRefs
-      include Support::Records
       include Support::Actions
       include Namespaces::FileCabinet
 
@@ -17,11 +15,8 @@ module NetSuite
 
       read_only_fields :url
 
-      def initialize(attributes = {})
-        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
-        @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
-        initialize_from_attributes_hash(attributes)
-      end
+      attr_reader   :internal_id
+      attr_accessor :external_id
     end
   end
 end

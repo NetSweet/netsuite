@@ -28,7 +28,7 @@ describe NetSuite::Records::Invoice do
       :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
       :vat_reg_num, :vsoe_auto_calc
     ].each do |field|
-      invoice.should have_field(field)
+      expect(invoice).to have_field(field)
     end
   end
 
@@ -37,7 +37,7 @@ describe NetSuite::Records::Invoice do
       :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied, :tax_rate,
       :handling_cost, :recognized_revenue, :amount_remaining, :amount_paid
     ].each do |field|
-      NetSuite::Records::Invoice.should have_read_only_field(field)
+      expect(NetSuite::Records::Invoice).to have_read_only_field(field)
     end
   end
 
@@ -46,7 +46,7 @@ describe NetSuite::Records::Invoice do
       :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
       :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner
     ].each do |record_ref|
-      invoice.should have_record_ref(record_ref)
+      expect(invoice).to have_record_ref(record_ref)
     end
   end
 
@@ -59,14 +59,14 @@ describe NetSuite::Records::Invoice do
         }
       }
       invoice.custom_field_list = attributes
-      invoice.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      invoice.custom_field_list.custom_fields.length.should eql(1)
+      expect(invoice.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(invoice.custom_field_list.custom_fields.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       invoice.custom_field_list = custom_field_list
-      invoice.custom_field_list.should eql(custom_field_list)
+      expect(invoice.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -78,14 +78,14 @@ describe NetSuite::Records::Invoice do
         }
       }
       invoice.item_list = attributes
-      invoice.item_list.should be_kind_of(NetSuite::Records::InvoiceItemList)
-      invoice.item_list.items.length.should eql(1)
+      expect(invoice.item_list).to be_kind_of(NetSuite::Records::InvoiceItemList)
+      expect(invoice.item_list.items.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       item_list = NetSuite::Records::InvoiceItemList.new
       invoice.item_list = item_list
-      invoice.item_list.should eql(item_list)
+      expect(invoice.item_list).to eql(item_list)
     end
   end
 
@@ -99,14 +99,14 @@ describe NetSuite::Records::Invoice do
         :bill_state               => 'CA',
         :bill_zip                 => '90007'
       }
-      invoice.transaction_bill_address.should be_kind_of(NetSuite::Records::BillAddress)
-      invoice.transaction_bill_address.bill_city.should eql('Los Angeles')
+      expect(invoice.transaction_bill_address).to be_kind_of(NetSuite::Records::BillAddress)
+      expect(invoice.transaction_bill_address.bill_city).to eql('Los Angeles')
     end
 
     it 'can be set with a BillAddress object' do
       bill_address = NetSuite::Records::BillAddress.new
       invoice.transaction_bill_address = bill_address
-      invoice.transaction_bill_address.should eql(bill_address)
+      expect(invoice.transaction_bill_address).to eql(bill_address)
     end
   end
 
@@ -121,14 +121,14 @@ describe NetSuite::Records::Invoice do
         :ship_state               => 'CA',
         :ship_zip                 => '90007'
       }
-      invoice.transaction_ship_address.should be_kind_of(NetSuite::Records::ShipAddress)
-      invoice.transaction_ship_address.ship_addr1.should eql('123 Happy Lane')
+      expect(invoice.transaction_ship_address).to be_kind_of(NetSuite::Records::ShipAddress)
+      expect(invoice.transaction_ship_address.ship_addr1).to eql('123 Happy Lane')
     end
 
     it 'can be set with a ShipAddress object' do
       ship_address = NetSuite::Records::ShipAddress.new
       invoice.transaction_ship_address = ship_address
-      invoice.transaction_ship_address.should eql(ship_address)
+      expect(invoice.transaction_ship_address).to eql(ship_address)
     end
   end
 
@@ -137,9 +137,9 @@ describe NetSuite::Records::Invoice do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns an Invoice instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
         invoice = NetSuite::Records::Invoice.get(:external_id => 10)
-        invoice.should be_kind_of(NetSuite::Records::Invoice)
+        expect(invoice).to be_kind_of(NetSuite::Records::Invoice)
       end
     end
 
@@ -147,10 +147,10 @@ describe NetSuite::Records::Invoice do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Invoice, {:external_id => 10}], {}).and_return(response)
+        expect {
           NetSuite::Records::Invoice.get(:external_id => 10)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Invoice with OPTIONS=(.*) could not be found/)
       end
     end
@@ -159,9 +159,9 @@ describe NetSuite::Records::Invoice do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::Invoice, customer], {}).and_return(response)
+        expect(NetSuite::Actions::Initialize).to receive(:call).with([NetSuite::Records::Invoice, customer], {}).and_return(response)
         invoice = NetSuite::Records::Invoice.initialize(customer)
-        invoice.should be_kind_of(NetSuite::Records::Invoice)
+        expect(invoice).to be_kind_of(NetSuite::Records::Invoice)
       end
     end
 
@@ -178,10 +178,10 @@ describe NetSuite::Records::Invoice do
 
       it 'returns true' do
         invoice = NetSuite::Records::Invoice.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.add.should be_truthy
+        expect(invoice.add).to be_truthy
       end
     end
 
@@ -190,10 +190,10 @@ describe NetSuite::Records::Invoice do
 
       it 'returns false' do
         invoice = NetSuite::Records::Invoice.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.add.should be_falsey
+        expect(invoice.add).to be_falsey
       end
     end
   end
@@ -204,10 +204,10 @@ describe NetSuite::Records::Invoice do
 
       it 'returns true' do
         invoice = NetSuite::Records::Invoice.new
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_truthy
+        expect(invoice.delete).to be_truthy
       end
     end
 
@@ -216,10 +216,10 @@ describe NetSuite::Records::Invoice do
 
       it 'returns false' do
         invoice = NetSuite::Records::Invoice.new
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([invoice], {}).
             and_return(response)
-        invoice.delete.should be_falsey
+        expect(invoice.delete).to be_falsey
       end
     end
   end
@@ -234,13 +234,13 @@ describe NetSuite::Records::Invoice do
         'tranSales:email'  => 'something@example.com',
         'tranSales:tranId' => '4'
       }
-      invoice.to_record.should eql(record)
+      expect(invoice.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string representation of the SOAP type' do
-      invoice.record_type.should eql('tranSales:Invoice')
+      expect(invoice.record_type).to eql('tranSales:Invoice')
     end
   end
 

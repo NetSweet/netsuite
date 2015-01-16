@@ -27,7 +27,7 @@ describe NetSuite::Records::InventoryItem do
       :transfer_price, :upc_code, :url_component, :use_bins, :use_marginal_rates, :vendor_name, :vsoe_deferral, :vsoe_delivered,
       :vsoe_permit_discount, :vsoe_price, :weight, :weight_unit, :weight_units
     ].each do |field|
-      item.should have_field(field)
+      expect(item).to have_field(field)
     end
   end
 
@@ -35,7 +35,7 @@ describe NetSuite::Records::InventoryItem do
     [
       :alternate_demand_source_item, :asset_account, :bill_exch_rate_variance_acct, :bill_price_variance_acct, :bill_qty_variance_acct, :billing_schedule, :cogs_account, :cost_category, :custom_form, :deferred_revenue_account, :demand_source, :department, :expense_account, :gain_loss_account, :income_account, :issue_product, :klass, :location, :parent, :preferred_location, :pricing_group, :purchase_price_variance_acct, :purchase_tax_code, :purchase_unit, :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :soft_descriptor, :stock_unit, :store_display_image, :store_display_thumbnail, :store_item_template, :supply_lot_sizing_method, :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 
@@ -104,10 +104,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :cost => 100 }) }
 
       it 'returns a InventoryItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
         item = NetSuite::Records::InventoryItem.get(:external_id => 1)
-        item.should be_kind_of(NetSuite::Records::InventoryItem)
-        item.cost.should eql(100)
+        expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+        expect(item.cost).to eql(100)
       end
     end
 
@@ -115,10 +115,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::InventoryItem, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::InventoryItem.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::InventoryItem with OPTIONS=(.*) could not be found/)
       end
     end
@@ -131,10 +131,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_truthy
+        expect(item.add).to be_truthy
       end
     end
 
@@ -142,10 +142,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_falsey
+        expect(item.add).to be_falsey
       end
     end
   end
@@ -155,10 +155,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_truthy
+        expect(item.delete).to be_truthy
       end
     end
 
@@ -166,10 +166,10 @@ describe NetSuite::Records::InventoryItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_falsey
+        expect(item.delete).to be_falsey
       end
     end
   end
@@ -184,13 +184,13 @@ describe NetSuite::Records::InventoryItem do
         'listAcct:cost'       => 100,
         'listAcct:isInactive' => false
       }
-      item.to_record.should eql(record)
+      expect(item.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string representation of the SOAP type' do
-      item.record_type.should eql('listAcct:InventoryItem')
+      expect(item.record_type).to eql('listAcct:InventoryItem')
     end
   end
 

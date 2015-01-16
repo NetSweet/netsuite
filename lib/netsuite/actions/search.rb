@@ -124,6 +124,11 @@ module NetSuite
                 }
               }
 
+              # https://github.com/NetSweet/netsuite/commit/54d7b011d9485dad33504135dfe8153c86cae9a0#commitcomment-8443976
+              if NetSuite::Configuration.api_version < "2013_2"
+                h[element_name][:attributes!]['platformCore:customField']['internalId'] = h[element_name][:attributes!]['platformCore:customField'].delete('scriptId')
+              end
+
               # === END CUSTOM FIELD
             else
               if condition[:value].is_a?(Array) && condition[:value].first.respond_to?(:to_record)

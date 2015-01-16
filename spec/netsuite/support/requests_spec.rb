@@ -9,24 +9,24 @@ describe NetSuite::Support::Requests do
 
   describe '#call' do
     before do
-      instance.stub(:request)
-      instance.stub(:success?)
-      instance.stub(:response_body)
+      allow(instance).to receive(:request)
+      allow(instance).to receive(:success?)
+      allow(instance).to receive(:response_body)
     end
 
     it 'calls #request' do
-      instance.should_receive(:request)
+      expect(instance).to receive(:request)
       instance.call
     end
 
     it 'calls #build_response' do
-      instance.should_receive(:build_response)
+      expect(instance).to receive(:build_response)
       instance.call
     end
 
     it 'returns a NetSuite::Response object' do
       response = instance.call
-      response.should be_kind_of(NetSuite::Response)
+      expect(response).to be_kind_of(NetSuite::Response)
     end
   end
 

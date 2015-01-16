@@ -5,7 +5,7 @@ describe NetSuite::Records::TaxType do
 
   it 'has all the right fields' do
     [ :description, :name ].each do |field|
-      tax_type.should have_field(field)
+      expect(tax_type).to have_field(field)
     end
   end
 end

@@ -8,7 +8,7 @@ describe NetSuite::Records::JournalEntry do
      :approved, :created_date, :exchange_rate, :last_modified_date, :reversal_date,
      :reversal_defer, :reversal_entry, :tran_date, :tran_id
     ].each do |field|
-      entry.should have_field(field)
+      expect(entry).to have_field(field)
     end
   end
 
@@ -17,7 +17,7 @@ describe NetSuite::Records::JournalEntry do
       :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc, :posting_period,
       :subsidiary, :to_subsidiary
     ].each do |record_ref|
-      entry.should have_record_ref(record_ref)
+      expect(entry).to have_record_ref(record_ref)
     end
   end
 
@@ -30,15 +30,15 @@ describe NetSuite::Records::JournalEntry do
         }
       }
       entry.custom_field_list = attributes
-      entry.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      entry.custom_field_list.custom_fields.length.should eql(1)
-      entry.custom_field_list.custfield_amount.attributes[:amount].should eq(10)
+      expect(entry.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(entry.custom_field_list.custom_fields.length).to eql(1)
+      expect(entry.custom_field_list.custfield_amount.attributes[:amount]).to eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       entry.custom_field_list = custom_field_list
-      entry.custom_field_list.should eql(custom_field_list)
+      expect(entry.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -50,14 +50,14 @@ describe NetSuite::Records::JournalEntry do
         }
       }
       entry.line_list = attributes
-      entry.line_list.should be_kind_of(NetSuite::Records::JournalEntryLineList)
-      entry.line_list.lines.length.should eql(1)
+      expect(entry.line_list).to be_kind_of(NetSuite::Records::JournalEntryLineList)
+      expect(entry.line_list.lines.length).to eql(1)
     end
 
     it 'can be set from a JournalEntryLineList object' do
       line_list = NetSuite::Records::JournalEntryLineList.new
       entry.line_list = line_list
-      entry.line_list.should eql(line_list)
+      expect(entry.line_list).to eql(line_list)
     end
   end
 
@@ -66,10 +66,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :approved => true }) }
 
       it 'returns a JournalEntry instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::JournalEntry.get(:external_id => 1)
-        customer.should be_kind_of(NetSuite::Records::JournalEntry)
-        customer.approved.should be_truthy
+        expect(customer).to be_kind_of(NetSuite::Records::JournalEntry)
+        expect(customer.approved).to be_truthy
       end
     end
 
@@ -77,10 +77,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::JournalEntry, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::JournalEntry.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::JournalEntry with OPTIONS=(.*) could not be found/)
       end
     end
@@ -93,10 +93,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.add.should be_truthy
+        expect(entry.add).to be_truthy
       end
     end
 
@@ -104,10 +104,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.add.should be_falsey
+        expect(entry.add).to be_falsey
       end
     end
   end
@@ -117,10 +117,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.delete.should be_truthy
+        expect(entry.delete).to be_truthy
       end
     end
 
@@ -128,10 +128,10 @@ describe NetSuite::Records::JournalEntry do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([entry], {}).
             and_return(response)
-        entry.delete.should be_falsey
+        expect(entry.delete).to be_falsey
       end
     end
   end
@@ -140,7 +140,7 @@ describe NetSuite::Records::JournalEntry do
     let(:entry) { NetSuite::Records::JournalEntry.new(:tran_id => '1234', :approved => true) }
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
-      entry.to_record.should eql({
+      expect(entry.to_record).to eql({
         'tranGeneral:tranId'   => '1234',
         'tranGeneral:approved' => true
       })
@@ -149,7 +149,7 @@ describe NetSuite::Records::JournalEntry do
 
   describe '#record_type' do
     it 'returns a string type for the record to be used in a SOAP request' do
-      entry.record_type.should eql('tranGeneral:JournalEntry')
+      expect(entry.record_type).to eql('tranGeneral:JournalEntry')
     end
   end
 

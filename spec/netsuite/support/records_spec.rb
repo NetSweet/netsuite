@@ -18,7 +18,7 @@ describe NetSuite::Support::Records do
 
   describe '#record_type' do
     it 'returns a hash of attributes to be used in a SOAP request' do
-      instance.to_record.should eql({
+      expect(instance.to_record).to eql({
         'platformCore:source' => 'Google',
         'platformCore:total'  => 100.0
       })
@@ -27,7 +27,7 @@ describe NetSuite::Support::Records do
 
   describe '#record_type' do
     it 'returns a string of the record type to be used in a SOAP request' do
-      instance.record_type.should eql('platformCore:Baz')
+      expect(instance.record_type).to eql('platformCore:Baz')
     end
   end
 

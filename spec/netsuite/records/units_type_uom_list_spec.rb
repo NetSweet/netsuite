@@ -7,9 +7,9 @@ describe NetSuite::Records::UnitsTypeUomList do
   it 'can have items be added to it' do
     list.uom << item
     item_list = list.uom
-    item_list.should be_kind_of(Array)
-    item_list.length.should eql(1)
-    item_list.each { |i| i.should be_kind_of(NetSuite::Records::UnitsTypeUom) }
+    expect(item_list).to be_kind_of(Array)
+    expect(item_list.length).to eql(1)
+    item_list.each { |i| expect(i).to be_kind_of(NetSuite::Records::UnitsTypeUom) }
   end
 
   describe '#to_record' do
@@ -17,7 +17,7 @@ describe NetSuite::Records::UnitsTypeUomList do
       record = {
         'listAcct:uom' => []
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end

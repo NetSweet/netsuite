@@ -12,8 +12,8 @@ describe NetSuite::Records::AssemblyItem do
         }]
       }
       item.member_list = attributes
-      item.member_list.should be_kind_of(NetSuite::Records::MemberList)
-      item.member_list.item_member.length.should eql(1)
+      expect(item.member_list).to be_kind_of(NetSuite::Records::MemberList)
+      expect(item.member_list.item_member.length).to eql(1)
 
       expect(item.member_list.item_member.first.item.internal_id).to eq(1)
       expect(item.member_list.item_member.first.quantity).to eq(20)

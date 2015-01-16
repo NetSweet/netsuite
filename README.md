@@ -86,7 +86,7 @@ customer_support_reps = [12345, 12346]
 
 task = NetSuite::Records::Task.new(
 	:title => 'Take Care of a Customer',
-	:assigned => NetSuite::Records::RecordRef.new(customer_support_reps.sample),
+	:assigned => NetSuite::Records::RecordRef.new(internal_id: customer_support_reps.sample),
 	:due_date => DateTime.now + 1,
 	:message => "Take care of this"
 )
@@ -362,6 +362,18 @@ search.results_in_batches do |batch|
     next unless file.file_type == "_JAVASCRIPT"
     puts Base64.decode64(file.content)
   end
+end
+
+# the getList operation
+NetSuite::Records::CustomRecord.get_list(
+  # netsuite internalIDs
+  list: [1,2,3],
+  # only needed for a custom record
+  type_id: 1234,
+  # allow inclomplete results (defaults to false)
+  allow_incomplete: true
+).each do |record|
+  # do your thing...
 end
 ```
 

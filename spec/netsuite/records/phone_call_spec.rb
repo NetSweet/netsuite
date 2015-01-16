@@ -5,13 +5,13 @@ describe NetSuite::Records::PhoneCall do
 
   it "has the right fields" do
     [:title, :message, :phone, :status, :priority, :start_date, :end_date, :completed_date, :timed_event, :access_level].each do |f|
-      phone_call.should have_field(f)
+      expect(phone_call).to have_field(f)
     end
   end
 
   it 'has the right record refs' do
     [:assigned, :owner, :company, :contact].each do |rr|
-      phone_call.should have_record_ref(rr)
+      expect(phone_call).to have_record_ref(rr)
     end
   end
 end

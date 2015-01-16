@@ -4,7 +4,7 @@ describe NetSuite::Records::CreditMemoApplyList do
   let(:list) { NetSuite::Records::CreditMemoApplyList.new }
 
   it 'has a applies attribute' do
-    list.applies.should be_kind_of(Array)
+    expect(list.applies).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -22,7 +22,7 @@ describe NetSuite::Records::CreditMemoApplyList do
           }
         }
       ]
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end

@@ -11,7 +11,7 @@ describe NetSuite::Records::CustomerRefund do
       :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :last_modified_date, :memo, :pn_ref_num, :status,
       :to_be_printed, :total, :tran_date, :tran_id, :valid_from
     ].each do |field|
-      refund.should have_field(field)
+      expect(refund).to have_field(field)
     end
   end
 
@@ -20,7 +20,7 @@ describe NetSuite::Records::CustomerRefund do
       :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location,
       :payment_method, :posting_period, :subsidiary, :void_journal
     ].each do |record_ref|
-      refund.should have_record_ref(record_ref)
+      expect(refund).to have_record_ref(record_ref)
     end
   end
 
@@ -33,14 +33,14 @@ describe NetSuite::Records::CustomerRefund do
         }
       }
       refund.custom_field_list = attributes
-      refund.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      refund.custom_field_list.custom_fields.length.should eql(1)
+      expect(refund.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(refund.custom_field_list.custom_fields.length).to eql(1)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       refund.custom_field_list = custom_field_list
-      refund.custom_field_list.should eql(custom_field_list)
+      expect(refund.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -52,14 +52,14 @@ describe NetSuite::Records::CustomerRefund do
         }
       }
       refund.apply_list = attributes
-      refund.apply_list.should be_kind_of(NetSuite::Records::CustomerRefundApplyList)
-      refund.apply_list.applies.length.should eql(1)
+      expect(refund.apply_list).to be_kind_of(NetSuite::Records::CustomerRefundApplyList)
+      expect(refund.apply_list.applies.length).to eql(1)
     end
 
     it 'can be set from a CustomerRefundApplyList object' do
       apply_list = NetSuite::Records::CustomerRefundApplyList.new
       refund.apply_list = apply_list
-      refund.apply_list.should eql(apply_list)
+      expect(refund.apply_list).to eql(apply_list)
     end
   end
 
@@ -71,14 +71,14 @@ describe NetSuite::Records::CustomerRefund do
         }
       }
       refund.deposit_list = attributes
-      refund.deposit_list.should be_kind_of(NetSuite::Records::CustomerRefundDepositList)
-      refund.deposit_list.deposits.length.should eql(1)
+      expect(refund.deposit_list).to be_kind_of(NetSuite::Records::CustomerRefundDepositList)
+      expect(refund.deposit_list.deposits.length).to eql(1)
     end
 
     it 'can be set from a CustomerRefundDepositList object' do
       deposit_list = NetSuite::Records::CustomerRefundDepositList.new
       refund.deposit_list = deposit_list
-      refund.deposit_list.should eql(deposit_list)
+      expect(refund.deposit_list).to eql(deposit_list)
     end
   end
 
@@ -87,9 +87,9 @@ describe NetSuite::Records::CustomerRefund do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns an CustomerRefund instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
         refund = NetSuite::Records::CustomerRefund.get(:external_id => 10)
-        refund.should be_kind_of(NetSuite::Records::CustomerRefund)
+        expect(refund).to be_kind_of(NetSuite::Records::CustomerRefund)
       end
     end
 
@@ -97,10 +97,10 @@ describe NetSuite::Records::CustomerRefund do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::CustomerRefund, {:external_id => 10}], {}).and_return(response)
+        expect {
           NetSuite::Records::CustomerRefund.get(:external_id => 10)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomerRefund with OPTIONS=(.*) could not be found/)
       end
     end
@@ -109,9 +109,9 @@ describe NetSuite::Records::CustomerRefund do
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
-        NetSuite::Actions::Initialize.should_receive(:call).with([NetSuite::Records::CustomerRefund, memo], {}).and_return(response)
+        expect(NetSuite::Actions::Initialize).to receive(:call).with([NetSuite::Records::CustomerRefund, memo], {}).and_return(response)
         refund = NetSuite::Records::CustomerRefund.initialize(memo)
-        refund.should be_kind_of(NetSuite::Records::CustomerRefund)
+        expect(refund).to be_kind_of(NetSuite::Records::CustomerRefund)
       end
     end
 
@@ -128,10 +128,10 @@ describe NetSuite::Records::CustomerRefund do
 
       it 'returns true' do
         refund = NetSuite::Records::CustomerRefund.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.add.should be_truthy
+        expect(refund.add).to be_truthy
       end
     end
 
@@ -140,10 +140,10 @@ describe NetSuite::Records::CustomerRefund do
 
       it 'returns false' do
         refund = NetSuite::Records::CustomerRefund.new(test_data)
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.add.should be_falsey
+        expect(refund.add).to be_falsey
       end
     end
   end
@@ -154,10 +154,10 @@ describe NetSuite::Records::CustomerRefund do
 
       it 'returns true' do
         refund = NetSuite::Records::CustomerRefund.new
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.delete.should be_truthy
+        expect(refund.delete).to be_truthy
       end
     end
 
@@ -166,10 +166,10 @@ describe NetSuite::Records::CustomerRefund do
 
       it 'returns false' do
         refund = NetSuite::Records::CustomerRefund.new
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([refund], {}).
             and_return(response)
-        refund.delete.should be_falsey
+        expect(refund.delete).to be_falsey
       end
     end
   end
@@ -184,13 +184,13 @@ describe NetSuite::Records::CustomerRefund do
         'tranCust:memo'      => 'This is a memo',
         'tranCust:ccZipCode' => '10101'
       }
-      refund.to_record.should eql(record)
+      expect(refund.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string representation of the SOAP type' do
-      refund.record_type.should eql('tranCust:CustomerRefund')
+      expect(refund.record_type).to eql('tranCust:CustomerRefund')
     end
   end
 

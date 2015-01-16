@@ -12,14 +12,14 @@ describe NetSuite::Records::Subsidiary do
       :federal_id_number, :addr_language, :non_consol, :consol, :ship_address1,
       :ship_address2, :ship_city, :ship_state, :ship_country, :ship_zip,
       :state1_tax_number, :ssn_or_tin, :inbound_email ].each do |field|
-      subsidiary.should have_field(field)
+      expect(subsidiary).to have_field(field)
     end
   end
 
   it 'has all the right record refs' do
     [ :check_layout, :inter_co_account, :parent, :logo, :page_logo,
       :fiscal_calendar, :tax_fiscal_calendar, :currency ].each do |record_ref|
-      subsidiary.should have_record_ref(record_ref)
+      expect(subsidiary).to have_record_ref(record_ref)
     end
   end
 end

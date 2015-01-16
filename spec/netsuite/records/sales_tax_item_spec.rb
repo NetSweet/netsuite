@@ -10,7 +10,7 @@ describe NetSuite::Records::SalesTaxItem do
       :exempt, :is_default, :exclude_from_tax_reports, :available, :export,
       :county, :city, :state, :zip
     ].each do |field|
-      sales_tax_item.should have_field(field)
+      expect(sales_tax_item).to have_field(field)
     end
   end
 
@@ -19,7 +19,7 @@ describe NetSuite::Records::SalesTaxItem do
       :tax_type, :tax_agency, :tax_account, :purchase_account, :sale_account,
       :parent, :nexus_country
     ].each do |record_ref|
-      sales_tax_item.should have_record_ref(record_ref)
+      expect(sales_tax_item).to have_record_ref(record_ref)
     end
   end
 
