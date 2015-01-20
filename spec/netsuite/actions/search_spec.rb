@@ -11,7 +11,7 @@ describe NetSuite::Actions::Search do
       email: 'fake@domain.com',
       password: 'fake'
     }
-NetSuite::Records::Customer.search({}, credentials)
+    NetSuite::Records::Customer.search({}, credentials)
 
     expect(NetSuite::Configuration).to have_received(:connection).with({:soap_header=>{
       "platformMsgs:passport"=>{
