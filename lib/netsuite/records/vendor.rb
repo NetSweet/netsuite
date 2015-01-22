@@ -22,6 +22,8 @@ module NetSuite
              :url, :vat_reg_number
 
       field :custom_field_list, CustomFieldList
+      # TODO should change name to VendorAddressBookList
+      field :addressbook_list, CustomerAddressbookList
 
       record_refs :custom_form, :category, :image, :subsidiary, :representing_subsidiary,
                   :expense_account, :payables_account, :terms, :opening_balance_account, :currency, :work_calendar,
