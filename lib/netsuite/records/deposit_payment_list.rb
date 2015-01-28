@@ -27,7 +27,7 @@ module NetSuite
 
       def to_record
         rec = { "#{record_namespace}:depositPayment" => payments.map(&:to_record) }
-        rec[:@replaceAll] = true if @replace_all
+        rec[:@replaceAll] = @replace_all unless @replace_all.nil?
         rec
       end
     end

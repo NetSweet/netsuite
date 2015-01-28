@@ -24,7 +24,7 @@ module NetSuite
         rec = {
           "#{record_namespace}:inventoryAssignment" => assignments.map(&:to_record),
         }
-        rec[:@replaceAll] = true if @replace_all
+        rec[:@replaceAll] = @replace_all unless @replace_all.nil?
         rec
       end
     end
