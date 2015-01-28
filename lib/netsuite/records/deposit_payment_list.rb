@@ -4,6 +4,8 @@ module NetSuite
       include Support::Fields
       include Namespaces::TranBank
 
+      attr_accessor :replace_all
+
       fields :deposit_payment
 
       def initialize(attributes = {})
@@ -24,9 +26,10 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:depositPayment" => payments.map(&:to_record) }
+        rec = { "#{record_namespace}:depositPayment" => payments.map(&:to_record) }
+        rec[:@replaceAll] = true if @replace_all
+        rec
       end
-
     end
   end
 end

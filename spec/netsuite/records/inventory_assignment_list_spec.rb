@@ -24,7 +24,7 @@ describe NetSuite::Records::InventoryAssignmentList do
     end
 
     it 'can represent replacing all' do
-      list.replace = true
+      list.replace_all = true
 
       record = {
         'platformCommon:inventoryAssignment' => [{
@@ -41,8 +41,8 @@ describe NetSuite::Records::InventoryAssignmentList do
         :assignment => {
           :quantity => 1
         },
-        :replace => true,
       )
+      list.replace_all = true
 
       record = {
         'platformCommon:inventoryAssignment' => [{
