@@ -44,6 +44,7 @@ describe NetSuite::Records::InventoryAssignmentList do
         },
         :replace_all => true,
       )
+      list.replace_all = true
 
       record = {
         'tranInvt:inventoryAssignment' => [{
