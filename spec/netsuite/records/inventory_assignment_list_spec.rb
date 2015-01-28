@@ -37,25 +37,23 @@ describe NetSuite::Records::InventoryAssignmentList do
       list.to_record.should eql(record)
     end
 
-    it 'accepts replacing all' do
+    it 'accepts a false replacing all' do
       list = NetSuite::Records::InventoryAssignmentList.new(
         :inventory_assignment => {
           :quantity => 1
         },
         :replace_all => true,
       )
-      list.replace_all = true
+      list.replace_all = false
 
       record = {
         'tranInvt:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }],
-        :@replaceAll => true,
+        :@replaceAll => false,
       }
 
       list.to_record.should eql(record)
     end
-
-
   end
 end
