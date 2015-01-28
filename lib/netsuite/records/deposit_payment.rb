@@ -19,7 +19,7 @@ module NetSuite
       # <element name="transactionAmount" type="xsd:double" minOccurs="0"/>
       # <element name="paymentAmount" type="xsd:double" minOccurs="0"/>
 
-      fields :deposit, :id, :doc_date, :type, :doc_number, :memo, :ref_num, :transaction_amount, :payment_amount
+      fields :deposit, :id, :doc_date, :type, :doc_number, :memo, :ref_num, :transaction_amount, :payment_amount, :line_id
 
       record_refs :entity, :currency, :payment_method
 
