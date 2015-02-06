@@ -177,7 +177,7 @@ module NetSuite
     NetSuite::Configuration.instance_eval(&block)
   end
 
-  def self.configure_from_env
+  def self.configure_from_env(&block)
     NetSuite.configure do
       reset!
       
@@ -192,6 +192,8 @@ module NetSuite
 
       read_timeout  100_000
     end
+
+    self.configure(&block) if block
   end
 
 end
