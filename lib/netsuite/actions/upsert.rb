@@ -32,10 +32,6 @@ module NetSuite
           }
         }
 
-        if @object.respond_to?(:internal_id) && @object.internal_id
-          hash['platformMsgs:record']['@platformMsgs:internalId'] = @object.internal_id
-        end
-
         if @object.respond_to?(:external_id) && @object.external_id
           hash['platformMsgs:record']['@platformMsgs:externalId'] = @object.external_id
         end
