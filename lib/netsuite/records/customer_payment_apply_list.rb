@@ -6,7 +6,6 @@ module NetSuite
       sublist :apply, CustomerPaymentApply
 
       alias :applies :apply
-
     end
   end
 end
