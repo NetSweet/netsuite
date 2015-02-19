@@ -5,7 +5,8 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
 
-      actions :get
+      actions :add, :delete, :get, :get_list, :search, :search_more_with_id,
+        :update, :upsert, :upsert_list
 
       fields :credit_card, :express_checkout_arrangement, :is_debit_card, :is_inactive, :is_online, :name,
         :pay_pal_email_address, :undep_funds, :use_express_checkout
