@@ -1,49 +1,24 @@
 require 'spec_helper'
 
-module NetSuite
-  module Records
-    describe ItemFulfillment do
-      context "unify package list attributes" do
-        let(:package_ups_list) do
-          {
-            :package_weight_ups=>"4.0",
-            :package_tracking_number_ups=>"1ZYA95390396947456",
-            :packaging_ups=>"_yourPackaging",
-            :use_insured_value_ups=>false,
-            :reference1_ups=>"spree@example.com",
-            :reference2_ups=>"spree@example.com",
-            :package_length_ups=>"24",
-            :package_width_ups=>"24",
-            :package_height_ups=>"24",
-            :additional_handling_ups=>false,
-            :use_cod_ups=>false
-          }
-        end
+describe NetSuite::Records::ItemFulfillment do
+  let(:item_fulfillment) { NetSuite::Records::ItemFulfillment.new }
 
-        let(:list) do
-          { package_ups_list: { package_ups: package_ups_list } }
-        end
-
-        subject do
-          described_class.new(list)
-        end
-
-        it "access ups attributes via package_list" do
-          package = subject.package_list.packages.first
-          expect(package.package_tracking_number).to eq package_ups_list[:package_tracking_number_ups]
-        end
-
-        context "array" do
-          let(:list) do
-            { package_ups_list: { package_ups: [package_ups_list, package_ups_list] } }
-          end
-
-          it "access ups attributes via package_list" do
-            package = subject.package_list.packages.first
-            expect(package.package_tracking_number).to eq package_ups_list[:package_tracking_number_ups]
-          end
-        end
-      end
+  it 'has all the right fields' do
+    [
+      :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
+      :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential,
+      :ship_status, :last_modified_date, :handling_cost
+    ].each do |field|
+      expect(item_fulfillment).to have_field(field)
     end
   end
+
+  it 'has all the right record refs' do
+    [
+      :custom_form, :entity, :created_from, :ship_carrier, :ship_method, 
+        :ship_address_list, :klass, :ship_country
+    ].each do |record_ref|
+      expect(item_fulfillment).to have_record_ref(record_ref)
+    end
+  end  
 end
