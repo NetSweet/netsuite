@@ -6,7 +6,6 @@ module NetSuite
       sublist :item, VendorBillItem
 
       alias :items :item
-
     end
   end
 end

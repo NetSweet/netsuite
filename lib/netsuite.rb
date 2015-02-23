@@ -9,8 +9,9 @@ require 'netsuite/rest/utilities/request'
 require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
-  autoload :Configuration, 'netsuite/configuration'
-  autoload :Response,      'netsuite/response'
+  autoload :Configuration,    'netsuite/configuration'
+  autoload :Response,         'netsuite/response'
+  autoload :AsyncStatus,      'netsuite/async_status'
 
   module Namespaces
     autoload :ActSched,       'netsuite/namespaces/act_sched'
@@ -60,6 +61,7 @@ module NetSuite
     autoload :UpsertList,       'netsuite/actions/upsert_list'
     autoload :Search,           'netsuite/actions/search'
     autoload :Login,            'netsuite/actions/login'
+    autoload :AsyncAddList,     'netsuite/actions/async_add_list'
   end
 
   module Records

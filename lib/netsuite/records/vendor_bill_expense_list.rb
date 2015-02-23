@@ -7,7 +7,6 @@ module NetSuite
 
       # legacy support
       alias :expenses :expense
-
     end
   end
 end
