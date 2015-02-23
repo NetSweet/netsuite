@@ -19,7 +19,7 @@ module NetSuite
         :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
         :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
         :language, :last_modified_date, :last_name, :last_page_visited, :last_visit, :middle_name, :mobile_phone,
-        :opening_balance, :opening_balance_account, :opening_balance_date, :parent, :partners_list,
+        :opening_balance, :opening_balance_account, :opening_balance_date, :partners_list,
         :password, :password2, :phone, :phonetic_name, :pref_cc_processor, :print_on_check_as,
         :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
         :sales_group, :sales_readiness, :sales_rep, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
@@ -34,7 +34,7 @@ module NetSuite
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
 
-      record_refs :custom_form, :entity_status, :partner, :category, :lead_source,
+      record_refs :custom_form, :entity_status, :parent, :partner, :category, :lead_source,
         :price_level, :subsidiary
 
       attr_reader   :internal_id
