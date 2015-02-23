@@ -4,8 +4,9 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Actions
+      include Namespaces::ListAcct
 
-      actions :add, :delete, :get, :get_list, :search, :search_more_with_id,
+      actions :add, :delete, :get, :get_list, :search,
         :update, :upsert, :upsert_list
 
       fields :credit_card, :express_checkout_arrangement, :is_debit_card, :is_inactive, :is_online, :name,

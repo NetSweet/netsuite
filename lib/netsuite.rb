@@ -7,8 +7,9 @@ require 'netsuite/utilities'
 require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
-  autoload :Configuration, 'netsuite/configuration'
-  autoload :Response,      'netsuite/response'
+  autoload :Configuration,    'netsuite/configuration'
+  autoload :Response,         'netsuite/response'
+  autoload :AsyncStatus,      'netsuite/async_status'
 
   module Namespaces
     autoload :ActSched,       'netsuite/namespaces/act_sched'
@@ -24,6 +25,7 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranInvt,       'netsuite/namespaces/tran_invt'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
+    autoload :TranPurch,      'netsuite/namespaces/tran_purch'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
     autoload :ListEmp,        'netsuite/namespaces/list_emp'
     autoload :ListMkt,        'netsuite/namespaces/list_mkt'
@@ -55,6 +57,7 @@ module NetSuite
     autoload :UpsertList,       'netsuite/actions/upsert_list'
     autoload :Search,           'netsuite/actions/search'
     autoload :Login,            'netsuite/actions/login'
+    autoload :AsyncAddList,     'netsuite/actions/async_add_list'
   end
 
   module Records
@@ -168,6 +171,11 @@ module NetSuite
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
     autoload :UnitsTypeUom,                     'netsuite/records/units_type_uom'
     autoload :Vendor,                           'netsuite/records/vendor'
+    autoload :VendorBill,                       'netsuite/records/vendor_bill'
+    autoload :VendorBillExpense,                'netsuite/records/vendor_bill_expense'
+    autoload :VendorBillExpenseList,            'netsuite/records/vendor_bill_expense_list'
+    autoload :VendorBillItem,                   'netsuite/records/vendor_bill_item'
+    autoload :VendorBillItemList,               'netsuite/records/vendor_bill_item_list'
     autoload :WorkOrder,                        'netsuite/records/work_order'
     autoload :WorkOrderItem,                    'netsuite/records/work_order_item'
     autoload :WorkOrderItemList,                'netsuite/records/work_order_item_list'
