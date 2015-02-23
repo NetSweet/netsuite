@@ -66,6 +66,8 @@ NetSuite.configure do
 end
 ```
 
+There is a [convenience method](https://github.com/NetSweet/netsuite/blob/56fe7fae92908a2e3d6812ecc56516f773cacd45/lib/netsuite.rb#L180) to configure NetSuite based on ENV variables.
+
 ### Examples
 
 #### CRUD Operations
