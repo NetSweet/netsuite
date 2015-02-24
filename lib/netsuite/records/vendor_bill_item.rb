@@ -11,12 +11,12 @@ module NetSuite
               :order_doc, :order_line, :quantity, :serial_numbers, :tax_rate_1, :tax_rate_2, :tax_1_amt, :vendor_name
 
       field :bill_receipts_list,  RecordRefList
-      field :custom_field_list,     CustomFieldList
+      field :custom_field_list,   CustomFieldList
       field :options,             CustomFieldList
 
       read_only_fields :amount
 
-      record_refs  :amortization_sched, :class, :customer, :department, :item, :landed_cost_category, :location,
+      record_refs  :amortization_sched, :klass, :customer, :department, :item, :landed_cost_category, :location,
                    :tax_code, :units
 
       def initialize(attributes_or_record = {})

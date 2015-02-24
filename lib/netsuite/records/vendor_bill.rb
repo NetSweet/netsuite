@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranPurch
 
-      actions :add, :delete, :get, :getList, :getSelectValue, :initialize, :search, :update, :upsert, :upsertList
+      actions :add, :delete, :get, :get_list, :get_select_value, :initialize, :search, :update, :upsert, :upsert_list
 
       fields :created_date, :credit_limit, :currency_name, :discount_amount, :discount_date, :due_date, :exchange_rate,
              :landed_costs_list, :landed_cost_method, :landed_cost_per_line, :last_modified_date, :memo, :tax_total,
@@ -21,7 +21,7 @@ module NetSuite
       read_only_fields :status
 
       record_refs :custom_form, :account, :entity, :subsidiary, :approval_status, :next_approver, :posting_period, :terms,
-                  :currency, :class, :department, :location
+                  :currency, :klass, :department, :location
 
       attr_reader   :internal_id
       attr_accessor :external_id
