@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79d31039-fa8b-4951-811b-1471dcff3fb3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/actions/async_add_list.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/async_result.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/async_status.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/namespaces/trans_purch.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/support/actions.rb" afterPath="$PROJECT_DIR$/lib/netsuite/support/actions.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/customer_payment.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/customer_payment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/invoice.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/invoice.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite.rb" afterPath="$PROJECT_DIR$/lib/netsuite.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/payment_method.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/payment_method.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/netsuite/namespaces/trans_purch.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb" />
     </list>
     <ignored path="netsuite.iws" />
@@ -50,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="netsuite.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="netsuite.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/netsuite.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4057377" vertical-offset="3513" max-vertical-offset="4245">
-              <caret line="254" column="49" selection-start-line="254" selection-start-column="49" selection-end-line="254" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3513" max-vertical-offset="4245">
+              <caret line="261" column="79" selection-start-line="261" selection-start-column="79" selection-end-line="261" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -114,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendor_bill_item_list.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vendor_bill_item_list.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.06147541" vertical-offset="0" max-vertical-offset="732">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,8 +144,8 @@
         <option value="$PROJECT_DIR$/lib/netsuite/records/payment_method.rb" />
         <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill.rb" />
         <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense.rb" />
-        <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb" />
         <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item.rb" />
+        <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb" />
         <option value="$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb" />
       </list>
     </option>
@@ -527,14 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
@@ -543,18 +524,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb">
+    <entry file="file://$PROJECT_DIR$/lib/netsuite.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3513" max-vertical-offset="4245">
+          <caret line="261" column="79" selection-start-line="261" selection-start-column="79" selection-end-line="261" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/netsuite.rb">
+    <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_expense_list.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4057377" vertical-offset="3513" max-vertical-offset="4245">
-          <caret line="254" column="49" selection-start-line="254" selection-start-column="49" selection-end-line="254" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/netsuite/records/vendor_bill_item_list.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06147541" vertical-offset="0" max-vertical-offset="732">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
