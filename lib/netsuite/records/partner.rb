@@ -10,9 +10,10 @@ module NetSuite
 
       actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
-      fields :phone, :first_name, :last_name, :is_inactive, :email
+      fields :phone, :first_name, :last_name, :alt_name, :is_inactive, :email, :give_access,
+             :partner_code, :is_person, :company_name, :eligible_for_commission
 
-      record_refs :klass
+      record_refs :klass, :access_role
 
       attr_reader   :internal_id
     end

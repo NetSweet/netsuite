@@ -177,7 +177,7 @@ module NetSuite
     NetSuite::Configuration.instance_eval(&block)
   end
 
-  def self.configure_from_env
+  def self.configure_from_env(&block)
     NetSuite.configure do
       reset!
       
@@ -188,10 +188,12 @@ module NetSuite
       api_version   ENV['NETSUITE_API']       unless ENV['NETSUITE_API'].nil?
       sandbox       (ENV['NETSUITE_PRODUCTION'].nil? || ENV['NETSUITE_PRODUCTION'] != 'true')
       wsdl          ENV['NETSUITE_WSDL']      unless ENV['NETSUITE_WSDL'].nil?
-      silent        (ENV['NETSUITE_SILENT'] || false)
+      silent        (!ENV['NETSUITE_SILENT'].nil? && ENV['NETSUITE_SILENT'] == 'true')
 
       read_timeout  100_000
     end
+
+    self.configure(&block) if block
   end
 
 end
