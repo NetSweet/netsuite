@@ -1,6 +1,6 @@
 module NetSuite
   module Namespaces
-    module TransPurch
+    module TranPurch
 
       def record_namespace
         'tranPurch'

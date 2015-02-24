@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::TransPurch
+      include Namespaces::TranPurch
 
       actions :add, :delete, :get, :getList, :getSelectValue, :initialize, :search, :update, :upsert, :upsertList
 

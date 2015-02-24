@@ -2,7 +2,7 @@ module NetSuite
   module Records
     class VendorBillExpenseList
       include Support::Fields
-      include Namespaces::TransPurch
+      include Namespaces::TranPurch
 
       fields :expense
 

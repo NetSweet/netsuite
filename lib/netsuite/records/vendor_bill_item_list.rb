@@ -2,7 +2,7 @@ module NetSuite
   module Records
     class VendorBillItemList
       include Support::Fields
-      include Namespaces::TransPurch
+      include Namespaces::TranPurch
 
       fields :item
 
