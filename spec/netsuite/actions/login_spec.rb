@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::Login do
-  before(:all) { savon.mock! }
-  after(:all) { savon.unmock! }
+  before { savon.mock! }
+  after { savon.unmock! }
 
   it 'properly executes a login call' do
     message = {"platformMsgs:passport"=>{"platformCore:email"=>"email", "platformCore:password"=>"password", "platformCore:account"=>"1234", "platformCore:role"=>234}}
