@@ -4,8 +4,8 @@
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API. Wow, that is a mouthful.
 * The gem does not cover the entire API, only the subset that we have found useful to cover so far.
-* Extending the wrapper is pretty simple. Check out the [contribution help doc](https://github.com/RevolutionPrep/netsuite/wiki/Contributing-to-the-Supported-NetSuite-API)
-* NetSuite development is overall a pretty poor experience. We have a list of [NetSuite Development Resources](https://github.com/RevolutionPrep/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
+* Extending the wrapper is pretty simple. Check out the [contribution help doc](https://github.com/NetSweet/netsuite/wiki/Contributing-to-the-Supported-NetSuite-API)
+* NetSuite development is overall a pretty poor experience. We have a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
 
 ## Installation
 
@@ -21,13 +21,13 @@ Or install it yourself as:
 
     $ gem install netsuite
 
-This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/RevolutionPrep/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
+This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
 ## Testing
 Before contributing a patch make sure all existing tests pass.
 
 ```
-git clone git://github.com/RevolutionPrep/netsuite.git
+git clone git://github.com/NetSweet/netsuite.git
 cd netsuite
 bundle
 bundle exec rspec
@@ -41,23 +41,23 @@ Not sure how to find your account id? Search for "web service preferences" in th
 ```ruby
 NetSuite.configure do
   reset!
-  
+
   # optional, defaults to 2011_2
   api_version	'2012_1'
-  
+
   # optionally specify full wsdl URL (to switch to sandbox, for example)
   wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
-  
+
   # or specify the sandbox flag if you don't want to deal with specifying a full URL
   sandbox	true
-  
+
   # often the netsuite servers will hang which would cause a timeout exception to be raised
   # if you don't mind waiting (e.g. processing NS via DJ), increasing the timeout should fix the issue
   read_timeout  100000
-  
+
   # you can specify a file or file descriptor to send the log output to (defaults to STDOUT)
   log           File.join(Rails.root, 'log/netsuite.log')
-  
+
   # login information
   email    	'email@domain.com'
   password 	'password'
@@ -237,7 +237,7 @@ NetSuite::Records::Transaction.search({
           Time.parse("30/07/2013").iso8601,
 
           # or you can use a string. Note that the format below is different from the format of the above code
-          # but it matches exactly what NS returns 
+          # but it matches exactly what NS returns
           # "2012-01-01T22:00:00.000-07:00",
           # "2013-07-30T22:00:00.000-07:00"
         ]
@@ -270,7 +270,7 @@ NetSuite::Records::Transaction.search({
       }
     ]
   },
-  
+
   # the column syntax is a WIP. This will change in the future
   columns: {
     'tranSales:basic' => [

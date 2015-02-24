@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['ryan.moran@gmail.com', 'mike@cliffsidemedia.com']
   gem.description   = %q{NetSuite SuiteTalk API Wrapper}
   gem.summary       = %q{NetSuite SuiteTalk API (SOAP) Wrapper}
-  gem.homepage      = 'https://github.com/RevolutionPrep/netsuite'
+  gem.homepage      = 'https://github.com/NetSweet/netsuite'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
