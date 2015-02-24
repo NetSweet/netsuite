@@ -15,7 +15,7 @@ describe NetSuite::Records::Customer do
       :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
       :language, :last_modified_date, :last_name, :last_page_visited, :last_visit, :middle_name, :mobile_phone,
       :opening_balance, :opening_balance_account, :opening_balance_date, :overdue_balance, :partners_list,
-      :password, :password2, :phone, :phonetic_name, :pref_cc_processor, :print_on_check_as,
+      :password, :password2, :phone, :phonetic_name, :pref_cc_processor,:print_on_check_as,
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
       :stage, :start_date, :subscriptions_list, :sync_partner_teams, :tax_exempt, :tax_item, :taxable, 
@@ -67,9 +67,9 @@ describe NetSuite::Records::Customer do
 
   describe '#custom_field_list' do
     it 'can be set from attributes' do
-      attributes                 = {
+      attributes = {
         :custom_field => {
-          :value       => 10,
+          :value => 10,
           :internal_id => 'custfield_something'
         }
       }
@@ -79,7 +79,7 @@ describe NetSuite::Records::Customer do
     end
 
     it 'can be set from a CustomFieldList object' do
-      custom_field_list          = NetSuite::Records::CustomFieldList.new
+      custom_field_list = NetSuite::Records::CustomFieldList.new
       customer.custom_field_list = custom_field_list
       expect(customer.custom_field_list).to eql(custom_field_list)
     end
@@ -90,7 +90,7 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Customer, { :external_id => 1 }], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         customer = NetSuite::Records::Customer.get(:external_id => 1)
         expect(customer).to be_kind_of(NetSuite::Records::Customer)
         expect(customer.is_person).to be_truthy
@@ -101,11 +101,11 @@ describe NetSuite::Records::Customer do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Customer, { :external_id => 1 }], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Customer, {:external_id => 1}], {}).and_return(response)
         expect {
           NetSuite::Records::Customer.get(:external_id => 1)
         }.to raise_error(NetSuite::RecordNotFound,
-                         /NetSuite::Records::Customer with OPTIONS=(.*) could not be found/)
+          /NetSuite::Records::Customer with OPTIONS=(.*) could not be found/)
       end
     end
   end
@@ -118,8 +118,8 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         expect(NetSuite::Actions::Add).to receive(:call).
-                                            with([customer], {}).
-                                            and_return(response)
+            with([customer], {}).
+            and_return(response)
         expect(customer.add).to be_truthy
       end
     end
@@ -129,8 +129,8 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         expect(NetSuite::Actions::Add).to receive(:call).
-                                            with([customer], {}).
-                                            and_return(response)
+            with([customer], {}).
+            and_return(response)
         expect(customer.add).to be_falsey
       end
     end
@@ -142,8 +142,8 @@ describe NetSuite::Records::Customer do
 
       it 'returns true' do
         expect(NetSuite::Actions::Delete).to receive(:call).
-                                               with([customer], {}).
-                                               and_return(response)
+            with([customer], {}).
+            and_return(response)
         expect(customer.delete).to be_truthy
       end
     end
@@ -153,8 +153,8 @@ describe NetSuite::Records::Customer do
 
       it 'returns false' do
         expect(NetSuite::Actions::Delete).to receive(:call).
-                                               with([customer], {}).
-                                               and_return(response)
+            with([customer], {}).
+            and_return(response)
         expect(customer.delete).to be_falsey
       end
     end
@@ -165,9 +165,9 @@ describe NetSuite::Records::Customer do
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
       expect(customer.to_record).to eql({
-                                          'listRel:entityId' => 'TEST CUSTOMER',
-                                          'listRel:isPerson' => true
-                                        })
+        'listRel:entityId' => 'TEST CUSTOMER',
+        'listRel:isPerson' => true
+      })
     end
   end
 
@@ -184,24 +184,24 @@ describe NetSuite::Records::Customer do
     context 'with one customer' do
       before do
         savon.expects(:upsert_list).with(:message =>
-                                           {
-                                             'record' => [{
-                                                            'listRel:entityId'    => 'Target',
-                                                            'listRel:companyName' => 'Target',
-                                                            '@xsi:type'           => 'listRel:Customer',
-                                                            '@externalId'         => 'ext2'
-                                                          }]
-                                           }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
+          {
+            'record' => [{
+              'listRel:entityId'    => 'Target',
+              'listRel:companyName' => 'Target',
+              '@xsi:type' => 'listRel:Customer',
+              '@externalId' => 'ext2'
+            }]
+        }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_one_customer.xml'))
       end
 
       it 'returns collection with one Customer instances populated with the data from the response object' do
-        customers   = NetSuite::Records::Customer.upsert_list([
-                                                                {
-                                                                  external_id:  'ext2',
-                                                                  entity_id:    'Target',
-                                                                  company_name: 'Target'
-                                                                }
-                                                              ])
+        customers = NetSuite::Records::Customer.upsert_list([
+          {
+            external_id: 'ext2',
+            entity_id: 'Target',
+            company_name: 'Target'
+          }
+        ])
         shutter_fly = customers[0]
         expect(shutter_fly).to be_kind_of(NetSuite::Records::Customer)
         expect(shutter_fly.entity_id).to eq('Target')
@@ -212,36 +212,36 @@ describe NetSuite::Records::Customer do
     context 'with two customers' do
       before do
         savon.expects(:upsert_list).with(:message =>
-                                           {
-                                             'record' => [{
-                                                            'listRel:entityId'    => 'Shutter Fly',
-                                                            'listRel:companyName' => 'Shutter Fly, Inc.',
-                                                            '@xsi:type'           => 'listRel:Customer',
-                                                            '@externalId'         => 'ext1'
-                                                          },
-                                                          {
-                                                            'listRel:entityId'    => 'Target',
-                                                            'listRel:companyName' => 'Target',
-                                                            '@xsi:type'           => 'listRel:Customer',
-                                                            '@externalId'         => 'ext2'
-                                                          }
-                                             ]
-                                           }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
+          {
+            'record' => [{
+                'listRel:entityId'    => 'Shutter Fly',
+                'listRel:companyName' => 'Shutter Fly, Inc.',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext1'
+              },
+              {
+                'listRel:entityId'    => 'Target',
+                'listRel:companyName' => 'Target',
+                '@xsi:type' => 'listRel:Customer',
+                '@externalId' => 'ext2'
+              }
+            ]
+        }).returns(File.read('spec/support/fixtures/upsert_list/upsert_list_customers.xml'))
       end
 
       it 'returns collection of Customer instances populated with the data from the response object' do
-        customers   = NetSuite::Records::Customer.upsert_list([
-                                                                {
-                                                                  external_id:  'ext1',
-                                                                  entity_id:    'Shutter Fly',
-                                                                  company_name: 'Shutter Fly, Inc.'
-                                                                },
-                                                                {
-                                                                  external_id:  'ext2',
-                                                                  entity_id:    'Target',
-                                                                  company_name: 'Target'
-                                                                }
-                                                              ])
+        customers = NetSuite::Records::Customer.upsert_list([
+          {
+            external_id: 'ext1',
+            entity_id: 'Shutter Fly',
+            company_name: 'Shutter Fly, Inc.'
+          },
+          {
+            external_id: 'ext2',
+            entity_id: 'Target',
+            company_name: 'Target'
+          }
+        ])
         shutter_fly = customers[0]
         expect(shutter_fly).to be_kind_of(NetSuite::Records::Customer)
         expect(shutter_fly.entity_id).to eq('Shutter Fly')
