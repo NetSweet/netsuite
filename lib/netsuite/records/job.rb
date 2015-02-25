@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :get_list, :add, :delete, :update, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time,
         :alt_name, :alt_phone, :bill_pay, :calculated_end_date, :calculated_end_date_baseline, :comments, :company_name,
