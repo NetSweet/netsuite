@@ -28,8 +28,6 @@ module NetSuite
             self.send(:include, NetSuite::Actions::GetSelectValue::Support)
           when :search
             self.send(:include, NetSuite::Actions::Search::Support)
-          when :search_more_with_id
-            self.send(:include, NetSuite::Actions::SearchMoreWithId::Support)
           when :add
             self.send(:include, NetSuite::Actions::Add::Support)
           when :upsert
@@ -42,6 +40,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::Update::Support)
           when :initialize
             self.send(:include, NetSuite::Actions::Initialize::Support)
+          when :async_add_list
+            self.send(:include, NetSuite::Actions::AsyncAddList::Support)
           else
             raise "Unknown action: #{name.inspect}"
           end
