@@ -11,6 +11,7 @@ require 'netsuite/core_ext/string/lower_camelcase'
 module NetSuite
   autoload :Configuration,    'netsuite/configuration'
   autoload :Response,         'netsuite/response'
+  autoload :AsyncResult,      'netsuite/async_result'
   autoload :AsyncStatus,      'netsuite/async_status'
 
   module Namespaces
