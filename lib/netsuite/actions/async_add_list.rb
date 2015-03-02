@@ -72,7 +72,7 @@ module NetSuite
               object.kind_of?(self) ? object : self.new(object)
             end
             response = NetSuite::Actions::AsyncAddList.call([objects_list], credentials)
-            response.success? ? NetSuite::AsyncStatus.new(response.body) : false
+            response.success? ? NetSuite::Async::Status.new(response.body) : false
           end
         end
       end
