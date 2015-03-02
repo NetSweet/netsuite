@@ -33,6 +33,9 @@ module NetSuite
         end
       end
 
+      def respond_to_missing?(m, include_all=false)
+        attributes.keys.map(&:to_sym).include?(m.to_sym) || super
+      end
     end
   end
 end

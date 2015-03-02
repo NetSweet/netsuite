@@ -44,6 +44,17 @@ describe NetSuite::Records::RecordRef do
         expect(record_ref.banana).to eql('for monkeys')
       end
     end
+
+    context 'responding to' do
+      it 'responds to the arbitrary attributes' do
+        expect(record_ref).to respond_to(:name)
+        expect(record_ref).to respond_to(:banana)
+      end
+      it 'continues to respond to other methods' do
+        expect(record_ref).to respond_to(:internal_id)
+        expect(record_ref).to respond_to(:to_s)
+      end
+    end
   end
 
   describe 'untouchables' do
