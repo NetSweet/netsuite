@@ -7,8 +7,15 @@ require 'netsuite/utilities'
 require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
-  autoload :Configuration, 'netsuite/configuration'
-  autoload :Response,      'netsuite/response'
+  autoload :Configuration,    'netsuite/configuration'
+  autoload :Response,         'netsuite/response'
+  autoload :Status,           'netsuite/status'
+
+  module Async
+    autoload :Status,             'netsuite/async/status'
+    autoload :WriteResponse,      'netsuite/async/write_response'
+    autoload :WriteResponseList,  'netsuite/async/write_response_list'
+  end
 
   module Namespaces
     autoload :ActSched,       'netsuite/namespaces/act_sched'
@@ -55,6 +62,7 @@ module NetSuite
     autoload :UpsertList,       'netsuite/actions/upsert_list'
     autoload :Search,           'netsuite/actions/search'
     autoload :Login,            'netsuite/actions/login'
+    autoload :AsyncAddList,     'netsuite/actions/async_add_list'
   end
 
   module Records

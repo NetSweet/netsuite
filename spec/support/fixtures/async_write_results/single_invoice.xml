@@ -1,0 +1,19 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2014_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>ASYNCWEBSERVICES_3319168_022720158682169801739034155_856ac4f</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getAsyncResultResponse xmlns="urn:messages_2014_2.platform.webservices.netsuite.com">
+      <asyncResult xsi:type="AsyncAddListResult">
+        <writeResponseList>
+          <writeResponse>
+            <platformCore:status xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com" isSuccess="true"/>
+            <baseRef xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com" internalId="internal id" externalId="external id" type="invoice" xsi:type="platformCore:RecordRef"/>
+          </writeResponse>
+        </writeResponseList>
+      </asyncResult>
+    </getAsyncResultResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
