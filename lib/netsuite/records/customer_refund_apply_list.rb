@@ -3,6 +3,10 @@ module NetSuite
     class CustomerRefundApplyList
       include Namespaces::TranCust
 
+      # TODO should use new sublist implementation
+
+      attr_accessor :replace_all
+
       def initialize(attributes = {})
         case attributes[:apply]
         when Hash
@@ -17,7 +21,9 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:apply" => applies.map(&:to_record) }
+        rec = { "#{record_namespace}:apply" => applies.map(&:to_record) }
+        rec[:@replaceAll] = @replace_all unless @replace_all.nil?
+        rec
       end
 
     end
