@@ -96,6 +96,12 @@ module NetSuite
         end
 
         def extract_custom_field(custom_field_data)
+
+          if custom_field_data.is_a?(CustomField)
+            custom_fields << custom_field_data
+            return
+          end
+
           # TODO this seems brittle, but might sufficient, watch out for this if something breaks
           if (custom_field_data[:"@xsi:type"] || custom_field_data[:type]) == "platformCore:SelectCustomFieldRef"
             custom_field_data[:value] = CustomRecordRef.new(custom_field_data.delete(:value))
