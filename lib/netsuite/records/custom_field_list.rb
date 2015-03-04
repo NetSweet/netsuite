@@ -14,7 +14,7 @@ module NetSuite
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
           reference_id = custom_field.script_id || custom_field.internal_id
-          @custom_fields_assoc[reference_id.to_sym] = custom_field
+          @custom_fields_assoc[reference_id.to_s.to_sym] = custom_field
         end
       end
 
@@ -23,7 +23,7 @@ module NetSuite
       end
 
       def delete_custom_field(field)
-        custom_fields.delete_if { |c| c.internal_id.to_sym == field }
+        custom_fields.delete_if { |c| c.internal_id.to_s.to_sym == field }
         @custom_fields_assoc.delete(field)
       end
 
@@ -90,6 +90,12 @@ module NetSuite
 
       private
         def extract_custom_field(custom_field_data)
+
+          if custom_field_data.is_a?(CustomField)
+            custom_fields << custom_field_data
+            return
+          end
+
           # TODO this seems brittle, but might sufficient, watch out for this if something breaks
           if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
             custom_field_data[:value] = CustomRecordRef.new(custom_field_data.delete(:value))

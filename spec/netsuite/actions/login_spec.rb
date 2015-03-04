@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe NetSuite::Actions::Login do
-  it 'properly executes a login call' do
-    savon.mock!
+  before { savon.mock! }
+  after { savon.unmock! }
 
+  it 'properly executes a login call' do
     message = {"platformMsgs:passport"=>{"platformCore:email"=>"email", "platformCore:password"=>"password", "platformCore:account"=>"1234", "platformCore:role"=>234}}
 
     savon.expects(:login).with(:message => message).returns(File.read('spec/support/fixtures/login.xml'))

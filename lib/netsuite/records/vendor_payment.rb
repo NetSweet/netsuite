@@ -12,7 +12,7 @@ module NetSuite
       fields :address, :balance, :bill_pay, :created_at, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
           :memo, :print_voucher, :status, :to_ach, :to_be_printed, :total, :tran_date, :tran_id, :transaction_number
 
-      field :apply_list,         VendorPaymentApplyList
+      field :apply_list,        VendorPaymentApplyList
       field :custom_field_list, CustomFieldList
 
       record_refs :account, :ap_acct, :currency, :custom_form, :department, :entity, :klass, :location, :posting_period,
