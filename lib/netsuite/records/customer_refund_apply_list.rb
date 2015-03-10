@@ -16,10 +16,12 @@ module NetSuite
         @applies ||= []
       end
 
-      def to_record
-        applies.map do |apply|
-          { "#{record_namespace}:apply" => apply.to_record }
-        end
+       def to_record
+        [{ 
+          "#{record_namespace}:apply" => applies.map do |apply|
+            apply.to_record 
+          end
+        }]
       end
 
     end

@@ -17,9 +17,11 @@ module NetSuite
       end
 
       def to_record
-        applies.map do |apply|
-          { "#{record_namespace}:apply" => apply.to_record }
-        end
+        [{ 
+          "#{record_namespace}:apply" => applies.map do |apply|
+            apply.to_record 
+          end
+        }]
       end
 
     end
