@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
+      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :delete_list, :search
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/customer.html
 
