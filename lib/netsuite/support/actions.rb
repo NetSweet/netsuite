@@ -36,6 +36,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::UpsertList::Support)
           when :delete
             self.send(:include, NetSuite::Actions::Delete::Support)
+          when :delete_list
+            self.send(:include, NetSuite::Actions::DeleteList::Support)
           when :update
             self.send(:include, NetSuite::Actions::Update::Support)
           when :initialize
