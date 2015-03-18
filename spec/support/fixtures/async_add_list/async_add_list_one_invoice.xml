@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <asyncAddListResponse xmlns="urn:messages_2014_2.platform.webservices.netsuite.com">
+      <platformCore:asyncStatusResult xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com">
+        <platformCore:jobId>ASYNCWEBSERVICES_3319168_02262015941097136894317791_4c4e2a55</platformCore:jobId>
+        <platformCore:status>pending</platformCore:status>
+        <platformCore:percentCompleted>0.0</platformCore:percentCompleted>
+        <platformCore:estRemainingDuration>0.0</platformCore:estRemainingDuration>
+      </platformCore:asyncStatusResult>
+    </asyncAddListResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

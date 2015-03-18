@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2014_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>ASYNCWEBSERVICES_3319168_02272015862228930236966352_e70989c2</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getAsyncResultResponse xmlns="urn:messages_2014_2.platform.webservices.netsuite.com">
+      <asyncResult xsi:type="AsyncAddListResult">
+        <writeResponseList>
+          <writeResponse>
+            <platformCore:status xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com" isSuccess="true"/>
+            <baseRef xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com" internalId="internal id 1" externalId="external id 1" type="invoice" xsi:type="platformCore:RecordRef"/>
+          </writeResponse>
+          <writeResponse>
+            <platformCore:status xmlns:platformCore="urn:core_2014_2.platform.webservices.netsuite.com" isSuccess="false">
+              <platformCore:statusDetail type="ERROR">
+                <platformCore:code>INVALID_KEY_OR_REF</platformCore:code>
+                <platformCore:message>Invalid item reference key 123 for entity 456.</platformCore:message>
+              </platformCore:statusDetail>
+            </platformCore:status>
+          </writeResponse>
+        </writeResponseList>
+      </asyncResult>
+    </getAsyncResultResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
+
