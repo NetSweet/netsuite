@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :get_list, :initialize, :add, :delete, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :upsert, :search
 
       fields :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :currency_name, :custom_field_list,
@@ -57,6 +57,10 @@ module NetSuite
           rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
         end
         rec
+      end
+
+      def self.search_class_name
+        "Transaction"
       end
 
     end
