@@ -1,7 +1,6 @@
 module NetSuite
   module Records
     class Employee < Support::Base
-      include Support::Fields
       include Support::Actions
       include Support::RecordRefs
       include Namespaces::ListEmp
