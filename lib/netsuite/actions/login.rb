@@ -31,7 +31,7 @@ module NetSuite
         passport['platformMsgs:passport']['platformCore:email'] = credentials[:email] || ''
         passport['platformMsgs:passport']['platformCore:password'] = credentials[:password] || ''
         passport['platformMsgs:passport']['platformCore:role'] = credentials[:role] || ''
-        passport['platformMsgs:passport']['platformCore:account'] = credentials[:account] || ''
+        passport['platformMsgs:passport']['platformCore:account'] = credentials[:account] if !credentials[:account].nil?
 
         begin
           response = NetSuite::Configuration.connection(soap_header: {}).call :login, message: passport
