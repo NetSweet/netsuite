@@ -13,6 +13,9 @@ module NetSuite
     def connection(params={}, credentials={})
       Savon.client({
         wsdl: wsdl,
+        ssl_ca_cert_file: ssl_ca_cert_file,
+        ssl_verify_mode: (ssl_verify_mode || :peer),
+        ssl_version: ssl_version,
         read_timeout: read_timeout,
         namespaces: namespaces,
         soap_header: auth_header(credentials).update(soap_header),
@@ -21,6 +24,42 @@ module NetSuite
         log_level: log_level,
         log: !silent,   # turn off logging entirely if configured
       }.update(params))
+    end
+
+    def ssl_version=(_ssl_version)
+      attributes[:ssl_version] = _ssl_version
+    end
+
+    def ssl_version(_ssl_version = nil)
+      if _ssl_version
+        self.ssl_version = _ssl_version
+      else
+        attributes[:ssl_version]
+      end
+    end
+
+    def ssl_verify_mode=(verify_mode)
+      attributes[:ssl_verify_mode] = verify_mode
+    end
+
+    def ssl_verify_mode(verify_mode = nil)
+      if verify_mode
+        self.ssl_verify_mode = verify_mode
+      else
+        attributes[:verify_mode]
+      end
+    end
+
+    def ssl_ca_cert_file=(path)
+      attributes[:ssl_ca_cert_file] = path
+    end
+
+    def ssl_ca_cert_file(path = nil)
+      if path
+        self.ssl_ca_cert_file = path
+      else
+        attributes[:ssl_ca_cert_file]
+      end
     end
 
     def api_version(version = nil)
