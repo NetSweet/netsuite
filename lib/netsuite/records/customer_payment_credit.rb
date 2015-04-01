@@ -1,12 +1,12 @@
 module NetSuite
   module Records
-    class CustomerPaymentApply
+    class CustomerPaymentCredit
       include Support::Fields
       include Support::Records
       include Namespaces::TranCust
 
-      fields :amount, :apply, :apply_date, :currency, :disc, :disc_amt, :disc_date,
-             :doc, :due, :job, :line, :ref_num, :total, :type
+      fields :amount, :appliedTo, :apply, :creditDate, :currency, :doc, :due,
+             :line, :refNum, :total, :type
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
