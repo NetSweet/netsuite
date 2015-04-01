@@ -115,6 +115,8 @@ module NetSuite
     autoload :CustomerPayment,                  'netsuite/records/customer_payment'
     autoload :CustomerPaymentApply,             'netsuite/records/customer_payment_apply'
     autoload :CustomerPaymentApplyList,         'netsuite/records/customer_payment_apply_list'
+    autoload :CustomerPaymentCredit,            'netsuite/records/customer_payment_credit'
+    autoload :CustomerPaymentCreditList,        'netsuite/records/customer_payment_credit_list'
     autoload :CustomerRefund,                   'netsuite/records/customer_refund'
     autoload :CustomerRefundApply,              'netsuite/records/customer_refund_apply'
     autoload :CustomerRefundApplyList,          'netsuite/records/customer_refund_apply_list'

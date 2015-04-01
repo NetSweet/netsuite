@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79d31039-fa8b-4951-811b-1471dcff3fb3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/custom_field_list.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/custom_field_list.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/netsuite/actions/login_spec.rb" afterPath="$PROJECT_DIR$/spec/netsuite/actions/login_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_expense_spec.rb" afterPath="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_expense_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_item_spec.rb" afterPath="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_item_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/vendor_payment.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/vendor_payment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/netsuite/records/vendor_payment_spec.rb" afterPath="$PROJECT_DIR$/spec/netsuite/records/vendor_payment_spec.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/records/customer_payment_credit.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/netsuite/records/customer_payment_credit_list.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/netsuite/records/customer_payment_credit_list_spec.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/netsuite/records/customer_payment_credit_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/credit_memo.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/credit_memo.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/customer_payment.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/customer_payment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite/records/customer_payment_apply.rb" afterPath="$PROJECT_DIR$/lib/netsuite/records/customer_payment_apply.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/netsuite.rb" afterPath="$PROJECT_DIR$/lib/netsuite.rb" />
     </list>
     <ignored path="netsuite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +37,8 @@
       <file leaf-file-name="netsuite.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/netsuite.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4335">
-              <caret line="27" column="64" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="4365">
+              <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -92,10 +94,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendor_payment_spec.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vendor_payment_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/netsuite/records/vendor_payment_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.090164" vertical-offset="1680" max-vertical-offset="2550">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="2550">
+              <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="credit_memo.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/netsuite/records/credit_memo.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.10655738" vertical-offset="228" max-vertical-offset="960">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
@@ -107,16 +119,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="1878" max-vertical-offset="2610">
               <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="360">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -159,6 +161,7 @@
         <option value="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_expense_spec.rb" />
         <option value="$PROJECT_DIR$/spec/netsuite/records/vendor_bill_item_spec.rb" />
         <option value="$PROJECT_DIR$/spec/netsuite/records/vendor_payment_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/netsuite/records/credit_memo.rb" />
       </list>
     </option>
   </component>
@@ -436,7 +439,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -570,8 +573,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/netsuite.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4335">
-          <caret line="27" column="64" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="4365">
+          <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -626,7 +629,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/netsuite/records/vendor_payment_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.090164" vertical-offset="1680" max-vertical-offset="2550">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="2550">
+          <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/netsuite/records/credit_memo.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10655738" vertical-offset="228" max-vertical-offset="960">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
