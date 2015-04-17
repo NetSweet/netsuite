@@ -18,8 +18,6 @@ module NetSuite
         when Array
           items.each { |ref| self.inventory_assignment << InventoryAssignment.new(ref) }
         end
-
-        @replace_all = attributes[:replace_all]
       end
 
       def inventory_assignment
@@ -28,7 +26,7 @@ module NetSuite
 
       def to_record
         rec = { "#{record_namespace}:inventoryAssignment" => inventory_assignment.map(&:to_record) }
-        rec[:@replaceAll] = true if @replace_all
+        rec[:@replaceAll] = true if self.replace_all
         rec
       end
     end
