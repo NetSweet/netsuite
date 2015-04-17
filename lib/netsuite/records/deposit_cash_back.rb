@@ -30,6 +30,10 @@ module NetSuite
         self.attributes = record.send(:attributes)
       end
 
+      def initialize_from_attributes_hash(attributes)
+        self.attributes = attributes
+      end
+
       def to_record
         rec = super
         if rec["#{record_namespace}:customFieldList"]
