@@ -45,7 +45,11 @@ module NetSuite
           list = [ list ] if !list.is_a?(Array)
 
           @list = list.map do |item|
-            self.sublist_class.new(item)
+            if item.class == self.sublist_class
+              item
+            else
+              self.sublist_class.new(item)
+            end
           end
         end
 
