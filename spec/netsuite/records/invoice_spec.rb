@@ -18,7 +18,7 @@ describe NetSuite::Records::Invoice do
       :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
       :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :job, :last_modified_date,
       :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
-      :other_ref_num, :partners_list, :promo_code, :rev_rec_end_date,
+      :other_ref_num, :partners_list, :rev_rec_end_date,
       :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
       :sales_group, :sales_team_list, :ship_address, :ship_date, :ship_group_list,
       :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
@@ -44,7 +44,7 @@ describe NetSuite::Records::Invoice do
   it 'has the right record_refs' do
     [
       :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
-      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source
+      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code
     ].each do |record_ref|
       expect(invoice).to have_record_ref(record_ref)
     end
