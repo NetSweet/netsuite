@@ -41,6 +41,7 @@ module NetSuite
       end
 
       def <<(item)
+        @list ||= []
         @list << self.process_sublist_item(item)
       end
 
