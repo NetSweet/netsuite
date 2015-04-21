@@ -40,16 +40,24 @@ module NetSuite
         rec
       end
 
+      def <<(item)
+        @list << self.process_sublist_item(item)
+      end
+
       protected
         def process_sublist(list)
           list = [ list ] if !list.is_a?(Array)
 
           @list = list.map do |item|
-            if item.class == self.sublist_class
-              item
-            else
-              self.sublist_class.new(item)
-            end
+            self.process_sublist_item(item)
+          end
+        end
+
+        def process_sublist_item(item)
+          if item.class == self.sublist_class
+            item
+          else
+            self.sublist_class.new(item)
           end
         end
 
