@@ -4,12 +4,11 @@ module NetSuite
       include Namespaces::TranCust
 
       sublist :apply, CreditMemoApply
-
       # for backward compatibility
       def applies
         self.apply
+        @applies ||= []
       end
-
     end
   end
 end

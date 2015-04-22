@@ -2,18 +2,17 @@ require 'spec_helper'
 
 describe NetSuite::Records::CreditMemoApplyList do
   let(:list) { NetSuite::Records::CreditMemoApplyList.new }
+  let(:apply) { NetSuite::Records::CreditMemoApply.new }
 
-  it 'has a applies attribute' do
-    expect(list.applies).to be_kind_of(Array)
+  it 'can have applies be added to it' do
+    list.applies << apply
+    apply_list = list.applies
+    expect(apply_list).to be_kind_of(Array)
+    expect(apply_list.length).to eql(1)
+    apply_list.each { |i| expect(i).to be_kind_of(NetSuite::Records::CreditMemoApply) }
   end
 
   describe '#to_record' do
-    before do
-      list.applies << NetSuite::Records::CreditMemoApply.new(
-        :job => 'something'
-      )
-    end
-
     it 'can represent itself as a SOAP record' do
       record = {
         'tranCust:apply' => [{
@@ -24,4 +23,5 @@ describe NetSuite::Records::CreditMemoApplyList do
       expect(list.to_record).to eq(record)
     end
   end
+
 end
