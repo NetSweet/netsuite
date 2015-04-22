@@ -1,14 +1,21 @@
 module NetSuite
   module Records
     class CreditMemoItemList
+      include Support::Fields
       include Namespaces::TranCust
 
+      fields :item
+
       def initialize(attributes = {})
-        case attributes[:item]
-        when Hash
-          items << CreditMemoItem.new(attributes[:item])
-        when Array
-          attributes[:item].each { |item| items << CreditMemoItem.new(item) }
+        initialize_from_attributes_hash(attributes)
+      end
+
+      def item=(items)
+        case items
+          when Hash
+            self.items << CreditMemoItem.new(items)
+          when Array
+            items.each { |item| self.items << CreditMemoItem.new(item) }
         end
       end
 
@@ -17,11 +24,8 @@ module NetSuite
       end
 
       def to_record
-        items.map do |item|
-          { "#{record_namespace}:item" => item.to_record }
-        end
+        { "#{record_namespace}:item" => items.map(&:to_record) }
       end
-
     end
   end
 end
