@@ -40,7 +40,7 @@ describe NetSuite::Configuration do
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
+        expect(config.wsdl).to match(/.*\/netsuite\/wsdl\/production\/2011_2\.wsdl/)
       end
     end
 
