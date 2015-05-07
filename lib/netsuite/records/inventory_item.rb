@@ -58,6 +58,10 @@ module NetSuite
       field :bin_number_list, BinNumberList
       field :locations_list, LocationsList
       field :matrix_option_list, MatrixOptionList
+      field :subsidiary_list, RecordRefList
+
+      # for Assembly/Kit
+      field :member_list, MemberList
       
       attr_reader :internal_id
       attr_accessor :external_id

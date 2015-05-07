@@ -72,6 +72,9 @@ module NetSuite
               '@xsi:type' => custom_field.type
             }
 
+            # TODO this is broken in > 2013_1; need to conditionally change the synax here
+            # if NetSuite::Configuration.api_version < "2013_2"
+
             if custom_field.internal_id
               base['@internalId'] = custom_field.internal_id
             end

@@ -33,4 +33,10 @@ describe NetSuite::Records::ItemFulfillmentItemList do
 		expect(i.sublist_key).to eq(:item)
 		expect(i.to_record["tranSales:replaceAll"]).to eq(false)
 	end
+
+	it "should accept the shorthand append syntax" do
+		i = NetSuite::Records::ItemFulfillmentItemList.new
+		i << { quantity: 1 }
+		expect(i.item.size).to eq(1)
+	end
 end

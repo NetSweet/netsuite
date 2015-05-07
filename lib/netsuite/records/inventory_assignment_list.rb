@@ -25,7 +25,9 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:inventoryAssignment" => inventory_assignment.map(&:to_record) }
+        rec = { "#{record_namespace}:inventoryAssignment" => inventory_assignment.map(&:to_record) }
+        rec[:@replaceAll] = self.replace_all if !self.replace_all.nil?
+        rec
       end
     end
   end

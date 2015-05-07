@@ -24,6 +24,7 @@ module NetSuite
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranInvt,       'netsuite/namespaces/tran_invt'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
+    autoload :TranPurch,      'netsuite/namespaces/tran_purch'
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
     autoload :ListEmp,        'netsuite/namespaces/list_emp'
     autoload :ListMkt,        'netsuite/namespaces/list_mkt'
@@ -45,6 +46,7 @@ module NetSuite
   module Actions
     autoload :Add,              'netsuite/actions/add'
     autoload :Delete,           'netsuite/actions/delete'
+    autoload :DeleteList,       'netsuite/actions/delete_list'
     autoload :Get,              'netsuite/actions/get'
     autoload :GetAll,           'netsuite/actions/get_all'
     autoload :GetList,          'netsuite/actions/get_list'
@@ -70,6 +72,8 @@ module NetSuite
     autoload :BillingScheduleRecurrenceList,    'netsuite/records/billing_schedule_recurrence_list'
     autoload :BinNumberList,                    'netsuite/records/bin_number_list'
     autoload :CashSale,                         'netsuite/records/cash_sale'
+    autoload :CashSaleItem,                     'netsuite/records/cash_sale_item'
+    autoload :CashSaleItemList,                 'netsuite/records/cash_sale_item_list'
     autoload :CashRefund,                       'netsuite/records/cash_refund'
     autoload :CashRefundItem,                   'netsuite/records/cash_refund_item'
     autoload :CashRefundItemList,               'netsuite/records/cash_refund_item_list'
@@ -168,6 +172,14 @@ module NetSuite
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
     autoload :UnitsTypeUom,                     'netsuite/records/units_type_uom'
     autoload :Vendor,                           'netsuite/records/vendor'
+    autoload :VendorBill,                       'netsuite/records/vendor_bill'
+    autoload :VendorBillExpense,                'netsuite/records/vendor_bill_expense'
+    autoload :VendorBillExpenseList,            'netsuite/records/vendor_bill_expense_list'
+    autoload :VendorBillItem,                   'netsuite/records/vendor_bill_item'
+    autoload :VendorBillItemList,               'netsuite/records/vendor_bill_item_list'
+    autoload :VendorPayment,                    'netsuite/records/vendor_payment'
+    autoload :VendorPaymentApply,               'netsuite/records/vendor_payment_apply'
+    autoload :VendorPaymentApplyList,           'netsuite/records/vendor_payment_apply_list'
     autoload :WorkOrder,                        'netsuite/records/work_order'
     autoload :WorkOrderItem,                    'netsuite/records/work_order_item'
     autoload :WorkOrderItemList,                'netsuite/records/work_order_item_list'
@@ -177,7 +189,7 @@ module NetSuite
     NetSuite::Configuration.instance_eval(&block)
   end
 
-  def self.configure_from_env
+  def self.configure_from_env(&block)
     NetSuite.configure do
       reset!
       
@@ -188,10 +200,12 @@ module NetSuite
       api_version   ENV['NETSUITE_API']       unless ENV['NETSUITE_API'].nil?
       sandbox       (ENV['NETSUITE_PRODUCTION'].nil? || ENV['NETSUITE_PRODUCTION'] != 'true')
       wsdl          ENV['NETSUITE_WSDL']      unless ENV['NETSUITE_WSDL'].nil?
-      silent        (ENV['NETSUITE_SILENT'] || false)
+      silent        (!ENV['NETSUITE_SILENT'].nil? && ENV['NETSUITE_SILENT'] == 'true')
 
       read_timeout  100_000
     end
+
+    self.configure(&block) if block
   end
 
 end
