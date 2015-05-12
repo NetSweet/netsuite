@@ -5,6 +5,7 @@ module NetSuite
 
       attr_reader :total_records
       attr_reader :total_pages
+      attr_reader :current_page
 
       # header from a basic customer search:
 
@@ -22,6 +23,7 @@ module NetSuite
         
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
+        @current_page = response.body[:page_index].to_i
 
         if @total_records > 0
           if response.body.has_key?(:record_list)
@@ -87,6 +89,7 @@ module NetSuite
 
           @results = next_search.results
           @response = next_search.response
+          @current_page = response.body[:page_index].to_i
         end
 
         yield results
