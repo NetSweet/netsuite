@@ -78,6 +78,11 @@ describe NetSuite::Records::CustomFieldList do
       expect(list.to_record).to eql(record)
       expect(list.to_record.length).to eq(1)
     end
+
+    # https://github.com/NetSweet/netsuite/issues/182
+    it 'handles custom fields without an internalId or scriptId' do
+      custom_list = NetSuite::Records::CustomFieldList.new({custom_field: { '@xsi:type' => 'platformCore:StringCustomFieldRef' }})
+    end
   end
 
 end
