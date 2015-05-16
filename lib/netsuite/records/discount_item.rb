@@ -7,9 +7,9 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :delete, :upsert
+      actions :get, :get_list, :add, :delete, :search, :upsert
 
-      fields :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pretax,
+      fields :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pre_tax,
         :item_id, :last_modified_date, :non_posting, :rate, :upc_code, :vendor_name
 
       record_refs :account, :custom_form, :deferred_revenue_account, :department, :expense_account,
@@ -25,6 +25,10 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.search_class_name
+        "Item"
       end
 
     end
