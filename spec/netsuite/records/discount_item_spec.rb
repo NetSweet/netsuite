@@ -5,7 +5,7 @@ describe NetSuite::Records::DiscountItem do
 
   it 'has the right fields' do
     [
-      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pretax,
+      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pre_tax,
       :item_id, :last_modified_date, :non_posting, :rate, :upc_code, :vendor_name
     ].each do |field|
       expect(item).to have_field(field)
