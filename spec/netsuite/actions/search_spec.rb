@@ -157,6 +157,7 @@ describe NetSuite::Actions::Search do
       })
 
       expect(search.results.size).to eq(2)
+      expect(search.current_page).to eq(1)
       expect(search.results.first.alt_name).to eq('A Awesome Name')
       expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end

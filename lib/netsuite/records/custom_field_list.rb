@@ -14,7 +14,11 @@ module NetSuite
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
           reference_id = custom_field.script_id || custom_field.internal_id
-          @custom_fields_assoc[reference_id.to_sym] = custom_field
+
+          # not all custom fields have an id; https://github.com/NetSweet/netsuite/issues/182
+          if reference_id
+            @custom_fields_assoc[reference_id.to_sym] = custom_field
+          end
         end
       end
 

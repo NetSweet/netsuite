@@ -335,6 +335,7 @@ NetSuite::Records::InventoryItem.search({
           '_inventoryItem',
 
           # note that the naming conventions aren't consistent: AssemblyItem != _assemblyItem
+          # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/enum/itemtype.html
           '_assembly'
         ]
       },

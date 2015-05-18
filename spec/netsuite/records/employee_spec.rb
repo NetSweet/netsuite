@@ -7,7 +7,7 @@ describe NetSuite::Records::Employee do
     [
       :account_number, :alien_number, :approval_limit, :bill_pay, :birth_date,
       :comments, :date_created, :direct_deposit, :eligible_for_commission,
-      :email, :employee_status, :employee_type, :entity_id, :expense_limit,
+      :email, :entity_id, :expense_limit,
       :fax, :first_name, :hire_date, :home_phone, :is_inactive, :is_job_resource,
       :job_description, :labor_cost, :last_modified_date, :last_name, :middle_name,
       :mobile_phone, :next_review_date, :office_phone, :pay_frequency, :phone,
@@ -21,7 +21,7 @@ describe NetSuite::Records::Employee do
 
   it 'has all the right record refs' do
     [
-      :location
+      :location, :employee_status, :employee_type
     ].each do |record_ref|
       expect(employee).to have_record_ref(record_ref)
     end
