@@ -137,6 +137,7 @@ module NetSuite
     autoload :ItemFulfillmentPackageList,       'netsuite/records/item_fulfillment_package_list'
     autoload :ItemMember,                       'netsuite/records/item_member'
     autoload :Job,                              'netsuite/records/job'
+    autoload :JobStatus,                        'netsuite/records/job_status'
     autoload :JournalEntry,                     'netsuite/records/journal_entry'
     autoload :JournalEntryLine,                 'netsuite/records/journal_entry_line'
     autoload :JournalEntryLineList,             'netsuite/records/journal_entry_line_list'
