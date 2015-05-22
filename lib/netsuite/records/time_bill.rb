@@ -10,13 +10,13 @@ module NetSuite
       actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :created_date, :is_billable, :last_modified_date, :memo, :override_rate, :paid_externally, :rate, :status,
-             :supervisor_approval, :tran_date
+             :supervisor_approval, :tran_date, :time_type
 
       field :custom_field_list,   CustomFieldList
       field :hours,               Duration
 
-      record_refs :case_task_event, :class, :customer, :custom_form, :department, :employee, :item, :location, :payroll_item,
-                  :price, :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction, :workplace
+      record_refs :employee, :customer, :case_task_event, :payroll_item, :workplace, :item, :department, :location, :price,
+                  :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction
 
       attr_reader :internal_id
       attr_accessor :external_id
