@@ -8,7 +8,6 @@ module NetSuite
       sublist :apply, CustomerRefundApply
 
       alias :applies :apply
-
     end
   end
 end
