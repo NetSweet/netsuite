@@ -20,6 +20,7 @@ module NetSuite
         logger: logger,
         log_level: log_level,
         log: !silent,   # turn off logging entirely if configured
+        ssl_version: :TLSv1
       }.update(params))
     end
 
