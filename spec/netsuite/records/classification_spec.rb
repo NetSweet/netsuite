@@ -5,10 +5,12 @@ describe NetSuite::Records::Classification do
 
   it 'has all the right fields' do
     [
-      :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
+      :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list
     ].each do |field|
       expect(classification).to have_field(field)
     end
+
+    expect(classification.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
   describe '.get' do
