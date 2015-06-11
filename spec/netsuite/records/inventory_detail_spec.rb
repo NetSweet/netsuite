@@ -7,7 +7,7 @@ describe NetSuite::Records::InventoryDetail do
     [
       :custom_form
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 end

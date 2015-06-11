@@ -18,7 +18,7 @@ describe NetSuite::Records::CustomerRefundApplyList do
           'tranCust:amount' => 10
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 

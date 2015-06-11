@@ -4,7 +4,7 @@ describe NetSuite::Records::InventoryAssignmentList do
   let(:list) { NetSuite::Records::InventoryAssignmentList.new }
 
   it 'has an assignments attribute' do
-    list.inventory_assignment.should be_kind_of(Array)
+    expect(list.inventory_assignment).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -21,7 +21,7 @@ describe NetSuite::Records::InventoryAssignmentList do
           'platformCommon:quantity' => 1
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
 
     it 'can represent replacing all' do
@@ -34,7 +34,7 @@ describe NetSuite::Records::InventoryAssignmentList do
         :@replaceAll => true,
       }
 
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
 
     it 'accepts a false replacing all' do
@@ -53,7 +53,7 @@ describe NetSuite::Records::InventoryAssignmentList do
         :@replaceAll => false,
       }
 
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end
