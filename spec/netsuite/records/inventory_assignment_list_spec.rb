@@ -17,7 +17,7 @@ describe NetSuite::Records::InventoryAssignmentList do
     it 'can represent itself as a SOAP record' do
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }]
       }
@@ -28,7 +28,7 @@ describe NetSuite::Records::InventoryAssignmentList do
       list.replace_all = true
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }],
         :@replaceAll => true,
@@ -47,7 +47,7 @@ describe NetSuite::Records::InventoryAssignmentList do
       list.replace_all = false
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }],
         :@replaceAll => false,
