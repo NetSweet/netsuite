@@ -20,7 +20,7 @@ describe NetSuite::Records::CreditMemoItemList do
           'tranCust:rate' => 10
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end

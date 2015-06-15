@@ -151,6 +151,7 @@ module NetSuite
     autoload :PhoneCall,                        'netsuite/records/phone_call'
     autoload :PricingMatrix,                    'netsuite/records/pricing_matrix'
     autoload :PromotionCode,                    'netsuite/records/promotion_code'
+    autoload :Roles,                            'netsuite/records/roles'
     autoload :RecordRef,                        'netsuite/records/record_ref'
     autoload :RecordRefList,                    'netsuite/records/record_ref_list'
     autoload :RevRecTemplate,                   'netsuite/records/rev_rec_template'

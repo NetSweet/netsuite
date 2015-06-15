@@ -14,9 +14,10 @@ module NetSuite
 
       record_refs :account, :custom_form, :deferred_revenue_account, :department, :expense_account,
         :income_account, :issue_product, :klass, :location, :parent, :rev_rec_schedule, :sales_tax_code,
-        :subsidiary_list, :tax_schedule
+        :tax_schedule
 
       field :custom_field_list, CustomFieldList
+      field :subsidiary_list, RecordRefList
 
       attr_reader   :internal_id
       attr_accessor :external_id

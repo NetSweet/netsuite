@@ -21,7 +21,7 @@ describe NetSuite::Records::CreditMemoApplyList do
         }]
       }
 
-      expect(list.to_record.should).to eq(record)
+      expect(list.to_record).to eq(record)
     end
   end
 end

@@ -6,7 +6,9 @@ module NetSuite
 
       actions :get, :get_list, :delete, :upsert
 
-      fields :name, :include_children, :is_inactive, :class_translation_list, :subsidiary_list, :custom_field_list
+      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list
+
+      field :subsidiary_list, RecordRefList
 
       attr_reader   :internal_id
       attr_accessor :external_id

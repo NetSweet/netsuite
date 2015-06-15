@@ -4,7 +4,7 @@ describe NetSuite::Records::InventoryAssignmentList do
   let(:list) { NetSuite::Records::InventoryAssignmentList.new }
 
   it 'has an assignments attribute' do
-    list.inventory_assignment.should be_kind_of(Array)
+    expect(list.inventory_assignment).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -17,24 +17,24 @@ describe NetSuite::Records::InventoryAssignmentList do
     it 'can represent itself as a SOAP record' do
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
 
     it 'can represent replacing all' do
       list.replace_all = true
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }],
         :@replaceAll => true,
       }
 
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
 
     it 'accepts a false replacing all' do
@@ -47,13 +47,13 @@ describe NetSuite::Records::InventoryAssignmentList do
       list.replace_all = false
 
       record = {
-        'tranInvt:inventoryAssignment' => [{
+        'platformCommon:inventoryAssignment' => [{
           'platformCommon:quantity' => 1
         }],
         :@replaceAll => false,
       }
 
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end
