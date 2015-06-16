@@ -84,6 +84,7 @@ module NetSuite
     autoload :CreditMemoApplyList,              'netsuite/records/credit_memo_apply_list'
     autoload :CreditMemoItem,                   'netsuite/records/credit_memo_item'
     autoload :CreditMemoItemList,               'netsuite/records/credit_memo_item_list'
+    autoload :Currency,                         'netsuite/records/currency'
     autoload :CustomField,                      'netsuite/records/custom_field'
     autoload :CustomFieldList,                  'netsuite/records/custom_field_list'
     autoload :CustomList,                       'netsuite/records/custom_list'
