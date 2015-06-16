@@ -13,13 +13,14 @@ describe NetSuite::Records::DiscountItem do
 
     # TODO there is a probably a more robust way to test this
     expect(item.custom_field_list.class).to eq(NetSuite::Records::CustomFieldList)
+    expect(item.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
   it 'has the right record_refs' do
     [
       :account, :custom_form, :deferred_revenue_account, :department, :expense_account,
       :income_account, :issue_product, :klass, :location, :parent, :rev_rec_schedule, :sales_tax_code,
-      :subsidiary_list, :tax_schedule
+      :tax_schedule
     ].each do |record_ref|
       expect(item).to have_record_ref(record_ref)
     end

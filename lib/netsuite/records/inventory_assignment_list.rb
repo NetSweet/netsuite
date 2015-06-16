@@ -3,7 +3,7 @@ module NetSuite
     class InventoryAssignmentList
       include Support::Records
       include Support::Fields
-      include Namespaces::TranInvt
+      include Namespaces::PlatformCommon
 
       fields :replace_all, :inventory_assignment
 

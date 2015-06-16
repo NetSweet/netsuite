@@ -99,30 +99,30 @@ describe NetSuite::Records::CustomerAddressbook do
     context "when it's specified as a 2 character ISO code" do
       it "is converted to the appropriate NetSuite enum value" do
         addressbook = NetSuite::Records::CustomerAddressbook.new country: "US"
-        addressbook.to_record["listRel:country"].should eql "_unitedStates"
+        expect(addressbook.to_record["listRel:country"]).to eql "_unitedStates"
       end
     end
 
     context "when the country code is a YAML reserved word (NO)" do
       it "is converted to the appropriate NetSuite enum value" do
         addressbook = NetSuite::Records::CustomerAddressbook.new country: "NO"
-        addressbook.to_record["listRel:country"].should eql "_norway"
+        expect(addressbook.to_record["listRel:country"]).to eql "_norway"
       end
     end
 
     it "can be specified as the NetSuite enum value" do
       addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedStates"
-      addressbook.to_record["listRel:country"].should eql "_unitedStates"
+      expect(addressbook.to_record["listRel:country"]).to eql "_unitedStates"
 
       # country with two uppercase letters (looks like ISO2)
       addressbook = NetSuite::Records::CustomerAddressbook.new country: "_unitedKingdomGB"
-      addressbook.to_record["listRel:country"].should eql "_unitedKingdomGB"
+      expect(addressbook.to_record["listRel:country"]).to eql "_unitedKingdomGB"
     end
 
     it "can be unspecified" do
       addressbook = NetSuite::Records::CustomerAddressbook.new country: ''
-      addressbook.country.to_record.should eql ""
-      addressbook.to_record["listRel:country"].should eql ""
+      expect(addressbook.country.to_record).to eql ""
+      expect(addressbook.to_record["listRel:country"]).to eql ""
     end
   end
 

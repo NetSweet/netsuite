@@ -26,6 +26,7 @@ describe NetSuite::Records::NonInventorySaleItem do
     # TODO there is a probably a more robust way to test this
     expect(item.custom_field_list.class).to eq(NetSuite::Records::CustomFieldList)
     expect(item.pricing_matrix.class).to eq(NetSuite::Records::PricingMatrix)
+    expect(item.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
   it 'has the right record_refs' do
@@ -33,7 +34,7 @@ describe NetSuite::Records::NonInventorySaleItem do
       :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_account, :issue_product,
       :item_options_list, :klass, :location, :parent, :pricing_group, :purchase_tax_code, :quantity_pricing_schedule,
       :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image, :store_display_thumbnail,
-      :store_item_template, :subsidiary_list, :tax_schedule, :units_type
+      :store_item_template, :tax_schedule, :units_type
     ].each do |record_ref|
       expect(item).to have_record_ref(record_ref)
     end

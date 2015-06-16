@@ -19,18 +19,18 @@ describe NetSuite::Records::CustomerAddressbookList do
 
   describe "#replace_all" do
     it "returns true by default" do
-      list.replace_all.should eql(true)
+      expect(list.replace_all).to eql(true)
     end
 
     it "can be changed via accessor" do
       list.replace_all = false
 
-      list.replace_all.should eql(false)
+      expect(list.replace_all).to eql(false)
     end
 
     it "coerces to a boolean" do
       list.replace_all = "goober"
-      list.replace_all.should eql(true)
+      expect(list.replace_all).to eql(true)
     end
   end
 
