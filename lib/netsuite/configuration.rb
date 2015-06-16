@@ -47,6 +47,10 @@ module NetSuite
       end
     end
 
+    def sandbox?
+      !!sandbox
+    end
+
     def wsdl=(wsdl)
       attributes[:wsdl] = wsdl
     end
