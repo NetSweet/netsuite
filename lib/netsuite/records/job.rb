@@ -19,6 +19,7 @@ module NetSuite
         :opening_balance_account, :opening_balance_date, :percent_complete, :percent_time_complete, :phone, :phonetic_name,
         :projected_end_date, :projected_end_date_baseline, :start_date, :start_date_baseline
 
+      field :custom_field_list,       CustomFieldList
       field :estimated_time_override, Duration
       field :actual_time,             Duration
       field :time_remaining,          Duration
@@ -33,6 +34,14 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def to_record
+        rec = super
+        if rec["#{record_namespace}:customFieldList"]
+          rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        end
+        rec
       end
 
     end
