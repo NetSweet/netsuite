@@ -47,7 +47,7 @@ NetSuite.configure do
 
   # optionally specify full wsdl URL (to switch to sandbox, for example)
   wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
-  
+
   # if your datacenter is being switched, you'll have to manually set your wsdl location
   wsdl "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
@@ -102,6 +102,8 @@ task.add
 `open https://system.sandbox.netsuite.com/app/crm/calendar/task.nl?id=#{invoice.internal_id}`
 
 task.update :message => 'New Message'
+
+task.delete
 
 # using get_select_value with a custom record
 NetSuite::Records::BaseRefList.get_select_value(
