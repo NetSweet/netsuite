@@ -76,16 +76,16 @@ module NetSuite
         @results ||= []
       end
 
-      def results_in_batches
+      def results_in_batches(credentials = {})
         return if self.total_records.zero?
 
         while @response.body[:total_pages] != @response.body[:page_index]
           yield results
 
-          next_search = @result_class.search(
+          next_search = @result_class.search({
             search_id: @response.body[:search_id],
             page_index: @response.body[:page_index].to_i + 1
-          )
+          }, credentials)
 
           @results = next_search.results
           @response = next_search.response
