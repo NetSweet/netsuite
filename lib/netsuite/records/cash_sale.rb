@@ -20,7 +20,7 @@ module NetSuite
         :pay_pal_status, :pay_pay_tran_id, :pn_ref_num, :recognized_revenue, :rev_rec_end_date, :rev_rec_on_rev_commitment, :rev_rec_state_date,
         :sales_effective_date, :ship_address, :ship_date, :shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :source, :start_date, :status,
         :sub_total, :sync_partners_teams, :sync_sales_teams, :tax2_total, :tax_rate, :tax_total, :three_d_status_code, :time_disc_amount, :time_disc_print,
-        :time_disc_rate, :time_disc_tax1_amt, :time_disc_taxable, :time_tax_rate1, :time_tax_rate2, :to_be_emailed, :to_be_faxed, :total,
+        :time_disc_rate, :time_disc_tax1_amt, :time_disc_taxable, :time_tax_rate1, :time_tax_rate2, :to_be_emailed, :to_be_printed, :to_be_faxed, :total,
         :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tan_is_vsoe_bundle, :undep_funds, :valid_from, :vat_reg_num, :vsoe_auto_calc
 
 
