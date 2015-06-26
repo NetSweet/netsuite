@@ -12,7 +12,7 @@ module NetSuite
       fields :alt_handling_cost, :alt_shipping_cost, :auth_code, :bill_address, :cc_approved, :cc_expire_date, :cc_is_purchase_card_bin,
         :cc_name, :cc_number, :cc_process_as_purchas_card, :cc_security_code, :cc_street, :cc_zip_code, :charge_it, :contrib_pct, :created_date,
         :currency_name, :debit_card_issue_no, :deferred_revenue, :discount_rate, :discount_total, :email, :end_date, :est_gross_profit,
-        :est_gross_profit_percent, :exchange_rate, :exclude_commission, :exp_cost_disc_amount, :exp_cost_discount, :exp_cost_discprint,
+        :est_gross_profit_percent, :exchange_rate, :exclude_commission, :exp_cost_disc_amount, :exp_cost_discprint,
         :exp_cost_disc_rate, :exp_cost_disc_tax1_amt, :exp_cost_disc_taxable, :exp_cost_tax_rate1, :exp_cost_tax_rate2, :fax, :fob,
         :gift_cert_applied, :handling_cost, :handling_tax1_rate, :handling_tax2_rate, :ignore_avs, :is_recurring_payment, :is_taxable,
         :item_cost_disc_amount, :item_cost_disc_print, :item_cost_disc_rate, :item_cost_disc_tax1_amt, :item_cost_disc_taxable, :item_cost_tax_rate1,
