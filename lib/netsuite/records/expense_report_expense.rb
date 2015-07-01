@@ -14,6 +14,23 @@ module NetSuite
 
       record_refs :category, :currency, :customer, :department, :location
 
+      field :custom_field_list,     CustomFieldList
+
+      attr_reader   :internal_id
+      attr_accessor :external_id
+
+      def initialize(attributes = {})
+        initialize_from_attributes_hash(attributes)
+      end
+
+      def to_record
+        rec = super
+        if rec["#{record_namespace}:customFieldList"]
+          rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        end
+        rec
+      end
+
     end
   end
 end
