@@ -69,7 +69,7 @@ module NetSuite
         'EC' => '_ecuador',
         'EG' => '_egypt',
         'SV' => '_elSalvador',
-        'GU' => '_equatorialGuinea',
+        'GQ' => '_equatorialGuinea',
         'ER' => '_eritrea',
         'EE' => '_estonia',
         'ET' => '_ethiopia',
