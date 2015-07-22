@@ -176,6 +176,7 @@ module NetSuite
     autoload :Task,                             'netsuite/records/task'
     autoload :Term,                             'netsuite/records/term'
     autoload :TimeBill,                         'netsuite/records/time_bill'
+    autoload :TimeEntry,                        'netsuite/records/time_entry'
     autoload :Transaction,                      'netsuite/records/transaction'
     autoload :UnitsType,                        'netsuite/records/units_type'
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
