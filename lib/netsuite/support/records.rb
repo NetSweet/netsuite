@@ -52,6 +52,10 @@ module NetSuite
         "#{record_namespace}:#{self.class.to_s.split('::').last}"
       end
 
+      def reload(credentials  = {})
+        self.class.get(self.internal_id, credentials)
+      end
+
     end
   end
 end
