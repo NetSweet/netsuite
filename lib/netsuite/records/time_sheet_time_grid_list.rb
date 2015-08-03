@@ -12,8 +12,6 @@ module NetSuite
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
 
-        binding.pry
-
         case attributes[:time_sheet_time_grid]
           when Hash
             time_sheet_time_grids << TimeSheetTimeGrid.new(attributes[:time_sheet_time_grid])
