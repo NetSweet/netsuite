@@ -24,9 +24,9 @@ module NetSuite
         @time_sheet_time_grids ||= []
       end
 
-      # def to_record
-      #   { "#{record_namespace}:timeSheet" => time_sheet_time_grids.map(&:to_record) }
-      # end
+      def to_record
+        { "#{record_namespace}:timeSheetTimeGrid" => time_sheet_time_grids.map(&:to_record) }
+      end
     end
   end
 end
