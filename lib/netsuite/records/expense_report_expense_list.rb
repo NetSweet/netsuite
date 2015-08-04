@@ -21,7 +21,7 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:expense" => expenses.map(&:to_record) }
+        { "#{record_namespace}:expenseReportExpense" => expenses.map(&:to_record) }
       end
     end
   end
