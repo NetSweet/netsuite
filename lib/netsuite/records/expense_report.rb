@@ -5,12 +5,12 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::TranEmp
+      include Namespaces::TranSales
 
       actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :accounting_approval, :advance, :complete, :created_date, :due_date, :last_modified_date, :memo, :status,
-        :supervisor_approval, :tax_1_amt, :tax_2_amt, :tran_date, :tran_id, :use_multi_currency
+        :supervisor_approval, :tax_1_amt, :tax_2_amt, :tran_date, :tran_id, :use_multi_currency, :klass
 
       read_only_fields :amount, :total
 
