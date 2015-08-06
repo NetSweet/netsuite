@@ -13,6 +13,15 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
+
+      def to_record
+        {}.tap do |hash|
+          Date::DAYNAMES.each do |day|
+            day = day.downcase
+            hash["#{record_namespace}:#{day}"] = self.attributes[day.to_sym].to_record if self.attributes[day.to_sym].present?
+          end
+        end
+      end
     end
   end
 end

@@ -25,7 +25,13 @@ module NetSuite
       end
 
       def to_record
-        { "#{record_namespace}:timeSheetTimeGrid" => time_sheet_time_grids.map(&:to_record) }
+        rec = { "#{record_namespace}:timeSheetTimeGrid" => time_sheet_time_grids.map(&:to_record) }
+
+        if !replace_all.nil?
+          rec["#{record_namespace}:replaceAll"] = replace_all
+        end
+
+        rec
       end
     end
   end
