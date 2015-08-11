@@ -13,10 +13,8 @@ module NetSuite
         
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
-          reference_id = custom_field.script_id || custom_field.internal_id
-
           # not all custom fields have an id; https://github.com/NetSweet/netsuite/issues/182
-          if reference_id
+          if reference_id = reference_id_for(custom_field)
             @custom_fields_assoc[reference_id.to_sym] = custom_field
           end
         end
@@ -27,7 +25,7 @@ module NetSuite
       end
 
       def delete_custom_field(field)
-        custom_fields.delete_if { |c| c.internal_id.to_sym == field }
+        custom_fields.delete_if { |c| reference_id_for(c).to_sym == field }
         @custom_fields_assoc.delete(field)
       end
 
@@ -93,6 +91,14 @@ module NetSuite
       end
 
       private
+        def reference_id_type
+          @reference_id_type ||= Configuration.api_version >= '2013_2' ? :script_id : :internal_id
+        end
+
+        def reference_id_for(custom_field)
+          custom_field.send(reference_id_type)
+        end
+
         def extract_custom_field(custom_field_data)
           # TODO this seems brittle, but might sufficient, watch out for this if something breaks
           if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
@@ -102,7 +108,7 @@ module NetSuite
           custom_fields << CustomField.new(custom_field_data)
         end
 
-        def create_custom_field(internal_id, field_value)
+        def create_custom_field(reference_id, field_value)
           # all custom fields need types; infer type based on class sniffing
           field_type = case
           when field_value.is_a?(Array)
@@ -146,13 +152,13 @@ module NetSuite
           end
 
           custom_field = CustomField.new(
-            internal_id: internal_id,
-            value: custom_field_value,
-            type: "#{record_namespace}:#{field_type}"
+            reference_id_type => reference_id,
+            :value => custom_field_value,
+            :type  => "#{record_namespace}:#{field_type}"
           )
 
           custom_fields << custom_field
-          @custom_fields_assoc[internal_id.to_sym] = custom_field
+          @custom_fields_assoc[reference_id.to_sym] = custom_field
         end
     end
   end
