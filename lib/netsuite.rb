@@ -108,6 +108,7 @@ module NetSuite
     autoload :Contact,                          'netsuite/records/contact'
     autoload :ContactAccessRoles,               'netsuite/records/contact_access_roles'
     autoload :ContactAccessRolesList,           'netsuite/records/contact_access_roles_list'
+    autoload :Currency,                         'netsuite/records/currency'
     autoload :Department,                       'netsuite/records/department'
     autoload :Deposit,                          'netsuite/records/deposit'
     autoload :DepositPayment,                   'netsuite/records/deposit_payment'
