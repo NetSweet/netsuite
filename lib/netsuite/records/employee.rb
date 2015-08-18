@@ -24,6 +24,10 @@ module NetSuite
       attr_reader :internal_id
       attr_accessor :external_id
 
+      def self.search_class_name
+        'Employee'
+      end
+
     end
   end
 end
