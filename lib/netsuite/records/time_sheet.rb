@@ -14,7 +14,7 @@ module NetSuite
       field :total_hours,     Duration
       field :time_grid_list,  TimeSheetTimeGridList
 
-      record_refs :approval_status, :custom_form, :subsidiary
+      record_refs :approval_status, :custom_form, :employee, :subsidiary
 
       attr_reader   :internal_id
       attr_accessor :external_id
