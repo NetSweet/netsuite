@@ -7,8 +7,6 @@ module NetSuite
         case attributes[:addressbook]
         when Hash
           addressbooks << CustomerAddressbook.new(attributes[:addressbook])
-        when CustomerAddressbook
-          addressbooks << attributes
         when Array
           attributes[:addressbook].each { |addressbook| addressbooks << CustomerAddressbook.new(addressbook) }
         end
