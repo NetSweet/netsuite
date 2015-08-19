@@ -8,12 +8,8 @@ module NetSuite
       # internalId is a bit strange on this record
       # https://github.com/NetSweet/netsuite/wiki/Miscellaneous-Web-Services-Quirks#customer
 
-      fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
-        :phone, :addr1, :addr2, :addr3, :city, :zip, :override, :state, :internal_id
-
-      field :country, NetSuite::Support::Country
-
-      read_only_fields :addr_text
+      fields :addressbook_address, :default_billing, :default_shipping, :internal_id, 
+             :is_residential, :label
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
@@ -26,23 +22,12 @@ module NetSuite
       end
 
       def initialize_from_record(obj)
-        self.default_shipping = obj.default_shipping
+        self.addressbook_address = obj.addressbook_address
         self.default_billing  = obj.default_billing
+        self.default_shipping = obj.default_shipping
+        self.internal_id      = obj.internal_id
         self.is_residential   = obj.is_residential
         self.label            = obj.label
-        self.attention        = obj.attention
-        self.addressee        = obj.addressee
-        self.phone            = obj.phone
-        self.addr1            = obj.addr1
-        self.addr2            = obj.addr2
-        self.addr3            = obj.addr3
-        self.city             = obj.city
-        self.zip              = obj.zip
-        self.country          = obj.country
-        self.addr_text        = obj.addr_text
-        self.override         = obj.override
-        self.state            = obj.state
-        self.internal_id      = obj.internal_id
       end
 
     end
