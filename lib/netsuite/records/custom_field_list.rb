@@ -10,11 +10,11 @@ module NetSuite
         when Array
           attributes[:custom_field].each { |custom_field| extract_custom_field(custom_field) }
         end
-        
+
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
           # not all custom fields have an id; https://github.com/NetSweet/netsuite/issues/182
-          if reference_id = reference_id_for(custom_field)
+          if reference_id = custom_field.send(reference_id_type)
             @custom_fields_assoc[reference_id.to_sym] = custom_field
           end
         end
@@ -25,7 +25,7 @@ module NetSuite
       end
 
       def delete_custom_field(field)
-        custom_fields.delete_if { |c| reference_id_for(c).to_sym == field }
+        custom_fields.delete_if { |c| c.send(reference_id_type).to_sym == field }
         @custom_fields_assoc.delete(field)
       end
 
@@ -36,7 +36,7 @@ module NetSuite
       def custom_fields_by_type(type)
         custom_fields.select { |field| field.type == "platformCore:#{type}" }
       end
-      
+
       def method_missing(sym, *args, &block)
         # read custom field if already set
         if @custom_fields_assoc.include?(sym)
@@ -95,10 +95,6 @@ module NetSuite
           @reference_id_type ||= Configuration.api_version >= '2013_2' ? :script_id : :internal_id
         end
 
-        def reference_id_for(custom_field)
-          custom_field.send(reference_id_type)
-        end
-
         def extract_custom_field(custom_field_data)
           # TODO this seems brittle, but might sufficient, watch out for this if something breaks
           if custom_field_data[:"@xsi:type"] == "platformCore:SelectCustomFieldRef"
@@ -129,7 +125,7 @@ module NetSuite
           # TODO seems like DateTime doesn't need the iso8601 call
           #      not sure if this is specific to my env though
 
-          custom_field_value = case 
+          custom_field_value = case
           when field_value.is_a?(Hash)
             CustomRecordRef.new(field_value)
           when field_value.is_a?(Date)
