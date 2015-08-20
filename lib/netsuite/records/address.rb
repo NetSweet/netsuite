@@ -8,7 +8,7 @@ module NetSuite
       # internalId is a bit strange on this record
       # https://github.com/NetSweet/netsuite/wiki/Miscellaneous-Web-Services-Quirks#customer
 
-      fields :addr1, :addr2, :addr3, :addressee, :addr_phone, :attention, :city, :custom_field_list, :internal_id, :override, :state, :zip
+      fields :addr1, :addr2, :addressee, :addr_phone, :attention, :city, :custom_field_list, :internal_id, :override, :state, :zip
 
       field :country, NetSuite::Support::Country
 
@@ -19,7 +19,7 @@ module NetSuite
         when self.class
           initialize_from_record(attributes_or_record)
         when Hash
-          attributes_or_record = attributes_or_record[:addressbook] if attributes_or_record[:addressbook]
+          attributes_or_record = attributes_or_record[:address] if attributes_or_record[:address]
           initialize_from_attributes_hash(attributes_or_record)
         end
       end
@@ -27,7 +27,6 @@ module NetSuite
       def initialize_from_record(obj)
         self.addr1                = obj.addr1
         self.addr2                = obj.addr2
-        self.addr3                = obj.addr3
         self.addressee            = obj.addressee
         self.addr_phone           = obj.addr_phone
         self.addr_text            = obj.addr_text
