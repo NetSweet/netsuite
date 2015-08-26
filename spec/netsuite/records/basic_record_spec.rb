@@ -6,7 +6,8 @@ describe 'basic records' do
       NetSuite::Records::Currency,
       NetSuite::Records::Location,
       NetSuite::Records::JobStatus,
-      NetSuite::Records::TimeBill
+      NetSuite::Records::TimeBill,
+      NetSuite::Records::Customer
     ]
   }
 
