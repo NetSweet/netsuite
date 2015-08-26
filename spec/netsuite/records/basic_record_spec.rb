@@ -4,7 +4,9 @@ describe 'basic records' do
   let(:basic_record_list) {
     [
       NetSuite::Records::Currency,
-      NetSuite::Records::Location
+      NetSuite::Records::Location,
+      NetSuite::Records::JobStatus,
+      NetSuite::Records::TimeBill
     ]
   }
 
@@ -23,11 +25,15 @@ describe 'basic records' do
         expect(record_instance).to respond_to(:external_id=)
       end
 
-      # ensure that all fields can be set
       standard_fields = (record_class.fields - record_class.record_refs).to_a
+      custom_object_fields = standard_fields.select { |f| !record_instance.send(f).nil? }
+      standard_fields -= custom_object_fields
 
+      # ensure that all fields can be set
       standard_fields.each { |f| expect(record_instance).to have_field(f) }
       record_class.record_refs.each { |f| expect(record_instance).to have_record_ref(f) }
+
+      # TODO handle custom object fields
 
       6.times do
         record_instance.send(:"#{standard_fields.sample}=", "Test Value")
