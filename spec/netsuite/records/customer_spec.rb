@@ -18,7 +18,7 @@ describe NetSuite::Records::Customer do
       :password, :password2, :phone, :phonetic_name, :pref_cc_processor,:print_on_check_as,
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
-      :stage, :start_date, :subscriptions_list, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
+      :stage, :start_date, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
       :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
       :vat_reg_number, :visits, :web_lead
     ].each do |field|
