@@ -64,6 +64,7 @@ module NetSuite
     autoload :AssemblyItem,                     'netsuite/records/assembly_item'
     autoload :Account,                          'netsuite/records/account'
     autoload :AccountingPeriod,                 'netsuite/records/accounting_period'
+    autoload :Address,                          'netsuite/records/address'
     autoload :BaseRefList,                      'netsuite/records/base_ref_list'
     autoload :BillAddress,                      'netsuite/records/bill_address'
     autoload :BillingSchedule,                  'netsuite/records/billing_schedule'
