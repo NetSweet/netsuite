@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :update, :delete, :upsert
+      actions :get, :get_list, :add, :update, :delete, :upsert, :search
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :create_job, :created_date,
         :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap, :featured_description,
@@ -39,6 +39,10 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.search_class_name
+        "Item"
       end
 
     end
