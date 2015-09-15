@@ -10,6 +10,7 @@ describe 'basic records' do
       NetSuite::Records::Customer,
       NetSuite::Records::Invoice,
       NetSuite::Records::PayrollItem,
+      NetSuite::Records::Opportunity,
       NetSuite::Records::VendorCategory
     ]
   }
