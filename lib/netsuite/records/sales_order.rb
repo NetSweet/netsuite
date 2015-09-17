@@ -20,8 +20,14 @@ module NetSuite
         :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
         :amount, :is_ship_address
 
+      # NOTE API >= 2014_2 only
+      field :shipping_address, Address
+      field :billing_address, Address
+
+      # NOTE transaction address fields only applicable for API < 2014_2
       field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress
+
       field :item_list,                SalesOrderItemList
       field :custom_field_list,        CustomFieldList
 
