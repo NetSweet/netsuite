@@ -21,6 +21,7 @@ module NetSuite
     autoload :PlatformCore,   'netsuite/namespaces/platform_core'
     autoload :TranBank,       'netsuite/namespaces/tran_bank'
     autoload :TranCust,       'netsuite/namespaces/tran_cust'
+    autoload :TranEmp,        'netsuite/namespaces/tran_emp'
     autoload :TranGeneral,    'netsuite/namespaces/tran_general'
     autoload :TranInvt,       'netsuite/namespaces/tran_invt'
     autoload :TranSales,      'netsuite/namespaces/tran_sales'
@@ -95,6 +96,8 @@ module NetSuite
     autoload :Customer,                         'netsuite/records/customer'
     autoload :CustomerAddressbook,              'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,          'netsuite/records/customer_addressbook_list'
+    autoload :CustomerCurrency,                 'netsuite/records/customer_currency'
+    autoload :CustomerCurrencyList,             'netsuite/records/customer_currency_list'
     autoload :CustomerDeposit,                  'netsuite/records/customer_deposit'
     autoload :CustomerPayment,                  'netsuite/records/customer_payment'
     autoload :CustomerPaymentApply,             'netsuite/records/customer_payment_apply'
@@ -108,6 +111,7 @@ module NetSuite
     autoload :Contact,                          'netsuite/records/contact'
     autoload :ContactAccessRoles,               'netsuite/records/contact_access_roles'
     autoload :ContactAccessRolesList,           'netsuite/records/contact_access_roles_list'
+    autoload :Currency,                         'netsuite/records/currency'
     autoload :Department,                       'netsuite/records/department'
     autoload :Deposit,                          'netsuite/records/deposit'
     autoload :DepositPayment,                   'netsuite/records/deposit_payment'
@@ -137,6 +141,7 @@ module NetSuite
     autoload :ItemFulfillmentPackageList,       'netsuite/records/item_fulfillment_package_list'
     autoload :ItemMember,                       'netsuite/records/item_member'
     autoload :Job,                              'netsuite/records/job'
+    autoload :JobStatus,                        'netsuite/records/job_status'
     autoload :JournalEntry,                     'netsuite/records/journal_entry'
     autoload :JournalEntryLine,                 'netsuite/records/journal_entry_line'
     autoload :JournalEntryLineList,             'netsuite/records/journal_entry_line_list'
@@ -168,6 +173,7 @@ module NetSuite
     autoload :TaxType,                          'netsuite/records/tax_type'
     autoload :Task,                             'netsuite/records/task'
     autoload :Term,                             'netsuite/records/term'
+    autoload :TimeBill,                         'netsuite/records/time_bill'
     autoload :Transaction,                      'netsuite/records/transaction'
     autoload :UnitsType,                        'netsuite/records/units_type'
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
@@ -193,7 +199,7 @@ module NetSuite
   def self.configure_from_env(&block)
     NetSuite.configure do
       reset!
-      
+
       email         ENV['NETSUITE_EMAIL']     unless ENV['NETSUITE_EMAIL'].nil?
       password      ENV['NETSUITE_PASSWORD']  unless ENV['NETSUITE_PASSWORD'].nil?
       account       ENV['NETSUITE_ACCOUNT']   unless ENV['NETSUITE_ACCOUNT'].nil?

@@ -1,19 +1,15 @@
 module NetSuite
   module Records
-    class Location
+    class JobStatus
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::ListAcct
+      include Namespaces::ListRel
 
-      actions :add, :delete, :get, :get_list, :get_select_value, :search,
-        :update, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
-      fields :addr1, :addr2, :addr3, :addr_phone, :addr_text, :addressee, :attention, :city, :country, :include_children,
-        :is_inactive, :make_inventory_available, :make_inventory_available_store, :name, :override, :state, :tran_prefix, :zip
-
-      record_refs :logo, :parent
+      fields :description, :is_inactive, :name
 
       attr_reader :internal_id
       attr_accessor :external_id

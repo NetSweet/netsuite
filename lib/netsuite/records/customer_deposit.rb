@@ -18,9 +18,11 @@ module NetSuite
       actions :add, :get, :upsert
 
       fields :custom_form, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
-             :check_num
+             :check_num, :klass
 
-      record_refs :customer, :sales_order, :account
+      field :custom_field_list, CustomFieldList
+
+      record_refs :customer, :sales_order, :account, :department, :payment_method
 
       attr_reader :internal_id
       attr_accessor :external_id

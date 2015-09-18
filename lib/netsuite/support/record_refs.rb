@@ -9,12 +9,17 @@ module NetSuite
       module ClassMethods
 
         def record_refs(*names)
-          names.each do |name|
-            record_ref name
+          if names.empty?
+            @record_refs ||= Set.new
+          else
+            names.each do |name|
+              record_ref name
+            end
           end
         end
 
         def record_ref(name)
+          record_refs << name
           field name, NetSuite::Records::RecordRef
         end
 
