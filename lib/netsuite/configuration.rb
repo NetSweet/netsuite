@@ -63,11 +63,27 @@ module NetSuite
           wsdl_path = "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
         else
           wsdl_path = File.expand_path("../../../wsdl/#{api_version}.wsdl", __FILE__)
-          wsdl_path = "https://webservices.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl" unless File.exists? wsdl_path
+
+          unless File.exists? wsdl_path
+            wsdl_path = "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
+          end
         end
 
         attributes[:wsdl] ||= wsdl_path
       end
+    end
+
+    def wsdl_domain(wsdl_domain = nil)
+      if wsdl_domain
+        self.wsdl_domain = wsdl_domain
+      else
+        # if sandbox, this parameter is ignored
+        attributes[:wsdl_domain] ||= 'webservices.netsuite.com'
+      end
+    end
+
+    def wsdl_domain=(wsdl_domain)
+      attributes[:wsdl_domain] = wsdl_domain
     end
 
     def soap_header=(headers)

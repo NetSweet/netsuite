@@ -1,21 +1,22 @@
 module NetSuite
   module Records
     class Currency
-      include Support::Fields
-      include Support::RecordRefs
       include Support::Records
+      include Support::Fields
+
       include Support::Actions
+      include Support::RecordRefs
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :get_all, :add, :delete, :search
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/currency.html
 
-      fields :display_symbol, :exchange_rate, :format_sample, :incl_in_fx_rate_updated, :is_base_currency, :is_inactive,
-        :name, :override_currency_format, :symbol
+      actions :get, :get_list, :get_all, :add, :update, :upsert, :upsert_list, :delete
 
+      fields :name, :symbol, :is_base_currency, :is_inactive, :override_currency_format, :display_symbol, :symbol_placement,
+             :locale, :formatSample, :exchangeRate, :fx_rate_update_timezone, :incl_in_fx_rate_updates, :currency_precision
 
-      attr_reader   :internal_id
+      attr_reader :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

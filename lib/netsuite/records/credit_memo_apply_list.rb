@@ -1,24 +1,16 @@
 module NetSuite
   module Records
-    class CreditMemoApplyList
+    class CreditMemoApplyList < Support::Sublist
       include Namespaces::TranCust
 
-      def initialize(attributes = {})
-        case attributes[:apply]
-        when Hash
-          applies << CreditMemoApply.new(attributes[:apply])
-        when Array
-          attributes[:apply].each { |apply| applies << CreditMemoApply.new(apply) }
-        end
-      end
+      sublist :apply, CreditMemoApply
 
+      # for backward compatibility
       def applies
-        @applies ||= []
+        self.apply
       end
 
-      def to_record
-        { "#{record_namespace}:apply" => applies.map(&:to_record) }
-      end
     end
   end
 end
+\

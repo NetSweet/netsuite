@@ -17,7 +17,8 @@ module NetSuite
         :rev_rec_on_rev_commitment, :sales_effective_date, :ship_date, :shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :source,
         :start_date, :status, :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
-        :vsoe_auto_calc, :linked_tracking_numbers
+        :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
+        :amount, :is_ship_address
 
       field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress

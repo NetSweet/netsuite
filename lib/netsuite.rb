@@ -97,6 +97,8 @@ module NetSuite
     autoload :Customer,                         'netsuite/records/customer'
     autoload :CustomerAddressbook,              'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,          'netsuite/records/customer_addressbook_list'
+    autoload :CustomerCurrency,                 'netsuite/records/customer_currency'
+    autoload :CustomerCurrencyList,             'netsuite/records/customer_currency_list'
     autoload :CustomerDeposit,                  'netsuite/records/customer_deposit'
     autoload :CustomerPayment,                  'netsuite/records/customer_payment'
     autoload :CustomerPaymentApply,             'netsuite/records/customer_payment_apply'
@@ -110,6 +112,7 @@ module NetSuite
     autoload :Contact,                          'netsuite/records/contact'
     autoload :ContactAccessRoles,               'netsuite/records/contact_access_roles'
     autoload :ContactAccessRolesList,           'netsuite/records/contact_access_roles_list'
+    autoload :Currency,                         'netsuite/records/currency'
     autoload :Department,                       'netsuite/records/department'
     autoload :Deposit,                          'netsuite/records/deposit'
     autoload :DepositPayment,                   'netsuite/records/deposit_payment'
@@ -206,7 +209,7 @@ module NetSuite
   def self.configure_from_env(&block)
     NetSuite.configure do
       reset!
-      
+
       email         ENV['NETSUITE_EMAIL']     unless ENV['NETSUITE_EMAIL'].nil?
       password      ENV['NETSUITE_PASSWORD']  unless ENV['NETSUITE_PASSWORD'].nil?
       account       ENV['NETSUITE_ACCOUNT']   unless ENV['NETSUITE_ACCOUNT'].nil?

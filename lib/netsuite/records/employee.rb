@@ -1,7 +1,6 @@
 module NetSuite
   module Records
     class Employee < Support::Base
-      include Support::RecordRefs
       include Support::Actions
       include Support::RecordRefs
       include Namespaces::ListEmp
@@ -24,6 +23,10 @@ module NetSuite
 
       attr_reader :internal_id
       attr_accessor :external_id
+
+      def self.search_class_name
+        'Employee'
+      end
 
     end
   end

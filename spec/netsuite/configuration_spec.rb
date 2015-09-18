@@ -51,6 +51,16 @@ describe NetSuite::Configuration do
         expect(config.wsdl).to eql('https://webservices.netsuite.com/wsdl/v2013_1_0/netsuite.wsdl')
       end
     end
+
+    context 'when the API and wsdl domain have been set' do
+      it 'should correctly modify the full wsdl path' do
+        config.sandbox = false
+        config.api_version '2014_1'
+        config.wsdl_domain = 'system.na1.netsuite.com'
+
+        expect(config.wsdl).to eql('https://system.na1.netsuite.com/wsdl/v2014_1_0/netsuite.wsdl')
+      end
+    end
   end
 
   describe '#auth_header' do
@@ -192,13 +202,13 @@ describe NetSuite::Configuration do
   describe "#credentials" do
     context "when none are defined" do
       skip "should properly create the auth credentials" do
-        
+
       end
     end
 
     context "when they are defined" do
       it "should properly replace the default auth credentials" do
-        
+
       end
     end
   end

@@ -48,9 +48,10 @@ describe NetSuite::Records::Deposit do
         amount: 100,
         memo: "test"
       }
-      deposit.cash_back_list.cashback = attributes
+      
+      deposit.cash_back_list.deposit_cash_back = attributes
       expect(deposit.cash_back_list).to be_kind_of(NetSuite::Records::DepositCashBackList)
-      expect(deposit.cash_back_list.cashbacks.length).to eql(1)
+      expect(deposit.cash_back_list.deposit_cash_back.length).to eql(1)
     end
 
     it 'can be set from a DepositCashBackList object' do
