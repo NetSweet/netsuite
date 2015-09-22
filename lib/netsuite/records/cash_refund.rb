@@ -9,12 +9,12 @@ module NetSuite
 
       actions :add, :get, :delete, :initialize, :upsert
 
-      fields :tran_date, :to_be_emailed, :memo, :total
+      fields :tran_date, :to_be_emailed, :memo, :total, :currency_name, :exchange_rate, :source, :tax_rate
 
       field :item_list, CashRefundItemList
       field :custom_field_list, CustomFieldList
 
-      record_refs :entity, :custom_form, :payment_method, :created_from
+      record_refs :entity, :custom_form, :payment_method, :created_from, :account, :currency, :posting_period
 
       attr_reader :internal_id
       attr_accessor :external_id
