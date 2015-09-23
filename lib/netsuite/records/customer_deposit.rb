@@ -1,13 +1,8 @@
 module NetSuite
   module Records
-    # Adding a Customer Deposit example. The customer associated with the sales
-    # order would be linked to the deposit.
-    #
-    #   deposit = CustomerDeposit.new
-    #   deposit.sales_order = RecordRef.new(internal_id: 7279)
-    #   deposit.payment = 20
-    #   deposit.add
-    #
+
+    # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/customerdeposit.html
+
     class CustomerDeposit
       include Support::Actions
       include Support::RecordRefs

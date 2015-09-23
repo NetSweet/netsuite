@@ -383,6 +383,14 @@ NetSuite::Records::CustomRecord.get_list(
 ).each do |record|
   # do your thing...
 end
+
+# Adding a Customer Deposit example. The customer associated with the
+# sales order would be linked to the deposit.
+
+deposit = CustomerDeposit.new
+deposit.sales_order = RecordRef.new(internal_id: 7279)
+deposit.payment = 20
+deposit.add
 ```
 
 #### Non-standard Operations
