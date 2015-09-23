@@ -10,14 +10,15 @@ module NetSuite
       include Support::Records
       include Namespaces::TranCust
 
-      actions :add, :get, :upsert
 
-      fields :custom_form, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
-             :check_num, :klass
+      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert
+
+      fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
+             :check_num, :klass, :currency_name, :is_recurring_payment
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :customer, :sales_order, :account, :department, :payment_method
+      record_refs :customer, :sales_order, :account, :department, :payment_method, :custom_form, :currency, :posting_period
 
       attr_reader :internal_id
       attr_accessor :external_id
