@@ -21,7 +21,9 @@ module NetSuite
       field :transaction_ship_address, ShipAddress
       field :item_list,                ItemFulfillmentItemList
       field :package_list,             ItemFulfillmentPackageList
+      field :package_fed_ex_list,      ItemFulfillmentPackageFedExList      
       field :package_ups_list,         ItemFulfillmentPackageUpsList
+      field :package_usps_list,        ItemFulfillmentPackageUspsList
       field :custom_field_list,        CustomFieldList
 
       attr_reader   :internal_id
