@@ -187,6 +187,7 @@ module NetSuite
     autoload :VendorBillExpenseList,            'netsuite/records/vendor_bill_expense_list'
     autoload :VendorBillItem,                   'netsuite/records/vendor_bill_item'
     autoload :VendorBillItemList,               'netsuite/records/vendor_bill_item_list'
+    autoload :VendorCategory,                   'netsuite/records/vendor_category'
     autoload :VendorPayment,                    'netsuite/records/vendor_payment'
     autoload :VendorPaymentApply,               'netsuite/records/vendor_payment_apply'
     autoload :VendorPaymentApplyList,           'netsuite/records/vendor_payment_apply_list'
