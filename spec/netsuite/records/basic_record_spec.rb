@@ -7,7 +7,8 @@ describe 'basic records' do
       NetSuite::Records::Location,
       NetSuite::Records::JobStatus,
       NetSuite::Records::TimeBill,
-      NetSuite::Records::Customer
+      NetSuite::Records::Customer,
+      NetSuite::Records::Invoice
     ]
   }
 
@@ -28,7 +29,11 @@ describe 'basic records' do
 
       standard_fields = (record_class.fields - record_class.record_refs).to_a
       custom_object_fields = standard_fields.select { |f| !record_instance.send(f).nil? }
+      sublist_fields = custom_object_fields.select { |f| record_instance.send(f).kind_of?(NetSuite::Support::Sublist) }
+
+      custom_object_fields -= sublist_fields
       standard_fields -= custom_object_fields
+      standard_fields -= sublist_fields
 
       # ensure that all fields can be set
       standard_fields.each { |f| expect(record_instance).to have_field(f) }
@@ -44,6 +49,13 @@ describe 'basic records' do
         sample_record_ref_field = record_class.record_refs.to_a.sample
 
         record_instance.send(:"#{sample_record_ref_field}=".to_sym, { internal_id: 1 })
+      end
+
+      if !sublist_fields.empty?
+        sublist_fields.each do |sublist_field|
+          # TODO make a sublist entry with some fields valid for that sublist item
+          record_instance.send(sublist_field) << {}
+        end
       end
 
       expect(record_instance.to_record).to be_a(Hash)
