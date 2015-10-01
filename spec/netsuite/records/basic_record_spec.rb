@@ -8,7 +8,8 @@ describe 'basic records' do
       NetSuite::Records::JobStatus,
       NetSuite::Records::TimeBill,
       NetSuite::Records::Customer,
-      NetSuite::Records::Invoice
+      NetSuite::Records::Invoice,
+      NetSuite::Records::VendorCategory
     ]
   }
 
