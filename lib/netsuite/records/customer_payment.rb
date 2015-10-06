@@ -13,7 +13,7 @@ module NetSuite
         :cc_expire_date, :cc_name, :cc_number, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code,
         :charge_it, :check_num, :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :ignore_avs,
         :last_modified_date, :memo, :payment, :pn_ref_num, :status, :three_d_status_code, :tran_date,
-        :undep_funds, :valid_from
+        :undep_funds, :valid_from, :tran_id
 
       field :custom_field_list, CustomFieldList
       field :apply_list,        CustomerPaymentApplyList
