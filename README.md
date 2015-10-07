@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NetSweet/netsuite.svg)](https://travis-ci.org/NetSweet/netsuite)
+[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
 
 # NetSuite Ruby SuiteTalk Gem
 
