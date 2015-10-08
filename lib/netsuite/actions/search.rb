@@ -63,8 +63,12 @@ module NetSuite
         criteria = @options[:criteria] || @options
 
         # TODO find cleaner solution for pulling the namespace of the record, which is a instance method
-        example_instance = @klass.new
-        namespace = example_instance.record_namespace
+        namespace = if @klass.respond_to?(:search_class_namespace)
+          @klass.search_class_namespace
+        else
+          @klass.new.record_namespace
+        end
+
         # extract the class name
 
         criteria_structure = {}
