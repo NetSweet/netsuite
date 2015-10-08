@@ -22,12 +22,14 @@ module NetSuite
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
 
-        preferences = NetSuite::Configuration.auth_header(credentials).merge(
-          (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-            h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
-            h
-          end
-        )
+        preferences = NetSuite::Configuration.auth_header(credentials)
+          .update(NetSuite::Configuration.soap_header)
+          .merge(
+            (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+              h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
+              h
+            end
+          )
 
         NetSuite::Configuration
           .connection({ soap_header: preferences }, credentials)
