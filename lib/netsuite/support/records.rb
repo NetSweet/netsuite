@@ -16,7 +16,7 @@ module NetSuite
           elsif v.respond_to?(:to_record)
             v = v.to_record
           end
-          
+
           hash[kname] = v
           hash
         end
@@ -40,7 +40,7 @@ module NetSuite
           hash[:attributes!][kname] ||= {}
           hash[:attributes!][kname]['type'] = v.type.lower_camelcase
         end
-        
+
         if v.kind_of?(NetSuite::Records::CustomRecordRef) && v.type_id
           hash[:attributes!] ||= {}
           hash[:attributes!][kname] ||= {}
@@ -50,6 +50,15 @@ module NetSuite
 
       def record_type
         "#{record_namespace}:#{self.class.to_s.split('::').last}"
+      end
+
+      def refresh(credentials = {})
+        fresh_record = self.class.get(self.internal_id, credentials)
+
+        self.attributes = fresh_record.send(:attributes)
+        self.external_id = fresh_record.external_id
+
+        self
       end
 
     end
