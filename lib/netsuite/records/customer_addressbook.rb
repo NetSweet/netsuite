@@ -5,15 +5,20 @@ module NetSuite
       include Support::Records
       include Namespaces::ListRel
 
-      # internalId is a bit strange on this record
-      # https://github.com/NetSweet/netsuite/wiki/Miscellaneous-Web-Services-Quirks#customer
+      # address implementation changed
+      # https://github.com/NetSweet/netsuite/pull/213
 
-      fields :default_shipping, :default_billing, :is_residential, :label, :attention, :addressee,
-        :phone, :addr1, :addr2, :addr3, :city, :zip, :override, :state, :internal_id
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2015_1/schema/other/customeraddressbook.html?mode=package
 
+      fields :default_shipping, :default_billing, :is_residential, :label, :internal_id
+
+      # NOTE API < 2014_2
+      fields :attention, :addressee, :phone, :addr1, :addr2, :addr3, :city, :zip, :override, :state
       field :country, NetSuite::Support::Country
-
       read_only_fields :addr_text
+
+      # NOTE API >= 2014_2
+      field :addressbook_address, Address
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
@@ -26,23 +31,32 @@ module NetSuite
       end
 
       def initialize_from_record(obj)
-        self.default_shipping = obj.default_shipping
-        self.default_billing  = obj.default_billing
-        self.is_residential   = obj.is_residential
-        self.label            = obj.label
-        self.attention        = obj.attention
-        self.addressee        = obj.addressee
-        self.phone            = obj.phone
-        self.addr1            = obj.addr1
-        self.addr2            = obj.addr2
-        self.addr3            = obj.addr3
-        self.city             = obj.city
-        self.zip              = obj.zip
-        self.country          = obj.country
-        self.addr_text        = obj.addr_text
-        self.override         = obj.override
-        self.state            = obj.state
-        self.internal_id      = obj.internal_id
+        if NetSuite::Configuration.api_version < "2014_2"
+          self.default_shipping = obj.default_shipping
+          self.default_billing  = obj.default_billing
+          self.is_residential   = obj.is_residential
+          self.label            = obj.label
+          self.attention        = obj.attention
+          self.addressee        = obj.addressee
+          self.phone            = obj.phone
+          self.addr1            = obj.addr1
+          self.addr2            = obj.addr2
+          self.addr3            = obj.addr3
+          self.city             = obj.city
+          self.zip              = obj.zip
+          self.country          = obj.country
+          self.addr_text        = obj.addr_text
+          self.override         = obj.override
+          self.state            = obj.state
+          self.internal_id      = obj.internal_id
+        else
+          self.addressbook_address = obj.addressbook_address
+          self.default_billing  = obj.default_billing
+          self.default_shipping = obj.default_shipping
+          self.internal_id      = obj.internal_id
+          self.is_residential   = obj.is_residential
+          self.label            = obj.label
+        end
       end
 
     end
