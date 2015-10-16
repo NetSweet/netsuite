@@ -114,6 +114,12 @@ NetSuite::Records::BaseRefList.get_select_value(
   }
 )
 
+# using get_select_value with a standard record
+NetSuite::Records::BaseRefList.get_select_value(
+  recordType: 'serviceSaleItem',
+  field: 'taxSchedule'
+)
+
 # updating a custom field list
 # you need to push ALL the values of ALL of the custom fields that you want set on the record
 # you can't just push the values of the fields that you want to update: all of the values of
