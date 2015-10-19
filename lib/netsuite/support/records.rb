@@ -57,6 +57,7 @@ module NetSuite
 
         self.attributes = fresh_record.send(:attributes)
         self.external_id = fresh_record.external_id
+        self.errors = nil
 
         self
       end
