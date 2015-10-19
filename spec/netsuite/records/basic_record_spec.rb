@@ -11,7 +11,8 @@ describe 'basic records' do
       NetSuite::Records::Invoice,
       NetSuite::Records::PayrollItem,
       NetSuite::Records::Opportunity,
-      NetSuite::Records::VendorCategory
+      NetSuite::Records::VendorCategory,
+      NetSuite::Records::Deposit,
     ]
   }
 
