@@ -7,8 +7,8 @@ module NetSuite
       # for backward compatibility
       def applies
         self.apply
-        @applies ||= []
       end
+
     end
   end
 end

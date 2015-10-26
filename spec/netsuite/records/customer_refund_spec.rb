@@ -18,7 +18,7 @@ describe NetSuite::Records::CustomerRefund do
   it 'has all the right record refs' do
     [
       :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location,
-      :payment_method, :posting_period, :subsidiary, :void_journal
+      :payment_method, :posting_period, :subsidiary, :void_journal, :currency
     ].each do |record_ref|
       expect(refund).to have_record_ref(record_ref)
     end
