@@ -34,7 +34,7 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert,
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
-        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
+        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item, :currency
 
       attr_reader :internal_id
       attr_accessor :external_id
