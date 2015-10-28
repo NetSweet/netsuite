@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe NetSuite::Records::CustomerAddressbook do
+  # address schema changed in 2014.2. We support < 2014.2 schema, but we don't test support
+
+  before do
+    NetSuite::Configuration.api_version = '2014_2'
+  end
+
   let(:attributes) do
     {
       :addressbook => {
@@ -20,16 +26,19 @@ describe NetSuite::Records::CustomerAddressbook do
         :label            => '123 Happy Lane'
       }
     }
-  end      
+  end
+
   let(:list) { NetSuite::Records::CustomerAddressbook.new(attributes) }
 
   it 'has all the right fields' do
     [
-      :addressbook_address, :default_billing, :default_shipping, :internal_id, 
+      :default_billing, :default_shipping, :internal_id,
                :is_residential, :label
     ].each do |field|
       expect(list).to have_field(field)
     end
+
+    expect(list.addressbook_address).to_not be_nil
   end
 
   describe '#initialize' do

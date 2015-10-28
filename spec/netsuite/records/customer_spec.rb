@@ -55,7 +55,7 @@ describe NetSuite::Records::Customer do
         }
       }
       expect(customer.addressbook_list).to be_kind_of(NetSuite::Records::CustomerAddressbookList)
-      expect(customer.addressbook_list.addressbooks.length).to eql(1)
+      expect(customer.addressbook_list.addressbook.length).to eql(1)
     end
 
     it 'can be set from a CustomerAddressbookList object' do
