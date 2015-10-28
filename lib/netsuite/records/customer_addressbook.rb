@@ -18,7 +18,7 @@ module NetSuite
       read_only_fields :addr_text
 
       # NOTE API >= 2014_2
-      field :addressbook_address, Address
+      field :addressbook_address, NetSuite::Records::Address
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
