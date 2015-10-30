@@ -13,6 +13,8 @@ describe 'basic records' do
       NetSuite::Records::Opportunity,
       NetSuite::Records::VendorCategory,
       NetSuite::Records::Deposit,
+      NetSuite::Records::RevRecTemplate,
+      NetSuite::Records::RevRecSchedule,
     ]
   }
 
