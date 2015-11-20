@@ -141,15 +141,15 @@ describe NetSuite::Records::JournalEntry do
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
       expect(entry.to_record).to eql({
-        'tranSales:tranId'   => '1234',
-        'tranSales:approved' => true
+        'tranGeneral:tranId'   => '1234',
+        'tranGeneral:approved' => true
       })
     end
   end
 
   describe '#record_type' do
     it 'returns a string type for the record to be used in a SOAP request' do
-      expect(entry.record_type).to eql('tranSales:JournalEntry')
+      expect(entry.record_type).to eql('tranGeneral:JournalEntry')
     end
   end
 
