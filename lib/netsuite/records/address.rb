@@ -8,9 +8,10 @@ module NetSuite
       # internalId is a bit strange on this record
       # https://github.com/NetSweet/netsuite/wiki/Miscellaneous-Web-Services-Quirks#customer
 
-      fields :addr1, :addr2, :addr3, :addressee, :addr_phone, :attention, :city, :custom_field_list, :internal_id, :override, :state, :zip
+      fields :addr1, :addr2, :addr3, :addressee, :addr_phone, :attention, :city, :internal_id, :override, :state, :zip
 
       field :country, NetSuite::Support::Country
+      field :custom_field_list, CustomFieldList
 
       read_only_fields :addr_text
 
