@@ -26,7 +26,7 @@ describe NetSuite::Records::Invoice do
       :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
       :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
       :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
-      :vat_reg_num, :vsoe_auto_calc
+      :vat_reg_num, :vsoe_auto_calc, :tax_rate
     ].each do |field|
       expect(invoice).to have_field(field)
     end
@@ -34,7 +34,7 @@ describe NetSuite::Records::Invoice do
 
   it 'has all the right read_only_fields' do
     [
-      :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied, :tax_rate,
+      :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied,
       :handling_cost, :recognized_revenue, :amount_remaining, :amount_paid
     ].each do |field|
       expect(NetSuite::Records::Invoice).to have_read_only_field(field)

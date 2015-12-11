@@ -39,6 +39,9 @@ module NetSuite
         "Transaction"
       end
 
+      def self.search_class_namespace
+        "tranSales"
+      end
     end
   end
 end

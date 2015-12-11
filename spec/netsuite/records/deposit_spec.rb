@@ -30,7 +30,7 @@ describe NetSuite::Records::Deposit do
           type: 'CashSale'
         }
       }
-      deposit.payment_list.payment = attributes
+      deposit.payment_list.deposit_payment = attributes
       expect(deposit.payment_list).to be_kind_of(NetSuite::Records::DepositPaymentList)
       expect(deposit.payment_list.payments.length).to eql(1)
     end
@@ -48,7 +48,7 @@ describe NetSuite::Records::Deposit do
         amount: 100,
         memo: "test"
       }
-      
+
       deposit.cash_back_list.deposit_cash_back = attributes
       expect(deposit.cash_back_list).to be_kind_of(NetSuite::Records::DepositCashBackList)
       expect(deposit.cash_back_list.deposit_cash_back.length).to eql(1)

@@ -1,20 +1,22 @@
+# https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2015_1/schema/record/revrecschedule.html
+
 module NetSuite
   module Records
-    class CashRefund
+    class RevRecSchedule
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::TranCust
+      include Namespaces::ListAcct
 
-      actions :add, :get, :delete, :initialize, :upsert
+      actions :get, :get_list, :add, :update, :upsert, :delete, :search
 
-      fields :tran_id, :tran_date, :to_be_emailed, :memo, :total, :currency_name, :exchange_rate, :source, :tax_rate
+      fields :initial_amount, :is_inactive, :name, :period_offset, :rev_rec_offset,
+             :amortization_period
 
-      field :item_list, CashRefundItemList
-      field :custom_field_list, CustomFieldList
+      record_refs :amortization_type, :recog_interval_src, :recurrence_type
 
-      record_refs :entity, :custom_form, :payment_method, :created_from, :account, :currency, :posting_period
+      # recurrenceList	RevRecScheduleRecurrenceList	0..1
 
       attr_reader :internal_id
       attr_accessor :external_id
@@ -24,6 +26,7 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
+
     end
   end
 end
