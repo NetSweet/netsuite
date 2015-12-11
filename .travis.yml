@@ -1,3 +1,0 @@
-notifications:
-  email: false
-script: bundle exec rspec

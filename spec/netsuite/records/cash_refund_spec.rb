@@ -6,7 +6,7 @@ describe NetSuite::Records::CashRefund do
 
   it 'has all the right fields' do
     [
-      :tran_date, :to_be_emailed, :memo
+      :tran_date, :to_be_emailed, :memo, :tran_id
     ].each do |field|
       expect(cashrefund).to have_field(field)
     end

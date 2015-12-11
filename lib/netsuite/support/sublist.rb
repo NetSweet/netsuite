@@ -34,7 +34,7 @@ module NetSuite
         rec = { "#{record_namespace}:#{sublist_key.to_s.lower_camelcase}" => send(self.sublist_key).map(&:to_record) }
 
         if !replace_all.nil?
-          rec["#{record_namespace}:replaceAll"] = replace_all
+          rec["#{record_namespace}:replaceAll"] = !!replace_all
         end
 
         rec

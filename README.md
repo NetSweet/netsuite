@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NetSweet/netsuite.svg)](https://travis-ci.org/NetSweet/netsuite)
+[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
 
 # NetSuite Ruby SuiteTalk Gem
 
@@ -112,6 +112,12 @@ NetSuite::Records::BaseRefList.get_select_value(
     '@internalId' => 10,
     '@xsi:type' => 'customRecord'
   }
+)
+
+# using get_select_value with a standard record
+NetSuite::Records::BaseRefList.get_select_value(
+  recordType: 'serviceSaleItem',
+  field: 'taxSchedule'
 )
 
 # updating a custom field list
@@ -383,6 +389,14 @@ NetSuite::Records::CustomRecord.get_list(
 ).each do |record|
   # do your thing...
 end
+
+# Adding a Customer Deposit example. The customer associated with the
+# sales order would be linked to the deposit.
+
+deposit = CustomerDeposit.new
+deposit.sales_order = RecordRef.new(internal_id: 7279)
+deposit.payment = 20
+deposit.add
 ```
 
 #### Non-standard Operations
@@ -404,4 +418,14 @@ states = NetSuite::Configuration.connection.call(:get_all, message: {
   }
 })
 states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
+```
+
+#### 2015_2 ApplicationId Support
+
+```ruby
+NetSuite::Configuration.soap_header = {
+	'platformMsgs:ApplicationInfo' => {
+  		'platformMsgs:applicationId' => 'your-netsuite-app-id'
+	}
+}
 ```

@@ -116,10 +116,7 @@ describe NetSuite::Configuration do
 
     context 'when the email has not been set' do
       it 'raises a ConfigurationError' do
-        expect {
-          config.email
-        }.to raise_error(NetSuite::ConfigurationError,
-          '#email is a required configuration value. Please set it by calling NetSuite::Configuration.email = "me@example.com"')
+        expect(config.email).to be_nil
       end
     end
   end
@@ -137,10 +134,7 @@ describe NetSuite::Configuration do
 
     context 'when the password has not been set' do
       it 'raises a ConfigurationError' do
-        expect {
-          config.password
-        }.to raise_error(NetSuite::ConfigurationError,
-          '#password is a required configuration value. Please set it by calling NetSuite::Configuration.password = "my_pass"')
+        expect(config.password).to be_nil
       end
     end
   end
@@ -158,10 +152,7 @@ describe NetSuite::Configuration do
 
     context 'when the account has not been set' do
       it 'raises a ConfigurationError' do
-        expect {
-          config.account
-        }.to raise_error(NetSuite::ConfigurationError,
-          '#account is a required configuration value. Please set it by calling NetSuite::Configuration.account = 1234')
+        expect(config.account).to be_nil
       end
     end
   end

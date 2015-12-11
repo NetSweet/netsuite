@@ -1,35 +1,15 @@
 module NetSuite
   module Records
-    class DepositPaymentList
-      include Support::Fields
+    class DepositPaymentList < Support::Sublist
       include Namespaces::TranBank
 
-      attr_accessor :replace_all
+      sublist :deposit_payment, DepositPayment
 
-      fields :deposit_payment
-
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
-
-      def payment=(payments)
-        case payments
-        when Hash
-          self.payments << DepositPayment.new(payments)
-        when Array
-          payments.each { |p| self.payments << DepositPayment.new(p) }
-        end
-      end
-
+      # legacy support
       def payments
-        @payments ||= []
+        self.deposit_payment
       end
 
-      def to_record
-        rec = { "#{record_namespace}:depositPayment" => payments.map(&:to_record) }
-        rec[:@replaceAll] = @replace_all unless @replace_all.nil?
-        rec
-      end
     end
   end
 end
