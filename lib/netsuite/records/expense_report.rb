@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::TranSales
+      include Namespaces::TranEmp
 
       actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
@@ -30,6 +30,10 @@ module NetSuite
 
       def self.search_class_name
         "Transaction"
+      end
+
+      def self.search_class_namespace
+        "tranSales"
       end
 
     end
