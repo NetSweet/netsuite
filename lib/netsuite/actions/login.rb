@@ -38,14 +38,18 @@ module NetSuite
         rescue Savon::SOAPFault => e
           error_details = e.to_hash[:fault]
 
-          return NetSuite::Response.new(
-            success: false,
-            errors: [ NetSuite::Error.new(
-              code: error_details[:detail][:invalid_credentials_fault][:code],
-              message: error_details[:faultstring]
-            )],
-            body: error_details
-          )
+          if error_details[:detail].has_key?(:invalid_credentials_fault)
+            return NetSuite::Response.new(
+              success: false,
+              errors: [ NetSuite::Error.new(
+                code: error_details[:detail][:invalid_credentials_fault][:code],
+                message: error_details[:faultstring]
+              )],
+              body: error_details
+            )
+          else
+            raise(e)
+          end
         end
 
         # include more data in body; leave it up to the user to pull the data they are looking for
