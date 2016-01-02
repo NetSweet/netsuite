@@ -11,7 +11,7 @@ module NetSuite
 
       actions :get, :add, :delete, :search, :get_list
 
-      fields :content, :description, :name, :media_type_name, :file_type, :text_file_encoding
+      fields :content, :description, :name, :media_type_name, :file_type, :text_file_encoding, :created_date, :last_modified_date
 
       record_refs :folder, :klass
 
