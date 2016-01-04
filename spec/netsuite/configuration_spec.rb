@@ -204,4 +204,14 @@ describe NetSuite::Configuration do
     end
   end
 
+  it '#wsdl_domain' do
+    expect(config.wsdl_domain).to eq('webservices.netsuite.com')
+
+    config.wsdl_domain = 'custom.domain.com'
+    expect(config.wsdl_domain).to eq('custom.domain.com')
+
+    config.sandbox = true
+    expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
+  end
+
 end
