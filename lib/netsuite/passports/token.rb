@@ -4,7 +4,7 @@ module NetSuite
       attr_reader :account, :consumer_key, :consumer_secret, :token_id, :token_secret
 
       def initialize(account, consumer_key, consumer_secret, token_id, token_secret)
-        @account = account
+        @account = account.to_s
         @consumer_key = consumer_key
         @consumer_secret = consumer_secret
         @token_id = token_id

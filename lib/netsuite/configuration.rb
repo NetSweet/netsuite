@@ -105,7 +105,7 @@ module NetSuite
     end
 
     def auth_header(credentials={})
-      if credentials[:consumer_key].present? || consumer_key.present?
+      if !credentials[:consumer_key].blank? || !consumer_key.blank?
         token_auth(credentials)
       else
         user_auth(credentials)
