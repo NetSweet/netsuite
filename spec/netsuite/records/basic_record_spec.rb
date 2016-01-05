@@ -17,6 +17,7 @@ describe 'basic records' do
       NetSuite::Records::RevRecSchedule,
       NetSuite::Records::JournalEntry,
       NetSuite::Records::Classification,
+      NetSuite::Records::SalesOrder,
     ]
   }
 

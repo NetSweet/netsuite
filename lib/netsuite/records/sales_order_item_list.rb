@@ -1,31 +1,11 @@
 module NetSuite
   module Records
-    class SalesOrderItemList
-      include Support::Fields
+    class SalesOrderItemList < Support::Sublist
       include Namespaces::TranSales
 
-      fields :item
+      sublist :item, SalesOrderItem
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
-
-      def item=(items)
-        case items
-        when Hash
-          self.items << SalesOrderItem.new(items)
-        when Array
-          items.each { |item| self.items << SalesOrderItem.new(item) }
-        end
-      end
-
-      def items
-        @items ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:item" => items.map(&:to_record) }
-      end
+      alias :items :item
     end
   end
 end
