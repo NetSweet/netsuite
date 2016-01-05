@@ -105,14 +105,30 @@ module NetSuite
     end
 
     def auth_header(credentials={})
-      {
-        'platformMsgs:passport' => {
-          'platformCore:email'    => credentials[:email] || email,
-          'platformCore:password' => credentials[:password] || password,
-          'platformCore:account'  => credentials[:account] || account.to_s,
-          'platformCore:role'     => { :@internalId => credentials[:role] || role }
-        }
-      }
+      if credentials[:consumer_key].present? || consumer_key.present?
+        token_auth(credentials)
+      else
+        user_auth(credentials)
+      end
+    end
+
+    def user_auth(credentials)
+      NetSuite::Passports::User.new(
+        credentials[:account] || account,
+        credentials[:email] || email,
+        credentials[:password] || password,
+        credentials[:role] || role
+      ).passport
+    end
+
+    def token_auth(credentials)
+      NetSuite::Passports::Token.new(
+        credentials[:account] || account,
+        credentials[:consumer_key] || consumer_key,
+        credentials[:consumer_secret] || consumer_secret,
+        credentials[:token_id] || token_id,
+        credentials[:token_secret] || token_secret
+      ).passport
     end
 
     def namespaces
@@ -184,6 +200,54 @@ module NetSuite
         self.account = account
       else
         attributes[:account]
+      end
+    end
+
+    def consumer_key=(consumer_key)
+      attributes[:consumer_key] = consumer_key
+    end
+
+    def consumer_key(consumer_key = nil)
+      if consumer_key
+        self.consumer_key = consumer_key
+      else
+        attributes[:consumer_key]
+      end
+    end
+
+    def consumer_secret=(consumer_secret)
+      attributes[:consumer_secret] = consumer_secret
+    end
+
+    def consumer_secret(consumer_secret = nil)
+      if consumer_secret
+        self.consumer_secret = consumer_secret
+      else
+        attributes[:consumer_secret]
+      end
+    end
+
+    def token_id=(token_id)
+      attributes[:token_id] = token_id
+    end
+
+    def token_id(token_id = nil)
+      if token_id
+        self.token_id = token_id
+      else
+        attributes[:token_id]
+      end
+    end
+
+    def token_secret=(token_secret)
+      attributes[:token_secret] = token_secret
+    end
+
+    def token_secret(token_secret = nil)
+      if token_secret
+        self.token_secret = token_secret
+      else
+        attributes[:token_secret]
       end
     end
 
