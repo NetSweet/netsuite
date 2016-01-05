@@ -4,7 +4,7 @@ module NetSuite
       attr_reader :account, :email, :password, :role
 
       def initialize(account, email, password, role)
-        @account = account
+        @account = account.to_s
         @email = email
         @password = password
         @role = role
