@@ -203,6 +203,11 @@ module NetSuite
     autoload :WorkOrderItemList,                'netsuite/records/work_order_item_list'
   end
 
+  module Passports
+    autoload :User,  'netsuite/passports/user'
+    autoload :Token, 'netsuite/passports/token'
+  end
+
   def self.configure(&block)
     NetSuite::Configuration.instance_eval(&block)
   end
