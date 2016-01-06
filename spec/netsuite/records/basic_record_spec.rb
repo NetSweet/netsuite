@@ -18,6 +18,7 @@ describe 'basic records' do
       NetSuite::Records::JournalEntry,
       NetSuite::Records::Classification,
       NetSuite::Records::SalesOrder,
+      NetSuite::Records::CustomerDeposit,
     ]
   }
 
