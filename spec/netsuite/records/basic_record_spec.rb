@@ -19,6 +19,8 @@ describe 'basic records' do
       NetSuite::Records::Classification,
       NetSuite::Records::SalesOrder,
       NetSuite::Records::CustomerDeposit,
+      NetSuite::Records::NonInventoryPurchaseItem,
+      NetSuite::Records::NonInventoryResaleItem,
     ]
   }
 
