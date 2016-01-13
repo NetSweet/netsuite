@@ -2,6 +2,8 @@ module NetSuite
   module Utilities
     extend self
 
+    # TODO need structured logger for various statements
+
     def backoff(options = {})
       count = 0
       begin
@@ -14,29 +16,28 @@ module NetSuite
         if count >= (options[:attempts] || 8)
           raise e
         end
-        log.warn("concurrent request failure", sleep: count, attempt: count)
+        # log.warn("concurrent request failure", sleep: count, attempt: count)
         sleep(count)
         retry
       end
     end
 
     def request_failed?(ns_object)
-      return false if ns_object.errors.nil?
-      return false if ns_object.errors.empty?
+      return false if ns_object.errors.nil? || ns_object.errors.empty?
 
       warnings = ns_object.errors.select{|x| x.type == "WARN"}
       errors = ns_object.errors.select{|x| x.type == "ERROR"}
 
-      warnings.each do |warn|
-        log.warn(warn.message, code: warn.code)
-      end
+      # warnings.each do |warn|
+      #   log.warn(warn.message, code: warn.code)
+      # end
 
       return errors.size > 0
     end
 
     def get_record(record_klass, id, external_id: false)
       begin
-        log.debug("get record", netsuite_record_type: record_klass.name, netsuite_record_id: id)
+        # log.debug("get record", netsuite_record_type: record_klass.name, netsuite_record_id: id)
 
         if external_id
           return backoff { record_klass.get(external_id: id) }
@@ -44,7 +45,7 @@ module NetSuite
           return backoff { record_klass.get(id) }
         end
       rescue ::NetSuite::RecordNotFound
-        log.warn("record not found", ns_record_type: record_klass.name, ns_record_id: id)
+        # log.warn("record not found", ns_record_type: record_klass.name, ns_record_id: id)
         return nil
       end
     end
@@ -80,14 +81,13 @@ module NetSuite
         }) }
 
         if search.results.first
-          @netsuite_find_record_cache[name] = search.results.first
-          return search.results.first
+          return @netsuite_find_record_cache[name] = search.results.first
         end
       end
 
+      # TODO use custom error type
       raise "No record with named the following: #{names.join(', ')}"
     end
-
 
     # Warning this was developed with a Web Services user whose time zone was set to CST
     # the time zone setting of the user seems to effect how times work in NS
