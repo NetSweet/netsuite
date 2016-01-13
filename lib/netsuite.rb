@@ -229,4 +229,12 @@ module NetSuite
     self.configure(&block) if block
   end
 
+  def self.call(credentials: {}, operation: nil, message: nil, backoff: nil)
+    if backoff
+      NetSuite::Utilities.backoff { NetSuite::Configuration.connection({}, credentials).call(operation, message: message) }
+    else
+      NetSuite::Configuration.connection({}, credentials).call(operation, message: message)
+    end
+  end
+
 end
