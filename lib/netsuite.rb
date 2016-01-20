@@ -183,6 +183,7 @@ module NetSuite
     autoload :Subsidiary,                       'netsuite/records/subsidiary'
     autoload :SupportCase,                      'netsuite/records/support_case'
     autoload :TaxType,                          'netsuite/records/tax_type'
+    autoload :TaxGroup,                         'netsuite/records/tax_group'
     autoload :Task,                             'netsuite/records/task'
     autoload :Term,                             'netsuite/records/term'
     autoload :TimeBill,                         'netsuite/records/time_bill'
