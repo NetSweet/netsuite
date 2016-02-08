@@ -14,7 +14,7 @@ module NetSuite
       actions :get, :get_list, :initialize, :add, :delete, :update, :upsert
 
       fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
-             :check_num, :klass, :currency_name, :is_recurring_payment
+             :check_num, :klass, :currency_name, :is_recurring_payment, :charge_it
 
       field :custom_field_list, CustomFieldList
 
