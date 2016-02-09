@@ -14,7 +14,7 @@ describe NetSuite::Records::CashRefund do
 
   it 'has all the right record refs' do
     [
-      :entity, :custom_form, :payment_method, :created_from
+      :entity, :custom_form, :payment_method, :created_from, :klass
     ].each do |record_ref|
       expect(cashrefund).to have_record_ref(record_ref)
     end
