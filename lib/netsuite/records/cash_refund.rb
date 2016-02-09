@@ -14,7 +14,7 @@ module NetSuite
       field :item_list, CashRefundItemList
       field :custom_field_list, CustomFieldList
 
-      record_refs :entity, :custom_form, :payment_method, :created_from, :account, :currency, :posting_period
+      record_refs :entity, :custom_form, :payment_method, :created_from, :klass, :account, :currency, :posting_period
 
       attr_reader :internal_id
       attr_accessor :external_id
