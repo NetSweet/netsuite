@@ -261,6 +261,12 @@ module NetSuite
         end
       end
 
+      def ==(other)
+        other.class == self.class && other.to_iso == self.to_iso
+      end
+
+      alias :eql? :==
+
       def to_iso
         ISO_TO_NETSUITE.key(@id)
       end
