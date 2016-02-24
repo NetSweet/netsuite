@@ -9,9 +9,9 @@ module NetSuite
 
       actions :get, :add, :delete, :search, :get_list
 
-      fields :content, :description, :folder, :name, :media_type_name, :file_type, :text_file_encoding
+      fields :content, :description, :name, :media_type_name, :file_type, :text_file_encoding
 
-      record_refs :klass
+      record_refs :folder, :klass
 
       read_only_fields :url
 
