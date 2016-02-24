@@ -11,7 +11,7 @@ module NetSuite
 
       fields :content, :description, :name, :media_type_name, :file_type, :text_file_encoding
 
-      record_refs :klass
+      record_refs :folder, :klass
 
       read_only_fields :url
 
