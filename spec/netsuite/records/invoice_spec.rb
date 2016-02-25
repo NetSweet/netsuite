@@ -198,6 +198,35 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '#attach_file' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+    let(:file) { double('file') }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        invoice = NetSuite::Records::Invoice.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([invoice, file], {}).
+          and_return(response)
+        expect(invoice.attach_file(file)).to be_truthy
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        invoice = NetSuite::Records::Invoice.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([invoice, file], {}).
+          and_return(response)
+        expect(invoice.attach_file(file)).to be_falsey
+      end
+    end
+  end
+
   describe '#delete' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
