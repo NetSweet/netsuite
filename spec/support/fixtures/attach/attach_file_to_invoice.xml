@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_1220201115821392011296470399_67055c545d0</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <attachResponse xmlns="urn:messages_2_5.platform.webservices.netsuite.com">
+      <writeResponse xmlns="urn:messages_2_5.platform.webservices.netsuite.com">
+        <ns1:status isSuccess="true" xmlns:ns1="urn:core_2_5.platform.webservices.netsuite.com"/>
+        <baseRef internalId="999" type="invoice" xsi:type="ns2:RecordRef" xmlns:ns2="urn:core_2_5.platform.webservices.netsuite.com"/>
+      </writeResponse>
+    </attachResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -49,7 +49,15 @@ module NetSuite
       end
 
       def record_type
-        "#{record_namespace}:#{self.class.to_s.split('::').last}"
+        "#{record_namespace}:#{record_type_without_namespace}"
+      end
+
+      def type
+        record_type_without_namespace.downcase
+      end
+
+      def record_type_without_namespace
+        "#{self.class.to_s.split('::').last}"
       end
 
       def refresh(credentials = {})
