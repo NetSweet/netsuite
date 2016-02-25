@@ -9,7 +9,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/invoice.html?mode=package
 
-      actions :get, :get_deleted, :get_list, :initialize, :add, :update, :delete, :upsert, :upsert_list, :search
+      actions :attach_file, :get, :get_deleted, :get_list, :initialize, :add, :update, :delete, :upsert, :upsert_list, :search
 
       fields :balance,
         :billing_schedule, :contrib_pct, :created_date, :currency_name,

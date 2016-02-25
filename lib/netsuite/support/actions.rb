@@ -18,6 +18,8 @@ module NetSuite
 
         def action(name)
           case name
+          when :attach_file
+            self.send(:include, NetSuite::Actions::AttachFile::Support)
           when :get
             self.send(:include, NetSuite::Actions::Get::Support)
           when :get_all
