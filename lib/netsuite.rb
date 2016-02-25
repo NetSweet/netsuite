@@ -128,6 +128,7 @@ module NetSuite
     autoload :Duration,                         'netsuite/records/duration'
     autoload :Employee,                         'netsuite/records/employee'
     autoload :File,                             'netsuite/records/file'
+    autoload :Folder,                           'netsuite/records/folder'
     autoload :InventoryAssignment,              'netsuite/records/inventory_assignment'
     autoload :InventoryAssignmentList,          'netsuite/records/inventory_assignment_list'
     autoload :InventoryDetail,                  'netsuite/records/inventory_detail'
