@@ -6,7 +6,7 @@ module NetSuite
       include Support::Records
       include Namespaces::TranCust
 
-      fields :amount, :rate
+      fields :amount, :rate, :quantity
       field :custom_field_list,    CustomFieldList
 
       record_refs :item, :klass, :price
