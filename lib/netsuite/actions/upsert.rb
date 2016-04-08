@@ -55,7 +55,6 @@ module NetSuite
       end
 
       def response_hash
-        byebug
         @response_hash ||= @response.to_hash[:upsert_response][:write_response]
       end
 
