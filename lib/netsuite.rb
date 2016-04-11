@@ -128,6 +128,7 @@ module NetSuite
     autoload :Duration,                         'netsuite/records/duration'
     autoload :Employee,                         'netsuite/records/employee'
     autoload :File,                             'netsuite/records/file'
+    autoload :Folder,                           'netsuite/records/folder'
     autoload :InventoryAssignment,              'netsuite/records/inventory_assignment'
     autoload :InventoryAssignmentList,          'netsuite/records/inventory_assignment_list'
     autoload :InventoryDetail,                  'netsuite/records/inventory_detail'
@@ -204,6 +205,11 @@ module NetSuite
     autoload :WorkOrder,                        'netsuite/records/work_order'
     autoload :WorkOrderItem,                    'netsuite/records/work_order_item'
     autoload :WorkOrderItemList,                'netsuite/records/work_order_item_list'
+  end
+
+  module Passports
+    autoload :User,  'netsuite/passports/user'
+    autoload :Token, 'netsuite/passports/token'
   end
 
   def self.configure(&block)
