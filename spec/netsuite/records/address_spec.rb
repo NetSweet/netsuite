@@ -21,7 +21,7 @@ describe NetSuite::Records::Address do
 
   it 'has all the right fields' do
     [
-      :addr1, :addr2, :addressee, :addr_phone, :attention, :city, :custom_field_list, :internal_id, :override, :state, :zip
+      :addr1, :addr2, :addressee, :addr_phone, :attention, :city, :internal_id, :override, :state, :zip
     ].each do |field|
       expect(list).to have_field(field)
     end
