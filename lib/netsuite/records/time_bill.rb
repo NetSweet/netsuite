@@ -16,7 +16,7 @@ module NetSuite
       field :hours,               Duration
 
       record_refs :employee, :customer, :case_task_event, :payroll_item, :workplace, :item, :department, :location, :price,
-                  :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction
+                  :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction, :klass
 
       attr_reader :internal_id
       attr_accessor :external_id
