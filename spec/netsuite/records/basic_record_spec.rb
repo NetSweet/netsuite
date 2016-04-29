@@ -24,6 +24,7 @@ describe 'basic records' do
       NetSuite::Records::TaxGroup,
       NetSuite::Records::Folder,
       NetSuite::Records::CustomerCategory,
+      NetSuite::Records::File,
     ]
   }
 
