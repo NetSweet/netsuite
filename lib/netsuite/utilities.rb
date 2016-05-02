@@ -35,11 +35,13 @@ module NetSuite
       return errors.size > 0
     end
 
-    def get_record(record_klass, id, external_id: false)
+    def get_record(record_klass, id, opts = {})
+      opts[:external_id] ||= false
+
       begin
         # log.debug("get record", netsuite_record_type: record_klass.name, netsuite_record_id: id)
 
-        if external_id
+        if opts[:external_id]
           return backoff { record_klass.get(external_id: id) }
         else
           return backoff { record_klass.get(id) }
@@ -50,7 +52,9 @@ module NetSuite
       end
     end
 
-    def find_record(record, names, field_name: nil)
+    def find_record(record, names, opts = {})
+      field_name = opts[:field_name]
+
       names = [ names ] if names.is_a?(String)
 
       # FIXME: Records that have the same name but different types will break
