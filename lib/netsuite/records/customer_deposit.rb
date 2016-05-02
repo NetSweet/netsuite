@@ -18,7 +18,8 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :customer, :sales_order, :account, :department, :payment_method, :custom_form, :currency, :posting_period
+      record_refs :customer, :sales_order, :account, :department, :payment_method,
+                  :custom_form, :currency, :posting_period, :subsidiary
 
       attr_reader :internal_id
       attr_accessor :external_id
