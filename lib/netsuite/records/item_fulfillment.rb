@@ -15,10 +15,15 @@ module NetSuite
 
       read_only_fields :handling_cost
 
-      record_refs :custom_form, :entity, :created_from, :ship_carrier, :ship_method, 
+      record_refs :custom_form, :entity, :created_from, :ship_carrier, :ship_method,
         :ship_address_list, :klass, :ship_country
 
+      # NOTE API version < 2015_1 only
       field :transaction_ship_address, ShipAddress
+
+      # NOTE API version >= 2015_1
+      field :shipping_address,         Address
+      
       field :item_list,                ItemFulfillmentItemList
       field :package_list,             ItemFulfillmentPackageList
       field :custom_field_list,        CustomFieldList
