@@ -178,13 +178,16 @@ search = NetSuite::Records::Customer.search({
 `open https://system.netsuite.com/app/common/entity/custjob.nl?id=#{search.results.first.internal_id}`
 
 # searching for custom records
-NetSuite::Records::CustomRecord.search(basic: [
-{
-        field: 'recType',
-        operator: 'is',
-        # custom record type
-        value: NetSuite::Records::CustomRecordRef.new(:internal_id => 10),
-}]).results
+NetSuite::Records::CustomRecord.search(
+  basic: [
+    {
+      field: 'recType',
+      operator: 'is',
+      # custom record type
+      value: NetSuite::Records::CustomRecordRef.new(:internal_id => 10),
+    }
+  ]
+).results
 
 # advanced search building on saved search
 NetSuite::Records::Customer.search({
@@ -216,11 +219,11 @@ NetSuite::Records::Customer.search({
             NetSuite::Records::CustomRecordRef.new(:internal_id => 2),
           ]
         },
-	{
-	  field: 'custbody_internetorder',
-	  type: 'SearchBooleanCustomField',
-	  value: true
-	}
+      	{
+      	  field: 'custbody_internetorder',
+      	  type: 'SearchBooleanCustomField',
+      	  value: true
+      	}
       ]
     }
   ]
@@ -313,6 +316,43 @@ NetSuite::Records::Transaction.search({
 
   preferences: {
     page_size: 10
+  }
+}).results
+
+NetSuite::Records::ItemFulfillment.search({
+  criteria: {
+    basic: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        type: 'SearchEnumMultiSelectField',
+        value: ["_itemFulfillment"]
+      },
+      {
+        field: 'lastModifiedDate',
+        type: 'SearchDateField',
+        operator: 'within',
+        value: [
+          DateTime.now - 2.hours,
+          DateTime.now
+        ]
+      }
+    ],
+    createdFromJoin: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        value: [ '_salesOrder' ]
+      },
+      {
+        field: 'internalIdNumber',
+        operator: 'notEmpty'
+      }
+    ]
+  },
+  preferences: {
+    pageSize: 1000,
+    bodyFieldsOnly: false
   }
 }).results
 
