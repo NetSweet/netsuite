@@ -110,6 +110,7 @@ module NetSuite
           when field_value.is_a?(Array)
             'MultiSelectCustomFieldRef'
           when field_value.is_a?(Hash)
+          when field_value.is_a?(NetSuite::Records::RecordRef)
             'SelectCustomFieldRef'
           when field_value.is_a?(DateTime),
                field_value.is_a?(Time),
