@@ -11,7 +11,7 @@ module NetSuite
 
       fields :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
         :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential,
-        :ship_status, :last_modified_date
+        :ship_status, :last_modified_date, :created_date
 
       read_only_fields :handling_cost
 
@@ -23,7 +23,7 @@ module NetSuite
 
       # NOTE API version >= 2015_1
       field :shipping_address,         Address
-      
+
       field :item_list,                ItemFulfillmentItemList
       field :package_list,             ItemFulfillmentPackageList
       field :custom_field_list,        CustomFieldList
