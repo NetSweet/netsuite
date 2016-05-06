@@ -97,6 +97,7 @@ module NetSuite
     autoload :Customer,                         'netsuite/records/customer'
     autoload :CustomerAddressbook,              'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,          'netsuite/records/customer_addressbook_list'
+    autoload :CustomerCategory,                 'netsuite/records/customer_category'
     autoload :CustomerCurrency,                 'netsuite/records/customer_currency'
     autoload :CustomerCurrencyList,             'netsuite/records/customer_currency_list'
     autoload :CustomerDeposit,                  'netsuite/records/customer_deposit'

@@ -23,6 +23,7 @@ describe 'basic records' do
       NetSuite::Records::NonInventoryResaleItem,
       NetSuite::Records::TaxGroup,
       NetSuite::Records::Folder,
+      NetSuite::Records::CustomerCategory,
     ]
   }
 
