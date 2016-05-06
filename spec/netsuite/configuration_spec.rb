@@ -231,6 +231,14 @@ describe NetSuite::Configuration do
     end
   end
 
+  it '#silent' do
+    config.silent = false
+    expect(config.silent).to eq(false)
+
+    config.silent = true
+    expect(config.silent).to eq(true)
+  end
+
   it '#wsdl_domain' do
     expect(config.wsdl_domain).to eq('webservices.netsuite.com')
 
