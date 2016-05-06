@@ -281,7 +281,7 @@ module NetSuite
     end
 
     def silent(value=nil)
-      self.silent = value if value
+      self.silent = value if !value.nil?
       attributes[:silent]
     end
 
