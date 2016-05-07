@@ -60,13 +60,6 @@ module NetSuite
           read_only_fields << name_sym
           field name
         end
-
-        # a bit of trickery: this is for classes which inherit from other classes
-        # i.e. the AssemblyItem, KitItem, etc; this copies the superclass's fields over
-        def inherited(klass)
-          klass.instance_variable_set("@fields", self.fields)
-          klass.instance_variable_set("@read_only_fields", self.read_only_fields)
-        end
       end
 
     end
