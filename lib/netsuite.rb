@@ -34,7 +34,6 @@ module NetSuite
   module Support
     autoload :Actions,    'netsuite/support/actions'
     autoload :Attributes, 'netsuite/support/attributes'
-    autoload :Base,       'netsuite/support/base'
     autoload :Fields,     'netsuite/support/fields'
     autoload :Sublist,    'netsuite/support/sublist'
     autoload :RecordRefs, 'netsuite/support/record_refs'
