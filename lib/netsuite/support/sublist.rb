@@ -3,6 +3,12 @@ module NetSuite
     class Sublist
       include Support::Fields
 
+      def self.inherited(subclass)
+        subclass.class_eval do
+          field :replace_all
+        end
+      end
+
       class << self
 
         def sublist(key, klass)
@@ -23,8 +29,6 @@ module NetSuite
         end
 
       end
-
-      field :replace_all
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
