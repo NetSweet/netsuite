@@ -38,6 +38,14 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
+      end
+
     end
   end
 end
