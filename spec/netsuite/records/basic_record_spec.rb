@@ -25,6 +25,7 @@ describe 'basic records' do
       NetSuite::Records::Folder,
       NetSuite::Records::CustomerCategory,
       NetSuite::Records::File,
+      NetSuite::Records::TransferOrder,
     ]
   }
 
