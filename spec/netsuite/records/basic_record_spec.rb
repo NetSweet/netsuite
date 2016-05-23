@@ -26,6 +26,7 @@ describe 'basic records' do
       NetSuite::Records::CustomerCategory,
       NetSuite::Records::File,
       NetSuite::Records::TransferOrder,
+      NetSuite::Records::Partner,
     ]
   }
 
