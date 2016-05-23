@@ -1,7 +1,9 @@
 module NetSuite
   module Records
 
-    class Partner < Support::Base
+    class Partner
+      include Support::Records
+      include Support::Fields
       include Support::Actions
       include Support::RecordRefs
       include Namespaces::ListRel
@@ -17,6 +19,14 @@ module NetSuite
       record_refs :klass, :access_role, :department
 
       attr_reader   :internal_id
+      attr_accessor :external_id
+
+      def initialize(attributes = {})
+        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
+        @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
+        initialize_from_attributes_hash(attributes)
+      end
+
     end
 
   end
