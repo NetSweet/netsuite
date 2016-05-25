@@ -1,8 +1,5 @@
 module NetSuite
   module Records
-    # Beaware of possible gotcha when closing sales order. You need to set the
-    # SalesOrder#custom_form to "Basic Sales Order Form" otherwise you might get
-    # errors when trying to close it
     class SalesOrderItem
       include Support::Fields
       include Support::RecordRefs
