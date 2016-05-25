@@ -16,6 +16,18 @@ describe NetSuite::Configuration do
     end
   end
 
+  describe '#filters' do
+    it 'filters out email and password by default' do
+      expect(config.filters).to eq([:password, :email])
+    end
+
+    it 'allows the user to set custom filters' do
+      config.filters([:special])
+
+      expect(config.filters).to eq([:special])
+    end
+  end
+
   describe '#connection' do
     it 'returns a Savon::Client object that allows requests to the service' do
       # reset clears out the password info
