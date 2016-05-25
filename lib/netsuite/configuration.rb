@@ -17,10 +17,23 @@ module NetSuite
         namespaces: namespaces,
         soap_header: auth_header(credentials).update(soap_header),
         pretty_print_xml: true,
+        filters: filters,
         logger: logger,
         log_level: log_level,
-        log: !silent,   # turn off logging entirely if configured
+        log: !silent, # turn off logging entirely if configured
       }.update(params))
+    end
+
+    def filters(list = nil)
+      if list
+        self.filters = list
+      else
+        attributes[:filters] ||= [:password, :email]
+      end
+    end
+
+    def filters=(list)
+      attributes[:filters] = list
     end
 
     def api_version(version = nil)
