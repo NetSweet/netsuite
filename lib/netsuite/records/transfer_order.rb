@@ -19,8 +19,8 @@ module NetSuite
                   :ship_method, :order_status, :employee, :handling_tax_code,
                   :location, :custom_form, :department, :klass, :ship_address_list
 
-      field :custom_field_list,        CustomFieldList
-      # :item_list TransferOrderItemList
+      field :custom_field_list,   CustomFieldList
+      field :item_list,           TransferOrderItemList
 
       attr_reader :internal_id
       attr_accessor :external_id

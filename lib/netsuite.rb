@@ -190,6 +190,8 @@ module NetSuite
     autoload :TimeBill,                         'netsuite/records/time_bill'
     autoload :Transaction,                      'netsuite/records/transaction'
     autoload :TransferOrder,                    'netsuite/records/transfer_order'
+    autoload :TransferOrderItemList,            'netsuite/records/transfer_order_item_list'
+    autoload :TransferOrderItem,                'netsuite/records/transfer_order_item'
     autoload :UnitsType,                        'netsuite/records/units_type'
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
     autoload :UnitsTypeUom,                     'netsuite/records/units_type_uom'
