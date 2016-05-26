@@ -7,24 +7,22 @@
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API. Wow, that is a mouthful.
 * The gem does not cover the entire API, only the subset that we have found useful to cover so far.
-* Extending the wrapper is pretty simple. Check out the [contribution help doc](https://github.com/NetSweet/netsuite/wiki/Contributing-to-the-Supported-NetSuite-API)
+* Extending the wrapper is pretty simple, check out recent commits for an example of how to add support for additional records.
 * NetSuite development is overall a pretty poor experience. We have a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
+
+# Help & Support
+
+Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'netsuite'
+```
+gem 'netsuite'
+```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install netsuite
-
-This gem is built for ruby 1.9.x, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
+This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
 ## Testing
 Before contributing a patch make sure all existing tests pass.
@@ -73,6 +71,21 @@ end
 ```
 
 There is a [convenience method](https://github.com/NetSweet/netsuite/blob/56fe7fae92908a2e3d6812ecc56516f773cacd45/lib/netsuite.rb#L180) to configure NetSuite based on ENV variables.
+
+OAuth credentials are also supported:
+
+```ruby
+NetSuite.configure do
+  reset!
+
+  account       ENV['NETSUITE_ACCOUNT']
+
+  consumer_key     ENV['NETSUITE_CONSUMER_KEY']
+  consumer_secret  ENV['NETSUITE_CONSUMER_SECRET']
+  token_id         ENV['NETSUITE_TOKEN_ID']
+  token_secret     ENV['NETSUITE_TOKEN_SECRET']
+end
+```
 
 ### Examples
 
