@@ -18,7 +18,7 @@ describe NetSuite::Configuration do
 
   describe '#filters' do
     it 'filters out email and password by default' do
-      expect(config.filters).to eq([:password, :email])
+      expect(config.filters).to eq([:password, :email, :consumerKey, :token])
     end
 
     it 'allows the user to set custom filters' do
