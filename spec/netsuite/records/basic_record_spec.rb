@@ -28,6 +28,7 @@ describe 'basic records' do
       NetSuite::Records::TransferOrder,
       NetSuite::Records::Partner,
       NetSuite::Records::PurchaseOrder,
+      NetSuite::Records::ItemReceipt,
     ]
   }
 
