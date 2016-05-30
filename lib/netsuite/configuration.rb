@@ -28,7 +28,12 @@ module NetSuite
       if list
         self.filters = list
       else
-        attributes[:filters] ||= [:password, :email]
+        attributes[:filters] ||= [
+          :password,
+          :email,
+          :consumerKey,
+          :token
+        ]
       end
     end
 
