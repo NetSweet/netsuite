@@ -42,6 +42,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
+      field :locations_list, LocationsList
       field :pricing_matrix, PricingMatrix
       field :member_list, MemberList
       field :subsidiary_list, RecordRefList
