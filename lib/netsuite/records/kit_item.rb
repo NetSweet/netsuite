@@ -23,10 +23,10 @@ module NetSuite
         :vsoe_price, :weight
 
       record_refs :billing_schedule, :custom_form, :default_item_ship_method, :deferred_revenue_account, :department,
-        :income_account, :issue_product, :item_revenue_category, :location, :parent, :pricing_group, :quantity_pricing_schedule,
-        :revenue_allocation_group, :revenue_recognition_rule, :rev_rec_schedule, :sales_tax_code, :schedule_b_code,
-        :ship_package, :soft_descriptor, :store_display_image, :store_display_thumbnail, :store_item_template, :tax_schedule,
-        :weight_unit
+        :income_account, :issue_product, :item_revenue_category, :klass, :location, :parent, :pricing_group,
+        :quantity_pricing_schedule, :revenue_allocation_group, :revenue_recognition_rule, :rev_rec_schedule, :sales_tax_code,
+        :schedule_b_code, :ship_package, :soft_descriptor, :store_display_image, :store_display_thumbnail, :store_item_template,
+        :tax_schedule, :weight_unit
 
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
