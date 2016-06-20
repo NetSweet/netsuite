@@ -8,7 +8,8 @@ module NetSuite
 
       fields  :amortization_end_date, :amortization_residual, :amortiz_start_date, :bin_numbers,  :bill_variance_status,
               :description, :expiration_date, :gross_amt, :inventory_detail, :is_billable, :landed_cost, :line,
-              :order_doc, :order_line, :quantity, :serial_numbers, :tax_rate_1, :tax_rate_2, :tax_1_amt, :vendor_name
+              :order_doc, :order_line, :quantity, :serial_numbers, :tax_rate_1, :tax_rate_2, :tax_1_amt, :vendor_name,
+              :rate
 
       field :bill_receipts_list,  RecordRefList
       field :custom_field_list,   CustomFieldList

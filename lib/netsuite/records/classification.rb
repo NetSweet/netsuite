@@ -2,9 +2,12 @@ module NetSuite
   module Records
     class Classification
       include Support::Fields
+      include Support::RecordRefs
+      include Support::Records
       include Support::Actions
+      include Namespaces::ListAcct
 
-      actions :get, :get_list, :delete, :upsert
+      actions :get, :get_list, :delete, :upsert, :search
 
       fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list
 

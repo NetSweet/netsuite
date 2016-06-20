@@ -16,17 +16,17 @@ describe NetSuite::Records::Address do
       :state        => 'CA',
       :zip          => '90007'
     }
-  end      
+  end
   let(:list) { NetSuite::Records::Address.new(attributes) }
 
   it 'has all the right fields' do
     [
-      :addr1, :addr2, :addressee, :addr_phone, :attention, :city, :custom_field_list, :internal_id, :override, :state, :zip
+      :addr1, :addr2, :addressee, :addr_phone, :attention, :city, :internal_id, :override, :state, :zip
     ].each do |field|
       expect(list).to have_field(field)
     end
   end
-  
+
   it 'has all the right read_only_fields' do
     [
       :addr_text
@@ -103,6 +103,13 @@ describe NetSuite::Records::Address do
       it "is converted to the appropriate NetSuite enum value" do
         addressbook = NetSuite::Records::Address.new country: "US"
         expect(addressbook.to_record["platformCommon:country"]).to eql "_unitedStates"
+      end
+
+      it 'properly evaluates equality against another country of the same ISO code' do
+        addressbook = NetSuite::Records::Address.new country: "US"
+        addressbook_2 = NetSuite::Records::Address.new country: "US"
+
+        expect(addressbook.country == addressbook_2.country).to eq(true)
       end
     end
 

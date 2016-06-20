@@ -4,6 +4,8 @@ module NetSuite
       include Namespaces::ListRel
 
       sublist :addressbook, CustomerAddressbook
+
+      alias :addressbooks :addressbook
     end
   end
 end

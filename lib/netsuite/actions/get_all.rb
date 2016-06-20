@@ -38,11 +38,11 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash[:record_list][:record]
+        @response_body ||= array_wrap(response_hash[:record_list][:record])
       end
 
       def response_hash
-        @response_hash = @response.body[:get_all_response][:get_all_result]
+        @response_hash ||= @response.body[:get_all_response][:get_all_result]
       end
 
       module Support

@@ -1,8 +1,5 @@
 module NetSuite
   module Records
-    # Beaware of possible gotcha when closing sales order. You need to set the
-    # SalesOrder#custom_form to "Basic Sales Order Form" otherwise you might get
-    # errors when trying to close it
     class SalesOrderItem
       include Support::Fields
       include Support::RecordRefs
@@ -13,7 +10,7 @@ module NetSuite
         :gift_cert_message, :gift_cert_number, :gift_cert_recipient_email, :gift_cert_recipient_name, :gross_amt, :is_taxable,
         :line, :order_line, :po_currency, :quantity, :rate, :rev_rec_end_date, :rev_rec_start_date, :rev_rec_term_in_months,
         :serial_numbers, :shipping_cost, :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral,
-        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :is_closed
+        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :is_closed, :quantity_commited, :quantity_fulfilled
 
       field :custom_field_list, CustomFieldList
 

@@ -58,7 +58,7 @@ module NetSuite
       end
 
       def response_list
-        @response_list ||= @response.to_hash[:delete_list_response][:write_response_list][:write_response]
+        @response_list ||= array_wrap(@response.to_hash[:delete_list_response][:write_response_list][:write_response])
       end
 
       def success?

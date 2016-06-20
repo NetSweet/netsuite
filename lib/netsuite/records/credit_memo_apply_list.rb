@@ -13,4 +13,3 @@ module NetSuite
     end
   end
 end
-\

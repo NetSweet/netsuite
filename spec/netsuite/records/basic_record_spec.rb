@@ -16,6 +16,21 @@ describe 'basic records' do
       NetSuite::Records::RevRecTemplate,
       NetSuite::Records::RevRecSchedule,
       NetSuite::Records::JournalEntry,
+      NetSuite::Records::Classification,
+      NetSuite::Records::SalesOrder,
+      NetSuite::Records::CustomerDeposit,
+      NetSuite::Records::NonInventoryPurchaseItem,
+      NetSuite::Records::NonInventoryResaleItem,
+      NetSuite::Records::TaxGroup,
+      NetSuite::Records::Folder,
+      NetSuite::Records::CustomerCategory,
+      NetSuite::Records::File,
+      NetSuite::Records::TransferOrder,
+      NetSuite::Records::Partner,
+      NetSuite::Records::PurchaseOrder,
+      NetSuite::Records::ItemReceipt,
+      NetSuite::Records::GiftCertificate,
+      NetSuite::Records::ContactRole,
     ]
   }
 
