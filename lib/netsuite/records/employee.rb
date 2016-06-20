@@ -21,7 +21,8 @@ module NetSuite
 
       record_refs :currency, :department, :location, :subsidiary, :employee_type, :employee_status, :supervisor
 
-      field :roles_list, RoleList
+      field :roles_list,        RoleList
+      field :custom_field_list, CustomFieldList
 
       attr_reader :internal_id
       attr_accessor :external_id
@@ -34,6 +35,14 @@ module NetSuite
 
       def self.search_class_name
         'Employee'
+      end
+
+      def to_record
+        rec = super
+        if rec["#{record_namespace}:customFieldList"]
+          rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        end
+        rec
       end
 
     end

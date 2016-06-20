@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RUBY_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="gem" name="Ruby Gem">
+      <configuration>
+        <option name="GEM_APP_ROOT_PATH" value="$MODULE_DIR$" />
+        <option name="GEM_APP_TEST_PATH" value="" />
+        <option name="GEM_APP_LIB_PATH" value="$MODULE_DIR$/lib" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="akami (v1.2.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.12, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.0, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gyoku (v1.1.1, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="httpi (v2.1.1, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="method_source (v0.8.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25.1, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_portile (v0.6.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.6.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nori (v2.3.0, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pry (v0.10.1, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pry-nav (v0.2.4, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v1.6.1, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.1.0, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.1.7, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.1.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.1.3, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.1.2, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubyntlm (v0.3.4, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="savon (v2.3.3, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="slop (v3.6.0, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="wasabi (v3.2.3, RVM: ruby-1.9.3-p484 [devops]) [gem]" level="application" />
+  </component>
+</module>

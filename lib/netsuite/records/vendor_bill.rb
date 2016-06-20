@@ -45,9 +45,8 @@ module NetSuite
       end
 
       def self.search_class_namespace
-        'tranSales'
+        "tranSales"
       end
-
     end
   end
 end

@@ -15,6 +15,7 @@ module NetSuite
         :vsoe_delivered, :vsoe_permit_discount, :vsoe_price
 
       field :custom_field_list, CustomFieldList
+      field :item_list, InvoiceItemList
 
       read_only_fields :quantity_remaining
 

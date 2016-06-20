@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class TimeBill
+    class TimeSheet
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
@@ -9,16 +9,14 @@ module NetSuite
 
       actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
-      fields :created_date, :is_billable, :last_modified_date, :memo, :override_rate, :paid_externally, :rate, :status,
-             :supervisor_approval, :tran_date, :time_type
+      fields :start_date, :end_date
 
-      field :custom_field_list,   CustomFieldList
-      field :hours,               Duration
+      field :total_hours,     Duration
+      field :time_grid_list,  TimeSheetTimeGridList
 
-      record_refs :employee, :customer, :case_task_event, :payroll_item, :workplace, :item, :department, :location, :price,
-                  :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction, :klass
+      record_refs :approval_status, :custom_form, :employee, :subsidiary
 
-      attr_reader :internal_id
+      attr_reader   :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
@@ -26,7 +24,6 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
-
     end
   end
 end
