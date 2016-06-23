@@ -196,7 +196,6 @@ module NetSuite
     autoload :Task,                             'netsuite/records/task'
     autoload :Term,                             'netsuite/records/term'
     autoload :TimeBill,                         'netsuite/records/time_bill'
-    autoload :Transaction,                      'netsuite/records/transaction'
     autoload :TransferOrder,                    'netsuite/records/transfer_order'
     autoload :TransferOrderItemList,            'netsuite/records/transfer_order_item_list'
     autoload :TransferOrderItem,                'netsuite/records/transfer_order_item'
