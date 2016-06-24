@@ -12,6 +12,8 @@ module NetSuite
       fields :address, :balance, :bill_pay, :created_date, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
           :memo, :print_voucher, :status, :to_ach, :to_be_printed, :total, :tran_date, :tran_id, :transaction_number
 
+      alias_method :created_at, :created_date
+
       field :apply_list,        VendorPaymentApplyList
       field :custom_field_list, CustomFieldList
 
