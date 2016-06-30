@@ -167,6 +167,7 @@ module NetSuite
     autoload :OpportunityItem,                  'netsuite/records/opportunity_item'
     autoload :OpportunityItemList,              'netsuite/records/opportunity_item_list'
     autoload :Partner,                          'netsuite/records/partner'
+    autoload :PaymentItem,                      'netsuite/records/payment_item'
     autoload :PaymentMethod,                    'netsuite/records/payment_method'
     autoload :PayrollItem,                      'netsuite/records/payroll_item'
     autoload :PhoneCall,                        'netsuite/records/phone_call'
