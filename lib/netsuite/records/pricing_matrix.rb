@@ -4,6 +4,8 @@ module NetSuite
       include Namespaces::PlatformCore
 
       def initialize(attributes = {})
+        attributes[:pricing] = [attributes[:pricing]] unless
+          attributes[:pricing].is_a? Array
         attributes[:pricing].each do |pricing|
           prices << RecordRef.new(pricing)
         end if attributes[:pricing]
