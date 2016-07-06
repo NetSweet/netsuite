@@ -146,6 +146,7 @@ module NetSuite
     autoload :ItemFulfillmentItemList,          'netsuite/records/item_fulfillment_item_list'
     autoload :ItemFulfillmentPackage,           'netsuite/records/item_fulfillment_package'
     autoload :ItemFulfillmentPackageList,       'netsuite/records/item_fulfillment_package_list'
+    autoload :ItemGroup,                        'netsuite/records/item_group'
     autoload :ItemMember,                       'netsuite/records/item_member'
     autoload :ItemMemberList,                   'netsuite/records/item_member_list'
     autoload :ItemReceipt,                      'netsuite/records/item_receipt'
