@@ -31,6 +31,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
       field :subsidiary_list, RecordRefList
+      field :member_list, ItemMemberList
 
       # TODO custom records need to be implemented
       # field :accounting_book_detail_list, ItemAccountingBookDetailList
@@ -41,7 +42,6 @@ module NetSuite
       # field :item_carrier, ItemCarrier
       # field :item_options_list, ItemOptionsList
       # field :item_ship_method_list, RecordRefList
-      # field :member_list, ItemMemberList
       # field :out_of_stock_behavior, ItemOutOfStockBehavior
       # field :overall_quantity_pricing_type, ItemOverallQuantityPricingType
       # field :preference_criterion, ItemPreferenceCriterion
