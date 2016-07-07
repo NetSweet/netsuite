@@ -12,6 +12,7 @@ describe 'basic records' do
       NetSuite::Records::PayrollItem,
       NetSuite::Records::Opportunity,
       NetSuite::Records::VendorCategory,
+      NetSuite::Records::VendorBill,
       NetSuite::Records::Deposit,
       NetSuite::Records::RevRecTemplate,
       NetSuite::Records::RevRecSchedule,
@@ -31,6 +32,7 @@ describe 'basic records' do
       NetSuite::Records::ItemReceipt,
       NetSuite::Records::GiftCertificate,
       NetSuite::Records::ContactRole,
+      NetSuite::Records::PaymentItem,
     ]
   }
 

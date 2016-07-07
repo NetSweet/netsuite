@@ -7,10 +7,12 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranPurch
 
-      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
 
-      fields :address, :balance, :bill_pay, :created_at, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
+      fields :address, :balance, :bill_pay, :created_date, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
           :memo, :print_voucher, :status, :to_ach, :to_be_printed, :total, :tran_date, :tran_id, :transaction_number
+
+      alias_method :created_at, :created_date
 
       field :apply_list,        VendorPaymentApplyList
       field :custom_field_list, CustomFieldList
@@ -35,6 +37,13 @@ module NetSuite
         rec
       end
 
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
+      end
     end
   end
 end

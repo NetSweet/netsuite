@@ -7,7 +7,7 @@ describe NetSuite::Records::VendorPayment do
 
   it 'has all the right fields' do
     [
-      :address, :balance, :bill_pay, :created_at, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
+      :address, :balance, :bill_pay, :created_date, :credit_list, :currency_name, :exchange_rate, :last_modified_date,
       :memo, :print_voucher, :status, :to_ach, :to_be_printed, :total, :tran_date, :tran_id, :transaction_number
     ].each do |field|
       expect(payment).to have_field(field)

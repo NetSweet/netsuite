@@ -22,6 +22,7 @@ module NetSuite
       field :estimated_time_override, Duration
       field :actual_time,             Duration
       field :time_remaining,          Duration
+      field :custom_field_list,       CustomFieldList
 
       record_refs :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item,
         :job_type, :language, :parent, :subsidiary, :workplace
