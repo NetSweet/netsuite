@@ -4,7 +4,9 @@ module NetSuite
 
     # TODO need structured logger for various statements
 
-    def append_memo(ns_record, added_memo, skip_if_exists: false)
+    def append_memo(ns_record, added_memo, opts = {})
+      opts[:skip_if_exists] ||= false
+
       memo_key = if ns_record.class == NetSuite::Records::Customer
         :comments
       else
