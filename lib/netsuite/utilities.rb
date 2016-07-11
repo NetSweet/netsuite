@@ -13,7 +13,7 @@ module NetSuite
         :memo
       end
 
-      return if skip_if_exists &&
+      return if opts[:skip_if_exists] &&
         ns_record.send(memo_key) &&
         ns_record.send(memo_key).include?(added_memo)
 
