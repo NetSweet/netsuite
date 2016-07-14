@@ -14,7 +14,7 @@ module NetSuite
         :est_gross_profit, :est_gross_profit_percent, :exchange_rate, :exclude_commission, :fax, :gift_cert_applied,
         :gift_cert_available, :gift_cert_total, :handling_cost, :handling_tax1_rate, :handling_tax2_rate, :is_taxable,
         :last_modified_date, :memo, :message, :on_credit_hold, :order_status, :other_ref_num, :recognized_revenue,
-        :rev_rec_on_rev_commitment, :sales_effective_date, :ship_date, :shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :source,
+        :rev_rec_on_rev_commitment, :sales_effective_date, :ship_complete, :ship_date, :shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :source,
         :start_date, :status, :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
