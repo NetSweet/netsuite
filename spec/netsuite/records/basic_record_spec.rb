@@ -33,6 +33,7 @@ describe 'basic records' do
       NetSuite::Records::GiftCertificate,
       NetSuite::Records::ContactRole,
       NetSuite::Records::PaymentItem,
+      NetSuite::Records::CreditMemo,
     ]
   }
 
