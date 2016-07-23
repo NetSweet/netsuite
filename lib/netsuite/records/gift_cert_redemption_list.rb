@@ -5,6 +5,7 @@ module NetSuite
 
       sublist :gift_cert_redemption, GiftCertRedemption
 
+      alias :gift_cert_redemptions :gift_cert_redemption
     end
   end
 end
