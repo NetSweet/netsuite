@@ -21,6 +21,10 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
+      def self.search_class_name
+        "GiftCertificate"
+      end
+
     end
   end
 end
