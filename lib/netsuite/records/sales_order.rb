@@ -28,8 +28,9 @@ module NetSuite
       field :transaction_ship_address, ShipAddress
       field :transaction_bill_address, BillAddress
 
-      field :item_list,                SalesOrderItemList
-      field :custom_field_list,        CustomFieldList
+      field :item_list,                   SalesOrderItemList
+      field :custom_field_list,           CustomFieldList
+      field :gift_cert_redemption_list,   GiftCertRedemptionList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 
