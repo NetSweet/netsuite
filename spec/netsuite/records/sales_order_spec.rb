@@ -58,6 +58,25 @@ describe NetSuite::Records::SalesOrder do
     end
   end
 
+  describe '#gift_cert_redemption_list' do
+    it 'can be set from attributes' do
+      attributes = {
+        :gift_cert_redemption => {
+          :auth_code_amt_remaining => 20
+        }
+      }
+      salesorder.gift_cert_redemption_list = attributes
+      expect(salesorder.gift_cert_redemption_list).to be_kind_of(NetSuite::Records::GiftCertRedemptionList)
+      expect(salesorder.gift_cert_redemption_list.gift_cert_redemptions.length).to eql(1)
+    end
+
+    it 'can be set from a GiftCertRedemptionList object' do
+      gift_cert_redemption_list = NetSuite::Records::GiftCertRedemptionList.new
+      salesorder.gift_cert_redemption_list = gift_cert_redemption_list
+      expect(salesorder.gift_cert_redemption_list).to eql(gift_cert_redemption_list)
+    end
+  end
+
   describe '#transaction_bill_address' do
     it 'can be set from attributes'
     it 'can be set from a BillAddress object'
