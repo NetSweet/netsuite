@@ -16,6 +16,7 @@ module NetSuite
       attr_reader :internal_id
 
       def initialize(attributes = {})
+        @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         initialize_from_attributes_hash(attributes)
       end
 
