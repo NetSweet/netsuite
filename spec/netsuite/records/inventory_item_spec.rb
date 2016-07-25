@@ -74,7 +74,14 @@ describe NetSuite::Records::InventoryItem do
 
   describe '#item_options_list' do
     it 'can be set from attributes'
-    it 'can be set from a ItemOptionsList object'
+    it 'can be set from a ItemOptionsList object' do
+      expect(NetSuite::Actions::Get).to receive(:call)
+        .with([NetSuite::Records::InventoryItem, :internal_id => 20], {})
+        .and_return(response)
+      item = NetSuite::Records::InventoryItem.get(20)
+      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+      expect(item.item_vendor_list.item_vendor).to eql(%w(loc1 loc2))      
+    end
   end
 
   describe '#item_vendor_list' do
