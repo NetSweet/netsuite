@@ -2,13 +2,11 @@ module NetSuite
   module Records
     class ItemVendorList
       def initialize(attributes = {})
-        attributes[:locations].each do |location|
-          locations << location
-        end if attributes[:locations]
+        @item_vendor = attributes[:item_vendor] if attributes[:item_vendor]
       end
 
-      def locations
-        @locations ||= []
+      def item_vendor
+        @item_vendor ||= nil
       end
     end
   end
