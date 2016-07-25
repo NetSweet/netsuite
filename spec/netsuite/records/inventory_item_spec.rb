@@ -81,6 +81,7 @@ describe NetSuite::Records::InventoryItem do
       item = NetSuite::Records::InventoryItem.get(20)
       expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
       expect(item.item_vendor_list.item_vendor[:purchase_price]).to eql("16.14")
+      expect(item.item_vendor_list.item_vendor[:preferred_vendor]).to be_truthy
     end
   end
 
