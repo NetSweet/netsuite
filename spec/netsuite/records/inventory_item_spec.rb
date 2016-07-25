@@ -80,8 +80,19 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#locations_list' do
+    let(:response) {
+      NetSuite::Response.new(
+      :success => true,
+      :body => { :locations_list => {:locations => %w(loc1 loc2) } })
+    }
+
     it 'can be set from attributes'
-    it 'can be set from an InventoryItemLocationsList object'
+    it 'can be set from an InventoryItemLocationsList object' do
+      expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::InventoryItem, :internal_id => 20], {}).and_return(response)
+      item = NetSuite::Records::InventoryItem.get(20)
+      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+      expect(item.locations_list.locations).to eql(%w(loc1 loc2))
+    end
   end
 
   describe '#matrix_option_list' do
