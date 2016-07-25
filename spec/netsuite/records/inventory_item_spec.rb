@@ -80,7 +80,7 @@ describe NetSuite::Records::InventoryItem do
         .and_return(response)
       item = NetSuite::Records::InventoryItem.get(20)
       expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
-      expect(item.item_vendor_list.item_vendor).to eql(%w(loc1 loc2))      
+      expect(item.item_vendor_list.item_vendor[:purchase_price]).to eql("16.14")
     end
   end
 
