@@ -2,24 +2,6 @@ require 'spec_helper'
 
 describe NetSuite::Records::InventoryItem do
   let(:item) { NetSuite::Records::InventoryItem.new }
-  let(:response) {
-    NetSuite::Response.new(
-      :success => true,
-      :body => {
-        :locations_list => {:locations => %w(loc1 loc2) },
-        :item_vendor_list => {
-          :item_vendor => {
-            :vendor=>{
-              :name=>"Spring Water",
-              :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
-              :@internal_id=>"20"
-            },
-           :purchase_price=>"16.14",
-           :preferred_vendor=>true}
-          }
-      }
-    )
-  }
 
   it 'has all the right fields' do
     [
@@ -78,6 +60,25 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#item_vendor_list' do
+    let(:response) {
+      NetSuite::Response.new(
+        :success => true,
+        :body => {
+          :item_vendor_list => {
+            :item_vendor => {
+              :vendor=>{
+                :name=>"Spring Water",
+                :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
+                :@internal_id=>"20"
+              },
+             :purchase_price=>"16.14",
+             :preferred_vendor=>true
+            }
+          }
+        }
+      )
+    }
+
     it 'can be set from attributes'
     it 'can be set from an ItemVendorList object' do
       expect(NetSuite::Actions::Get).to receive(:call)
@@ -106,6 +107,15 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#locations_list' do
+    let(:response) {
+      NetSuite::Response.new(
+        :success => true,
+        :body => {
+          :locations_list => {:locations => %w(loc1 loc2) }
+        }
+      )
+    }
+
     it 'can be set from attributes'
     it 'can be set from an InventoryItemLocationsList object' do
       expect(NetSuite::Actions::Get).to receive(:call)
