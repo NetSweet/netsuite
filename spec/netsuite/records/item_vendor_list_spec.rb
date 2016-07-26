@@ -16,12 +16,14 @@ describe NetSuite::Records::ItemVendorList do
 
     it 'can represent itself as a SOAP record' do
       record =  {
-        'listAcct:itemVendorList' => [{
-          'listAcct:itemVendor' => {
-            'listAcct:vendor' => {'platformCore:name' => 'Spring Water'}
+        "listAcct:itemVendor"=>[
+          {"listAcct:vendor"=>{
+            :name=>"Spring Water"
+            }
           }
-        }]
+        ]
       }
+
       expect(list.to_record).to eql(record)
     end
   end
