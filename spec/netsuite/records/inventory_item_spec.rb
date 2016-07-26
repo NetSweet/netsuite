@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe NetSuite::Records::InventoryItem do
   let(:item) { NetSuite::Records::InventoryItem.new }
+  let(:response) {
+    NetSuite::Response.new(
+      :success => true,
+      :body => {
+        :locations_list => {:locations => %w(loc1 loc2) },
+        :item_vendor_list => {
+          :item_vendor => {
+            :vendor=>{
+              :name=>"Spring Water",
+              :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
+              :@internal_id=>"20"
+            },
+           :purchase_price=>"16.14",
+           :preferred_vendor=>true}
+          }
+      }
+    )
+  }
 
   it 'has all the right fields' do
     [
@@ -61,7 +79,15 @@ describe NetSuite::Records::InventoryItem do
 
   describe '#item_vendor_list' do
     it 'can be set from attributes'
-    it 'can be set from an ItemVendorList object'
+    it 'can be set from an ItemVendorList object' do
+      expect(NetSuite::Actions::Get).to receive(:call)
+        .with([NetSuite::Records::InventoryItem, :internal_id => 20], {})
+        .and_return(response)
+      item = NetSuite::Records::InventoryItem.get(20)
+      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+      expect(item.item_vendor_list.item_vendor[:purchase_price]).to eql("16.14")
+      expect(item.item_vendor_list.item_vendor[:preferred_vendor]).to be_truthy
+    end
   end
 
   describe '#site_category_list' do
@@ -81,7 +107,14 @@ describe NetSuite::Records::InventoryItem do
 
   describe '#locations_list' do
     it 'can be set from attributes'
-    it 'can be set from an InventoryItemLocationsList object'
+    it 'can be set from an InventoryItemLocationsList object' do
+      expect(NetSuite::Actions::Get).to receive(:call)
+        .with([NetSuite::Records::InventoryItem, :internal_id => 20], {})
+        .and_return(response)
+      item = NetSuite::Records::InventoryItem.get(20)
+      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+      expect(item.locations_list.locations).to eql(%w(loc1 loc2))
+    end
   end
 
   describe '#matrix_option_list' do
