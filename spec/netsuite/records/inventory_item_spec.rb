@@ -60,34 +60,28 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#item_vendor_list' do
-    let(:response) {
-      NetSuite::Response.new(
-        :success => true,
-        :body => {
-          :item_vendor_list => {
-            :item_vendor => {
-              :vendor=>{
-                :name=>"Spring Water",
-                :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
-                :@internal_id=>"20"
-              },
-             :purchase_price=>"16.14",
-             :preferred_vendor=>true
-            }
-          }
+    it 'can be set from attributes' do
+      attributes = {
+        :item_vendor => {
+          :vendor=>{
+            :name=>"Spring Water",
+            :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
+            :@internal_id=>"20"
+          },
+         :purchase_price=>"16.14",
+         :preferred_vendor=>true
         }
-      )
-    }
+      }
 
-    it 'can be set from attributes'
-    it 'can be set from an ItemVendorList object' do
-      expect(NetSuite::Actions::Get).to receive(:call)
-        .with([NetSuite::Records::InventoryItem, :internal_id => 20], {})
-        .and_return(response)
-      item = NetSuite::Records::InventoryItem.get(20)
-      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
-      expect(item.item_vendor_list.item_vendor[:purchase_price]).to eql("16.14")
-      expect(item.item_vendor_list.item_vendor[:preferred_vendor]).to be_truthy
+      item.item_vendor_list = attributes
+      expect(item.item_vendor_list).to be_kind_of(NetSuite::Records::ItemVendorList)
+      expect(item.item_vendor_list.item_vendors.length).to eql(1)
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      item_vendor_list = NetSuite::Records::ItemVendorList.new
+      item.item_vendor_list = item_vendor_list
+      expect(item.item_vendor_list).to eql(item_vendor_list)
     end
   end
 

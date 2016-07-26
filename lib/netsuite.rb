@@ -154,6 +154,8 @@ module NetSuite
     autoload :ItemReceipt,                      'netsuite/records/item_receipt'
     autoload :ItemReceiptItemList,              'netsuite/records/item_receipt_item_list'
     autoload :ItemReceiptItem,                  'netsuite/records/item_receipt_item'
+    autoload :ItemVendor,                       'netsuite/records/item_vendor'
+    autoload :ItemVendorList,                   'netsuite/records/item_vendor_list'
     autoload :Job,                              'netsuite/records/job'
     autoload :JobStatus,                        'netsuite/records/job_status'
     autoload :JournalEntry,                     'netsuite/records/journal_entry'
