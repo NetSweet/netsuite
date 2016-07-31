@@ -1,28 +1,23 @@
 module NetSuite
   module Records
-    class GiftCertificate
+    class GiftCertRedemption
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::ListAcct
+      include Namespaces::TranSales
 
       actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
 
-      fields :amount_remaining, :created_date, :email, :expiration_date, :gift_cert_code,
-             :last_modified_date, :message, :name, :original_amount, :sender
+      fields :auth_code_amt_remaining, :auth_code_applied, :gift_cert_available
+
+      record_refs :auth_code
 
       attr_reader :internal_id
-      # NOTE as of 2016_1 there is no external ID available for this record
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
-
         initialize_from_attributes_hash(attributes)
-      end
-
-      def self.search_class_name
-        "GiftCertificate"
       end
 
     end

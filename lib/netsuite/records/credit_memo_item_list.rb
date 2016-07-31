@@ -1,24 +1,11 @@
 module NetSuite
   module Records
-    class CreditMemoItemList
+    class CreditMemoItemList < Support::Sublist
       include Namespaces::TranCust
 
-      def initialize(attributes = {})
-        case attributes[:item]
-        when Hash
-          items << CreditMemoItem.new(attributes[:item])
-        when Array
-          attributes[:item].each { |item| items << CreditMemoItem.new(item) }
-        end
-      end
+      sublist :item, CreditMemoItem
 
-      def items
-        @items ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:item" => items.map(&:to_record) }
-      end
+      alias :items :item
     end
   end
 end

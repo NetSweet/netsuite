@@ -57,12 +57,13 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
       field :locations_list, LocationsList
+      field :item_vendor_list, ItemVendorList
       field :matrix_option_list, MatrixOptionList
       field :subsidiary_list, RecordRefList
 
       # for Assembly/Kit
       field :member_list, MemberList
-      
+
       attr_reader :internal_id
       attr_accessor :external_id
 
