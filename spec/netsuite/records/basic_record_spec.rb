@@ -35,6 +35,8 @@ describe 'basic records' do
       NetSuite::Records::PaymentItem,
       NetSuite::Records::CreditMemo,
       NetSuite::Records::InventoryItem,
+      NetSuite::Records::DescriptionItem,
+      NetSuite::Records::SubtotalItem,
     ]
   }
 
