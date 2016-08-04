@@ -4,9 +4,9 @@ module NetSuite
       include Support::Records
       include Support::Fields
       include Support::Actions
-      include Namespaces::CommGeneral
+      include Namespaces::ListAcct
 
-      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/note.html
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2016_1/schema/record/notetype.html
 
       actions :get, :search
 
