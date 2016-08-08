@@ -132,6 +132,62 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '#shipping_address' do
+    it 'can be set from attributes' do
+      attributes = {
+        :country => "_unitedStates",
+        :attention => "William Sanders",
+        :addressee => "William Sanders",
+        :addr1 => "test1",
+        :addr2 => "test2",
+        :city => "San Francisco",
+        :state => "CA",
+        :zip => "94131",
+        :addr_text => "William Sanders<br>William Sanders<br>test1<br>test2<br>San Francisco CA 94131",
+        :override => false,
+        :"@xmlns:platform_common" => "urn:common_2016_1.platform.webservices.netsuite.com"
+      }
+
+      invoice.shipping_address = attributes
+      expect(invoice.shipping_address).to be_kind_of(NetSuite::Records::Address)
+      expect(invoice.shipping_address.addressee).to eql("William Sanders")
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      shipping_address = NetSuite::Records::Address.new
+      invoice.shipping_address = shipping_address
+      expect(invoice.shipping_address).to eql(shipping_address)
+    end
+  end
+
+  describe '#billing_address' do
+    it 'can be set from attributes' do
+      attributes = {
+        :country => "_unitedStates",
+        :attention => "William Sanders",
+        :addressee => "William Sanders",
+        :addr1 => "test1",
+        :addr2 => "test2",
+        :city => "San Francisco",
+        :state => "CA",
+        :zip => "94131",
+        :addr_text => "William Sanders<br>William Sanders<br>test1<br>test2<br>San Francisco CA 94131",
+        :override => false,
+        :"@xmlns:platform_common" => "urn:common_2016_1.platform.webservices.netsuite.com"
+      }
+
+      invoice.billing_address = attributes
+      expect(invoice.billing_address).to be_kind_of(NetSuite::Records::Address)
+      expect(invoice.billing_address.addressee).to eql("William Sanders")
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      billing_address = NetSuite::Records::Address.new
+      invoice.billing_address = billing_address
+      expect(invoice.billing_address).to eql(billing_address)
+    end
+  end
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
