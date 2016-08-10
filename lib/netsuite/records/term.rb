@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :delete, :upsert, :search
 
-      fields :due_next_month_if_within_days, :name, :date_driven, :days_until_expiry, :days_until_next_due,
+      fields :due_next_month_if_within_days, :name, :date_driven, :days_until_expiry, :days_until_net_due,
         :day_discount_expires, :day_of_month_net_due, :discount_percent, :discount_percent_date_driven, :is_inactive,
         :preferred
 
