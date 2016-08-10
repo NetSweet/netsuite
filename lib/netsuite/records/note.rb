@@ -1,9 +1,6 @@
 module NetSuite
   module Records
     class Note
-      OUTGOING = '_outgoing'
-      INCOMING = '_incoming'
-
       include Support::Records
       include Support::Fields
 
