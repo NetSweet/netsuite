@@ -37,6 +37,7 @@ describe 'basic records' do
       NetSuite::Records::InventoryItem,
       NetSuite::Records::DescriptionItem,
       NetSuite::Records::SubtotalItem,
+      NetSuite::Records::Term,
     ]
   }
 
