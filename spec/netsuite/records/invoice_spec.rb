@@ -212,6 +212,51 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '.search' do
+    context 'when the response is successful' do
+      let(:response) do
+        NetSuite::Response.new(
+          :success => true,
+          :body => {
+            :status => { :@is_success => 'true' },
+            :total_records => '1',
+            :search_row_list => {
+              :search_row => {
+                :basic => {
+                  :alt_name => {:search_value=>'A Awesome Name'},
+                  :"@xmlns:platform_common"=>'urn:common_2012_1.platform.webservices.netsuite.com'},
+                  :"@xsi:type" => 'listRel:ItemSearchRow'
+                }
+              }
+            }
+          )
+      end
+
+      it 'returns an Invoice instance populated with the data from the response object' do
+        allow(NetSuite::Actions::Search).to receive(:call).and_return(response)
+
+        invoice = NetSuite::Records::Invoice.search(
+          criteria: {
+            basic: [
+              {
+                field: 'type',
+                operator: 'anyOf',
+                type: 'SearchEnumMultiSelectField',
+                value: ['_invoice']
+              }
+            ]
+          },
+          columns: {
+            'tranSales:basic' => [
+              'platformCommon:internalId/' => {}
+            ]
+          }
+        ).results[0]
+        expect(invoice).to be_kind_of(NetSuite::Records::Invoice)
+      end
+    end
+  end
+
   describe '.initialize' do
     context 'when the request is successful' do
       it 'returns an initialized invoice from the customer entity' do
