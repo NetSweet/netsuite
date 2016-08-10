@@ -3,6 +3,7 @@ module NetSuite
     class Term
       include Support::Fields
       include Support::RecordRefs
+      include Support::Records
       include Support::Actions
       include Namespaces::ListAcct
 
