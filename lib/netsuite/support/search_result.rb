@@ -20,7 +20,7 @@ module NetSuite
       def initialize(response, result_class)
         @result_class = result_class
         @response = response
-        
+
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
         @current_page = response.body[:page_index].to_i
@@ -50,10 +50,10 @@ module NetSuite
                 record[search_group].each_pair do |k, v|
                   # all return values are wrapped in a <SearchValue/>
                   # extract the value from <SearchValue/> to make results easier to work with
-
                   if v.is_a?(Hash) && v.has_key?(:search_value)
-                    # search return values that are just internalIds are stored as attributes on the searchValue element
-                    if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
+                    # only turn this: :internal_id=>{:search_value=>{:@internal_id=>"5"}}
+                    # into this: :internal_id=> "5"
+                    if k == :internal_id && v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
                       record[search_group][k] = v[:search_value][:'@internal_id']
                     else
                       record[search_group][k] = v[:search_value]
