@@ -12,6 +12,7 @@ describe 'basic records' do
       NetSuite::Records::PayrollItem,
       NetSuite::Records::Opportunity,
       NetSuite::Records::VendorCategory,
+      NetSuite::Records::VendorCredit,
       NetSuite::Records::VendorBill,
       NetSuite::Records::Deposit,
       NetSuite::Records::RevRecTemplate,
