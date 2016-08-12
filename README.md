@@ -84,6 +84,9 @@ NetSuite.configure do
   consumer_secret  ENV['NETSUITE_CONSUMER_SECRET']
   token_id         ENV['NETSUITE_TOKEN_ID']
   token_secret     ENV['NETSUITE_TOKEN_SECRET']
+  
+  # oauth does not work with API versions less than 2015_2
+  api_version      '2015_2
 end
 ```
 
