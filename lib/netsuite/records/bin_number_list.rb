@@ -2,7 +2,7 @@ module NetSuite
   module Records
     # TODO this is fairly messy: shouldn't mix multiple classes in one file
     # might be possible to trash the GenericField as well
-    
+
     class GenericField
       include Support::Attributes
       include Support::Fields
@@ -13,36 +13,18 @@ module NetSuite
     end
 
     class BinNumber < GenericField
+      include Support::Records
 
     end
 
-    class BinNumberList
-      include Support::Fields
+    class BinNumberList < Support::Sublist
       include Namespaces::PlatformCore
       # include Namespaces::ListAcct
 
-      fields :bin_number
+      sublist :bin_number, BinNumber
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
+      alias :bin_numbers :bin_number
 
-      def bin_number=(items)
-        case items
-        when Hash
-          self.bin_numbers << BinNumber.new(items)
-        when Array
-          items.each { |item| self.bin_numbers << BinNumber.new(item) }
-        end
-      end
-
-      def bin_numbers
-        @bin_numbers ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:item" => bin_numbers.map(&:to_record) }
-      end
     end
   end
 end
