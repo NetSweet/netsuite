@@ -1,31 +1,12 @@
 module NetSuite
   module Records
-    class CustomerPaymentApplyList
-      include Support::Fields
+    class CustomerPaymentApplyList < Support::Sublist
       include Namespaces::TranCust
 
-      fields :apply
+      sublist :apply, CustomerPaymentApply
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
+      alias :applies :apply
 
-      def apply=(applies)
-        case applies
-          when Hash
-            self.applies << CustomerPaymentApply.new(applies)
-          when Array
-            applies.each { |apply| self.applies << CustomerPaymentApply.new(apply) }
-        end
-      end
-
-      def applies
-        @applies ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:apply" => applies.map(&:to_record) }
-      end
     end
   end
 end
