@@ -29,7 +29,7 @@ module NetSuite
       field :billing_address,    Address
       # field :expenseList,        VendorCreditExpenseList
       # field :itemList,           VendorCreditItemList
-      # field :applyList,          VendorCreditApplyList
+      field :apply_list,         VendorCreditApplyList
       field :custom_field_list,  CustomFieldList
 
       attr_reader :internal_id
