@@ -222,6 +222,8 @@ module NetSuite
     autoload :VendorBillItemList,               'netsuite/records/vendor_bill_item_list'
     autoload :VendorCategory,                   'netsuite/records/vendor_category'
     autoload :VendorCredit,                     'netsuite/records/vendor_credit'
+    autoload :VendorCreditApply,                'netsuite/records/vendor_credit_apply'
+    autoload :VendorCreditApplyList,            'netsuite/records/vendor_credit_apply_list'
     autoload :VendorPayment,                    'netsuite/records/vendor_payment'
     autoload :VendorPaymentApply,               'netsuite/records/vendor_payment_apply'
     autoload :VendorPaymentApplyList,           'netsuite/records/vendor_payment_apply_list'
