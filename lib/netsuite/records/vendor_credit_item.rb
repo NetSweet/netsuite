@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorCreditItem
       include Support::Fields
+      include Support::Records
       include Namespaces::TranPurch
 
       fields :vendor_name, :line,        :order_line,

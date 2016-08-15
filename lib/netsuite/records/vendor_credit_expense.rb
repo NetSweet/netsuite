@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorCreditExpense
       include Support::Fields
+      include Support::Records
       include Namespaces::TranPurch
 
       fields :order_line,  :line,      :amount,
