@@ -27,7 +27,7 @@ module NetSuite
       field :location,           RecordRef
       field :subsidiary,         RecordRef
       field :billing_address,    Address
-      # field :expenseList,        VendorCreditExpenseList
+      field :expense_list,       VendorCreditExpenseList
       field :item_list,          VendorCreditItemList
       field :apply_list,         VendorCreditApplyList
       field :custom_field_list,  CustomFieldList
