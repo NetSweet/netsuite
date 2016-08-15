@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorCreditApply
       include Support::Fields
+      include Support::Records
       include Namespaces::TranPurch
 
       fields :apply,    :apply_date,    :doc,
