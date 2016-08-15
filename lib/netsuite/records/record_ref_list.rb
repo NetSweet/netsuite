@@ -1,28 +1,10 @@
 module NetSuite
   module Records
-    class RecordRefList
-      include Support::Fields
+    class RecordRefList < Support::Sublist
       include Support::Records
       include Namespaces::PlatformCore
 
-      fields :record_ref
-
-      def initialize(attrs = {})
-        initialize_from_attributes_hash(attrs)
-      end
-
-      def record_ref=(items)
-        case items
-        when Hash
-          self.record_ref << RecordRef.new(items)
-        when Array
-          items.each { |ref| self.record_ref << RecordRef.new(ref) }
-        end
-      end
-
-      def record_ref
-        @record_ref ||= []
-      end
+      sublist :record_ref, RecordRef
 
       def to_record
         {
