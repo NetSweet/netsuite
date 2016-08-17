@@ -17,7 +17,7 @@ module NetSuite
              :bill_pay, :comments, :date_created, :direct_deposit, :entity_id, :password, :password2,
              :expense_limit, :fax, :is_job_resource, :job_description, :labor_cost, :last_modified_date, :mobile_phone, :pay_frequency,
              :phonetic_name, :purchase_order_approval_limit, :purchase_order_approver, :purchase_order_limit, :release_date,
-             :resident_status, :salutation, :social_security_number, :visa_exp_date, :visa_type
+             :resident_status, :salutation, :social_security_number, :visa_exp_date, :visa_type, :default_address, :gender
 
       record_refs :currency, :department, :location, :subsidiary, :employee_type, :employee_status, :supervisor
 
