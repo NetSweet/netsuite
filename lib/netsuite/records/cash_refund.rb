@@ -33,7 +33,6 @@ module NetSuite
         'tranSales'
       end
 
-
     end
   end
 end
