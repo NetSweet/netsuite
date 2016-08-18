@@ -45,7 +45,7 @@ module NetSuite
       if version
         self.api_version = version
       else
-        attributes[:api_version] ||= '2011_2'
+        attributes[:api_version] ||= '2015_1'
       end
     end
 
