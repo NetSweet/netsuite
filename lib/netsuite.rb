@@ -4,6 +4,7 @@ require 'savon'
 require 'netsuite/version'
 require 'netsuite/errors'
 require 'netsuite/utilities'
+require 'netsuite/rest/utilities/roles'
 require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
@@ -226,8 +227,8 @@ module NetSuite
     autoload :VendorCreditApplyList,            'netsuite/records/vendor_credit_apply_list'
     autoload :VendorCreditItem,                 'netsuite/records/vendor_credit_item'
     autoload :VendorCreditItemList,             'netsuite/records/vendor_credit_item_list'
-    autoload :VendorCreditExpense,                 'netsuite/records/vendor_credit_expense'
-    autoload :VendorCreditExpenseList,             'netsuite/records/vendor_credit_expense_list'
+    autoload :VendorCreditExpense,              'netsuite/records/vendor_credit_expense'
+    autoload :VendorCreditExpenseList,          'netsuite/records/vendor_credit_expense_list'
     autoload :VendorPayment,                    'netsuite/records/vendor_payment'
     autoload :VendorPaymentApply,               'netsuite/records/vendor_payment_apply'
     autoload :VendorPaymentApplyList,           'netsuite/records/vendor_payment_apply_list'
