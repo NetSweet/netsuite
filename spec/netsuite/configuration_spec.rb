@@ -52,7 +52,7 @@ describe NetSuite::Configuration do
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
+        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
       end
     end
 
@@ -214,8 +214,8 @@ describe NetSuite::Configuration do
 
   describe '#api_version' do
     context 'when no api_version is defined' do
-      it 'defaults to 2011_2' do
-        expect(config.api_version).to eq('2011_2')
+      it 'defaults to 2015_1' do
+        expect(config.api_version).to eq('2015_1')
       end
     end
   end

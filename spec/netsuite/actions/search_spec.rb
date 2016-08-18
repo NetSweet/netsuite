@@ -100,7 +100,7 @@ describe NetSuite::Actions::Search do
 
                   :attributes! => {
                     "platformCore:customField" => {
-                      "internalId" => ["custentity_customerandcontacttypelist", "custentity_relatedthing"],
+                      "scriptId" => ["custentity_customerandcontacttypelist", "custentity_relatedthing"],
                       "operator" => ["anyOf", "anyOf"],
                       "xsi:type" => ["platformCore:SearchMultiSelectCustomField", "platformCore:SearchMultiSelectCustomField"]
                     }

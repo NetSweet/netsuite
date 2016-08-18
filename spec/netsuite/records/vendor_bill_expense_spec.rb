@@ -32,7 +32,7 @@ describe NetSuite::Records::VendorBillExpense do
       attributes = {
         :custom_field => {
           :value => 10,
-          :internal_id => 'custfield_value'
+          :script_id => 'custfield_value'
         }
       }
       expense.custom_field_list = attributes
