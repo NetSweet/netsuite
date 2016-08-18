@@ -57,6 +57,22 @@ module NetSuite
       return errors.size > 0
     end
 
+
+    def get_item(ns_item_internal_id)
+      # TODO add additional item types!
+      ns_item = NetSuite::Utilities.get_record(NetSuite::Records::InventoryItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::AssemblyItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::NonInventorySaleItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::ServiceSaleItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::KitItem, ns_item_internal_id)
+
+      if ns_item.nil?
+        fail RecordNotFound, "item with ID #{ns_item_internal_id} not found"
+      end
+
+      ns_item
+    end
+
     def get_record(record_klass, id, opts = {})
       opts[:external_id] ||= false
 
