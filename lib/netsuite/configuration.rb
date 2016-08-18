@@ -81,13 +81,7 @@ module NetSuite
           if sandbox
             "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
           else
-            wsdl_path = File.expand_path("../../../wsdl/#{api_version}.wsdl", __FILE__)
-
-            unless File.exists? wsdl_path
-              wsdl_path = "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
-            end
-
-            wsdl_path
+            "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
           end
         end
       end
