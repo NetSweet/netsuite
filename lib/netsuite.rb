@@ -132,6 +132,7 @@ module NetSuite
     autoload :Employee,                         'netsuite/records/employee'
     autoload :File,                             'netsuite/records/file'
     autoload :GiftCertificate,                  'netsuite/records/gift_certificate'
+    autoload :GiftCertificateItem,              'netsuite/records/gift_certificate_item'
     autoload :GiftCertRedemption,               'netsuite/records/gift_cert_redemption'
     autoload :GiftCertRedemptionList,           'netsuite/records/gift_cert_redemption_list'
     autoload :Folder,                           'netsuite/records/folder'
