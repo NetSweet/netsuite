@@ -9,44 +9,41 @@ module NetSuite
 
         ROLES_API = "https://rest.netsuite.com/rest/roles"
 
-        def self.get(credentials)
-          new(credentials).get
+        def self.get(*args)
+          new(*args).get
         end
 
         def initialize(credentials)
-          @email     = encode_email(credentials.fetch(:email))
-          @signature = credentials.fetch(:password)
+          @email     = encode(credentials.fetch :email)
+          @signature = encode(credentials.fetch :password)
         end
 
         def get
           response = make_request
           parsed   = JSON.parse(response.body)
-          if reponse.code.to_i == 200
-            extract(parsed)
-          else
-            parsed
-          end
+          response.code == "200" ? extract(parsed) : parsed
         end
 
         private
 
-        def encode_email(unencoded_email)
+        def encode(unencoded_string)
           URI.escape(
-            unencoded_email,
-            Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")
+            unencoded_string,
+            /[#{URI::PATTERN::RESERVED}]/
           )
         end
 
         def make_request
           uri = URI(ROLES_API)
-          request = Net::HTTP::Get.new(uri)
-          request['AUTHORIZATION'] = "NLAuth " +
-            "nlauth_email=#{@email},nlauth_signature=#{@signature}"
+          get = Net::HTTP::Get.new(uri)
+          get['AUTHORIZATION'] = "NLAuth " +
+            "nlauth_email=#{@email}," +
+            "nlauth_signature=#{@signature}"
 
           http = Net::HTTP.new(uri.hostname, uri.port)
           http.use_ssl = true
-
-          http.start {|http| http.request(request)}
+          http.read_timeout = 30
+          http.start {|http| http.request(get)}
         end
 
         def extract(parsed)
