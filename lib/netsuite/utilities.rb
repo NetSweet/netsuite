@@ -67,6 +67,7 @@ module NetSuite
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::DiscountItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::OtherChargeSaleItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::ServiceSaleItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::GiftCertificateItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::KitItem, ns_item_internal_id)
 
       if ns_item.nil?
