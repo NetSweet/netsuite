@@ -40,6 +40,7 @@ describe 'basic records' do
       NetSuite::Records::SubtotalItem,
       NetSuite::Records::Term,
       NetSuite::Records::Note,
+      NetSuite::Records::OtherChargeSaleItem,
     ]
   }
 
