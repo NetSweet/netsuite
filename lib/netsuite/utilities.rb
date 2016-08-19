@@ -63,11 +63,14 @@ module NetSuite
       ns_item = NetSuite::Utilities.get_record(NetSuite::Records::InventoryItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::AssemblyItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::NonInventorySaleItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::NonInventoryResaleItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::DiscountItem, ns_item_internal_id)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::OtherChargeSaleItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::ServiceSaleItem, ns_item_internal_id)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::KitItem, ns_item_internal_id)
 
       if ns_item.nil?
-        fail RecordNotFound, "item with ID #{ns_item_internal_id} not found"
+        fail NetSuite::RecordNotFound, "item with ID #{ns_item_internal_id} not found"
       end
 
       ns_item
