@@ -5,6 +5,7 @@ require 'netsuite/version'
 require 'netsuite/errors'
 require 'netsuite/utilities'
 require 'netsuite/rest/utilities/roles'
+require 'netsuite/rest/utilities/request'
 require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
