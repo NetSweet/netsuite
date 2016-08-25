@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :get_list, :add, :update, :delete, :search
+      actions :get, :get_list, :add, :update, :upsert, :delete, :search
 
       fields :account_number, :alt_email, :alt_name, :alt_phone, :balance,
              :balance_primary, :bcn, :bill_pay, :comments, :company_name, :credit_limit,
@@ -24,6 +24,9 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       # TODO should change name to VendorAddressBookList
       field :addressbook_list, CustomerAddressbookList
+
+      read_only_fields :balance_primary, :balance, :last_modified_date, :unbilled_orders,
+                       :unbilled_orders_primary
 
       record_refs :custom_form, :category, :image, :subsidiary, :representing_subsidiary,
                   :expense_account, :payables_account, :terms, :opening_balance_account, :currency, :work_calendar,
