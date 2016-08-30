@@ -5,13 +5,14 @@ module NetSuite
 
         class << self
 
-          def get(email, password)
-            code, body = Request.get(
-              email: email,
-              password: password,
-              uri: '/roles'
+          def get(opts={})
+            status, body = Request.get(
+              email:    opts.fetch(:email, Configuration.email),
+              password: opts.fetch(:password, Configuration.password),
+              sandbox:  opts.fetch(:sandbox, Configuration.sandbox),
+              uri:      '/roles',
             )
-            code == "200" ? format_response(body) : body
+            status == "200" ? format_response(body) : body
           end
 
           private
