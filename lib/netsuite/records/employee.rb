@@ -6,7 +6,6 @@ module NetSuite
       include Support::Actions
       include Support::RecordRefs
       include Namespaces::ListEmp
-      include Namespaces::ListRel
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/script/record/employee.html
 
