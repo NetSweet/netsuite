@@ -7,7 +7,8 @@ module NetSuite
     module Utilities
       class Request
 
-        BASE_API = "https://rest.netsuite.com/rest"
+        PRODUCTION_API = "https://rest.netsuite.com/rest"
+        SANDBOX_API = "https://rest.sandbox.netsuite.com/rest"
         DEFAULT_TIMEOUT = 30
         USE_SSL = true
 
@@ -16,7 +17,8 @@ module NetSuite
           def get(options)
             email       = encode(options.fetch :email)
             signature   = encode(options.fetch :password)
-            uri         = options.fetch(:uri)
+            sandbox     = options.fetch(:sandbox, false)
+            uri         = determine_uri(options.fetch(:uri), sandbox)
             response    = make_request(:get, uri, email, signature)
             [response.code, JSON.parse(response.body)]
           end
@@ -24,7 +26,6 @@ module NetSuite
           private
 
           def make_request(method_name, uri, email, signature)
-            uri = URI(BASE_API + uri)
             klass = Module.const_get "Net::HTTP::#{method_name.to_s.capitalize}"
             method = klass.new(uri)
             method['AUTHORIZATION'] = auth_header(email, signature)
@@ -37,6 +38,10 @@ module NetSuite
 
           def auth_header(email, signature)
             "NLAuth nlauth_email=#{email},nlauth_signature=#{signature}"
+          end
+
+          def determine_uri(uri, sandbox)
+            URI((sandbox ? SANDBOX_API : PRODUCTION_API) + uri)
           end
 
           def encode(unencoded_string)
