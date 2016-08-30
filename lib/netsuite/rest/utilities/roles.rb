@@ -18,25 +18,26 @@ module NetSuite
           private
 
           def format_response(parsed)
-            # [
-            #   {
-            #    "account"=>{
-            #      "internalId"=>"TSTDRV15",
-            #      "name"=>"Honeycomb Mfg SDN (Leading)"},
-            #    "role"=>{
-            #      "internalId"=>3,
-            #      "name"=>"Administrator"},
-            #    "dataCenterURLs"=>{
-            #      "webservicesDomain"=>"https://webservices.na1.netsuite.com",
-            #      "restDomain"=>"https://rest.na1.netsuite.com",
-            #      "systemDomain"=>"https://system.na1.netsuite.com"}
-            #    },
-            #   ....
-            {
-              accounts: parsed.map {|hash| hash["account"]["internalId"] }.uniq,
-              roles:    parsed.map {|hash| hash["role"]["internalId"] }.uniq,
-              wsdls:    parsed.map {|hash| hash["dataCenterURLs"]["webservicesDomain"] }.uniq,
-            }
+            uniq_accounts = parsed.map {|hash| hash["account"] }.uniq
+
+            uniq_accounts.map do |hash|
+              matches = parsed.select {|x| x["account"]["internalId"] == hash["internalId"]}
+              {
+                account_id:    hash["internalId"],
+                account_name:  hash["name"],
+                roles: matches.map do |match|
+                  {
+                    id:   match["role"]["internalId"],
+                    name: match["role"]["name"]
+                  }
+                end.uniq,
+                wsdls: {
+                  webservices: matches.map {|match| match["dataCenterURLs"]["webservicesDomain"] }.uniq,
+                  rest:        matches.map {|match| match["dataCenterURLs"]["restDomain"] }.uniq,
+                  system:      matches.map {|match| match["dataCenterURLs"]["systemDomain"] }.uniq,
+                }
+              }
+            end
           end
 
         end
