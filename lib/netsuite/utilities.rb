@@ -32,7 +32,8 @@ module NetSuite
         count += 1
         yield
       rescue options[:exception] || Savon::SOAPFault => e
-        if !e.message.include?("Only one request may be made against a session at a time")
+        if !e.message.include?("Only one request may be made against a session at a time") &&
+           !e.message.include?('java.util.ConcurrentModificationException')
           raise e
         end
         if count >= (options[:attempts] || 8)
