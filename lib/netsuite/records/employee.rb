@@ -33,10 +33,6 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def confirm
-        puts "hi"
-      end
-
       def self.search_class_name
         'Employee'
       end
