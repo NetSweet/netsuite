@@ -42,6 +42,7 @@ describe 'basic records' do
       NetSuite::Records::Note,
       NetSuite::Records::OtherChargeSaleItem,
       NetSuite::Records::GiftCertificateItem,
+      NetSuite::Records::ReturnAuthorization,
     ]
   }
 
