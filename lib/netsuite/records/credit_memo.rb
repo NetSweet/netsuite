@@ -19,6 +19,7 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :vsoe_auto_calc
 
+      field :custom_field_list,        CustomFieldList
       field :transaction_bill_address, BillAddress
       field :item_list,                CreditMemoItemList
       field :apply_list,               CreditMemoApplyList
