@@ -23,6 +23,7 @@ module NetSuite
       field :transaction_bill_address, BillAddress
       field :item_list,                CreditMemoItemList
       field :apply_list,               CreditMemoApplyList
+      field :ship_group_list,          SalesOrderShipGroupList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 

@@ -11,14 +11,14 @@ module NetSuite
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
         :bill_address, :cc_approved, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
-        :est_gross_profit, :est_gross_profit_percent, :exchange_rate, :exclude_commission, :fax, :gift_cert_applied,
+        :est_gross_profit, :exchange_rate, :exclude_commission, :fax, :gift_cert_applied,
         :gift_cert_available, :gift_cert_total, :handling_cost, :handling_tax1_rate, :handling_tax2_rate, :is_taxable,
         :last_modified_date, :memo, :message, :on_credit_hold, :order_status, :other_ref_num, :recognized_revenue,
         :rev_rec_on_rev_commitment, :sales_effective_date, :ship_complete, :ship_date, :shipping_cost, :shipping_tax1_rate, :shipping_tax2_rate, :source,
         :start_date, :status, :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
-        :amount, :is_ship_address, :auth_code, :pn_ref_num
+        :amount, :is_ship_address, :auth_code, :pn_ref_num, :is_multi_ship_to
 
       # NOTE API >= 2014_2 only
       field :shipping_address, Address
@@ -31,8 +31,10 @@ module NetSuite
       field :item_list,                   SalesOrderItemList
       field :custom_field_list,           CustomFieldList
       field :gift_cert_redemption_list,   GiftCertRedemptionList
+      field :ship_group_list,             SalesOrderShipGroupList
 
-      read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
+      read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied,
+                       :est_gross_profit_percent
 
       record_refs :account, :bill_address_list, :created_from, :currency, :custom_form, :department, :discount_item, :entity, :gift_cert,
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :opportunity, :partner, :posting_period, :promo_code,
