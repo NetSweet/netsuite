@@ -204,6 +204,7 @@ module NetSuite
     autoload :SalesTaxItem,                     'netsuite/records/sales_tax_item'
     autoload :ServiceResaleItem,                'netsuite/records/service_resale_item'
     autoload :ServiceSaleItem,                  'netsuite/records/service_sale_item'
+    autoload :SerializedInventoryItem,          'netsuite/records/serialized_inventory_item'
     autoload :ShipAddress,                      'netsuite/records/ship_address'
     autoload :SiteCategory,                     'netsuite/records/site_category'
     autoload :Subsidiary,                       'netsuite/records/subsidiary'
