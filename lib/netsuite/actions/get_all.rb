@@ -38,7 +38,11 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= array_wrap(response_hash[:record_list][:record])
+        @response_body ||= if response_hash[:record_list]
+          array_wrap(response_hash[:record_list][:record])
+        elsif response_hash[:status][:status_detail][:@type] == "ERROR"
+          NetSuite::Error.new(response_hash[:status][:status_detail])
+        end
       end
 
       def response_hash
@@ -57,7 +61,7 @@ module NetSuite
             if response.success?
               response.body.map { |attr| new(attr) }
             else
-              raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+              raise RecordNotFound, response.body.message
             end
           end
         end
