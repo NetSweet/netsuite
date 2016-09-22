@@ -52,7 +52,7 @@ module NetSuite
         :ship_package,
         :revenue_allocation_group,
         :revenue_recognition_rule,
-        :rev_rec_schedule,
+        :rev_rec_schedule
 
       # bin_number_list	InventoryItemBinNumberList
       # custom_field_list	CustomFieldList
