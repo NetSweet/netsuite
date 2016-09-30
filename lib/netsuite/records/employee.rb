@@ -21,6 +21,7 @@ module NetSuite
 
       record_refs :currency, :department, :location, :subsidiary, :employee_type, :employee_status, :supervisor
 
+      field :addressbook_list,  EmployeeAddressbookList
       field :roles_list, RoleList
       field :custom_field_list, CustomFieldList
 
