@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class CustomerAddressbookList < Support::Sublist
       include Namespaces::ListRel
+      include Support::Actions
       
       actions :get
 
