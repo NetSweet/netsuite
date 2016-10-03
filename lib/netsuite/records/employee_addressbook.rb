@@ -3,6 +3,7 @@ module NetSuite
     class EmployeeAddressbook
       include Support::Fields
       include Support::Records
+      include Namespaces::ListEmp
 
       # address implementation changed
       # https://github.com/NetSweet/netsuite/pull/213
