@@ -130,6 +130,8 @@ module NetSuite
     autoload :DiscountItem,                     'netsuite/records/discount_item'
     autoload :Duration,                         'netsuite/records/duration'
     autoload :Employee,                         'netsuite/records/employee'
+    autoload :EmployeeAddressbook,              'netsuite/records/employee_addressbook'
+    autoload :EmployeeAddressbookList,          'netsuite/records/employee_addressbook_list'
     autoload :File,                             'netsuite/records/file'
     autoload :GiftCertificate,                  'netsuite/records/gift_certificate'
     autoload :GiftCertRedemption,               'netsuite/records/gift_cert_redemption'
