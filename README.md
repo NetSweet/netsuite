@@ -1,6 +1,6 @@
-[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)  
-[![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)  
-[![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)  
+[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
+[![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
+[![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
 [![Dependency Status](https://gemnasium.com/roidrage/lograge.svg)](https://gemnasium.com/netsweet/netsuite)
 
 # NetSuite Ruby SuiteTalk Gem
@@ -84,7 +84,7 @@ NetSuite.configure do
   consumer_secret  ENV['NETSUITE_CONSUMER_SECRET']
   token_id         ENV['NETSUITE_TOKEN_ID']
   token_secret     ENV['NETSUITE_TOKEN_SECRET']
-  
+
   # oauth does not work with API versions less than 2015_2
   api_version      '2015_2'
 end
@@ -488,3 +488,52 @@ NetSuite::Configuration.soap_header = {
 	}
 }
 ```
+
+
+```
+# updating an existing record tho...
+employee = NetSuite::Records::Employee.get(21210)
+
+record = {
+  default_shipping: true,
+  default_billing: true,
+  addressbook_address: {
+    addr1: '12345 Dale View',
+    city: 'NoWhere',
+    country: "_afghanistan"
+  }
+}
+
+employee.addressbook_list = { addressbook: [ record ] }
+employee.update({:first_name => "joe", :last_name=>"also joe"})
+
+employee.update({:addressbook_list => {addressbook: [record] }})
+```
+
+
+
+creating a record w addressbook
+
+
+```
+record = {
+  default_shipping: true,
+  default_billing: true,
+  addressbook_address: {
+    addr1: '1234 Dale View',
+    city: 'San Fakecity',
+    country: "_afghanistan"
+  }
+}
+
+s = NetSuite::Records::Subsidiary.get(1)
+
+employee = NetSuite::Records::Employee.new
+  employee.last_name = "Doe"
+  employee.first_name = "Jane"
+  employee.addressbook_list = { addressbook: [ record ] }
+
+  employee.subsidiary = s
+  employee.email = "xyz@gmail.com"
+  employee.add
+  ```
