@@ -102,7 +102,7 @@ describe NetSuite::Records::CustomFieldList do
 
     it 'can represent itself as a SOAP record' do
       record = {
-      "platformCore:customField" => [
+        "platformCore:customField" => [
           {
             'platformCore:value' => 'false',
             "@internalId" => "custentity_registeredonline",
@@ -123,6 +123,47 @@ describe NetSuite::Records::CustomFieldList do
 
       expect(list.to_record).to eql(record)
       expect(list.to_record.length).to eq(1)
+    end
+
+    context "when custom field list is initialised from a hash" do
+      let(:attributes) do
+        {
+          custom_field: [
+            {
+              script_id: "custentity_registeredonline",
+              type: "platformCore:SelectCustomFieldRef",
+              value: { internal_id: 200, type_id: 1 },
+            },
+            {
+              script_id: "custbody_salesclassification",
+              type: "platformCore:StringCustomFieldRef",
+              value: "foobar"
+            }
+          ]
+        }
+      end
+
+      it "can represent itself as a SOAP record" do
+        list = NetSuite::Records::CustomFieldList.new(attributes)
+
+        record = {
+          "platformCore:customField" => [
+            {
+              "@scriptId" => "custentity_registeredonline",
+              "@xsi:type" => "platformCore:SelectCustomFieldRef",
+              "platformCore:value" => {:@internalId => 200, :@typeId => "1"},
+            },
+            {
+              "@scriptId" => "custbody_salesclassification",
+              "@xsi:type" => "platformCore:StringCustomFieldRef",
+              "platformCore:value" => "foobar",
+            },
+          ]
+        }
+
+        expect(list.to_record).to eql(record)
+        expect(list.to_record.length).to eq(1)
+      end
     end
 
     # https://github.com/NetSweet/netsuite/issues/182
