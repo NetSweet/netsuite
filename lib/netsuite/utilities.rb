@@ -33,7 +33,8 @@ module NetSuite
         yield
       rescue options[:exception] || Savon::SOAPFault => e
         if !e.message.include?("Only one request may be made against a session at a time") &&
-           !e.message.include?('java.util.ConcurrentModificationException')
+           !e.message.include?('java.util.ConcurrentModificationException') &&
+           !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.')
           raise e
         end
         if count >= (options[:attempts] || 8)
