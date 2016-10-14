@@ -24,7 +24,7 @@ module NetSuite
         :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
         :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
         :stage, :start_date, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
-        :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :url,
+        :third_party_acct, :third_party_country, :third_party_zipcode, :title, :url,
         :vat_reg_number, :visits, :web_lead
 
       field :addressbook_list,  CustomerAddressbookList
@@ -39,7 +39,7 @@ module NetSuite
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
 
       record_refs :access_role, :custom_form, :currency, :entity_status, :partner, :category, :lead_source,
-        :price_level,:sales_rep, :subsidiary, :terms, :parent
+        :price_level,:sales_rep, :subsidiary, :terms, :parent, :territory
 
       attr_reader   :internal_id
       attr_accessor :external_id
