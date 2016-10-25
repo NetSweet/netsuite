@@ -119,6 +119,13 @@ module NetSuite
           when field_value.is_a?(FalseClass),
                field_value.is_a?(TrueClass)
             'BooleanCustomFieldRef'
+          when field_value.is_a?(String)
+            'StringCustomFieldRef'
+          when field_value.is_a?(Integer)
+            'LongCustomFieldRef'
+          when field_value.is_a?(Float),
+               field_value.is_a?(BigDecimal)
+            'DoubleCustomFieldRef'
           else
             'StringCustomFieldRef'
           end
