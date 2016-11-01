@@ -19,7 +19,7 @@ describe NetSuite::Records::Customer do
       :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
       :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
       :stage, :start_date, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
-      :territory, :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
+      :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
       :vat_reg_number, :visits, :web_lead
     ].each do |field|
       expect(customer).to have_field(field)
@@ -28,7 +28,7 @@ describe NetSuite::Records::Customer do
 
   it 'has the right record_refs' do
     [
-      :access_role, :currency, :custom_form, :entity_status, :partner, :sales_rep, :terms, :parent
+      :access_role, :currency, :custom_form, :entity_status, :partner, :sales_rep, :terms, :parent, :territory
     ].each do |record_ref|
       expect(customer).to have_record_ref(record_ref)
     end
