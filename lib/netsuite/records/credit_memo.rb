@@ -20,10 +20,15 @@ module NetSuite
         :vsoe_auto_calc
 
       field :custom_field_list,        CustomFieldList
-      field :transaction_bill_address, BillAddress
       field :item_list,                CreditMemoItemList
       field :apply_list,               CreditMemoApplyList
       field :ship_group_list,          SalesOrderShipGroupList
+
+      # field :bill_address_list,
+      field :transaction_bill_address, BillAddress
+
+      # NOTE only available on API > 2014_1
+      field :billing_address, Address
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 
