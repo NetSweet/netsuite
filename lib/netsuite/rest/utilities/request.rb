@@ -32,8 +32,15 @@ module NetSuite
 
             http = Net::HTTP.new(uri.hostname, uri.port)
             http.use_ssl      = USE_SSL
+            http.ssl_version = :TLSv1_2
             http.read_timeout = DEFAULT_TIMEOUT
-            http.start {|http| http.request(method)}
+
+            # TODO username + password will be outputted to STDOUT if this is enabled
+            # if !NetSuite::Configuration.silent
+            #   http.set_debug_output(NetSuite::Configuration.logger)
+            # end
+
+            http.start { |http| http.request(method) }
           end
 
           def auth_header(email, signature)
@@ -45,10 +52,7 @@ module NetSuite
           end
 
           def encode(unencoded_string)
-            URI.escape(
-              unencoded_string,
-              /[#{URI::PATTERN::RESERVED}]/
-            )
+            CGI.escape(unencoded_string)
           end
 
         end
