@@ -261,4 +261,16 @@ describe NetSuite::Configuration do
     expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
   end
 
+  describe '#logger=' do
+    let(:logger) { Logger.new(nil) }
+
+    before do
+      config.logger = logger
+    end
+
+    it 'sets logger' do
+      expect(config.logger).to eql(logger)
+    end
+  end
+
 end
