@@ -1,23 +1,11 @@
 module NetSuite
   module Records
-    class PricingMatrix
+    class PricingMatrix < Support::Sublist
       include Namespaces::PlatformCore
 
-      def initialize(attributes = {})
-        attributes[:pricing] = [attributes[:pricing]] unless
-          attributes[:pricing].is_a? Array
-        attributes[:pricing].each do |pricing|
-          prices << RecordRef.new(pricing)
-        end if attributes[:pricing]
-      end
+      sublist :pricing, RecordRef
 
-      def prices
-        @prices ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:item" => prices.map(&:to_record) }
-      end
+      alias :prices :pricing
     end
   end
 end
