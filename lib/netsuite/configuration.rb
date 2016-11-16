@@ -3,6 +3,8 @@ module NetSuite
     extend self
 
     def reset!
+      NetSuite::Utilities.clear_cache!
+
       attributes.clear
     end
 
