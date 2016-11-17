@@ -124,25 +124,23 @@ task.update :message => 'New Message'
 
 task.delete
 
-# using get_select_value with a custom record
-NetSuite::Records::BaseRefList.get_select_value(
-  field: 'custrecord_something',
-  customRecordType: {
-    '@internalId' => 10,
-    '@xsi:type' => 'customRecord'
-  }
-)
-
 # using get_select_value with a standard record
 NetSuite::Records::BaseRefList.get_select_value(
   recordType: 'serviceSaleItem',
   field: 'taxSchedule'
 )
 
-# updating a custom field list
+```
+
+#### Custom Records & Fields
+
+```ruby
+# updating a custom field list on a record
+
 # you need to push ALL the values of ALL of the custom fields that you want set on the record
 # you can't just push the values of the fields that you want to update: all of the values of
 # other fields will then fall back to their default values
+
 contact = NetSuite::Records::Contact.get(12345)
 contact.custom_field_list.custentity_alistfield = { internal_id: 1 }
 contact.custom_field_list.custentity_abooleanfield = true
@@ -175,6 +173,14 @@ record = NetSuite::Records::CustomRecord.new(internal_id: 100)
 record.custom_field_list.custrecord_locationstate = "New Jersey"
 record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
 
+# using get_select_value with a custom record
+NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custrecord_something',
+  customRecordType: {
+    '@internalId' => 10,
+    '@xsi:type' => 'customRecord'
+  }
+)
 ```
 
 #### Searching
