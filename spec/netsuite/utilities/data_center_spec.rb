@@ -17,10 +17,23 @@ describe NetSuite::Utilities::DataCenter do
       )
     end
 
+    context 'without caching' do
+      it 'hits the API more than once' do
+        allow(described_class).to receive(:make_data_center_call)
+          .with(account)
+          .and_return(response)
+        10.times { described_class.get(account) }
+
+        expect(described_class).to have_received(:make_data_center_call)
+          .with(account).exactly(10).times
+      end
+
+    end
+
     context 'when caching is enabled' do
 
       it 'doesnt hit the API when cached response is present' do
-        described_class.class_exec(account) {|acct| @cache[acct] = "wsdl" }
+        described_class.class_exec(account) {|acct| cache[acct] = "wsdl" }
         allow(described_class).to receive(:make_data_center_call)
         described_class.get(account, cache: true)
 
@@ -38,7 +51,7 @@ describe NetSuite::Utilities::DataCenter do
       end
 
       it 'hits the API after its cache is cleared' do
-        described_class.class_exec(account) {|acct| @cache[acct] = "wsdl" }
+        described_class.class_exec(account) {|acct| cache[acct] = "wsdl" }
         allow(described_class).to receive(:make_data_center_call)
           .with(account)
           .and_return(response)
@@ -54,7 +67,7 @@ describe NetSuite::Utilities::DataCenter do
       end
 
       it 'hits the API if the cache contains another response' do
-        described_class.class_eval { @cache["BOGUS"] = "wsdl" }
+        described_class.class_eval { cache["BOGUS"] = "wsdl" }
         allow(described_class).to receive(:make_data_center_call)
           .with(account)
           .and_return(response)
@@ -68,8 +81,8 @@ describe NetSuite::Utilities::DataCenter do
 
     context 'when cache is empty' do
 
-      it 'does hit the API when cache is empty' do
-        expect( described_class.class_eval { @cache }).to eq({})
+      it 'does hit the API' do
+        expect( described_class.class_eval { cache }).to eq({})
         allow(described_class).to receive(:make_data_center_call)
           .with(account)
           .and_return(response)
@@ -80,15 +93,15 @@ describe NetSuite::Utilities::DataCenter do
           .with(account).exactly(1).times
       end
 
-      it 'stores API response in the cache if initially empty' do
-        expect( described_class.class_eval { @cache }).to eq({})
+      it 'stores API response' do
+        expect( described_class.class_eval { cache }).to eq({})
         allow(described_class).to receive(:make_data_center_call)
           .with(account)
           .and_return(response)
 
         described_class.get(account, cache: true)
 
-        expect( described_class.class_eval { @cache }).to eq(
+        expect( described_class.class_eval { cache }).to eq(
           { account => wsdl }
         )
       end

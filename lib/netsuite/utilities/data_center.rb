@@ -15,7 +15,7 @@ module NetSuite
           response = make_data_center_call(netsuite_account)
           if response.success?
             wsdl = extract_wsdl_from_response(response)
-            @cache[netsuite_account.to_s] = wsdl if opts[:cache]
+            cache[netsuite_account.to_s] = wsdl if opts[:cache]
             return wsdl
           else
             return nil
@@ -23,6 +23,10 @@ module NetSuite
         end
 
         private
+
+          def cache
+            @cache ||= {}
+          end
 
           def make_data_center_call(netsuite_account)
             NetSuite::Configuration.connection({}, {
@@ -36,8 +40,7 @@ module NetSuite
           end
 
           def fetch_from_cache(netsuite_account)
-            @cache ||= {}
-            return @cache.fetch(netsuite_account.to_s, nil)
+            return cache.fetch(netsuite_account.to_s, nil)
           end
 
           def extract_wsdl_from_response(response)
