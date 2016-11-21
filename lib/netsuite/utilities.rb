@@ -7,6 +7,7 @@ module NetSuite
     def clear_cache!
       @netsuite_get_record_cache = {}
       @netsuite_find_record_cache = {}
+      DataCenter.clear_cache!
     end
 
     def append_memo(ns_record, added_memo, opts = {})
@@ -156,27 +157,8 @@ module NetSuite
       nil
     end
 
-    def data_center_url(netsuite_account)
-      begin
-        data_center_call_response = NetSuite::Configuration.connection({}, {
-          email: '',
-          password: '',
-          account: ''
-        }).call(:get_data_center_urls, message: {
-          'platformMsgs:account' => netsuite_account
-        })
-
-        if data_center_call_response.success?
-          return data_center_call_response.body[:get_data_center_urls_response][:get_data_center_urls_result][:data_center_urls][:webservices_domain]
-        else
-          # log.error "error getting data center url"
-        end
-      rescue Exception => e
-        # log.error "error determining correct datacenter for account #{netsuite_account}. #{e.message}"
-
-        # TODO silence this later: for now we need to investigate when this would occur
-        raise(e)
-      end
+    def data_center_url(*args)
+      DataCenter.get(*args)
     end
 
     # Warning this was developed with a Web Services user whose time zone was set to CST
