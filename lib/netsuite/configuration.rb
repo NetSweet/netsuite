@@ -4,6 +4,7 @@ module NetSuite
 
     def reset!
       NetSuite::Utilities.clear_cache!
+      clear_wsdl_cache
 
       attributes.clear
     end
@@ -13,8 +14,8 @@ module NetSuite
     end
 
     def connection(params={}, credentials={})
-      Savon.client({
-        wsdl: wsdl,
+      client = Savon.client({
+        wsdl: cached_wsdl || wsdl,
         read_timeout: read_timeout,
         namespaces: namespaces,
         soap_header: auth_header(credentials).update(soap_header),
@@ -24,6 +25,8 @@ module NetSuite
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
       }.update(params))
+      cache_wsdl(client)
+      return client
     end
 
     def filters(list = nil)
@@ -41,6 +44,35 @@ module NetSuite
 
     def filters=(list)
       attributes[:filters] = list
+    end
+
+    def wsdl_cache
+      @wsdl_cache ||= {}
+    end
+
+    def clear_wsdl_cache
+      wsdl_cache = {}
+    end
+
+    def cached_wsdl
+      xml = wsdl_cache.fetch([api_version, wsdl], nil)
+      if xml.is_a? String
+        xml
+      elsif xml.is_a? Savon::Client
+        wsdl_cache[[api_version, wsdl]] = xml.instance_eval { @wsdl.xml }
+      end
+    end
+
+    def cache_wsdl(client)
+      # NOTE the Savon::Client doesn't pull the wsdl content upon
+      # instantiation; it pulls it when it recieves the #call method.
+      # If we force it to pull the wsdl here, it will duplicate the call later.
+      # So, we stash the entire client and fetch just the wsdl from it after
+      # it completes its call
+      # For reference, see:
+      # https://github.com/savonrb/savon/blob/d64925d3add33fa5531577ce9e3a28a7a93618b1/lib/savon/client.rb#L35-L37
+      # https://github.com/savonrb/savon/blob/d64925d3add33fa5531577ce9e3a28a7a93618b1/lib/savon/operation.rb#L22
+      wsdl_cache[[api_version, wsdl]] ||= client
     end
 
     def api_version(version = nil)
