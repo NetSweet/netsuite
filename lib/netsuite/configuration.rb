@@ -51,15 +51,15 @@ module NetSuite
     end
 
     def clear_wsdl_cache
-      wsdl_cache = {}
+      @wsdl_cache = {}
     end
 
     def cached_wsdl
-      xml = wsdl_cache.fetch([api_version, wsdl], nil)
-      if xml.is_a? String
-        xml
-      elsif xml.is_a? Savon::Client
-        wsdl_cache[[api_version, wsdl]] = xml.instance_eval { @wsdl.xml }
+      cached = wsdl_cache.fetch([api_version, wsdl], nil)
+      if cached.is_a? String
+        cached
+      elsif cached.is_a? Savon::Client
+        wsdl_cache[[api_version, wsdl]] = cached.instance_eval { @wsdl.xml }
       end
     end
 
