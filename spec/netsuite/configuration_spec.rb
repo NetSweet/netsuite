@@ -29,13 +29,33 @@ describe NetSuite::Configuration do
   end
 
   describe '#connection' do
-    it 'returns a Savon::Client object that allows requests to the service' do
+    before(:each) do
       # reset clears out the password info
-      config.email 'me@example.com'
-      config.password 'me@example.com'
-      config.account 1023
+      config.email       'me@example.com'
+      config.password    'me@example.com'
+      config.account     1023
+      config.wsdl        "my_wsdl"
+      config.api_version "2012_2"
+    end
 
+    it 'returns a Savon::Client object that allows requests to the service' do
       expect(config.connection).to be_kind_of(Savon::Client)
+    end
+
+    it 'caches the client' do
+      expect(config.wsdl_cache).to be_empty
+      conn = config.connection
+
+      expect(
+        config.wsdl_cache.fetch([config.api_version, config.wsdl])
+      ).to eq(conn)
+    end
+
+    it 'uses cached wsdls' do
+      allow(config).to receive(:cached_wsdl)
+      config.connection
+
+      expect(config).to have_received(:cached_wsdl)
     end
   end
 
@@ -71,6 +91,77 @@ describe NetSuite::Configuration do
         config.wsdl_domain = 'system.na1.netsuite.com'
 
         expect(config.wsdl).to eql('https://system.na1.netsuite.com/wsdl/v2014_1_0/netsuite.wsdl')
+      end
+    end
+
+    context '#cache_wsdl' do
+      it 'stores the client' do
+        expect(config.wsdl_cache).to be_empty
+        config.cache_wsdl("whatevs")
+        expect(config.wsdl_cache).to eq(
+          {[config.api_version, config.wsdl] => "whatevs"}
+        )
+      end
+
+      it 'doesnt write over old values' do
+        config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
+          wsdl_cache[[api, wsdl]] = "old value"
+        end
+        config.cache_wsdl("new value")
+
+        expect(config.wsdl_cache.values.first).to eq("old value")
+      end
+
+      it 'handles a nil cache' do
+        config.class_eval { @wsdl_cache = nil }
+        config.cache_wsdl("whatevs")
+        expect(config.wsdl_cache).to eq(
+          {[config.api_version, config.wsdl] => "whatevs"}
+        )
+      end
+
+      it 'can cache multiple values' do
+        config.class_exec("2020_2", "fake wsdl") do |api, wsdl|
+          wsdl_cache[[api, wsdl]] = "old value"
+        end
+        expect(config.wsdl_cache.keys.count).to eq 1
+        config.cache_wsdl("new value")
+
+        expect(config.wsdl_cache.keys.count).to eq 2
+      end
+    end
+
+    context '#cached_wsdl' do
+      it 'returns wsdl (xml)' do
+        config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
+          wsdl_cache[[api, wsdl]] = "xml wsdl string"
+        end
+        expect( config.cached_wsdl ).to eq "xml wsdl string"
+      end
+
+      it 'stores client xml' do
+        client = double(:savon_client)
+        allow(client).to receive(:is_a?).with(String).and_return(false)
+        allow(client).to receive(:is_a?).with(Savon::Client).and_return(true)
+        wsdl_dbl = double(:wsdl, xml: "xml wsdl")
+        client.instance_exec(wsdl_dbl) {|wsdl| @wsdl = wsdl }
+        config.class_exec(config.api_version, config.wsdl, client) do |api, wsdl, c|
+          wsdl_cache[[api, wsdl]] = c
+        end
+
+        expect( config.wsdl_cache.values.first ).to eq client
+        expect( config.cached_wsdl ).to eq "xml wsdl"
+        expect( config.wsdl_cache.values.first ).to eq "xml wsdl"
+      end
+
+      it 'handles a nil cache' do
+        config.class_eval { @wsdl_cache = nil }
+        expect( config.cached_wsdl ).to eq nil
+      end
+
+      it 'handles an empty cache' do
+        expect(config.wsdl_cache).to be_empty
+        expect( config.cached_wsdl ).to eq nil
       end
     end
   end
