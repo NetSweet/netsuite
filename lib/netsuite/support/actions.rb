@@ -42,6 +42,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::Update::Support)
           when :initialize
             self.send(:include, NetSuite::Actions::Initialize::Support)
+          when :attach
+            self.send(:include, NetSuite::Actions::Attach::Support)
           else
             raise "Unknown action: #{name.inspect}"
           end

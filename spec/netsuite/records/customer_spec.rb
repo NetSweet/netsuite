@@ -171,6 +171,20 @@ describe NetSuite::Records::Customer do
     end
   end
 
+  describe "#to_attachment" do
+    let(:customer) { NetSuite::Records::Customer.new(:internal_id => 123) }
+
+    it 'returns a hash of attributes that can be used in a SOAP attach request' do
+      expect(customer.to_attachment).to eql({
+        "platformCore:attachTo" => {
+          "xsi:type" => "platformCore:RecordRef",
+          "internalId" => 123,
+          "type" => "customer"
+        }
+      })
+    end
+  end
+
   describe '#record_type' do
     it 'returns a string type for the record to be used in a SOAP request' do
       expect(customer.record_type).to eql('listRel:Customer')

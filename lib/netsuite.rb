@@ -37,6 +37,7 @@ module NetSuite
   module Support
     autoload :Actions,    'netsuite/support/actions'
     autoload :Attributes, 'netsuite/support/attributes'
+    autoload :Attachment, 'netsuite/support/attachment'
     autoload :Fields,     'netsuite/support/fields'
     autoload :Sublist,    'netsuite/support/sublist'
     autoload :RecordRefs, 'netsuite/support/record_refs'
@@ -48,6 +49,7 @@ module NetSuite
 
   module Actions
     autoload :Add,              'netsuite/actions/add'
+    autoload :Attach,           'netsuite/actions/attach'
     autoload :Delete,           'netsuite/actions/delete'
     autoload :DeleteList,       'netsuite/actions/delete_list'
     autoload :Get,              'netsuite/actions/get'
@@ -67,6 +69,7 @@ module NetSuite
     autoload :Account,                          'netsuite/records/account'
     autoload :AccountingPeriod,                 'netsuite/records/accounting_period'
     autoload :Address,                          'netsuite/records/address'
+    autoload :AttachContactReference,           'netsuite/records/attach_contact_reference'
     autoload :BaseRefList,                      'netsuite/records/base_ref_list'
     autoload :BillAddress,                      'netsuite/records/bill_address'
     autoload :BillingSchedule,                  'netsuite/records/billing_schedule'

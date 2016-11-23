@@ -5,6 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
+      include Support::Attachment
       include Namespaces::ListRel
 
       actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :delete_list, :search
@@ -32,7 +33,7 @@ module NetSuite
       field :contact_roles_list, ContactAccessRolesList
       field :currency_list, CustomerCurrencyList
       field :partners_list, CustomerPartnersList
-      
+
       # TODO subscriptions_list
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
