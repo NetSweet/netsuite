@@ -8,7 +8,6 @@ module NetSuite
       def applies
         self.apply
       end
-
     end
   end
 end

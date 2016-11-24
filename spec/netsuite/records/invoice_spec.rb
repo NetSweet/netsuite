@@ -44,7 +44,7 @@ describe NetSuite::Records::Invoice do
   it 'has the right record_refs' do
     [
       :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
-      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary
+      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary, :currency
     ].each do |record_ref|
       expect(invoice).to have_record_ref(record_ref)
     end
