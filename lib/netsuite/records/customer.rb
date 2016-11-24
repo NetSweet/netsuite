@@ -22,8 +22,8 @@ module NetSuite
         :opening_balance, :opening_balance_account, :opening_balance_date,
         :password, :password2, :phone, :phonetic_name, :pref_cc_processor, :print_on_check_as,
         :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
-        :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete, :shipping_item,
-        :stage, :start_date, :sync_partner_teams, :tax_exempt, :tax_item, :taxable,
+        :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete,
+        :stage, :start_date, :sync_partner_teams, :tax_exempt, :taxable,
         :third_party_acct, :third_party_country, :third_party_zipcode, :title, :url,
         :vat_reg_number, :visits, :web_lead
 
@@ -32,14 +32,14 @@ module NetSuite
       field :contact_roles_list, ContactAccessRolesList
       field :currency_list, CustomerCurrencyList
       field :partners_list, CustomerPartnersList
-      
+
       # TODO subscriptions_list
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
 
       record_refs :access_role, :custom_form, :currency, :entity_status, :partner, :category, :lead_source,
-        :price_level,:sales_rep, :subsidiary, :terms, :parent, :territory
+        :price_level,:sales_rep, :subsidiary, :terms, :parent, :territory, :tax_item, :shipping_item
 
       attr_reader   :internal_id
       attr_accessor :external_id
