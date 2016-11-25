@@ -49,13 +49,13 @@ describe NetSuite::Configuration do
         expect(config.wsdl).to eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
       end
     end
-
+=begin
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
         expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
       end
     end
-
+=end
     context 'when the wsdl has not been set, but the API has been set' do
       it 'should correctly return the full HTTP sandbox URL' do
         config.api_version '2013_1'
