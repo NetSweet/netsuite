@@ -200,6 +200,10 @@ describe NetSuite::Records::Job do
     end
   end
 
+  describe '.search' do
+    it 'searches'
+  end
+
   describe '#to_record' do
     let(:job) { NetSuite::Records::Job.new(:entity_id => 'TEST JOB', :account_number => 7) }
 

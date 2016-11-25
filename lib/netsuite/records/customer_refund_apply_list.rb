@@ -3,13 +3,11 @@ module NetSuite
     class CustomerRefundApplyList < Support::Sublist
       include Namespaces::TranCust
 
+      attr_accessor :replace_all
+
       sublist :apply, CustomerRefundApply
 
-      # for backward compatibility
-      def applies
-        self.apply
-      end
+      alias :applies :apply
     end
-
   end
 end

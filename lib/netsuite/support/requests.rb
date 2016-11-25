@@ -47,6 +47,14 @@ module NetSuite
         raise NotImplementedError, 'Please implement a #response_body method'
       end
 
+      def array_wrap(object)
+        if object.is_a?(Array)
+          return object
+        end
+
+        [ object ]
+      end
+
     end
   end
 end

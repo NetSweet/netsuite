@@ -1,32 +1,13 @@
 module NetSuite
   module Records
-    class MemberList
-      include Support::Fields
+    class MemberList < Support::Sublist
       include Support::Records
       include Namespaces::ListAcct
 
-      fields :replace_all, :item_member
+      fields :replace_all
 
-      def initialize(attrs = {})
-        initialize_from_attributes_hash(attrs)
-      end
+      sublist :item_member, ItemMember
 
-      def item_member=(items)
-        case items
-        when Hash
-          self.item_member << ItemMember.new(items)
-        when Array
-          items.each { |ref| self.item_member << ItemMember.new(ref) }
-        end
-      end
-
-      def item_member
-        @item_member ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:itemMember" => item_member.map(&:to_record) }
-      end
     end
   end
 end

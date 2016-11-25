@@ -7,7 +7,7 @@ describe NetSuite::Records::VendorBillItem do
     [
       :amortization_end_date, :amortization_residual, :amortiz_start_date, :bin_numbers,  :bill_variance_status,
       :description, :expiration_date, :gross_amt, :inventory_detail, :is_billable, :landed_cost, :line,
-      :order_doc, :order_line, :quantity, :serial_numbers, :tax_rate_1, :tax_rate_2, :tax_1_amt, :vendor_name
+      :order_doc, :order_line, :quantity, :serial_numbers, :tax_rate_1, :tax_rate_2, :tax_1_amt, :vendor_name, :rate
     ].each do |field|
       expect(item).to have_field(field)
     end
@@ -42,7 +42,7 @@ describe NetSuite::Records::VendorBillItem do
       attributes = {
         :custom_field => {
           :value => 10,
-          :internal_id => 'custfield_value'
+          :script_id => 'custfield_value'
         }
       }
       item.custom_field_list = attributes
@@ -63,7 +63,7 @@ describe NetSuite::Records::VendorBillItem do
       attributes = {
         :custom_field => {
           :value => 10,
-          :internal_id => 'custfield_value'
+          :script_id => 'custfield_value'
         }
       }
       item.options = attributes

@@ -26,7 +26,7 @@ describe NetSuite::Records::Invoice do
       :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
       :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
       :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
-      :vat_reg_num, :vsoe_auto_calc
+      :vat_reg_num, :vsoe_auto_calc, :tax_rate
     ].each do |field|
       expect(invoice).to have_field(field)
     end
@@ -34,7 +34,7 @@ describe NetSuite::Records::Invoice do
 
   it 'has all the right read_only_fields' do
     [
-      :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied, :tax_rate,
+      :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied,
       :handling_cost, :recognized_revenue, :amount_remaining, :amount_paid
     ].each do |field|
       expect(NetSuite::Records::Invoice).to have_read_only_field(field)
@@ -132,6 +132,62 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  describe '#shipping_address' do
+    it 'can be set from attributes' do
+      attributes = {
+        :country => "_unitedStates",
+        :attention => "William Sanders",
+        :addressee => "William Sanders",
+        :addr1 => "test1",
+        :addr2 => "test2",
+        :city => "San Francisco",
+        :state => "CA",
+        :zip => "94131",
+        :addr_text => "William Sanders<br>William Sanders<br>test1<br>test2<br>San Francisco CA 94131",
+        :override => false,
+        :"@xmlns:platform_common" => "urn:common_2016_1.platform.webservices.netsuite.com"
+      }
+
+      invoice.shipping_address = attributes
+      expect(invoice.shipping_address).to be_kind_of(NetSuite::Records::Address)
+      expect(invoice.shipping_address.addressee).to eql("William Sanders")
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      shipping_address = NetSuite::Records::Address.new
+      invoice.shipping_address = shipping_address
+      expect(invoice.shipping_address).to eql(shipping_address)
+    end
+  end
+
+  describe '#billing_address' do
+    it 'can be set from attributes' do
+      attributes = {
+        :country => "_unitedStates",
+        :attention => "William Sanders",
+        :addressee => "William Sanders",
+        :addr1 => "test1",
+        :addr2 => "test2",
+        :city => "San Francisco",
+        :state => "CA",
+        :zip => "94131",
+        :addr_text => "William Sanders<br>William Sanders<br>test1<br>test2<br>San Francisco CA 94131",
+        :override => false,
+        :"@xmlns:platform_common" => "urn:common_2016_1.platform.webservices.netsuite.com"
+      }
+
+      invoice.billing_address = attributes
+      expect(invoice.billing_address).to be_kind_of(NetSuite::Records::Address)
+      expect(invoice.billing_address.addressee).to eql("William Sanders")
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      billing_address = NetSuite::Records::Address.new
+      invoice.billing_address = billing_address
+      expect(invoice.billing_address).to eql(billing_address)
+    end
+  end
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
@@ -152,6 +208,51 @@ describe NetSuite::Records::Invoice do
           NetSuite::Records::Invoice.get(:external_id => 10)
         }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Invoice with OPTIONS=(.*) could not be found/)
+      end
+    end
+  end
+
+  describe '.search' do
+    context 'when the response is successful' do
+      let(:response) do
+        NetSuite::Response.new(
+          :success => true,
+          :body => {
+            :status => { :@is_success => 'true' },
+            :total_records => '1',
+            :search_row_list => {
+              :search_row => {
+                :basic => {
+                  :alt_name => {:search_value=>'A Awesome Name'},
+                  :"@xmlns:platform_common"=>'urn:common_2012_1.platform.webservices.netsuite.com'},
+                  :"@xsi:type" => 'listRel:ItemSearchRow'
+                }
+              }
+            }
+          )
+      end
+
+      it 'returns an Invoice instance populated with the data from the response object' do
+        allow(NetSuite::Actions::Search).to receive(:call).and_return(response)
+
+        invoice = NetSuite::Records::Invoice.search(
+          criteria: {
+            basic: [
+              {
+                field: 'type',
+                operator: 'anyOf',
+                type: 'SearchEnumMultiSelectField',
+                value: ['_invoice']
+              }
+            ]
+          },
+          columns: {
+            'tranSales:basic' => [
+              'platformCommon:internalId/' => {}
+            ]
+          }
+        ).results[0]
+        expect(invoice).to be_kind_of(NetSuite::Records::Invoice)
       end
     end
   end

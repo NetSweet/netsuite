@@ -13,6 +13,7 @@ module NetSuite
         :vsoe_permit_discount, :vsoe_price
 
       field :custom_field_list, CustomFieldList
+      field :inventory_detail,  InventoryDetail
 
       record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
 

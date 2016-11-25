@@ -5,6 +5,7 @@ module NetSuite
 
       attr_reader :total_records
       attr_reader :total_pages
+      attr_reader :current_page
 
       # header from a basic customer search:
 
@@ -22,12 +23,13 @@ module NetSuite
         
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
+        @current_page = response.body[:page_index].to_i
 
         if @total_records > 0
           if response.body.has_key?(:record_list)
             # basic search results
             record_list = response.body[:record_list][:record]
-            record_list = [record_list] if @total_records == 1
+            record_list = [record_list] unless record_list.is_a?(Array)
 
             record_list.each do |record|
               results << result_class.new(record)
@@ -35,7 +37,7 @@ module NetSuite
           elsif response.body.has_key? :search_row_list
             # advanced search results
             record_list = response.body[:search_row_list][:search_row]
-            record_list = [record_list] if @total_records == 1
+            record_list = [record_list] unless record_list.is_a?(Array)
 
             record_list.each do |record|
               # TODO because of customFieldList we need to either make this recursive
@@ -87,6 +89,7 @@ module NetSuite
 
           @results = next_search.results
           @response = next_search.response
+          @current_page = response.body[:page_index].to_i
         end
 
         yield results

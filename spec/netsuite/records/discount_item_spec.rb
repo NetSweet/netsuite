@@ -5,7 +5,7 @@ describe NetSuite::Records::DiscountItem do
 
   it 'has the right fields' do
     [
-      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pretax,
+      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pre_tax,
       :item_id, :last_modified_date, :non_posting, :rate, :upc_code, :vendor_name
     ].each do |field|
       expect(item).to have_field(field)
@@ -13,13 +13,14 @@ describe NetSuite::Records::DiscountItem do
 
     # TODO there is a probably a more robust way to test this
     expect(item.custom_field_list.class).to eq(NetSuite::Records::CustomFieldList)
+    expect(item.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
   it 'has the right record_refs' do
     [
       :account, :custom_form, :deferred_revenue_account, :department, :expense_account,
       :income_account, :issue_product, :klass, :location, :parent, :rev_rec_schedule, :sales_tax_code,
-      :subsidiary_list, :tax_schedule
+      :tax_schedule
     ].each do |record_ref|
       expect(item).to have_record_ref(record_ref)
     end

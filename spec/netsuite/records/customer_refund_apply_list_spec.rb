@@ -15,7 +15,7 @@ describe NetSuite::Records::CustomerRefundApplyList do
   describe '#to_record' do
     it 'can represent itself as a SOAP record' do
       record = {
-          'tranCust:apply' => [{},{}]
+        'tranCust:apply' => [{},{}]
       }
       list.applies.concat([apply,apply])
       expect(list.to_record).to eql(record)

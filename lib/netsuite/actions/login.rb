@@ -31,20 +31,25 @@ module NetSuite
         passport['platformMsgs:passport']['platformCore:email'] = credentials[:email] || ''
         passport['platformMsgs:passport']['platformCore:password'] = credentials[:password] || ''
         passport['platformMsgs:passport']['platformCore:role'] = credentials[:role] || ''
+        passport['platformMsgs:passport']['platformCore:account'] = credentials[:account] if !credentials[:account].nil?
 
         begin
           response = NetSuite::Configuration.connection(soap_header: {}).call :login, message: passport
         rescue Savon::SOAPFault => e
           error_details = e.to_hash[:fault]
 
-          return NetSuite::Response.new(
-            success: false,
-            errors: [ NetSuite::Error.new(
-              code: error_details[:detail][:invalid_credentials_fault][:code],
-              message: error_details[:faultstring]
-            )],
-            body: error_details
-          )
+          if error_details[:detail].has_key?(:invalid_credentials_fault)
+            return NetSuite::Response.new(
+              success: false,
+              errors: [ NetSuite::Error.new(
+                code: error_details[:detail][:invalid_credentials_fault][:code],
+                message: error_details[:faultstring]
+              )],
+              body: error_details
+            )
+          else
+            raise(e)
+          end
         end
 
         # include more data in body; leave it up to the user to pull the data they are looking for

@@ -1,32 +1,14 @@
 module NetSuite
   module Records
-    class DepositPaymentList
-      include Support::Fields
+    class DepositPaymentList < Support::Sublist
       include Namespaces::TranBank
 
-      fields :deposit_payment
+      sublist :deposit_payment, DepositPayment
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
+      alias :deposit_payments :deposit_payment
 
-      def payment=(payments)
-        case payments
-        when Hash
-          self.payments << DepositPayment.new(payments)
-        when Array
-          payments.each { |p| self.payments << DepositPayment.new(p) }
-        end
-      end
-
-      def payments
-        @payments ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:depositPayment" => payments.map(&:to_record) }
-      end
-
+      # legacy support
+      alias :payments :deposit_payment
     end
   end
 end

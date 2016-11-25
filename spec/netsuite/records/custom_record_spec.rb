@@ -29,7 +29,7 @@ describe NetSuite::Records::CustomRecord do
       attributes = {
         :custom_field => {
           :amount => 10,
-          :internal_id => 'custfield_amount'
+          :script_id => 'custfield_amount'
         }
       }
       record.custom_field_list = attributes

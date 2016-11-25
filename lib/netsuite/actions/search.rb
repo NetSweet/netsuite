@@ -22,12 +22,14 @@ module NetSuite
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
 
-        preferences = NetSuite::Configuration.auth_header(credentials).merge(
-          (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-            h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
-            h
-          end
-        )
+        preferences = NetSuite::Configuration.auth_header(credentials)
+          .update(NetSuite::Configuration.soap_header)
+          .merge(
+            (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+              h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
+              h
+            end
+          )
 
         NetSuite::Configuration
           .connection({ soap_header: preferences }, credentials)
@@ -61,8 +63,12 @@ module NetSuite
         criteria = @options[:criteria] || @options
 
         # TODO find cleaner solution for pulling the namespace of the record, which is a instance method
-        example_instance = @klass.new
-        namespace = example_instance.record_namespace
+        namespace = if @klass.respond_to?(:search_class_namespace)
+          @klass.search_class_namespace
+        else
+          @klass.new.record_namespace
+        end
+
         # extract the class name
 
         criteria_structure = {}
@@ -147,6 +153,13 @@ module NetSuite
                 }
               elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
                 # date ranges are handled via searchValue (start range) and searchValue2 (end range)
+
+                h[element_name] = {
+                  '@operator' => condition[:operator],
+                  "platformCore:searchValue" => condition[:value].first.to_s,
+                  "platformCore:searchValue2" => condition[:value].last.to_s
+                }
+              elsif condition[:value].is_a?(Array) && condition[:operator] == 'between'
 
                 h[element_name] = {
                   '@operator' => condition[:operator],

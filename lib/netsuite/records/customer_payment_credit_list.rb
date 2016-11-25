@@ -10,6 +10,5 @@ module NetSuite
         self.credit
       end
     end
-
   end
 end

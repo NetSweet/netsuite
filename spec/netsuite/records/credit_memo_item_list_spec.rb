@@ -15,7 +15,7 @@ describe NetSuite::Records::CreditMemoItemList do
   describe '#to_record' do
     it 'can represent itself as a SOAP record' do
       record = {
-          'tranCust:item' => [{},{}]
+        'tranCust:item' => [{},{}]
       }
       list.items.concat([item, item])
       expect(list.to_record).to eql(record)
