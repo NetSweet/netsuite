@@ -34,7 +34,7 @@ module NetSuite
         passport['platformMsgs:passport']['platformCore:account'] = credentials[:account] if !credentials[:account].nil?
 
         begin
-          response = NetSuite::Configuration.connection(soap_header: {}).call :login, message: passport
+          response = NetSuite::Configuration.connection(soap_header: NetSuite::Configuration.soap_header).call :login, message: passport
         rescue Savon::SOAPFault => e
           error_details = e.to_hash[:fault]
 
