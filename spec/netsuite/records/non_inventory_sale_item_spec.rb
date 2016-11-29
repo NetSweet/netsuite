@@ -91,6 +91,32 @@ describe NetSuite::Records::NonInventorySaleItem do
     end
   end
 
+  describe '#update' do
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([item.class, {external_id: 'foo'}], {}).
+            and_return(response)
+        item.external_id = 'foo'
+        expect(item.update).to be_truthy
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([item.class, {external_id: 'foo'}], {}).
+            and_return(response)
+        item.external_id = 'foo'
+        expect(item.update).to be_falsey
+      end
+    end
+  end
+
   describe '#delete' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
