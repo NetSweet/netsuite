@@ -20,7 +20,7 @@ module NetSuite
       def initialize(response, result_class)
         @result_class = result_class
         @response = response
-        
+
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
         @current_page = response.body[:page_index].to_i
@@ -52,12 +52,23 @@ module NetSuite
                   # extract the value from <SearchValue/> to make results easier to work with
 
                   if v.is_a?(Hash) && v.has_key?(:search_value)
-                    # search return values that are just internalIds are stored as attributes on the searchValue element
-                    if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
-                      record[search_group][k] = v[:search_value][:'@internal_id']
-                    else
-                      record[search_group][k] = v[:search_value]
-                    end
+                    # Here's an example of a record ref and string response
+
+                    # <platformCommon:entity>
+                    #   <platformCore:searchValue internalId="446515"/>
+                    # </platformCommon:entity>
+                    # <platformCommon:status>
+                    #   <platformCore:searchValue>open</platformCore:searchValue>
+                    # </platformCommon:status>
+
+                    # in both cases, header-level field's value should be set to the
+                    # child `searchValue` result: if it's a record ref, the internalId
+                    # attribute will be transitioned to the parent, and in the case
+                    # of a string response the parent node's value will be to the string
+
+                    record[search_group][k] = v[:search_value]
+                  else
+                    # NOTE need to understand this case more, in testing, only the namespace definition hits this condition
                   end
                 end
               end
