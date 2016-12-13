@@ -60,8 +60,29 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#item_vendor_list' do
-    it 'can be set from attributes'
-    it 'can be set from an ItemVendorList object'
+    it 'can be set from attributes' do
+      attributes = {
+        :item_vendor => {
+          :vendor=>{
+            :name=>"Spring Water",
+            :"@xmlns:platform_core"=>"urn:core_2016_1.platform.webservices.netsuite.com",
+            :@internal_id=>"20"
+          },
+         :purchase_price=>"16.14",
+         :preferred_vendor=>true
+        }
+      }
+
+      item.item_vendor_list = attributes
+      expect(item.item_vendor_list).to be_kind_of(NetSuite::Records::ItemVendorList)
+      expect(item.item_vendor_list.item_vendors.length).to eql(1)
+    end
+
+    it 'can be set from a ItemVendorList object' do
+      item_vendor_list = NetSuite::Records::ItemVendorList.new
+      item.item_vendor_list = item_vendor_list
+      expect(item.item_vendor_list).to eql(item_vendor_list)
+    end
   end
 
   describe '#site_category_list' do
@@ -80,8 +101,24 @@ describe NetSuite::Records::InventoryItem do
   end
 
   describe '#locations_list' do
+    let(:response) {
+      NetSuite::Response.new(
+        :success => true,
+        :body => {
+          :locations_list => {:locations => %w(loc1 loc2) }
+        }
+      )
+    }
+
     it 'can be set from attributes'
-    it 'can be set from an InventoryItemLocationsList object'
+    it 'can be set from an InventoryItemLocationsList object' do
+      expect(NetSuite::Actions::Get).to receive(:call)
+        .with([NetSuite::Records::InventoryItem, :internal_id => 20], {})
+        .and_return(response)
+      item = NetSuite::Records::InventoryItem.get(20)
+      expect(item).to be_kind_of(NetSuite::Records::InventoryItem)
+      expect(item.locations_list.locations).to eql(%w(loc1 loc2))
+    end
   end
 
   describe '#matrix_option_list' do

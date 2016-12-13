@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :delete, :search, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
         :created_date, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
@@ -28,12 +28,13 @@ module NetSuite
       record_refs :billing_schedule, :cost_category, :custom_form, :deferred_revenue_account, :department, :income_account,
         :issue_product, :item_options_list, :klass, :location, :parent, :pricing_group, :purchase_tax_code,
         :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :store_display_image,
-        :store_display_thumbnail, :store_item_template, :subsidiary_list, :tax_schedule, :units_type
+        :store_display_thumbnail, :store_item_template, :tax_schedule, :units_type
 
-      field :pricing_matrix, PricingMatrix
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
-      
+      field :subsidiary_list, RecordRefList
+
+
       attr_reader   :internal_id
       attr_accessor :external_id
 

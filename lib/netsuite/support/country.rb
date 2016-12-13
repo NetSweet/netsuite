@@ -69,7 +69,7 @@ module NetSuite
         'EC' => '_ecuador',
         'EG' => '_egypt',
         'SV' => '_elSalvador',
-        'GU' => '_equatorialGuinea',
+        'GQ' => '_equatorialGuinea',
         'ER' => '_eritrea',
         'EE' => '_estonia',
         'ET' => '_ethiopia',
@@ -185,6 +185,7 @@ module NetSuite
         'QA' => '_qatar',
         'RE' => '_reunionIsland',
         'RO' => '_romania',
+        'RS' => '_serbia',
         'RU' => '_russianFederation',
         'RW' => '_rwanda',
         'BL' => '_saintBarthelemy',
@@ -259,6 +260,12 @@ module NetSuite
           @id = iso_or_name
         end
       end
+
+      def ==(other)
+        other.class == self.class && other.to_iso == self.to_iso
+      end
+
+      alias :eql? :==
 
       def to_iso
         ISO_TO_NETSUITE.key(@id)

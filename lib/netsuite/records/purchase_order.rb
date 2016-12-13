@@ -4,27 +4,34 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Support::Actions      
+      include Support::Actions
       include Namespaces::TranPurch
-      
-      actions :get, :get_list, :add, :initialize, :update, :delete, :search, :upsert
 
-      fields :created_date, :currency_name, :due_date, :email, :exchange_rate, :fax, :fob, :last_modified_date,
-        :linked_tracking_numbers, :memo, :message, :other_ref_num, :ship_date, :ship_is_residential, :source,
-        :status, :sub_total, :supervisor_approval, :tax2_total, :tax_total, :to_be_emailed, :to_be_faxed,
-        :to_be_printed, :total, :tracking_numbers, :tran_date, :tran_id, :vat_reg_num
+      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
 
-      field :transaction_ship_address, ShipAddress
-      field :transaction_bill_address, BillAddress
-      field :item_list,                PurchaseOrderItemList
-      field :custom_field_list,        CustomFieldList
+      fields :created_date, :currency_name, :due_date, :email, :exchange_rate,
+             :fax, :fob, :interco_status, :interco_transaction, :last_modified_date,
+             :linked_tracking_numbers, :memo, :message, :other_ref_num, :ship_date,
+             :ship_is_residential, :ship_to, :source, :status, :sub_total, :supervisor_approval,
+             :tax2_total, :tax_total, :to_be_emailed, :to_be_faxed, :to_be_printed,
+             :total, :tracking_numbers, :tran_date, :tran_id, :vat_reg_num
 
-      record_refs :approval_status, :bill_address_list, :klass, :created_from, :currency, :custom_form, :department,
-        :employee, :entity, :interco_transaction, :location, :next_approver, :purchase_contract, :ship_method, :ship_to,
-        :subsidiary, :terms
+      field :billing_address,   Address
+      field :shipping_address,  Address
+      field :custom_field_list, CustomFieldList
+      field :item_list,         PurchaseOrderItemList
+
+      # TODO custom lists
+      # :ship_address_list
+      # :expense_list
+
+      record_refs :approval_status, :bill_address_list, :klass, :created_from, :currency,
+                  :custom_form, :department, :employee, :entity, :interco_transaction, :location, :next_approver,
+                  :order_status, :purchase_contract, :ship_method, :ship_to, :subsidiary, :terms
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
@@ -34,7 +41,12 @@ module NetSuite
 
       def self.search_class_name
         "Transaction"
-      end 
+      end
+
+      def self.search_class_namespace
+        'tranSales'
+      end
+
     end
   end
 end

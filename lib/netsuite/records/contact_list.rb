@@ -42,11 +42,8 @@ module NetSuite
       end
 
       def to_record
-        contacts.map do |contact|
-          { "#{record_namespace}:contact" => contact.to_record }
-        end
+        { "#{record_namespace}:contact" => contacts.map(&:to_record) }
       end
-
     end
   end
 end

@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns:tns="urn:platform_2012_1.webservices.netsuite.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:platformMsgs="urn:messages_2012_1.platform.webservices.netsuite.com" xmlns:platformFaults="urn:faults_2012_1.platform.webservices.netsuite.com" targetNamespace="urn:platform_2012_1.webservices.netsuite.com">
+<definitions xmlns:tns="urn:platform_2015_1.webservices.netsuite.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:platformMsgs="urn:messages_2015_1.platform.webservices.netsuite.com" xmlns:platformFaults="urn:faults_2015_1.platform.webservices.netsuite.com" targetNamespace="urn:platform_2015_1.webservices.netsuite.com">
     <types>
         <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-            <xsd:import namespace="urn:core_2012_1.platform.webservices.netsuite.com" schemaLocation="platform.core.xsd"/>
-            <xsd:import namespace="urn:faults_2012_1.platform.webservices.netsuite.com" schemaLocation="platform.faults.xsd"/>
-            <xsd:import namespace="urn:messages_2012_1.platform.webservices.netsuite.com" schemaLocation="platform.messages.xsd"/>
-            <xsd:import namespace="urn:common_2012_1.platform.webservices.netsuite.com" schemaLocation="platform.common.xsd"/>
-            <xsd:import namespace="urn:scheduling_2012_1.activities.webservices.netsuite.com" schemaLocation="activities.scheduling.xsd"/>
-            <xsd:import namespace="urn:types.scheduling_2012_1.activities.webservices.netsuite.com" schemaLocation="activities.schedulingTypes.xsd"/>
-            <xsd:import namespace="urn:communication_2012_1.general.webservices.netsuite.com" schemaLocation="general.communication.xsd"/>
-            <xsd:import namespace="urn:types.communication_2012_1.general.webservices.netsuite.com" schemaLocation="general.communicationTypes.xsd"/>
-            <xsd:import namespace="urn:relationships_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.relationships.xsd"/>
-            <xsd:import namespace="urn:types.relationships_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.relationshipTypes.xsd"/>
-            <xsd:import namespace="urn:support_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.support.xsd"/>
-            <xsd:import namespace="urn:types.support_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.supportTypes.xsd"/>
-            <xsd:import namespace="urn:accounting_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.accounting.xsd"/>
-            <xsd:import namespace="urn:types.accounting_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.accountingTypes.xsd"/>
-            <xsd:import namespace="urn:sales_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.sales.xsd"/>
-            <xsd:import namespace="urn:types.sales_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.saleTypes.xsd"/>
-            <xsd:import namespace="urn:purchases_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.purchases.xsd"/>
-            <xsd:import namespace="urn:customers_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.customers.xsd"/>
-			<xsd:import namespace="urn:financial_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.financial.xsd"/>
-            <xsd:import namespace="urn:bank_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.bank.xsd"/>
-            <xsd:import namespace="urn:inventory_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.inventory.xsd"/>
-            <xsd:import namespace="urn:types.inventory_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.inventoryTypes.xsd"/>
-            <xsd:import namespace="urn:general_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.general.xsd"/>
-            <xsd:import namespace="urn:customization_2012_1.setup.webservices.netsuite.com" schemaLocation="setup.customization.xsd"/>
-            <xsd:import namespace="urn:types.customization_2012_1.setup.webservices.netsuite.com" schemaLocation="setup.customizationTypes.xsd"/>
-            <xsd:import namespace="urn:employees_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.employees.xsd"/>
-            <xsd:import namespace="urn:types.employees_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.employeeTypes.xsd"/>
-            <xsd:import namespace="urn:filecabinet_2012_1.documents.webservices.netsuite.com" schemaLocation="documents.fileCabinet.xsd"/>
-            <xsd:import namespace="urn:types.filecabinet_2012_1.documents.webservices.netsuite.com" schemaLocation="documents.fileCabinetTypes.xsd"/>
-            <xsd:import namespace="urn:website_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.website.xsd"/>
-            <xsd:import namespace="urn:types.website_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.websiteTypes.xsd"/>
-            <xsd:import namespace="urn:employees_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.employees.xsd"/>
-            <xsd:import namespace="urn:marketing_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.marketing.xsd"/>
-            <xsd:import namespace="urn:types.marketing_2012_1.lists.webservices.netsuite.com" schemaLocation="lists.marketingTypes.xsd"/>
-            <xsd:import namespace="urn:demandplanning_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.demandPlanning.xsd"/>
-            <xsd:import namespace="urn:types.demandplanning_2012_1.transactions.webservices.netsuite.com" schemaLocation="transactions.demandPlanningTypes.xsd"/>
+            <xsd:import namespace="urn:core_2015_1.platform.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/platform/v2015_1_0/core.xsd"/>
+            <xsd:import namespace="urn:faults_2015_1.platform.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/platform/v2015_1_0/faults.xsd"/>
+            <xsd:import namespace="urn:messages_2015_1.platform.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/platform/v2015_1_0/messages.xsd"/>
+            <xsd:import namespace="urn:common_2015_1.platform.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/platform/v2015_1_0/common.xsd"/>
+            <xsd:import namespace="urn:scheduling_2015_1.activities.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/activities/v2015_1_0/scheduling.xsd"/>
+            <xsd:import namespace="urn:types.scheduling_2015_1.activities.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/activities/v2015_1_0/schedulingTypes.xsd"/>
+            <xsd:import namespace="urn:communication_2015_1.general.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/general/v2015_1_0/communication.xsd"/>
+            <xsd:import namespace="urn:types.communication_2015_1.general.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/general/v2015_1_0/communicationTypes.xsd"/>
+            <xsd:import namespace="urn:relationships_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/relationships.xsd"/>
+            <xsd:import namespace="urn:types.relationships_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/relationshipTypes.xsd"/>
+            <xsd:import namespace="urn:support_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/support.xsd"/>
+            <xsd:import namespace="urn:types.support_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/supportTypes.xsd"/>
+            <xsd:import namespace="urn:accounting_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/accounting.xsd"/>
+            <xsd:import namespace="urn:types.accounting_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/accountingTypes.xsd"/>
+            <xsd:import namespace="urn:sales_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/sales.xsd"/>
+            <xsd:import namespace="urn:types.sales_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/saleTypes.xsd"/>
+            <xsd:import namespace="urn:purchases_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/purchases.xsd"/>
+            <xsd:import namespace="urn:customers_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/customers.xsd"/>
+			<xsd:import namespace="urn:financial_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/financial.xsd"/>
+            <xsd:import namespace="urn:bank_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/bank.xsd"/>
+            <xsd:import namespace="urn:inventory_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/inventory.xsd"/>
+            <xsd:import namespace="urn:types.inventory_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/inventoryTypes.xsd"/>
+            <xsd:import namespace="urn:general_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/general.xsd"/>
+            <xsd:import namespace="urn:customization_2015_1.setup.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/setup/v2015_1_0/customization.xsd"/>
+            <xsd:import namespace="urn:types.customization_2015_1.setup.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/setup/v2015_1_0/customizationTypes.xsd"/>
+            <xsd:import namespace="urn:employees_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/employees.xsd"/>
+            <xsd:import namespace="urn:types.employees_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/employeeTypes.xsd"/>
+            <xsd:import namespace="urn:filecabinet_2015_1.documents.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/documents/v2015_1_0/fileCabinet.xsd"/>
+            <xsd:import namespace="urn:types.filecabinet_2015_1.documents.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/documents/v2015_1_0/fileCabinetTypes.xsd"/>
+            <xsd:import namespace="urn:website_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/website.xsd"/>
+            <xsd:import namespace="urn:types.website_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/websiteTypes.xsd"/>
+            <xsd:import namespace="urn:employees_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/employees.xsd"/>
+            <xsd:import namespace="urn:marketing_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/marketing.xsd"/>
+            <xsd:import namespace="urn:types.marketing_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/marketingTypes.xsd"/>
+            <xsd:import namespace="urn:demandplanning_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/demandPlanning.xsd"/>
+            <xsd:import namespace="urn:types.demandplanning_2015_1.transactions.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/transactions/v2015_1_0/demandPlanningTypes.xsd"/>
+            <xsd:import namespace="urn:supplychain_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/supplyChain.xsd"/>
+            <xsd:import namespace="urn:types.supplychain_2015_1.lists.webservices.netsuite.com" schemaLocation="https://webservices.netsuite.com/xsd/lists/v2015_1_0/supplyChainTypes.xsd"/>
 		</xsd:schema>
     </types>
     <message name="headers">
@@ -66,11 +68,17 @@
     <message name="mapSsoResponse">
         <part name="parameters" element="platformMsgs:mapSsoResponse"/>
     </message>
-    <message name="changePasswordOrEmailRequest">
-        <part name="parameters" element="platformMsgs:changePasswordOrEmail"/>
+    <message name="changePasswordRequest">
+        <part name="parameters" element="platformMsgs:changePassword"/>
     </message>
-    <message name="changePasswordOrEmailResponse">
-        <part name="parameters" element="platformMsgs:changePasswordOrEmailResponse"/>
+    <message name="changePasswordResponse">
+        <part name="parameters" element="platformMsgs:changePasswordResponse"/>
+    </message>
+    <message name="changeEmailRequest">
+        <part name="parameters" element="platformMsgs:changeEmail"/>
+    </message>
+    <message name="changeEmailResponse">
+        <part name="parameters" element="platformMsgs:changeEmailResponse"/>
     </message>
     <message name="logoutRequest">
         <part name="parameters" element="platformMsgs:logout"/>
@@ -216,6 +224,18 @@
 	<message name="getConsolidatedExchangeRateResponse">
 		<part name="parameters" element="platformMsgs:getConsolidatedExchangeRateResponse"/>
 	</message>
+    <message name="getCurrencyRateRequest">
+        <part name="parameters" element="platformMsgs:getCurrencyRate"/>
+    </message>
+    <message name="getCurrencyRateResponse">
+        <part name="parameters" element="platformMsgs:getCurrencyRateResponse"/>
+    </message>
+    <message name="getDataCenterUrlsRequest">
+        <part name="parameters" element="platformMsgs:getDataCenterUrls"/>
+    </message>
+    <message name="getDataCenterUrlsResponse">
+        <part name="parameters" element="platformMsgs:getDataCenterUrlsResponse"/>
+    </message>
 	<message name="getPostingTransactionSummaryRequest">
 		<part name="parameters" element="platformMsgs:getPostingTransactionSummary"/>
 	</message>
@@ -376,9 +396,19 @@
 			<fault name="ExceededRequestLimitFault" message="tns:ExceededRequestLimitFault"/>
             <fault name="UnexpectedErrorFault" message="tns:UnexpectedErrorFault"/>
         </operation>
-        <operation name="changePasswordOrEmail">
-            <input name="changePasswordOrEmailRequest" message="tns:changePasswordOrEmailRequest"/>
-            <output name="changePasswordOrEmailResponse" message="tns:changePasswordOrEmailResponse"/>
+        <operation name="changePassword">
+            <input name="changePasswordRequest" message="tns:changePasswordRequest"/>
+            <output name="changePasswordResponse" message="tns:changePasswordResponse"/>
+            <fault name="InsufficientPermissionFault" message="tns:InsufficientPermissionFault"/>
+            <fault name="InvalidAccountFault" message="tns:InvalidAccountFault"/>
+            <fault name="InvalidCredentialsFault" message="tns:InvalidCredentialsFault"/>
+            <fault name="InvalidVersionFault" message="tns:InvalidVersionFault"/>
+			<fault name="ExceededRequestLimitFault" message="tns:ExceededRequestLimitFault"/>
+            <fault name="UnexpectedErrorFault" message="tns:UnexpectedErrorFault"/>
+        </operation>
+        <operation name="changeEmail">
+            <input name="changeEmailRequest" message="tns:changeEmailRequest"/>
+            <output name="changeEmailResponse" message="tns:changeEmailResponse"/>
             <fault name="InsufficientPermissionFault" message="tns:InsufficientPermissionFault"/>
             <fault name="InvalidAccountFault" message="tns:InvalidAccountFault"/>
             <fault name="InvalidCredentialsFault" message="tns:InvalidCredentialsFault"/>
@@ -644,6 +674,23 @@
 			<fault name="ExceededRequestSizeFault" message="tns:ExceededRequestSizeFault"/>
 			<fault name="UnexpectedErrorFault" message="tns:UnexpectedErrorFault"/>
 		</operation>
+		<operation name="getCurrencyRate">
+			<input name="getCurrencyRateRequest" message="tns:getCurrencyRateRequest"/>
+			<output name="getCurrencyRateResponse" message="tns:getCurrencyRateResponse"/>
+			<fault name="InvalidSessionFault" message="tns:InvalidSessionFault"/>
+			<fault name="InvalidCredentialsFault" message="tns:InvalidCredentialsFault"/>
+			<fault name="ExceededRequestLimitFault" message="tns:ExceededRequestLimitFault"/>
+			<fault name="ExceededUsageLimitFault" message="tns:ExceededUsageLimitFault"/>
+			<fault name="ExceededRecordCountFault" message="tns:ExceededRecordCountFault"/>
+			<fault name="ExceededRequestSizeFault" message="tns:ExceededRequestSizeFault"/>
+			<fault name="UnexpectedErrorFault" message="tns:UnexpectedErrorFault"/>
+		</operation>
+		<operation name="getDataCenterUrls">
+			<input name="getDataCenterUrlsRequest" message="tns:getDataCenterUrlsRequest"/>
+			<output name="getDataCenterUrlsResponse" message="tns:getDataCenterUrlsResponse"/>
+			<fault name="ExceededRequestSizeFault" message="tns:ExceededRequestSizeFault"/>
+			<fault name="UnexpectedErrorFault" message="tns:UnexpectedErrorFault"/>
+		</operation>
 		<operation name="getPostingTransactionSummary">
 			<input name="getPostingTransactionSummaryRequest" message="tns:getPostingTransactionSummaryRequest"/>
 			<output name="getPostingTransactionSummaryResponse" message="tns:getPostingTransactionSummaryResponse"/>
@@ -901,15 +948,15 @@
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
             </fault>
         </operation>
-        <operation name="changePasswordOrEmail">
-            <soap:operation soapAction="changePasswordOrEmail"/>
-            <input name="changePasswordOrEmailRequest">
+        <operation name="changePassword">
+            <soap:operation soapAction="changePassword"/>
+            <input name="changePasswordRequest">
                 <soap:header message="tns:headers" part="passport" use="literal"/>
                 <soap:header message="tns:headers" part="applicationInfo" use="literal"/>
                 <soap:header message="tns:headers" part="partnerInfo" use="literal"/>
                 <soap:body use="literal"/>
             </input>
-            <output name="changePasswordOrEmailResponse">
+            <output name="changePasswordResponse">
 				<soap:body use="literal"/>
 			</output>
             <fault name="InsufficientPermissionFault">
@@ -927,6 +974,36 @@
 			<fault name="ExceededRequestLimitFault">
 				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>			
+			<fault name="UnexpectedErrorFault">
+                <soap:fault name="UnexpectedErrorFault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="changeEmail">
+            <soap:operation soapAction="changeEmail"/>
+            <input name="changeEmailRequest">
+                <soap:header message="tns:headers" part="passport" use="literal"/>
+                <soap:header message="tns:headers" part="applicationInfo" use="literal"/>
+                <soap:header message="tns:headers" part="partnerInfo" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output name="changeEmailResponse">
+				<soap:body use="literal"/>
+			</output>
+            <fault name="InsufficientPermissionFault">
+                <soap:fault name="InsufficientPermissionFault" use="literal"/>
+            </fault>
+            <fault name="InvalidAccountFault">
+                <soap:fault name="InvalidAccountFault" use="literal"/>
+            </fault>
+            <fault name="InvalidCredentialsFault">
+                <soap:fault name="InvalidCredentialsFault" use="literal"/>
+            </fault>
+            <fault name="InvalidVersionFault">
+                <soap:fault name="InvalidVersionFault" use="literal"/>
+            </fault>
+			<fault name="ExceededRequestLimitFault">
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
+			</fault>
 			<fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
             </fault>
@@ -1742,6 +1819,61 @@
 				<soap:fault name="UnexpectedErrorFault" use="literal"/>
 			</fault>
 		</operation>
+		<operation name="getCurrencyRate">
+            <soap:operation soapAction="getCurrencyRate"/>
+            <input name="getCurrencyRateRequest">
+				<soap:header message="tns:headers" part="passport" use="literal"/>
+				<soap:header message="tns:headers" part="applicationInfo" use="literal"/>
+				<soap:header message="tns:headers" part="partnerInfo" use="literal"/>
+				<soap:header message="tns:headers" part="preferences" use="literal"/>
+				<soap:body use="literal"/>
+            </input>
+            <output name="getCurrencyRateResponse">
+				<soap:header message="tns:headers" part="documentInfo" use="literal"/>
+				<soap:body use="literal"/>
+            </output>
+			<fault name="InvalidSessionFault">
+				<soap:fault name="InvalidSessionFault" use="literal"/>
+			</fault>
+			<fault name="InvalidCredentialsFault">
+				<soap:fault name="InvalidCredentialsFault" use="literal"/>
+			</fault>
+			<fault name="ExceededRequestLimitFault">
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
+			</fault>
+			<fault name="ExceededUsageLimitFault">
+				<soap:fault name="ExceededUsageLimitFault" use="literal"/>
+			</fault>
+			<fault name="ExceededRecordCountFault">
+				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+			</fault>
+			<fault name="ExceededRequestSizeFault">
+				<soap:fault name="ExceededRequestSizeFault" use="literal"/>
+			</fault>
+			<fault name="UnexpectedErrorFault">
+				<soap:fault name="UnexpectedErrorFault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getDataCenterUrls">
+			<soap:operation soapAction="getDataCenterUrls"/>
+			<input name="getDataCenterUrlsRequest">
+				<soap:header message="tns:headers" part="passport" use="literal"/>
+				<soap:header message="tns:headers" part="applicationInfo" use="literal"/>
+				<soap:header message="tns:headers" part="partnerInfo" use="literal"/>
+				<soap:header message="tns:headers" part="preferences" use="literal"/>
+				<soap:body use="literal"/>
+			</input>
+			<output name="getDataCenterUrlsResponse">
+				<soap:header message="tns:headers" part="documentInfo" use="literal"/>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ExceededRequestSizeFault">
+				<soap:fault name="ExceededRequestSizeFault" use="literal"/>
+			</fault>
+			<fault name="UnexpectedErrorFault">
+				<soap:fault name="UnexpectedErrorFault" use="literal"/>
+			</fault>
+		</operation>
 		<operation name="getPostingTransactionSummary">
 			<soap:operation soapAction="getPostingTransactionSummary"/>
 			<input name="getPostingTransactionSummaryRequest">
@@ -1971,7 +2103,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2003,7 +2135,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2035,7 +2167,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2067,7 +2199,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2099,7 +2231,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2166,7 +2298,7 @@
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2230,7 +2362,7 @@
                 <soap:fault name="InvalidCredentialsFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="UnexpectedErrorFault">
                 <soap:fault name="UnexpectedErrorFault" use="literal"/>
@@ -2265,7 +2397,7 @@
                 <soap:fault name="ExceededRecordCountFault" use="literal"/>
             </fault>
 			<fault name="ExceededRequestLimitFault">
-				<soap:fault name="ExceededRecordCountFault" use="literal"/>
+				<soap:fault name="ExceededRequestLimitFault" use="literal"/>
 			</fault>
             <fault name="ExceededRequestSizeFault">
                 <soap:fault name="ExceededRequestSizeFault" use="literal"/>
@@ -2277,7 +2409,7 @@
     </binding>
     <service name="NetSuiteService">
         <port name="NetSuitePort" binding="tns:NetSuiteBinding">
-            <soap:address location="https://webservices.netsuite.com/services/NetSuitePort_2012_1"/>
+            <soap:address location="https://webservices.netsuite.com/services/NetSuitePort_2015_1"/>
         </port>
     </service>
 </definitions>

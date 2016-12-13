@@ -5,7 +5,7 @@ describe NetSuite::Records::Term do
 
   it 'has all the right fields' do
     [
-      :name, :date_driven, :days_until_next_due, :discount_percent, :days_until_expiry, :day_of_month_net_due,
+      :name, :date_driven, :days_until_net_due, :discount_percent, :days_until_expiry, :day_of_month_net_due,
       :due_next_month_if_within_days, :discount_percent_date_driven, :day_discount_expires, :preferred, :is_inactive
     ].each do |field|
       expect(term).to have_field(field)

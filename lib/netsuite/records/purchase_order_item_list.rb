@@ -4,10 +4,8 @@ module NetSuite
       include Namespaces::TranPurch
 
       sublist :item, PurchaseOrderItem
-      
-      def items
-        self.item
-      end
+
+      alias :items :item
     end
   end
 end

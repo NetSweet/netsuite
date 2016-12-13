@@ -38,11 +38,15 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash[:record_list][:record]
+        @response_body ||= if success?
+          array_wrap(response_hash[:record_list][:record])
+        else
+          nil
+        end
       end
 
       def response_hash
-        @response_hash = @response.body[:get_all_response][:get_all_result]
+        @response_hash ||= @response.body[:get_all_response][:get_all_result]
       end
 
       module Support
@@ -54,10 +58,13 @@ module NetSuite
         module ClassMethods
           def get_all(credentials = {})
             response = NetSuite::Actions::GetAll.call([self], credentials)
+
+            # TODO expose errors to the user
+
             if response.success?
               response.body.map { |attr| new(attr) }
             else
-              raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+              false
             end
           end
         end

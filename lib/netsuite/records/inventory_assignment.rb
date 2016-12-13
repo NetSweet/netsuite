@@ -6,7 +6,7 @@ module NetSuite
       include Support::Fields
       include Namespaces::PlatformCommon
 
-      fields :date_time, :quantity, :quantity_available,
+      fields :date_time, :quantity, :quantity_available, :expiration_date, 
         :receipt_inventory_number
 
       record_refs :bin_number, :issue_inventory_number, :to_bin_number

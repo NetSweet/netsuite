@@ -39,7 +39,7 @@ describe NetSuite::Records::InvoiceItem do
       attributes = {
         :custom_field => {
           :value => 10,
-          :internal_id => 'custfield_value'
+          :script_id => 'custfield_value'
         }
       }
       item.custom_field_list = attributes
