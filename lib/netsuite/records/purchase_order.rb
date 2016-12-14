@@ -16,8 +16,14 @@ module NetSuite
              :tax2_total, :tax_total, :to_be_emailed, :to_be_faxed, :to_be_printed,
              :total, :tracking_numbers, :tran_date, :tran_id, :vat_reg_num
 
+      # NOTE API >= 2014_2 only
       field :billing_address,   Address
       field :shipping_address,  Address
+  
+      # NOTE transaction address fields only applicable for API < 2014_2
+      field :transaction_bill_address,  BillAddress
+      field :transaction_ship_address,  ShipAddress
+
       field :custom_field_list, CustomFieldList
       field :item_list,         PurchaseOrderItemList
 
