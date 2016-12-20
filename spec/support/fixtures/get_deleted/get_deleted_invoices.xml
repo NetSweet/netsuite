@@ -1,0 +1,38 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2016_1.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3868171_122020162073815481885806769_24761121647f</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getDeletedResponse xmlns="urn:messages_2016_1.platform.webservices.netsuite.com">
+      <platformCore:getDeletedResult xmlns:platformCore="urn:core_2016_1.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>3</platformCore:totalRecords>
+        <platformCore:pageSize>1000</platformCore:pageSize>
+        <platformCore:totalPages>1</platformCore:totalPages>
+        <platformCore:pageIndex>1</platformCore:pageIndex>
+        <platformCore:deletedRecordList>
+          <platformCore:deletedRecord>
+            <platformCore:deletedDate>2016-12-15T15:00:00.000-08:00</platformCore:deletedDate>
+            <platformCore:record internalId="1" type="invoice" xsi:type="platformCore:RecordRef">
+              <platformCore:name>REDACTED</platformCore:name>
+            </platformCore:record>
+          </platformCore:deletedRecord>
+          <platformCore:deletedRecord>
+            <platformCore:deletedDate>2016-12-09T13:00:00.000-08:00</platformCore:deletedDate>
+            <platformCore:record internalId="2" type="invoice" xsi:type="platformCore:RecordRef">
+              <platformCore:name>REDACTED</platformCore:name>
+            </platformCore:record>
+          </platformCore:deletedRecord>
+          <platformCore:deletedRecord>
+            <platformCore:deletedDate>2016-12-15T15:00:00.000-08:00</platformCore:deletedDate>
+            <platformCore:record internalId="3" type="invoice" xsi:type="platformCore:RecordRef">
+              <platformCore:name>REDACTED</platformCore:name>
+            </platformCore:record>
+          </platformCore:deletedRecord>
+        </platformCore:deletedRecordList>
+      </platformCore:getDeletedResult>
+    </getDeletedResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
