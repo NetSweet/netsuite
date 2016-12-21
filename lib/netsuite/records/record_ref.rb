@@ -33,6 +33,10 @@ module NetSuite
         end
       end
 
+      # https://github.com/RevolutionPrep/netsuite/pull/73
+      def respond_to_missing?(method_name, include_private = false)
+        attributes.keys.map(&:to_sym).include?(method_name.to_sym) || super
+      end
     end
   end
 end
