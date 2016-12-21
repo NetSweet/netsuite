@@ -33,12 +33,15 @@ module NetSuite
           }
         }
 
-        if response.success?
-          response.body[:get_item_availability_response][:get_item_availability_result][:item_availability_list][:item_availability].map do |row|
-            NetSuite::Records::ItemAvailability.new(row)
-          end
-        else
-          false
+        fail unless response.success?
+
+        status = response.body[:get_item_availability_response][:get_item_availability_result][:status]
+        unless status[:@is_success] == "true"
+          fail status[:status_detail][:message]
+        end
+
+        response.body[:get_item_availability_response][:get_item_availability_result][:item_availability_list][:item_availability].map do |row|
+          NetSuite::Records::ItemAvailability.new(row)
         end
       end
     end
