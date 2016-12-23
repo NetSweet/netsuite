@@ -20,14 +20,15 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def self.get_for_inventory_items(items)
+      def self.get_for_inventory_items(items, credentials={})
         ref_list = NetSuite::Records::RecordRefList.new(
           record_ref: items.map do |item|
             {internal_id: item.internal_id}
           end
         )
 
-        response = NetSuite::Configuration.connection.call :get_item_availability, message: {
+        connection = NetSuite::Configuration.connection({}, credentials)
+        response = connection.call :get_item_availability, message: {
           "platformMsgs:itemAvailabilityFilter" => {
             "platformCore:item" => ref_list.to_record
           }
