@@ -92,8 +92,8 @@ module NetSuite
         @netsuite_get_record_cache ||= {}
         @netsuite_get_record_cache[record_klass.to_s] ||= {}
 
-        if cached_record = @netsuite_get_record_cache[record_klass.to_s][id.to_i]
-          return cached_record
+        if @netsuite_get_record_cache[record_klass.to_s].has_key?(id.to_i)
+          return @netsuite_get_record_cache[record_klass.to_s][id.to_i]
         end
       end
 
@@ -113,6 +113,10 @@ module NetSuite
         return ns_record
       rescue ::NetSuite::RecordNotFound
         # log.warn("record not found", ns_record_type: record_klass.name, ns_record_id: id)
+        if opts[:cache]
+          @netsuite_get_record_cache[record_klass.to_s][id.to_i] = nil
+        end
+
         return nil
       end
     end
