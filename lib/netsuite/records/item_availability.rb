@@ -41,8 +41,18 @@ module NetSuite
           fail status[:status_detail][:message]
         end
 
-        response.body[:get_item_availability_response][:get_item_availability_result][:item_availability_list][:item_availability].map do |row|
-          NetSuite::Records::ItemAvailability.new(row)
+        result = response.body[:get_item_availability_response][:get_item_availability_result]
+        unless result[:status][:@is_success] == "true"
+          #TODO: parse errors
+          fail result[:status][:status_detail].inspect
+        end
+
+        if result[:item_availability_list]
+          result[:item_availability_list][:item_availability].map do |row|
+            NetSuite::Records::ItemAvailability.new(row)
+          end
+        else
+          []
         end
       end
     end
