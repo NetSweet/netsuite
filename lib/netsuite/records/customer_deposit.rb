@@ -10,8 +10,7 @@ module NetSuite
       include Support::Records
       include Namespaces::TranCust
 
-
-      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
 
       fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
              :check_num, :klass, :currency_name, :is_recurring_payment, :charge_it
@@ -28,6 +27,14 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
       end
     end
   end
