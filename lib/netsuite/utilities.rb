@@ -33,16 +33,42 @@ module NetSuite
     end
 
     def backoff(options = {})
+      # TODO the default backoff attempts should be customizable the global config
+      options[:attempts] ||= 8
+
       count = 0
+
       begin
         count += 1
         yield
-      rescue options[:exception] || Savon::SOAPFault => e
-        if !e.message.include?("Only one request may be made against a session at a time") &&
-           !e.message.include?('java.util.ConcurrentModificationException') &&
-           !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.')
-          raise e
+      rescue Errno::ECONNRESET,
+             Errno::ETIMEDOUT,
+             Errno::EHOSTUNREACH,
+             Net::ReadTimeout,
+             EOFError,
+             OpenSSL::SSL::SSLErrorWaitReadable,
+             Wasabi::Resolver::HTTPError,
+             Savon::SOAPFault,
+             Savon::InvalidResponseError,
+             Zlib::BufError,
+             Savon::HTTPError => e
+
+        # whitelist certain SOAPFaults; all other network errors should automatically retry
+        if e.is_a?(Savon::SOAPFault)
+          # https://github.com/stripe/stripe-netsuite/issues/815
+          if !e.message.include?("Only one request may be made against a session at a time") &&
+            !e.message.include?('java.util.ConcurrentModificationException') &&
+            !e.message.include?('com.netledger.common.exceptions.NLDatabaseOfflineException') &&
+            !e.message.include?('An unexpected error occurred.') &&
+            !e.message.include?('Session invalidation is in progress with different thread') &&
+            !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.') &&
+            !e.message.include?('The Connection Pool is not intialized.') &&
+            # it looks like NetSuite mispelled their error message...
+            !e.message.include?('The Connection Pool is not intiialized.')
+            raise e
+          end
         end
+
         if count >= (options[:attempts] || 8)
           raise e
         end
