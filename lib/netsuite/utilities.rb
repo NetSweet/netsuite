@@ -41,17 +41,32 @@ module NetSuite
       begin
         count += 1
         yield
-      rescue Errno::ECONNRESET,
-             Errno::ETIMEDOUT,
-             Errno::EHOSTUNREACH,
-             Net::ReadTimeout,
-             EOFError,
-             OpenSSL::SSL::SSLErrorWaitReadable,
-             Wasabi::Resolver::HTTPError,
-             Savon::SOAPFault,
-             Savon::InvalidResponseError,
-             Zlib::BufError,
-             Savon::HTTPError => e
+      rescue Exception => e
+        exceptions_to_retry = [
+          Errno::ECONNRESET,
+          Errno::ETIMEDOUT,
+          Errno::EHOSTUNREACH,
+          EOFError,
+          Wasabi::Resolver::HTTPError,
+          Savon::SOAPFault,
+          Savon::InvalidResponseError,
+          Zlib::BufError,
+          Savon::HTTPError
+        ]
+
+        # available in ruby > 1.9
+        if defined?(Net::ReadTimeout)
+          exceptions_to_retry << Net::ReadTimeout
+        end
+
+        # available in ruby > 2.2.0
+        if defined?(OpenSSL::SSL::SSLErrorWaitReadable)
+          exceptions_to_retry << OpenSSL::SSL::SSLErrorWaitReadable
+        end
+
+        if !exceptions_to_retry.include?(e.class)
+          raise
+        end
 
         # whitelist certain SOAPFaults; all other network errors should automatically retry
         if e.is_a?(Savon::SOAPFault)
@@ -65,15 +80,17 @@ module NetSuite
             !e.message.include?('The Connection Pool is not intialized.') &&
             # it looks like NetSuite mispelled their error message...
             !e.message.include?('The Connection Pool is not intiialized.')
-            raise e
+            raise
           end
         end
 
-        if count >= (options[:attempts] || 8)
-          raise e
+        if count >= options[:attempts]
+          raise
         end
+
         # log.warn("concurrent request failure", sleep: count, attempt: count)
         sleep(count)
+
         retry
       end
     end
