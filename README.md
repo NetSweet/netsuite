@@ -283,64 +283,7 @@ NetSuite::Records::Transaction.search({
       }
     ],
 
-    # equivilent to the 'Account' label in the GUI
-    accountJoin: [
-      {
-        field: 'internalId',
-        operator: 'noneOf',
-        value: [ NetSuite::Records::Account.new(:internal_id => 215) ]
-      }
-    ],
-
-    itemJoin: [
-      {
-        field: 'customFieldList',
-        value: [
-          {
-            field: 'custitem_apcategoryforsales',
-            operator: 'anyOf',
-            type: 'SearchMultiSelectCustomField',
-            value: [
-              NetSuite::Records::Customer.new(:internal_id => 1),
-              NetSuite::Records::Customer.new(:internal_id => 2),
-            ]
-          }
-        ]
-      }
-    ]
-  },
-
-  # the column syntax is a WIP. This will change in the future
-  columns: {
-    'tranSales:basic' => [
-      'platformCommon:internalId/' => {},
-      'platformCommon:email/' => {},
-      'platformCommon:tranDate/' => {}
-    ],
-    'tranSales:accountJoin' => [
-      'platformCommon:internalId/' => {}
-    ],
-    'tranSales:contactPrimaryJoin' => [
-      'platformCommon:internalId/' => {}
-    ],
-    'tranSales:customerJoin' => [
-      'platformCommon:internalId/' => {}
-    ],
-    'tranSales:itemJoin' => [
-      'platformCommon:customFieldList' => [
-        'platformCore:customField/' => {
-          '@internalId' => 'custitem_apcategoryforsales',
-          '@xsi:type' => "platformCore:SearchColumnSelectCustomField"
-        }
-      ]
-    ]
-  },
-
-  preferences: {
-    page_size: 10
-  }
-}).results
-
+# advanced search
 NetSuite::Records::ItemFulfillment.search({
   criteria: {
     basic: [
