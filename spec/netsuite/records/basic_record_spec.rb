@@ -44,6 +44,7 @@ describe 'basic records' do
       NetSuite::Records::GiftCertificateItem,
       NetSuite::Records::ReturnAuthorization,
       NetSuite::Records::SerializedInventoryItem,
+      NetSuite::Records::DepositApplication,
     ]
   }
 
