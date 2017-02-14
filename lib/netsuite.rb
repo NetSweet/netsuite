@@ -124,6 +124,7 @@ module NetSuite
     autoload :CurrencyRate,                     'netsuite/records/currency_rate'
     autoload :Department,                       'netsuite/records/department'
     autoload :Deposit,                          'netsuite/records/deposit'
+    autoload :DepositApplication,               'netsuite/records/deposit_application'
     autoload :DepositPayment,                   'netsuite/records/deposit_payment'
     autoload :DepositPaymentList,               'netsuite/records/deposit_payment_list'
     autoload :DepositOther,                     'netsuite/records/deposit_other'
