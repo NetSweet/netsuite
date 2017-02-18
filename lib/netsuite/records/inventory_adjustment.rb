@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class InventoryTransfer
+    class InventoryAdjustment
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
