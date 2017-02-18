@@ -12,9 +12,10 @@ module NetSuite
       fields :created_date, :last_modified_date, :tran_date, :tran_id, :memo
 
       field :inventory_list, InventoryTransferInventoryList
-
+      field :custom_field_list, CustomFieldList
+      
       record_refs :posting_period, :location, :transfer_location, :department,
-        :subsidiary
+        :subsidiary, :custom_form
 
       attr_reader :internal_id
       attr_accessor :external_id
