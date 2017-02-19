@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorReturnAuthorizationItem
       include Support::Fields
+      include Support::RecordRefs
       include Support::Records
       include Namespaces::TranPurch
 
@@ -11,7 +12,7 @@ module NetSuite
 
       field :inventory_detail, InventoryDetail
 
-      record_refs :item, :location, :tax_code, :units, :class, :customer, :amortization_sched
+      record_refs :item, :location, :tax_code, :units, :customer
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
