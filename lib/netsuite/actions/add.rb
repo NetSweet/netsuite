@@ -12,8 +12,9 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call(:add, :message => request_body)
+      def request(credentials = nil)
+        configuration ||= NetSuite::Configuration
+        configuration.connection.call(:add, message: request_body)
       end
 
       # <soap:Body>

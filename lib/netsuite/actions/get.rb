@@ -11,15 +11,12 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :get, message: request_body
+      def request(credentials = nil)
+        credentials ||= NetSuite::Configuration
+        credentials.connection.call(:get, message: request_body)
       end
 
+      # TODO DRY up this pattern
       def soap_type
         @klass.to_s.split('::').last.lower_camelcase
       end

@@ -11,8 +11,9 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call(:get_list, :message => request_body)
+      def request(configuration = nil)
+        configuration ||= NetSuite::Configuration
+        configuration.connection.call(:get_list, message: request_body)
       end
 
       def request_body
@@ -65,8 +66,8 @@ module NetSuite
       end
 
       def success?
-        # each returned record has its own status; 
-        if @options[:allow_incomplete] 
+        # each returned record has its own status;
+        if @options[:allow_incomplete]
           @success ||= !response_body.detect { |r| r[:status][:@is_success] == 'true' }.nil?
         else
           @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?

@@ -10,13 +10,9 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :get_deleted, message: request_body
+      def request(configuration = nil)
+        configuration ||= NetSuite::Configuration
+        configuration.connection.call(:get_deleted, message: request_body)
       end
 
       def soap_type
@@ -78,8 +74,8 @@ module NetSuite
         end
 
         module ClassMethods
-          def get_deleted(options = { }, credentials={})
-            NetSuite::Actions::GetDeleted.call([self, options], credentials)
+          def get_deleted(options = {}, configuration = nil)
+            NetSuite::Actions::GetDeleted.call([self, options], configuration)
           end
         end
       end

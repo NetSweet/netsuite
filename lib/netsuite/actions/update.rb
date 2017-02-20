@@ -11,8 +11,9 @@ module NetSuite
         @attributes = attributes
       end
 
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call :update, :message => request_body
+      def request(configuration = nil)
+        configuration ||= NetSuite::Configuration
+        configuration.connection.call(:update, message: request_body)
       end
 
       # <platformMsgs:update>
@@ -70,10 +71,10 @@ module NetSuite
       end
 
       module Support
-        def update(options = {}, credentials={})
+        def update(options = {}, configuration = nil)
           options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
           options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
-          response = NetSuite::Actions::Update.call([self.class, options], credentials)
+          response = NetSuite::Actions::Update.call([self.class, options], configuration)
           @errors = response.errors
           response.success?
         end

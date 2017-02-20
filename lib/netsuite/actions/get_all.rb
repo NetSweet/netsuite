@@ -5,15 +5,15 @@ module NetSuite
       include Support::Requests
 
       def initialize(klass)
-        @klass   = klass
+        @klass = klass
       end
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          { element_form_default: :unqualified }, credentials
-        ).call(:get_all, message: request_body)
+      def request(credentials = nil)
+        # TODO not sure why `element_form_default` is here
+        configuration ||= NetSuite::Configuration
+        configuration.connection(element_form_default: :unqualified).call(:get_all, message: request_body)
       end
 
       # <soap:Body>
@@ -56,7 +56,7 @@ module NetSuite
         end
 
         module ClassMethods
-          def get_all(credentials = {})
+          def get_all(credentials = nil)
             response = NetSuite::Actions::GetAll.call([self], credentials)
 
             # TODO expose errors to the user

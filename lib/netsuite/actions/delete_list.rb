@@ -10,13 +10,9 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :delete_list, message: request_body
+      def request(configuration = nil)
+        configuration ||= NetSuite::Configuration
+        configuration.connection.call(:delete_list, message: request_body)
       end
 
       # <soap:Body>
