@@ -13,12 +13,12 @@ module NetSuite
       @attributes ||= {}
     end
 
-    def connection(params={}, credentials={})
+    def connection(params={})
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
         read_timeout: read_timeout,
         namespaces: namespaces,
-        soap_header: auth_header(credentials).update(soap_header),
+        soap_header: auth_header.update(soap_header),
         pretty_print_xml: true,
         filters: filters,
         logger: logger,
