@@ -150,6 +150,18 @@ module NetSuite
       end
     end
 
+    def soap_header=(headers)
+      attributes[:soap_header] = headers
+    end
+
+    def soap_header(headers = nil)
+      if headers
+        self.soap_header = headers
+      else
+        attributes[:soap_header] ||= {}
+      end
+    end
+
     def auth_header(credentials={})
       if !credentials[:consumer_key].blank? || !consumer_key.blank?
         token_auth(credentials)
