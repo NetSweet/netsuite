@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class InventoryTransfer
+    class InventoryAdjustment
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
@@ -9,12 +9,12 @@ module NetSuite
 
       actions :get, :add, :delete, :search, :update, :upsert, :upsert_list
 
-      fields :created_date, :last_modified_date, :tran_date, :tran_id, :memo
+      fields :created_date, :estimated_total_value, :last_modified_date, :tran_date, :tran_id, :memo
 
-      field :inventory_list, InventoryTransferInventoryList
+      field :inventory_list, InventoryAdjustmentInventoryList
       field :custom_field_list, CustomFieldList
       
-      record_refs :posting_period, :location, :transfer_location, :department,
+      record_refs :account, :adj_location, :customer, :posting_period, :location, :department,
         :subsidiary, :custom_form
 
       attr_reader :internal_id
