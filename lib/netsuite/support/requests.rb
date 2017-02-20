@@ -8,15 +8,16 @@ module NetSuite
 
       module ClassMethods
 
-        def call(options, credentials={})
+        def call(options, configuration = nil)
           raise ArgumentError, "options should be an array" unless options.is_a?(Array)
-          new(*options).call(credentials)
+          # TODO detect invalid configuration type
+          new(*options).call(configuration)
         end
 
       end
 
-      def call(credentials={})
-        @response = request(credentials)
+      def call(configuration = nil)
+        @response = request(configuration)
         build_response
       end
 
@@ -47,6 +48,7 @@ module NetSuite
         raise NotImplementedError, 'Please implement a #response_body method'
       end
 
+      # TODO DRY this up -- pretty sure this pattern is used elsewhere in the codebase
       def array_wrap(object)
         if object.is_a?(Array)
           return object
