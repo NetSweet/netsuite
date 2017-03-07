@@ -39,7 +39,7 @@ module NetSuite
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
 
       record_refs :access_role, :custom_form, :currency, :entity_status, :partner, :category, :lead_source,
-        :price_level,:sales_rep, :subsidiary, :terms, :parent, :territory, :tax_item, :shipping_item, :receivables_account
+        :price_level, :sales_rep, :subsidiary, :terms, :parent, :territory, :tax_item, :shipping_item, :receivables_account
 
       attr_reader   :internal_id
       attr_accessor :external_id
