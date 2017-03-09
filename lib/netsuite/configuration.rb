@@ -4,6 +4,7 @@ module NetSuite
 
     def reset!
       NetSuite::Utilities.clear_cache!
+
       clear_wsdl_cache
 
       attributes.clear
@@ -84,16 +85,26 @@ module NetSuite
     end
 
     def api_version=(version)
+      if attributes[:api_version] != version
+        attributes[:wsdl] = nil
+        attributes[:wsdl_domain] = nil
+      end
+
       attributes[:api_version] = version
     end
 
     def sandbox=(flag)
-      attributes[:flag] = flag
+      if attributes[:sandbox] != flag
+        attributes[:wsdl] = nil
+        attributes[:wsdl_domain] = nil
+      end
+
+      attributes[:sandbox] = flag
     end
 
     def sandbox(flag = nil)
       if flag.nil?
-        attributes[:flag] ||= false
+        attributes[:sandbox] ||= false
       else
         self.sandbox = flag
       end
@@ -135,6 +146,11 @@ module NetSuite
     end
 
     def wsdl_domain=(wsdl_domain)
+      if attributes[:wsdl_domain] != wsdl_domain
+        # reset full wsdl url to ensure it's regenerated with the updated `wsdl_domain` next time it's needed
+        attributes[:wsdl] = nil
+      end
+
       attributes[:wsdl_domain] = wsdl_domain
     end
 
