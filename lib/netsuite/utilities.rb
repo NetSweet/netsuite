@@ -32,6 +32,11 @@ module NetSuite
       ns_record
     end
 
+    def netsuite_server_time
+      server_time_response = NetSuite::Utilities.backoff { NetSuite::Configuration.connection.call(:get_server_time) }
+      server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
+    end
+
     def backoff(options = {})
       # TODO the default backoff attempts should be customizable the global config
       options[:attempts] ||= 8
