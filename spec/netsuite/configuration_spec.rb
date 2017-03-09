@@ -314,8 +314,12 @@ describe NetSuite::Configuration do
   describe '#api_version=' do
     context 'when api version is defined' do
       it 'sets the api_version of the application' do
-        config.api_version = '2012_1'
-        expect(config.api_version).to eq('2012_1')
+        # retrieve wsdl to ensure setting the api works when the wsdl is cached
+        config.wsdl
+        config.api_version = '1980_1'
+
+        expect(config.api_version).to eq('1980_1')
+        expect(config.wsdl).to include('1980_1')
       end
     end
   end
@@ -343,13 +347,16 @@ describe NetSuite::Configuration do
   end
 
   it '#wsdl_domain' do
+    # NOTE wsdl is tested since it uses wsdl_domain
     expect(config.wsdl_domain).to eq('webservices.netsuite.com')
 
-    config.wsdl_domain = 'custom.domain.com'
+    config.wsdl_domain('custom.domain.com')
     expect(config.wsdl_domain).to eq('custom.domain.com')
+    expect(config.wsdl).to include('custom.domain.com')
 
     config.sandbox = true
     expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
+    expect(config.wsdl).to include('webservices.sandbox.netsuite.com')
   end
 
   describe '#logger=' do
