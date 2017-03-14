@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
 
-      actions :get, :search
+      actions :get, :get_list, :search
 
       fields :audience, :base_cost, :campaign_direct_mail_list, :campaign_email_list,
         :campaign_event_list, :campaign_id, :category, :conv_cost_per_customer, :conversions,

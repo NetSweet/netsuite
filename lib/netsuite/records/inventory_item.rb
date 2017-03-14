@@ -20,7 +20,7 @@ module NetSuite
       #     }
       #  ]
       #
-      actions :get, :add, :delete, :search, :update, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
@@ -57,8 +57,13 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
       field :locations_list, LocationsList
+      field :item_vendor_list, ItemVendorList
       field :matrix_option_list, MatrixOptionList
-      
+      field :subsidiary_list, RecordRefList
+
+      # for Assembly/Kit
+      field :member_list, MemberList
+
       attr_reader :internal_id
       attr_accessor :external_id
 

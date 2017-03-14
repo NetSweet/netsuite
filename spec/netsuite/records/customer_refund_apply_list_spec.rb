@@ -4,7 +4,7 @@ describe NetSuite::Records::CustomerRefundApplyList do
   let(:list) { NetSuite::Records::CustomerRefundApplyList.new }
 
   it 'has a applies attribute' do
-    list.applies.should be_kind_of(Array)
+    expect(list.applies).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -13,14 +13,12 @@ describe NetSuite::Records::CustomerRefundApplyList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranCust:apply' => {
-            'tranCust:amount' => 10
-          }
-        }
-      ]
-      list.to_record.should eql(record)
+      record = {
+        'tranCust:apply' => [{
+          'tranCust:amount' => 10
+        }]
+      }
+      expect(list.to_record).to eql(record)
     end
   end
 

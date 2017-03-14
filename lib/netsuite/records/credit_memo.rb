@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranCust
 
-      actions :get, :add, :initialize, :delete, :update, :upsert
+      actions :get, :get_deleted, :get_list, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
         :bill_address, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email,
@@ -19,15 +19,22 @@ module NetSuite
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :vsoe_auto_calc
 
-      field :transaction_bill_address, BillAddress
+      field :custom_field_list,        CustomFieldList
       field :item_list,                CreditMemoItemList
       field :apply_list,               CreditMemoApplyList
+      field :ship_group_list,          SalesOrderShipGroupList
+
+      # field :bill_address_list,
+      field :transaction_bill_address, BillAddress
+
+      # NOTE only available on API > 2014_1
+      field :billing_address, Address
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied
 
       record_refs :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert,
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
-        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item
+        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item, :currency
 
       attr_reader :internal_id
       attr_accessor :external_id
@@ -36,6 +43,14 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
       end
 
     end

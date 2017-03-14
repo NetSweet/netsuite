@@ -7,12 +7,12 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranInvt
 
-      actions :get, :add, :delete, :search, :update, :upsert
+      actions :get, :add, :delete, :search, :update, :upsert, :upsert_list
 
       fields :created_date, :last_modified_date, :tran_date, :tran_id, :memo
 
       field :inventory_list, InventoryTransferInventoryList
-
+      
       record_refs :posting_period, :location, :transfer_location, :department,
         :subsidiary
 

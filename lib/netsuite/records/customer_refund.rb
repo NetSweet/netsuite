@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranCust
 
-      actions :get, :initialize, :add, :delete, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
 
       fields :address, :cc_approved, :cc_expire_date, :cc_name, :cc_number, :cc_street, :cc_zip_code, :charge_it,
         :created_date, :currency_name, :debit_card_issue_no, :exchange_rate, :last_modified_date, :memo, :pn_ref_num, :status,
@@ -20,10 +20,11 @@ module NetSuite
       read_only_fields :balance, :total
 
       record_refs :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass,
-        :location, :payment_method, :posting_period, :subsidiary, :void_journal
+        :location, :payment_method, :posting_period, :subsidiary, :void_journal, :currency
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
@@ -37,6 +38,14 @@ module NetSuite
           rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
         end
         rec
+      end
+
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
       end
 
     end

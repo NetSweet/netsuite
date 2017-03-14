@@ -11,7 +11,7 @@ module NetSuite
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost, :build_entire_assembly,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
-        :costing_method_display, :country_of_manufacture, :created_date, :currency, :date_converted_to_inv,
+        :costing_method_display, :country_of_manufacture, :created_date, :currency, :date_converted_to_inv, :description,
         :default_return_cost, :demand_modifier, :display_name, :dont_show_price, :enforce_min_qty_internally,
         :exclude_from_sitemap, :featured_description, :fixed_lot_size, :handling_cost, :handling_cost_units, :include_children,
         :is_donation_item, :is_drop_ship_item, :is_gco_compliant, :is_inactive, :is_online, :is_special_order_item, :is_special_work_order_item, :is_taxable,
@@ -42,6 +42,8 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :bin_number_list, BinNumberList
+      field :locations_list, LocationsList
+      field :item_vendor_list, ItemVendorList
       field :pricing_matrix, PricingMatrix
       field :member_list, MemberList
       field :subsidiary_list, RecordRefList

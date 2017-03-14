@@ -5,23 +5,24 @@ describe NetSuite::Records::DiscountItem do
 
   it 'has the right fields' do
     [
-      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pretax,
+      :available_to_partners, :created_date, :description, :display_name, :include_children, :is_inactive, :is_pre_tax,
       :item_id, :last_modified_date, :non_posting, :rate, :upc_code, :vendor_name
     ].each do |field|
-      item.should have_field(field)
+      expect(item).to have_field(field)
     end
 
     # TODO there is a probably a more robust way to test this
-    item.custom_field_list.class.should == NetSuite::Records::CustomFieldList
+    expect(item.custom_field_list.class).to eq(NetSuite::Records::CustomFieldList)
+    expect(item.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
   it 'has the right record_refs' do
     [
       :account, :custom_form, :deferred_revenue_account, :department, :expense_account,
       :income_account, :issue_product, :klass, :location, :parent, :rev_rec_schedule, :sales_tax_code,
-      :subsidiary_list, :tax_schedule
+      :tax_schedule
     ].each do |record_ref|
-      item.should have_record_ref(record_ref)
+      expect(item).to have_record_ref(record_ref)
     end
   end
 
@@ -30,10 +31,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :item_id => 'penguins' }) }
 
       it 'returns a DiscountItem instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::DiscountItem, :external_id => 20], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::DiscountItem, :external_id => 20], {}).and_return(response)
         customer = NetSuite::Records::DiscountItem.get(:external_id => 20)
-        customer.should be_kind_of(NetSuite::Records::DiscountItem)
-        customer.item_id.should eql('penguins')
+        expect(customer).to be_kind_of(NetSuite::Records::DiscountItem)
+        expect(customer.item_id).to eql('penguins')
       end
     end
 
@@ -41,10 +42,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::DiscountItem, :external_id => 20], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::DiscountItem, :external_id => 20], {}).and_return(response)
+        expect {
           NetSuite::Records::DiscountItem.get(:external_id => 20)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::DiscountItem with OPTIONS=(.*) could not be found/)
       end
     end
@@ -57,10 +58,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_truthy
+        expect(item.add).to be_truthy
       end
     end
 
@@ -68,10 +69,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.add.should be_falsey
+        expect(item.add).to be_falsey
       end
     end
   end
@@ -81,10 +82,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_truthy
+        expect(item.delete).to be_truthy
       end
     end
 
@@ -92,10 +93,10 @@ describe NetSuite::Records::DiscountItem do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([item], {}).
             and_return(response)
-        item.delete.should be_falsey
+        expect(item.delete).to be_falsey
       end
     end
   end
@@ -111,13 +112,13 @@ describe NetSuite::Records::DiscountItem do
         'listAcct:itemId' => 'penguins',
         'listAcct:isInactive'     => true
       }
-      item.to_record.should eql(record)
+      expect(item.to_record).to eql(record)
     end
   end
 
   describe '#record_type' do
     it 'returns a string of the SOAP type' do
-      item.record_type.should eql('listAcct:DiscountItem')
+      expect(item.record_type).to eql('listAcct:DiscountItem')
     end
   end
 

@@ -4,7 +4,7 @@ describe NetSuite::Records::CreditMemoItemList do
   let(:list) { NetSuite::Records::CreditMemoItemList.new }
 
   it 'has a items attribute' do
-    list.items.should be_kind_of(Array)
+    expect(list.items).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -15,14 +15,12 @@ describe NetSuite::Records::CreditMemoItemList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranCust:item' => {
-            'tranCust:rate' => 10
-          }
-        }
-      ]
-      list.to_record.should eql(record)
+      record = {
+        'tranCust:item' => [{
+          'tranCust:rate' => 10
+        }]
+      }
+      expect(list.to_record).to eql(record)
     end
   end
 end

@@ -1,11 +1,9 @@
 module NetSuite
   module Records
-    class ItemFulfillmentPackageList
-      include Support::Fields
-      include Support::Records
+    class ItemFulfillmentPackageList < Support::Sublist
       include Namespaces::TranSales
 
-      fields :package
+      sublist :package, ItemFulfillmentPackage
 
       def initialize(attributes = {})
         if attributes.keys != [:package] && attributes.first
@@ -32,22 +30,8 @@ module NetSuite
         initialize_from_attributes_hash(attributes)
       end
 
-      def package=(packages)
-        case packages
-        when Hash
-          self.packages << ItemFulfillmentPackage.new(packages)
-        when Array
-          packages.each { |package| self.packages << ItemFulfillmentPackage.new(package) }
-        end
-      end
+      alias :packages :package
 
-      def packages
-        @packages ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:package" => packages.map(&:to_record) }
-      end
     end
   end
 end

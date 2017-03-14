@@ -7,9 +7,9 @@ describe NetSuite::Records::BillingScheduleMilestoneList do
   it 'can have milestones be added to it' do
     list.milestones << milestone
     milestone_list = list.milestones
-    milestone_list.should be_kind_of(Array)
-    milestone_list.length.should eql(1)
-    milestone_list.each { |i| i.should be_kind_of(NetSuite::Records::BillingScheduleMilestone) }
+    expect(milestone_list).to be_kind_of(Array)
+    expect(milestone_list.length).to eql(1)
+    milestone_list.each { |i| expect(i).to be_kind_of(NetSuite::Records::BillingScheduleMilestone) }
   end
 
   describe '#to_record' do
@@ -17,7 +17,7 @@ describe NetSuite::Records::BillingScheduleMilestoneList do
       record = {
         'listAcct:billingScheduleMilestone' => []
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 

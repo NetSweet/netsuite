@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <soapenv:Fault>
+      <faultcode>soapenv:Server.userException</faultcode>
+      <faultstring>Only one request may be made against a session at a time</faultstring>
+      <detail>
+        <platformFaults:exceededRequestLimitFault xmlns:platformFaults="urn:faults_2011_2.platform.webservices.netsuite.com">
+          <platformFaults:code>WS_CONCUR_SESSION_DISALLWD</platformFaults:code>
+          <platformFaults:message>Only one request may be made against a session at a time</platformFaults:message>
+        </platformFaults:exceededRequestLimitFault>
+        <ns1:hostname xmlns:ns1="http://xml.apache.org/axis/">partners-java10003.bos.netledger.com</ns1:hostname>
+      </detail>
+    </soapenv:Fault>
+  </soapenv:Body>
+</soapenv:Envelope>

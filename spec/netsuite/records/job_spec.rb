@@ -15,7 +15,7 @@ describe NetSuite::Records::Job do
       :opening_balance_date, :percent_complete, :percent_time_complete, :phone, :phonetic_name, :projected_end_date,
       :projected_end_date_baseline, :start_date, :start_date_baseline
     ].each do |field|
-      job.should have_field(field)
+      expect(job).to have_field(field)
     end
   end
 
@@ -23,7 +23,7 @@ describe NetSuite::Records::Job do
     [
       :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item, :job_type, :language, :parent, :subsidiary, :workplace
     ].each do |record_ref|
-      job.should have_record_ref(record_ref)
+      expect(job).to have_record_ref(record_ref)
     end
   end
 
@@ -33,14 +33,14 @@ describe NetSuite::Records::Job do
         :time_span => 10
       }
       job.estimated_time_override = attributes
-      job.estimated_time_override.should be_kind_of(NetSuite::Records::Duration)
-      job.estimated_time_override.time_span.should eql(10)
+      expect(job.estimated_time_override).to be_kind_of(NetSuite::Records::Duration)
+      expect(job.estimated_time_override.time_span).to eql(10)
     end
 
     it 'can be set from a Duration object' do
       duration = NetSuite::Records::Duration.new
       job.estimated_time_override = duration
-      job.estimated_time_override.should eql(duration)
+      expect(job.estimated_time_override).to eql(duration)
     end
   end
 
@@ -50,14 +50,14 @@ describe NetSuite::Records::Job do
         :time_span => 20
       }
       job.actual_time = attributes
-      job.actual_time.should be_kind_of(NetSuite::Records::Duration)
-      job.actual_time.time_span.should eql(20)
+      expect(job.actual_time).to be_kind_of(NetSuite::Records::Duration)
+      expect(job.actual_time.time_span).to eql(20)
     end
 
     it 'can be set from a Duration object' do
       duration = NetSuite::Records::Duration.new
       job.actual_time = duration
-      job.actual_time.should eql(duration)
+      expect(job.actual_time).to eql(duration)
     end
   end
 
@@ -67,14 +67,14 @@ describe NetSuite::Records::Job do
         :time_span => 30
       }
       job.time_remaining = attributes
-      job.time_remaining.should be_kind_of(NetSuite::Records::Duration)
-      job.time_remaining.time_span.should eql(30)
+      expect(job.time_remaining).to be_kind_of(NetSuite::Records::Duration)
+      expect(job.time_remaining.time_span).to eql(30)
     end
 
     it 'can be set from a Duration object' do
       duration = NetSuite::Records::Duration.new
       job.time_remaining = duration
-      job.time_remaining.should eql(duration)
+      expect(job.time_remaining).to eql(duration)
     end
   end
 
@@ -108,10 +108,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
 
       it 'returns a Job instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
         job = NetSuite::Records::Job.get(:external_id => 1)
-        job.should be_kind_of(NetSuite::Records::Job)
-        job.account_number.should be_truthy
+        expect(job).to be_kind_of(NetSuite::Records::Job)
+        expect(job.account_number).to be_truthy
       end
     end
 
@@ -119,10 +119,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Job, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::Job.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Job with OPTIONS=(.*) could not be found/)
       end
     end
@@ -135,10 +135,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([job], {}).
             and_return(response)
-        job.add.should be_truthy
+        expect(job.add).to be_truthy
       end
     end
 
@@ -146,10 +146,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([job], {}).
             and_return(response)
-        job.add.should be_falsey
+        expect(job.add).to be_falsey
       end
     end
   end
@@ -159,10 +159,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([job], {}).
             and_return(response)
-        job.delete.should be_truthy
+        expect(job.delete).to be_truthy
       end
     end
 
@@ -170,10 +170,10 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([job], {}).
             and_return(response)
-        job.delete.should be_falsey
+        expect(job.delete).to be_falsey
       end
     end
   end
@@ -183,9 +183,9 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :account_number => 7 }) }
 
       it 'returns true' do
-        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::Job, {:external_id => 1, :account_number => 7}], {}).and_return(response)
+        expect(NetSuite::Actions::Update).to receive(:call).with([NetSuite::Records::Job, {:external_id => 1, :account_number => 7}], {}).and_return(response)
         job = NetSuite::Records::Job.new(:external_id => 1)
-        job.update(:account_number => 7).should be_truthy
+        expect(job.update(:account_number => 7)).to be_truthy
       end
     end
 
@@ -193,18 +193,22 @@ describe NetSuite::Records::Job do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Update.should_receive(:call).with([NetSuite::Records::Job, {:internal_id => 1, :account_number => 7}], {}).and_return(response)
+        expect(NetSuite::Actions::Update).to receive(:call).with([NetSuite::Records::Job, {:internal_id => 1, :account_number => 7}], {}).and_return(response)
         job = NetSuite::Records::Job.new(:internal_id => 1)
-        job.update(:account_number => 7).should be_falsey
+        expect(job.update(:account_number => 7)).to be_falsey
       end
     end
+  end
+
+  describe '.search' do
+    it 'searches'
   end
 
   describe '#to_record' do
     let(:job) { NetSuite::Records::Job.new(:entity_id => 'TEST JOB', :account_number => 7) }
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
-      job.to_record.should eql({
+      expect(job.to_record).to eql({
         'listRel:entityId'      => 'TEST JOB',
         'listRel:accountNumber' => 7
       })
@@ -213,7 +217,7 @@ describe NetSuite::Records::Job do
 
   describe '#record_type' do
     it 'returns a string type for the record to be used in a SOAP request' do
-      job.record_type.should eql('listRel:Job')
+      expect(job.record_type).to eql('listRel:Job')
     end
   end
 

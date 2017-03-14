@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :add, :delete, :update, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :account_number, :allocate_payroll_expenses, :allow_all_resources_for_tasks, :allow_expenses, :allow_time,
         :alt_name, :alt_phone, :bill_pay, :calculated_end_date, :calculated_end_date_baseline, :comments, :company_name,
@@ -22,6 +22,7 @@ module NetSuite
       field :estimated_time_override, Duration
       field :actual_time,             Duration
       field :time_remaining,          Duration
+      field :custom_field_list,       CustomFieldList
 
       record_refs :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item,
         :job_type, :language, :parent, :subsidiary, :workplace

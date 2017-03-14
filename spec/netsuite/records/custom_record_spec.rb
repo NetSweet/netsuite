@@ -12,7 +12,7 @@ describe NetSuite::Records::CustomRecord do
       :show_creation_date_on_list, :show_id, :show_last_modified, :show_last_modified_on_list, :show_notes, :show_owner,
       :show_owner_allow_change, :show_owner_on_list, :use_permissions
     ].each do |field|
-      record.should have_field(field)
+      expect(record).to have_field(field)
     end
   end
 
@@ -20,7 +20,7 @@ describe NetSuite::Records::CustomRecord do
     [
       :custom_form, :owner
     ].each do |record_ref|
-      record.should have_record_ref(record_ref)
+      expect(record).to have_record_ref(record_ref)
     end
   end
 
@@ -29,19 +29,19 @@ describe NetSuite::Records::CustomRecord do
       attributes = {
         :custom_field => {
           :amount => 10,
-          :internal_id => 'custfield_amount'
+          :script_id => 'custfield_amount'
         }
       }
       record.custom_field_list = attributes
-      record.custom_field_list.should be_kind_of(NetSuite::Records::CustomFieldList)
-      record.custom_field_list.custom_fields.length.should eql(1)
-      record.custom_field_list.custfield_amount.attributes[:amount].should eq(10)
+      expect(record.custom_field_list).to be_kind_of(NetSuite::Records::CustomFieldList)
+      expect(record.custom_field_list.custom_fields.length).to eql(1)
+      expect(record.custom_field_list.custfield_amount.attributes[:amount]).to eq(10)
     end
 
     it 'can be set from a CustomFieldList object' do
       custom_field_list = NetSuite::Records::CustomFieldList.new
       record.custom_field_list = custom_field_list
-      record.custom_field_list.should eql(custom_field_list)
+      expect(record.custom_field_list).to eql(custom_field_list)
     end
   end
 
@@ -50,12 +50,12 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :allow_quick_search => true }) }
 
       it 'returns a Customer instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).
+        expect(NetSuite::Actions::Get).to receive(:call).
           with([NetSuite::Records::CustomRecord, {:external_id => 1, :type_id => nil, :custom => true}], {}).
           and_return(response)
         customer = NetSuite::Records::CustomRecord.get(:external_id => 1)
-        customer.should be_kind_of(NetSuite::Records::CustomRecord)
-        customer.allow_quick_search.should be_truthy
+        expect(customer).to be_kind_of(NetSuite::Records::CustomRecord)
+        expect(customer.allow_quick_search).to be_truthy
       end
     end
 
@@ -63,12 +63,12 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).
+        expect(NetSuite::Actions::Get).to receive(:call).
           with([NetSuite::Records::CustomRecord, {:external_id => 1, :type_id => nil, :custom => true}], {}).
           and_return(response)
-        lambda {
+        expect {
           NetSuite::Records::CustomRecord.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::CustomRecord with OPTIONS=(.*) could not be found/)
       end
     end
@@ -79,10 +79,10 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([record], {}).
             and_return(response)
-        record.add.should be_truthy
+        expect(record.add).to be_truthy
       end
     end
 
@@ -90,10 +90,10 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Add.should_receive(:call).
+        expect(NetSuite::Actions::Add).to receive(:call).
             with([record], {}).
             and_return(response)
-        record.add.should be_falsey
+        expect(record.add).to be_falsey
       end
     end
   end
@@ -103,10 +103,10 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
 
       it 'returns true' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_truthy
+        expect(record.delete).to be_truthy
       end
     end
 
@@ -114,10 +114,10 @@ describe NetSuite::Records::CustomRecord do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'returns false' do
-        NetSuite::Actions::Delete.should_receive(:call).
+        expect(NetSuite::Actions::Delete).to receive(:call).
             with([record, { :custom => true }], {}).
             and_return(response)
-        record.delete.should be_falsey
+        expect(record.delete).to be_falsey
       end
     end
   end

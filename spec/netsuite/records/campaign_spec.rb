@@ -11,7 +11,7 @@ describe NetSuite::Records::Campaign do
       :offer, :owner, :profit, :promotion_code, :roi, :search_engine, :start_date, :title,
       :total_revenue, :unique_visitors, :url, :vertical
     ].each do |field|
-      campaign.should have_field(field)
+      expect(campaign).to have_field(field)
     end
   end
 
@@ -20,10 +20,10 @@ describe NetSuite::Records::Campaign do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :message => 'Message 1' }) }
 
       it 'returns a Campaign instance populated with the data from the response object' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Campaign, {:external_id => 1}], {}).and_return(response)
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Campaign, {:external_id => 1}], {}).and_return(response)
         campaign = NetSuite::Records::Campaign.get(:external_id => 1)
-        campaign.should be_kind_of(NetSuite::Records::Campaign)
-        campaign.message.should eql('Message 1')
+        expect(campaign).to be_kind_of(NetSuite::Records::Campaign)
+        expect(campaign.message).to eql('Message 1')
       end
     end
 
@@ -31,10 +31,10 @@ describe NetSuite::Records::Campaign do
       let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
 
       it 'raises a RecordNotFound exception' do
-        NetSuite::Actions::Get.should_receive(:call).with([NetSuite::Records::Campaign, {:external_id => 1}], {}).and_return(response)
-        lambda {
+        expect(NetSuite::Actions::Get).to receive(:call).with([NetSuite::Records::Campaign, {:external_id => 1}], {}).and_return(response)
+        expect {
           NetSuite::Records::Campaign.get(:external_id => 1)
-        }.should raise_error(NetSuite::RecordNotFound,
+        }.to raise_error(NetSuite::RecordNotFound,
           /NetSuite::Records::Campaign with OPTIONS=(.*) could not be found/)
       end
     end

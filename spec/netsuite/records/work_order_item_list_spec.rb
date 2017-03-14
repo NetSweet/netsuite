@@ -4,7 +4,7 @@ describe NetSuite::Records::WorkOrderItemList do
   let(:list) { NetSuite::Records::WorkOrderItemList.new }
 
   it 'has a items attribute' do
-    list.items.should be_kind_of(Array)
+    expect(list.items).to be_kind_of(Array)
   end
 
   describe '#to_record' do
@@ -20,7 +20,7 @@ describe NetSuite::Records::WorkOrderItemList do
           'tranInvt:averageCost' => 10
         }]
       }
-      list.to_record.should eql(record)
+      expect(list.to_record).to eql(record)
     end
   end
 end

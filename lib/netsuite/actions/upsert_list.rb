@@ -29,28 +29,46 @@ module NetSuite
       #   </upsertList>
       # </soap:Body>
       def request_body
-        @objects.map do |o|
-          hash = {
-            'record' => {
-              :content! => o.to_record,
-              '@xsi:type' => o.record_type
-            }
-          }
+        attrs = @objects.map do |o|
+          hash = o.to_record.merge({
+            '@xsi:type' => o.record_type
+          })
 
           if o.respond_to?(:external_id) && o.external_id
-            hash['record']['@externalId'] = o.external_id
+            hash['@externalId'] = o.external_id
           end
 
           hash
         end
+
+        { 'record' => attrs }
       end
 
       def response_hash
-        @response_hash ||= @response.body[:upsert_list_response][:write_response_list][:write_response]
+        @response_hash ||= Array[@response.body[:upsert_list_response][:write_response_list][:write_response]].flatten
       end
 
       def response_body
         @response_body ||= response_hash.map { |h| h[:base_ref] }
+      end
+
+      def response_errors
+        if response_hash.any? { |h| h[:status] && h[:status][:status_detail] }
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
+          error_obj = obj[:status][:status_detail]
+          error_obj = [error_obj] if error_obj.class == Hash
+          errors = error_obj.map do |error|
+            NetSuite::Error.new(error)
+          end
+
+          [obj[:base_ref][:@external_id], errors]
+        end
+        Hash[errors]
       end
 
       def success?

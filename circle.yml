@@ -1,0 +1,16 @@
+# https://leonid.shevtsov.me/post/multiple-rubies-on-circleci/
+
+machine:
+  environment:
+    RUBY_VERSIONS: 2.0.0,2.1.10,2.2.5,2.3.1,2.4.0
+
+dependencies:
+  override:
+    - rvm get head
+    - rvm install $RUBY_VERSIONS
+    - rvm $RUBY_VERSIONS --verbose do gem install bundler
+    - rvm $RUBY_VERSIONS --verbose do bundle install
+
+test:
+  override:
+    - rvm $RUBY_VERSIONS --verbose do bundle exec rspec spec
