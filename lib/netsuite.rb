@@ -253,6 +253,7 @@ module NetSuite
   end
 
   def self.configure(&block)
-    NetSuite::Configuration.instance_eval(&block)
+    Thread.current[:netsuite_configuration] ||= NetSuite::Configuration.new
+    Thread.current[:netsuite_configuration].instance_eval(&block)
   end
 end
