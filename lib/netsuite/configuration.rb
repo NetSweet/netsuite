@@ -56,11 +56,11 @@ module NetSuite
     end
 
     def cached_wsdl
-      cached = wsdl_cache.fetch([api_version, wsdl], nil)
+      cached = wsdl_cache.fetch(wsdl, nil)
       if cached.is_a? String
         cached
       elsif cached.is_a? Savon::Client
-        wsdl_cache[[api_version, wsdl]] = cached.instance_eval { @wsdl.xml }
+        wsdl_cache[wsdl] = cached.instance_eval { @wsdl.xml }
       end
     end
 
@@ -73,7 +73,7 @@ module NetSuite
       # For reference, see:
       # https://github.com/savonrb/savon/blob/d64925d3add33fa5531577ce9e3a28a7a93618b1/lib/savon/client.rb#L35-L37
       # https://github.com/savonrb/savon/blob/d64925d3add33fa5531577ce9e3a28a7a93618b1/lib/savon/operation.rb#L22
-      wsdl_cache[[api_version, wsdl]] ||= client
+      wsdl_cache[wsdl] ||= client
     end
 
     def api_version(version = nil)
