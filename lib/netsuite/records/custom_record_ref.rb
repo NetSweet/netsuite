@@ -13,7 +13,7 @@ module NetSuite
       def initialize(attributes_or_record = {})
         case attributes_or_record
         when Hash
-          attributes = attributes_or_record
+          attributes = attributes_or_record.clone
           attributes.delete(:"@xmlns:platform_core")
           @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
           @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
