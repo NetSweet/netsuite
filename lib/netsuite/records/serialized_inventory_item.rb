@@ -222,7 +222,7 @@ module NetSuite
       # weight_unit	ItemWeightUnit
 
       field :custom_field_list, CustomFieldList
-      field :locations_list, LocationsList
+      field :locations_list, SerializedInventoryItemLocationsList
       field :subsidiary_list, RecordRefList
 
       # TODO from standard copied item record; may need to be deleted
