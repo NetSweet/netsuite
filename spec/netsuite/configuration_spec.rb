@@ -47,7 +47,7 @@ describe NetSuite::Configuration do
       conn = config.connection
 
       expect(
-        config.wsdl_cache.fetch([config.api_version, config.wsdl])
+        config.wsdl_cache.fetch(config.wsdl)
       ).to eq(conn)
     end
 
@@ -99,13 +99,13 @@ describe NetSuite::Configuration do
         expect(config.wsdl_cache).to be_empty
         config.cache_wsdl("whatevs")
         expect(config.wsdl_cache).to eq(
-          {[config.api_version, config.wsdl] => "whatevs"}
+          {config.wsdl => "whatevs"}
         )
       end
 
       it 'doesnt write over old values' do
         config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
-          wsdl_cache[[api, wsdl]] = "old value"
+          wsdl_cache[wsdl] = "old value"
         end
         config.cache_wsdl("new value")
 
@@ -116,13 +116,13 @@ describe NetSuite::Configuration do
         config.class_eval { @wsdl_cache = nil }
         config.cache_wsdl("whatevs")
         expect(config.wsdl_cache).to eq(
-          {[config.api_version, config.wsdl] => "whatevs"}
+          {config.wsdl => "whatevs"}
         )
       end
 
       it 'can cache multiple values' do
         config.class_exec("2020_2", "fake wsdl") do |api, wsdl|
-          wsdl_cache[[api, wsdl]] = "old value"
+          wsdl_cache[wsdl] = "old value"
         end
         expect(config.wsdl_cache.keys.count).to eq 1
         config.cache_wsdl("new value")
@@ -134,7 +134,7 @@ describe NetSuite::Configuration do
     context '#cached_wsdl' do
       it 'returns wsdl (xml)' do
         config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
-          wsdl_cache[[api, wsdl]] = "xml wsdl string"
+          wsdl_cache[wsdl] = "xml wsdl string"
         end
         expect( config.cached_wsdl ).to eq "xml wsdl string"
       end
@@ -146,7 +146,7 @@ describe NetSuite::Configuration do
         wsdl_dbl = double(:wsdl, xml: "xml wsdl")
         client.instance_exec(wsdl_dbl) {|wsdl| @wsdl = wsdl }
         config.class_exec(config.api_version, config.wsdl, client) do |api, wsdl, c|
-          wsdl_cache[[api, wsdl]] = c
+          wsdl_cache[wsdl] = c
         end
 
         expect( config.wsdl_cache.values.first ).to eq client
