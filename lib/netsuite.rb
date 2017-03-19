@@ -220,6 +220,8 @@ module NetSuite
     autoload :ServiceResaleItem,                'netsuite/records/service_resale_item'
     autoload :ServiceSaleItem,                  'netsuite/records/service_sale_item'
     autoload :SerializedInventoryItem,          'netsuite/records/serialized_inventory_item'
+    autoload :SerializedInventoryItemNumbers,       'netsuite/records/serialized_inventory_item_numbers'
+    autoload :SerializedInventoryItemNumbersList,   'netsuite/records/serialized_inventory_item_numbers_list'
     autoload :ShipAddress,                      'netsuite/records/ship_address'
     autoload :SiteCategory,                     'netsuite/records/site_category'
     autoload :Subsidiary,                       'netsuite/records/subsidiary'
