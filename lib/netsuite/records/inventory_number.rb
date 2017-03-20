@@ -9,7 +9,8 @@ module NetSuite
 
       actions :get, :search
 
-      fields :expiration_date, :inventory_number, :memo, :status, :units
+      fields :expiration_date, :inventory_number, :isonhand, :memo, :status, :units, :location,
+      :quantityavailable, :quantityintransit, :quantityonhand, :quantityonorder
 
       field :locations_list, InventoryNumberLocationsList
       field :custom_field_list, CustomFieldList
