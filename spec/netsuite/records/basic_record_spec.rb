@@ -51,7 +51,8 @@ describe 'basic records' do
       NetSuite::Records::VendorReturnAuthorization,
       NetSuite::Records::AssemblyBuild,
       NetSuite::Records::AssemblyUnbuild,
-      NetSuite::Records::AssemblyComponent
+      NetSuite::Records::AssemblyComponent,
+      NetSuite::Records::InventoryNumber
     ]
   }
 
