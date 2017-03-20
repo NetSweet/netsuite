@@ -16,7 +16,7 @@ module NetSuite
       :is_wip, :last_invt_count_date, :last_purchase_price_mli, :lead_time,
       :location, :next_invt_count_date, :on_hand_value_mli, 
       :periodic_lot_size_days, :preferred_stock_level, :quantity_available,
-      :quantity_backordered, :quantity_committed, :quantity_on_hand,
+      :quantity_back_ordered, :quantity_committed, :quantity_on_hand,
       :quantity_on_order, :reorder_point, :reschedule_in_days,
       :reschedule_out_days, :safety_stock_level, :serial_numbers
 
