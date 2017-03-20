@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class SerializedInventoryItemNumbers
       include Support::Fields
+      include Support::Records
       include Namespaces::ListAcct
 
       fields :serial_number
