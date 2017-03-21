@@ -17,6 +17,9 @@ module NetSuite
       attr_reader :internal_id
       attr_accessor :external_id
 
+      attr_reader :internal_id
+      attr_accessor :external_id
+
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
