@@ -179,29 +179,25 @@ module NetSuite
           end
         end
 
-        # TODO this needs to be DRYed up a bit
-
-        if saved_search_id
-          {
+        if saved_search_id || !columns_structure.empty?
+          search_structure = {
             'searchRecord' => {
-              '@savedSearchId' => saved_search_id,
               '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced",
               :content! => {
                 "#{namespace}:criteria" => criteria_structure
-                # TODO need to optionally support columns here
               }
             }
           }
-        elsif !columns_structure.empty?
-          {
-            'searchRecord' => {
-              '@xsi:type' => "#{namespace}:#{class_name}SearchAdvanced",
-              :content! => {
-                "#{namespace}:criteria" => criteria_structure,
-                "#{namespace}:columns" => columns_structure
-              }
-            }
-          }
+
+          if saved_search_id
+            search_structure['searchRecord']['@savedSearchId'] = saved_search_id
+          end
+
+          if !columns_structure.empty?
+            search_structure['searchRecord'][:content!]["#{namespace}:columns"] = columns_structure
+          end
+
+          search_structure
         else
           {
             'searchRecord' => {
