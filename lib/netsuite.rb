@@ -66,6 +66,10 @@ module NetSuite
 
   module Records
     autoload :AssemblyItem,                     'netsuite/records/assembly_item'
+    autoload :AssemblyBuild,                    'netsuite/records/assembly_build'
+    autoload :AssemblyComponent,                'netsuite/records/assembly_component'
+    autoload :AssemblyComponentList,            'netsuite/records/assembly_component_list'
+    autoload :AssemblyUnbuild,                  'netsuite/records/assembly_unbuild'
     autoload :Account,                          'netsuite/records/account'
     autoload :AccountingPeriod,                 'netsuite/records/accounting_period'
     autoload :Address,                          'netsuite/records/address'
