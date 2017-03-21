@@ -107,51 +107,61 @@ describe NetSuite::Actions::Search do
                   }
                 }
               }
-            }
+            },
+            "listRel:columns" => [
+              {"tranSales:basic"=>{"platformCommon:internalId/"=>{}}}
+            ],
           }
         },
       }).returns(File.read('spec/support/fixtures/search/saved_search_joined_custom_customer.xml'))
 
       search = NetSuite::Records::Customer.search({
-        saved: 500,
-        basic: [
-          {
-            field: 'entityId',
-            value: 'New Keywords',
-            operator: 'hasKeywords'
-          },
-          {
-            field: 'stage',
-            operator: 'anyOf',
-            type: 'SearchMultiSelectCustomField',
-            value: [
-              '_lead',
-              '_customer'
-            ]
-          },
-          {
-            field: 'customFieldList',
-            value: [
-              {
-                field: 'custentity_customerandcontacttypelist',
-                operator: 'anyOf',
-                # type is needed for multiselect fields
-                type: 'SearchMultiSelectCustomField',
-                value: [
-                  NetSuite::Records::CustomRecordRef.new(:internal_id => 4),
-                  NetSuite::Records::CustomRecordRef.new(:internal_id => 11),
-                ]
-              },
-              {
-                field: 'custentity_relatedthing',
-                # is in the GUI is the equivilent of anyOf with a single element array
-                operator: 'anyOf',
-                type: 'SearchMultiSelectCustomField',
-                value: [
-                  NetSuite::Records::Customer.new(:internal_id => 88825)
-                ]
-              }
-            ]
+        criteria: {
+          saved: 500,
+          basic: [
+            {
+              field: 'entityId',
+              value: 'New Keywords',
+              operator: 'hasKeywords'
+            },
+            {
+              field: 'stage',
+              operator: 'anyOf',
+              type: 'SearchMultiSelectCustomField',
+              value: [
+                '_lead',
+                '_customer'
+              ]
+            },
+            {
+              field: 'customFieldList',
+              value: [
+                {
+                  field: 'custentity_customerandcontacttypelist',
+                  operator: 'anyOf',
+                  # type is needed for multiselect fields
+                  type: 'SearchMultiSelectCustomField',
+                  value: [
+                    NetSuite::Records::CustomRecordRef.new(:internal_id => 4),
+                    NetSuite::Records::CustomRecordRef.new(:internal_id => 11),
+                  ]
+                },
+                {
+                  field: 'custentity_relatedthing',
+                  # is in the GUI is the equivilent of anyOf with a single element array
+                  operator: 'anyOf',
+                  type: 'SearchMultiSelectCustomField',
+                  value: [
+                    NetSuite::Records::Customer.new(:internal_id => 88825)
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        columns: [
+          'tranSales:basic' => {
+            'platformCommon:internalId/' => {},
           }
         ]
       })
