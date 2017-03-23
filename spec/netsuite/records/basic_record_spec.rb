@@ -47,7 +47,7 @@ describe 'basic records' do
       NetSuite::Records::DepositApplication,
       NetSuite::Records::InventoryAdjustment,
       NetSuite::Records::VendorReturnAuthorization,
-      NetSuite::Records::InventoryNumber
+      NetSuite::Records::InventoryNumber,
       NetSuite::Records::AssemblyBuild,
       NetSuite::Records::AssemblyUnbuild,
       NetSuite::Records::AssemblyComponent
