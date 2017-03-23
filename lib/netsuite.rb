@@ -109,6 +109,8 @@ module NetSuite
     autoload :CustomerCurrency,                     'netsuite/records/customer_currency'
     autoload :CustomerCurrencyList,                 'netsuite/records/customer_currency_list'
     autoload :CustomerDeposit,                      'netsuite/records/customer_deposit'
+    autoload :CustomerDepositApplyList,             'netsuite/records/customer_deposit_apply_list'
+    autoload :CustomerDepositApply,                 'netsuite/records/customer_deposit_apply'
     autoload :CustomerPartnersList,                 'netsuite/records/customer_partners_list'
     autoload :CustomerPayment,                      'netsuite/records/customer_payment'
     autoload :CustomerPaymentApply,                 'netsuite/records/customer_payment_apply'
