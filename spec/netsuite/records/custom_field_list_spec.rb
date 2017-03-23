@@ -6,7 +6,7 @@ describe NetSuite::Records::CustomFieldList do
   it 'has a custom_fields attribute' do
     expect(list.custom_fields).to be_kind_of(Array)
   end
-  
+
   it 'accepts a collection of CustomField records' do
     field = NetSuite::Records::CustomField.new({:value=>{:internal_id=>"5", :type_id=>"103"},
              :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
@@ -40,6 +40,12 @@ describe NetSuite::Records::CustomFieldList do
       list.custom_fields.size.should == 1
       list.custom_fields.first.value.should == 'a value'
       list.custom_fields.first.type.should == 'platformCore:StringCustomFieldRef'
+    end
+
+    # https://github.com/NetSweet/netsuite/issues/325
+    it 'should create a custom field entry when some fields exist without scriptIds' do
+      list.custom_fields << NetSuite::Records::CustomField.new
+      list.custrecord_somefield = 123
     end
   end
 

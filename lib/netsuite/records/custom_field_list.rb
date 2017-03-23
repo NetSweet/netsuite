@@ -25,7 +25,12 @@ module NetSuite
       end
 
       def delete_custom_field(field)
-        custom_fields.delete_if { |c| c.send(reference_id_type).to_sym == field }
+        custom_fields.delete_if do |c|
+          # https://github.com/NetSweet/netsuite/issues/325
+          c.send(reference_id_type) &&
+            c.send(reference_id_type).to_sym == field
+        end
+
         @custom_fields_assoc.delete(field)
       end
 
