@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranCust
 
-      actions :add, :get, :delete, :initialize, :upsert, :search
+      actions :get, :add, :initialize, :delete, :update, :upsert, :search
 
       fields :tran_id, :tran_date, :to_be_emailed, :memo, :total, :currency_name, :exchange_rate, :source, :tax_rate
 
