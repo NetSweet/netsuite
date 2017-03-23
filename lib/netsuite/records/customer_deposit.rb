@@ -16,6 +16,7 @@ module NetSuite
              :check_num, :klass, :currency_name, :is_recurring_payment, :charge_it
 
       field :custom_field_list, CustomFieldList
+      field :apply_list,        CustomerDepositApplyList
 
       record_refs :customer, :sales_order, :account, :department, :payment_method,
                   :custom_form, :currency, :posting_period, :subsidiary,
