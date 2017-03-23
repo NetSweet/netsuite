@@ -4,11 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Support::Actions
       include Namespaces::ListAcct
-
-      actions :add, :delete, :get, :get_list, :get_select_value, :search,
-        :update, :upsert
 
       fields :average_cost_mil, :backward_consumption_days, :build_time,
       :cost, :costing_lot_size, :default_return_cost, :demand_time_force,
