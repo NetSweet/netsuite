@@ -19,6 +19,27 @@ describe NetSuite::Records::InventoryTransfer do
     end
   end
 
+  describe '#to_record' do
+    it 'includes the inventory_list' do
+      attributes = {
+        :inventory => [{
+          :inventory_detail => {
+            :custom_form => {
+              internal_id: 1
+            },
+            :inventory_assignment_list => {
+              :inventory_assignment => [{
+                quantity: 3
+              }]
+            }
+          }
+        }]
+      }
+      inventory_transfer.inventory_list = attributes
+      list = inventory_transfer.to_record.fetch("tranInvt:inventoryList").fetch("tranInvt:inventory")
+      expect(list.count).to eq(1)
+    end
+  end
 
   describe '#inventory_list' do
     it 'can be set from attributes' do
