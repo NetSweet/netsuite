@@ -7,11 +7,11 @@ module NetSuite
       include Namespaces::TranInvt
 
       fields :adjust_qty_by, :description, :bin_numbers, :line,
-        :quantity_on_hand, :serial_numbers, :location
+        :quantity_on_hand, :serial_numbers
 
       field :inventory_detail, InventoryDetail
 
-      record_refs :item, :units
+      record_refs :item, :units, :location
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
