@@ -7,7 +7,7 @@ module NetSuite
       include Namespaces::TranInvt
 
       fields :adjust_qty_by, :description, :bin_numbers, :line,
-        :quantity_on_hand, :serial_numbers
+        :quantity_on_hand, :serial_numbers, :unit_cost
 
       field :inventory_detail, InventoryDetail
 
