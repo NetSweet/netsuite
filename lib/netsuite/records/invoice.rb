@@ -20,7 +20,7 @@ module NetSuite
         :exp_cost_tax_rate_2, :fax, :fob, :gift_cert_redemption_list, :handling_tax_1_rate,
         :handling_tax_2_rate, :handling_tax_code, :is_taxable, :item_cost_disc_amount, :item_cost_disc_print,
         :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
-        :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :item_list, :job, :last_modified_date,
+        :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :last_modified_date,
         :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
         :other_ref_num, :partners_list, :rev_rec_end_date,
         :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
@@ -44,7 +44,7 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :custom_form, :department, :entity, :klass, :partner,
                   :posting_period, :ship_address_list, :terms, :location, :sales_rep, :tax_item, :created_from,
-                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status
+                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status, :job
 
       attr_reader   :internal_id
       attr_accessor :external_id
