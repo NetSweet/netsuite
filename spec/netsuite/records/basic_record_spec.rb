@@ -4,6 +4,8 @@ describe 'basic records' do
   let(:basic_record_list) {
     [
       NetSuite::Records::Currency,
+      NetSuite::Records::CashSale,
+      NetSuite::Records::CashRefund,
       NetSuite::Records::Location,
       NetSuite::Records::JobStatus,
       NetSuite::Records::TimeBill,
