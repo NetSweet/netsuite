@@ -67,7 +67,6 @@ module NetSuite
       # locations_list	SerializedInventoryItemLocationsList
       # matrix_option_list	MatrixOptionList
       # matrix_type	ItemMatrixType
-      # numbers_list	SerializedInventoryItemNumbersList
       # out_of_stock_behavior	ItemOutOfStockBehavior
       # overall_quantity_pricing_type	ItemOverallQuantityPricingType
       # periodic_lot_size_type	PeriodicLotSizeType
@@ -222,8 +221,9 @@ module NetSuite
       # weight_unit	ItemWeightUnit
 
       field :custom_field_list, CustomFieldList
-      field :locations_list, LocationsList
+      field :locations_list, SerializedInventoryItemLocationsList
       field :subsidiary_list, RecordRefList
+      field :numbers_list, SerializedInventoryItemNumbersList
 
       # TODO from standard copied item record; may need to be deleted
       # field :pricing_matrix, PricingMatrix
