@@ -222,6 +222,8 @@ module NetSuite
     autoload :SerializedInventoryItem,          'netsuite/records/serialized_inventory_item'
     autoload :SerializedInventoryItemNumbers,       'netsuite/records/serialized_inventory_item_numbers'
     autoload :SerializedInventoryItemNumbersList,   'netsuite/records/serialized_inventory_item_numbers_list'
+    autoload :SerializedInventoryItemLocation,       'netsuite/records/serialized_inventory_item_location'
+    autoload :SerializedInventoryItemLocationsList,       'netsuite/records/serialized_inventory_item_locations_list'
     autoload :ShipAddress,                      'netsuite/records/ship_address'
     autoload :SiteCategory,                     'netsuite/records/site_category'
     autoload :Subsidiary,                       'netsuite/records/subsidiary'

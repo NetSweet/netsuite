@@ -3,7 +3,7 @@ module NetSuite
     class SerializedInventoryItemLocationsList < Support::Sublist
       include Namespaces::ListAcct
 
-      sublist :locations, SerializedInventoryItemLocations
+      sublist :locations, SerializedInventoryItemLocation
 
     end
   end

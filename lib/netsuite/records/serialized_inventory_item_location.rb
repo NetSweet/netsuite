@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class SerializedInventoryItemLocations
+    class SerializedInventoryItemLocation
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
@@ -10,7 +10,7 @@ module NetSuite
       :cost, :costing_lot_size, :default_return_cost, :demand_time_force,
       :fixed_lot_size, :forward_consumption_days, :invt_count_interval,
       :is_wip, :last_invt_count_date, :last_purchase_price_mli, :lead_time,
-      :location, :next_invt_count_date, :on_hand_value_mli, 
+      :location, :next_invt_count_date, :on_hand_value_mli,
       :periodic_lot_size_days, :preferred_stock_level, :quantity_available,
       :quantity_back_ordered, :quantity_committed, :quantity_on_hand,
       :quantity_on_order, :reorder_point, :reschedule_in_days,
