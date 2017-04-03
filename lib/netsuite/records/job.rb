@@ -25,10 +25,11 @@ module NetSuite
       field :custom_field_list,       CustomFieldList
 
       record_refs :billing_schedule, :category, :currency, :custom_form, :entity_status, :estimate_rev_rec_template, :job_item,
-        :job_type, :language, :parent, :subsidiary, :workplace
+        :job_type, :language, :parent, :subsidiary, :workplace, :customer
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
