@@ -3,28 +3,20 @@
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)  
 [![Dependency Status](https://gemnasium.com/roidrage/lograge.svg)](https://gemnasium.com/netsweet/netsuite)
 
-# NetSuite Ruby SuiteTalk Gem
+# NetSuite Ruby SuiteTalk API Gem
 
-* This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API. Wow, that is a mouthful.
-* The gem does not cover the entire API, only the subset that we have found useful to cover so far.
-* Extending the wrapper is pretty simple, check out recent commits for an example of how to add support for additional records.
-* NetSuite development is overall a pretty poor experience. We have a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
+* This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API.
+* The gem does not cover the entire API, only the subset contributors have used so far.
+* NetSuite is a huge complex system. There's a lot to learn and sparse resources available to learn from. Here's a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
 
 # Help & Support
 
 Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```
-gem 'netsuite'
-```
-
-This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
+Please do not post usage questions as issues in GitHub.
 
 ## Testing
+
 Before contributing a patch make sure all existing tests pass.
 
 ```
@@ -33,7 +25,18 @@ cd netsuite
 bundle
 bundle exec rspec
 ```
+
 ## Usage
+
+### Installation
+
+Add this line to your application's Gemfile:
+
+```
+gem 'netsuite'
+```
+
+This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
 ### Configuration
 
@@ -70,9 +73,7 @@ NetSuite.configure do
 end
 ```
 
-There is a [convenience method](https://github.com/NetSweet/netsuite/blob/56fe7fae92908a2e3d6812ecc56516f773cacd45/lib/netsuite.rb#L180) to configure NetSuite based on ENV variables.
-
-OAuth credentials are also supported:
+OAuth credentials are also supported. [Learn more about how to set up token based authentication here](http://mikebian.co/using-netsuites-token-based-authentication-with-suitetalk/).
 
 ```ruby
 NetSuite.configure do
@@ -84,7 +85,7 @@ NetSuite.configure do
   consumer_secret  ENV['NETSUITE_CONSUMER_SECRET']
   token_id         ENV['NETSUITE_TOKEN_ID']
   token_secret     ENV['NETSUITE_TOKEN_SECRET']
-  
+
   # oauth does not work with API versions less than 2015_2
   api_version      '2015_2'
 end
@@ -100,7 +101,8 @@ customer = NetSuite::Records::Customer.get(:internal_id => 4)
 customer.is_person
 
 # or
-NetSuite::Records::Customer.get(4).is_person
+NetSuite::Records::Customer.get(4)
+
 
 # get a list of customers
 customers = NetSuite::Records::Customer.get_list(:list => [4, 5, 6])
@@ -120,9 +122,14 @@ task.add
 # this will only work on OS X, open a browser to the record that was just created
 `open https://system.sandbox.netsuite.com/app/crm/calendar/task.nl?id=#{invoice.internal_id}`
 
-task.update :message => 'New Message'
+# update a field on a record
+task.update(message: 'New Message')
 
+# delete a record
 task.delete
+
+# refresh/reload a record (helpful after adding the record for the first time)
+task.reload
 
 # using get_select_value with a standard record
 NetSuite::Records::BaseRefList.get_select_value(
@@ -251,15 +258,14 @@ NetSuite::Records::Customer.search({
   ]
 }).results
 
-# advanced search from scratch
-NetSuite::Records::Transaction.search({
+NetSuite::Records::SalesOrder.search({
   criteria: {
     basic: [
+      # NOTE do not search for more than one transaction type at a time!
       {
         field: 'type',
         operator: 'anyOf',
-        type: 'SearchEnumMultiSelectField',
-        value: [ "_invoice", "_salesOrder" ]
+        value: [ "_invoice"]
       },
       {
         field: 'tranDate',
@@ -267,10 +273,7 @@ NetSuite::Records::Transaction.search({
         # this is needed for date range search requests, for date requests with a single param type is not needed
         type: 'SearchDateField',
         value: [
-          # the following format is equivilent to ISO 8601
-          # Date.parse("1/1/2012").strftime("%Y-%m-%dT%H:%M:%S%z"),
-          # Date.parse("30/07/2013").strftime("%Y-%m-%dT%H:%M:%S%z")
-
+          # NetSuite requires iso8601 time format
           # need to require the time library for this to work
           Time.parse("01/01/2012").iso8601,
           Time.parse("30/07/2013").iso8601,
@@ -337,7 +340,10 @@ NetSuite::Records::Transaction.search({
   },
 
   preferences: {
-    page_size: 10
+    page_size: 10,
+
+    # only returning body fields increases performance!
+    body_fields_only: true
   }
 }).results
 
