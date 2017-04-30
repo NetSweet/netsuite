@@ -56,7 +56,8 @@ module NetSuite
           Savon::SOAPFault,
           Savon::InvalidResponseError,
           Zlib::BufError,
-          Savon::HTTPError
+          Savon::HTTPError,
+          SocketError
         ]
 
         # available in ruby > 1.9
