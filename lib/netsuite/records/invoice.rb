@@ -13,7 +13,7 @@ module NetSuite
 
       fields :balance, :bill_address,
         :billing_schedule, :contrib_pct, :created_date, :currency_name, :custom_field_list,
-        :deferred_revenue, :discount_amount, :discount_date, :discount_item, :discount_rate,
+        :deferred_revenue, :discount_amount, :discount_date, :discount_rate,
         :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
         :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
         :exp_cost_disc_taxable, :exp_cost_discount, :exp_cost_list, :exp_cost_tax_code, :exp_cost_tax_rate_1,
@@ -44,7 +44,7 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :custom_form, :department, :entity, :klass, :partner,
                   :posting_period, :ship_address_list, :terms, :location, :sales_rep, :tax_item, :created_from,
-                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status, :job
+                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status, :job, :discount_item
 
       attr_reader   :internal_id
       attr_accessor :external_id
