@@ -7,7 +7,9 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
+      # NOTE search not available on TaxGroup!
+
+      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search, :get_all
 
       fields :city, :county, :description, :include_children, :is_default, :is_inactive,
              :item_id, :piggyback, :rate, :state, :subsidiary_list, :unitprice1, :unitprice2,
