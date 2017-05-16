@@ -73,6 +73,16 @@ NetSuite.configure do
 end
 ```
 
+If you'd like to use a API endpoints greater than 2015_1 you'll need to specify an application ID:
+
+```
+NetSuite::Configuration.soap_header = {
+   'platformMsgs:ApplicationInfo' => {
+      'platformMsgs:applicationId' => 'your-netsuite-app-id'
+   }
+}
+```
+
 OAuth credentials are also supported. [Learn more about how to set up token based authentication here](http://mikebian.co/using-netsuites-token-based-authentication-with-suitetalk/).
 
 ```ruby
@@ -87,7 +97,7 @@ NetSuite.configure do
   token_secret     ENV['NETSUITE_TOKEN_SECRET']
 
   # oauth does not work with API versions less than 2015_2
-  api_version      '2015_2'
+  api_version      '2016_2'
 end
 ```
 
@@ -489,14 +499,4 @@ states = NetSuite::Configuration.connection.call(:get_all, message: {
   }
 })
 states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
-```
-
-#### 2015_2 ApplicationId Support
-
-```ruby
-NetSuite::Configuration.soap_header = {
-	'platformMsgs:ApplicationInfo' => {
-  		'platformMsgs:applicationId' => 'your-netsuite-app-id'
-	}
-}
 ```
