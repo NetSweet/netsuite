@@ -57,7 +57,7 @@ module NetSuite
           Savon::InvalidResponseError,
           Zlib::BufError,
           Savon::HTTPError,
-          SocketError
+          SocketError,
         ]
 
         # available in ruby > 1.9
@@ -66,9 +66,12 @@ module NetSuite
         end
 
         # available in ruby > 2.2.0
-        if defined?(OpenSSL::SSL::SSLErrorWaitReadable)
-          exceptions_to_retry << OpenSSL::SSL::SSLErrorWaitReadable
-        end
+        exceptions_to_retry << IO::EINPROGRESSWaitWritable if defined?(IO::EINPROGRESSWaitWritable)
+        exceptions_to_retry << OpenSSL::SSL::SSLErrorWaitReadable if defined?(OpenSSL::SSL::SSLErrorWaitReadable)
+
+        # depends on the http library chosen
+        exceptions_to_retry << Excon::Error::Timeout if defined?(Excon::Error::Timeout)
+        exceptions_to_retry << Excon::Error::Socket if defined?(Excon::Error::Socket)
 
         if !exceptions_to_retry.include?(e.class)
           raise
