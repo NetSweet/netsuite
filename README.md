@@ -147,6 +147,19 @@ NetSuite::Records::BaseRefList.get_select_value(
   field: 'taxSchedule'
 )
 
+# get options for a custom sublist field (i.e. transaction column fields)
+NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custcol69_2',
+  sublist: 'itemList',
+  recordType: 'salesOrder'
+)
+
+# output names of options available for a custom field
+options = NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custbody_order_source',
+  recordType: 'invoice'
+)
+options.base_refs.map(&:name)
 ```
 
 #### Custom Records & Fields
