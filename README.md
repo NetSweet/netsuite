@@ -229,6 +229,10 @@ search = NetSuite::Records::Customer.search({
 
 `open https://system.netsuite.com/app/common/entity/custjob.nl?id=#{search.results.first.internal_id}`
 
+# find the avalara tax item. Some records don't support search.
+all_sales_taxes = NetSuite::Utilities.backoff { NetSuite::Records::SalesTaxItem.get_all }
+ns_tax_code = all_sales_taxes.detect { |st| st.item_id == 'AVATAX' }
+
 # searching for custom records
 NetSuite::Records::CustomRecord.search(
   basic: [
