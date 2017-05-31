@@ -103,9 +103,10 @@ module NetSuite
       # :partners_list,
       # :sales_team_list,
       # :ship_address_list,
-      
+
       field :billing_address,          Address
       field :custom_field_list,        CustomFieldList
+      field :item_list,                ReturnAuthorizationItemList
 
       attr_reader   :internal_id
       attr_accessor :external_id
