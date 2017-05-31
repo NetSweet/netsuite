@@ -212,6 +212,8 @@ module NetSuite
     autoload :RevRecSchedule,                   'netsuite/records/rev_rec_schedule'
     autoload :RoleList,                         'netsuite/records/role_list'
     autoload :ReturnAuthorization,              'netsuite/records/return_authorization'
+    autoload :ReturnAuthorizationItem,          'netsuite/records/return_authorization_item'
+    autoload :ReturnAuthorizationItemList,      'netsuite/records/return_authorization_item_list'
     autoload :SalesOrder,                       'netsuite/records/sales_order'
     autoload :SalesOrderShipGroupList,          'netsuite/records/sales_order_ship_group_list'
     autoload :SalesOrderItem,                   'netsuite/records/sales_order_item'
