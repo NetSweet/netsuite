@@ -5,7 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-      include Namespaces::TranSales
+      include Namespaces::TranCust
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2015_2/schema/record/returnauthorization.html
 

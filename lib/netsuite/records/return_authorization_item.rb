@@ -4,7 +4,7 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Namespaces::TranSales
+      include Namespaces::TranCust
 
       fields :alt_sales_amt, :amortization_period, :amortization_type, :amount, :bill_variance_status, :catch_up_period,
         :cost_estimate, :cost_estimate_rate, :cost_estimate_type, :days_before_expiration, :defer_rev_rec, :description,

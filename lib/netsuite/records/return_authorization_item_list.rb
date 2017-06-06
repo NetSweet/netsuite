@@ -1,7 +1,7 @@
 module NetSuite
   module Records
     class ReturnAuthorizationItemList < Support::Sublist
-      include Namespaces::TranSales
+      include Namespaces::TranCust
 
       sublist :item, ReturnAuthorizationItem
 
