@@ -234,7 +234,8 @@ module NetSuite
         'UG' => '_uganda',
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
-        'GB' => '_unitedKingdomGB',
+        # NOTE GB country code changed on 2016_1
+        'GB' => NetSuite::Configuration.api_version <= "2015_2" ? '_unitedKingdomGB' : '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
