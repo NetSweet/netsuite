@@ -184,6 +184,7 @@ module NetSuite
     autoload :KitItem,                          'netsuite/records/kit_item'
     autoload :Location,                         'netsuite/records/location'
     autoload :LocationsList,                    'netsuite/records/locations_list'
+    autoload :LotNumberedAssemblyItem,          'netsuite/records/lot_numbered_assembly_item'
     autoload :MatrixOptionList,                 'netsuite/records/matrix_option_list'
     autoload :MemberList,                       'netsuite/records/member_list'
     autoload :NonInventorySaleItem,             'netsuite/records/non_inventory_sale_item'
