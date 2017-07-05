@@ -11,7 +11,7 @@ module NetSuite
 
       field :inventory_detail, InventoryDetail
 
-      record_refs :item, :units, :location
+      record_refs :item, :units, :location, :klass
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
