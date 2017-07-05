@@ -80,6 +80,7 @@ module NetSuite
     autoload :BillingScheduleMilestoneList,     'netsuite/records/billing_schedule_milestone_list'
     autoload :BillingScheduleRecurrence,        'netsuite/records/billing_schedule_recurrence'
     autoload :BillingScheduleRecurrenceList,    'netsuite/records/billing_schedule_recurrence_list'
+    autoload :Bin,                              'netsuite/records/bin'
     autoload :BinNumberList,                    'netsuite/records/bin_number_list'
     autoload :CashSale,                         'netsuite/records/cash_sale'
     autoload :CashSaleItem,                     'netsuite/records/cash_sale_item'
