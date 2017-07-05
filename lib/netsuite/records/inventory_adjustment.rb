@@ -15,7 +15,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       
       record_refs :account, :adj_location, :customer, :posting_period, :location, :department,
-        :subsidiary, :custom_form
+        :subsidiary, :custom_form, :klass
 
       attr_reader :internal_id
       attr_accessor :external_id
