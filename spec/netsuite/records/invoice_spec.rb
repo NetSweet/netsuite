@@ -9,7 +9,7 @@ describe NetSuite::Records::Invoice do
     [
       :balance, :bill_address,
       :billing_schedule, :contrib_pct, :created_date, :currency_name,
-      :deferred_revenue, :discount_amount, :discount_date, :discount_item, :discount_rate,
+      :deferred_revenue, :discount_amount, :discount_date, :discount_rate,
       :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
       :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
       :exp_cost_disc_taxable, :exp_cost_discount, :exp_cost_list, :exp_cost_tax_code, :exp_cost_tax_rate_1,
@@ -44,7 +44,7 @@ describe NetSuite::Records::Invoice do
   it 'has the right record_refs' do
     [
       :account, :bill_address_list, :job, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
-      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary
+      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary, :discount_item
     ].each do |record_ref|
       expect(invoice).to have_record_ref(record_ref)
     end

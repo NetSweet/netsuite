@@ -16,8 +16,8 @@ describe NetSuite::Records::ReturnAuthorizationItemList do
 
     it 'can represent itself as a SOAP record' do
       record =  {
-        'tranSales:item' => [{
-          'tranSales:rate' => 10
+        'tranCust:item' => [{
+          'tranCust:rate' => 10
         }]
       }
       expect(list.to_record).to eql(record)
