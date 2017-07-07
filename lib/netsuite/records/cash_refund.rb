@@ -11,7 +11,6 @@ module NetSuite
 
       fields :alt_handling_cost,
         :alt_shipping_cost,
-        :billing_address,
         :cc_approved,
         :cc_expire_date,
         :cc_is_purchase_card_bin,
@@ -77,6 +76,9 @@ module NetSuite
         :valid_from,
         :vat_reg_num,
         :vsoe_auto_calc
+
+      # NOTE only `Address` record in >= 2014_2
+      field :billing_address, Address
 
       field :item_list, CashRefundItemList
       field :custom_field_list, CustomFieldList
