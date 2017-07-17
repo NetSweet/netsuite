@@ -65,7 +65,7 @@ module NetSuite
       field :member_list, MemberList
 
       attr_reader :internal_id
-      attr_accessor :external_id
+      attr_accessor :external_id, :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
