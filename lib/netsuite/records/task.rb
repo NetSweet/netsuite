@@ -14,6 +14,7 @@ module NetSuite
              :created_date, :last_modified_date
 
       field :contact_list, ContactList
+      field :custom_field_list, CustomFieldList
 
       record_refs :assigned, :owner, :company, :contact, :transaction
 
