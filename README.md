@@ -70,6 +70,11 @@ NetSuite.configure do
   password 	'password'
   account   	'12345'
   role      	1111
+  
+  # optional, ensures that read-only fields don't cause API errors
+  soap_header	'platformMsgs:preferences' => {
+    'platformMsgs:ignoreReadOnlyFields' => true,
+  }
 end
 ```
 
