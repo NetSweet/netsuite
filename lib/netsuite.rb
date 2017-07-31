@@ -124,6 +124,8 @@ module NetSuite
     autoload :CustomerPartner,                  'netsuite/records/customer_partner'
     autoload :ContactList,                      'netsuite/records/contact_list'
     autoload :Contact,                          'netsuite/records/contact'
+    autoload :ContactAddressbook,               'netsuite/records/contact_addressbook'
+    autoload :ContactAddressbookList,           'netsuite/records/contact_addressbook_list'
     autoload :ContactRole,                      'netsuite/records/contact_role'
     autoload :ContactAccessRoles,               'netsuite/records/contact_access_roles'
     autoload :ContactAccessRolesList,           'netsuite/records/contact_access_roles_list'
