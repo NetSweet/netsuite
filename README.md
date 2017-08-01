@@ -53,14 +53,14 @@ NetSuite.configure do
   wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
   # if your datacenter is being switched, you'll have to manually set your wsdl location
-  wsdl "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+  wsdl          "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
   # or specify the wsdl_domain if you want to specify the datacenter and let the configuration
   # construct the full wsdl location - e.g. "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
-  wsdl_domain "webservices.na2.netsuite.com"
+  wsdl_domain   "webservices.na2.netsuite.com"
 
   # or specify the sandbox flag if you don't want to deal with specifying a full URL
-  sandbox	true
+  sandbox	      true
 
   # often the netsuite servers will hang which would cause a timeout exception to be raised
   # if you don't mind waiting (e.g. processing NS via DJ), increasing the timeout should fix the issue
