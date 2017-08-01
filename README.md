@@ -55,9 +55,8 @@ NetSuite.configure do
   # if your datacenter is being switched, you'll have to manually set your wsdl location
   wsdl "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
-  # or specify the wsdl_domain if you want to specify the datacenter without the full wsdl location
-  # when using the wsdl_domain, the full wsdl location is constructed with the api_version
-  # e.g. "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
+  # or specify the wsdl_domain if you want to specify the datacenter and let the configuration
+  # construct the full wsdl location - e.g. "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
   wsdl_domain "webservices.na2.netsuite.com"
 
   # or specify the sandbox flag if you don't want to deal with specifying a full URL
