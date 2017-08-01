@@ -60,7 +60,7 @@ NetSuite.configure do
   wsdl_domain   "webservices.na2.netsuite.com"
 
   # or specify the sandbox flag if you don't want to deal with specifying a full URL
-  sandbox	      true
+  sandbox       true
 
   # often the netsuite servers will hang which would cause a timeout exception to be raised
   # if you don't mind waiting (e.g. processing NS via DJ), increasing the timeout should fix the issue
