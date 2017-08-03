@@ -31,6 +31,7 @@ module NetSuite
         birth_date
         comments
         date_created
+        default_address
         direct_deposit
         eligible_for_commission
         email
@@ -38,6 +39,7 @@ module NetSuite
         expense_limit
         fax
         first_name
+        gender
         give_access
         hire_date
         home_phone
@@ -103,6 +105,13 @@ module NetSuite
         'Employee'
       end
 
+      def to_record
+        rec = super
+        if rec["#{record_namespace}:customFieldList"]
+          rec["#{record_namespace}:customFieldList!"] = rec.delete("#{record_namespace}:customFieldList")
+        end
+        rec
+      end
     end
   end
 end

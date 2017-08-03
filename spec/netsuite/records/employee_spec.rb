@@ -117,10 +117,25 @@ describe NetSuite::Records::Employee do
   end
 
   describe '#to_record' do
-    let(:employee) { NetSuite::Records::Employee.new(:email => 'bob@example.com') }
+    let(:employee) do
+      emp = NetSuite::Records::Employee.new(:email => 'bob@example.com')
+      emp.custom_field_list.foo = 'bar'
+      emp
+    end
 
     it 'returns a hash of attributes that can be used in a SOAP request' do
-      expect(employee.to_record).to eql({ 'listEmp:email' => 'bob@example.com' })
+      expect(employee.to_record).to eql({
+        'listEmp:customFieldList!' => {
+          'platformCore:customField' => [
+            {
+              'platformCore:value' => 'bar',
+              '@scriptId' => 'foo',
+              '@xsi:type' => 'platformCore:StringCustomFieldRef'
+            }
+          ]
+        },
+        'listEmp:email' => 'bob@example.com'
+      })
     end
   end
 
