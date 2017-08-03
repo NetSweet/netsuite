@@ -1,8 +1,6 @@
 module NetSuite
   module Records
-    class ContactAddressbookList < Support::Sublist
-      include Namespaces::ListRel
-
+    class ContactAddressbookList < NetSuite::Records::AddressbookList
       sublist :addressbook, ContactAddressbook
 
       alias :addressbooks :addressbook

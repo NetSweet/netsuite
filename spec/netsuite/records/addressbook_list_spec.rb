@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Records::CustomerAddressbookList do
-  let(:list) { NetSuite::Records::CustomerAddressbookList.new }
+describe NetSuite::Records::AddressbookList do
+  let(:list) { NetSuite::Records::AddressbookList.new }
 
   it 'has an addressbooks attribute' do
     expect(list.addressbook).to be_kind_of(Array)

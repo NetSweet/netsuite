@@ -66,6 +66,8 @@ module NetSuite
   end
 
   module Records
+    autoload :Addressbook,                      'netsuite/records/addressbook'
+    autoload :AddressbookList,                  'netsuite/records/addressbook_list'
     autoload :AssemblyItem,                     'netsuite/records/assembly_item'
     autoload :AssemblyBuild,                    'netsuite/records/assembly_build'
     autoload :AssemblyComponent,                'netsuite/records/assembly_component'
@@ -148,6 +150,8 @@ module NetSuite
     autoload :DiscountItem,                     'netsuite/records/discount_item'
     autoload :Duration,                         'netsuite/records/duration'
     autoload :Employee,                         'netsuite/records/employee'
+    autoload :EmployeeAddressbook,              'netsuite/records/employee_addressbook'
+    autoload :EmployeeAddressbookList,          'netsuite/records/employee_addressbook_list'
     autoload :File,                             'netsuite/records/file'
     autoload :GiftCertificate,                  'netsuite/records/gift_certificate'
     autoload :GiftCertificateItem,              'netsuite/records/gift_certificate_item'

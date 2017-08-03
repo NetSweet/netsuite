@@ -89,6 +89,7 @@ module NetSuite
 
       record_refs *RECORD_REFS
 
+      field :addressbook_list,  EmployeeAddressbookList
       field :custom_field_list, CustomFieldList
       field :roles_list, RoleList
 
