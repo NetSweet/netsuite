@@ -19,4 +19,5 @@ Dir['spec/support/**/*.rb'].each { |f| require f }
 RSpec.configure do |config|
   config.mock_framework = :rspec
   config.color = true
+  config.raise_errors_for_deprecations!
 end
