@@ -58,6 +58,7 @@ module NetSuite
           Zlib::BufError,
           Savon::HTTPError,
           SocketError,
+          Net::OpenTimeout
         ]
 
         # available in ruby > 1.9
