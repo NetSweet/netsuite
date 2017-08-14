@@ -6,7 +6,7 @@ module NetSuite
       include Support::Records
       include Namespaces::TranSales
 
-      fields :amount, :bin_numbers, :cost_estimate, :cost_estimate_type, :defer_rev_rec, :description, :gift_cert_from,
+      fields :amount, :bin_numbers, :cost_estimate, :cost_estimate_type, :defer_rev_rec, :description, :expand_item_group, :gift_cert_from,
         :gift_cert_message, :gift_cert_number, :gift_cert_recipient_email, :gift_cert_recipient_name, :gross_amt, :is_taxable,
         :line, :order_line, :po_currency, :quantity, :rate, :rev_rec_end_date, :rev_rec_start_date, :rev_rec_term_in_months,
         :serial_numbers, :shipping_cost, :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral,
