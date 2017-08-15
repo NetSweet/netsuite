@@ -54,7 +54,8 @@ describe 'basic records' do
       NetSuite::Records::AssemblyComponent,
       NetSuite::Records::InventoryNumber,
       NetSuite::Records::PriceLevel,
-      NetSuite::Records::LotNumberedAssemblyItem
+      NetSuite::Records::LotNumberedAssemblyItem,
+      NetSuite::Records::BinTransfer
     ]
   }
 
