@@ -204,6 +204,7 @@ module NetSuite
     autoload :PaymentMethod,                    'netsuite/records/payment_method'
     autoload :PayrollItem,                      'netsuite/records/payroll_item'
     autoload :PhoneCall,                        'netsuite/records/phone_call'
+    autoload :PriceLevel,                       'netsuite/records/price_level'
     autoload :PricingMatrix,                    'netsuite/records/pricing_matrix'
     autoload :PromotionCode,                    'netsuite/records/promotion_code'
     autoload :PurchaseOrder,                    'netsuite/records/purchase_order'
