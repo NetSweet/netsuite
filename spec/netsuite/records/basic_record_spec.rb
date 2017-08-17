@@ -53,6 +53,7 @@ describe 'basic records' do
       NetSuite::Records::AssemblyUnbuild,
       NetSuite::Records::AssemblyComponent,
       NetSuite::Records::InventoryNumber,
+      NetSuite::Records::PriceLevel,
       NetSuite::Records::LotNumberedAssemblyItem
     ]
   }
