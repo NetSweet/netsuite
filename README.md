@@ -13,6 +13,8 @@
 
 Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues.
 
+Messages in the Slack ground are [archived here](https://suitechat.slackarchive.io). Search the archives to see if your question has been answered before.
+
 Please do not post usage questions as issues in GitHub.
 
 ## Testing
