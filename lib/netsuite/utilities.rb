@@ -87,6 +87,7 @@ module NetSuite
             !e.message.include?('com.netledger.database.NLConnectionUtil$NoCompanyDbsOnlineException') &&
             !e.message.include?('com.netledger.cache.CacheUnavailableException') &&
             !e.message.include?('An unexpected error occurred.') &&
+            !e.message.include?('An unexpected error has occurred.  Technical Support has been alerted to this problem.') &&
             !e.message.include?('Session invalidation is in progress with different thread') &&
             !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.') &&
             !e.message.include?('The Connection Pool is not intialized.') &&
