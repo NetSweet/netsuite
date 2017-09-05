@@ -10,7 +10,7 @@ module NetSuite
         :cost_estimate, :cost_estimate_rate, :cost_estimate_type, :days_before_expiration, :defer_rev_rec, :description,
         :gift_cert_from, :gift_cert_message, :gift_cert_recipient_email, :gift_cert_recipient_name, :id, :inventory_detail,
         :is_closed, :is_drop_shipment, :is_taxable, :is_vsoe_bundle, :item_subtype, :item_type, :line, :line_number,
-        :matrix_type, :options, :print_items, :quantity, :quantity_billed, :quantity_received, :quantity_rev_committed,
+        :matrix_type, :options, :order_line, :print_items, :quantity, :quantity_billed, :quantity_received, :quantity_rev_committed,
         :rate, :rate_schedule, :rev_rec_end_date, :rev_rec_start_date, :tax_rate1, :vsoe_allocation, :vsoe_amount,
         :vsoe_deferral, :vsoe_delivered, :vsoe_is_estimate, :vsoe_permit_discount, :vsoe_price, :vsoe_sop_group
 
