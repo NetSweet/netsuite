@@ -9,85 +9,23 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/script/record/employee.html
 
-      ACTIONS = %w{
-        add
-        delete
-        get
-        get_list
-        search
-        update
-        upsert
-        upsert_list
-      }.map(&:to_sym).freeze
+      actions :add, :delete, :get, :get_list, :search, :update, :upsert, :upsert_list
 
-      actions *ACTIONS
+      fields :account_number, :alien_number, :alt_name, :approval_limit,
+        :bill_pay, :birth_date, :comments, :date_created, :default_address,
+        :direct_deposit, :eligible_for_commission, :email, :entity_id,
+        :expense_limit, :fax, :first_name, :gender, :give_access, :hire_date,
+        :home_phone, :is_inactive, :is_job_resource, :is_sales_rep,
+        :is_support_rep, :job_description, :klass, :labor_cost,
+        :last_modified_date, :last_name, :last_review_date, :middle_name,
+        :mobile_phone, :next_review_date, :office_phone, :password, :password2,
+        :pay_frequency, :phone, :phonetic_name, :purchase_order_approval_limit,
+        :purchase_order_approver, :purchase_order_limit, :release_date,
+        :resident_status, :salutation, :send_email, :social_security_number,
+        :title, :visa_exp_date, :visa_type
 
-      FIELDS = %w{
-        account_number
-        alien_number
-        alt_name
-        approval_limit
-        bill_pay
-        birth_date
-        comments
-        date_created
-        default_address
-        direct_deposit
-        eligible_for_commission
-        email
-        entity_id
-        expense_limit
-        fax
-        first_name
-        gender
-        give_access
-        hire_date
-        home_phone
-        is_inactive
-        is_job_resource
-        is_sales_rep
-        is_support_rep
-        job_description
-        klass
-        labor_cost
-        last_modified_date
-        last_name
-        last_review_date
-        middle_name
-        mobile_phone
-        next_review_date
-        office_phone
-        password
-        password2
-        pay_frequency
-        phone
-        phonetic_name
-        purchase_order_approval_limit
-        purchase_order_approver
-        purchase_order_limit
-        release_date
-        resident_status
-        salutation
-        send_email
-        social_security_number
-        title
-        visa_exp_date
-        visa_type
-      }.map(&:to_sym).freeze
-
-      fields *FIELDS
-
-      RECORD_REFS = %w{
-        currency
-        department
-        employee_status
-        employee_type
-        location
-        subsidiary
-        supervisor
-      }.map(&:to_sym).freeze
-
-      record_refs *RECORD_REFS
+      record_refs :currency, :department, :employee_status, :employee_type,
+        :location, :subsidiary, :supervisor
 
       field :addressbook_list,  EmployeeAddressbookList
       field :custom_field_list, CustomFieldList
