@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :delete, :upsert, :search
 
-      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list
+      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list, :parent
 
       field :subsidiary_list, RecordRefList
 
