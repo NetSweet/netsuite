@@ -58,6 +58,7 @@ module NetSuite
     autoload :GetSelectValue,   'netsuite/actions/get_select_value'
     autoload :Initialize,       'netsuite/actions/initialize'
     autoload :Update,           'netsuite/actions/update'
+    autoload :UpdateList,       'netsuite/actions/update_list'
     autoload :Upsert,           'netsuite/actions/upsert'
     autoload :UpsertList,       'netsuite/actions/upsert_list'
     autoload :Search,           'netsuite/actions/search'
