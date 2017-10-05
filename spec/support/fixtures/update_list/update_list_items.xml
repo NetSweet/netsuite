@@ -1,0 +1,22 @@
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Header>
+        <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2015_1.platform.webservices.netsuite.com">
+            <platformMsgs:nsId>WEBSERVICES_4094105_100420174020144521635732562_3cddd9b4c927</platformMsgs:nsId>
+        </platformMsgs:documentInfo>
+    </soapenv:Header>
+    <soapenv:Body>
+        <updateListResponse xmlns="urn:messages_2015_1.platform.webservices.netsuite.com">
+            <writeResponseList>
+                <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2015_1.platform.webservices.netsuite.com"/>
+                <writeResponse>
+                    <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2015_1.platform.webservices.netsuite.com"/>
+                    <baseRef xsi:type="platformCore:RecordRef" type="inventoryItem" externalId="testing1" internalId="624113" xmlns:platformCore="urn:core_2015_1.platform.webservices.netsuite.com"/>
+                </writeResponse>
+                <writeResponse>
+                    <platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2015_1.platform.webservices.netsuite.com"/>
+                    <baseRef xsi:type="platformCore:RecordRef" type="inventoryItem" externalId="testing1" internalId="624172" xmlns:platformCore="urn:core_2015_1.platform.webservices.netsuite.com"/>
+                </writeResponse>
+            </writeResponseList>
+        </updateListResponse>
+    </soapenv:Body>
+</soapenv:Envelope>

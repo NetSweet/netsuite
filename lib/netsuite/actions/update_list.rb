@@ -70,7 +70,7 @@ module NetSuite
             NetSuite::Error.new(error)
           end
 
-          [obj[:base_ref][:@external_id], errors]
+          [obj[:base_ref][:@internal_id], errors]
         end
         Hash[errors]
       end
