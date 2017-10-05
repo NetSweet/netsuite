@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2014_1.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3868171_1117201410832887841076557109_965331437a3</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <updateListResponse xmlns="urn:messages_2014_1.platform.webservices.netsuite.com">
+      <writeResponseList>
+        <writeResponse>
+          <platformCore:status xmlns:platformCore="urn:core_2014_1.platform.webservices.netsuite.com" isSuccess="false">
+            <platformCore:statusDetail type="ERROR">
+              <platformCore:code>USER_ERROR</platformCore:code>
+              <platformCore:message>Please enter value(s) for: ItemId</platformCore:message>
+            </platformCore:statusDetail>
+          </platformCore:status>
+          <baseRef xmlns:platformCore="urn:core_2014_1.platform.webservices.netsuite.com" internalId="624172" type="InventoryItem" xsi:type="platformCore:RecordRef"/>
+        </writeResponse>
+        <writeResponse>
+          <platformCore:status xmlns:platformCore="urn:core_2014_1.platform.webservices.netsuite.com" isSuccess="false">
+            <platformCore:statusDetail type="ERROR">
+              <platformCore:code>USER_ERROR</platformCore:code>
+              <platformCore:message>Please enter value(s) for: ItemId</platformCore:message>
+            </platformCore:statusDetail>
+          </platformCore:status>
+          <baseRef xmlns:platformCore="urn:core_2014_1.platform.webservices.netsuite.com" internalId="624113" type="InventoryItem" xsi:type="platformCore:RecordRef"/>
+        </writeResponse>
+      </writeResponseList>
+    </updateListResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
