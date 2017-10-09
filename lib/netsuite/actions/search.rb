@@ -232,11 +232,6 @@ module NetSuite
         @success ||= search_result[:status][:@is_success] == 'true'
       end
 
-      protected
-        def method_name
-
-        end
-
       module Support
         def self.included(base)
           base.extend(ClassMethods)
