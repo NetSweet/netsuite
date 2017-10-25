@@ -404,6 +404,26 @@ NetSuite::Records::SalesOrder.search({
   }
 }).results
 
+# Search for SalesOrder records with a "Pending Approval" status using the TransactionStatus enum value.
+# https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2016_2/schema/enum/transactionstatus.html
+
+NetSuite::Records::SalesOrder.search(
+  criteria: {
+    basic: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        value: ['_salesOrder'],
+      },
+      {
+        field: 'status',
+        operator: 'anyOf',
+        value: ['_salesOrderPendingApproval'],
+      },
+    ],
+  },
+)
+
 NetSuite::Records::ItemFulfillment.search({
   criteria: {
     basic: [
