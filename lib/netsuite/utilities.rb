@@ -91,6 +91,8 @@ module NetSuite
             !e.message.include?('An unexpected error has occurred.  Technical Support has been alerted to this problem.') &&
             !e.message.include?('Session invalidation is in progress with different thread') &&
             !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.') &&
+            # maintenance is the new outage: this message is being used for intermittent errors
+            !e.message.include?('The account you are trying to access is currently unavailable while we undergo our regularly scheduled maintenance.') &&
             !e.message.include?('The Connection Pool is not intialized.') &&
             # it looks like NetSuite mispelled their error message...
             !e.message.include?('The Connection Pool is not intiialized.')
