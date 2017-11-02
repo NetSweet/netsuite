@@ -154,7 +154,7 @@ module NetSuite
     autoload :GiftCertRedemption,               'netsuite/records/gift_cert_redemption'
     autoload :GiftCertRedemptionList,           'netsuite/records/gift_cert_redemption_list'
     autoload :Folder,                           'netsuite/records/folder'
-    autoload :InboundShipment,                  'netsuite/records/InboundSHipment'
+    autoload :InboundShipment,                  'netsuite/records/InboundShipment'
     autoload :InboundShipmentItem,              'netsuite/records/InboundShipmentItem'
     autoload :InboundShipmentItemList,          'netsuite/records/InboundShipmentItemList'
     autoload :InventoryAdjustment,              'netsuite/records/inventory_adjustment'
