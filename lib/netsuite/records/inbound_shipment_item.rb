@@ -6,18 +6,12 @@ module NetSuite
       include Support::Records
       include Namespaces::TranPurch
 
-      fields  :vendorname, :olditemid, :quantityreceived, :quantitybilled, :quantity, :inventorydetail, :inventorydetailavail,
-      :binitem, :isserial, :isnumbered, :isinvdetaildirty, :inventorydetailset, :description, :purchasecontract, :previouspurchasecontract,
-      :effectivitybasedon, :contractstartdate, :contractenddate, :rate, :origrate, :rateschedule, :marginal, :oqpbucket, :netamount, :options,
-      :class, :landedcostcategory, :isbillable, :matchbilltoreceipt, :expectedreceiptdate, :isclosed, :createdfrom, :isopen,
-      :line, :lineuniquekey, :linked, :discline, :printitems, :ingroup, :includegroupwrapper, :groupclosed, :groupsetup, :itemtype, :itemsubtype,
-      :isnoninventory, :fulfillable, :id, :matrixtype, :leadtime, :linenumber, :pricefromcontract, :historyurl, :history
+      fields  :shipment_item_description, :po_vendor, :quantity_received, :quantity_expected,
+              :quantity_remaining, :po_rate, :expected_rate, :shipment_item_amount
 
       field :custom_field_list,   CustomFieldList
 
-      read_only_fields :amount
-
-      record_refs  :customer, :department, :item, :landed_cost_category, :location
+      record_refs  :purchase_order, :shipment_item, :receiving_location, :po_currency, :incoterm
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
