@@ -13,6 +13,8 @@ module NetSuite
 
       field :subsidiary_list, RecordRefList
 
+      record_refs :parent
+
       attr_reader   :internal_id
       attr_accessor :external_id
 
