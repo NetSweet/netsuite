@@ -17,9 +17,10 @@ module NetSuite
       #   <platformCore:pageIndex>1</platformCore:pageIndex>
       #   <platformCore:searchId>WEBSERVICES_738944_SB2_03012013650784545962753432_28d96bd280</platformCore:searchId>
 
-      def initialize(response, result_class)
+      def initialize(response, result_class, credentials)
         @result_class = result_class
         @response = response
+        @credentials = credentials
 
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
@@ -98,8 +99,11 @@ module NetSuite
           yield results
 
           next_search = @result_class.search(
-            search_id: @response.body[:search_id],
-            page_index: @response.body[:page_index].to_i + 1
+            {
+              search_id: @response.body[:search_id],
+              page_index: @response.body[:page_index].to_i + 1
+            },
+            @credentials
           )
 
           @results = next_search.results
