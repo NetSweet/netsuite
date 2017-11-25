@@ -55,6 +55,7 @@ describe 'basic records' do
       NetSuite::Records::InventoryNumber,
       NetSuite::Records::PriceLevel,
       NetSuite::Records::LotNumberedAssemblyItem,
+      NetSuite::Records::InboundShipment,
       NetSuite::Records::BinTransfer
     ]
   }
