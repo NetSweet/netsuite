@@ -45,11 +45,9 @@ module NetSuite
         # NOTE don't inherit default namespace settings, it includes the API version
         namespaces: {
           'xmlns:platformCore' => "urn:core_2017_2.platform.webservices.netsuite.com"
-        }
-      }, {
-        email: '',
-        password: '',
-        account: ''
+        },
+
+        soap_header: {}
       }).call(:get_data_center_urls, message: {
         'platformMsgs:account' => account_id
       })
