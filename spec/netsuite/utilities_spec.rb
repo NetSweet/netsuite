@@ -13,6 +13,27 @@ describe NetSuite::Utilities do
     end
   end
 
+  it "#netsuite_data_center_urls" do
+    domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
+    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+
+    NetSuite.configure do
+      reset!
+      sandbox true
+    end
+
+    domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
+    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+
+    NetSuite.configure do
+      reset!
+      api_version '2015_1'
+    end
+
+    domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
+    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+  end
+
   describe '#get_record' do
     context 'caching' do
       it 'does not hit the netsuite API' do
