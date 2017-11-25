@@ -37,6 +37,30 @@ module NetSuite
       server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
     end
 
+    def netsuite_data_center_urls(account_id)
+      data_center_call_response = NetSuite::Configuration.connection({
+        # NOTE force a production WSDL so the sandbox settings are ignored
+        wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
+
+        # NOTE don't inherit default namespace settings, it includes the API version
+        namespaces: {
+          'xmlns:platformCore' => "urn:core_2017_2.platform.webservices.netsuite.com"
+        }
+      }, {
+        email: '',
+        password: '',
+        account: ''
+      }).call(:get_data_center_urls, message: {
+        'platformMsgs:account' => account_id
+      })
+
+      if data_center_call_response.success?
+        data_center_call_response.body[:get_data_center_urls_response][:get_data_center_urls_result][:data_center_urls]
+      else
+        false
+      end
+    end
+
     def backoff(options = {})
       # TODO the default backoff attempts should be customizable the global config
       options[:attempts] ||= 8
