@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranPurch
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search
+      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search, :update_list
 
       fields :shipment_number, :external_document_number, :shipment_status, :expected_shipping_date,
             :actual_shipping_date, :expected_delivery_date, :actual_delivery_date, :shipment_memo,
