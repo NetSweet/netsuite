@@ -9,8 +9,8 @@ module NetSuite
 
       actions :get, :get_list, :add, :delete, :search, :upsert
 
-      fields :approved, :created_date, :exchange_rate, :last_modified_date, :memo, :reversal_date, :reversal_defer, :reversal_entry,
-        :tran_date, :tran_id
+      fields :approved, :created_date, :exchange_rate, :is_book_specific, :last_modified_date, :memo, :reversal_date, :reversal_defer,
+        :reversal_entry, :tran_date, :tran_id
 
       field :custom_field_list, CustomFieldList
       field :line_list,         InterCompanyJournalEntryLineList
