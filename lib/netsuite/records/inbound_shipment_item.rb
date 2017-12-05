@@ -6,8 +6,8 @@ module NetSuite
       include Support::Records
       include Namespaces::TranPurch
 
-      fields  :shipment_item_description, :po_vendor, :quantity_received, :quantity_expected,
-              :quantity_remaining, :po_rate, :expected_rate, :shipment_item_amount, :id
+      fields  :id, :shipment_item_description, :po_vendor, :quantity_received, :quantity_expected,
+              :quantity_remaining, :po_rate, :expected_rate, :shipment_item_amount
 
       field :custom_field_list,   CustomFieldList
 
