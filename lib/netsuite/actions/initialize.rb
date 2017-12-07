@@ -75,7 +75,7 @@ module NetSuite
 
         module ClassMethods
 
-          def initialize(object, options, credentials={})
+          def initialize(object, options = {}, credentials={})
             response = NetSuite::Actions::Initialize.call([self, object, options], credentials)
             if response.success?
               new(response.body)
