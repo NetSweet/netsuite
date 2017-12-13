@@ -3,7 +3,7 @@ module NetSuite
   class InitializationError < StandardError; end
   class ConfigurationError < StandardError; end
 
-  class Error
+  class Error < StandardError
     attr_accessor :type, :code, :message
 
     def initialize(args = {})
