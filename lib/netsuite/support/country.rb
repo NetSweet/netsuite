@@ -128,7 +128,7 @@ module NetSuite
         'LB' => '_lebanon',
         'LS' => '_lesotho',
         'LR' => '_liberia',
-        'LY' => '_libyanArabJamahiriya',
+        'LY' => '_libya',
         'LI' => '_liechtenstein',
         'LT' => '_lithuania',
         'LU' => '_luxembourg',
