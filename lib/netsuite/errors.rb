@@ -3,6 +3,7 @@ module NetSuite
   class InitializationError < StandardError; end
   class ConfigurationError < StandardError; end
 
+  # NOTE not an exception, used as a wrapped around NetSuite SOAP error
   class Error
     attr_accessor :type, :code, :message
 
