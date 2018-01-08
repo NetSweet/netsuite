@@ -15,7 +15,7 @@ describe NetSuite::Utilities do
 
   it "#netsuite_data_center_urls" do
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
-    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+    expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
 
     NetSuite.configure do
       reset!
@@ -23,7 +23,7 @@ describe NetSuite::Utilities do
     end
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
-    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+    expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
 
     NetSuite.configure do
       reset!
@@ -31,7 +31,7 @@ describe NetSuite::Utilities do
     end
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
-    expect(domains[:webservices_domain]).to eq('https://webservices.na1.netsuite.com')
+    expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
   end
 
   describe '#get_record' do
