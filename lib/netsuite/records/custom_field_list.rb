@@ -13,7 +13,9 @@ module NetSuite
 
         @custom_fields_assoc = Hash.new
         custom_fields.each do |custom_field|
-          # not all custom fields have an id; https://github.com/NetSweet/netsuite/issues/182
+          # not all custom fields have an id
+          # https://github.com/NetSweet/netsuite/issues/182
+
           if reference_id = custom_field.send(reference_id_type)
             @custom_fields_assoc[reference_id.to_sym] = custom_field
           end
@@ -96,6 +98,7 @@ module NetSuite
       end
 
       private
+
         def reference_id_type
           @reference_id_type ||= Configuration.api_version >= '2013_2' ? :script_id : :internal_id
         end
@@ -105,9 +108,14 @@ module NetSuite
             custom_fields << custom_field_data
           else
             attrs = custom_field_data.clone
+            type = (custom_field_data[:"@xsi:type"] || custom_field_data[:type])
 
-            if (custom_field_data[:"@xsi:type"] || custom_field_data[:type]) == "platformCore:SelectCustomFieldRef"
+            if type == "platformCore:SelectCustomFieldRef"
               attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
+            elsif type == 'platformCore:MultiSelectCustomFieldRef'
+              attrs[:value] = custom_field_data[:value].map do |entry|
+                CustomRecordRef.new(entry)
+              end
             end
 
             custom_fields << CustomField.new(attrs)
