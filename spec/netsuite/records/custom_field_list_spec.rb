@@ -180,6 +180,20 @@ describe NetSuite::Records::CustomFieldList do
               script_id: "custbody_salesclassification",
               type: "platformCore:StringCustomFieldRef",
               value: "foobar"
+            },
+            {
+              script_id: 'custbody_multipleselectfield',
+              type: "platformCore:MultiSelectCustomFieldRef",
+              value: [
+                {
+                  internal_id: 405,
+                  type_id: 157
+                },
+                {
+                  internal_id: 419,
+                  type_id: 157
+                }
+              ]
             }
           ]
         }
@@ -200,8 +214,27 @@ describe NetSuite::Records::CustomFieldList do
               "@xsi:type" => "platformCore:StringCustomFieldRef",
               "platformCore:value" => "foobar",
             },
+            {
+              '@scriptId' => 'custbody_multipleselectfield',
+              '@xsi:type' => 'platformCore:MultiSelectCustomFieldRef',
+              'platformCore:value' => [
+                {
+                  :@internalId => 405,
+                  :@typeId => "157"
+                },
+                {
+                  :@internalId => 419,
+                  :@typeId => "157"
+                }
+              ]
+            }
           ]
         }
+
+        # field accessors are tested elsewhere, but let's run tests here to check various field types
+        expect(list).to respond_to(:custbody_multipleselectfield)
+        expect(list).to respond_to(:custbody_salesclassification)
+        expect(list).to respond_to(:custentity_registeredonline)
 
         expect(list.to_record).to eql(record)
         expect(list.to_record.length).to eq(1)
