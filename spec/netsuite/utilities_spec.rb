@@ -16,7 +16,9 @@ describe NetSuite::Utilities do
   it "#netsuite_data_center_urls" do
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
     expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://system.netsuite.com')
 
+    # ensure domains returned don't change when sandbox is enabled
     NetSuite.configure do
       reset!
       sandbox true
@@ -24,6 +26,7 @@ describe NetSuite::Utilities do
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
     expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://system.netsuite.com')
 
     NetSuite.configure do
       reset!
@@ -32,6 +35,11 @@ describe NetSuite::Utilities do
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')
     expect(domains[:webservices_domain]).to eq('https://webservices.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://system.netsuite.com')
+
+    domains = NetSuite::Utilities.netsuite_data_center_urls('4810331')
+    expect(domains[:webservices_domain]).to eq('https://4810331.suitetalk.api.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://system.na3.netsuite.com')
   end
 
   describe '#get_record' do
