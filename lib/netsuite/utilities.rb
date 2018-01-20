@@ -40,6 +40,9 @@ module NetSuite
     def netsuite_data_center_urls(account_id)
       data_center_call_response = NetSuite::Configuration.connection({
         # NOTE force a production WSDL so the sandbox settings are ignored
+        #      as of 1/20/18 NS will start using the account ID to determine
+        #      if a account is sandbox (123_SB1) as opposed to using a sandbox domain
+        
         wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
 
         # NOTE don't inherit default namespace settings, it includes the API version
@@ -57,6 +60,11 @@ module NetSuite
       else
         false
       end
+    end
+
+    # TODO consider what to dop with this duplicate data center implementation
+    def data_center_url(*args)
+      DataCenter.get(*args)
     end
 
     def backoff(options = {})
@@ -242,10 +250,6 @@ module NetSuite
       end
 
       nil
-    end
-
-    def data_center_url(*args)
-      DataCenter.get(*args)
     end
 
     # http://mikebian.co/notes-on-dates-timezones-with-netsuites-suitetalk-api/
