@@ -69,7 +69,7 @@ NetSuite.configure do
   api_version	'2012_1'
 
   # optionally specify full wsdl URL (to switch to sandbox, for example)
-  wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+  wsdl          "https://system.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
   # if your datacenter is being switched, you'll have to manually set your wsdl location
   wsdl          "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"

@@ -355,8 +355,8 @@ describe NetSuite::Configuration do
     expect(config.wsdl).to include('custom.domain.com')
 
     config.sandbox = true
-    expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
-    expect(config.wsdl).to include('webservices.sandbox.netsuite.com')
+    expect(config.wsdl_domain).to eq('system.netsuite.com')
+    expect(config.wsdl).to include('system.netsuite.com')
   end
 
   describe '#logger=' do
