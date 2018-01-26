@@ -2,44 +2,44 @@
 <definitions xmlns:tns="urn:platform_2015_2.webservices.netsuite.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:platformMsgs="urn:messages_2015_2.platform.webservices.netsuite.com" xmlns:platformFaults="urn:faults_2015_2.platform.webservices.netsuite.com" targetNamespace="urn:platform_2015_2.webservices.netsuite.com">
 	<types>
 		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-			<xsd:import namespace="urn:core_2015_2.platform.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/platform/v2015_2_0/core.xsd"/>
-			<xsd:import namespace="urn:faults_2015_2.platform.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/platform/v2015_2_0/faults.xsd"/>
-			<xsd:import namespace="urn:messages_2015_2.platform.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/platform/v2015_2_0/messages.xsd"/>
-			<xsd:import namespace="urn:common_2015_2.platform.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/platform/v2015_2_0/common.xsd"/>
-			<xsd:import namespace="urn:scheduling_2015_2.activities.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/activities/v2015_2_0/scheduling.xsd"/>
-			<xsd:import namespace="urn:types.scheduling_2015_2.activities.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/activities/v2015_2_0/schedulingTypes.xsd"/>
-			<xsd:import namespace="urn:communication_2015_2.general.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/general/v2015_2_0/communication.xsd"/>
-			<xsd:import namespace="urn:types.communication_2015_2.general.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/general/v2015_2_0/communicationTypes.xsd"/>
-			<xsd:import namespace="urn:relationships_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/relationships.xsd"/>
-			<xsd:import namespace="urn:types.relationships_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/relationshipTypes.xsd"/>
-			<xsd:import namespace="urn:support_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/support.xsd"/>
-			<xsd:import namespace="urn:types.support_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/supportTypes.xsd"/>
-			<xsd:import namespace="urn:accounting_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/accounting.xsd"/>
-			<xsd:import namespace="urn:types.accounting_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/accountingTypes.xsd"/>
-			<xsd:import namespace="urn:sales_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/sales.xsd"/>
-			<xsd:import namespace="urn:types.sales_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/saleTypes.xsd"/>
-			<xsd:import namespace="urn:purchases_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/purchases.xsd"/>
-			<xsd:import namespace="urn:customers_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/customers.xsd"/>
-			<xsd:import namespace="urn:financial_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/financial.xsd"/>
-			<xsd:import namespace="urn:bank_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/bank.xsd"/>
-			<xsd:import namespace="urn:inventory_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/inventory.xsd"/>
-			<xsd:import namespace="urn:types.inventory_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/inventoryTypes.xsd"/>
-			<xsd:import namespace="urn:general_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/general.xsd"/>
-			<xsd:import namespace="urn:customization_2015_2.setup.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/setup/v2015_2_0/customization.xsd"/>
-			<xsd:import namespace="urn:types.customization_2015_2.setup.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/setup/v2015_2_0/customizationTypes.xsd"/>
-			<xsd:import namespace="urn:employees_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/employees.xsd"/>
-			<xsd:import namespace="urn:types.employees_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/employeeTypes.xsd"/>
-			<xsd:import namespace="urn:filecabinet_2015_2.documents.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/documents/v2015_2_0/fileCabinet.xsd"/>
-			<xsd:import namespace="urn:types.filecabinet_2015_2.documents.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/documents/v2015_2_0/fileCabinetTypes.xsd"/>
-			<xsd:import namespace="urn:website_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/website.xsd"/>
-			<xsd:import namespace="urn:types.website_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/websiteTypes.xsd"/>
-			<xsd:import namespace="urn:employees_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/employees.xsd"/>
-			<xsd:import namespace="urn:marketing_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/marketing.xsd"/>
-			<xsd:import namespace="urn:types.marketing_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/marketingTypes.xsd"/>
-			<xsd:import namespace="urn:demandplanning_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/demandPlanning.xsd"/>
-			<xsd:import namespace="urn:types.demandplanning_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/transactions/v2015_2_0/demandPlanningTypes.xsd"/>
-			<xsd:import namespace="urn:supplychain_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/supplyChain.xsd"/>
-			<xsd:import namespace="urn:types.supplychain_2015_2.lists.webservices.netsuite.com" schemaLocation="https://webservices.sandbox.netsuite.com/xsd/lists/v2015_2_0/supplyChainTypes.xsd"/>
+			<xsd:import namespace="urn:core_2015_2.platform.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/platform/v2015_2_0/core.xsd"/>
+			<xsd:import namespace="urn:faults_2015_2.platform.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/platform/v2015_2_0/faults.xsd"/>
+			<xsd:import namespace="urn:messages_2015_2.platform.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/platform/v2015_2_0/messages.xsd"/>
+			<xsd:import namespace="urn:common_2015_2.platform.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/platform/v2015_2_0/common.xsd"/>
+			<xsd:import namespace="urn:scheduling_2015_2.activities.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/activities/v2015_2_0/scheduling.xsd"/>
+			<xsd:import namespace="urn:types.scheduling_2015_2.activities.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/activities/v2015_2_0/schedulingTypes.xsd"/>
+			<xsd:import namespace="urn:communication_2015_2.general.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/general/v2015_2_0/communication.xsd"/>
+			<xsd:import namespace="urn:types.communication_2015_2.general.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/general/v2015_2_0/communicationTypes.xsd"/>
+			<xsd:import namespace="urn:relationships_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/relationships.xsd"/>
+			<xsd:import namespace="urn:types.relationships_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/relationshipTypes.xsd"/>
+			<xsd:import namespace="urn:support_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/support.xsd"/>
+			<xsd:import namespace="urn:types.support_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/supportTypes.xsd"/>
+			<xsd:import namespace="urn:accounting_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/accounting.xsd"/>
+			<xsd:import namespace="urn:types.accounting_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/accountingTypes.xsd"/>
+			<xsd:import namespace="urn:sales_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/sales.xsd"/>
+			<xsd:import namespace="urn:types.sales_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/saleTypes.xsd"/>
+			<xsd:import namespace="urn:purchases_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/purchases.xsd"/>
+			<xsd:import namespace="urn:customers_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/customers.xsd"/>
+			<xsd:import namespace="urn:financial_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/financial.xsd"/>
+			<xsd:import namespace="urn:bank_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/bank.xsd"/>
+			<xsd:import namespace="urn:inventory_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/inventory.xsd"/>
+			<xsd:import namespace="urn:types.inventory_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/inventoryTypes.xsd"/>
+			<xsd:import namespace="urn:general_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/general.xsd"/>
+			<xsd:import namespace="urn:customization_2015_2.setup.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/setup/v2015_2_0/customization.xsd"/>
+			<xsd:import namespace="urn:types.customization_2015_2.setup.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/setup/v2015_2_0/customizationTypes.xsd"/>
+			<xsd:import namespace="urn:employees_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/employees.xsd"/>
+			<xsd:import namespace="urn:types.employees_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/employeeTypes.xsd"/>
+			<xsd:import namespace="urn:filecabinet_2015_2.documents.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/documents/v2015_2_0/fileCabinet.xsd"/>
+			<xsd:import namespace="urn:types.filecabinet_2015_2.documents.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/documents/v2015_2_0/fileCabinetTypes.xsd"/>
+			<xsd:import namespace="urn:website_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/website.xsd"/>
+			<xsd:import namespace="urn:types.website_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/websiteTypes.xsd"/>
+			<xsd:import namespace="urn:employees_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/employees.xsd"/>
+			<xsd:import namespace="urn:marketing_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/marketing.xsd"/>
+			<xsd:import namespace="urn:types.marketing_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/marketingTypes.xsd"/>
+			<xsd:import namespace="urn:demandplanning_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/demandPlanning.xsd"/>
+			<xsd:import namespace="urn:types.demandplanning_2015_2.transactions.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/transactions/v2015_2_0/demandPlanningTypes.xsd"/>
+			<xsd:import namespace="urn:supplychain_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/supplyChain.xsd"/>
+			<xsd:import namespace="urn:types.supplychain_2015_2.lists.webservices.netsuite.com" schemaLocation="https://system.netsuite.com/xsd/lists/v2015_2_0/supplyChainTypes.xsd"/>
 		</xsd:schema>
 	</types>
 	<message name="headers">
@@ -2623,7 +2623,7 @@
 	</binding>
 	<service name="NetSuiteService">
 		<port name="NetSuitePort" binding="tns:NetSuiteBinding">
-			<soap:address location="https://webservices.sandbox.netsuite.com/services/NetSuitePort_2015_2"/>
+			<soap:address location="https://system.netsuite.com/services/NetSuitePort_2015_2"/>
 		</port>
 	</service>
 </definitions>
