@@ -47,7 +47,7 @@ NetSuite.configure do
   api_version	'2012_1'
 
   # optionally specify full wsdl URL (to switch to sandbox, for example)
-  wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+  wsdl          "https://system.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
   # if your datacenter is being switched, you'll have to manually set your wsdl location
   wsdl "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
@@ -84,7 +84,7 @@ NetSuite.configure do
   consumer_secret  ENV['NETSUITE_CONSUMER_SECRET']
   token_id         ENV['NETSUITE_TOKEN_ID']
   token_secret     ENV['NETSUITE_TOKEN_SECRET']
-  
+
   # oauth does not work with API versions less than 2015_2
   api_version      '2015_2'
 end
