@@ -17,11 +17,11 @@ module NetSuite
         :rev_rec_start_date, :rev_rec_term_in_months, :serial_numbers,
         :shipping_cost, :tax1_amt, :tax_rate1, :tax_rate2,
         :vsoe_allocation, :vsoe_amount, :vsoe_deferral,
-        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price
+        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :ship_group
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
+      record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units, :ship_address
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
