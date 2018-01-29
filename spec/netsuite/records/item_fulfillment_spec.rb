@@ -44,6 +44,15 @@ module NetSuite
           end
         end
       end
+
+      it 'has all the right record refs' do
+        [
+          :custom_form, :entity, :created_from, :ship_carrier, :ship_method,
+          :ship_address_list, :klass, :ship_country, :posting_period
+        ].each do |record_ref|
+          expect(subject).to have_record_ref(record_ref)
+        end
+      end
     end
   end
 end
