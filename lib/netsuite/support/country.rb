@@ -247,7 +247,7 @@ module NetSuite
         'VI' => '_virginIslandsUSA',
         'WF' => '_wallisAndFutunaIslands',
         'EH' => '_westernSahara',
-        'WS' => '_westernSamoa',
+        'WS' => '_samoa',
         'YE' => '_yemen',
         'YU' => '_yugoslavia',
         'ZM' => '_zambia',
