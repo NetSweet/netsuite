@@ -231,7 +231,11 @@ module NetSuite
           field_name = 'email'
         end
 
-        field_name ||= 'name'
+        field_name ||= if record.to_s.end_with?('Item')
+          'displayName'
+        else
+          'name'
+        end
 
         # TODO remove backoff when it's built-in to search
         search = backoff { record.search({
