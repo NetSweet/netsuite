@@ -26,6 +26,31 @@ module NetSuite
       ns_record
     end
 
+    def netsuite_data_center_urls(account_id)
+      data_center_call_response = NetSuite::Configuration.connection({
+        # NOTE force a production WSDL so the sandbox settings are ignored
+        #      as of 1/20/18 NS will start using the account ID to determine
+        #      if a account is sandbox (123_SB1) as opposed to using a sandbox domain
+
+        wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
+
+        # NOTE don't inherit default namespace settings, it includes the API version
+        namespaces: {
+          'xmlns:platformCore' => "urn:core_2017_2.platform.webservices.netsuite.com"
+        },
+
+        soap_header: {}
+      }).call(:get_data_center_urls, message: {
+        'platformMsgs:account' => account_id
+      })
+
+      if data_center_call_response.success?
+        data_center_call_response.body[:get_data_center_urls_response][:get_data_center_urls_result][:data_center_urls]
+      else
+        false
+      end
+    end
+
     def backoff(options = {})
       count = 0
       begin
