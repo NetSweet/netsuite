@@ -37,6 +37,36 @@ module NetSuite
       server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
     end
 
+    def netsuite_data_center_urls(account_id)
+      data_center_call_response = NetSuite::Configuration.connection({
+        # NOTE force a production WSDL so the sandbox settings are ignored
+        #      as of 1/20/18 NS will start using the account ID to determine
+        #      if a account is sandbox (123_SB1) as opposed to using a sandbox domain
+        
+        wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
+
+        # NOTE don't inherit default namespace settings, it includes the API version
+        namespaces: {
+          'xmlns:platformCore' => "urn:core_2017_2.platform.webservices.netsuite.com"
+        },
+
+        soap_header: {}
+      }).call(:get_data_center_urls, message: {
+        'platformMsgs:account' => account_id
+      })
+
+      if data_center_call_response.success?
+        data_center_call_response.body[:get_data_center_urls_response][:get_data_center_urls_result][:data_center_urls]
+      else
+        false
+      end
+    end
+
+    # TODO consider what to dop with this duplicate data center implementation
+    def data_center_url(*args)
+      DataCenter.get(*args)
+    end
+
     def backoff(options = {})
       # TODO the default backoff attempts should be customizable the global config
       options[:attempts] ||= 8
@@ -58,6 +88,7 @@ module NetSuite
           Zlib::BufError,
           Savon::HTTPError,
           SocketError,
+          Net::OpenTimeout
         ]
 
         # available in ruby > 1.9
@@ -85,9 +116,14 @@ module NetSuite
             !e.message.include?('com.netledger.common.exceptions.NLDatabaseOfflineException') &&
             !e.message.include?('com.netledger.database.NLConnectionUtil$NoCompanyDbsOnlineException') &&
             !e.message.include?('com.netledger.cache.CacheUnavailableException') &&
+            !e.message.include?('java.lang.IllegalStateException') &&
             !e.message.include?('An unexpected error occurred.') &&
+            !e.message.include?('An unexpected error has occurred.  Technical Support has been alerted to this problem.') &&
             !e.message.include?('Session invalidation is in progress with different thread') &&
+            !e.message.include?('[missing resource APP:ERRORMESSAGE:WS_AN_UNEXPECTED_ERROR_OCCURRED] [missing resource APP:ERRORMESSAGE:ERROR_ID_1]') &&
             !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.') &&
+            # maintenance is the new outage: this message is being used for intermittent errors
+            !e.message.include?('The account you are trying to access is currently unavailable while we undergo our regularly scheduled maintenance.') &&
             !e.message.include?('The Connection Pool is not intialized.') &&
             # it looks like NetSuite mispelled their error message...
             !e.message.include?('The Connection Pool is not intiialized.')
@@ -195,7 +231,11 @@ module NetSuite
           field_name = 'email'
         end
 
-        field_name ||= 'name'
+        field_name ||= if record.to_s.end_with?('Item')
+          'displayName'
+        else
+          'name'
+        end
 
         # TODO remove backoff when it's built-in to search
         search = backoff { record.search({
@@ -214,10 +254,6 @@ module NetSuite
       end
 
       nil
-    end
-
-    def data_center_url(*args)
-      DataCenter.get(*args)
     end
 
     # http://mikebian.co/notes-on-dates-timezones-with-netsuites-suitetalk-api/

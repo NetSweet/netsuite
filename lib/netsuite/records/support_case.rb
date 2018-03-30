@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListSupport
 
-      actions :get, :get_list, :add, :delete, :update, :upsert
+      actions :get, :get_list, :add, :delete, :update, :upsert, :search
 
       fields :end_date, :incoming_message, :outgoing_message, :search_solution, :email_form, 
              :internal_only, :title, :case_number, :start_date, :email, :phone, :inbound_email, 

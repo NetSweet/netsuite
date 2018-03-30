@@ -1,21 +1,42 @@
-[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)  
-[![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)  
-[![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)  
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [NetSuite SuiteTalk API Ruby Gem](#netsuite-suitetalk-api-ruby-gem)
+- [Help & Support](#help--support)
+- [Testing](#testing)
+- [Installation](#installation)
+  - [Configuration](#configuration)
+    - [Token based Authentication](#token-based-authentication)
+- [Usage](#usage)
+  - [CRUD Operations](#crud-operations)
+  - [Custom Records & Fields](#custom-records--fields)
+  - [Searching](#searching)
+  - [Non-standard Operations](#non-standard-operations)
+- [About SuiteSync](#about-suitesync)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
+[![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
+[![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
 [![Dependency Status](https://gemnasium.com/roidrage/lograge.svg)](https://gemnasium.com/netsweet/netsuite)
 
-# NetSuite Ruby SuiteTalk API Gem
+# NetSuite SuiteTalk API Ruby Gem
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API.
 * The gem does not cover the entire API, only the subset contributors have used so far.
-* NetSuite is a huge complex system. There's a lot to learn and sparse resources available to learn from. Here's a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
+* NetSuite is a complex system. There's a lot to learn and sparse resources available to learn from. Here's a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
 
 # Help & Support
 
-Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues.
+Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues. Please do not post usage questions as issues in GitHub.
 
-Please do not post usage questions as issues in GitHub.
+Messages in the Slack ground are [archived here](https://suitechat.slackarchive.io). Search the archives to see if your question has been answered before.
 
-## Testing
+There is some additional helpful resources for NetSuite development [listed here](https://dashboard.suitesync.io/docs/resources#netsuite).
+
+# Testing
 
 Before contributing a patch make sure all existing tests pass.
 
@@ -26,9 +47,7 @@ bundle
 bundle exec rspec
 ```
 
-## Usage
-
-### Installation
+# Installation
 
 Add this line to your application's Gemfile:
 
@@ -38,7 +57,7 @@ gem 'netsuite'
 
 This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
-### Configuration
+## Configuration
 
 Not sure how to find your account id? Search for "web service preferences" in the NetSuite global search.
 
@@ -53,10 +72,14 @@ NetSuite.configure do
   wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
 
   # if your datacenter is being switched, you'll have to manually set your wsdl location
-  wsdl "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+  wsdl          "https://webservices.na2.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
+
+  # or specify the wsdl_domain if you want to specify the datacenter and let the configuration
+  # construct the full wsdl location - e.g. "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
+  wsdl_domain   "webservices.na2.netsuite.com"
 
   # or specify the sandbox flag if you don't want to deal with specifying a full URL
-  sandbox	true
+  sandbox       true
 
   # often the netsuite servers will hang which would cause a timeout exception to be raised
   # if you don't mind waiting (e.g. processing NS via DJ), increasing the timeout should fix the issue
@@ -70,6 +93,11 @@ NetSuite.configure do
   password 	'password'
   account   	'12345'
   role      	1111
+
+  # optional, ensures that read-only fields don't cause API errors
+  soap_header	'platformMsgs:preferences' => {
+    'platformMsgs:ignoreReadOnlyFields' => true,
+  }
 end
 ```
 
@@ -82,6 +110,8 @@ NetSuite::Configuration.soap_header = {
    }
 }
 ```
+
+### Token based Authentication
 
 OAuth credentials are also supported. [Learn more about how to set up token based authentication here](http://mikebian.co/using-netsuites-token-based-authentication-with-suitetalk/).
 
@@ -101,9 +131,9 @@ NetSuite.configure do
 end
 ```
 
-### Examples
+# Usage
 
-#### CRUD Operations
+## CRUD Operations
 
 ```ruby
 # get a customer
@@ -162,7 +192,7 @@ options = NetSuite::Records::BaseRefList.get_select_value(
 options.base_refs.map(&:name)
 ```
 
-#### Custom Records & Fields
+## Custom Records & Fields
 
 ```ruby
 # updating a custom field list on a record
@@ -213,7 +243,7 @@ NetSuite::Records::BaseRefList.get_select_value(
 )
 ```
 
-#### Searching
+## Searching
 
 ```ruby
 # basic search
@@ -374,6 +404,26 @@ NetSuite::Records::SalesOrder.search({
   }
 }).results
 
+# Search for SalesOrder records with a "Pending Approval" status using the TransactionStatus enum value.
+# https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2016_2/schema/enum/transactionstatus.html
+
+NetSuite::Records::SalesOrder.search(
+  criteria: {
+    basic: [
+      {
+        field: 'type',
+        operator: 'anyOf',
+        value: ['_salesOrder'],
+      },
+      {
+        field: 'status',
+        operator: 'anyOf',
+        value: ['_salesOrderPendingApproval'],
+      },
+    ],
+  },
+)
+
 NetSuite::Records::ItemFulfillment.search({
   criteria: {
     basic: [
@@ -497,7 +547,7 @@ deposit.payment = 20
 deposit.add
 ```
 
-#### Non-standard Operations
+## Non-standard Operations
 
 ```ruby
 # making a call that hasn't been implemented yet
@@ -517,3 +567,7 @@ states = NetSuite::Configuration.connection.call(:get_all, message: {
 })
 states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
 ```
+
+# About SuiteSync
+
+[SuiteSync, the Stripe-NetSuite integration](http://suitesync.io) uses this gem and funds the majority of it's development and maintenance.

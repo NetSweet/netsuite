@@ -1,19 +1,19 @@
 module NetSuite
   module Records
-    class Classification
+    class PriceLevel
       include Support::Fields
-      include Support::RecordRefs
       include Support::Records
       include Support::Actions
+      include Support::RecordRefs
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :delete, :upsert, :search
+      actions :get, :update, :get_list, :add, :delete, :search, :upsert
 
-      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list, :parent
+      # http://www.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2017_1/schema/record/pricelevel.html
+      fields :discountpct, :name, :is_online, :update_existing_prices,
+             :is_inactive
 
-      field :subsidiary_list, RecordRefList
-
-      attr_reader   :internal_id
+      attr_reader :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
@@ -21,7 +21,6 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
-
     end
   end
 end

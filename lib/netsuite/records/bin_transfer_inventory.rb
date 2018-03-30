@@ -1,17 +1,16 @@
 module NetSuite
   module Records
-    class InventoryAdjustmentInventory
+    class BinTransferInventory
       include Support::Records
       include Support::Fields
       include Support::RecordRefs
       include Namespaces::TranInvt
 
-      fields :adjust_qty_by, :description, :bin_numbers, :line,
-        :quantity_on_hand, :serial_numbers, :unit_cost
+      fields :description, :from_bins, :item_units_label, :line, :preferred_bin, :quantity, :to_bins
 
       field :inventory_detail, InventoryDetail
 
-      record_refs :item, :units, :location, :department, :klass
+      record_refs :item
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)

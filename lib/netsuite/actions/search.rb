@@ -232,11 +232,6 @@ module NetSuite
         @success ||= search_result[:status][:@is_success] == 'true'
       end
 
-      protected
-        def method_name
-
-        end
-
       module Support
         def self.included(base)
           base.extend(ClassMethods)
@@ -247,7 +242,7 @@ module NetSuite
             response = NetSuite::Actions::Search.call([self, options], credentials)
 
             if response.success?
-              NetSuite::Support::SearchResult.new(response, self)
+              NetSuite::Support::SearchResult.new(response, self, credentials)
             else
               false
             end

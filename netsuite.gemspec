@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.name          = 'netsuite'
   gem.require_paths = ['lib']
-  gem.version       = Netsuite::VERSION
+  gem.version       = NetSuite::VERSION
 
   gem.add_dependency 'savon', '>= 2.3.0'
 

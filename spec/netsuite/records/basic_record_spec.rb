@@ -53,7 +53,12 @@ describe 'basic records' do
       NetSuite::Records::AssemblyUnbuild,
       NetSuite::Records::AssemblyComponent,
       NetSuite::Records::InventoryNumber,
-      NetSuite::Records::LotNumberedAssemblyItem
+      NetSuite::Records::PriceLevel,
+      NetSuite::Records::LotNumberedAssemblyItem,
+      NetSuite::Records::InboundShipment,
+      NetSuite::Records::InterCompanyJournalEntry,
+      NetSuite::Records::BinTransfer,
+      NetSuite::Records::CustomerStatus
     ]
   }
 

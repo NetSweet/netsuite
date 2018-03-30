@@ -5,14 +5,17 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
       include Support::Records
+	  include Support::Fields
       include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,
         :search
 
       fields :bin_numbers, :buildable, :created_date, :expiration_date,
-        :last_modified_date, :memo, :quantity, :serial_numbers, :total,
+        :last_modified_date, :memo, :quantity, :serial_numbers,
         :tran_date, :tran_id
+
+	  read_only_fields :total
 
       record_refs :klass, :created_from, :item, :custom_form,
         :department, :job, :location, :posting_period, :revision,

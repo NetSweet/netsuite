@@ -5,6 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
+	  include Support::Fields
       include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,
@@ -13,6 +14,8 @@ module NetSuite
       fields :bin_numbers, :built, :created_date, :expiration_date,
         :last_modified_date, :memo, :quantity, :serial_numbers, :total,
         :tran_date, :tran_id
+
+	  read_only_fields :total
 
       field :component_list,        AssemblyComponentList
       field :inventory_detail,      InventoryDetail

@@ -40,6 +40,7 @@ module NetSuite
       def to_record
         rec = super
         rec[:@internalId] = @internal_id if @internal_id
+        rec[:@externalId] = @external_id if @external_id
         rec[:@typeId] = @type_id if @type_id
         rec
       end

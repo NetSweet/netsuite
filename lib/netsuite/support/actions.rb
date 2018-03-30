@@ -42,6 +42,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::DeleteList::Support)
           when :update
             self.send(:include, NetSuite::Actions::Update::Support)
+          when :update_list
+            self.send(:include, NetSuite::Actions::UpdateList::Support)
           when :initialize
             self.send(:include, NetSuite::Actions::Initialize::Support)
           else

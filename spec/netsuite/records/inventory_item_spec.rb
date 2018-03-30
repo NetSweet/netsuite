@@ -231,4 +231,61 @@ describe NetSuite::Records::InventoryItem do
     end
   end
 
+  describe '.update_list' do
+    before { savon.mock! }
+    after { savon.unmock! }
+
+    context 'with one item' do
+      before do
+        savon.expects(:update_list).with(:message =>
+          {
+            'record' => [{
+              'listAcct:itemId' => 'Target',
+              '@xsi:type' => 'listAcct:InventoryItem',
+              '@internalId' => '624113'
+            }]
+        }).returns(File.read('spec/support/fixtures/update_list/update_list_one_item.xml'))
+      end
+
+      it 'returns collection with one InventoryItem instances populated with the data from the response object' do
+        items = NetSuite::Records::InventoryItem.update_list([
+                  NetSuite::Records::InventoryItem.new(internal_id: '624113', item_id: 'Target', upccode: 'Target')
+                ])
+        shutter_fly = items[0]
+        expect(shutter_fly).to be_kind_of(NetSuite::Records::InventoryItem)
+        expect(shutter_fly.item_id).to eq('Target')
+        expect(shutter_fly.internal_id).to eq('624113')
+      end
+    end
+
+    context 'with two items' do
+      before do
+        savon.expects(:update_list).with(:message =>
+          {
+            'record' => [{
+                'listAcct:itemId' => 'Shutter Fly',
+                '@xsi:type' => 'listAcct:InventoryItem',
+                '@internalId' => '624172'
+              },
+              {
+                'listAcct:itemId' => 'Target',
+                '@xsi:type' => 'listAcct:InventoryItem',
+                '@internalId' => '624113'
+              }
+            ]
+        }).returns(File.read('spec/support/fixtures/update_list/update_list_items.xml'))
+      end
+
+      it 'returns collection of InventoryItem instances populated with the data from the response object' do
+        items = NetSuite::Records::InventoryItem.update_list( [
+                  NetSuite::Records::InventoryItem.new(internal_id: '624172', item_id: 'Shutter Fly', upccode: 'Shutter Fly, Inc.'),
+                  NetSuite::Records::InventoryItem.new(internal_id: '624113', item_id: 'Target', upccode: 'Target')
+                ])
+        shutter_fly = items[0]
+        expect(shutter_fly).to be_kind_of(NetSuite::Records::InventoryItem)
+        expect(shutter_fly.item_id).to eq('Shutter Fly')
+        expect(shutter_fly.internal_id).to eq('624172')
+      end
+    end
+  end
 end

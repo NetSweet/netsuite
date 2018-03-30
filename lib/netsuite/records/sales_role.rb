@@ -1,19 +1,19 @@
 module NetSuite
   module Records
-    class Classification
-      include Support::Fields
-      include Support::RecordRefs
+    class SalesRole
       include Support::Records
+      include Support::Fields
       include Support::Actions
-      include Namespaces::ListAcct
+      include Support::RecordRefs
+      include Namespaces::ListEmp
 
-      actions :get, :get_list, :delete, :upsert, :search
+      # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2017_1/script/record/sales_role.html
 
-      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list, :parent
+      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
-      field :subsidiary_list, RecordRefList
+      fields :name
 
-      attr_reader   :internal_id
+      attr_reader :internal_id
       attr_accessor :external_id
 
       def initialize(attributes = {})
@@ -21,7 +21,6 @@ module NetSuite
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
       end
-
     end
   end
 end
