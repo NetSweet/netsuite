@@ -196,7 +196,7 @@ module NetSuite
         'ST' => '_saoTomeAndPrincipe',
         'SA' => '_saudiArabia',
         'SN' => '_senegal',
-        'CS' => '_serbia',
+        #'CS' => '_serbia',
         'SC' => '_seychelles',
         'SL' => '_sierraLeone',
         'SG' => '_singapore',
