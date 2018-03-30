@@ -126,7 +126,7 @@ module NetSuite
     autoload :CustomerRefundApplyList,          'netsuite/records/customer_refund_apply_list'
     autoload :CustomerRefundDeposit,            'netsuite/records/customer_refund_deposit'
     autoload :CustomerRefundDepositList,        'netsuite/records/customer_refund_deposit_list'
-    autoload :CustomerPartner,                  'netsuite/records/customer_partnet'
+    autoload :CustomerPartner,                  'netsuite/records/customer_partner'
     autoload :CustomerSalesTeam,                'netsuite/records/customer_sales_team'
     autoload :CustomerSalesTeamList,            'netsuite/records/customer_sales_team_list'
     autoload :ContactList,                      'netsuite/records/contact_list'
