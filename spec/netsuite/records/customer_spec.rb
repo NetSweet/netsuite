@@ -85,6 +85,27 @@ describe NetSuite::Records::Customer do
     end
   end
 
+  describe '#subscriptions_list' do
+    it 'can be set from attributes' do
+      customer.subscriptions_list = {
+        subscriptions: [
+          {
+            :subscribed         => true
+          }
+        ]
+      }
+      expect(customer.subscriptions_list).to be_kind_of(NetSuite::Records::CustomerSubscriptionsList)
+      expect(customer.subscriptions_list.subscriptions.length).to eql(1)
+    end
+
+    it 'can be set from a CustomerSubscriptionsList object' do
+      customer_subscriptions_list = NetSuite::Records::CustomerSubscriptionsList.new
+      customer.subscriptions_list = customer_subscriptions_list
+      expect(customer.subscriptions_list).to eql(customer_subscriptions_list)
+    end
+  end
+
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :is_person => true }) }
