@@ -184,7 +184,6 @@ module NetSuite
         'QA' => '_qatar',
         'RE' => '_reunionIsland',
         'RO' => '_romania',
-        'RS' => '_serbia',
         'RU' => '_russianFederation',
         'RW' => '_rwanda',
         'BL' => '_saintBarthelemy',
