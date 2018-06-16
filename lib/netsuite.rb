@@ -239,6 +239,7 @@ module NetSuite
     autoload :SalesTaxItem,                     'netsuite/records/sales_tax_item'
     autoload :ServiceResaleItem,                'netsuite/records/service_resale_item'
     autoload :ServiceSaleItem,                  'netsuite/records/service_sale_item'
+    autoload :SerializedAssemblyItem,          'netsuite/records/serialized_assembly_item'
     autoload :SerializedInventoryItem,          'netsuite/records/serialized_inventory_item'
     autoload :SerializedInventoryItemNumbers,       'netsuite/records/serialized_inventory_item_numbers'
     autoload :SerializedInventoryItemNumbersList,   'netsuite/records/serialized_inventory_item_numbers_list'
