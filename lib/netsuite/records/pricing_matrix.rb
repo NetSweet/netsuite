@@ -1,9 +1,9 @@
 module NetSuite
   module Records
     class PricingMatrix < Support::Sublist
-      include Namespaces::PlatformCore
+      include NetSuite::Namespaces::ListAcct
 
-      sublist :pricing, RecordRef
+      sublist :pricing, NetSuite::Records::Pricing
 
       alias :prices :pricing
     end
