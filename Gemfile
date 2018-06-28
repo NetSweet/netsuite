@@ -10,4 +10,4 @@ gem 'pry-rescue'
 gem 'json', '~> 1.8.3'
 gem 'rack', '~> 1.6.4'
 
-gem 'activesupport', '~> 5.0'
+gem 'activesupport', '4.2.10'
