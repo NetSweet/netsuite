@@ -42,7 +42,7 @@ module NetSuite
         # NOTE force a production WSDL so the sandbox settings are ignored
         #      as of 1/20/18 NS will start using the account ID to determine
         #      if a account is sandbox (123_SB1) as opposed to using a sandbox domain
-        
+
         wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
 
         # NOTE don't inherit default namespace settings, it includes the API version
@@ -262,17 +262,9 @@ module NetSuite
     # assumes UTC0 unix timestamp
     def normalize_time_to_netsuite_date(unix_timestamp)
       # convert to date to eliminate hr/min/sec
-      time = Time.at(unix_timestamp).utc.to_date.to_datetime
-
-      offset = 8
-      time = time.new_offset("-08:00")
-
-      if time.to_time.dst?
-        offset = 7
-        time = time.new_offset("-07:00")
-      end
-
-      (time + Rational(offset, 24)).iso8601
+      date = Time.at(unix_timestamp).utc.to_date #.to_datetime
+      Time.zone = 'Pacific Time (US & Canada)'
+      Time.zone.parse(date.to_s).iso8601
     end
 
   end

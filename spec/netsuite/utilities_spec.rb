@@ -7,7 +7,7 @@ describe NetSuite::Utilities do
       formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(stamp.to_time.to_i)
       expect(formatted_date).to eq('2016-07-27T00:00:00-07:00')
 
-      no_dst_stamp = DateTime.parse('Sun, November 6 2017 00:00:00 -0000')
+      no_dst_stamp = DateTime.parse('Mon, November 6 2017 00:00:00 -0000')
       formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp.to_time.to_i)
       expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
     end
