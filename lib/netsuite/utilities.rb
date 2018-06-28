@@ -262,7 +262,7 @@ module NetSuite
     # assumes UTC0 unix timestamp
     def normalize_time_to_netsuite_date(unix_timestamp)
       # convert to date to eliminate hr/min/sec
-      date = Time.at(unix_timestamp).utc.to_date #.to_datetime
+      date = Time.at(unix_timestamp).utc.to_date
       Time.zone = 'Pacific Time (US & Canada)'
       Time.zone.parse(date.to_s).iso8601
     end
