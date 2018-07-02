@@ -13,10 +13,13 @@ module NetSuite
       actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
 
       fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
-             :check_num, :klass, :currency_name, :is_recurring_payment, :charge_it, :tran_id
+             :check_num, :klass, :currency_name, :is_recurring_payment, :tran_id, :auth_code,
+             :cc_approved, :cc_avs_street_match, :cc_avs_zip_match, :cc_expire_date, :cc_is_purchase_card_bin, :cc_name, :cc_number
+             :cc_process_as_purchase_card, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code, :charge_it
 
       field :custom_field_list, CustomFieldList
       field :apply_list,        CustomerDepositApplyList
+      # accountingBookDetailList
 
       record_refs :customer, :sales_order, :account, :department, :payment_method,
                   :custom_form, :currency, :posting_period, :subsidiary,
