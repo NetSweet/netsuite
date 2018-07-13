@@ -262,6 +262,7 @@ module NetSuite
     autoload :Task,                             'netsuite/records/task'
     autoload :Term,                             'netsuite/records/term'
     autoload :TimeBill,                         'netsuite/records/time_bill'
+    autoload :TransactionColumnCustomField,     'netsuite/records/transaction_column_custom_field'
     autoload :TransactionShipGroup,             'netsuite/records/transaction_ship_group'
     autoload :TransferOrder,                    'netsuite/records/transfer_order'
     autoload :TransferOrderItemList,            'netsuite/records/transfer_order_item_list'

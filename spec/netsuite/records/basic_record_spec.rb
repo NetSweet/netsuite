@@ -59,7 +59,8 @@ describe 'basic records' do
       NetSuite::Records::InterCompanyJournalEntry,
       NetSuite::Records::BinTransfer,
       NetSuite::Records::SerializedAssemblyItem,
-      NetSuite::Records::CustomerStatus
+      NetSuite::Records::CustomerStatus,
+      NetSuite::Records::TransactionColumnCustomField,
     ]
   }
 
