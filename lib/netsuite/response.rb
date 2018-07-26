@@ -7,6 +7,8 @@ module NetSuite
       @header   = attributes[:header]
       @body     = attributes[:body]
       @errors   = attributes[:errors] || []
+
+      validate_response
     end
 
     def success!
@@ -15,6 +17,10 @@ module NetSuite
 
     def success?
       @success
+    end
+
+    def validate_response
+      raise NetSuite::InvalidResponseError unless @body.is_a?(Hash)
     end
   end
 end
