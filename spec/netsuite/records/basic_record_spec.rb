@@ -61,6 +61,7 @@ describe 'basic records' do
       NetSuite::Records::SerializedAssemblyItem,
       NetSuite::Records::CustomerStatus,
       NetSuite::Records::TransactionColumnCustomField,
+      NetSuite::Records::EntityCustomField,
     ]
   }
 
