@@ -8,24 +8,24 @@
   <soapenv:Body>
     <addListResponse xmlns="urn:messages_2017_2.platform.webservices.netsuite.com">
       <writeResponseList>
-        <platformCore:status xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" isSuccess="false"/>
+        <platformCore:status xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" isSuccess="true"/>
         <writeResponse>
           <platformCore:status xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" isSuccess="false">
             <platformCore:statusDetail type="ERROR">
-              <platformCore:code>USER_ERROR</platformCore:code>
-              <platformCore:message>Please enter value(s) for: Item</platformCore:message>
+              <platformCore:code>DUP_ENTITY</platformCore:code>
+              <platformCore:message>This entity already exists.</platformCore:message>
             </platformCore:statusDetail>
           </platformCore:status>
-          <baseRef xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" externalId="ext1-bad" type="customer" xsi:type="platformCore:RecordRef"/>
+          <baseRef xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" externalId="ext1" type="customer" xsi:type="platformCore:RecordRef"/>
         </writeResponse>
         <writeResponse>
           <platformCore:status xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" isSuccess="false">
             <platformCore:statusDetail type="ERROR">
-              <platformCore:code>USER_ERROR</platformCore:code>
-              <platformCore:message>Please enter value(s) for: Item</platformCore:message>
+              <platformCore:code>DUP_ENTITY</platformCore:code>
+              <platformCore:message>This entity already exists.</platformCore:message>
             </platformCore:statusDetail>
           </platformCore:status>
-          <baseRef xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" externalId="ext2-bad" type="customer" xsi:type="platformCore:RecordRef"/>
+          <baseRef xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" externalId="ext2" type="customer" xsi:type="platformCore:RecordRef"/>
         </writeResponse>
       </writeResponseList>
     </addListResponse>
