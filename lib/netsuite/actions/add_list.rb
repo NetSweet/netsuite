@@ -59,14 +59,18 @@ module NetSuite
       end
 
       def errors
-        errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
+        errors = response_hash.select { |h| h[:status] }.each_with_index.map do |obj, index|
           error_obj = obj[:status][:status_detail]
+          next if error_obj.nil?
           error_obj = [error_obj] if error_obj.class == Hash
           errors = error_obj.map do |error|
             NetSuite::Error.new(error)
           end
 
-          [obj[:base_ref][:@external_id], errors]
+          external_id =
+            (obj[:base_ref] && obj[:base_ref][:@external_id]) ||
+            (@objects[index].respond_to?(:external_id) && @objects[index].external_id)
+          [external_id, errors]
         end
         Hash[errors]
       end
@@ -84,10 +88,10 @@ module NetSuite
         module ClassMethods
           def add_list(records, credentials = {})
             netsuite_records = records.map do |r|
-              if r.kind_of?(self)
+              if r.is_a?(self)
                 r
               else
-                self.new(r)
+                new(r)
               end
             end
 
