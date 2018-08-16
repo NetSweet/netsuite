@@ -20,7 +20,7 @@ module NetSuite
     end
 
     def validate_response
-      raise NetSuite::InvalidResponseError unless @body.is_a?(Hash)
+      raise NetSuite::InvalidResponseError unless @body.is_a?(Hash) || @body.is_a?(Array)
     end
   end
 end
