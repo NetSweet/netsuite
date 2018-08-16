@@ -32,6 +32,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::Search::Support)
           when :add
             self.send(:include, NetSuite::Actions::Add::Support)
+          when :add
+            self.send(:include, NetSuite::Actions::AddList::Support)
           when :upsert
             self.send(:include, NetSuite::Actions::Upsert::Support)
           when :upsert_list
