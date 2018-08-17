@@ -82,6 +82,7 @@ module NetSuite
     autoload :BillingScheduleRecurrence,        'netsuite/records/billing_schedule_recurrence'
     autoload :BillingScheduleRecurrenceList,    'netsuite/records/billing_schedule_recurrence_list'
     autoload :Bin,                              'netsuite/records/bin'
+    autoload :BinNumber,                        'netsuite/records/bin_number'
     autoload :BinNumberList,                    'netsuite/records/bin_number_list'
     autoload :BinTransfer,                      'netsuite/records/bin_transfer'
     autoload :BinTransferInventory,             'netsuite/records/bin_transfer_inventory'
