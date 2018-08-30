@@ -7,8 +7,10 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
+      # NOTE `get_all` is not available in recent API versions ~2017_2
+      #      `search` is only available in recent API versions
       actions :get, :get_list, :get_all, :get_select_value, :add, :delete,
-        :update, :upsert
+        :update, :upsert, :search
 
       fields :item_id, :display_name, :description, :rate, :is_inactive,
         :effective_from, :valid_until, :include_children, :eccode,
