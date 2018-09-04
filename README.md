@@ -148,6 +148,26 @@ record = NetSuite::Records::CustomRecord.new(internal_id: 100)
 record.custom_field_list.custrecord_locationstate = "New Jersey"
 record.update(custom_field_list: record.custom_field_list, rec_type: NetSuite::Records::CustomRecord.new(internal_id: 10))
 
+# using get_select_value with a standard record
+NetSuite::Records::BaseRefList.get_select_value(
+  recordType: 'serviceSaleItem',
+  field: 'taxSchedule'
+)
+
+# get options for a custom sublist field (i.e. transaction column fields)
+NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custcol69_2',
+  sublist: 'itemList',
+  recordType: 'salesOrder'
+)
+
+# output names of options available for a custom field
+options = NetSuite::Records::BaseRefList.get_select_value(
+  field: 'custbody_order_source',
+  recordType: 'invoice'
+)
+options.base_refs.map(&:name)
+
 ```
 
 #### Searching
