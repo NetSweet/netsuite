@@ -3,6 +3,9 @@ module NetSuite
     class Token
       attr_reader :account, :consumer_key, :consumer_secret, :token_id, :token_secret
 
+      ALPHANUMERICS = [*'0'..'9',*'A'..'Z',*'a'..'z'].freeze
+      ALPHANUMERICS_SIZE = ALPHANUMERICS.size
+
       def initialize(account, consumer_key, consumer_secret, token_id, token_secret)
         @account = account.to_s
         @consumer_key = consumer_key
@@ -40,11 +43,13 @@ module NetSuite
       end
 
       def nonce
-        @nonce ||= Array.new(20) { alphanumerics.sample }.join
-      end
+        # TODO use SecureRandom.alphanumeric(20) when minimum ruby version is upgraded
+        # https://stackoverflow.com/questions/44466165/surprising-output-using-parallel-gem-with-srand-and-rand
+        # shouldn't use sample, it relies on global state
+        # https://bugs.ruby-lang.org/issues/10849
+        # https://stackoverflow.com/questions/8567917/how-to-use-arraysamplen-random-rng-syntax
 
-      def alphanumerics
-        [*'0'..'9',*'A'..'Z',*'a'..'z']
+        @nonce ||= Array.new(40) { NetSuite::Passports::Token::ALPHANUMERICS[SecureRandom.random_number(NetSuite::Passports::Token::ALPHANUMERICS_SIZE)] }.join
       end
 
       def timestamp
