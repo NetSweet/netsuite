@@ -42,7 +42,7 @@ module NetSuite
         # NOTE force a production WSDL so the sandbox settings are ignored
         #      as of 1/20/18 NS will start using the account ID to determine
         #      if a account is sandbox (123_SB1) as opposed to using a sandbox domain
-        
+
         wsdl: 'https://webservices.netsuite.com/wsdl/v2017_2_0/netsuite.wsdl',
 
         # NOTE don't inherit default namespace settings, it includes the API version
@@ -146,15 +146,7 @@ module NetSuite
 
     def request_failed?(ns_object)
       return false if ns_object.errors.nil? || ns_object.errors.empty?
-
-      warnings = ns_object.errors.select { |x| x.type == "WARN" }
-      errors = ns_object.errors.select { |x| x.type == "ERROR" }
-
-      # warnings.each do |warn|
-      #   log.warn(warn.message, code: warn.code)
-      # end
-
-      return errors.size > 0
+      ns_object.errors.any? { |x| x.type == "ERROR" }
     end
 
     def get_item(ns_item_internal_id, opts = {})
