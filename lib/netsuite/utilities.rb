@@ -1,3 +1,5 @@
+require 'date'
+
 module NetSuite
   module Utilities
     extend self
@@ -149,6 +151,15 @@ module NetSuite
       ns_object.errors.any? { |x| x.type == "ERROR" }
     end
 
+    def get_field_options(recordType, fieldName)
+      options = NetSuite::Records::BaseRefList.get_select_value(
+        field: fieldName,
+        recordType: recordType
+      )
+
+      options.base_refs
+    end
+
     def get_item(ns_item_internal_id, opts = {})
       # TODO add additional item types!
       ns_item = NetSuite::Utilities.get_record(NetSuite::Records::InventoryItem, ns_item_internal_id, opts)
@@ -251,15 +262,21 @@ module NetSuite
     end
 
     # http://mikebian.co/notes-on-dates-timezones-with-netsuites-suitetalk-api/
+    # https://wyeworks.com/blog/2016/6/22/behavior-changes-in-ruby-2.4
+    # https://github.com/rails/rails/commit/c9c5788a527b70d7f983e2b4b47e3afd863d9f48
+
     # assumes UTC0 unix timestamp
     def normalize_time_to_netsuite_date(unix_timestamp)
       # convert to date to eliminate hr/min/sec
-      time = Time.at(unix_timestamp).utc.to_date.to_datetime
+      time = Time.at(unix_timestamp).
+        utc.
+        to_date.
+        to_datetime
 
       offset = 8
       time = time.new_offset("-08:00")
 
-      if time.to_time.dst?
+      if time.to_time.getlocal.dst?
         offset = 7
         time = time.new_offset("-07:00")
       end
