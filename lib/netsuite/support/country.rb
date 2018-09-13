@@ -232,8 +232,7 @@ module NetSuite
         'UG' => '_uganda',
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
-        # NOTE GB country code changed on 2016_1
-        'GB' => NetSuite::Configuration.api_version <= "2015_2" ? '_unitedKingdomGB' : '_unitedKingdom',
+        'GB' => '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
@@ -253,7 +252,7 @@ module NetSuite
 
       def initialize(iso_or_name = '')
         if iso_or_name =~ /^[A-Z]{2}/
-          @id = ISO_TO_NETSUITE.fetch(iso_or_name)
+          @id = iso_to_netsuite.fetch(iso_or_name)
         else
           @id = iso_or_name
         end
@@ -266,11 +265,20 @@ module NetSuite
       alias :eql? :==
 
       def to_iso
-        ISO_TO_NETSUITE.key(@id)
+        iso_to_netsuite.key(@id)
       end
 
       def to_record
         @id
+      end
+
+      def iso_to_netsuite
+        # NOTE GB country code changed on 2016_1
+        if NetSuite::Configuration.api_version <= "2015_2"
+          ISO_TO_NETSUITE.merge({ 'GB' => '_unitedKingdomGB' })
+        else
+          ISO_TO_NETSUITE
+        end
       end
 
     end
