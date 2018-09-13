@@ -1,4 +1,5 @@
 require 'set'
+require 'active_support/all'
 
 require 'savon'
 require 'netsuite/version'
