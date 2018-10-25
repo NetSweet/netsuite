@@ -66,13 +66,13 @@ describe NetSuite::Configuration do
       end
 
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to eql('https://system.netsuite.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
+        expect(config.wsdl).to eql('https://system.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
       end
     end
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to eq("https://system.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
+        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
       end
     end
 
