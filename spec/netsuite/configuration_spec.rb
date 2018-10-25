@@ -62,17 +62,17 @@ describe NetSuite::Configuration do
   describe '#wsdl' do
     context 'when the wsdl has been set' do
       before do
-        config.wsdl = 'https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl'
+        config.wsdl = 'https://system.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl'
       end
 
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
+        expect(config.wsdl).to eql('https://system.netsuite.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
       end
     end
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
+        expect(config.wsdl).to eq("https://system.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
       end
     end
 
@@ -355,8 +355,8 @@ describe NetSuite::Configuration do
     expect(config.wsdl).to include('custom.domain.com')
 
     config.sandbox = true
-    expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
-    expect(config.wsdl).to include('webservices.sandbox.netsuite.com')
+    expect(config.wsdl_domain).to eq('webservices.netsuite.com')
+    expect(config.wsdl).to include('webservices.netsuite.com')
   end
 
   describe '#logger=' do
