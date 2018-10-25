@@ -31,9 +31,9 @@ describe NetSuite do
 
     it 'allows the Configuration #wsdl instance method to be called with instance_eval' do
       NetSuite.configure do
-        wsdl 'https://webservices.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl'
+        wsdl 'https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl'
       end
-      expect(config.wsdl).to eql('https://webservices.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
+      expect(config.wsdl).to eql('https://system.sandbox.netsuite.com/wsdl/v2011_2_0/netsuite.wsdl')
     end
 
   end
