@@ -122,12 +122,7 @@ module NetSuite
       if wsdl
         self.wsdl = wsdl
       else
-        attributes[:wsdl] ||= begin
-          if sandbox
-            "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
-          else
-            "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
-          end
+          "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
         end
       end
     end
@@ -136,12 +131,7 @@ module NetSuite
       if wsdl_domain
         self.wsdl_domain = wsdl_domain
       else
-        # if sandbox, this parameter is ignored
-        if sandbox
-          attributes[:wsdl_domain] ||= 'webservices.netsuite.com'
-        else
-          attributes[:wsdl_domain] ||= 'webservices.netsuite.com'
-        end
+        attributes[:wsdl_domain] ||= 'webservices.netsuite.com'
       end
     end
 
