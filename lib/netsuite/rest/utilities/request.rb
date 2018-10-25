@@ -8,7 +8,7 @@ module NetSuite
       class Request
 
         PRODUCTION_API = "https://rest.netsuite.com/rest"
-        SANDBOX_API = "https://rest.sandbox.netsuite.com/rest"
+        SANDBOX_API = "https://rest.netsuite.com/rest"
         DEFAULT_TIMEOUT = 30
         USE_SSL = true
 
