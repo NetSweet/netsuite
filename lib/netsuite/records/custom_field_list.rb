@@ -110,7 +110,7 @@ module NetSuite
             attrs = custom_field_data.clone
             type = (custom_field_data[:"@xsi:type"] || custom_field_data[:type])
 
-            if type == "platformCore:SelectCustomFieldRef"
+            if type == "platformCore:SelectCustomFieldRef" || custom_field_data[:value].is_a?(Hash)
               attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
             elsif type == 'platformCore:MultiSelectCustomFieldRef'
               attrs[:value] = custom_field_data[:value].map do |entry|
