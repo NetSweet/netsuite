@@ -49,6 +49,20 @@ module NetSuite
         @response_hash ||= @response.body[:get_all_response][:get_all_result]
       end
 
+      def response_errors
+        if response_hash.dig(:status, :status_detail)
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.class == Hash
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
+      end
+
       module Support
 
         def self.included(base)
@@ -56,10 +70,12 @@ module NetSuite
         end
 
         module ClassMethods
+          attr_reader :errors
+
           def get_all(credentials = {})
             response = NetSuite::Actions::GetAll.call([self], credentials)
 
-            # TODO expose errors to the user
+            @errors = response.errors
 
             if response.success?
               response.body.map { |attr| new(attr) }
