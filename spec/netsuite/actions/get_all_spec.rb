@@ -7,6 +7,8 @@ describe NetSuite::Actions::GetAll do
   describe 'Currency' do
     context 'retrieving all' do
       let(:message) { { record: [ { record_type: "currency" } ] } }
+      let(:currency) { NetSuite::Records::Currency }
+      let(:response) { currency.get_all({}) }
 
       context 'when successful' do
         before do
@@ -23,12 +25,18 @@ describe NetSuite::Actions::GetAll do
           response = NetSuite::Actions::GetAll.call([NetSuite::Records::Currency])
           expect(response).to be_kind_of(NetSuite::Response)
         end
+
+        it 'returns valid currency list' do
+          expect(response).to be_kind_of(Array)
+          expect(response.count).to eq(5)
+
+          usd = response.first
+          expect(usd).to be_kind_of(NetSuite::Records::Currency)
+          expect(usd.attributes[:name]).to eq('US Dollar')
+        end
       end
 
       context 'when insufficient permissions' do
-        let(:currency) { NetSuite::Records::Currency }
-        let(:response) { currency.get_all({}) }
-
         before do
           savon.expects(:get_all).with(message: message).returns(
             File.read('spec/support/fixtures/get_all/get_all_insufficient_permissions.xml')
