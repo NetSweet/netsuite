@@ -227,6 +227,8 @@ module NetSuite
     autoload :Pricing,                          'netsuite/records/pricing'
     autoload :PricingMatrix,                    'netsuite/records/pricing_matrix'
     autoload :PromotionCode,                    'netsuite/records/promotion_code'
+    autoload :PromotionsList,                   'netsuite/records/promotions_list'
+    autoload :Promotions,                       'netsuite/records/promotions'
     autoload :PurchaseOrder,                    'netsuite/records/purchase_order'
     autoload :PurchaseOrderItemList,            'netsuite/records/purchase_order_item_list'
     autoload :PurchaseOrderItem,                'netsuite/records/purchase_order_item'
