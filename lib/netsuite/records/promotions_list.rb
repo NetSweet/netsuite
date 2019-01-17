@@ -1,4 +1,4 @@
-module Netsuite
+module NetSuite
   module Records
     class PromotionsList < Support::Sublist
       include Namespaces::TranSales
