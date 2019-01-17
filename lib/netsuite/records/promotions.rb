@@ -1,7 +1,6 @@
 module NetSuite
   module Records
     class Promotions
-      include Support::Fields
       include Support::RecordRefs
       include Support::Records
       include Namespaces::TranSales
