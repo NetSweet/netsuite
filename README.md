@@ -55,6 +55,8 @@ Add this line to your application's Gemfile:
 gem 'netsuite'
 ```
 
+If you'd like more accurate time conversion support, include the `tzinfo` gem.
+
 This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
 ## Configuration
