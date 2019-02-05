@@ -43,7 +43,7 @@ describe NetSuite::Utilities do
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('4810331')
     expect(domains[:webservices_domain]).to eq('https://4810331.suitetalk.api.netsuite.com')
-    expect(domains[:system_domain]).to eq('https://system.na3.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://4810331.app.netsuite.com')
   end
 
   describe '#get_record' do
