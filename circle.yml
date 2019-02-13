@@ -6,6 +6,7 @@ machine:
 
 dependencies:
   override:
+    - gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
     - rvm get head
     - rvm install $RUBY_VERSIONS
     - rvm $RUBY_VERSIONS --verbose do gem install bundler
