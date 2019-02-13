@@ -73,7 +73,7 @@ module NetSuite
         def update(options = {}, credentials={})
           options[:internal_id] = internal_id if respond_to?(:internal_id) && internal_id
 
-          if !options.include?(:external_id) || (respond_to?(:external_id) && external_id)
+          if !options.include?(:external_id) && (respond_to?(:external_id) && external_id)
             options[:external_id] = external_id
           end
 
