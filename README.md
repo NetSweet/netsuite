@@ -20,7 +20,6 @@
 [![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
 [![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
-[![Dependency Status](https://gemnasium.com/roidrage/lograge.svg)](https://gemnasium.com/netsweet/netsuite)
 
 # NetSuite SuiteTalk API Ruby Gem
 
