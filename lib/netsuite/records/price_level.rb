@@ -7,7 +7,7 @@ module NetSuite
       include Support::RecordRefs
       include Namespaces::ListAcct
 
-      actions :get, :update, :get_list, :add, :delete, :search, :upsert
+      actions :get, :update, :get_list, :add, :add_list, :delete, :search, :upsert
 
       # http://www.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2017_1/schema/record/pricelevel.html
       fields :discountpct, :name, :is_online, :update_existing_prices,

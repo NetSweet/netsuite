@@ -10,7 +10,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2016_1/schema/record/note.html
 
-      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :delete_list, :search
+      actions :get, :get_list, :add, :add_list, :update, :upsert, :upsert_list, :delete, :delete_list, :search
 
       fields :direction, :lastModifiedDate, :note, :noteDate, :title, :topic
 

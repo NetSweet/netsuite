@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranInvt
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
+      actions :get, :get_list, :add, :add_list, :initialize, :delete, :update, :upsert, :search
 
       fields :alt_shipping_cost, :created_date, :firmed, :fob, :handling_tax1_rate,
              :handling_tax2_rate, :last_modified_date, :linked_tracking_numbers,

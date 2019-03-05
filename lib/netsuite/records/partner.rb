@@ -10,7 +10,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/partner.html
 
-      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
+      actions :get, :get_list, :add, :add_list, :update, :upsert, :upsert_list, :delete, :search
 
       fields :phone, :home_phone, :first_name, :last_name, :alt_name, :is_inactive, :email, :give_access,
              :partner_code, :is_person, :company_name, :eligible_for_commission, :entity_id, :last_modified_date,

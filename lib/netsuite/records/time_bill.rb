@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranEmp
 
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert
+      actions :get, :get_list, :add, :add_list, :delete, :search, :update, :upsert
 
       fields :created_date, :is_billable, :last_modified_date, :memo, :override_rate, :paid_externally, :rate, :status,
              :supervisor_approval, :tran_date, :time_type

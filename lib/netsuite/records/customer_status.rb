@@ -10,7 +10,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListRel
 
-      actions :get, :add, :delete, :search, :update, :upsert
+      actions :get, :add, :add_list, :delete, :search, :update, :upsert
 
       fields :description, :include_in_lead_reports, :is_inactive, :name,
              :probability, :stage

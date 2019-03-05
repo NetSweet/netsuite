@@ -10,7 +10,7 @@ module NetSuite
       include Support::Records
       include Namespaces::TranCust
 
-      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
+      actions :get, :get_list, :initialize, :add, :add_list, :delete, :update, :upsert, :search
 
       fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
              :check_num, :klass, :currency_name, :is_recurring_payment, :tran_id, :auth_code,
