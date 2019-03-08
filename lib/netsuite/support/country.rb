@@ -4,6 +4,7 @@ module NetSuite
 
       ISO_TO_NETSUITE = {
         'AF' => '_afghanistan',
+        'AX' => '_alandIslands',
         'AL' => '_albania',
         'DZ' => '_algeria',
         'AS' => '_americanSamoa',
@@ -29,6 +30,7 @@ module NetSuite
         'BM' => '_bermuda',
         'BT' => '_bhutan',
         'BO' => '_bolivia',
+        'BQ' => '_bonaireSaintEustatiusAndSaba',
         'BA' => '_bosniaAndHerzegovina',
         'BW' => '_botswana',
         'BV' => '_bouvetIsland',
@@ -41,9 +43,11 @@ module NetSuite
         'KH' => '_cambodia',
         'CM' => '_cameroon',
         'CA' => '_canada',
+        'IC' => '_canaryIslands',
         'CV' => '_capeVerde',
         'KY' => '_caymanIslands',
         'CF' => '_centralAfricanRepublic',
+        'EA' => '_ceutaAndMelilla',
         'TD' => '_chad',
         'CL' => '_chile',
         'CN' => '_china',
@@ -121,6 +125,7 @@ module NetSuite
         'KI' => '_kiribati',
         'KP' => '_koreaDemocraticPeoplesRepublic',
         'KR' => '_koreaRepublicOf',
+        'XK' => '_kosovo',
         'KW' => '_kuwait',
         'KG' => '_kyrgyzstan',
         'LA' => '_laoPeoplesDemocraticRepublic',
@@ -187,8 +192,10 @@ module NetSuite
         'RU' => '_russianFederation',
         'RW' => '_rwanda',
         'BL' => '_saintBarthelemy',
+        'SH' => '_saintHelena',
         'KN' => '_saintKittsAndNevis',
         'LC' => '_saintLucia',
+        'MF' => '_saintMartin',
         'VC' => '_saintVincentAndTheGrenadines',
         'SM' => '_sanMarino',
         'ST' => '_saoTomeAndPrincipe',
@@ -205,9 +212,9 @@ module NetSuite
         'SO' => '_somalia',
         'ZA' => '_southAfrica',
         'GS' => '_southGeorgia',
+        'SS' => '_southSudan',
         'ES' => '_spain',
         'LK' => '_sriLanka',
-        'SH' => '_saintHelena',
         'PM' => '_stPierreAndMiquelon',
         'SD' => '_sudan',
         'SR' => '_suriname',
@@ -232,8 +239,7 @@ module NetSuite
         'UG' => '_uganda',
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
-        # NOTE GB country code changed on 2016_1
-        'GB' => NetSuite::Configuration.api_version <= "2015_2" ? '_unitedKingdomGB' : '_unitedKingdom',
+        'GB' => '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
@@ -253,7 +259,7 @@ module NetSuite
 
       def initialize(iso_or_name = '')
         if iso_or_name =~ /^[A-Z]{2}/
-          @id = ISO_TO_NETSUITE.fetch(iso_or_name)
+          @id = iso_to_netsuite.fetch(iso_or_name)
         else
           @id = iso_or_name
         end
@@ -266,11 +272,20 @@ module NetSuite
       alias :eql? :==
 
       def to_iso
-        ISO_TO_NETSUITE.key(@id)
+        iso_to_netsuite.key(@id)
       end
 
       def to_record
         @id
+      end
+
+      def iso_to_netsuite
+        # NOTE GB country code changed on 2016_1
+        if NetSuite::Configuration.api_version <= "2015_2"
+          ISO_TO_NETSUITE.merge({ 'GB' => '_unitedKingdomGB' })
+        else
+          ISO_TO_NETSUITE
+        end
       end
 
     end

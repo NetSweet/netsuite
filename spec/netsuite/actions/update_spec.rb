@@ -19,6 +19,48 @@ describe NetSuite::Actions::Update do
       }
     end
 
+    describe 'updating the external ID' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      # https://github.com/NetSweet/netsuite/pull/416
+      #   if the external ID is set, and the external ID field is ommitted on an update, the external ID field does not change
+      #   if the external_id field is set to nil, it should not be passed to netsuite
+      #   passing an empty string to the external ID field does not remove it
+
+      it 'does not pass the external ID to an update call if not modified or included in update options' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([customer.class, {}], {}).
+            and_return(response)
+
+        expect(customer.update).to be_truthy
+      end
+
+      it 'should update the external ID when the attribute on the record is set' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([customer.class, {external_id: 'foo'}], {}).
+            and_return(response)
+
+        customer.external_id = 'foo'
+        expect(customer.update).to be_truthy
+      end
+
+      it 'should update the external ID to nil when the attribute on the record is set' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([customer.class, {external_id: nil}], {}).
+            and_return(response)
+
+        expect(customer.update(external_id: nil)).to be_truthy
+      end
+
+      it 'should update the external ID to the options value not the attribute value' do
+        expect(NetSuite::Actions::Update).to receive(:call).
+            with([customer.class, {external_id: 'bar'}], {}).
+            and_return(response)
+
+        customer.external_id = 'foo'
+        expect(customer.update(external_id: 'bar')).to be_truthy
+      end
+    end
 
     context 'when successful' do
 

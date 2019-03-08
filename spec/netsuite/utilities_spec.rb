@@ -10,6 +10,10 @@ describe NetSuite::Utilities do
       no_dst_stamp = DateTime.parse('Sun, November 6 2017 00:00:00 -0000')
       formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp.to_time.to_i)
       expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
+
+      no_dst_stamp_with_time = DateTime.parse('Sun, November 6 2017 12:11:10 -0000')
+      formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp_with_time.to_time.to_i)
+      expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
     end
   end
 
@@ -39,7 +43,7 @@ describe NetSuite::Utilities do
 
     domains = NetSuite::Utilities.netsuite_data_center_urls('4810331')
     expect(domains[:webservices_domain]).to eq('https://4810331.suitetalk.api.netsuite.com')
-    expect(domains[:system_domain]).to eq('https://system.na3.netsuite.com')
+    expect(domains[:system_domain]).to eq('https://4810331.app.netsuite.com')
   end
 
   describe '#get_record' do

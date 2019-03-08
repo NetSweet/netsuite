@@ -71,8 +71,12 @@ module NetSuite
 
       module Support
         def update(options = {}, credentials={})
-          options.merge!(:internal_id => internal_id) if respond_to?(:internal_id) && internal_id
-          options.merge!(:external_id => external_id) if respond_to?(:external_id) && external_id
+          options[:internal_id] = internal_id if respond_to?(:internal_id) && internal_id
+
+          if !options.include?(:external_id) && (respond_to?(:external_id) && external_id)
+            options[:external_id] = external_id
+          end
+
           response = NetSuite::Actions::Update.call([self.class, options], credentials)
           @errors = response.errors
           response.success?

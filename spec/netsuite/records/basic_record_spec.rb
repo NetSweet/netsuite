@@ -58,7 +58,11 @@ describe 'basic records' do
       NetSuite::Records::InboundShipment,
       NetSuite::Records::InterCompanyJournalEntry,
       NetSuite::Records::BinTransfer,
-      NetSuite::Records::CustomerStatus
+      NetSuite::Records::SerializedAssemblyItem,
+      NetSuite::Records::CustomerStatus,
+      NetSuite::Records::TransactionBodyCustomField,
+      NetSuite::Records::TransactionColumnCustomField,
+      NetSuite::Records::EntityCustomField
     ]
   }
 

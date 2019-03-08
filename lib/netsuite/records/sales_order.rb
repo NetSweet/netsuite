@@ -32,6 +32,7 @@ module NetSuite
       field :custom_field_list,           CustomFieldList
       field :gift_cert_redemption_list,   GiftCertRedemptionList
       field :ship_group_list,             SalesOrderShipGroupList
+      field :promotions_list,             PromotionsList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied,
                        :est_gross_profit_percent

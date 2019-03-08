@@ -22,7 +22,7 @@ module NetSuite
         :opening_balance, :opening_balance_account, :opening_balance_date,
         :password, :password2, :phone, :phonetic_name, :pref_cc_processor, :print_on_check_as,
         :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
-        :sales_group, :sales_readiness, :sales_team_list, :salutation, :send_email, :ship_complete,
+        :sales_group, :sales_readiness, :salutation, :send_email, :ship_complete,
         :stage, :start_date, :sync_partner_teams, :tax_exempt, :taxable,
         :third_party_acct, :third_party_country, :third_party_zipcode, :title, :url,
         :vat_reg_number, :visits, :web_lead
@@ -33,6 +33,7 @@ module NetSuite
       field :currency_list, CustomerCurrencyList
       field :partners_list, CustomerPartnersList
       field :subscriptions_list, CustomerSubscriptionsList
+      field :sales_team_list, CustomerSalesTeamList
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,
         :consol_overdue_balance, :unbilled_orders, :consol_unbilled_orders
