@@ -3,17 +3,22 @@ require 'spec_helper'
 describe NetSuite::Utilities do
   describe 'time utilities' do
     it '#normalize_time_to_netsuite_date' do
-      stamp = DateTime.parse('Wed, 27 Jul 2016 00:00:00 -0000')
-      formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(stamp.to_time.to_i)
-      expect(formatted_date).to eq('2016-07-27T00:00:00-07:00')
+      ['Etc/UTC', 'America/Los_Angeles', 'America/Denver'].each do |zone|
+        ENV['TZ'] = zone
+        puts "In zone: #{zone}"
 
-      no_dst_stamp = DateTime.parse('Sun, November 6 2017 00:00:00 -0000')
-      formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp.to_time.to_i)
-      expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
+        stamp = DateTime.parse('Wed, 27 Jul 2016 00:00:00 -0000')
+        formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(stamp.to_time.to_i)
+        expect(formatted_date).to eq('2016-07-27T00:00:00-07:00')
 
-      no_dst_stamp_with_time = DateTime.parse('Sun, November 6 2017 12:11:10 -0000')
-      formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp_with_time.to_time.to_i)
-      expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
+        no_dst_stamp = DateTime.parse('Sun, November 6 2017 00:00:00 -0000')
+        formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp.to_time.to_i)
+        expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
+
+        no_dst_stamp_with_time = DateTime.parse('Sun, November 6 2017 12:11:10 -0000')
+        formatted_date = NetSuite::Utilities.normalize_time_to_netsuite_date(no_dst_stamp_with_time.to_time.to_i)
+        expect(formatted_date).to eq('2017-11-06T00:00:00-08:00')
+      end
     end
   end
 
