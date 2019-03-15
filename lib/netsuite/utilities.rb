@@ -277,16 +277,25 @@ module NetSuite
       # NetSuite requires that the time be passed to the API with the PDT TZ offset
       # of the time passed in (i.e. not the current TZ offset of PDT)
 
-      offset = Rational(-7, 24)
-      
       if defined?(TZInfo)
-        time = TZInfo::Timezone.get("America/Los_Angeles").utc_to_local(time)
-        offset = time.offset
+        # if no version is defined, less than 2.0
+        # https://github.com/tzinfo/tzinfo/blob/master/CHANGES.md#added
+        if !defined?(TZInfo::VERSION)
+          # https://stackoverflow.com/questions/2927111/ruby-get-time-in-given-timezone
+          offset = TZInfo::Timezone.get("America/Los_Angeles").period_for_utc(time).utc_total_offset_rational
+          time = time.new_offset(offset)
+        else
+          time = TZInfo::Timezone.get("America/Los_Angeles").utc_to_local(time)
+          offset = time.offset
+        end
       else
+        # if tzinfo is not installed, let's give it our best guess: -7
+        offset = Rational(-7, 24)
         time = time.new_offset("-07:00")
       end
 
-      (time + (offset * -1)).iso8601
+      time = (time + (offset * -1))
+      time.iso8601
     end
 
   end
