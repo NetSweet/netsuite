@@ -75,7 +75,19 @@ module NetSuite
                     # attribute will be transitioned to the parent, and in the case
                     # of a string response the parent node's value will be to the string
 
-                    record[search_group][attr_name] = search_result[:search_value]
+                    if result_class.fields.include?(attr_name) || search_group != :basic
+                      # this is a record field, it will be picked up when we
+                      # intialize the `result_class`
+                      record[search_group][attr_name] = search_result[:search_value]
+                    else
+                      # not a record field -- treat it as if it were a custom field
+                      # otherwise it will be lost when we initialize
+                      record[search_group][:custom_field_list] ||= {custom_field: []}
+                      custom_fields = record[search_group][:custom_field_list][:custom_field]
+                      custom_fields = [custom_fields] if custom_fields.is_a?(Hash)
+                      custom_fields << search_result.merge(internal_id: attr_name)
+                      record[search_group][:custom_field_list][:custom_field] = custom_fields
+                    end
                   else
                     # NOTE need to understand this case more, in testing, only the namespace definition hits this condition
                   end
