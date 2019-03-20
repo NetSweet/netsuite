@@ -1,0 +1,1671 @@
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Header>
+        <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2012_1.platform.webservices.netsuite.com">
+            <platformMsgs:nsId>WEBSERVICES_3603333_SB1_0320201916835580962038419462_2ce0aa2</platformMsgs:nsId>
+        </platformMsgs:documentInfo>
+    </soapenv:Header>
+    <soapenv:Body>
+        <searchResponse xmlns="urn:messages_2012_1.platform.webservices.netsuite.com">
+            <platformCore:searchResult xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com">
+                <platformCore:status isSuccess="true"/>
+                <platformCore:totalRecords>49</platformCore:totalRecords>
+                <platformCore:pageSize>1000</platformCore:pageSize>
+                <platformCore:totalPages>1</platformCore:totalPages>
+                <platformCore:pageIndex>1</platformCore:pageIndex>
+                <platformCore:searchId>WEBSERVICES_3603333_SB1_0320201916835580962038419462_2ce0aa2</platformCore:searchId>
+                <platformCore:searchRowList>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179761</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>2.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>32.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="78"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179747</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>3307.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>40000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>2565.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="123"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179730</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>3838.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>45000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>3507.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="123"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-04T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179716</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>2748.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>1995.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="78"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179693</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>7520.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>3640.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="78"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-24T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179600</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>11334.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>19366.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="119"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179419</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>24525.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>50000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>25035.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="121"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-24T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179259</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>1256.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>7000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>1583.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="100"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-29T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179150</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>17864.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>3381.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="96"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179051</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>346.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>75.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="90"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="6"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940999</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>821.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>5000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>1993.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="72"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940982</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>13163.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>80000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>20208.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="72"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-29T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940883</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>12554.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="86"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940876</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>19748.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>7656.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="1"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2018-08-16T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940852</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>2051.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>2500.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>2622.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="76"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-01T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940845</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>1195.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>2063.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>1180.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="8"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-13T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940722</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>4786.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>669.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="125"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2017-04-10T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940562</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>2720.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>26000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>2316.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="72"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-05-13T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940555</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>4438.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>22000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>3306.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="72"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-05-14T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940517</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>497.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>234.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="70"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940340</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>911.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>1000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>363.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="36"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-13T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940197</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>1117.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>357.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="45"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781935940166</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>330.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>1000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>157.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="36"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-05-21T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217962</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>615.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>1000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>238.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="36"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-13T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217894</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>1576.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>829.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="78"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217795</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>2199.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>567.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="44"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217757</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>120.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>500.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>139.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="11"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-24T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217610</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>171.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>1000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>162.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="36"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-14T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217566</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>999.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>2000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>534.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="36"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-06-03T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781934217160</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>59.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>500.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>164.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="1"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-01T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015476</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="124"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015469</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="124"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015421</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>1394.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>210.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="123"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-10T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015360</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>5.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>200.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>75.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="109"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-21T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015322</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>10.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>35.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="106"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661015148</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>445.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>200.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="48"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661014950</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>359.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>500.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>94.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="73"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-27T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661014851</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>151.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>400.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>184.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="100"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-31T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661014844</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>142.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>250.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>144.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="112"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-04-16T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661013861</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>103.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>500.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>275.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="77"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-06T22:00:00.000-08:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661013809</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>49.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>50.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="89"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661013779</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>734.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>175.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="89"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2018-09-10T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="107"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661013694</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>5715.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>5813.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="72"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>8116610135956</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>354.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>265.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="86"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="4"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="114"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661013427</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>13231.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>4134.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="1"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2018-08-16T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661010952</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>49.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>13.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="37"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2017-02-09T22:00:00.000-08:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661010594</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>81.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>200.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>65.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="5"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2019-03-27T22:00:00.000-07:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661010266</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>102.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>59.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="1"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnDateCustomField" internalId="custitem_warehouse_eta">
+                                    <platformCore:searchValue>2017-02-21T22:00:00.000-08:00</platformCore:searchValue>
+                                    <platformCore:customLabel>Warehouse Date (Estimated)</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="7"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>811661010044</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>425.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>331.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="1"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="1"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                </platformCore:searchRowList>
+            </platformCore:searchResult>
+        </searchResponse>
+    </soapenv:Body>
+</soapenv:Envelope>
