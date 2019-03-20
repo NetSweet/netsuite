@@ -48,6 +48,9 @@ module NetSuite
                 # skip all attributes: look for :basic and all :xxx_join
                 next if search_group.to_s.start_with?('@')
 
+                # avoids `RuntimeError: can't add a new key into hash during iteration`
+                record[search_group][:custom_field_list] ||= {custom_field: []}
+
                 record[search_group].each_pair do |attr_name, search_result|
                   # example pair:
                   # {
@@ -82,7 +85,6 @@ module NetSuite
                     else
                       # not a record field -- treat it as if it were a custom field
                       # otherwise it will be lost when we initialize
-                      record[search_group][:custom_field_list] ||= {custom_field: []}
                       custom_fields = record[search_group][:custom_field_list][:custom_field]
                       custom_fields = [custom_fields] if custom_fields.is_a?(Hash)
                       custom_fields << search_result.merge(internal_id: attr_name)
