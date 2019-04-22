@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2018_1.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_TSTDRV1115270_010420194222336661788757021_365d42</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getAllResponse xmlns="urn:messages_2018_1.platform.webservices.netsuite.com">
+      <platformCore:getAllResult xmlns:platformCore="urn:core_2018_1.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>5</platformCore:totalRecords>
+        <platformCore:recordList>
+          <platformCore:record xmlns:listAcct="urn:accounting_2018_1.lists.webservices.netsuite.com" internalId="1" xsi:type="listAcct:Currency">
+            <listAcct:name>US Dollar</listAcct:name>
+            <listAcct:symbol>USD</listAcct:symbol>
+            <listAcct:isBaseCurrency>true</listAcct:isBaseCurrency>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:overrideCurrencyFormat>false</listAcct:overrideCurrencyFormat>
+            <listAcct:displaySymbol>$</listAcct:displaySymbol>
+            <listAcct:symbolPlacement>_beforeNumber</listAcct:symbolPlacement>
+            <listAcct:locale>_unitedStatesEnglish</listAcct:locale>
+            <listAcct:formatSample>$1,234.56</listAcct:formatSample>
+            <listAcct:exchangeRate>1.0</listAcct:exchangeRate>
+            <listAcct:currencyPrecision>_two</listAcct:currencyPrecision>
+          </platformCore:record>
+          <platformCore:record xmlns:listAcct="urn:accounting_2018_1.lists.webservices.netsuite.com" internalId="2" xsi:type="listAcct:Currency">
+            <listAcct:name>British pound</listAcct:name>
+            <listAcct:symbol>GBP</listAcct:symbol>
+            <listAcct:isBaseCurrency>false</listAcct:isBaseCurrency>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:overrideCurrencyFormat>false</listAcct:overrideCurrencyFormat>
+            <listAcct:displaySymbol>£</listAcct:displaySymbol>
+            <listAcct:symbolPlacement>_beforeNumber</listAcct:symbolPlacement>
+            <listAcct:locale>_unitedKingdomEnglish</listAcct:locale>
+            <listAcct:formatSample>£1,234.56</listAcct:formatSample>
+            <listAcct:exchangeRate>2.365</listAcct:exchangeRate>
+            <listAcct:currencyPrecision>_two</listAcct:currencyPrecision>
+          </platformCore:record>
+          <platformCore:record xmlns:listAcct="urn:accounting_2018_1.lists.webservices.netsuite.com" internalId="3" xsi:type="listAcct:Currency">
+            <listAcct:name>Canadian Dollar</listAcct:name>
+            <listAcct:symbol>CAD</listAcct:symbol>
+            <listAcct:isBaseCurrency>false</listAcct:isBaseCurrency>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:overrideCurrencyFormat>false</listAcct:overrideCurrencyFormat>
+            <listAcct:displaySymbol>$</listAcct:displaySymbol>
+            <listAcct:symbolPlacement>_beforeNumber</listAcct:symbolPlacement>
+            <listAcct:locale>_canadaEnglish</listAcct:locale>
+            <listAcct:formatSample>$1,234.56</listAcct:formatSample>
+            <listAcct:exchangeRate>1.559</listAcct:exchangeRate>
+            <listAcct:currencyPrecision>_two</listAcct:currencyPrecision>
+          </platformCore:record>
+          <platformCore:record xmlns:listAcct="urn:accounting_2018_1.lists.webservices.netsuite.com" internalId="4" xsi:type="listAcct:Currency">
+            <listAcct:name>Euro</listAcct:name>
+            <listAcct:symbol>EUR</listAcct:symbol>
+            <listAcct:isBaseCurrency>false</listAcct:isBaseCurrency>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:overrideCurrencyFormat>false</listAcct:overrideCurrencyFormat>
+            <listAcct:displaySymbol>€</listAcct:displaySymbol>
+            <listAcct:symbolPlacement>_beforeNumber</listAcct:symbolPlacement>
+            <listAcct:locale>_franceFrenchEuro</listAcct:locale>
+            <listAcct:formatSample>€1 234,56</listAcct:formatSample>
+            <listAcct:exchangeRate>1.509</listAcct:exchangeRate>
+            <listAcct:currencyPrecision>_two</listAcct:currencyPrecision>
+          </platformCore:record>
+          <platformCore:record xmlns:listAcct="urn:accounting_2018_1.lists.webservices.netsuite.com" internalId="5" xsi:type="listAcct:Currency">
+            <listAcct:name>Polish Zloty</listAcct:name>
+            <listAcct:symbol>PLN</listAcct:symbol>
+            <listAcct:isBaseCurrency>true</listAcct:isBaseCurrency>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:overrideCurrencyFormat>false</listAcct:overrideCurrencyFormat>
+            <listAcct:displaySymbol>zł</listAcct:displaySymbol>
+            <listAcct:symbolPlacement>_beforeNumber</listAcct:symbolPlacement>
+            <listAcct:locale>_polandPolish</listAcct:locale>
+            <listAcct:formatSample>zł1 234,56</listAcct:formatSample>
+            <listAcct:exchangeRate>0.27</listAcct:exchangeRate>
+            <listAcct:currencyPrecision>_two</listAcct:currencyPrecision>
+          </platformCore:record>
+        </platformCore:recordList>
+      </platformCore:getAllResult>
+    </getAllResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
