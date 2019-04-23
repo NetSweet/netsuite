@@ -30,7 +30,7 @@ module NetSuite
       def self.call(credentials)
 
         soap_header = {}
-        if credentials[:application_id].present?
+        if !credentials[:application_id].nil? && !credentials[:application_id].empty?
           soap_header = NetSuite::Configuration.soap_header.dup
           soap_header['platformMsgs:ApplicationInfo'] ||= {}
           soap_header['platformMsgs:ApplicationInfo']['platformMsgs:applicationId'] = credentials[:application_id]
