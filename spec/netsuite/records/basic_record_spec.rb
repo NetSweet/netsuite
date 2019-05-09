@@ -25,6 +25,7 @@ describe 'basic records' do
       NetSuite::Records::CustomerDeposit,
       NetSuite::Records::NonInventoryPurchaseItem,
       NetSuite::Records::NonInventoryResaleItem,
+      NetSuite::Records::LotNumberedInventoryItem,
       NetSuite::Records::TaxGroup,
       NetSuite::Records::Folder,
       NetSuite::Records::CustomerCategory,
