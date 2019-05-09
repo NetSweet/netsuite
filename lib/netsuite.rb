@@ -310,23 +310,4 @@ module NetSuite
     NetSuite::Configuration.instance_eval(&block)
   end
 
-  def self.configure_from_env(&block)
-    NetSuite.configure do
-      reset!
-
-      email         ENV['NETSUITE_EMAIL']     unless ENV['NETSUITE_EMAIL'].nil?
-      password      ENV['NETSUITE_PASSWORD']  unless ENV['NETSUITE_PASSWORD'].nil?
-      account       ENV['NETSUITE_ACCOUNT']   unless ENV['NETSUITE_ACCOUNT'].nil?
-      role          ENV['NETSUITE_ROLE']      unless ENV['NETSUITE_ROLE'].nil?
-      api_version   ENV['NETSUITE_API']       unless ENV['NETSUITE_API'].nil?
-      sandbox       (ENV['NETSUITE_PRODUCTION'].nil? || ENV['NETSUITE_PRODUCTION'] != 'true')
-      wsdl          ENV['NETSUITE_WSDL']      unless ENV['NETSUITE_WSDL'].nil?
-      silent        (!ENV['NETSUITE_SILENT'].nil? && ENV['NETSUITE_SILENT'] == 'true')
-
-      read_timeout  100_000
-    end
-
-    self.configure(&block) if block
-  end
-
 end
