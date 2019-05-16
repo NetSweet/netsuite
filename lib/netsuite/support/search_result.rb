@@ -29,8 +29,19 @@ module NetSuite
         if @total_records > 0
           if response.body.has_key?(:record_list)
             # basic search results
-            record_list = response.body[:record_list][:record]
-            record_list = [record_list] unless record_list.is_a?(Array)
+
+            #  `recordList` node can contain several nested `record` nodes, only one node or be empty
+            #  so we have to handle all these cases:
+            #    * { record_list: nil }
+            #    * { record_list: { record: => {...} } }
+            #    * { record_list: { record: => [{...}, {...}, ...] } }
+            record_list = if response.body[:record_list].nil?
+              []
+            elsif response.body[:record_list][:record].is_a?(Array)
+              response.body[:record_list][:record]
+            else
+              [response.body[:record_list][:record]]
+            end
 
             record_list.each do |record|
               results << result_class.new(record)
