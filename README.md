@@ -60,7 +60,7 @@ This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/
 
 ## Configuration
 
-Not sure how to find your account id? Search for "web service preferences" in the NetSuite global search.
+Not sure how to find your account id? [Here's a guide.](http://mikebian.co/find-netsuite-web-services-account-number/)
 
 ```ruby
 NetSuite.configure do
