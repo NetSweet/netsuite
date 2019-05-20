@@ -6,7 +6,7 @@ describe NetSuite::Records::NonInventorySaleItem do
   it 'has the right fields' do
     [
       :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture, :created_date,
-      :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
+      :direct_revenue_posting, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
       :featured_description, :handling_cost, :handling_cost_units, :include_children, :is_donation_item, :is_fulfillable,
       :is_gco_compliant, :is_inactive, :is_online, :is_taxable, :item_id, :last_modified_date, :manufacturer, :manufacturer_addr1,
       :manufacturer_city, :manufacturer_state, :manufacturer_tariff, :manufacturer_tax_id, :manufacturer_zip, :matrix_option_list,
