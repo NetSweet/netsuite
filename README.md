@@ -60,14 +60,36 @@ This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/
 
 ## Configuration
 
-Not sure how to find your account id? [Here's a guide.](http://mikebian.co/find-netsuite-web-services-account-number/)
+The most important thing you'll need is your NetSuite account ID. Not sure how to find your account id? [Here's a guide.](http://mikebian.co/find-netsuite-web-services-account-number/)
+
+For most use-cases, the following configuration will be sufficient:
 
 ```ruby
 NetSuite.configure do
   reset!
 
-  # optional, defaults to 2011_2
-  api_version	'2012_1'
+  account  'TSTDRV1576318'
+  api_version '2018_2'
+
+  email 'email@example.com'
+  password 'password'
+  role 10
+
+  # use `NetSuite::Utilities.netsuite_data_center_urls('TSTDRV1576318')` to retrieve the URL
+  # you'll want to do this in a background proces and strip the protocol out of the return string
+  wsdl_domain 'tstdrv1576318.suitetalk.api.netsuite.com'
+end
+```
+
+The `wsdl_domain` configuration is most important. Note that if you use `wsdl` or other configuration options below, you'll want to look at the configuration source to understand more about how the different options interact with each other. Some of the configuration options will mutate the state of other options.
+
+Here's the various options that are are available for configuration:
+
+```ruby
+NetSuite.configure do
+  reset!
+
+  api_version	'2018_2'
 
   # optionally specify full wsdl URL (to switch to sandbox, for example)
   wsdl          "https://webservices.sandbox.netsuite.com/wsdl/v#{api_version}_0/netsuite.wsdl"
@@ -79,21 +101,18 @@ NetSuite.configure do
   # construct the full wsdl location - e.g. "https://#{wsdl_domain}/wsdl/v#{api_version}_0/netsuite.wsdl"
   wsdl_domain   "webservices.na2.netsuite.com"
 
-  # or specify the sandbox flag if you don't want to deal with specifying a full URL
-  sandbox       true
-
   # often the netsuite servers will hang which would cause a timeout exception to be raised
-  # if you don't mind waiting (e.g. processing NS via DJ), increasing the timeout should fix the issue
-  read_timeout  100000
+  # if you don't mind waiting (e.g. processing NS via a background worker), increasing the timeout should fix the issue
+  read_timeout  100_000
 
   # you can specify a file or file descriptor to send the log output to (defaults to STDOUT)
   log           File.join(Rails.root, 'log/netsuite.log')
 
-  # login information
-  email    	'email@domain.com'
-  password 	'password'
+  # password-based login information
+  email    	  'email@domain.com'
+  password 	  'password'
   account   	'12345'
-  role      	1111
+  role        1111
 
   # optional, ensures that read-only fields don't cause API errors
   soap_header	'platformMsgs:preferences' => {
