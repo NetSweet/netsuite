@@ -52,11 +52,11 @@ module NetSuite
                   :units_type, :sales_tax_code, :sale_unit, :tax_schedule, :parent
 
       field :custom_field_list, CustomFieldList
-      # :pricing_matrix,
+      field :pricing_matrix, PricingMatrix
       # :translations_list,
       # :matrix_option_list,
       # :item_options_list
-      # :subsidiary_list,
+      field :subsidiary_list, RecordRefList
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
