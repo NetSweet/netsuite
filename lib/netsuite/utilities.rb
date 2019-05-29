@@ -115,6 +115,7 @@ module NetSuite
           # https://github.com/stripe/stripe-netsuite/issues/815
           if !e.message.include?("Only one request may be made against a session at a time") &&
             !e.message.include?('java.util.ConcurrentModificationException') &&
+            !e.message.include?('java.lang.NullPointerException') &&
             !e.message.include?('java.lang.IllegalStateException') &&
             !e.message.include?('java.lang.reflect.InvocationTargetException') &&
             !e.message.include?('com.netledger.common.exceptions.NLDatabaseOfflineException') &&
