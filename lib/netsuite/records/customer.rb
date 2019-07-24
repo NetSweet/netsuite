@@ -13,7 +13,7 @@ module NetSuite
 
       fields :account_number, :aging, :alt_email, :alt_name, :alt_phone, :bill_pay,
         :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
-        :consol_aging, :consol_days_overdue, :contrib_pct, :credit_cards_list, :credit_hold_override,
+        :consol_aging, :consol_days_overdue, :contrib_pct, :credit_hold_override,
         :credit_limit, :date_created, :days_overdue, :default_address,
         :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
         :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
@@ -28,6 +28,7 @@ module NetSuite
         :vat_reg_number, :visits, :web_lead
 
       field :addressbook_list,  CustomerAddressbookList
+      field :credit_cards_list, CustomerCreditCardsList
       field :custom_field_list, CustomFieldList
       field :contact_roles_list, ContactAccessRolesList
       field :currency_list, CustomerCurrencyList
