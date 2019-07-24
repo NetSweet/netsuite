@@ -8,7 +8,7 @@ describe NetSuite::Records::Customer do
       :account_number, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
       :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
       :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
-      :consol_unbilled_orders, :contrib_pct, :credit_cards_list, :credit_hold_override, :credit_limit,
+      :consol_unbilled_orders, :contrib_pct, :credit_hold_override, :credit_limit,
       :date_created, :days_overdue, :default_address,
       :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
       :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
@@ -62,6 +62,27 @@ describe NetSuite::Records::Customer do
       customer_addressbook_list = NetSuite::Records::CustomerAddressbookList.new
       customer.addressbook_list = customer_addressbook_list
       expect(customer.addressbook_list).to eql(customer_addressbook_list)
+    end
+  end
+
+  describe '#credit_cards_list' do
+    it 'can be set from attributes' do
+      customer.credit_cards_list = {
+        :credit_cards => {
+          :internal_id       => '1234567',
+          :cc_default        => true,
+          :cc_expire_date    => '2099-12-01T00:00:00.000-08:00'
+        }
+      }
+
+      expect(customer.credit_cards_list).to be_kind_of(NetSuite::Records::CustomerCreditCardsList)
+      expect(customer.credit_cards_list.credit_cards.length).to eql(1)
+    end
+
+    it 'can be set from a CustomerCreditCardsList object' do
+      customer_credit_cards_list = NetSuite::Records::CustomerCreditCardsList.new
+      customer.credit_cards_list = customer_credit_cards_list
+      expect(customer.credit_cards_list).to eql(customer_credit_cards_list)
     end
   end
 
