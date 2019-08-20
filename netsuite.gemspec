@@ -18,5 +18,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'savon', ['>= 2.3.0', "< 2.5.0"]
 
   gem.add_development_dependency 'rspec', '~> 3.1.0'
+  gem.add_development_dependency 'rake', '< 11.0'
   gem.add_development_dependency('geminabox', "~> 0.12.4")
 end
