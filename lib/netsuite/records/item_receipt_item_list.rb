@@ -5,10 +5,7 @@ module NetSuite
 
       sublist :item, ItemReceiptItem
 
-      def items
-        self.item
-      end
-
+      alias :items :item
     end
   end
 end

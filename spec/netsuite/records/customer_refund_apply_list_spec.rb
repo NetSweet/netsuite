@@ -13,13 +13,11 @@ describe NetSuite::Records::CustomerRefundApplyList do
     end
 
     it 'can represent itself as a SOAP record' do
-      record = [
-        {
-          'tranCust:apply' => {
-            'tranCust:amount' => 10
-          }
-        }
-      ]
+      record = {
+        'tranCust:apply' => [{
+          'tranCust:amount' => 10
+        }]
+      }
       expect(list.to_record).to eql(record)
     end
   end

@@ -1,26 +1,13 @@
 module NetSuite
   module Records
-    class CustomerRefundApplyList
+    class CustomerRefundApplyList < Support::Sublist
       include Namespaces::TranCust
 
-      def initialize(attributes = {})
-        case attributes[:apply]
-        when Hash
-          applies << CustomerRefundApply.new(attributes[:apply])
-        when Array
-          attributes[:apply].each { |apply| applies << CustomerRefundApply.new(apply) }
-        end
-      end
+      attr_accessor :replace_all
 
-      def applies
-        @applies ||= []
-      end
+      sublist :apply, CustomerRefundApply
 
-      def to_record
-        applies.map do |apply|
-          { "#{record_namespace}:apply" => apply.to_record }
-        end
-      end
+      alias :applies :apply
 
     end
   end

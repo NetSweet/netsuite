@@ -9,7 +9,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListMkt
 
-      actions :get, :get_list, :add, :search, :delete, :update
+      actions :get, :get_list, :add, :search, :delete, :update, :upsert
 
       fields :code, :code_pattern, :description, :discount_type, :display_line_discounts, :end_date,
              :exclude_items, :is_inactive, :is_public, :minimum_order_amount, :name, :number_to_generate,

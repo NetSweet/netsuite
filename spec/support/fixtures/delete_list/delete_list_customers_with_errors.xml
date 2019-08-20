@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2011_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3392464_1220201115821392011296470399_67055c545d0</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <deleteListResponse xmlns="urn:messages_2_5.platform.webservices.netsuite.com">
+      <writeResponseList xmlns="urn:messages_2_5.platform.webservices.netsuite.com">
+        <writeResponse>
+          <ns1:status isSuccess="true" xmlns:ns1="urn:core_2_5.platform.webservices.netsuite.com"/>
+          <baseRef internalId="1" type="customer" xsi:type="ns2:RecordRef"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:ns2="urn:core_2_5.platform.webservices.netsuite.com"/>
+        </writeResponse>
+        <writeResponse>
+          <ns3:status isSuccess="false" xmlns:ns3="urn:core_2_5.platform.webservices.netsuite.com">
+            <ns3:statusDetail type="ERROR">
+              <ns3:code>USER_EXCEPTION</ns3:code>
+              <ns3:message>Invalid record: type=event,id=100015,scompid=TSTDRV96</ns3:message>
+            </ns3:statusDetail>
+          </ns3:status>
+          <baseRef internalId="bad_id" type="customer" xsi:type="ns4:RecordRef"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:ns4="urn:core_2_5.platform.webservices.netsuite.com"/>
+        </writeResponse>
+      </writeResponseList>
+    </deleteListResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

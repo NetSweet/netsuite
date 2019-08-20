@@ -26,7 +26,7 @@ describe NetSuite::Records::JournalEntry do
       attributes = {
         :custom_field => {
           :amount => 10,
-          :internal_id => 'custfield_amount'
+          :script_id => 'custfield_amount'
         }
       }
       entry.custom_field_list = attributes

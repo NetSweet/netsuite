@@ -1,9 +1,9 @@
 module NetSuite
   module Records
     class RoleList < Support::Sublist
-      include Namespaces::PlatformCommon
+      include Namespaces::ListEmp
 
-      sublist :roles, RecordRef
+      sublist :roles, Roles
 
       # role list is undocumented and has pretty funky XML:
 
@@ -19,7 +19,6 @@ module NetSuite
       #     </listEmp:selectedRole>
       #   </listEmp:roles>
       # </listEmp:rolesList>
-
     end
   end
 end

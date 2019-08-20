@@ -5,6 +5,7 @@ module NetSuite
 
       attr_reader :total_records
       attr_reader :total_pages
+      attr_reader :current_page
 
       # header from a basic customer search:
 
@@ -19,15 +20,16 @@ module NetSuite
       def initialize(response, result_class)
         @result_class = result_class
         @response = response
-        
+
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
+        @current_page = response.body[:page_index].to_i
 
         if @total_records > 0
           if response.body.has_key?(:record_list)
             # basic search results
             record_list = response.body[:record_list][:record]
-            record_list = [record_list] if @total_records == 1
+            record_list = [record_list] unless record_list.is_a?(Array)
 
             record_list.each do |record|
               results << result_class.new(record)
@@ -35,7 +37,7 @@ module NetSuite
           elsif response.body.has_key? :search_row_list
             # advanced search results
             record_list = response.body[:search_row_list][:search_row]
-            record_list = [record_list] if @total_records == 1
+            record_list = [record_list] unless record_list.is_a?(Array)
 
             record_list.each do |record|
               # TODO because of customFieldList we need to either make this recursive
@@ -50,12 +52,23 @@ module NetSuite
                   # extract the value from <SearchValue/> to make results easier to work with
 
                   if v.is_a?(Hash) && v.has_key?(:search_value)
-                    # search return values that are just internalIds are stored as attributes on the searchValue element
-                    if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
-                      record[search_group][k] = v[:search_value][:'@internal_id']
-                    else
-                      record[search_group][k] = v[:search_value]
-                    end
+                    # Here's an example of a record ref and string response
+
+                    # <platformCommon:entity>
+                    #   <platformCore:searchValue internalId="446515"/>
+                    # </platformCommon:entity>
+                    # <platformCommon:status>
+                    #   <platformCore:searchValue>open</platformCore:searchValue>
+                    # </platformCommon:status>
+
+                    # in both cases, header-level field's value should be set to the
+                    # child `searchValue` result: if it's a record ref, the internalId
+                    # attribute will be transitioned to the parent, and in the case
+                    # of a string response the parent node's value will be to the string
+
+                    record[search_group][k] = v[:search_value]
+                  else
+                    # NOTE need to understand this case more, in testing, only the namespace definition hits this condition
                   end
                 end
               end
@@ -87,6 +100,7 @@ module NetSuite
 
           @results = next_search.results
           @response = next_search.response
+          @current_page = response.body[:page_index].to_i
         end
 
         yield results

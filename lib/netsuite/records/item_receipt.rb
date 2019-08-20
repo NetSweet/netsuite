@@ -4,21 +4,32 @@ module NetSuite
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
-      include Support::Actions      
+      include Support::Actions
       include Namespaces::TranPurch
 
-      actions :get, :get_list, :add, :initialize, :update, :delete, :search, :upsert
+      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
 
-      fields :created_date, :currency_name, :exchange_rate, :landed_cost_per_line, :last_modified_date, :memo,
-        :tran_date, :tran_id
+      fields :created_date, :currency_name, :exchange_rate, :landed_cost_per_line, :last_modified_date, :memo, :tran_date, :tran_id
 
       field :custom_field_list, CustomFieldList
       field :item_list,         ItemReceiptItemList
 
-      record_refs :created_from, :currency, :custom_form, :entity, :partner, :posting_period, :subsidiary  
+
+      record_refs :created_from, :currency, :custom_form, :entity, :landed_cost_method, :partner, :posting_period, :subsidiary
+
+
+      # TODO
+      # :expense_list
+      # :landed_costs_list
+
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
+
+
+
+
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
@@ -28,7 +39,12 @@ module NetSuite
 
       def self.search_class_name
         "Transaction"
-      end 
+      end
+
+      def self.search_class_namespace
+        'tranSales'
+      end
+
     end
   end
 end

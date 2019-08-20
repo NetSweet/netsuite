@@ -6,13 +6,17 @@ module NetSuite
       include Support::Records
       include Namespaces::TranPurch
 
-      fields :bin_numbers, :currency, :description, :expiration_date, :is_drop_shipment, :item_name, :item_receive,
-        :job_name, :line, :on_hand, :order_line, :quantity, :quantity_remaining, :rate, :restock, :serial_numbers,
-        :unit_cost_override, :units_display
+      fields :bin_numbers, :currency, :description, :expiration_date, :is_drop_shipment,
+             :item_name, :item_receive, :job_name, :line, :on_hand, :options, :order_line,
+             :quantity, :quantity_remaining, :rate, :restock, :serial_numbers,
+             :unit_cost_override, :units_display
+
+      record_refs :bill_variance_status, :inventory_detail, :item, :landed_cost,
+                  :location, :klass
 
       field :options, CustomFieldList
+      field :custom_field_list, CustomFieldList
 
-      record_refs :item, :klass, :location
 
       def initialize(attributes_or_record = {})
         case attributes_or_record

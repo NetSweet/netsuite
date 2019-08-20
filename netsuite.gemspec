@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['ryan.moran@gmail.com', 'mike@cliffsidemedia.com']
   gem.description   = %q{NetSuite SuiteTalk API Wrapper}
   gem.summary       = %q{NetSuite SuiteTalk API (SOAP) Wrapper}
-  gem.homepage      = 'https://github.com/RevolutionPrep/netsuite'
+  gem.homepage      = 'https://github.com/NetSweet/netsuite'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
@@ -15,7 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Netsuite::VERSION
 
-  gem.add_dependency 'savon', '~> 2.3.0'
+  gem.add_dependency 'savon', ['>= 2.3.0', "< 2.5.0"]
 
   gem.add_development_dependency 'rspec', '~> 3.1.0'
+  gem.add_development_dependency('geminabox', "~> 0.12.4")
 end

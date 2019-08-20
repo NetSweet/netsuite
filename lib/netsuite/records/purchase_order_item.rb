@@ -9,14 +9,16 @@ module NetSuite
       include Support::Records
       include Namespaces::TranPurch
 
-      fields :amount, :description, :expected_receipt_date, :gross_amt, :is_billable, :is_closed, :line, :match_bill_to_receipt,
-        :quantity, :quantity_available, :quantity_billed, :quantity_on_hand, :quantity_received, :rate, :serial_numbers, :tax1_amt,
-        :tax_rate1, :tax_rate2, :vendor_name
+      fields :amount, :description, :expected_receipt_date, :gross_amt, :is_billable,
+             :is_closed, :line, :match_bill_to_receipt, :quantity, :quantity_available,
+             :quantity_billed, :quantity_on_hand, :quantity_received, :rate, :serial_numbers,
+             :tax1_amt, :tax_rate1, :tax_rate2, :vendor_name
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :created_from, :customer, :department, :item, :klass, :landed_cost_category, :location, :purchase_contract,
-        :tax_code, :units
+      record_refs :bill_variance_status, :klass, :created_from, :customer, :department,
+                  :inventory_detail, :item, :klass, :landed_cost_category, :linked_order_list,
+                  :location, :options, :purchase_contract, :tax_code, :units
 
       def initialize(attributes_or_record = {})
         case attributes_or_record

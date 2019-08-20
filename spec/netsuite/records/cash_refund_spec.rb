@@ -6,7 +6,7 @@ describe NetSuite::Records::CashRefund do
 
   it 'has all the right fields' do
     [
-      :tran_date, :to_be_emailed
+      :tran_date, :to_be_emailed, :memo, :tran_id
     ].each do |field|
       expect(cashrefund).to have_field(field)
     end
@@ -14,7 +14,7 @@ describe NetSuite::Records::CashRefund do
 
   it 'has all the right record refs' do
     [
-      :entity, :custom_form, :payment_method, :created_from
+      :entity, :custom_form, :payment_method, :created_from, :klass
     ].each do |record_ref|
       expect(cashrefund).to have_record_ref(record_ref)
     end
