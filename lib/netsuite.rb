@@ -112,6 +112,8 @@ module NetSuite
     autoload :CustomerAddressbook,              'netsuite/records/customer_addressbook'
     autoload :CustomerAddressbookList,          'netsuite/records/customer_addressbook_list'
     autoload :CustomerCategory,                 'netsuite/records/customer_category'
+    autoload :CustomerCreditCards,              'netsuite/records/customer_credit_cards'
+    autoload :CustomerCreditCardsList,          'netsuite/records/customer_credit_cards_list'
     autoload :CustomerCurrency,                 'netsuite/records/customer_currency'
     autoload :CustomerCurrencyList,             'netsuite/records/customer_currency_list'
     autoload :CustomerDeposit,                  'netsuite/records/customer_deposit'
@@ -206,8 +208,10 @@ module NetSuite
     autoload :Location,                         'netsuite/records/location'
     autoload :LocationsList,                    'netsuite/records/locations_list'
     autoload :LotNumberedAssemblyItem,          'netsuite/records/lot_numbered_assembly_item'
+    autoload :LotNumberedInventoryItem,         'netsuite/records/lot_numbered_inventory_item'
     autoload :MatrixOptionList,                 'netsuite/records/matrix_option_list'
     autoload :MemberList,                       'netsuite/records/member_list'
+    autoload :Message,                          'netsuite/records/message'
     autoload :NonInventorySaleItem,             'netsuite/records/non_inventory_sale_item'
     autoload :NonInventoryPurchaseItem,         'netsuite/records/non_inventory_purchase_item'
     autoload :NonInventoryResaleItem,           'netsuite/records/non_inventory_resale_item'
@@ -261,6 +265,7 @@ module NetSuite
     autoload :Subsidiary,                       'netsuite/records/subsidiary'
     autoload :SubtotalItem,                     'netsuite/records/subtotal_item'
     autoload :SupportCase,                      'netsuite/records/support_case'
+    autoload :SupportCaseType,                  'netsuite/records/support_case_type'
     autoload :TaxType,                          'netsuite/records/tax_type'
     autoload :TaxGroup,                         'netsuite/records/tax_group'
     autoload :Task,                             'netsuite/records/task'
@@ -307,25 +312,6 @@ module NetSuite
 
   def self.configure(&block)
     NetSuite::Configuration.instance_eval(&block)
-  end
-
-  def self.configure_from_env(&block)
-    NetSuite.configure do
-      reset!
-
-      email         ENV['NETSUITE_EMAIL']     unless ENV['NETSUITE_EMAIL'].nil?
-      password      ENV['NETSUITE_PASSWORD']  unless ENV['NETSUITE_PASSWORD'].nil?
-      account       ENV['NETSUITE_ACCOUNT']   unless ENV['NETSUITE_ACCOUNT'].nil?
-      role          ENV['NETSUITE_ROLE']      unless ENV['NETSUITE_ROLE'].nil?
-      api_version   ENV['NETSUITE_API']       unless ENV['NETSUITE_API'].nil?
-      sandbox       (ENV['NETSUITE_PRODUCTION'].nil? || ENV['NETSUITE_PRODUCTION'] != 'true')
-      wsdl          ENV['NETSUITE_WSDL']      unless ENV['NETSUITE_WSDL'].nil?
-      silent        (!ENV['NETSUITE_SILENT'].nil? && ENV['NETSUITE_SILENT'] == 'true')
-
-      read_timeout  100_000
-    end
-
-    self.configure(&block) if block
   end
 
 end
