@@ -78,7 +78,7 @@ module NetSuite
       begin
         count += 1
         yield
-      rescue Exception => e
+      rescue StandardError => e
         exceptions_to_retry = [
           Errno::ECONNRESET,
           Errno::ETIMEDOUT,
