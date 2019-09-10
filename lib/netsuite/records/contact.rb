@@ -13,7 +13,7 @@ module NetSuite
              :entity_id, :phonetic_name, :alt_email, :office_phone, :home_phone, :mobile_phone, :supervisor_phone,
              :assistant_phone, :comments, :bill_pay, :is_private, :is_inactive
 
-      field :addressbook_list,  CustomerAddressbookList
+      field :addressbook_list,  ContactAddressbookList
       field :custom_field_list, CustomFieldList
       # field :subscriptions_list, SubscriptionsList
       # field :category_list, CategoryList
@@ -24,6 +24,7 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

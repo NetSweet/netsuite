@@ -56,7 +56,12 @@ module NetSuite
         fresh_record = self.class.get(self.internal_id, credentials)
 
         self.attributes = fresh_record.send(:attributes)
-        self.external_id = fresh_record.external_id
+
+        # gift cards do not have an external ID
+        if fresh_record.respond_to?(:external_id)
+          self.external_id = fresh_record.external_id
+        end
+
         self.errors = nil
 
         self

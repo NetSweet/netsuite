@@ -37,6 +37,8 @@ module NetSuite
           hash['platformMsgs:record']['@platformMsgs:externalId'] = @object.external_id
         end
 
+        # setting the internal ID on upsert will result in `CANT_SET_INTERNALID`
+
         hash
       end
 

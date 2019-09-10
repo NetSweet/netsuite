@@ -1,5 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/login.html
 
+
 module NetSuite
   module Actions
     class Login
@@ -27,14 +28,32 @@ module NetSuite
       # </platformCore:wsRoleList>
 
       def self.call(credentials)
+
+        soap_header = {}
+        if !credentials[:application_id].nil? && !credentials[:application_id].empty?
+          soap_header = NetSuite::Configuration.soap_header.dup
+          soap_header['platformMsgs:ApplicationInfo'] ||= {}
+          soap_header['platformMsgs:ApplicationInfo']['platformMsgs:applicationId'] = credentials[:application_id]
+        end
+
         passport = NetSuite::Configuration.auth_header.dup
+
+
+        passport['platformMsgs:passport'] ||= {}
         passport['platformMsgs:passport']['platformCore:email'] = credentials[:email] || ''
         passport['platformMsgs:passport']['platformCore:password'] = credentials[:password] || ''
         passport['platformMsgs:passport']['platformCore:role'] = credentials[:role] || ''
+
+        if passport['platformMsgs:tokenPassport']
+          passport['platformMsgs:passport']['platformCore:account'] ||= passport['platformMsgs:tokenPassport']['platformCore:account']
+        end
+
         passport['platformMsgs:passport']['platformCore:account'] = credentials[:account] if !credentials[:account].nil?
 
+        passport.delete('platformMsgs:tokenPassport')
+
         begin
-          response = NetSuite::Configuration.connection(soap_header: {}).call :login, message: passport
+          response = NetSuite::Configuration.connection(soap_header: soap_header).call :login, message: passport
         rescue Savon::SOAPFault => e
           error_details = e.to_hash[:fault]
 

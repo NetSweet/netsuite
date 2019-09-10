@@ -13,14 +13,15 @@ module NetSuite
       actions :get, :get_list, :search
 
       fields :base_currency, :effective_date, :exchange_rate, :transaction_currency
-      
+
       record_refs :base_currency, :transaction_currency
-      
+
       #field :base_currency, Currency
       #field :transaction_currency, Currency
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

@@ -10,24 +10,39 @@ module NetSuite
       include Support::Records
       include Namespaces::TranCust
 
-
-      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert
+      actions :get, :get_list, :initialize, :add, :delete, :update, :upsert, :search
 
       fields :created_date, :last_modified_date, :status, :payment, :tran_date, :exchange_rate, :undep_funds, :memo,
-             :check_num, :klass, :currency_name, :is_recurring_payment, :charge_it
+             :check_num, :klass, :currency_name, :is_recurring_payment, :tran_id, :auth_code,
+             :cc_approved, :cc_avs_street_match, :cc_avs_zip_match, :cc_expire_date, :cc_is_purchase_card_bin, :cc_name, :cc_number,
+             :cc_process_as_purchase_card, :cc_security_code, :cc_security_code_match, :cc_street, :cc_zip_code, :charge_it
 
       field :custom_field_list, CustomFieldList
+      field :apply_list,        CustomerDepositApplyList
+      # accountingBookDetailList
 
       record_refs :customer, :sales_order, :account, :department, :payment_method,
-                  :custom_form, :currency, :posting_period, :subsidiary
+                  :custom_form, :currency, :posting_period, :subsidiary, :location,
+
+                  # only available in an advanced search result
+                  :deposit_transaction
 
       attr_reader :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
+      end
+
+      def self.search_class_name
+        "Transaction"
+      end
+
+      def self.search_class_namespace
+        'tranSales'
       end
     end
   end

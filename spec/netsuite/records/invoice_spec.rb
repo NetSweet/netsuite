@@ -9,14 +9,14 @@ describe NetSuite::Records::Invoice do
     [
       :balance, :bill_address,
       :billing_schedule, :contrib_pct, :created_date, :currency_name,
-      :deferred_revenue, :discount_amount, :discount_date, :discount_item, :discount_rate,
+      :deferred_revenue, :discount_amount, :discount_date, :discount_rate,
       :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
       :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
       :exp_cost_disc_taxable, :exp_cost_discount, :exp_cost_list, :exp_cost_tax_code, :exp_cost_tax_rate_1,
       :exp_cost_tax_rate_2, :fax, :fob, :gift_cert_redemption_list, :handling_tax_1_rate,
       :handling_tax_2_rate, :handling_tax_code, :is_taxable, :item_cost_disc_amount, :item_cost_disc_print,
       :item_cost_disc_rate, :item_cost_disc_tax_1_amt, :item_cost_disc_taxable, :item_cost_discount, :item_cost_list,
-      :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :job, :last_modified_date,
+      :item_cost_tax_code, :item_cost_tax_rate_1, :item_cost_tax_rate_2, :last_modified_date,
       :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
       :other_ref_num, :partners_list, :rev_rec_end_date,
       :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
@@ -43,8 +43,8 @@ describe NetSuite::Records::Invoice do
 
   it 'has the right record_refs' do
     [
-      :account, :bill_address_list, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
-      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary
+      :account, :bill_address_list, :job, :custom_form, :department, :entity, :klass, :posting_period, :ship_address_list, :terms,
+      :created_from, :location, :sales_rep, :ship_method, :tax_item, :partner, :lead_source, :promo_code, :subsidiary, :discount_item
     ].each do |record_ref|
       expect(invoice).to have_record_ref(record_ref)
     end

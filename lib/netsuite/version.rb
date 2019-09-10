@@ -1,3 +1,3 @@
-module Netsuite
-  VERSION = '0.7.0'
+module NetSuite
+  VERSION = '0.8.5'
 end

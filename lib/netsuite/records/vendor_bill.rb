@@ -11,7 +11,7 @@ module NetSuite
 
       fields :created_date, :credit_limit, :currency_name, :discount_amount, :discount_date, :due_date, :exchange_rate,
              :landed_costs_list, :landed_cost_method, :landed_cost_per_line, :last_modified_date, :memo, :tax_total,
-             :tax_2_total, :transaction_number, :tran_date, :tran_id, :user_total, :vat_reg_num
+             :tax_2_total, :transaction_number, :tran_date, :tran_id, :user_total, :vat_reg_num, :payment_hold, :amount_remaining
 
       field :custom_field_list,   CustomFieldList
       field :expense_list,        VendorBillExpenseList
@@ -25,6 +25,7 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

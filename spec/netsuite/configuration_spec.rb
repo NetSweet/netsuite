@@ -29,13 +29,33 @@ describe NetSuite::Configuration do
   end
 
   describe '#connection' do
-    it 'returns a Savon::Client object that allows requests to the service' do
+    before(:each) do
       # reset clears out the password info
-      config.email 'me@example.com'
-      config.password 'me@example.com'
-      config.account 1023
+      config.email       'me@example.com'
+      config.password    'me@example.com'
+      config.account     1023
+      config.wsdl        "my_wsdl"
+      config.api_version "2012_2"
+    end
 
+    it 'returns a Savon::Client object that allows requests to the service' do
       expect(config.connection).to be_kind_of(Savon::Client)
+    end
+
+    it 'caches the client' do
+      expect(config.wsdl_cache).to be_empty
+      conn = config.connection
+
+      expect(
+        config.wsdl_cache.fetch(config.wsdl)
+      ).to eq(conn)
+    end
+
+    it 'uses cached wsdls' do
+      allow(config).to receive(:cached_wsdl)
+      config.connection
+
+      expect(config).to have_received(:cached_wsdl)
     end
   end
 
@@ -52,7 +72,7 @@ describe NetSuite::Configuration do
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to match(/.*\/netsuite\/wsdl\/2011_2\.wsdl/)
+        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
       end
     end
 
@@ -71,6 +91,77 @@ describe NetSuite::Configuration do
         config.wsdl_domain = 'system.na1.netsuite.com'
 
         expect(config.wsdl).to eql('https://system.na1.netsuite.com/wsdl/v2014_1_0/netsuite.wsdl')
+      end
+    end
+
+    context '#cache_wsdl' do
+      it 'stores the client' do
+        expect(config.wsdl_cache).to be_empty
+        config.cache_wsdl("whatevs")
+        expect(config.wsdl_cache).to eq(
+          {config.wsdl => "whatevs"}
+        )
+      end
+
+      it 'doesnt write over old values' do
+        config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
+          wsdl_cache[wsdl] = "old value"
+        end
+        config.cache_wsdl("new value")
+
+        expect(config.wsdl_cache.values.first).to eq("old value")
+      end
+
+      it 'handles a nil cache' do
+        config.class_eval { @wsdl_cache = nil }
+        config.cache_wsdl("whatevs")
+        expect(config.wsdl_cache).to eq(
+          {config.wsdl => "whatevs"}
+        )
+      end
+
+      it 'can cache multiple values' do
+        config.class_exec("2020_2", "fake wsdl") do |api, wsdl|
+          wsdl_cache[wsdl] = "old value"
+        end
+        expect(config.wsdl_cache.keys.count).to eq 1
+        config.cache_wsdl("new value")
+
+        expect(config.wsdl_cache.keys.count).to eq 2
+      end
+    end
+
+    context '#cached_wsdl' do
+      it 'returns wsdl (xml)' do
+        config.class_exec(config.api_version, config.wsdl) do |api, wsdl|
+          wsdl_cache[wsdl] = "xml wsdl string"
+        end
+        expect( config.cached_wsdl ).to eq "xml wsdl string"
+      end
+
+      it 'stores client xml' do
+        client = double(:savon_client)
+        allow(client).to receive(:is_a?).with(String).and_return(false)
+        allow(client).to receive(:is_a?).with(Savon::Client).and_return(true)
+        wsdl_dbl = double(:wsdl, xml: "xml wsdl")
+        client.instance_exec(wsdl_dbl) {|wsdl| @wsdl = wsdl }
+        config.class_exec(config.api_version, config.wsdl, client) do |api, wsdl, c|
+          wsdl_cache[wsdl] = c
+        end
+
+        expect( config.wsdl_cache.values.first ).to eq client
+        expect( config.cached_wsdl ).to eq "xml wsdl"
+        expect( config.wsdl_cache.values.first ).to eq "xml wsdl"
+      end
+
+      it 'handles a nil cache' do
+        config.class_eval { @wsdl_cache = nil }
+        expect( config.cached_wsdl ).to eq nil
+      end
+
+      it 'handles an empty cache' do
+        expect(config.wsdl_cache).to be_empty
+        expect( config.cached_wsdl ).to eq nil
       end
     end
   end
@@ -214,8 +305,8 @@ describe NetSuite::Configuration do
 
   describe '#api_version' do
     context 'when no api_version is defined' do
-      it 'defaults to 2011_2' do
-        expect(config.api_version).to eq('2011_2')
+      it 'defaults to 2015_1' do
+        expect(config.api_version).to eq('2015_1')
       end
     end
   end
@@ -223,8 +314,12 @@ describe NetSuite::Configuration do
   describe '#api_version=' do
     context 'when api version is defined' do
       it 'sets the api_version of the application' do
-        config.api_version = '2012_1'
-        expect(config.api_version).to eq('2012_1')
+        # retrieve wsdl to ensure setting the api works when the wsdl is cached
+        config.wsdl
+        config.api_version = '1980_1'
+
+        expect(config.api_version).to eq('1980_1')
+        expect(config.wsdl).to include('1980_1')
       end
     end
   end
@@ -252,13 +347,46 @@ describe NetSuite::Configuration do
   end
 
   it '#wsdl_domain' do
+    # NOTE wsdl is tested since it uses wsdl_domain
     expect(config.wsdl_domain).to eq('webservices.netsuite.com')
 
-    config.wsdl_domain = 'custom.domain.com'
+    config.wsdl_domain('custom.domain.com')
     expect(config.wsdl_domain).to eq('custom.domain.com')
+    expect(config.wsdl).to include('custom.domain.com')
 
     config.sandbox = true
     expect(config.wsdl_domain).to eq('webservices.sandbox.netsuite.com')
+    expect(config.wsdl).to include('webservices.sandbox.netsuite.com')
+  end
+
+  describe '#logger=' do
+    let(:logger) { Logger.new(nil) }
+
+    before do
+      config.logger = logger
+    end
+
+    it 'sets logger' do
+      expect(config.logger).to eql(logger)
+    end
+  end
+
+  describe 'timeouts' do
+    it 'has defaults' do
+      expect(config.read_timeout).to eql(60)
+      expect(config.open_timeout).to be_nil
+    end
+
+    it 'sets timeouts' do
+      config.read_timeout = 100
+      config.open_timeout = 60
+
+      expect(config.read_timeout).to eql(100)
+      expect(config.open_timeout).to eql(60)
+
+      # ensure no exception is raised
+      config.connection
+    end
   end
 
 end

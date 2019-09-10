@@ -7,10 +7,10 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :delete, :search, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert
 
       fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :country_of_manufacture,
-        :created_date, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
+        :created_date, :direct_revenue_posting, :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap,
         :featured_description, :handling_cost, :handling_cost_units, :include_children, :is_donation_item, :is_fulfillable,
         :is_gco_compliant, :is_inactive, :is_online, :is_taxable, :item_id, :last_modified_date, :manufacturer,
         :manufacturer_addr1, :manufacturer_city, :manufacturer_state, :manufacturer_tariff, :manufacturer_tax_id,
@@ -37,6 +37,7 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

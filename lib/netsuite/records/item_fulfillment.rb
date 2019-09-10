@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :get_list, :add, :initialize, :update, :delete, :search, :upsert
+      actions :get, :get_list, :add, :initialize, :update, :delete, :search, :upsert, :upsert_list
 
       fields :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
         :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential,
@@ -30,6 +30,7 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
+      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

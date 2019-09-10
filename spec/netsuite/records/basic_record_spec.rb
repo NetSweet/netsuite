@@ -4,6 +4,8 @@ describe 'basic records' do
   let(:basic_record_list) {
     [
       NetSuite::Records::Currency,
+      NetSuite::Records::CashSale,
+      NetSuite::Records::CashRefund,
       NetSuite::Records::Location,
       NetSuite::Records::JobStatus,
       NetSuite::Records::TimeBill,
@@ -23,6 +25,7 @@ describe 'basic records' do
       NetSuite::Records::CustomerDeposit,
       NetSuite::Records::NonInventoryPurchaseItem,
       NetSuite::Records::NonInventoryResaleItem,
+      NetSuite::Records::LotNumberedInventoryItem,
       NetSuite::Records::TaxGroup,
       NetSuite::Records::Folder,
       NetSuite::Records::CustomerCategory,
@@ -40,6 +43,27 @@ describe 'basic records' do
       NetSuite::Records::SubtotalItem,
       NetSuite::Records::Term,
       NetSuite::Records::Note,
+      NetSuite::Records::OtherChargeSaleItem,
+      NetSuite::Records::GiftCertificateItem,
+      NetSuite::Records::ReturnAuthorization,
+      NetSuite::Records::SerializedInventoryItem,
+      NetSuite::Records::DepositApplication,
+      NetSuite::Records::InventoryAdjustment,
+      NetSuite::Records::VendorReturnAuthorization,
+      NetSuite::Records::AssemblyBuild,
+      NetSuite::Records::AssemblyUnbuild,
+      NetSuite::Records::AssemblyComponent,
+      NetSuite::Records::InventoryNumber,
+      NetSuite::Records::PriceLevel,
+      NetSuite::Records::LotNumberedAssemblyItem,
+      NetSuite::Records::InboundShipment,
+      NetSuite::Records::InterCompanyJournalEntry,
+      NetSuite::Records::BinTransfer,
+      NetSuite::Records::SerializedAssemblyItem,
+      NetSuite::Records::CustomerStatus,
+      NetSuite::Records::TransactionBodyCustomField,
+      NetSuite::Records::TransactionColumnCustomField,
+      NetSuite::Records::EntityCustomField
     ]
   }
 

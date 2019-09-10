@@ -21,7 +21,6 @@ module NetSuite
         @result_class = result_class
         @response = response
         @credentials = credentials
-        
         @total_records = response.body[:total_records].to_i
         @total_pages = response.body[:total_pages].to_i
         @current_page = response.body[:page_index].to_i
@@ -29,8 +28,19 @@ module NetSuite
         if @total_records > 0
           if response.body.has_key?(:record_list)
             # basic search results
-            record_list = response.body[:record_list][:record]
-            record_list = [record_list] unless record_list.is_a?(Array)
+
+            #  `recordList` node can contain several nested `record` nodes, only one node or be empty
+            #  so we have to handle all these cases:
+            #    * { record_list: nil }
+            #    * { record_list: { record: => {...} } }
+            #    * { record_list: { record: => [{...}, {...}, ...] } }
+            record_list = if response.body[:record_list].nil?
+              []
+            elsif response.body[:record_list][:record].is_a?(Array)
+              response.body[:record_list][:record]
+            else
+              [response.body[:record_list][:record]]
+            end
 
             record_list.each do |record|
               results << result_class.new(record)
@@ -53,14 +63,29 @@ module NetSuite
                   # extract the value from <SearchValue/> to make results easier to work with
 
                   if v.is_a?(Hash) && v.has_key?(:search_value)
-                    # search return values that are just internalIds are stored as attributes on the searchValue element
-                    if v[:search_value].is_a?(Hash) && v[:search_value].has_key?(:'@internal_id')
-                      record[search_group][k] = v[:search_value][:'@internal_id']
-                    else
-                      record[search_group][k] = v[:search_value]
-                    end
+                    # Here's an example of a record ref and string response
+
+                    # <platformCommon:entity>
+                    #   <platformCore:searchValue internalId="446515"/>
+                    # </platformCommon:entity>
+                    # <platformCommon:status>
+                    #   <platformCore:searchValue>open</platformCore:searchValue>
+                    # </platformCommon:status>
+
+                    # in both cases, header-level field's value should be set to the
+                    # child `searchValue` result: if it's a record ref, the internalId
+                    # attribute will be transitioned to the parent, and in the case
+                    # of a string response the parent node's value will be to the string
+
+                    record[search_group][k] = v[:search_value]
+                  else
+                    # NOTE need to understand this case more, in testing, only the namespace definition hits this condition
                   end
                 end
+              end
+
+              if record[:basic][:internal_id]
+                record[:basic][:internal_id] = record[:basic][:internal_id][:@internal_id]
               end
 
               result_wrapper = result_class.new(record.delete(:basic))

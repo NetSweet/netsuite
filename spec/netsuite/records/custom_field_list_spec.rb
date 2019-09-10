@@ -7,6 +7,48 @@ describe NetSuite::Records::CustomFieldList do
     expect(list.custom_fields).to be_kind_of(Array)
   end
 
+  it 'accepts a collection of CustomField records' do
+    field = NetSuite::Records::CustomField.new({:value=>{:internal_id=>"5", :type_id=>"103"},
+             :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
+    list = described_class.new(custom_field: [field])
+    expect(list.custom_fields).to eq([field])
+  end
+
+  context 'initializing with custom field attributes without a type' do
+    it 'does not mutate the attributes' do
+      field = {:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category"}
+      described_class.new(custom_field: [field])
+      expect(field).to eq({:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category"})
+    end
+  end
+
+  context 'initializing with custom field attributes and a type' do
+    it 'does not mutate the attributes' do
+      field = {:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"}
+      described_class.new(custom_field: [field])
+      expect(field).to eq({:value=>{:internal_id=>"5", :type_id=>"103"},
+               :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
+    end
+  end
+
+  context 'writing convience methods' do
+    it "should create a custom field entry when none exists" do
+      list.custrecord_somefield = 'a value'
+      list.custom_fields.size.should == 1
+      list.custom_fields.first.value.should == 'a value'
+      list.custom_fields.first.type.should == 'platformCore:StringCustomFieldRef'
+    end
+
+    # https://github.com/NetSweet/netsuite/issues/325
+    it 'should create a custom field entry when some fields exist without scriptIds' do
+      list.custom_fields << NetSuite::Records::CustomField.new
+      list.custrecord_somefield = 123
+    end
+  end
+
   context 'custom field internalId-to-scriptId transition at WSDL 2013_2:' do
     before(:context) { @reset = NetSuite::Configuration.api_version }
     after(:context)  { NetSuite::Configuration.api_version = @reset }
@@ -102,7 +144,7 @@ describe NetSuite::Records::CustomFieldList do
 
     it 'can represent itself as a SOAP record' do
       record = {
-      "platformCore:customField" => [
+        "platformCore:customField" => [
           {
             'platformCore:value' => 'false',
             "@internalId" => "custentity_registeredonline",
@@ -123,6 +165,80 @@ describe NetSuite::Records::CustomFieldList do
 
       expect(list.to_record).to eql(record)
       expect(list.to_record.length).to eq(1)
+    end
+
+    context "when custom field list is initialised from a hash" do
+      let(:attributes) do
+        {
+          custom_field: [
+            {
+              script_id: "custentity_registeredonline",
+              type: "platformCore:SelectCustomFieldRef",
+              value: { internal_id: 200, type_id: 1 },
+            },
+            {
+              script_id: "custbody_salesclassification",
+              type: "platformCore:StringCustomFieldRef",
+              value: "foobar"
+            },
+            {
+              script_id: 'custbody_multipleselectfield',
+              type: "platformCore:MultiSelectCustomFieldRef",
+              value: [
+                {
+                  internal_id: 405,
+                  type_id: 157
+                },
+                {
+                  internal_id: 419,
+                  type_id: 157
+                }
+              ]
+            }
+          ]
+        }
+      end
+
+      it "can represent itself as a SOAP record" do
+        list = NetSuite::Records::CustomFieldList.new(attributes)
+
+        record = {
+          "platformCore:customField" => [
+            {
+              "@scriptId" => "custentity_registeredonline",
+              "@xsi:type" => "platformCore:SelectCustomFieldRef",
+              "platformCore:value" => {:@internalId => 200, :@typeId => "1"},
+            },
+            {
+              "@scriptId" => "custbody_salesclassification",
+              "@xsi:type" => "platformCore:StringCustomFieldRef",
+              "platformCore:value" => "foobar",
+            },
+            {
+              '@scriptId' => 'custbody_multipleselectfield',
+              '@xsi:type' => 'platformCore:MultiSelectCustomFieldRef',
+              'platformCore:value' => [
+                {
+                  :@internalId => 405,
+                  :@typeId => "157"
+                },
+                {
+                  :@internalId => 419,
+                  :@typeId => "157"
+                }
+              ]
+            }
+          ]
+        }
+
+        # field accessors are tested elsewhere, but let's run tests here to check various field types
+        expect(list).to respond_to(:custbody_multipleselectfield)
+        expect(list).to respond_to(:custbody_salesclassification)
+        expect(list).to respond_to(:custentity_registeredonline)
+
+        expect(list.to_record).to eql(record)
+        expect(list.to_record.length).to eq(1)
+      end
     end
 
     # https://github.com/NetSweet/netsuite/issues/182

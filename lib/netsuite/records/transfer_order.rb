@@ -13,7 +13,7 @@ module NetSuite
              :handling_tax2_rate, :last_modified_date, :linked_tracking_numbers,
              :memo, :ship_complete, :ship_date, :ship_is_residential, :shipping_cost,
              :shipping_tax1_rate, :shipping_tax2_rate, :source, :status, :sub_total,
-             :total, :tracking_numbers, :tran_date, :tran_id, :order_status
+             :total, :tracking_numbers, :tran_date, :tran_id, :order_status, :use_item_cost_as_transfer_cost
 
       record_refs :transfer_location, :shipping_tax_code, :subsidiary, :shipping_address,
                   :ship_method, :employee, :handling_tax_code,

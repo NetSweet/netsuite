@@ -20,7 +20,7 @@ module NetSuite
       #     }
       #  ]
       #
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert
+      actions :get, :get_list, :add, :delete, :search, :update, :upsert, :update_list
 
       fields :auto_lead_time, :auto_preferred_stock_level, :auto_reorder_point, :available_to_partners, :average_cost,
         :copy_description, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :cost_units, :costing_method,
@@ -65,7 +65,7 @@ module NetSuite
       field :member_list, MemberList
 
       attr_reader :internal_id
-      attr_accessor :external_id
+      attr_accessor :external_id, :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

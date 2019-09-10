@@ -1,31 +1,11 @@
 module NetSuite
   module Records
-    class CashRefundItemList
-      include Support::Fields
+    class CashRefundItemList < Support::Sublist
       include Namespaces::TranCust
 
-      fields :item
+      sublist :item, CashRefundItem
 
-      def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
-      end
-
-      def item=(items)
-        case items
-        when Hash
-          self.items << CashRefundItem.new(items)
-        when Array
-          items.each { |item| self.items << CashRefundItem.new(item) }
-        end
-      end
-
-      def items
-        @items ||= []
-      end
-
-      def to_record
-        { "#{record_namespace}:item" => items.map(&:to_record) }
-      end
+      alias :items :item
 
     end
   end

@@ -22,6 +22,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::Get::Support)
           when :get_all
             self.send(:include, NetSuite::Actions::GetAll::Support)
+          when :get_deleted
+            self.send(:include, NetSuite::Actions::GetDeleted::Support)
           when :get_list
             self.send(:include, NetSuite::Actions::GetList::Support)
           when :get_select_value
@@ -40,6 +42,8 @@ module NetSuite
             self.send(:include, NetSuite::Actions::DeleteList::Support)
           when :update
             self.send(:include, NetSuite::Actions::Update::Support)
+          when :update_list
+            self.send(:include, NetSuite::Actions::UpdateList::Support)
           when :initialize
             self.send(:include, NetSuite::Actions::Initialize::Support)
           else

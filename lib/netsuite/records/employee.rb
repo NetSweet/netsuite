@@ -11,7 +11,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
-      fields :phone, :first_name, :last_name, :is_inactive, :email, :give_access, :send_email, :is_support_rep,
+      fields :alt_name, :phone, :first_name, :last_name, :is_inactive, :email, :give_access, :send_email, :is_support_rep,
              :birth_date, :hire_date, :last_review_date, :next_review_date, :title, :home_phone, :office_phone,
              :eligible_for_commission, :is_sales_rep, :klass, :middle_name, :account_number, :alien_number, :approval_limit,
              :bill_pay, :comments, :date_created, :direct_deposit, :entity_id, :password, :password2,
@@ -21,7 +21,7 @@ module NetSuite
 
       record_refs :currency, :department, :location, :subsidiary, :employee_type, :employee_status, :supervisor
 
-      field :addressbook_list,  EmployeeAddressbookList
+      field :custom_field_list, CustomFieldList
       field :roles_list, RoleList
       field :custom_field_list, CustomFieldList
 

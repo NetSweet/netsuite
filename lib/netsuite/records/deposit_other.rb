@@ -6,16 +6,6 @@ module NetSuite
       include Support::Records
       include Namespaces::TranBank
 
-      # <element name="entity" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="amount" type="xsd:double" minOccurs="0"/>
-      # <element name="account" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="paymentMethod" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="refNum" type="xsd:string" minOccurs="0"/>
-      # <element name="department" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="class" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="location" type="platformCore:RecordRef" minOccurs="0"/>
-      # <element name="memo" type="xsd:string" minOccurs="0"/>
-
       fields :amount, :ref_num, :memo
 
       record_refs :entity, :account, :payment_method, :department, :klass, :location
