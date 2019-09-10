@@ -232,6 +232,24 @@ module NetSuite
         @success ||= search_result[:status][:@is_success] == 'true'
       end
 
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
+      end
+
+      def response_hash
+        @response_hash ||= @response.to_hash[:search_response][:search_result]
+      end
+
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.class == Hash
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
+      end
+
       module Support
         def self.included(base)
           base.extend(ClassMethods)
@@ -240,12 +258,7 @@ module NetSuite
         module ClassMethods
           def search(options = { }, credentials={})
             response = NetSuite::Actions::Search.call([self, options], credentials)
-
-            if response.success?
-              NetSuite::Support::SearchResult.new(response, self, credentials)
-            else
-              false
-            end
+            NetSuite::Support::SearchResult.new(response, self, credentials)
           end
         end
       end
