@@ -27,6 +27,7 @@ module NetSuite
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
       }.update(params))
+      client.wsdl.endpoint = client.wsdl.endpoint.to_s.sub('//webservices.netsuite.com/', "//#{wsdl_domain}/")
       cache_wsdl(client)
       return client
     end

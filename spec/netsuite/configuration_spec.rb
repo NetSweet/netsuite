@@ -94,6 +94,24 @@ describe NetSuite::Configuration do
       end
     end
 
+    context 'when the API and wsdl domain have been set on newer api versions' do
+      before do
+        config.sandbox = false
+        config.api_version '2019_1'
+        config.wsdl_domain = '4810331.suitetalk.api.netsuite.com'
+      end
+
+      it 'should correctly modify the full wsdl path' do
+        expect(config.wsdl).to eql('https://4810331.suitetalk.api.netsuite.com/wsdl/v2019_1_0/netsuite.wsdl')
+      end
+
+      it 'should override endpoint using wsdl_domain' do
+        # Override endpoint as netsuite wsdls starting with 2019_1 default to the webservices.netsuite.com
+        # endpoint even though it is not supported by newer api versions
+        expect(config.connection.wsdl.endpoint).to eql('https://4810331.suitetalk.api.netsuite.com/services/NetSuitePort_2019_1')
+      end
+    end
+
     context '#cache_wsdl' do
       it 'stores the client' do
         expect(config.wsdl_cache).to be_empty
