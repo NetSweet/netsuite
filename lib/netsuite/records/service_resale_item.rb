@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :update, :delete, :upsert, :search
 
-      fields :available_to_partners, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :create_job, :created_date,
+      fields :available_to_partners, :cost, :cost_estimate, :cost_estimate_type, :cost_estimate_units, :create_job, :created_date,
         :display_name, :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap, :featured_description,
         :include_children, :is_donation_item, :is_fulfillable, :is_gco_compliant, :is_inactive, :is_online, :is_taxable,
         :item_id, :last_modified_date, :matrix_option_list, :matrix_type, :max_donation_amount, :meta_tag_html,
