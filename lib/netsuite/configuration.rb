@@ -350,7 +350,10 @@ module NetSuite
 
     def logger(value = nil)
       if value.nil?
-        attributes[:logger] ||= ::Logger.new((log && !log.empty?) ? log : $stdout)
+        # if passed a IO object (like StringIO) `empty?` won't exist
+        valid_log = log && !(log.respond_to?(:empty?) && log.empty?)
+
+        attributes[:logger] ||= ::Logger.new(valid_log ? log : $stdout)
       else
         attributes[:logger] = value
       end
