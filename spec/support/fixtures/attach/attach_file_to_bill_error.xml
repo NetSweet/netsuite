@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_5102954_SB1_110820191277209614860972177_6400640b</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <attachResponse xmlns="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <writeResponse>
+        <platformCore:status xmlns:platformCore="urn:core_2016_2.platform.webservices.netsuite.com" isSuccess="false">
+          <platformCore:statusDetail type="ERROR">
+            <platformCore:code>USER_ERROR</platformCore:code>
+            <platformCore:message>Invalid Attachment record combination</platformCore:message>
+          </platformCore:statusDetail>
+        </platformCore:status>
+      </writeResponse>
+    </attachResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

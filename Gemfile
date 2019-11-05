@@ -5,6 +5,7 @@ gem 'simplecov', :require => false
 
 gem 'pry-nav'
 gem 'pry-rescue'
+gem 'pry'
 
 # optional dependency for more accurate timezone conversion
 gem 'tzinfo', '1.2.5'
