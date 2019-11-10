@@ -4,9 +4,10 @@ module NetSuite
     class Initialize
       include Support::Requests
 
-      def initialize(klass, object)
+      def initialize(klass, object, options = {})
         @klass  = klass
         @object = object
+        @options = options
       end
 
       def request(credentials={})
@@ -26,7 +27,7 @@ module NetSuite
       #   </platformCore:reference>
       # </platformMsgs:initializeRecord>
       def request_body
-        {
+        body = {
           'platformMsgs:initializeRecord' => {
             'platformCore:type'      => @klass.to_s.split('::').last.lower_camelcase,
             'platformCore:reference' => {},
@@ -38,6 +39,15 @@ module NetSuite
             }
           }
         }
+
+        if @options.key?(:aux_reference)
+          body['platformMsgs:initializeRecord']['platformCore:auxReference'] = {}
+          body['platformMsgs:initializeRecord'][:attributes!]['platformCore:auxReference'] = {
+            'internalId' => @options[:aux_reference][:internal_id],
+            :type => @options[:aux_reference][:type]
+          }
+        end
+        body
       end
 
       def response_hash
@@ -65,8 +75,8 @@ module NetSuite
 
         module ClassMethods
 
-          def initialize(object, credentials={})
-            response = NetSuite::Actions::Initialize.call([self, object], credentials)
+          def initialize(object, options = {}, credentials={})
+            response = NetSuite::Actions::Initialize.call([self, object, options], credentials)
             if response.success?
               new(response.body)
             else
