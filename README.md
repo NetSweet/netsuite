@@ -567,6 +567,25 @@ deposit.payment = 20
 deposit.add
 ```
 
+
+## Initialize Fulfillment from Sales Order with Multi Ship Enabled
+
+```ruby
+  # You can initialize a fulfillment by specifying an auxReference to retrieve a specific Ship Group
+  # This will return a fulfillment with line items linked to said ship group which is associated to
+  # a specific location.
+  aux_reference = {
+    aux_reference: {
+      internal_id: 1, # Ship Group IDs can be found on Line Items on the Sales Order
+      type: "shippingGroup"
+    }
+  }
+
+
+  fulfillment = NetSuite::Records::ItemFulfillment.initialize(@sales_order, aux_reference)
+```
+
+
 ## Non-standard Operations
 
 ```ruby
