@@ -49,6 +49,7 @@ module NetSuite
 
   module Actions
     autoload :Add,              'netsuite/actions/add'
+    autoload :Attach,           'netsuite/actions/attach'
     autoload :Delete,           'netsuite/actions/delete'
     autoload :DeleteList,       'netsuite/actions/delete_list'
     autoload :Get,              'netsuite/actions/get'
@@ -74,6 +75,7 @@ module NetSuite
     autoload :Account,                          'netsuite/records/account'
     autoload :AccountingPeriod,                 'netsuite/records/accounting_period'
     autoload :Address,                          'netsuite/records/address'
+    autoload :AttachBasicReference,             'netsuite/records/attach_basic_reference'
     autoload :BaseRefList,                      'netsuite/records/base_ref_list'
     autoload :BillAddress,                      'netsuite/records/bill_address'
     autoload :BillingSchedule,                  'netsuite/records/billing_schedule'
