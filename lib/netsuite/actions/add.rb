@@ -76,13 +76,8 @@ module NetSuite
           @errors = response.errors
           
           if response.success?
-            if response.body.class == Nori::StringIOFile
-              @original_filename = response.body.original_filename
-              true
-            else
-              @internal_id = response.body[:@internal_id]
-              true
-            end
+            @internal_id = response.body.dig(:@internal_id) unless response.body.class == Nori::StringIOFile
+            true
           else
             false
           end
