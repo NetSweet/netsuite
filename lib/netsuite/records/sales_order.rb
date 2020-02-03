@@ -18,7 +18,7 @@ module NetSuite
         :start_date, :status, :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
-        :amount, :is_ship_address, :auth_code, :pn_ref_num, :is_multi_ship_to
+        :amount, :is_ship_address, :auth_code, :pn_ref_num, :is_multi_ship_to, :interco_status
 
       # NOTE API >= 2014_2 only
       field :shipping_address, Address
@@ -39,7 +39,7 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :created_from, :currency, :custom_form, :department, :discount_item, :entity, :gift_cert,
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :opportunity, :partner, :posting_period, :promo_code,
-        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :terms, :tax_item, :payment_method, :ship_address_list
+        :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :terms, :tax_item, :payment_method, :ship_address_list, :interco_transaction
 
       attr_reader :internal_id
       attr_accessor :external_id
