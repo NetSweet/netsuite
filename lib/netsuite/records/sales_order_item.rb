@@ -21,7 +21,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units
+      record_refs :department, :item, :job, :klass, :location, :price, :rev_rec_schedule, :tax_code, :units, :inventory_location, :inventory_subsidiary
 
       def initialize(attributes_or_record = {})
         case attributes_or_record
