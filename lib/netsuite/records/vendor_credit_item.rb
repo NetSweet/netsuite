@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorCreditItem
       include Support::Fields
+      include Support::RecordRefs
       include Support::Records
       include Namespaces::TranPurch
 
@@ -14,16 +15,12 @@ module NetSuite
              :amortization_end_date,
              :amortization_residual
 
-       field :item,                RecordRef
-       field :units,               RecordRef
-       field :department,          RecordRef
-       field :customer,            RecordRef
-       field :location,            RecordRef
-       field :tax_code,            RecordRef
-       field :serial_numbers_list, RecordRefList
-       field :inventory_detail,    InventoryDetail
-       field :custom_field_list,   CustomFieldList
-       field :options,             CustomFieldList
+      field :serial_numbers_list, RecordRefList
+      field :inventory_detail,    InventoryDetail
+      field :custom_field_list,   CustomFieldList
+      field :options,             CustomFieldList
+
+      record_refs :item, :units, :department, :customer, :location, :tax_code
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
