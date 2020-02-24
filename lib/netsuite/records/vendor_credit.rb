@@ -15,17 +15,8 @@ module NetSuite
              :currency_name, :tran_date,  :exchange_rate,
              :memo
 
-      field :custom_form,        RecordRef
-      field :account,            RecordRef
-      field :bill_address_list,  RecordRef
-      field :created_from,       RecordRef
-      field :entity,             RecordRef
-      field :currency,           RecordRef
-      field :posting_period,     RecordRef
-      field :department,         RecordRef
-      field :klass,              RecordRef
-      field :location,           RecordRef
-      field :subsidiary,         RecordRef
+      record_refs :custom_form, :account, :bill_address_list, :created_from, :entity, :currency, :post_period, :department, :klass, :location, :subsidiary
+
       field :billing_address,    Address
       field :expense_list,       VendorCreditExpenseList
       field :item_list,          VendorCreditItemList

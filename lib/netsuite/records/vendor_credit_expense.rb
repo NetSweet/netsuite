@@ -2,6 +2,7 @@ module NetSuite
   module Records
     class VendorCreditExpense
       include Support::Fields
+      include Support::RecordRefs
       include Support::Records
       include Namespaces::TranPurch
 
@@ -12,15 +13,9 @@ module NetSuite
              :amortization_end_date,
              :amortization_residual
 
-      field :category,            RecordRef
-      field :taxCode,             RecordRef
-      field :account,             RecordRef
-      field :department,          RecordRef
-      field :klass,               RecordRef
-      field :amortizationSched,   RecordRef
-      field :location,            RecordRef
-      field :customer,            RecordRef
       field :custom_field_list,   CustomFieldList
+
+      record_refs :account, :category, :customer, :department, :item, :location, :units, :tax_code
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
