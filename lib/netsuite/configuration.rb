@@ -26,6 +26,7 @@ module NetSuite
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
+        endpoint: wsdl_domain ## setting endpoint based on wsdl_domain
       }.update(params))
       cache_wsdl(client)
       return client
