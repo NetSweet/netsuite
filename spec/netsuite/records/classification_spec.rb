@@ -13,6 +13,14 @@ describe NetSuite::Records::Classification do
     expect(classification.subsidiary_list.class).to eq(NetSuite::Records::RecordRefList)
   end
 
+  it 'has all the right record refs' do
+    [
+      :parent
+    ].each do |record_ref|
+      expect(classification).to have_record_ref(record_ref)
+    end
+  end
+
   describe '.get' do
     context 'when the response is successful' do
       let(:response) { NetSuite::Response.new(:success => true, :body => { :name => 'Retail' }) }
