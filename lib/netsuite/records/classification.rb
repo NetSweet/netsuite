@@ -9,14 +9,15 @@ module NetSuite
 
       actions :add, :get, :get_list, :delete, :upsert, :search
 
-      fields :name, :include_children, :is_inactive, :class_translation_list, :custom_field_list, :parent
+      fields :name, :include_children, :is_inactive, :class_translation_list
 
       field :subsidiary_list, RecordRefList
+      field :custom_field_list, CustomFieldList
+
+      record_refs :parent
 
       attr_reader   :internal_id
       attr_accessor :external_id
-
-      record_refs :parent
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
