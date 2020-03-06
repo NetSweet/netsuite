@@ -18,7 +18,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
 
-      record_refs :custom_form, :owner, :rec_type
+      record_refs :custom_form, :owner, :rec_type, :parent
 
       attr_reader :internal_id
       attr_accessor :external_id
