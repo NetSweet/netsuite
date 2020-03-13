@@ -20,6 +20,7 @@ module NetSuite
       field :shipping_address,  Address
       field :custom_field_list, CustomFieldList
       field :item_list,         PurchaseOrderItemList
+      field :expense_list,      PurchaseOrderExpenseList
 
       # TODO custom lists
       # :ship_address_list

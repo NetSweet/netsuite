@@ -240,6 +240,8 @@ module NetSuite
     autoload :PromotionsList,                   'netsuite/records/promotions_list'
     autoload :Promotions,                       'netsuite/records/promotions'
     autoload :PurchaseOrder,                    'netsuite/records/purchase_order'
+    autoload :PurchaseOrderExpenseList,         'netsuite/records/purchase_order_expense_list'
+    autoload :PurchaseOrderExpense,             'netsuite/records/purchase_order_expense'
     autoload :PurchaseOrderItemList,            'netsuite/records/purchase_order_item_list'
     autoload :PurchaseOrderItem,                'netsuite/records/purchase_order_item'
     autoload :Roles,                            'netsuite/records/roles'
