@@ -22,6 +22,7 @@ module NetSuite
       # :landed_costs_list
 
       field :item_list, ItemReceiptItemList
+      field :expense_list, ItemReceiptExpenseList
       field :custom_field_list, CustomFieldList
 
       attr_reader :internal_id

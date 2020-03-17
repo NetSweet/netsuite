@@ -200,6 +200,8 @@ module NetSuite
     autoload :ItemMember,                       'netsuite/records/item_member'
     autoload :ItemMemberList,                   'netsuite/records/item_member_list'
     autoload :ItemReceipt,                      'netsuite/records/item_receipt'
+    autoload :ItemReceiptExpenseList,           'netsuite/records/item_receipt_expense_list'
+    autoload :ItemReceiptExpense,               'netsuite/records/item_receipt_expense'
     autoload :ItemReceiptItemList,              'netsuite/records/item_receipt_item_list'
     autoload :ItemReceiptItem,                  'netsuite/records/item_receipt_item'
     autoload :ItemVendor,                       'netsuite/records/item_vendor'
