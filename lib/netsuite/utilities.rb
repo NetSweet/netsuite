@@ -33,21 +33,79 @@ module NetSuite
     end
 
     def backoff(options = {})
+      # TODO the default backoff attempts should be customizable the global config
+      options[:attempts] ||= 8
+
       count = 0
+
       begin
         count += 1
         yield
-      rescue options[:exception] || Savon::SOAPFault => e
-        if !e.message.include?("Only one request may be made against a session at a time") &&
-           !e.message.include?('java.util.ConcurrentModificationException') &&
-           !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.')
-          raise e
+      rescue StandardError => e
+        exceptions_to_retry = [
+          Errno::ECONNRESET,
+          Errno::ETIMEDOUT,
+          Errno::EHOSTUNREACH,
+          EOFError,
+          Wasabi::Resolver::HTTPError,
+          Savon::SOAPFault,
+          Savon::InvalidResponseError,
+          Zlib::BufError,
+          Savon::HTTPError,
+          SocketError,
+          Net::OpenTimeout
+        ]
+
+        # available in ruby > 1.9
+        if defined?(Net::ReadTimeout)
+          exceptions_to_retry << Net::ReadTimeout
         end
-        if count >= (options[:attempts] || 8)
-          raise e
+
+        # available in ruby > 2.2.0
+        exceptions_to_retry << IO::EINPROGRESSWaitWritable if defined?(IO::EINPROGRESSWaitWritable)
+        exceptions_to_retry << OpenSSL::SSL::SSLErrorWaitReadable if defined?(OpenSSL::SSL::SSLErrorWaitReadable)
+
+        # depends on the http library chosen
+        exceptions_to_retry << Excon::Error::Timeout if defined?(Excon::Error::Timeout)
+        exceptions_to_retry << Excon::Error::Socket if defined?(Excon::Error::Socket)
+
+        if !exceptions_to_retry.include?(e.class)
+          raise
         end
+
+        # whitelist certain SOAPFaults; all other network errors should automatically retry
+        if e.is_a?(Savon::SOAPFault)
+          # https://github.com/stripe/stripe-netsuite/issues/815
+          if !e.message.include?("Only one request may be made against a session at a time") &&
+            !e.message.include?('java.util.ConcurrentModificationException') &&
+            !e.message.include?('java.lang.NullPointerException') &&
+            !e.message.include?('java.lang.IllegalStateException') &&
+            !e.message.include?('java.lang.reflect.InvocationTargetException') &&
+            !e.message.include?('com.netledger.common.exceptions.NLDatabaseOfflineException') &&
+            !e.message.include?('com.netledger.database.NLConnectionUtil$NoCompanyDbsOnlineException') &&
+            !e.message.include?('com.netledger.cache.CacheUnavailableException') &&
+            !e.message.include?('java.lang.IllegalStateException') &&
+            !e.message.include?('An unexpected error occurred.') &&
+            !e.message.include?('An unexpected error has occurred.  Technical Support has been alerted to this problem.') &&
+            !e.message.include?('Session invalidation is in progress with different thread') &&
+            !e.message.include?('[missing resource APP:ERRORMESSAGE:WS_AN_UNEXPECTED_ERROR_OCCURRED] [missing resource APP:ERRORMESSAGE:ERROR_ID_1]') &&
+            !e.message.include?('SuiteTalk concurrent request limit exceeded. Request blocked.') &&
+            # maintenance is the new outage: this message is being used for intermittent errors
+            !e.message.include?('The account you are trying to access is currently unavailable while we undergo our regularly scheduled maintenance.') &&
+            !e.message.include?('The Connection Pool is not intialized.') &&
+            # it looks like NetSuite mispelled their error message...
+            !e.message.include?('The Connection Pool is not intiialized.')
+            raise
+          end
+        end
+
+        if count >= options[:attempts]
+          raise
+        end
+
         # log.warn("concurrent request failure", sleep: count, attempt: count)
         sleep(count)
+
         retry
       end
     end
@@ -100,8 +158,6 @@ module NetSuite
       end
 
       begin
-        # log.debug("get record", netsuite_record_type: record_klass.name, netsuite_record_id: id)
-
         ns_record = if opts[:external_id]
           backoff { record_klass.get(external_id: id) }
         else
