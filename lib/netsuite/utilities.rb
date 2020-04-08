@@ -177,6 +177,7 @@ module NetSuite
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::ServiceResaleItem, ns_item_internal_id, opts)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::GiftCertificateItem, ns_item_internal_id, opts)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::KitItem, ns_item_internal_id, opts)
+      ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::ItemGroup, ns_item_internal_id, opts)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::SerializedInventoryItem, ns_item_internal_id, opts)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::SerializedAssemblyItem, ns_item_internal_id, opts)
       ns_item ||= NetSuite::Utilities.get_record(NetSuite::Records::LotNumberedAssemblyItem, ns_item_internal_id, opts)
