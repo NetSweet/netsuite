@@ -17,7 +17,7 @@ install:
   - echo $TAG | tr -d v,V > VERSION
 
 script:
-  - bundle exec rake test
+  - bundle exec rspec spec
 
 deploy:
   provider: script
