@@ -1,0 +1,37 @@
+dist: trusty
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.4.4
+gemfile:
+  - Gemfile
+
+before_install:
+  - TAG=$(git describe --tags)
+  - echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc
+  - gem install bundler -v 1.15.1
+
+install:
+  - bundle install --jobs=4 --retry=3 --path vendor/bundle
+  - echo $TAG | tr -d v,V > VERSION
+
+script:
+  - bundle exec rake test
+
+deploy:
+  provider: script
+  on:
+    tags: true
+  skip_cleanup: true # prevent removing vendored gems needed by deploy scropt
+  script: rvm $TRAVIS_RUBY_VERSION --verbose do ./deploy.sh # dpl runs script in another ruby env, need to switch back with rvm
+
+env:
+  global:
+    - TZ='US/Eastern'
+    # GEM_PASSWORD
+    - secure: AUa3nqE0J+PmHifEIWiqPX6/94yQdCNpXEvlspMlpgiZcsiOluVgegnxrKqTuV8iq8SE3sEe3ABbaDzKYiJLCtvvMuW+tOIAyzcC4fyeGF649dAYsdY0ilBqLfRtsT8TUnHYQiGSA7ZMxmUmXY8No8TDnFaYwxUgGnjQSbjo5mQTBj2ZZb1t6yuDwkj41L4Eq8as/gMVv10YCcEH5Vwkux9ywyanH7ZturafWhp7reM67xoR6Ka6HmUnR8CeC4XjKf6lVVw3JTFpzzzSPTH7BZR/B4bokSS+vhjSlsbKuccKMcSQPWzvWWDbLs0XPU6fqk5IcXm42uiwsF99WQM09vd6ZtT7rQlqeDLXni1ce+F39zGX3OTE62NtPdcOUfPtBVIBtMIoMRj5orWY9X1iEsemX9G+rnkyg0Jy7+7Ihg8XMliZNeuhmGvYibcfbXqZXC/VgvS3K3m8Z+S+Q2llY/JhpNaYL6i9aXw2/xInPcPejNVl8SEiU08X24lQqpv99g1KTpoLmTAm9tpvNgOgbZLPkU6Vm9FT9HdUC76XAgt3H8F1PR+i9cN5aM6U8RKq7idwUPZ54GTL56hF8SZM7pIWZCLOM8u3j5TZEhserJdrdumSHiLqBVJSvFD3ANjAj5mMhGvh/gavk903aMfmBtoMdl2As3kwKX4JJhEw5f4=
+
+notifications:
+  slack:
+    secure: PyjyVA4cTEM2GMgodFl1KjEt/6FDqGSq82HmYk254mm0x65pIiE688XnPiNJGygk+w544PwQ0c9Z19ijkAKUustuXAfc5f9/rtedUAtjq12m61rVF+TeLMjVBc2A7mHcb/Yg2y/kgO6PESQLsrTSIAqXrO/srgfPGvuvLAsh0yy3KG7ZFX3sJu1kqzk0osE11MHhDZQGH5ABjuMp6DLLJtPbLe7Ei0n6T46peEcxVcQu4BMFTKvcCjbUQQmKNz3pTFlYEceZMhhO6+GbXbT47hD+6rFAMs91bT7v+kdg8ARsH+PSdHiPzp8Kuh3wuivgnJscjIalghCD5WgwKwvrEDRvAi75d2wNPaeN6D//tVRdkx3DBXOS1oDdsc4W3vtO3FNnuEAvMXj2KAkfgEJIhblR7cJB0+cWbcIKVVIB/k4Fa14Xx06fgxLnf/oYt/utRj7sVmvDlvqttDqcLryFQwHMQ6mYeFr8lLoBSGp7IP4d+4dRSXVrKmSvE1ZXJAFpo+Qb/oBqAxJT0JJ+tCBUL/h8VQFni9UyLHhJJhnjuoTy4vrtEALp263L8TnRhUJhvfDxbuNhKSh6n5nuSowkp8gTklP6pJGMQafvcbEqTdHqQMLOJpRhrzCKhVP0QCo4FW4lu39mIkeYO+hPkCOCVF/KcugPwvvbfR82D8tZWzw=
