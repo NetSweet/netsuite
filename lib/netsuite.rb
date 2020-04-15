@@ -148,6 +148,7 @@ module NetSuite
     autoload :InventoryAssignmentList,          'netsuite/records/inventory_assignment_list'
     autoload :InventoryDetail,                  'netsuite/records/inventory_detail'
     autoload :InventoryItem,                    'netsuite/records/inventory_item'
+    autoload :InventoryNumber,                  'netsuite/records/inventory_number'
     autoload :InventoryTransfer,                'netsuite/records/inventory_transfer'
     autoload :InventoryTransferInventory,       'netsuite/records/inventory_transfer_inventory'
     autoload :InventoryTransferInventoryList,   'netsuite/records/inventory_transfer_inventory_list'
