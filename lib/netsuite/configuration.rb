@@ -323,7 +323,7 @@ module NetSuite
       if timeout
         self.read_timeout = timeout
       else
-        attributes[:read_timeout] ||= 60
+        attributes[:read_timeout] ||= 120
       end
     end
 
