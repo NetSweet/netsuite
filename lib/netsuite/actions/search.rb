@@ -30,7 +30,7 @@ module NetSuite
               h
             end
           )
-
+        binding.pry
         NetSuite::Configuration
           .connection({ soap_header: preferences }, credentials)
           .call (@options.has_key?(:search_id)? :search_more_with_id : :search), :message => request_body
