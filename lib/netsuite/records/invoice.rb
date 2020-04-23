@@ -39,7 +39,7 @@ module NetSuite
       field :shipping_address,         Address
       field :billing_address,          Address
 
-      read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid,
+      read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid, :amount,
                        :alt_shipping_cost, :gift_cert_applied, :handling_cost, :alt_handling_cost
 
       record_refs :account, :bill_address_list, :custom_form, :department, :entity, :klass, :partner,
