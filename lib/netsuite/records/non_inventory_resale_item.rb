@@ -33,6 +33,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
       field :subsidiary_list, RecordRefList
+      field :item_vendor_list, ItemVendorList
 
 
       attr_reader   :internal_id
