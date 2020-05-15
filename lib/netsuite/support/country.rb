@@ -234,7 +234,7 @@ module NetSuite
         'UG' => '_uganda',
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
-        'GB' => '_unitedKingdomGB',
+        'GB' => '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
