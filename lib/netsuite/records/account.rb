@@ -16,6 +16,8 @@ module NetSuite
 
       field :subsidiary_list, RecordRefList
 
+      field :custom_field_list, CustomFieldList
+
       attr_reader :internal_id
       attr_accessor :external_id
       attr_accessor :search_joins
