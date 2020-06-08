@@ -37,9 +37,9 @@ describe NetSuite::Records::CustomFieldList do
   context 'writing convience methods' do
     it "should create a custom field entry when none exists" do
       list.custrecord_somefield = 'a value'
-      list.custom_fields.size.should == 1
-      list.custom_fields.first.value.should == 'a value'
-      list.custom_fields.first.type.should == 'platformCore:StringCustomFieldRef'
+      expect(list.custom_fields.size).to eq(1)
+      expect(list.custom_fields.first.value).to eq('a value')
+      expect(list.custom_fields.first.type).to eq('platformCore:StringCustomFieldRef')
     end
 
     # https://github.com/NetSweet/netsuite/issues/325

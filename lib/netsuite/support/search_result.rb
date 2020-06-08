@@ -59,11 +59,22 @@ module NetSuite
                 # skip all attributes: look for :basic and all :xxx_join
                 next if search_group.to_s.start_with?('@')
 
-                record[search_group].each_pair do |k, v|
+                # avoids `RuntimeError: can't add a new key into hash during iteration`
+                record[search_group][:custom_field_list] ||= {custom_field: []}
+
+                record[search_group].each_pair do |attr_name, search_result|
+                  # example pair:
+                  # {
+                  #   :department=>{
+                  #     :search_value=>{:@internal_id=>"113"},
+                  #     :custom_label=>"Business Unit"
+                  #   }
+                  # }
+
                   # all return values are wrapped in a <SearchValue/>
                   # extract the value from <SearchValue/> to make results easier to work with
 
-                  if v.is_a?(Hash) && v.has_key?(:search_value)
+                  if search_result.is_a?(Hash) && search_result.has_key?(:search_value)
                     # Here's an example of a record ref and string response
 
                     # <platformCommon:entity>
@@ -78,7 +89,18 @@ module NetSuite
                     # attribute will be transitioned to the parent, and in the case
                     # of a string response the parent node's value will be to the string
 
-                    record[search_group][k] = v[:search_value]
+                    if result_class.fields.include?(attr_name) || search_group != :basic
+                      # this is a record field, it will be picked up when we
+                      # intialize the `result_class`
+                      record[search_group][attr_name] = search_result[:search_value]
+                    else
+                      # not a record field -- treat it as if it were a custom field
+                      # otherwise it will be lost when we initialize
+                      custom_fields = record[search_group][:custom_field_list][:custom_field]
+                      custom_fields = [custom_fields] if custom_fields.is_a?(Hash)
+                      custom_fields << search_result.merge(internal_id: attr_name)
+                      record[search_group][:custom_field_list][:custom_field] = custom_fields
+                    end
                   else
                     # NOTE need to understand this case more, in testing, only the namespace definition hits this condition
                   end
