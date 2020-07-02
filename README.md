@@ -76,7 +76,7 @@ NetSuite.configure do
   role 10
 
   # use `NetSuite::Utilities.data_center_url('TSTDRV1576318')` to retrieve the URL
-  # you'll want to do this in a background proces and strip the protocol out of the return string
+  # you'll want to do this in a background process and strip the protocol out of the return string
   wsdl_domain 'tstdrv1576318.suitetalk.api.netsuite.com'
 end
 ```
