@@ -326,15 +326,11 @@ describe NetSuite::Configuration do
 
   describe "#credentials" do
     context "when none are defined" do
-      skip "should properly create the auth credentials" do
-
-      end
+      skip "should properly create the auth credentials"
     end
 
     context "when they are defined" do
-      it "should properly replace the default auth credentials" do
-
-      end
+      skip "should properly replace the default auth credentials"
     end
   end
 
