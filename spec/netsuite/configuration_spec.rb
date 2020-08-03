@@ -400,6 +400,16 @@ describe NetSuite::Configuration do
 
       expect(config.log_level).to eq(:info)
     end
+
+    it 'can override itself' do
+      config.log_level = :info
+
+      expect(config.log_level).to eq(:info)
+
+      config.log_level(:debug)
+
+      expect(config.log_level).to eq(:debug)
+    end
   end
 
   describe '#log_level=' do
@@ -407,6 +417,16 @@ describe NetSuite::Configuration do
       config.log_level = :info
 
       expect(config.log_level).to eq(:info)
+    end
+
+    it 'can override a previously set log level' do
+      config.log_level = :info
+
+      expect(config.log_level).to eq(:info)
+
+      config.log_level = :debug
+
+      expect(config.log_level).to eq(:debug)
     end
   end
 
