@@ -373,12 +373,13 @@ module NetSuite
     end
 
     def log_level(value = nil)
-      self.log_level = value || :debug
-      attributes[:log_level]
+      self.log_level = value if value
+
+      attributes[:log_level] || :debug
     end
 
     def log_level=(value)
-      attributes[:log_level] ||= value
+      attributes[:log_level] = value
     end
   end
 end
