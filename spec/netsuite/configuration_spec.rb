@@ -390,6 +390,26 @@ describe NetSuite::Configuration do
     end
   end
 
+  describe '#log_level' do
+    it 'defaults to :debug' do
+      expect(config.log_level).to eq(:debug)
+    end
+
+    it 'can be initially set to any log level' do
+      config.log_level(:info)
+
+      expect(config.log_level).to eq(:info)
+    end
+  end
+
+  describe '#log_level=' do
+    it 'can set the initial log_level' do
+      config.log_level = :info
+
+      expect(config.log_level).to eq(:info)
+    end
+  end
+
   describe 'timeouts' do
     it 'has defaults' do
       expect(config.read_timeout).to eql(60)
