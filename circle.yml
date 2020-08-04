@@ -1,17 +1,29 @@
-# https://leonid.shevtsov.me/post/multiple-rubies-on-circleci/
+version: 2.1
 
-machine:
-  environment:
-    RUBY_VERSIONS: 2.0.0,2.1.10,2.2.9,2.3.7,2.4.4,2.5.1,2.6.1
+orbs:
+  ruby: circleci/ruby@1.1
 
-dependencies:
-  override:
-    - gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    - rvm get head
-    - rvm install $RUBY_VERSIONS
-    - rvm $RUBY_VERSIONS --verbose do gem install bundler -v 1.17.3
-    - rvm $RUBY_VERSIONS --verbose do bundle install
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7
+    steps:
+      - checkout
+  test:
+    docker:
+      - image: cimg/ruby:2.7
+    steps:
+      - checkout
+      - ruby/install-deps:
+          bundler-version: '1.17.2'
+          with-cache: false
+      - ruby/rspec-test
 
-test:
-  override:
-    - rvm $RUBY_VERSIONS --verbose do bundle exec rspec spec
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
