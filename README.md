@@ -106,7 +106,13 @@ NetSuite.configure do
   read_timeout  100_000
 
   # you can specify a file or file descriptor to send the log output to (defaults to STDOUT)
+  # If using within a Rails app, consider setting to `Rails.logger` to leverage existing
+  # application-level log configuration
   log           File.join(Rails.root, 'log/netsuite.log')
+
+  # Defaults to :debug level logging for Savon API calls. Decrease the verbosity
+  # by setting log_level to `:info`, for example
+  # log_level   :debug
 
   # password-based login information
   email    	  'email@domain.com'
