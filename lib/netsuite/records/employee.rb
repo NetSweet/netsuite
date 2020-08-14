@@ -19,7 +19,7 @@ module NetSuite
              :phonetic_name, :purchase_order_approval_limit, :purchase_order_approver, :purchase_order_limit, :release_date,
              :resident_status, :salutation, :social_security_number, :visa_exp_date, :visa_type
 
-      record_refs :currency, :department, :location, :subsidiary, :employee_type, :employee_status, :supervisor
+      record_refs :currency, :department, :location, :sales_role, :subsidiary, :employee_type, :employee_status, :supervisor
 
       field :custom_field_list, CustomFieldList
       field :roles_list, RoleList
