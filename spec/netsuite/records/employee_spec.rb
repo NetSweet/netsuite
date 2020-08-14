@@ -21,7 +21,7 @@ describe NetSuite::Records::Employee do
 
   it 'has all the right record refs' do
     [
-      :location, :employee_status, :employee_type
+      :currency, :department, :location, :sales_role, :subsidiary, :employee_type, :employee_status, :supervisor
     ].each do |record_ref|
       expect(employee).to have_record_ref(record_ref)
     end
@@ -144,7 +144,7 @@ describe NetSuite::Records::Employee do
 
   it 'has the right record_refs' do
     [
-      :currency, :department, :location, :subsidiary
+      :currency, :department, :location, :sales_role, :subsidiary, :employee_type, :employee_status, :supervisor
     ].each do |record_ref|
       expect(employee).to have_record_ref(record_ref)
     end
