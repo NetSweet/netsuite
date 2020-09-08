@@ -34,7 +34,7 @@ module NetSuite
 
       record_refs :alternate_demand_source_item, :asset_account, :bill_exch_rate_variance_acct, :bill_price_variance_acct,
         :bill_qty_variance_acct, :billing_schedule, :cogs_account, :cost_category, :custom_form, :deferred_revenue_account,
-        :demand_source, :department, :expense_account, :gain_loss_account, :income_account, :issue_product, :klass, :location,
+        :demand_source, :department, :dropship_expense_account, :gain_loss_account, :income_account, :issue_product, :klass, :location,
         :parent, :preferred_location, :pricing_group, :purchase_price_variance_acct, :purchase_tax_code, :purchase_unit,
         :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :soft_descriptor,
         :stock_unit, :store_display_image, :store_display_thumbnail, :store_item_template, :supply_lot_sizing_method,
