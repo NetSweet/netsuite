@@ -64,7 +64,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
 
       record_refs :klass, :custom_form, :department, :income_account,
-                  :issue_product, :location, :parent, :sales_tax_code, :tax_schedule
+                  :issue_product, :liability_account, :location, :parent, :sales_tax_code, :tax_schedule
 
       attr_reader   :internal_id
       attr_accessor :external_id
