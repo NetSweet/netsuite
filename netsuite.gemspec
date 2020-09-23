@@ -2,6 +2,7 @@
 require File.expand_path('../lib/netsuite/version', __FILE__)
 
 Gem::Specification.new do |gem|
+  gem.licenses      = ['MIT']
   gem.authors       = ['Ryan Moran', 'Michael Bianco']
   gem.email         = ['ryan.moran@gmail.com', 'mike@mikebian.co']
   gem.description   = %q{NetSuite SuiteTalk API Wrapper}
@@ -15,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = NetSuite::VERSION
 
-  gem.add_dependency 'savon', '>= 2.3.0'
+  gem.add_dependency 'savon', '>= 2.3.0', '<= 2.11.1'
 
   gem.add_development_dependency 'rspec', '~> 3.8.0'
 end
