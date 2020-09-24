@@ -264,6 +264,7 @@ module NetSuite
     autoload :SalesOrderItemList,               'netsuite/records/sales_order_item_list'
     autoload :SalesRole,                        'netsuite/records/sales_role'
     autoload :SalesTaxItem,                     'netsuite/records/sales_tax_item'
+    autoload :ServicePurchaseItem,              'netsuite/records/service_purchase_item'
     autoload :ServiceResaleItem,                'netsuite/records/service_resale_item'
     autoload :ServiceSaleItem,                  'netsuite/records/service_sale_item'
     autoload :SerializedAssemblyItem,          'netsuite/records/serialized_assembly_item'
