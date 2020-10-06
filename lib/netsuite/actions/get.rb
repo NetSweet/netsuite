@@ -56,6 +56,17 @@ module NetSuite
         @response_hash = @response.body[:get_response][:read_response]
       end
 
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        error_obj = response_hash.dig(:status,:status_detail)
+        OpenStruct.new(status: 404, status_detail: error_obj)
+      end
+
       module Support
 
         def self.included(base)
@@ -71,7 +82,7 @@ module NetSuite
             if response.success?
              new(response.body)
             else
-             raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found"
+              raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found, NetSuite message: #{response.errors.status_detail[:message]}"
             end
           end
 
