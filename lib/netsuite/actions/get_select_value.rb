@@ -47,7 +47,6 @@ module NetSuite
             }
 
             response = NetSuite::Actions::GetSelectValue.call([self, message], credentials)
-
             if response.success?
               new(response.body)
             else
