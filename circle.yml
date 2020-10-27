@@ -19,6 +19,7 @@ jobs:
       - ruby/install-deps:
           bundler-version: '2.1.4'
           with-cache: false
+          path: './vendor/custom_bundle'
       - ruby/rspec-test
 
 # strangely, there seems to be very little documentation about exactly how martix builds work.
