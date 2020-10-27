@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   # orbs are basically bundles of pre-written build scripts that work for common cases
   # https://github.com/CircleCI-Public/ruby-orb
-  ruby: circleci/ruby@1.1
+  ruby: circleci/ruby@1.1.2
 
 jobs:
   # skipping build step because Gemfile.lock is not included in the source
@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          bundler-version: '1.17.2'
+          bundler-version: '2.1.4'
           with-cache: false
       - ruby/rspec-test
 
