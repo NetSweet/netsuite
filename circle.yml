@@ -19,6 +19,8 @@ jobs:
       - ruby/install-deps:
           bundler-version: '2.1.4'
           with-cache: false
+          # without specifying a non-standard path `--deployment` will be used when running bundler
+          # which causes the bundler to fail
           path: './vendor/custom_bundle'
       - ruby/rspec-test
 
