@@ -9,7 +9,7 @@ module NetSuite
 
       actions :add, :get, :search, :update
 
-      fields :accounting_approval, :advance, :amount, :complete, :created_date, :due_date, :last_modified_date, :memo, :status, :supervisor_approval, :tax1_amt, :tax2_amt, :total, :tran_date, :train_id, :use_multi_currency
+      fields :accounting_approval, :advance, :amount, :complete, :created_date, :due_date, :last_modified_date, :memo, :status, :supervisor_approval, :tax1_amt, :tax2_amt, :total, :tran_date, :tran_id, :use_multi_currency
 
       # todo
       # field :accounting_book_detail_list,  AccountingBookDetailList
