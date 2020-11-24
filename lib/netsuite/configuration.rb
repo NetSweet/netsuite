@@ -15,6 +15,8 @@ module NetSuite
     end
 
     def connection(params={}, credentials={})
+      check_credentials(credentials)
+
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
         read_timeout: read_timeout,
@@ -30,6 +32,23 @@ module NetSuite
       client.wsdl.endpoint = client.wsdl.endpoint.to_s.sub('//webservices.netsuite.com/', "//#{wsdl_domain}/")
       cache_wsdl(client)
       return client
+    end
+
+    def check_credentials(creds)
+      if !creds.blank?
+        set_attributes(creds)
+      end
+    end
+
+    def set_attributes(credentials)
+      account(credentials[:account])
+      consumer_key(credentials[:consumer_key])
+      consumer_secret(credentials[:consumer_secret])
+      token_id(credentials[:token_id])
+      token_secret(credentials[:token_secret])
+      api_version(credentials[:api_version])
+      wsdl_domain(credentials[:wsdl_domain])
+      soap_header(credentials[:soap_header])
     end
 
     def filters(list = nil)

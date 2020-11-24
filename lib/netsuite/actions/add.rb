@@ -74,7 +74,7 @@ module NetSuite
         def add(credentials={})
           response = NetSuite::Actions::Add.call([self], credentials)
           @errors = response.errors
-          
+
           if response.success?
             @internal_id = response.body.dig(:@internal_id) unless response.body.class == Nori::StringIOFile
             true
