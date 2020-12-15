@@ -61,6 +61,7 @@ describe 'basic records' do
       NetSuite::Records::BinTransfer,
       NetSuite::Records::SerializedAssemblyItem,
       NetSuite::Records::CustomerStatus,
+      NetSuite::Records::CustomerPayment,
       NetSuite::Records::TransactionBodyCustomField,
       NetSuite::Records::TransactionColumnCustomField,
       NetSuite::Records::EntityCustomField
