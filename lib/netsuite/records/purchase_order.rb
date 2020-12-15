@@ -14,7 +14,7 @@ module NetSuite
              :linked_tracking_numbers, :memo, :message, :other_ref_num, :ship_date,
              :ship_is_residential, :ship_to, :source, :status, :sub_total, :supervisor_approval,
              :tax2_total, :tax_total, :to_be_emailed, :to_be_faxed, :to_be_printed,
-             :total, :tracking_numbers, :tran_date, :tran_id, :vat_reg_num, :line_unique_key, :item
+             :total, :tracking_numbers, :tran_date, :tran_id, :vat_reg_num
 
       field :billing_address,   Address
       field :shipping_address,  Address

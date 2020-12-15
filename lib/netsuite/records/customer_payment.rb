@@ -17,7 +17,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :apply_list,        CustomerPaymentApplyList
-      field :credit_list,        CustomerPaymentCreditList
+      field :credit_list,       CustomerPaymentCreditList
 
       read_only_fields :applied, :balance, :pending, :total, :unapplied
 
