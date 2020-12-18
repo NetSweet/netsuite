@@ -49,11 +49,6 @@ describe NetSuite::Records::CustomerPayment do
     it 'can be set from a CustomerPaymentApplyList object'
   end
 
-  describe '#credit_list' do
-    it 'can be set from attributes'
-    it 'can be set from a CustomerPaymentCreditList object'
-  end
-
   describe '#deposit_list' do
     it 'can be set from attributes'
     it 'can be set from a CustomerPaymentDepositList object'
