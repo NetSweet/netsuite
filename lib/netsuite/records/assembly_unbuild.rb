@@ -8,7 +8,7 @@ module NetSuite
 	  include Support::Fields
       include Namespaces::TranInvt
 
-      actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,
+      actions :get, :add, :add_list, :initialize, :delete, :update, :upsert, :upsert_list,
         :search
 
       fields :bin_numbers, :built, :created_date, :expiration_date,

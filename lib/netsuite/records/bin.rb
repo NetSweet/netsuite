@@ -13,7 +13,7 @@ module NetSuite
       attr_reader   :internal_id
       attr_accessor :external_id
 
-      actions :get, :add, :delete, :search, :update, :upsert
+      actions :get, :add, :add_list, :delete, :search, :update, :upsert
 
       fields :bin_number, :is_inactive, :location, :memo
 

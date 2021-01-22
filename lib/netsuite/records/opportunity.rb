@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
+      actions :get, :get_list, :add, :add_list, :initialize, :delete, :update, :upsert, :search
 
       fields :action_item, :alt_sales_range_high, :alt_sales_range_low,
         :close_date, :contrib_pct, :created_date, :currency_name, :days_open,

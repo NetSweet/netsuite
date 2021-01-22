@@ -6,7 +6,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::SetupCustom
 
-      actions :get, :update, :get_list, :add, :delete, :search, :upsert
+      actions :get, :update, :get_list, :add, :add_list, :delete, :search, :upsert
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/customlist.html
       fields :description, :name, :is_ordered, :script_id, :convert_to_custom_record,

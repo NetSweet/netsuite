@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranPurch
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
+      actions :get, :get_list, :add, :add_list, :initialize, :delete, :update, :upsert, :search
 
       fields :created_date, :currency_name, :due_date, :email, :exchange_rate,
              :fax, :fob, :interco_status, :interco_transaction, :last_modified_date,

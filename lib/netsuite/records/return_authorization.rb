@@ -9,7 +9,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2015_2/schema/record/returnauthorization.html
 
-      actions :get, :get_list, :initialize, :add, :update, :delete, :upsert, :search
+      actions :get, :get_list, :initialize, :add, :add_list, :update, :delete, :upsert, :search
 
       fields :alt_sales_total,
         :cc_approved,

@@ -10,7 +10,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/currency.html
 
-      actions :get, :get_list, :get_all, :add, :update, :upsert, :upsert_list, :delete
+      actions :get, :get_list, :get_all, :add, :add_list, :update, :upsert, :upsert_list, :delete
 
       fields :name, :symbol, :is_base_currency, :is_inactive, :override_currency_format, :display_symbol, :symbol_placement,
              :locale, :formatSample, :exchangeRate, :fx_rate_update_timezone, :incl_in_fx_rate_updates, :currency_precision

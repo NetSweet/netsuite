@@ -9,7 +9,7 @@ module NetSuite
 
       # NOTE `get_all` is not available API > 2017_1
       #      `search` is available API > 2016_2
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search, :get_all
+      actions :get, :get_list, :add, :add_list, :initialize, :delete, :update, :upsert, :search, :get_all
 
       fields :city, :county, :description, :include_children, :is_default, :is_inactive,
              :item_id, :piggyback, :rate, :state, :subsidiary_list, :unitprice1, :unitprice2,

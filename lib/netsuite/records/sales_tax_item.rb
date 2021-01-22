@@ -9,7 +9,7 @@ module NetSuite
 
       # NOTE `get_all` is not available in recent API versions ~2017_2
       #      `search` is only available in recent API versions
-      actions :get, :get_list, :get_all, :get_select_value, :add, :delete,
+      actions :get, :get_list, :get_all, :get_select_value, :add, :add_list, :delete,
         :update, :upsert, :search
 
       fields :item_id, :display_name, :description, :rate, :is_inactive,
