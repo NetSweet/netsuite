@@ -591,3 +591,23 @@ states.to_array.first[:get_all_response][:get_all_result][:record_list][:record]
 # About SuiteSync
 
 [SuiteSync, the Stripe-NetSuite integration](http://suitesync.io) uses this gem and funds the majority of it's development and maintenance.
+
+
+
+
+# Cloudsnap Additions
+
+I generally refer to the Netsuite Schema Browser as a source of truth over the actions, records, and fields that you see in this gem.  That documentation can be found here: https://www.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2018_1/schema/record/account.html?mode=package
+
+**One note is to be mindful of the version that you are looking at in the schema browser and the version that you are using when you configure the netsuite credentials.
+
+### Actions
+attach.rb-->  lib/netsuite/actions/attach.rb
+Based on the Netsuite Schema documentation, we added in the attach action functionality.  This is primarily used to attach records considered File Cabinate
+
+
+### Records
+If you see the record in the netsuite schema browser, you can easily add it to the records in this gem.  Use the fields and sub lists mentioned in the Netsuite schema browser to build out the record file following the same format as the other record files.
+
+### Other Cloudsnap Changes
+We made a few changes to the configuration.rb file.  The check credentials method and set attributes methods were added to support the updated way of passing credentials.  In the connection method, we also added the ability to set the wsdl and the endpoint level for the Savon client that is configured.  This was required to connect to Netsuite api versions 2020+
