@@ -89,7 +89,7 @@ module NetSuite
                     # attribute will be transitioned to the parent, and in the case
                     # of a string response the parent node's value will be to the string
 
-                    if result_class.fields.include?(attr_name) || search_group != :basic
+                    if %i[internal_id external_id].include?(attr_name) || result_class.fields.include?(attr_name) || search_group != :basic
                       # this is a record field, it will be picked up when we
                       # intialize the `result_class`
                       record[search_group][attr_name] = search_result[:search_value]
@@ -109,6 +109,10 @@ module NetSuite
 
               if record[:basic][:internal_id]
                 record[:basic][:internal_id] = record[:basic][:internal_id][:@internal_id]
+              end
+
+              if record[:basic][:external_id]
+                record[:basic][:external_id] = record[:basic][:external_id][:@external_id]
               end
 
               result_wrapper = result_class.new(record.delete(:basic))

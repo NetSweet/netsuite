@@ -16,6 +16,12 @@
                 <platformCore:searchRowList>
                     <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
                         <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:internalId>
+                                <platformCore:searchValue internalId="123"/>
+                            </platformCommon:internalId>
+                            <platformCommon:externalId>
+                                <platformCore:searchValue externalId="456"/>
+                            </platformCommon:externalId>
                             <platformCommon:department>
                                 <platformCore:searchValue internalId="114"/>
                                 <platformCore:customLabel>Business Unit</platformCore:customLabel>

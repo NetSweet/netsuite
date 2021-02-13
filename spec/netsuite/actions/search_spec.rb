@@ -184,6 +184,11 @@ describe NetSuite::Actions::Search do
         }).returns(response)
       search = NetSuite::Records::InventoryItem.search(saved: 42)
       results = search.results
+
+      result = results.first
+      expect(result.internal_id).to eq('123')
+      expect(result.external_id).to eq('456')
+
       custom_fields = results.map do |record|
         record.custom_field_list.custom_fields.map(&:internal_id)
       end.flatten.uniq
@@ -192,6 +197,11 @@ describe NetSuite::Actions::Search do
         :location_re_order_point,
         :location_quantity_on_order,
       ].each {|field| expect(custom_fields).to include(field)}
+
+      [
+        :internal_id,
+        :external_id,
+      ].each {|field| expect(custom_fields).to_not include(field)}
     end
   end
 
