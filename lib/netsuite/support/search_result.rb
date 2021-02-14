@@ -98,7 +98,7 @@ module NetSuite
                       # otherwise it will be lost when we initialize
                       custom_fields = record[search_group][:custom_field_list][:custom_field]
                       custom_fields = [custom_fields] if custom_fields.is_a?(Hash)
-                      custom_fields << search_result.merge(internal_id: attr_name)
+                      custom_fields << search_result.merge(NetSuite::Records::CustomFieldList.reference_id_type => attr_name)
                       record[search_group][:custom_field_list][:custom_field] = custom_fields
                     end
                   else

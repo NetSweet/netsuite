@@ -3,6 +3,10 @@ module NetSuite
     class CustomFieldList
       include Namespaces::PlatformCore
 
+      def self.reference_id_type
+        Configuration.api_version >= '2013_2' ? :script_id : :internal_id
+      end
+
       def initialize(attributes = {})
         case attributes[:custom_field]
         when Hash
@@ -100,7 +104,7 @@ module NetSuite
       private
 
         def reference_id_type
-          @reference_id_type ||= Configuration.api_version >= '2013_2' ? :script_id : :internal_id
+          @reference_id_type ||= self.class.reference_id_type
         end
 
         def extract_custom_field(custom_field_data)

@@ -172,36 +172,57 @@ describe NetSuite::Actions::Search do
       expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end
 
-    it "should handle an ID search with basic non-field result columns" do
-      response = File.read('spec/support/fixtures/search/saved_search_item.xml')
-      savon.expects(:search)
-        .with(message: {
+    context "with basic non-field result columns" do
+      before do
+        savon.expects(:search).with(message: {
           "searchRecord"=>{
             "@xsi:type"      =>"listAcct:ItemSearchAdvanced",
             "@savedSearchId" =>42,
             :content!        =>{"listAcct:criteria"=>{}},
           }
-        }).returns(response)
-      search = NetSuite::Records::InventoryItem.search(saved: 42)
-      results = search.results
+        }).returns(File.read('spec/support/fixtures/search/saved_search_item.xml'))
+      end
 
-      result = results.first
-      expect(result.internal_id).to eq('123')
-      expect(result.external_id).to eq('456')
+      it "should handle an ID search" do
+        NetSuite::Configuration.api_version = '2013_1'
 
-      custom_fields = results.map do |record|
-        record.custom_field_list.custom_fields.map(&:internal_id)
-      end.flatten.uniq
-      [
-        :location_quantity_available,
-        :location_re_order_point,
-        :location_quantity_on_order,
-      ].each {|field| expect(custom_fields).to include(field)}
+        search = NetSuite::Records::InventoryItem.search(saved: 42)
+        results = search.results
 
-      [
-        :internal_id,
-        :external_id,
-      ].each {|field| expect(custom_fields).to_not include(field)}
+        result = results.first
+        expect(result.internal_id).to eq('123')
+        expect(result.external_id).to eq('456')
+
+        custom_fields = results.map do |record|
+          record.custom_field_list.custom_fields.map(&:internal_id)
+        end.flatten.uniq
+        [
+          :location_quantity_available,
+          :location_re_order_point,
+          :location_quantity_on_order,
+        ].each {|field| expect(custom_fields).to include(field)}
+
+        [
+          :internal_id,
+          :external_id,
+        ].each {|field| expect(custom_fields).to_not include(field)}
+      end
+
+      it "uses script_id for custom fields when API >= 2013_2" do
+        NetSuite::Configuration.api_version = '2013_2'
+
+        search = NetSuite::Records::InventoryItem.search(saved: 42)
+        results = search.results
+
+        custom_fields = results.map do |record|
+          record.custom_field_list.custom_fields.map(&:script_id)
+        end.flatten.uniq
+        [
+          :location_quantity_available,
+          :location_re_order_point,
+          :location_quantity_on_order,
+        ].each {|field| expect(custom_fields).to include(field)}
+      end
     end
   end
 
