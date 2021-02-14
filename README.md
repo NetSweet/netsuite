@@ -564,6 +564,33 @@ NetSuite::Records::CustomRecord.get_list(
   # do your thing...
 end
 
+# If your search returns fields that aren't typically available on the record
+# (ie. Invoice search can return close_date via TransactionSearchRowBasic,
+# InventoryItem can return location_quantity_available via a saved search),
+# those non-standard fields are available on the result object as custom fields:
+
+search = NetSuite::Records::Invoice.search(
+  criteria: {
+      basic: [
+        {
+          field: 'type',
+          operator: 'anyOf',
+          value: ['_invoice'],
+        }
+      ],
+    },
+  columns: {
+    'tranSales:basic' => [
+      'platformCommon:internalId/' => {},
+      'platformCommon:closeDate/' => {},
+    ]
+  },
+)
+
+search.results_in_batches do |batch|
+  puts batch.map { |invoice| invoice.custom_field_list.close_date.attributes.fetch(:search_value) }
+end
+
 # Adding a Customer Deposit example. The customer associated with the
 # sales order would be linked to the deposit.
 
