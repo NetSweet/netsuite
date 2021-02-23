@@ -21,11 +21,11 @@ module NetSuite
       field :apply_list,        CustomerDepositApplyList
       # accountingBookDetailList
 
-      record_refs :customer, :sales_order, :account, :department, :payment_method,
-                  :custom_form, :currency, :posting_period, :subsidiary, :location,
-
-                  # only available in an advanced search result
-                  :deposit_transaction
+      record_refs :customer, :sales_order, :account, :department,
+        :payment_method, :payment_option, :custom_form, :currency,
+        :posting_period, :subsidiary, :location,
+        # only available in an advanced search result
+        :deposit_transaction
 
       attr_reader :internal_id
       attr_accessor :external_id
