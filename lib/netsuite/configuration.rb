@@ -17,6 +17,7 @@ module NetSuite
     def connection(params={}, credentials={})
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
+        endpoint: endpoint,
         read_timeout: read_timeout,
         open_timeout: open_timeout,
         namespaces: namespaces,
@@ -92,6 +93,18 @@ module NetSuite
       end
 
       attributes[:api_version] = version
+    end
+
+    def endpoint=(endpoint)
+      attributes[:endpoint] = endpoint
+    end
+
+    def endpoint(endpoint=nil)
+      if endpoint
+        self.endpoint = endpoint
+      else
+        attributes[:endpoint]
+      end
     end
 
     def sandbox=(flag)
