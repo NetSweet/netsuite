@@ -113,12 +113,15 @@ module NetSuite
             if type == "platformCore:SelectCustomFieldRef"
               attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
             elsif type == 'platformCore:MultiSelectCustomFieldRef'
-              attrs[:value] = custom_field_data[:value].map do |entry|
-                CustomRecordRef.new(entry)
+              # if only one value of multiselect is selected it will be a hash, not an array
+              if attrs[:value].is_a?(Array)
+                attrs[:value] = custom_field_data[:value].map { |entry| CustomRecordRef.new(entry) }
+              else
+                attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
               end
             end
-
             custom_fields << CustomField.new(attrs)
+
           end
         end
 
