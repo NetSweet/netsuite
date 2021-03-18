@@ -5,9 +5,11 @@ describe NetSuite::Records::Partner do
 
   it 'has all the right fields' do
     [
-        :phone, :home_phone, :first_name, :last_name, :alt_name, :is_inactive, :email, :give_access,
-        :partner_code, :is_person, :company_name, :eligible_for_commission, :entity_id, :last_modified_date,
-        :date_created, :title, :mobile_phone, :comments, :middle_name, :send_email, :password, :password2
+        :alt_email, :alt_name, :bcn, :comments, :company_name, :date_created, :default_address,
+        :eligible_for_commission, :email, :entity_id, :fax, :first_name, :give_access, :home_phone, :is_inactive,
+        :is_person, :last_modified_date, :last_name, :login_as, :middle_name, :mobile_phone, :partner_code,
+        :password, :password2, :phone, :phonetic_name, :print_on_check_as, :referring_url, :require_pwd_change,
+        :salutation, :send_email, :sub_partner_login, :tax_id_num, :title, :url, :vat_reg_number
     ].each do |field|
       expect(partner).to have_field(field)
     end
@@ -15,7 +17,7 @@ describe NetSuite::Records::Partner do
 
   it 'has all the right record refs' do
     [
-        :klass, :access_role, :department, :subsidiary
+        :access_role, :klass, :custom_form, :default_tax_reg, :department, :image, :location, :parent, :subsidiary
     ].each do |record_ref|
       expect(partner).to have_record_ref(record_ref)
     end

@@ -18,7 +18,7 @@ describe NetSuite::Records::CustomerPayment do
 
   it 'has all the right record refs' do
     [
-      :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location, :payment_method, :posting_period, :subsidiary
+      :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass, :location, :payment_method, :payment_option, :posting_period, :subsidiary
     ].each do |record_ref|
       expect(payment).to have_record_ref(record_ref)
     end

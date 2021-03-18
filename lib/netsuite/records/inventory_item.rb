@@ -51,7 +51,8 @@ module NetSuite
         :parent, :preferred_location, :pricing_group, :purchase_price_variance_acct, :purchase_tax_code, :purchase_unit,
         :quantity_pricing_schedule, :rev_rec_schedule, :sale_unit, :sales_tax_code, :ship_package, :soft_descriptor,
         :stock_unit, :store_display_image, :store_display_thumbnail, :store_item_template, :supply_lot_sizing_method,
-        :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor
+        :supply_replenishment_method, :supply_type, :tax_schedule, :units_type, :vendor, :create_revenue_plans_on,
+        :revenue_recognition_rule, :rev_rec_forecast_rule
 
       field :pricing_matrix, PricingMatrix
       field :custom_field_list, CustomFieldList

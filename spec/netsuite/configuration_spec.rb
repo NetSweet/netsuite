@@ -29,10 +29,12 @@ describe NetSuite::Configuration do
   end
 
   describe '#connection' do
+    EXAMPLE_ENDPOINT = 'https://1023.suitetalk.api.netsuite.com/services/NetSuitePort_2020_2'
     before(:each) do
       # reset clears out the password info
       config.email       'me@example.com'
       config.password    'me@example.com'
+      config.endpoint    EXAMPLE_ENDPOINT
       config.account     1023
       config.wsdl        "my_wsdl"
       config.api_version "2012_2"
@@ -56,6 +58,19 @@ describe NetSuite::Configuration do
       config.connection
 
       expect(config).to have_received(:cached_wsdl)
+    end
+
+    it 'sets the endpoint on the Savon client' do
+      # this is ugly/brittle, but it's hard to see how else to test this
+      savon_configs = config.connection.globals.instance_eval {@options}
+      expect(savon_configs.fetch(:endpoint)).to eq(EXAMPLE_ENDPOINT)
+    end
+
+    it 'handles a nil endpoint' do
+      config.endpoint = nil
+      # this is ugly/brittle, but it's hard to see how else to test this
+      savon_configs = config.connection.globals.instance_eval {@options}
+      expect(savon_configs.fetch(:endpoint)).to eq(nil)
     end
   end
 
@@ -163,6 +178,23 @@ describe NetSuite::Configuration do
         expect(config.wsdl_cache).to be_empty
         expect( config.cached_wsdl ).to eq nil
       end
+    end
+  end
+
+  describe '#endpoint' do
+    it 'can be set with endpoint=' do
+      config.endpoint = 42
+      expect(config.endpoint).to eq(42)
+    end
+
+    it 'can be set with just endpoint(value)' do
+      config.endpoint(42)
+      expect(config.endpoint).to eq(42)
+    end
+
+    it 'supports nil endpoints' do
+      config.endpoint = nil
+      expect(config.endpoint).to eq(nil)
     end
   end
 
