@@ -8,7 +8,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :delete, :upsert, :search
 
-      fields :allow_non_gl_changes, :end_date, :is_adjust, :is_quarter, :is_year, :period_name, :start_date
+      fields :allow_non_gl_changes, :end_date, :is_adjust, :is_quarter, :is_year, :period_name, :start_date, :closed
 
       record_refs :parent
 
