@@ -7,7 +7,6 @@ describe NetSuite::Records::CustomerPaymentCreditList do
   it 'can have credits be added to it' do
     list.credits << apply
     credit_list = list.credits
-
     expect(credit_list).to be_kind_of(Array)
     expect(credit_list.length).to eql(1)
     credit_list.each { |i| expect(i).to be_kind_of(NetSuite::Records::CustomerPaymentCredit) }
