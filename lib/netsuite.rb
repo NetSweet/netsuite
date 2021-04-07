@@ -158,6 +158,8 @@ module NetSuite
     autoload :DescriptionItem,                  'netsuite/records/description_item'
     autoload :DiscountItem,                     'netsuite/records/discount_item'
     autoload :Duration,                         'netsuite/records/duration'
+    autoload :EmployeeAddressbookList,          'netsuite/records/employee_addressbook_list'
+    autoload :EmployeeAddressbook,              'netsuite/records/employee_addressbook'
     autoload :Employee,                         'netsuite/records/employee'
     autoload :EntityCustomField,                'netsuite/records/entity_custom_field'
     autoload :ExpenseCategory,                  'netsuite/records/expense_category'
