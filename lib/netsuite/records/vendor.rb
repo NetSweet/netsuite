@@ -11,7 +11,7 @@ module NetSuite
 
       fields :account_number, :alt_email, :alt_name, :alt_phone, :balance,
              :balance_primary, :bcn, :bill_pay, :comments, :company_name, :credit_limit,
-             :currency_list, :date_created, :default_address, :eligible_for_commission,
+             :date_created, :default_address, :eligible_for_commission,
              :email, :email_preference, :email_transactions, :entity_id, :fax, :fax_transactions,
              :first_name, :give_access, :global_subscription_status, :home_phone, :is1099_eligible,
              :is_accountant, :is_inactive, :is_job_resource_vend, :is_person, :labor_cost,
@@ -22,6 +22,7 @@ module NetSuite
              :url, :vat_reg_number
 
       field :custom_field_list, CustomFieldList
+      field :currency_list, VendorCurrencyList
       # TODO should change name to VendorAddressBookList
       field :addressbook_list, CustomerAddressbookList
 

@@ -299,6 +299,8 @@ module NetSuite
     autoload :VendorCreditItemList,             'netsuite/records/vendor_credit_item_list'
     autoload :VendorCreditExpense,              'netsuite/records/vendor_credit_expense'
     autoload :VendorCreditExpenseList,          'netsuite/records/vendor_credit_expense_list'
+    autoload :VendorCurrencyList,               'netsuite/records/vendor_currency_list'
+    autoload :VendorCurrency,                   'netsuite/records/vendor_currency'
     autoload :VendorReturnAuthorization,        'netsuite/records/vendor_return_authorization'
     autoload :VendorReturnAuthorizationItem,    'netsuite/records/vendor_return_authorization_item'
     autoload :VendorReturnAuthorizationItemList, 'netsuite/records/vendor_return_authorization_item_list'
