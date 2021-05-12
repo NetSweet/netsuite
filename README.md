@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
 - [NetSuite SuiteTalk API Ruby Gem](#netsuite-suitetalk-api-ruby-gem)
 - [Help & Support](#help--support)
@@ -13,7 +13,6 @@
   - [Custom Records & Fields](#custom-records--fields)
   - [Searching](#searching)
   - [Non-standard Operations](#non-standard-operations)
-- [About SuiteSync](#about-suitesync)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -24,14 +23,12 @@
 # NetSuite SuiteTalk API Ruby Gem
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk WebServices API.
-* The gem does not cover the entire API, only the subset contributors have used so far.
-* NetSuite is a complex system. There's a lot to learn and sparse resources available to learn from. Here's a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources) that might make things a bit less painful.
+* The gem does not cover the entire API, only the subset contributors have used so far. Please submit a PR for any functionality that's missing!
+* NetSuite is a complex system. There's a lot to learn and sparse resources available to learn from. Here's a list of [NetSuite Development Resources](https://github.com/NetSweet/netsuite/wiki/NetSuite-Development-Resources).
 
 # Help & Support
 
 Join the [slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues. Please do not post usage questions as issues in GitHub.
-
-Messages in the Slack ground are [archived here](https://suitechat.slackarchive.io). Search the archives to see if your question has been answered before.
 
 There is some additional helpful resources for NetSuite development [listed here](https://dashboard.suitesync.io/docs/resources#netsuite).
 
@@ -39,9 +36,10 @@ There is some additional helpful resources for NetSuite development [listed here
 
 Before contributing a patch make sure all existing tests pass.
 
-```
+```shell
 git clone git://github.com/NetSweet/netsuite.git
 cd netsuite
+
 bundle
 bundle exec rspec
 ```
@@ -56,28 +54,44 @@ gem 'netsuite'
 
 If you'd like more accurate time conversion support, include the `tzinfo` gem.
 
-This gem is built for ruby 1.9.x+, checkout the [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
+This gem is built for ruby 2.6.x+, but should work on older versions down to 1.9. There's a [1-8-stable](https://github.com/NetSweet/netsuite/tree/1-8-stable) branch for ruby 1.8.x support.
 
 ## Configuration
 
 The most important thing you'll need is your NetSuite account ID. Not sure how to find your account id? [Here's a guide.](http://mikebian.co/find-netsuite-web-services-account-number/)
 
-For most use-cases, the following configuration will be sufficient:
+How you connect to NetSuite has changed a lot over the years and differs between API versions. For instance:
+
+* Older API versions (~2015) allowed authentication via username and password
+* Newever API versions (> 2016) still allowed for username and password authentication, but required an application ID
+* "OAuth", which requires four separate keys to be manually generated, was supported sometime after 2015
+* API versions greater than 2018_2 require `endpoint` to be set directly ([more info](https://github.com/NetSweet/netsuite/pull/473))
+
+Here's an example connection configuration. You don't want to actually use username + password config; token based authentication is detailed below in a separate section:
 
 ```ruby
 NetSuite.configure do
   reset!
 
+  # production & sandbox account numbers will differ
   account  'TSTDRV1576318'
   api_version '2018_2'
 
+  # password-based login information
+  # in most cases you should use token based authentication instead
   email 'email@example.com'
   password 'password'
   role 10
 
-  # use `NetSuite::Utilities.data_center_url('TSTDRV1576318')` to retrieve the URL
+  # recent API versions require a account-specific endpoint o be set
+  # use `NetSuite::Utilities.data_center_url('TSTDRV1576318')` to retrieve wsdl URL
   # you'll want to do this in a background process and strip the protocol out of the return string
   wsdl_domain 'tstdrv1576318.suitetalk.api.netsuite.com'
+
+  # the endpoint indicated in the > 2018_2 wsdl is invalid
+  # you must set the endpoint directly
+  # https://github.com/NetSweet/netsuite/pull/473
+  endpoint "#{wsdl_domain}/services/NetSuitePort_#{api_version}"
 end
 ```
 
@@ -115,6 +129,7 @@ NetSuite.configure do
   # log_level   :debug
 
   # password-based login information
+  # in most cases you should use token based authentication instead
   email    	  'email@domain.com'
   password 	  'password'
   account   	'12345'
@@ -127,9 +142,9 @@ NetSuite.configure do
 end
 ```
 
-If you'd like to use a API endpoints greater than 2015_1 you'll need to specify an application ID:
+If are using username + password authentication (which you shouldn't be!) *and* you'd like to use a API endpoints greater than 2015_1 you'll need to specify an application ID:
 
-```
+```ruby
 NetSuite::Configuration.soap_header = {
    'platformMsgs:ApplicationInfo' => {
       'platformMsgs:applicationId' => 'your-netsuite-app-id'
@@ -139,7 +154,7 @@ NetSuite::Configuration.soap_header = {
 
 ### Token based Authentication
 
-OAuth credentials are also supported. [Learn more about how to set up token based authentication here](http://mikebian.co/using-netsuites-token-based-authentication-with-suitetalk/).
+OAuth credentials are supported and the recommended authentication approach. [Learn more about how to set up token based authentication here](http://mikebian.co/using-netsuites-token-based-authentication-with-suitetalk/).
 
 ```ruby
 NetSuite.configure do
@@ -154,6 +169,11 @@ NetSuite.configure do
 
   # oauth does not work with API versions less than 2015_2
   api_version      '2016_2'
+
+  # the endpoint indicated in the > 2018_2 wsdl is invalid
+  # you must set the endpoint directly
+  # https://github.com/NetSweet/netsuite/pull/473
+  endpoint "#{wsdl_domain}/services/NetSuitePort_#{api_version}"
 end
 ```
 
@@ -593,7 +613,3 @@ states = NetSuite::Configuration.connection.call(:get_all, message: {
 })
 states.to_array.first[:get_all_response][:get_all_result][:record_list][:record].map { |r| { country: r[:country], abbr: r[:shortname], name: r[:full_name] } }
 ```
-
-# About SuiteSync
-
-[SuiteSync, the Stripe-NetSuite integration](http://suitesync.io) uses this gem and funds the majority of it's development and maintenance.
