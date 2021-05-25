@@ -91,7 +91,7 @@ NetSuite.configure do
   # the endpoint indicated in the > 2018_2 wsdl is invalid
   # you must set the endpoint directly
   # https://github.com/NetSweet/netsuite/pull/473
-  endpoint "#{wsdl_domain}/services/NetSuitePort_#{api_version}"
+  endpoint "https://#{wsdl_domain}/services/NetSuitePort_#{api_version}"
 end
 ```
 
@@ -173,7 +173,7 @@ NetSuite.configure do
   # the endpoint indicated in the > 2018_2 wsdl is invalid
   # you must set the endpoint directly
   # https://github.com/NetSweet/netsuite/pull/473
-  endpoint "#{wsdl_domain}/services/NetSuitePort_#{api_version}"
+  endpoint "https://#{wsdl_domain}/services/NetSuitePort_#{api_version}"
 end
 ```
 
