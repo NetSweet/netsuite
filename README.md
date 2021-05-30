@@ -435,7 +435,9 @@ NetSuite::Records::SalesOrder.search({
     'tranSales:itemJoin' => [
       'platformCommon:customFieldList' => [
         'platformCore:customField/' => {
-          '@internalId' => 'custitem_apcategoryforsales',
+          '@scriptId' => 'custitem_apcategoryforsales',
+          # Or, for API versions 2013.1 and older:
+          # '@internalId' => 'custitem_apcategoryforsales',
           '@xsi:type' => "platformCore:SearchColumnSelectCustomField"
         }
       ]
