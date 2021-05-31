@@ -89,6 +89,10 @@ module NetSuite
                 record[:basic][:internal_id] = record[:basic][:internal_id][:@internal_id]
               end
 
+              if record[:basic][:external_id]
+                record[:basic][:external_id] = record[:basic][:external_id][:@external_id]
+              end
+
               result_wrapper = result_class.new(record.delete(:basic))
               result_wrapper.search_joins = record
               results << result_wrapper

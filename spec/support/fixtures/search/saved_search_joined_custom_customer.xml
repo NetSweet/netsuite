@@ -16,6 +16,12 @@
         <platformCore:searchRowList>
           <platformCore:searchRow xmlns:listRel="urn:relationships_2012_1.lists.webservices.netsuite.com" xsi:type="listRel:CustomerSearchRow">
             <listRel:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+              <platformCommon:internalId>
+                <platformCore:searchValue internalId="123"/>
+              </platformCommon:internalId>
+              <platformCommon:externalId>
+                <platformCore:searchValue externalId="456"/>
+              </platformCommon:externalId>
               <platformCommon:altName>
                 <platformCore:searchValue>A Awesome Name</platformCore:searchValue>
               </platformCommon:altName>
