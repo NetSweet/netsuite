@@ -171,6 +171,8 @@ describe NetSuite::Actions::Search do
       expect(search.results.first.internal_id).to eq('123')
       expect(search.results.first.external_id).to eq('456')
       expect(search.results.first.alt_name).to eq('A Awesome Name')
+      expect(search.results.first.custom_field_list.custitem_stringfield.value).to eq('sample string value')
+      expect(search.results.first.custom_field_list.custitem_apcategoryforsales.value.internal_id).to eq('4')
       expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end
   end
