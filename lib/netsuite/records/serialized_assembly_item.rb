@@ -61,7 +61,6 @@ module NetSuite
         :hazmat_packing_group,
         :hazmat_shipping_name,
         :include_children,
-        :income_account,
         :interco_cogs_account,
         :interco_income_account,
         :invt_classification,
@@ -209,6 +208,8 @@ module NetSuite
         :wip_acct,
         :wip_variance_acct
 
+      record_refs :income_account
+
       # accountingBookDetailList	ItemAccountingBookDetailList
       # binNumberList	InventoryItemBinNumberList
       # itemOptionsList	ItemOptionsList
@@ -220,6 +221,7 @@ module NetSuite
       # siteCategoryList	SiteCategoryList
       # translationsList	TranslationList
 
+      field :subsidiary_list, RecordRefList
       field :custom_field_list, CustomFieldList
 
       attr_reader :internal_id
