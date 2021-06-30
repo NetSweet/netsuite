@@ -33,17 +33,11 @@ module NetSuite
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
         @external_id = attributes.delete(:external_id) || attributes.delete(:@external_id)
         initialize_from_attributes_hash(attributes)
-        # @name = []
       end
 
       def self.search_class_name
         'Employee'
       end
-
-      # def name=(name)
-      #   binding.pry
-      #   @null_field_list << name
-      # end
 
     end
   end
