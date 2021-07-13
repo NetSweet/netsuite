@@ -21,6 +21,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :item_list,         PurchaseOrderItemList
       field :expense_list,      PurchaseOrderExpenseList
+      field :null_field_list,   NullFieldList
 
       # TODO custom lists
       # :ship_address_list

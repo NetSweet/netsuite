@@ -16,6 +16,7 @@ module NetSuite
 
       field :apply_list,        VendorPaymentApplyList
       field :custom_field_list, CustomFieldList
+      field :null_field_list,   NullFieldList
 
       record_refs :account, :ap_acct, :currency, :custom_form, :department, :entity, :klass, :location, :posting_period,
                   :subsidiary, :void_journal

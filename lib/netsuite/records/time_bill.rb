@@ -14,6 +14,7 @@ module NetSuite
 
       field :custom_field_list,   CustomFieldList
       field :hours,               Duration
+      field :null_field_list,     NullFieldList
 
       record_refs :employee, :customer, :case_task_event, :payroll_item, :workplace, :item, :department, :location, :price,
                   :subsidiary, :temporary_local_jurisdiction, :temporary_state_jurisdiction

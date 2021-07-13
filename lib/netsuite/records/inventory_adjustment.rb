@@ -13,6 +13,7 @@ module NetSuite
 
       field :inventory_list, InventoryAdjustmentInventoryList
       field :custom_field_list, CustomFieldList
+      field :null_field_list,   NullFieldList
       
       record_refs :account, :adj_location, :customer, :posting_period, :location, :department,
         :subsidiary, :custom_form, :klass

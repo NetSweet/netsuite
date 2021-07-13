@@ -3,6 +3,9 @@ module NetSuite
     class NullFieldList
       include Support::Fields
       include Support::Records
+      include Namespaces::PlatformCore
+
+      attr_accessor :type
 
       fields :name
 

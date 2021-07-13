@@ -36,6 +36,12 @@ module NetSuite
           hash['platformMsgs:record']['@platformMsgs:externalId'] = updated_record.external_id
         end
 
+        inner = hash.dig("platformMsgs:record", :content!)
+        if inner.keys.grep(/(.*):nullFieldList?/).any?
+          null_field_key = inner.keys.grep(/(.*):nullFieldList?/)
+          hash["platformMsgs:record"][:content!]["platformCore:nullFieldList"] = hash["platformMsgs:record"][:content!].delete null_field_key[0]
+        end
+
         hash
       end
 

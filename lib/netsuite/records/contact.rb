@@ -17,6 +17,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       # field :subscriptions_list, SubscriptionsList
       # field :category_list, CategoryList
+      field :null_field_list,   NullFieldList
 
       read_only_fields :last_modified_date, :date_created
 

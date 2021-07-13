@@ -24,6 +24,7 @@ module NetSuite
       field :item_list, ItemReceiptItemList
       field :expense_list, ItemReceiptExpenseList
       field :custom_field_list, CustomFieldList
+      field :null_field_list,   NullFieldList
 
       attr_reader :internal_id
       attr_accessor :external_id

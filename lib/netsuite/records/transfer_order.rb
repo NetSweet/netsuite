@@ -21,6 +21,7 @@ module NetSuite
 
       field :custom_field_list,   CustomFieldList
       field :item_list,           TransferOrderItemList
+      field :null_field_list,     NullFieldList
 
       attr_reader :internal_id
       attr_accessor :external_id
