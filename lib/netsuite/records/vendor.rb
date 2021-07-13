@@ -24,6 +24,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       # TODO should change name to VendorAddressBookList
       field :addressbook_list, CustomerAddressbookList
+      field :null_field_list,   NullFieldList
 
       read_only_fields :balance_primary, :balance, :last_modified_date, :unbilled_orders,
                        :unbilled_orders_primary

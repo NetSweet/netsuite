@@ -229,6 +229,7 @@ module NetSuite
     autoload :NonInventoryResaleItem,           'netsuite/records/non_inventory_resale_item'
     autoload :Note,                             'netsuite/records/note'
     autoload :NoteType,                         'netsuite/records/note_type'
+    autoload :NullFieldList,                    'netsuite/records/null_field_list'
     autoload :Opportunity,                      'netsuite/records/opportunity'
     autoload :OpportunityItem,                  'netsuite/records/opportunity_item'
     autoload :OpportunityItemList,              'netsuite/records/opportunity_item_list'

@@ -17,6 +17,7 @@ module NetSuite
       field :expense_list,        VendorBillExpenseList
       field :item_list,           VendorBillItemList
       field :purchase_order_list, RecordRefList
+      field :null_field_list,     NullFieldList
 
       read_only_fields :status
 

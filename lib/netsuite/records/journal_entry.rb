@@ -14,6 +14,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :line_list,         JournalEntryLineList
+      field :null_field_list,   NullFieldList
 
       record_refs :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc,
         :posting_period, :subsidiary, :to_subsidiary

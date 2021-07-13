@@ -15,7 +15,7 @@ module NetSuite
       # field :accounting_book_detail_list,  AccountingBookDetailList
       field :custom_field_list,   CustomFieldList
       field :expense_list,        ExpenseReportExpenseList
-
+      field :null_field_list,     NullFieldList
 
       record_refs :account, :approval_status, :klass, :custom_form, :department, :entity, :location, :next_approver, :posting_period, :subsidiary
 

@@ -24,6 +24,7 @@ module NetSuite
       field :custom_field_list, CustomFieldList
       field :addressbook_list,  EmployeeAddressbookList
       field :roles_list, RoleList
+      field :null_field_list, NullFieldList
 
       attr_reader :internal_id
       attr_accessor :external_id

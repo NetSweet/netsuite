@@ -38,6 +38,7 @@ module NetSuite
       field :custom_field_list,        CustomFieldList
       field :shipping_address,         Address
       field :billing_address,          Address
+      field :null_field_list,          NullFieldList
 
       read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid,
                        :alt_shipping_cost, :gift_cert_applied, :handling_cost, :alt_handling_cost

@@ -23,6 +23,7 @@ module NetSuite
       field :item_list,                CreditMemoItemList
       field :apply_list,               CreditMemoApplyList
       field :ship_group_list,          SalesOrderShipGroupList
+      field :null_field_list,          NullFieldList
 
       # field :bill_address_list,
       field :transaction_bill_address, BillAddress
