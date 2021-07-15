@@ -401,7 +401,7 @@ describe NetSuite::Configuration do
 
   describe "#log" do
     it 'allows a file path to be set as the log destination' do
-      file_path = Tempfile.new.path
+      file_path = Tempfile.new('tmplog').path
       config.log = file_path
       config.logger.info "foo"
 
