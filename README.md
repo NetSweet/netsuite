@@ -16,7 +16,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[![Circle CI](https://circleci.com/gh/NetSweet/netsuite/tree/master.svg?style=svg)](https://circleci.com/gh/NetSweet/netsuite/tree/master)
+[![Ruby](https://github.com/NetSweet/netsuite/actions/workflows/main.yml/badge.svg)](https://github.com/NetSweet/netsuite/actions/workflows/main.yml)
 [![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
 
