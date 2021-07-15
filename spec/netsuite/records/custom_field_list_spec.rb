@@ -3,15 +3,51 @@ require 'spec_helper'
 describe NetSuite::Records::CustomFieldList do
   let(:list) { NetSuite::Records::CustomFieldList.new }
 
+  before(:all) { savon.mock! }
+  after(:all) { savon.unmock! }
+
   it 'has a custom_fields attribute' do
     expect(list.custom_fields).to be_kind_of(Array)
   end
 
   it 'accepts a collection of CustomField records' do
-    field = NetSuite::Records::CustomField.new({:value=>{:internal_id=>"5", :type_id=>"103"},
-             :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
+    field = NetSuite::Records::CustomField.new({
+      :value=>{:internal_id=>"5", :type_id=>"103"},
+      :script_id=>"custitem_item_category",
+      :"@xsi:type"=>"platformCore:SelectCustomFieldRef"
+    })
+
     list = described_class.new(custom_field: [field])
+
     expect(list.custom_fields).to eq([field])
+  end
+
+  it 'properly decodes various custom field types' do
+    savon.
+      expects(:get).
+      with(message: {"platformMsgs:baseRef"=>{"@xsi:type"=>"platformCore:RecordRef", "@internalId"=>123, "@type"=>"creditMemo"}}).
+      returns(File.read('spec/support/fixtures/custom_fields/multi_select.xml'))
+
+    credit_memo_with_custom_fields = NetSuite::Records::CreditMemo.get(123)
+
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_standard_select.value.internal_id).to eq("2")
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_standard_select.value.attributes[:name]).to eq("Manual")
+
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_date_field.value).to be_a(DateTime)
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_date_field.value.to_s).to eq("2021-07-13T22:00:00-07:00")
+
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_string_field.value).to eq("a very nice string")
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_boolean_field.value).to eq(false)
+
+    # even if there's a single value, it should return an array
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_field.value).to be_a(Array)
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_field.value.size).to eq(1)
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_field.value.first.attributes[:name]).to eq("selection value")
+
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_with_multiple.value).to be_a(Array)
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_with_multiple.value.size).to eq(2)
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_with_multiple.value.first.attributes[:name]).to eq("selection value 1")
+    expect(credit_memo_with_custom_fields.custom_field_list.custbody_multi_select_with_multiple.value.last.attributes[:name]).to eq("selection value 2")
   end
 
   context 'initializing with custom field attributes without a type' do
@@ -28,7 +64,9 @@ describe NetSuite::Records::CustomFieldList do
     it 'does not mutate the attributes' do
       field = {:value=>{:internal_id=>"5", :type_id=>"103"},
                :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"}
+
       described_class.new(custom_field: [field])
+
       expect(field).to eq({:value=>{:internal_id=>"5", :type_id=>"103"},
                :script_id=>"custitem_item_category", :"@xsi:type"=>"platformCore:SelectCustomFieldRef"})
     end
