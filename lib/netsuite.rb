@@ -95,6 +95,7 @@ module NetSuite
     autoload :CashRefundItemList,               'netsuite/records/cash_refund_item_list'
     autoload :Campaign,                         'netsuite/records/campaign'
     autoload :Classification,                   'netsuite/records/classification'
+    autoload :CostCategory,                     'netsuite/records/cost_category'
     autoload :CreditMemo,                       'netsuite/records/credit_memo'
     autoload :CreditMemoApply,                  'netsuite/records/credit_memo_apply'
     autoload :CreditMemoApplyList,              'netsuite/records/credit_memo_apply_list'

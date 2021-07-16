@@ -18,5 +18,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'savon', '>= 2.3.0', '<= 2.11.1'
 
-  gem.add_development_dependency 'rspec', '~> 3.8.0'
+  gem.add_development_dependency 'rspec', '~> 3.10.0'
+  gem.add_development_dependency 'rake'
 end

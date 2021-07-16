@@ -1,0 +1,47 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2017_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_4384362_0714202114843454571284681300_c8529d78de5</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getResponse xmlns="urn:messages_2017_2.platform.webservices.netsuite.com">
+      <readResponse>
+        <platformCore:status xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com" isSuccess="true"/>
+        <record xmlns:tranCust="urn:customers_2017_2.transactions.webservices.netsuite.com" internalId="9948394" xsi:type="tranCust:CreditMemo">
+          <tranCust:createdDate>2021-07-14T12:45:42.000-07:00</tranCust:createdDate>
+          <tranCust:lastModifiedDate>2021-07-14T14:56:35.000-07:00</tranCust:lastModifiedDate>
+          <tranCust:customFieldList xmlns:platformCore="urn:core_2017_2.platform.webservices.netsuite.com">
+            <platformCore:customField internalId="520" scriptId="custbody_standard_select" xsi:type="platformCore:SelectCustomFieldRef">
+              <platformCore:value internalId="2" typeId="142">
+                <platformCore:name>Manual</platformCore:name>
+              </platformCore:value>
+            </platformCore:customField>
+            <platformCore:customField internalId="26" scriptId="custbody_date_field" xsi:type="platformCore:DateCustomFieldRef">
+              <platformCore:value>2021-07-13T22:00:00.000-07:00</platformCore:value>
+            </platformCore:customField>
+            <platformCore:customField internalId="1371" scriptId="custbody_string_field" xsi:type="platformCore:StringCustomFieldRef">
+              <platformCore:value>a very nice string</platformCore:value>
+            </platformCore:customField>
+            <platformCore:customField internalId="1593" scriptId="custbody_boolean_field" xsi:type="platformCore:BooleanCustomFieldRef">
+              <platformCore:value>false</platformCore:value>
+            </platformCore:customField>
+            <platformCore:customField internalId="1552" scriptId="custbody_multi_select_field" xsi:type="platformCore:MultiSelectCustomFieldRef">
+              <platformCore:value internalId="7623" typeId="164">
+                <platformCore:name>selection value</platformCore:name>
+              </platformCore:value>
+            </platformCore:customField>
+            <platformCore:customField internalId="1553" scriptId="custbody_multi_select_with_multiple" xsi:type="platformCore:MultiSelectCustomFieldRef">
+              <platformCore:value internalId="7613" typeId="164">
+                <platformCore:name>selection value 1</platformCore:name>
+              </platformCore:value>
+              <platformCore:value internalId="7614" typeId="165">
+                <platformCore:name>selection value 2</platformCore:name>
+              </platformCore:value>
+            </platformCore:customField>
+          </tranCust:customFieldList>
+        </record>
+      </readResponse>
+    </getResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
