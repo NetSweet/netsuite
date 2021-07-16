@@ -110,9 +110,10 @@ module NetSuite
             attrs = custom_field_data.clone
             type = (custom_field_data[:"@xsi:type"] || custom_field_data[:type])
 
-            if type == "platformCore:SelectCustomFieldRef"
+            case type
+            when "platformCore:SelectCustomFieldRef", "platformCore:SearchColumnSelectCustomField"
               attrs[:value] = CustomRecordRef.new(custom_field_data[:value])
-            elsif type == 'platformCore:MultiSelectCustomFieldRef'
+            when 'platformCore:MultiSelectCustomFieldRef', 'platformCore:SearchColumnMultiSelectCustomField'
               # if there is only a single selection, `:value` will be hash not an array
               attrs[:value] = if custom_field_data[:value].is_a?(Array)
                 custom_field_data[:value]

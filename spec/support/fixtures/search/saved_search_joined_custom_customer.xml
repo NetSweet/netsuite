@@ -43,6 +43,14 @@
               <platformCommon:phone>
                 <platformCore:searchValue>444-444-4444</platformCore:searchValue>
               </platformCommon:phone>
+              <platformCommon:customFieldList>
+                <platformCore:customField internalId="1756" scriptId="custitem_stringfield" xsi:type="platformCore:SearchColumnStringCustomField">
+                  <platformCore:searchValue>sample string value</platformCore:searchValue>
+                </platformCore:customField>
+                <platformCore:customField internalId="1713" scriptId="custitem_apcategoryforsales" xsi:type="platformCore:SearchColumnSelectCustomField">
+                  <platformCore:searchValue internalId="4" typeId="464"/>
+                </platformCore:customField>
+              </platformCommon:customFieldList>
             </listRel:basic>
             <listRel:contactJoin xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
               <platformCommon:email>
