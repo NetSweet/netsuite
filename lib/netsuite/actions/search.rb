@@ -244,7 +244,7 @@ module NetSuite
             if response.success?
               NetSuite::Support::SearchResult.new(response, self, credentials)
             else
-              false
+              NetSuite::Error.new(response.body[:status][:status_detail])
             end
           end
         end
