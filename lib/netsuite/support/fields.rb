@@ -60,6 +60,22 @@ module NetSuite
           read_only_fields << name_sym
           field name
         end
+
+        def search_only_fields(*args)
+          if args.empty?
+             @search_only_fields ||= Set.new
+          else
+            args.each do |arg|
+              search_only_field arg
+            end
+          end
+        end
+
+        def search_only_field(name)
+          name_sym = name.to_sym
+          search_only_fields << name_sym
+          field name
+        end
       end
 
     end

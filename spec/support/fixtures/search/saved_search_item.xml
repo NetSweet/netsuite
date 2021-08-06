@@ -1,0 +1,55 @@
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Header>
+        <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2012_1.platform.webservices.netsuite.com">
+            <platformMsgs:nsId>WEBSERVICES_3603333_SB1_0320201916835580962038419462_2ce0aa2</platformMsgs:nsId>
+        </platformMsgs:documentInfo>
+    </soapenv:Header>
+    <soapenv:Body>
+        <searchResponse xmlns="urn:messages_2012_1.platform.webservices.netsuite.com">
+            <platformCore:searchResult xmlns:platformCore="urn:core_2012_1.platform.webservices.netsuite.com">
+                <platformCore:status isSuccess="true"/>
+                <platformCore:totalRecords>49</platformCore:totalRecords>
+                <platformCore:pageSize>1000</platformCore:pageSize>
+                <platformCore:totalPages>1</platformCore:totalPages>
+                <platformCore:pageIndex>1</platformCore:pageIndex>
+                <platformCore:searchId>WEBSERVICES_3603333_SB1_0320201916835580962038419462_2ce0aa2</platformCore:searchId>
+                <platformCore:searchRowList>
+                    <platformCore:searchRow xsi:type="listAcct:ItemSearchRow" xmlns:listAcct="urn:accounting_2012_1.lists.webservices.netsuite.com">
+                        <listAcct:basic xmlns:platformCommon="urn:common_2012_1.platform.webservices.netsuite.com">
+                            <platformCommon:department>
+                                <platformCore:searchValue internalId="113"/>
+                                <platformCore:customLabel>Business Unit</platformCore:customLabel>
+                            </platformCommon:department>
+                            <platformCommon:itemId>
+                                <platformCore:searchValue>9781945179747</platformCore:searchValue>
+                                <platformCore:customLabel>SKU</platformCore:customLabel>
+                            </platformCommon:itemId>
+                            <platformCommon:locationQuantityAvailable>
+                                <platformCore:searchValue>3307.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Available</platformCore:customLabel>
+                            </platformCommon:locationQuantityAvailable>
+                            <platformCommon:locationQuantityOnOrder>
+                                <platformCore:searchValue>40000.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - On Order</platformCore:customLabel>
+                            </platformCommon:locationQuantityOnOrder>
+                            <platformCommon:locationReOrderPoint>
+                                <platformCore:searchValue>2565.0</platformCore:searchValue>
+                                <platformCore:customLabel>Qty - Reorder Point</platformCore:customLabel>
+                            </platformCommon:locationReOrderPoint>
+                            <platformCommon:customFieldList>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_productline">
+                                    <platformCore:searchValue typeId="37" internalId="123"/>
+                                    <platformCore:customLabel>Product Line</platformCore:customLabel>
+                                </platformCore:customField>
+                                <platformCore:customField xsi:type="platformCore:SearchColumnSelectCustomField" internalId="custitem_inv_reorder_status">
+                                    <platformCore:searchValue typeId="211" internalId="8"/>
+                                    <platformCore:customLabel>Reorder Status</platformCore:customLabel>
+                                </platformCore:customField>
+                            </platformCommon:customFieldList>
+                        </listAcct:basic>
+                    </platformCore:searchRow>
+                </platformCore:searchRowList>
+            </platformCore:searchResult>
+        </searchResponse>
+    </soapenv:Body>
+</soapenv:Envelope>

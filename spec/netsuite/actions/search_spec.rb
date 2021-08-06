@@ -175,6 +175,24 @@ describe NetSuite::Actions::Search do
       expect(search.results.first.custom_field_list.custitem_apcategoryforsales.value.internal_id).to eq('4')
       expect(search.results.last.email).to eq('alessawesome@gmail.com')
     end
+
+    it "should handle an ID search with basic search only field result columns" do
+      response = File.read('spec/support/fixtures/search/saved_search_item.xml')
+      savon.expects(:search)
+        .with(message: {
+          "searchRecord"=>{
+            "@xsi:type"      =>"listAcct:ItemSearchAdvanced",
+            "@savedSearchId" =>42,
+            :content!        =>{"listAcct:criteria"=>{}},
+          }
+        }).returns(response)
+
+      search = NetSuite::Records::InventoryItem.search(saved: 42)
+
+      expect(search.results.first.location_quantity_available).to eq('3307.0')
+      expect(search.results.first.location_re_order_point).to eq('2565.0')
+      expect(search.results.first.location_quantity_on_order).to eq('40000.0')
+    end
   end
 
   context "advanced search" do
