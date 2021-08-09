@@ -6,9 +6,11 @@ module NetSuite
       include Support::Records
       include Namespaces::TranGeneral
 
-      fields :credit, :debit, :eliminate, :end_date, :gross_amt, :memo, :residual, :start_date, :tax1_amt, :tax_rate1
+      fields :credit, :debit, :eliminate, :end_date, :gross_amt, :memo, :residual, :start_date, :tax1_amt, :tax_rate1, :line
+
       field :custom_field_list, CustomFieldList
-      record_refs :account, :department, :entity, :klass, :location, :schedule, :schedule_num, :tax1_acct, :tax_code
+      
+      record_refs :account, :department, :entity, :klass, :location, :schedule, :schedule_num, :tax1_acct, :tax_code, :revenue_recognition_rule
 
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)

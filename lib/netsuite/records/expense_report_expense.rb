@@ -10,7 +10,7 @@ module NetSuite
 
       field :custom_field_list
 
-      record_refs :category, :klass, :currency, :customer, :department, :location, :tax_code
+      record_refs :category, :klass, :currency, :customer, :department, :location, :tax_code, :exp_media_item
 
       def initialize(attributes_or_record = {})
         case attributes_or_record

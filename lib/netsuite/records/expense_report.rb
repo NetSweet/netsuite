@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranEmp
 
-      actions :add, :get, :search, :update
+      actions :add, :get, :get_list, :search, :update
 
       fields :accounting_approval, :advance, :amount, :complete, :created_date, :due_date, :last_modified_date, :memo, :status, :supervisor_approval, :tax1_amt, :tax2_amt, :total, :tran_date, :tran_id, :use_multi_currency
 
