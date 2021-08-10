@@ -8,9 +8,9 @@ module NetSuite
 
       fields :amount, :exchange_rate, :expense_date, :foreign_amount, :gross_amt, :is_billable, :is_non_reimburable, :line, :memo, :quantity, :rate, :receipt, :ref_number, :tax1_amt, :tax_rate1, :tax_rate2
 
-      field :custom_field_list
+      field :custom_field_list, CustomFieldList
 
-      record_refs :category, :klass, :currency, :customer, :department, :location, :tax_code
+      record_refs :category, :klass, :currency, :customer, :department, :location, :tax_code, :exp_media_item
 
       def initialize(attributes_or_record = {})
         case attributes_or_record

@@ -7,17 +7,17 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranGeneral
 
-      actions :get, :get_list, :add, :delete, :search, :upsert
+      actions :get, :get_list, :add, :delete, :search, :upsert, :update
 
       fields :approved, :created_date, :exchange_rate, :last_modified_date, :memo, :reversal_date, :reversal_defer, :reversal_entry,
-        :tran_date, :tran_id
+        :tran_date, :tran_id, :is_book_specific
 
       field :custom_field_list, CustomFieldList
       field :line_list,         JournalEntryLineList
       field :null_field_list,   NullFieldList
 
       record_refs :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc,
-        :posting_period, :subsidiary, :to_subsidiary
+        :posting_period, :subsidiary, :to_subsidiary, :accounting_book
 
       attr_reader   :internal_id
       attr_accessor :external_id

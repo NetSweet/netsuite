@@ -13,7 +13,7 @@ describe NetSuite::Records::JournalEntryLine do
 
   it 'has all the right record refs' do
     [
-      :account, :department, :entity, :klass, :location, :schedule, :schedule_num, :tax1_acct, :tax_code
+      :account, :department, :entity, :klass, :location, :schedule, :schedule_num, :tax1_acct, :tax_code, :revenue_recognition_rule
     ].each do |record_ref|
       expect(line).to have_record_ref(record_ref)
     end
