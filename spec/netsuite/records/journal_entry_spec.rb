@@ -6,7 +6,7 @@ describe NetSuite::Records::JournalEntry do
   it 'has all the right fields' do
     [
      :approved, :created_date, :exchange_rate, :last_modified_date, :reversal_date,
-     :reversal_defer, :reversal_entry, :tran_date, :tran_id
+     :reversal_defer, :reversal_entry, :tran_date, :tran_id, :is_book_specific
     ].each do |field|
       expect(entry).to have_field(field)
     end
@@ -15,7 +15,7 @@ describe NetSuite::Records::JournalEntry do
   it 'has all the right record refs' do
     [
       :created_from, :currency, :custom_form, :department, :klass, :location, :parent_expense_alloc, :posting_period,
-      :subsidiary, :to_subsidiary
+      :subsidiary, :to_subsidiary, :accounting_book
     ].each do |record_ref|
       expect(entry).to have_record_ref(record_ref)
     end
