@@ -421,7 +421,10 @@ NetSuite::Records::SalesOrder.search({
     'tranSales:basic' => [
       'platformCommon:internalId/' => {},
       'platformCommon:email/' => {},
-      'platformCommon:tranDate/' => {}
+      'platformCommon:tranDate/' => {},
+      # If you include columns that are only part of the *SearchRowBasic (ie. TransactionSearchRowBasic), 
+      # they'll be readable on the resulting record just like regular fields (my_record.close_date).
+      'platformCommon:closeDate/' => {}
     ],
     'tranSales:accountJoin' => [
       'platformCommon:internalId/' => {}
