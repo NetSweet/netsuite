@@ -94,7 +94,7 @@ describe NetSuite::Records::Invoice do
       :merchant_account, :multi_subsidiary, :net_amount, :net_amount_no_tax,
       :next_bill_date, :no_auto_assign_location, :non_reimbursable,
       :one_time_total, :options, :order_allocation_strategy, :order_priority,
-      :originator, :other_ref_num, :overhead_parent_item,
+      :originator, :overhead_parent_item,
       :override_installments, :package_count, :paid_amount, :paid_transaction,
       :partner_contribution, :partner_role, :partner_team_member,
       :paying_amount, :paying_transaction, :payment_approved,
