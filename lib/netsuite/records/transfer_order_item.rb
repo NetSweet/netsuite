@@ -8,7 +8,7 @@ module NetSuite
 
       fields :amount, :average_cost, :klass, :commit_inventory, :description,
              :expected_receipt_date, :expected_ship_date, :inventory_detail, :is_closed, :last_purchase_price,
-             :line, :options, :order_priority, :quantity, :quantity_available,
+             :line, :order_priority, :quantity, :quantity_available,
              :quantity_back_ordered, :quantity_committed, :quantity_fulfilled,
              :quantity_on_hand, :quantity_packed, :quantity_picked, :quantity_received,
              :rate, :serial_numbers

@@ -7,7 +7,7 @@ module NetSuite
       include Namespaces::TranPurch
 
       fields :bin_numbers, :currency, :description, :expiration_date, :is_drop_shipment,
-             :item_name, :item_receive, :job_name, :line, :on_hand, :options, :order_line,
+             :item_name, :item_receive, :job_name, :line, :on_hand, :order_line,
              :quantity, :quantity_remaining, :rate, :restock, :serial_numbers,
              :unit_cost_override, :units_display
 

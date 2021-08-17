@@ -15,7 +15,7 @@ module NetSuite
         :item_id, :last_modified_date, :matrix_option_list, :matrix_type, :max_donation_amount, :meta_tag_html,
         :minimum_quantity, :minimum_quantity_units, :no_price_message, :offer_support, :on_special, :out_of_stock_behavior,
         :out_of_stock_message, :overall_quantity_pricing_type, :page_title, :presentation_item_list, :prices_include_tax,
-        :pricing_matrix, :rate, :related_items_description, :sales_description, :search_keywords,
+        :rate, :related_items_description, :sales_description, :search_keywords,
         :show_default_donation_amount, :site_category_list, :sitemap_priority, :soft_descriptor, :specials_description,
         :store_description, :store_detailed_description, :store_display_name, :translations_list, :upc_code, :url_component,
         :use_marginal_rates, :vsoe_deferral, :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :vsoe_sop_group

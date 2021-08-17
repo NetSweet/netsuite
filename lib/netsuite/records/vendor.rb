@@ -9,16 +9,16 @@ module NetSuite
 
       actions :get, :get_list, :add, :update, :upsert, :delete, :search
 
-      fields :account_number, :alt_email, :alt_name, :alt_phone, :balance,
-             :balance_primary, :bcn, :bill_pay, :comments, :company_name, :credit_limit,
+      fields :account_number, :alt_email, :alt_name, :alt_phone,
+             :bcn, :bill_pay, :comments, :company_name, :credit_limit,
              :date_created, :default_address, :eligible_for_commission,
              :email, :email_preference, :email_transactions, :entity_id, :fax, :fax_transactions,
              :first_name, :give_access, :global_subscription_status, :home_phone, :is1099_eligible,
              :is_accountant, :is_inactive, :is_job_resource_vend, :is_person, :labor_cost,
-             :last_modified_date, :last_name, :legal_name, :middle_name, :mobile_phone, :opening_balance,
+             :last_name, :legal_name, :middle_name, :mobile_phone, :opening_balance,
              :opening_balance_date, :password, :password2, :phone, :phonetic_name, :pricing_schedule_list,
              :print_on_check_as, :print_transactions, :require_pwd_change, :roles_list, :salutation,
-             :send_email, :subscriptions_list, :tax_id_num, :title, :unbilled_orders, :unbilled_orders_primary,
+             :send_email, :subscriptions_list, :tax_id_num, :title,
              :url, :vat_reg_number
 
       field :custom_field_list, CustomFieldList

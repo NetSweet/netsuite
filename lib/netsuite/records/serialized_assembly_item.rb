@@ -180,7 +180,6 @@ module NetSuite
         :store_display_name,
         :store_display_thumbnail,
         :store_item_template,
-        :subsidiary_list,
         :supply_lot_sizing_method,
         :supply_replenishment_method,
         :supply_time_fence,

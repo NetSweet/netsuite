@@ -12,7 +12,7 @@ module NetSuite
         :search
 
       fields :bin_numbers, :built, :created_date, :expiration_date,
-        :last_modified_date, :memo, :quantity, :serial_numbers, :total,
+        :last_modified_date, :memo, :quantity, :serial_numbers,
         :tran_date, :tran_id
 
 	  read_only_fields :total
@@ -36,5 +36,3 @@ module NetSuite
     end
   end
 end
-
-
