@@ -57,4 +57,30 @@ describe NetSuite::Support::Fields do
     end
   end
 
+  describe '.search_only_fields' do
+    context 'with arguments' do
+      it 'calls .search_only_field with each argument passed to it' do
+        [:one, :two, :three].each do |field|
+          expect(klass).to receive(:search_only_field).with(field)
+        end
+        klass.search_only_fields(:one, :two, :three)
+      end
+    end
+
+    context 'without arguments' do
+      it 'returns a Set of the search_only_field arguments' do
+        arguments = [:one, :two, :three]
+        klass.search_only_fields(*arguments)
+        expect(klass.search_only_fields).to eql(Set.new(arguments))
+      end
+    end
+  end
+
+  describe '.search_only_field' do
+    it 'defines instance accessor methods for the given field' do
+      expect(klass).to receive(:field).with(:one)
+      klass.search_only_field(:one)
+    end
+  end
+
 end
