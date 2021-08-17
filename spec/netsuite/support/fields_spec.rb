@@ -1,8 +1,11 @@
 require 'spec_helper'
 
 describe NetSuite::Support::Fields do
-  let(:klass) { Class.new.send(:include, NetSuite::Support::Fields) }
+  DummyRecord = Class.new.send(:include, NetSuite::Support::Fields)
+  let(:klass) { DummyRecord }
   let(:instance) { klass.new }
+
+  before { klass.fields.clear }
 
   describe '.fields' do
     context 'with arguments' do
@@ -28,6 +31,12 @@ describe NetSuite::Support::Fields do
       klass.field(:one)
       instance.one = 1
       expect(instance.one).to eql(1)
+    end
+
+    it 'errors when already a field' do
+      klass.field :one
+
+      expect { klass.field :one }.to raise_error('one already defined on DummyRecord')
     end
   end
 

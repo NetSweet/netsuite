@@ -11,8 +11,8 @@ module NetSuite
 
       actions :get, :get_deleted, :get_list, :initialize, :add, :update, :delete, :upsert, :upsert_list, :search
 
-      fields :balance, :bill_address,
-        :billing_schedule, :contrib_pct, :created_date, :currency_name, :custom_field_list,
+      fields :balance,
+        :billing_schedule, :contrib_pct, :created_date, :currency_name,
         :deferred_revenue, :discount_amount, :discount_date, :discount_rate,
         :due_date, :email, :end_date, :est_gross_profit, :est_gross_profit_percent, :exchange_rate,
         :exclude_commission, :exp_cost_disc_amount, :exp_cost_disc_print, :exp_cost_disc_rate, :exp_cost_disc_tax_1_amt,
@@ -24,13 +24,13 @@ module NetSuite
         :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
         :other_ref_num, :partners_list, :rev_rec_end_date,
         :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
-        :sales_group, :sales_team_list, :ship_address, :ship_date, :ship_group_list,
+        :sales_group, :sales_team_list, :ship_date, :ship_group_list,
         :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
         :status, :sync_partner_teams, :sync_sales_teams, :tax_2_total,
         :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
         :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tracking_numbers, :tran_date, :tran_id, :tran_is_vsoe_bundle,
-        :transaction_bill_address, :transaction_ship_address, :vat_reg_num, :vsoe_auto_calc, :tax_rate
+        :vat_reg_num, :vsoe_auto_calc, :tax_rate
 
       field :transaction_bill_address, BillAddress
       field :transaction_ship_address, ShipAddress
@@ -39,7 +39,7 @@ module NetSuite
       field :shipping_address,         Address
       field :billing_address,          Address
 
-      read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid, :amount,
+      read_only_fields :sub_total, :discount_total, :total, :recognized_revenue, :amount_remaining, :amount_paid,
                        :alt_shipping_cost, :gift_cert_applied, :handling_cost, :alt_handling_cost
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2020_2/schema/search/transactionsearchrowbasic.html?mode=package
