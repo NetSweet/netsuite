@@ -10,6 +10,12 @@
 *
 *
 
+## 0.8.9
+
+### Fixed
+
+* Fixed issue where search only fields could be specified when an existing field exists. https://github.com/NetSweet/netsuite/pull/488
+
 ## 0.8.8
 
 ### Added
