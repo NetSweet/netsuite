@@ -215,7 +215,7 @@ task.update(message: 'New Message')
 task.delete
 
 # refresh/reload a record (helpful after adding the record for the first time)
-task.reload
+task.refresh
 
 # using get_select_value with a standard record
 NetSuite::Records::BaseRefList.get_select_value(
