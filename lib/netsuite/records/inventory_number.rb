@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :search
+      actions :get, :search, :update
 
       fields :expiration_date, :inventory_number, :isonhand, :memo, :status, :units, :location,
       :quantityavailable, :quantityintransit, :quantityonhand, :quantityonorder
