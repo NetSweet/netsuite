@@ -114,4 +114,40 @@ describe NetSuite::Actions::Add do
     end
   end
 
+  context 'File' do
+    let(:file) do
+      NetSuite::Records::File.new(name: 'foo.pdf', content: 'abc123')
+    end
+
+    context 'when successful' do
+      before do
+        savon.expects(:add).with(:message => {
+          'platformMsgs:record' => {
+            :content! => {
+              'fileCabinet:name' => 'foo.pdf',
+              'fileCabinet:content' => 'abc123',
+            },
+            '@xsi:type' => 'fileCabinet:File'
+          },
+        }).returns(File.read('spec/support/fixtures/add/add_file.xml'))
+      end
+
+      it 'makes a valid request to the NetSuite API' do
+        NetSuite::Actions::Add.call([file])
+      end
+
+      it 'returns a valid Response object' do
+        response = NetSuite::Actions::Add.call([file])
+        expect(response).to be_kind_of(NetSuite::Response)
+        expect(response).to be_success
+      end
+
+      it 'properly extracts internal ID from response' do
+        file.add
+
+        expect(file.internal_id).to eq('23556')
+      end
+    end
+  end
+
 end

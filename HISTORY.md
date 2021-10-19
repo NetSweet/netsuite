@@ -4,6 +4,7 @@
 *
 
 ### Fixed
+* Fix "undefined method `[]` for #<Nori::StringIOFile>" when adding File (#495)
 *
 
 ## 0.8.10
