@@ -2,7 +2,7 @@
 
 ### Added
 
-*
+* Update Estimate record fields/record refs for 2021.2. `balance`, `bill_address`, `bill_is_residential`, and `is_multi_ship_to` were all removed as fields as either being incorrect, outdated, or a search-only field. (#496)
 *
 
 ### Fixed
