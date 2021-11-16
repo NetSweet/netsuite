@@ -1,14 +1,20 @@
 ## Unreleased
 
 ### Added
-
-* Update Estimate record fields/record refs for 2021.2. `balance`, `bill_address`, `bill_is_residential`, and `is_multi_ship_to` were all removed as fields as either being incorrect, outdated, or a search-only field. (#496)
 *
 
 ### Fixed
+*
 
-*
-*
+## 0.8.10
+
+### Added
+
+* Update Estimate record fields/record refs for 2021.2. `balance`, `bill_address`, `bill_is_residential`, and `is_multi_ship_to` were all removed as fields as either being incorrect, outdated, or a search-only field. (#496)
+
+### Fixed
+
+* Savon 2.12 supported
 
 ## 0.8.9
 
