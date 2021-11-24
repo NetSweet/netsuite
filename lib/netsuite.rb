@@ -33,6 +33,7 @@ module NetSuite
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
     autoload :ListEmp,        'netsuite/namespaces/list_emp'
     autoload :ListMkt,        'netsuite/namespaces/list_mkt'
+    autoload :ListBom,        'netsuite/namespaces/list_bom'
   end
 
   module Support
@@ -81,6 +82,7 @@ module NetSuite
     autoload :BillingScheduleMilestoneList,     'netsuite/records/billing_schedule_milestone_list'
     autoload :BillingScheduleRecurrence,        'netsuite/records/billing_schedule_recurrence'
     autoload :BillingScheduleRecurrenceList,    'netsuite/records/billing_schedule_recurrence_list'
+    autoload :BillOfMaterialRevision,           'netsuite/records/bill_of_material_revision'
     autoload :Bin,                              'netsuite/records/bin'
     autoload :BinNumber,                        'netsuite/records/bin_number'
     autoload :BinNumberList,                    'netsuite/records/bin_number_list'
