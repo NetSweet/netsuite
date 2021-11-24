@@ -5,7 +5,6 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
-	  include Support::Fields
       include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,

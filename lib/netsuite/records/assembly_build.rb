@@ -5,7 +5,6 @@ module NetSuite
       include Support::RecordRefs
       include Support::Actions
       include Support::Records
-	  include Support::Fields
       include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,
@@ -36,4 +35,3 @@ module NetSuite
     end
   end
 end
-

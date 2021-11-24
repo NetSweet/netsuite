@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class BillOfMaterialRevision
+    class BomRevision
       include Support::Actions
       include Namespaces::ListBom
 
