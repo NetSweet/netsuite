@@ -4,7 +4,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list
+      actions :get, :get_list, :search
     end
   end
 end
