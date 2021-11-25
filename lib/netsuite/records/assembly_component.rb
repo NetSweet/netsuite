@@ -7,7 +7,7 @@ module NetSuite
       include Namespaces::TranInvt
 
       fields :bin_number, :component_numbers, :line_number, :quantity,
-        :quantity_on_hand
+        :quantity_on_hand, :build_variance
 
       field :component_inventory_detail, InventoryDetail
 
@@ -25,4 +25,3 @@ module NetSuite
     end
   end
 end
-
