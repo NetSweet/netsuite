@@ -49,7 +49,11 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash[:base_ref]
+        @response_body ||= if response_hash[:base_ref].is_a?(Nori::StringIOFile)
+          { :@internal_id => Nokogiri::XML(@response.to_s).remove_namespaces!.at_xpath('//baseRef')[:internalId] }
+        else
+          response_hash[:base_ref]
+        end
       end
 
       def response_errors
