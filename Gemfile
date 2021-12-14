@@ -6,7 +6,8 @@ gem 'simplecov', :require => false
 gem 'pry-nav'
 gem 'pry-rescue'
 
-# optional dependency for more accurate timezone conversion
-gem 'tzinfo', '1.2.5'
-# gem 'tzinfo', '2.0.0'
-gem 'tzinfo-data'
+
+if ENV.fetch('BUNDLE_TZINFO', 'false') == 'true'
+  # optional dependency for more accurate timezone conversion
+  gem 'tzinfo', '>= 1.2.5'
+end
