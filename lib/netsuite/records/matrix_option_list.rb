@@ -1,6 +1,8 @@
 module NetSuite
   module Records
     class MatrixOptionList
+      include Namespaces::ListAcct
+
       # Deals with both hash and arrays of attributes[:matrix_option_list]
       #
       # Hash:
@@ -49,6 +51,20 @@ module NetSuite
 
       def options
         @options ||= []
+      end
+
+      def to_record
+        {
+          "#{record_namespace}:matrixOption" => options.map do |option|
+            {
+              'platformCore:value' => {
+                '@internalId' => option.value_id,
+                '@typeId' => option.type_id,
+              },
+              '@scriptId' => option.script_id
+            }
+          end
+        }
       end
     end
   end
