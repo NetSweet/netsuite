@@ -1,7 +1,7 @@
 ## Unreleased
 
 ### Added
-* Update ServiceResaleItem record fields/record refs for 2021.2. `cost_estimate_type`, `item_options_list`, `matrix_type`, `out_of_stock_behavior`, `overall_quantity_pricing_type`, `presentation_item_list`, `site_category_list`, `sitemap_priority`, `translations_list`, `vsoe_deferral`, `vsoe_permit_discount`, `vsoe_sop_group` were all removed as fields as the are not simple fields, they require special classes. (#500)
+* Update ServiceResaleItem record fields/record refs for 2021.2. `item_options_list`, `presentation_item_list`, `site_category_list`, `translations_list` were all removed as fields as the are not simple fields, they require special classes. (#500)
 * Dependabot to CI
 * CI run for Ruby 3
 * Add CI run for an environment with and without `tzinfo` installed

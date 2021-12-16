@@ -14,6 +14,7 @@ module NetSuite
             :contingent_revenue_handling,
             :cost,
             :cost_estimate,
+            :cost_estimate_type,
             :cost_estimate_units,
             :cost_units,
             :created_date,
@@ -38,6 +39,7 @@ module NetSuite
             :last_modified_date,
             :manufacturing_charge_item,
             :matrix_item_name_template,
+            :matrix_type,
             :max_donation_amount,
             :maximum_quantity,
             :meta_tag_html,
@@ -46,7 +48,9 @@ module NetSuite
             :no_price_message,
             :offer_support,
             :on_special,
+            :out_of_stock_behavior,
             :out_of_stock_message,
+            :overall_quantity_pricing_type,
             :page_title,
             :prices_include_tax,
             :purchase_description,
@@ -62,6 +66,7 @@ module NetSuite
             :sales_description,
             :search_keywords,
             :show_default_donation_amount,
+            :sitemap_priority,
             :soft_descriptor,
             :specials_description,
             :store_description,
@@ -71,8 +76,11 @@ module NetSuite
             :url_component,
             :use_marginal_rates,
             :vendor_name,
+            :vsoe_deferral,
             :vsoe_delivered,
-            :vsoe_price
+            :vsoe_permit_discount,
+            :vsoe_price,
+            :vsoe_sop_group
 
       record_refs :amortization_template,
                   :bill_exch_rate_variance_acct,
@@ -121,20 +129,12 @@ module NetSuite
       field :subsidiary_list, RecordRefList
       # TODO: field :accounting_book_detail_list, ItemAccountingBookDetailList
       # TODO: field :billing_rates_matrix, BillingRatesMatrix
-      # TODO: field :cost_estimate_type, ItemCostEstimateType
       # TODO: field :item_options_list, ItemOptionsList
       # TODO: field :item_task_templates_list, ServiceItemTaskTemplatesList
       # TODO: field :hierarchy_versions_list, ServiceResaleItemHierarchyVersionsList
-      # TODO: field :matrix_type, ItemMatrixType
-      # TODO: field :out_of_stock_behavior, ItemOutOfStockBehavior
-      # TODO: field :overall_quantity_pricing_type, ItemOverallQuantityPricingType
       # TODO: field :presentation_item_list, PresentationItemList
       # TODO: field :site_category_list, SiteCategoryList
-      # TODO: field :sitemap_priority, SitemapPriority
       # TODO: field :translations_list, TranslationList
-      # TODO: field :vsoe_deferral, VsoeDeferral
-      # TODO: field :vsoe_permit_discount, VsoePermitDiscount
-      # TODO: field :vsoe_sop_group, VsoeSopGroup
 
       attr_reader   :internal_id
       attr_accessor :external_id
