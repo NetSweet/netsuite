@@ -5,6 +5,7 @@
 * Dependabot to CI
 * CI run for Ruby 3
 * Add CI run for an environment with and without `tzinfo` installed
+* Implement MatrixOptionList#to_record (#504)
 
 ### Fixed
 * Fix "undefined method `[]` for #<Nori::StringIOFile>" when adding File (#495)
