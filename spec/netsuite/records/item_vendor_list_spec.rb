@@ -10,17 +10,14 @@ describe NetSuite::Records::ItemVendorList do
   describe '#to_record' do
     before do
       list.item_vendors << NetSuite::Records::ItemVendor.new(
-        :vendor => {:name => 'Spring Water'}
+        :vendor_code => 'Spring Water',
       )
     end
 
     it 'can represent itself as a SOAP record' do
       record =  {
         "listAcct:itemVendor"=>[
-          {"listAcct:vendor"=>{
-            :name=>"Spring Water"
-            }
-          }
+          {"listAcct:vendorCode"=>"Spring Water"}
         ]
       }
 
