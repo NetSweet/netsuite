@@ -7,6 +7,7 @@
 * Add CI run for an environment with and without `tzinfo` installed
 * Update NonInventorySaleItem record fields/record refs for 2021.2. `item_options_list`, `presentation_item_list`, `product_feed_list`, `site_category_list`, `translations_list` were all removed as fields as the are not simple fields, they require special classes. (#503)
 * Implement MatrixOptionList#to_record (#504)
+* Update ItemVendor record fields/record refs for 2021.1. `vendor` is now a record_ref instead of a field. (#505)
 * Update InventoryItem record fields/record refs for 2021.2. `member_list` was removed as a field as it doesn't belong to InventoryItem. (#506)
 
 ### Fixed
