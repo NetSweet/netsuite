@@ -9,6 +9,7 @@
 * Implement MatrixOptionList#to_record (#504)
 * Update ItemVendor record fields/record refs for 2021.1. `vendor` is now a record_ref instead of a field. (#505)
 * Update InventoryItem record fields/record refs for 2021.2. `member_list` was removed as a field as it doesn't belong to InventoryItem. (#506)
+* Update LotNumberedInventoryItem record fields/record refs for 2021.2. (#507)
 
 ### Fixed
 * Fix "undefined method `[]` for #<Nori::StringIOFile>" when adding File (#495)
