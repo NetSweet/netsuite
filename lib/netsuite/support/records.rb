@@ -52,7 +52,7 @@ module NetSuite
         "#{record_namespace}:#{record_type_without_namespace}"
       end
 
-      def type
+      def netsuite_type
         record_type_without_namespace.downcase
       end
 

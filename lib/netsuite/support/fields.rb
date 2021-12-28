@@ -22,6 +22,8 @@ module NetSuite
         def field(name, klass = nil)
           name_sym = name.to_sym
           raise "#{name} already defined on #{self.name}" if fields.include?(name_sym)
+          raise "#{name} conflicts with a method defined on #{self.name}" if method_defined?(name_sym)
+
           fields << name_sym
           if klass
             define_method(name_sym) do

@@ -30,7 +30,7 @@ module NetSuite
             '@xsi:type' => 'platformCore:AttachBasicReference',
             'platformCore:attachTo' => {
               '@internalId' => @object.internal_id,
-              '@type' => @object.type,
+              '@type' => @object.netsuite_type,
               '@xsi:type' => 'platformCore:RecordRef'
             },
             'platformCore:attachedRecord' => {

@@ -12,7 +12,7 @@ describe NetSuite::Actions::AttachFile do
         '@xsi:type' => 'platformCore:AttachBasicReference',
         'platformCore:attachTo' => {
           '@internalId' => invoice.internal_id,
-          '@type' => invoice.type,
+          '@type' => 'invoice',
           '@xsi:type' => 'platformCore:RecordRef'
         },
         'platformCore:attachedRecord' => {
