@@ -53,7 +53,7 @@ module NetSuite
       end
 
       def netsuite_type
-        record_type_without_namespace.downcase
+        record_type_without_namespace.lower_camelcase
       end
 
       def record_type_without_namespace
