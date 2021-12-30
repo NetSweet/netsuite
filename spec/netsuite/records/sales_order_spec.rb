@@ -174,6 +174,35 @@ describe NetSuite::Records::SalesOrder do
     end
   end
 
+  describe '#attach_file' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+    let(:file) { double('file') }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        sales_order = NetSuite::Records::SalesOrder.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([sales_order, file], {}).
+          and_return(response)
+        expect(sales_order.attach_file(file)).to be_truthy
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        sales_order = NetSuite::Records::SalesOrder.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([sales_order, file], {}).
+          and_return(response)
+        expect(sales_order.attach_file(file)).to be_falsey
+      end
+    end
+  end
+
   describe '#delete' do
     let(:test_data) { { :internal_id => '1' } }
 

@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe NetSuite::Support::Fields do
-  DummyRecord = Class.new.send(:include, NetSuite::Support::Fields)
-  let(:klass) { DummyRecord }
+  let(:klass) do
+    Class.new do
+      include NetSuite::Support::Fields
+    end
+  end
   let(:instance) { klass.new }
-
-  before { klass.fields.clear }
 
   describe '.fields' do
     context 'with arguments' do
@@ -34,9 +35,20 @@ describe NetSuite::Support::Fields do
     end
 
     it 'errors when already a field' do
+      DummyRecord = klass
+
       klass.field :one
 
       expect { klass.field :one }.to raise_error('one already defined on DummyRecord')
+    end
+
+    it 'errors when conflicting with a public method' do
+      DummyRecordWithMethod = Class.new(klass) do
+        def existing_method
+        end
+      end
+
+      expect { DummyRecordWithMethod.field :existing_method }.to raise_error('existing_method conflicts with a method defined on DummyRecordWithMethod')
     end
   end
 
