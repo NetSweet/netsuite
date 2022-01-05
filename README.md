@@ -10,6 +10,7 @@
     - [Token based Authentication](#token-based-authentication)
 - [Usage](#usage)
   - [CRUD Operations](#crud-operations)
+  - [Uploading/Attaching Files](#uploadingattaching-files)
   - [Custom Records & Fields](#custom-records--fields)
   - [Searching](#searching)
   - [Non-standard Operations](#non-standard-operations)
@@ -236,6 +237,19 @@ options = NetSuite::Records::BaseRefList.get_select_value(
   recordType: 'invoice'
 )
 options.base_refs.map(&:name)
+```
+
+## Uploading/Attaching Files
+
+```ruby
+file = NetSuite::Records::File.new(
+  content: Base64.encode64(File.read('/path/to/file')),
+  name: 'Invoice.pdf',
+)
+file.add
+
+invoice = NetSuite::Records::Invoice.get(internal_id: 1)
+invoice.attach_file(NetSuite::Records::RecordRef.new(internal_id: file.internal_id))
 ```
 
 ## Custom Records & Fields
