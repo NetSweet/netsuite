@@ -325,7 +325,7 @@ module NetSuite
       # TODO: :translations_list, TranslationList
 
       attr_reader :internal_id
-      attr_accessor :external_id, :search_joins
+      attr_accessor :external_id
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

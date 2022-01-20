@@ -26,7 +26,6 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

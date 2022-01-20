@@ -15,7 +15,7 @@
 
 ### Fixed
 * Fix "undefined method `[]` for #<Nori::StringIOFile>" when adding File (#495)
-*
+* Moved definition of `search_joins` attribute from records to search action. The attribute was removed for AssemblyComponent, SerializedInventoryItemLocation, and WorkOrderItem as they don't offer the search action. (#511)
 
 ## 0.8.10
 
