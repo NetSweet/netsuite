@@ -82,7 +82,10 @@ module NetSuite
             if response.success?
              new(response.body)
             else
-              raise RecordNotFound, "#{self} with OPTIONS=#{options.inspect} could not be found, NetSuite message: #{response.errors.status_detail[:message]}"
+              NetSuite::Error.new(
+                code: response.errors.status_detail[:code],
+                message: response.errors.status_detail[:message]
+              )
             end
           end
 
