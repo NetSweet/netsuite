@@ -196,6 +196,7 @@ module NetSuite
     autoload :Invoice,                          'netsuite/records/invoice'
     autoload :InvoiceItem,                      'netsuite/records/invoice_item'
     autoload :InvoiceItemList,                  'netsuite/records/invoice_item_list'
+    autoload :ItemOptionCustomField,            'netsuite/records/item_option_custom_field'
     autoload :ItemFulfillment,                  'netsuite/records/item_fulfillment'
     autoload :ItemFulfillmentItem,              'netsuite/records/item_fulfillment_item'
     autoload :ItemFulfillmentItemList,          'netsuite/records/item_fulfillment_item_list'
