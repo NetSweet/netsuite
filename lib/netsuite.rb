@@ -201,6 +201,7 @@ module NetSuite
     autoload :ItemGroup,                        'netsuite/records/item_group'
     autoload :ItemMember,                       'netsuite/records/item_member'
     autoload :ItemMemberList,                   'netsuite/records/item_member_list'
+    autoload :ItemOptionCustomField,            'netsuite/records/item_option_custom_field'
     autoload :ItemReceipt,                      'netsuite/records/item_receipt'
     autoload :ItemReceiptItemList,              'netsuite/records/item_receipt_item_list'
     autoload :ItemReceiptItem,                  'netsuite/records/item_receipt_item'
