@@ -15,6 +15,9 @@ module NetSuite
         :show_owner_on_list, :use_permissions
 
       record_ref :owner
+      record_ref :forms_list
+      record_ref :permissions_list
+      record_ref :custom_field_list
 
       attr_reader :internal_id
       attr_accessor :external_id
