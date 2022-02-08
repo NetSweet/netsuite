@@ -17,6 +17,7 @@ module NetSuite
         :show_last_modified, :show_notes, :show_owner, :show_owner_allow_change, :show_owner_on_list, :use_permissions
 
       field :custom_field_list, CustomFieldList
+      field :translations_list, TranslationList
 
       record_refs :custom_form, :owner, :rec_type, :parent
 

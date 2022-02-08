@@ -214,7 +214,7 @@ module NetSuite
       # site_category_list	SiteCategoryList
       # sitemap_priority	SitemapPriority
       # subsidiary_list	RecordRefList
-      # translations_list	TranslationList
+      field :translations_list, TranslationList
       # vsoe_deferral	VsoeDeferral
       # vsoe_permit_discount	VsoePermitDiscount
       # vsoe_sop_group	VsoeSopGroup

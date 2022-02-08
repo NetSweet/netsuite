@@ -17,7 +17,7 @@ module NetSuite
       field :subsidiary_list, RecordRefList
       
       # TODO custom records need to be implemented
-      # field :translations_list, TranslationList
+      field :translations_list, TranslationList
 
       attr_reader :internal_id
       attr_accessor :external_id
