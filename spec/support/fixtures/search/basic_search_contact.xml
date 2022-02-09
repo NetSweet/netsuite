@@ -1,0 +1,39 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2020_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_123456</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <searchResponse xmlns="urn:messages_2020_2.platform.webservices.netsuite.com">
+      <platformCore:searchResult xmlns:platformCore="urn:core_2020_2.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>1</platformCore:totalRecords>
+        <platformCore:pageSize>1000</platformCore:pageSize>
+        <platformCore:totalPages>1</platformCore:totalPages>
+        <platformCore:pageIndex>1</platformCore:pageIndex>
+        <platformCore:searchId>WEBSERVICES_123456</platformCore:searchId>
+        <platformCore:recordList>
+          <platformCore:record xmlns:listRel="urn:relationships_2020_2.lists.webservices.netsuite.com" internalId="7272" externalId="customer_contact_3338" xsi:type="listRel:Contact">
+            <listRel:entityId>Mary</listRel:entityId>
+            <listRel:company internalId="7270">
+              <platformCore:name>1357 What a Company</platformCore:name>
+            </listRel:company>
+            <listRel:title>President/CEO</listRel:title>
+            <listRel:phone>(123) 555-1234</listRel:phone>
+            <listRel:email>***FILTERED***</listRel:email>
+            <listRel:defaultAddress>123 Main St</listRel:defaultAddress>
+            <listRel:isPrivate>false</listRel:isPrivate>
+            <listRel:isInactive>false</listRel:isInactive>
+            <listRel:subsidiary internalId="1">
+              <platformCore:name>Awesome Company</platformCore:name>
+            </listRel:subsidiary>
+            <listRel:globalSubscriptionStatus>_softOptOut</listRel:globalSubscriptionStatus>
+            <listRel:dateCreated>2021-03-03T08:26:56.000-08:00</listRel:dateCreated>
+            <listRel:lastModifiedDate>2021-07-07T09:49:51.000-07:00</listRel:lastModifiedDate>
+          </platformCore:record>
+        </platformCore:recordList>
+      </platformCore:searchResult>
+    </searchResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
