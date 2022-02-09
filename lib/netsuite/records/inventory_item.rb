@@ -322,7 +322,7 @@ module NetSuite
       # TODO: :presentation_item_list, PresentationItemList
       # TODO: :product_feed_list, ProductFeedList
       # TODO: :site_category_list, SiteCategoryList
-      # TODO: :translations_list, TranslationList
+      field :translations_list, TranslationList
 
       attr_reader :internal_id
       attr_accessor :external_id

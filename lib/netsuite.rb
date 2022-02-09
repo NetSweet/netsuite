@@ -285,6 +285,8 @@ module NetSuite
     autoload :TransferOrder,                    'netsuite/records/transfer_order'
     autoload :TransferOrderItemList,            'netsuite/records/transfer_order_item_list'
     autoload :TransferOrderItem,                'netsuite/records/transfer_order_item'
+    autoload :Translation,                      'netsuite/records/translation'
+    autoload :TranslationList,                  'netsuite/records/translation_list'
     autoload :UnitsType,                        'netsuite/records/units_type'
     autoload :UnitsTypeUomList,                 'netsuite/records/units_type_uom_list'
     autoload :UnitsTypeUom,                     'netsuite/records/units_type_uom'
