@@ -17,14 +17,6 @@ module NetSuite
         self.klass = attributes[:class] if attributes[:class]
       end
 
-      def initialize_from_dynamic_attributes_hash(attributes = {})
-        attributes.each do |k, v|
-          self.class.field(k) unless self.class.fields.include?(k)
-          send("#{k}=", v)
-        end
-        self.klass = attributes[:class] if attributes[:class]
-      end
-
     end
   end
 end

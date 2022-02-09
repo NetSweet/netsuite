@@ -1,14 +1,26 @@
 require 'spec_helper'
 
 describe NetSuite::Records::Translation do
-  # let(:translation) { NetSuite::Records::Translation.new(field_one: 'value one', field_two: 'value two', field_three: 'value three') }
+  let(:translation) { NetSuite::Records::Translation.new }
 
   it 'has dynamic fields' do
-    translation = NetSuite::Records::Translation.new(field_one: 'value one', field_two: 'value two', field_three: 'value three')
     [
-      :field_one,
-      :field_two,
-      :field_three
+      :description,
+      :display_name,
+      :featured_description,
+      :language,
+      :locale,
+      :locale_description,
+      :name,
+      :no_price_message,
+      :out_of_stock_message,
+      :page_title,
+      :replace_all,
+      :sales_description,
+      :specials_description,
+      :store_description,
+      :store_detailed_description,
+      :store_display_name
     ].each do |field|
       expect(translation).to have_field(field)
     end
