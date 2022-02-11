@@ -25,7 +25,11 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= response_hash[:base_ref_list]
+        @response_body ||= {
+          total_records: response_hash[:total_records],
+          total_pages: response_hash[:total_pages],
+          base_ref: response_hash[:base_ref_list][:base_ref]
+        }
       end
 
       def response_hash

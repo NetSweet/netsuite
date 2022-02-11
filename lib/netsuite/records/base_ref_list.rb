@@ -8,6 +8,8 @@ module NetSuite
 
       actions :get_select_value
 
+      fields :total_pages, :total_records
+
       sublist :base_ref, RecordRef
 
       alias :base_refs :base_ref
