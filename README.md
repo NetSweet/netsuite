@@ -284,6 +284,20 @@ NetSuite::Records::BaseRefList.get_select_value(
 )
 ```
 
+## Null Fields
+
+```ruby
+# updating a field on a record to be null
+invoice = NetSuite::Records::Invoice.get(12345)
+invoice.update(null_field_list: 'shipMethod')
+
+# updating multiple fields on a record to be null
+invoice.update(null_field_list: ['shipAddressList', 'shipMethod'])
+
+# updating a custom fields on a record to be null, using custom field ID
+invoice.update(null_field_list: 'custBody9')
+```
+
 ## Searching
 
 ```ruby
@@ -417,7 +431,7 @@ NetSuite::Records::SalesOrder.search({
       'platformCommon:internalId/' => {},
       'platformCommon:email/' => {},
       'platformCommon:tranDate/' => {},
-      # If you include columns that are only part of the *SearchRowBasic (ie. TransactionSearchRowBasic), 
+      # If you include columns that are only part of the *SearchRowBasic (ie. TransactionSearchRowBasic),
       # they'll be readable on the resulting record just like regular fields (my_record.close_date).
       'platformCommon:closeDate/' => {}
     ],

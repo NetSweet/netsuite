@@ -2,6 +2,8 @@
 
 ### Added
 
+* Add NullFieldList record (to credit memos and invoices) (#529)
+
 ### Fixed
 
 ## 0.8.11
