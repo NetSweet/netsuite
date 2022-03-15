@@ -44,7 +44,7 @@ module NetSuite
         :script_id
       )
 
-      record_refs :owner
+      record_refs :owner, :source_list, :select_record_type, :source_filter_by
 
       attr_reader :internal_id
       attr_accessor :external_id
