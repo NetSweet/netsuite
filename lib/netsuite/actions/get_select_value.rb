@@ -25,10 +25,15 @@ module NetSuite
       end
 
       def response_body
-        @response_body ||= {
+        @response_body ||= build_response_hash
+      end
+
+      def build_response_hash
+        return response_hash if response_hash[:base_ref_list].blank?
+        {
           total_records: response_hash[:total_records],
           total_pages: response_hash[:total_pages],
-          base_ref: response_hash[:base_ref_list][:base_ref]
+          base_ref: response_hash.dig(:base_ref_list, :base_ref)
         }
       end
 

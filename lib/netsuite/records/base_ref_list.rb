@@ -8,7 +8,7 @@ module NetSuite
 
       actions :get_select_value
 
-      fields :total_pages, :total_records
+      fields :total_pages, :total_records, :status
 
       sublist :base_ref, RecordRef
 
