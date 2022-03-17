@@ -105,6 +105,7 @@ module NetSuite
     autoload :CustomField,                      'netsuite/records/custom_field'
     autoload :CustomFieldList,                  'netsuite/records/custom_field_list'
     autoload :CustomList,                       'netsuite/records/custom_list'
+    autoload :CustomSegment,                    'netsuite/records/custom_segment'
     autoload :CustomRecord,                     'netsuite/records/custom_record'
     autoload :CustomRecordRef,                  'netsuite/records/custom_record_ref'
     autoload :CustomRecordType,                 'netsuite/records/custom_record_type'
