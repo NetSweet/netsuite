@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :add, :initialize, :delete, :update, :upsert, :search
+      actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search
 
       fields :alt_handling_cost, :alt_shipping_cost, :auth_code, :bill_address, :cc_approved, :cc_expire_date, :cc_is_purchase_card_bin,
         :cc_name, :cc_number, :cc_process_as_purchas_card, :cc_security_code, :cc_street, :cc_zip_code, :charge_it, :contrib_pct, :created_date,
