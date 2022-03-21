@@ -65,8 +65,8 @@ module NetSuite
       end
 
       def success?
-        # each returned record has its own status; 
-        if @options[:allow_incomplete] 
+        # each returned record has its own status;
+        if @options[:allow_incomplete]
           @success ||= !response_body.detect { |r| r[:status][:@is_success] == 'true' }.nil?
         else
           @success ||= response_body.detect { |r| r[:status][:@is_success] != 'true' }.nil?
@@ -82,14 +82,17 @@ module NetSuite
           def get_list(options = { }, credentials={})
             response = NetSuite::Actions::GetList.call([self, options], credentials)
 
-            if response.success?
-              response.body.inject([]) do |arr, record|
-                arr << new(record[:record]) unless record[:status][:@is_success] != 'true'
-                arr
-              end
-            else
-              false
+            response.errors = response.body.inject([]) do |arr, record|
+              arr << record if record[:status][:@is_success] != 'true'
+              arr
             end
+
+            response.body = response.body.inject([]) do |arr, record|
+              arr << new(record[:record]) unless record[:status][:@is_success] != 'true'
+              arr
+            end
+
+            response
           end
         end
       end
