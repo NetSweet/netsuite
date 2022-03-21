@@ -6,7 +6,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::SetupCustom
 
-      actions :get
+      actions :get, :get_list
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2021_2/schema/record/customsegment.html
       fields :label,
