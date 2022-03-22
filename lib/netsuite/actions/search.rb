@@ -144,12 +144,23 @@ module NetSuite
                 h[element_name] = {
                   '@operator' => condition[:operator],
                   '@xsi:type' => 'platformCore:SearchMultiSelectField',
-                  "platformCore:searchValue" => {
-                    :content! => condition[:value].map(&:to_record),
-                    '@internalId' => condition[:value].map(&:internal_id),
-                    '@xsi:type' => 'platformCore:RecordRef',
-                    '@type' => 'account'
-                  }
+                  "platformCore:searchValue" => condition[:value].map do |value|
+                    search_value = {
+                      :content! => value.to_record,
+                      '@xsi:type' => 'platformCore:RecordRef',
+                      '@type' => 'account'
+                    }
+
+                    if value.internal_id
+                      search_value['@internalId'] = value.internal_id
+                    end
+
+                    if value.external_id
+                      search_value['@externalId'] = value.external_id
+                    end
+
+                    search_value
+                  end
                 }
               elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
                 # date ranges are handled via searchValue (start range) and searchValue2 (end range)

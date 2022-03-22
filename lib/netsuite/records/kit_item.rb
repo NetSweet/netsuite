@@ -49,7 +49,7 @@ module NetSuite
       # field :product_feed_list, ProductFeedList
       # field :site_category_list, SiteCategoryList
       # field :sitemap_priority, SitemapPriority
-      # field :translations_list, TranslationList
+      field :translations_list, TranslationList
       # field :vsoe_deferral, VsoeDeferral
       # field :vsoe_permit_discount, VsoePermitDiscount
       # field :vsoe_sop_group, VsoeSopGroup

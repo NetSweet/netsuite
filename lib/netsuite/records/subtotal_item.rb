@@ -15,7 +15,7 @@ module NetSuite
       
       field :custom_field_list, CustomFieldList
       field :subsidiary_list, RecordRefList
-      # TODO field :translations_list, TranslationList
+      field :translations_list, TranslationList
 
       attr_reader :internal_id
       attr_accessor :external_id

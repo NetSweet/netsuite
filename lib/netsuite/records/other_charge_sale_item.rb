@@ -53,7 +53,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
-      # :translations_list,
+      field :translations_list, TranslationList
       # :matrix_option_list,
       # :item_options_list
       field :subsidiary_list, RecordRefList

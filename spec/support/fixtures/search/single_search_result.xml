@@ -1,0 +1,46 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2021_1.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3603434_08292013908151921913870884_2f1b68b787b4d</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <searchResponse xmlns="urn:messages_2021_1.platform.webservices.netsuite.com">
+      <platformCore:searchResult xmlns:platformCore="urn:core_2021_1.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>1</platformCore:totalRecords>
+        <platformCore:pageSize>1000</platformCore:pageSize>
+        <platformCore:totalPages>1</platformCore:totalPages>
+        <platformCore:pageIndex>1</platformCore:pageIndex>
+        <platformCore:searchId>WEBSERVICES_3603434_08292013908151921913870884_2f1b68b787b4d</platformCore:searchId>
+        <platformCore:recordList>
+          <platformCore:record xmlns:listAcct="urn:accounting_2021_1.lists.webservices.netsuite.com" internalId="355" xsi:type="listAcct:Account">
+            <listAcct:acctType>_costOfGoodsSold</listAcct:acctType>
+            <listAcct:acctNumber>4508</listAcct:acctNumber>
+            <listAcct:acctName>Selling Fees/Commissions - COS</listAcct:acctName>
+            <listAcct:includeChildren>false</listAcct:includeChildren>
+            <listAcct:generalRate>_average</listAcct:generalRate>
+            <listAcct:parent internalId="246">
+              <platformCore:name>4500 Cost of Sales</platformCore:name>
+            </listAcct:parent>
+            <listAcct:cashFlowRate>_average</listAcct:cashFlowRate>
+            <listAcct:isInactive>false</listAcct:isInactive>
+            <listAcct:inventory>false</listAcct:inventory>
+            <listAcct:revalue>false</listAcct:revalue>
+            <listAcct:customFieldList>
+              <platformCore:customField internalId="3602" scriptId="custrecord_cps_bdc_lastupdatedbyimp_acc" xsi:type="platformCore:BooleanCustomFieldRef">
+                <platformCore:value>false</platformCore:value>
+              </platformCore:customField>
+              <platformCore:customField internalId="3609" scriptId="custrecord_cps_bdc_updatedbyimp_acc" xsi:type="platformCore:BooleanCustomFieldRef">
+                <platformCore:value>false</platformCore:value>
+              </platformCore:customField>
+              <platformCore:customField internalId="1145" scriptId="custrecord_has_mx_localization" xsi:type="platformCore:BooleanCustomFieldRef">
+                <platformCore:value>false</platformCore:value>
+              </platformCore:customField>
+            </listAcct:customFieldList>
+          </platformCore:record>
+        </platformCore:recordList>
+      </platformCore:searchResult>
+    </searchResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
