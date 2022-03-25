@@ -105,6 +105,7 @@ module NetSuite
       # :ship_address_list,
 
       field :billing_address,          Address
+      field :shipping_address,         Address
       field :custom_field_list,        CustomFieldList
       field :item_list,                ReturnAuthorizationItemList
 
