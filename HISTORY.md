@@ -1,9 +1,16 @@
 ## Unreleased
 
 ### Added
+
+### Fixed
+
+## 0.8.11
+
+### Added
+
 * Update ServiceResaleItem record fields/record refs for 2021.2. `item_options_list`, `presentation_item_list`, `site_category_list`, `translations_list` were all removed as fields as the are not simple fields, they require special classes. (#500)
 * Dependabot to CI
-* CI run for Ruby 3
+* CI run for Ruby 3.0 & 3.1
 * Add CI run for an environment with and without `tzinfo` installed
 * Update NonInventorySaleItem record fields/record refs for 2021.2. `item_options_list`, `presentation_item_list`, `product_feed_list`, `site_category_list`, `translations_list` were all removed as fields as the are not simple fields, they require special classes. (#503)
 * Implement MatrixOptionList#to_record (#504)
@@ -13,11 +20,16 @@
 * Update NonInventoryResaleItem record fields/record refs for 2021.2. `item_options_list`, `presentation_item_list`, `product_feed_list`, `site_category_list`, `translations_list` were all removed as fields as the are not simple fields, they require special classes. (#508)
 * Add `attach_file` action for Invoice and SalesOrder. (#509)
 * Add ItemOptionCustomField recrd (#512)
+* Add Ship Address to Return Authorization (#525)
+* Support translations records (#516)
 
 ### Fixed
+
 * Fix "undefined method `[]` for #<Nori::StringIOFile>" when adding File (#495)
 * Moved definition of `search_joins` attribute from records to search action. The attribute was removed for AssemblyComponent, SerializedInventoryItemLocation, and WorkOrderItem as they don't offer the search action. (#511)
 * Consider externalId in search criteria when using RecordRef as value (#517)
+* Retry http client error subclasses
+* Add upsert list action for cash sales (#523)
 
 ## 0.8.10
 
