@@ -1,22 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [NetSuite SuiteTalk API Ruby Gem](#netsuite-suitetalk-api-ruby-gem)
-- [Help & Support](#help--support)
-- [Testing](#testing)
-- [Installation](#installation)
-  - [Configuration](#configuration)
-    - [Token based Authentication](#token-based-authentication)
-- [Usage](#usage)
-  - [CRUD Operations](#crud-operations)
-  - [Uploading/Attaching Files](#uploadingattaching-files)
-  - [Custom Records & Fields](#custom-records--fields)
-  - [Searching](#searching)
-  - [Non-standard Operations](#non-standard-operations)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 [![Ruby](https://github.com/NetSweet/netsuite/actions/workflows/main.yml/badge.svg)](https://github.com/NetSweet/netsuite/actions/workflows/main.yml)
 [![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
