@@ -6,7 +6,7 @@ module NetSuite
 
       def to_record
         attributes.reject { |k,v| self.class.read_only_fields.include?(k) || self.class.search_only_fields.include?(k) }.inject({}) do |hash, (k,v)|
-          kname = "#{record_namespace}:"
+          kname = "#{v.is_a?(NetSuite::Records::NullFieldList) ? v.record_namespace : record_namespace}:"
           kname += k == :klass ? 'class' : k.to_s.lower_camelcase
 
           to_attributes!(hash, kname, v)
