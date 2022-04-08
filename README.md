@@ -607,6 +607,53 @@ deposit.payment = 20
 deposit.add
 ```
 
+## Getting Deleted Records
+
+```ruby
+response = NetSuite::Records::LotNumberedInventoryItem.get_deleted({
+  criteria: [
+    {
+      # If you don't specify a type criteria, you'll get all deleted records,
+      # regardless of the type of record you called this on.
+      field: 'type',
+      operator: 'anyOf',
+      value: 'lotNumberedInventoryItem',
+    }
+  ],
+})
+
+Array(response.body.fetch(:deleted_record_list)).first
+# => {
+#      :deleted_date => Wed, 16 Feb 2022 17:43:45 -0800,
+#      :record => {
+#        :name => "My Item",
+#        :@internal_id => "12485",
+#        :@type => "lotNumberedInventoryItem",
+#        :"@xsi:type" => "platformCore:RecordRef"
+#      }
+#    }
+
+# deleted_record_list could be:
+#   nil - No records matching criteria were deleted
+#   Hash - A single record matching criteria was deleted
+#   Array - Multiple records matching criteria were deleted
+
+# Simple pagination
+page = 1
+begin
+  response = NetSuite::Records::LotNumberedInventoryItem.get_deleted({
+    criteria: [
+      # your criteria
+    ],
+    page: page,
+  })
+
+  # Do your thing with response.body.fetch(:deleted_record_list)
+
+  page += 1
+end until page > Integer(response.fetch(:total_pages))
+```
+
 ## Non-standard Operations
 
 ```ruby
