@@ -4,6 +4,7 @@
 
 * Add NullFieldList record (to credit memos and invoices) (#529)
 * Add `get_deleted` action to item records (#530)
+* Add `get_deleted` action to Employee records (#531)
 
 ### Fixed
 
