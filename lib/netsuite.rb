@@ -5,9 +5,9 @@ require 'netsuite/version'
 require 'netsuite/errors'
 require 'netsuite/utilities'
 require 'netsuite/utilities/data_center'
+require 'netsuite/utilities/strings'
 require 'netsuite/rest/utilities/roles'
 require 'netsuite/rest/utilities/request'
-require 'netsuite/core_ext/string/lower_camelcase'
 
 module NetSuite
   autoload :Configuration, 'netsuite/configuration'

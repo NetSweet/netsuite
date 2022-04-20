@@ -26,7 +26,7 @@ module NetSuite
           .update(NetSuite::Configuration.soap_header)
           .merge(
             (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-              h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
+              h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
               h
             end
           )
