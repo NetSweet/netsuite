@@ -115,12 +115,12 @@ describe NetSuite::Records::Customer do
           }
         ]
       }
-      expect(customer.subscriptions_list).to be_kind_of(NetSuite::Records::CustomerSubscriptionsList)
+      expect(customer.subscriptions_list).to be_kind_of(NetSuite::Records::SubscriptionsList)
       expect(customer.subscriptions_list.subscriptions.length).to eql(1)
     end
 
-    it 'can be set from a CustomerSubscriptionsList object' do
-      customer_subscriptions_list = NetSuite::Records::CustomerSubscriptionsList.new
+    it 'can be set from a SubscriptionsList object' do
+      customer_subscriptions_list = NetSuite::Records::SubscriptionsList.new
       customer.subscriptions_list = customer_subscriptions_list
       expect(customer.subscriptions_list).to eql(customer_subscriptions_list)
     end

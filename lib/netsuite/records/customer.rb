@@ -33,7 +33,7 @@ module NetSuite
       field :contact_roles_list, ContactAccessRolesList
       field :currency_list, CustomerCurrencyList
       field :partners_list, CustomerPartnersList
-      field :subscriptions_list, CustomerSubscriptionsList
+      field :subscriptions_list, SubscriptionsList
       field :sales_team_list, CustomerSalesTeamList
 
       read_only_fields :balance, :consol_balance, :deposit_balance, :consol_deposit_balance, :overdue_balance,

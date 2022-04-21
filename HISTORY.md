@@ -4,6 +4,9 @@
 
 ### Fixed
 
+### Breaking Changes
+* Rename `CustomerSubscriptionsList` to `SubscriptionsList` and `CustomerSubscription` to `Subscription` to match NetSuite naming (#535)
+
 ## 0.8.12
 
 ### Added

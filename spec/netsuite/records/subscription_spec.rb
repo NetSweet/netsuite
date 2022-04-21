@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NetSuite::Records::CustomerSubscription do
+describe NetSuite::Records::Subscription do
 
   before do
     NetSuite::Configuration.api_version = '2014_2'
@@ -16,7 +16,7 @@ describe NetSuite::Records::CustomerSubscription do
     }
   end
 
-  let(:list) { NetSuite::Records::CustomerSubscription.new(attributes) }
+  let(:list) { NetSuite::Records::Subscription.new(attributes) }
 
   it 'has all the right fields' do
     [
