@@ -2,11 +2,16 @@
 
 ### Added
 
+### Fixed
+
+## 0.8.12
+
+### Added
+
 * Add NullFieldList record (to credit memos and invoices) (#529)
 * Add `get_deleted` action to item records (#530)
 * Add `get_deleted` action to Employee records (#531)
-
-### Fixed
+* Remove monkey patched `lower_camelcase` method on String (#533)
 
 ## 0.8.11
 
