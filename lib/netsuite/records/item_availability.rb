@@ -16,6 +16,28 @@ module NetSuite
       field :quantity_committed
       field :quantity_available
 
+      def self.get_item_availability(ref_list, credentials={})
+        connection = NetSuite::Configuration.connection({}, credentials)
+        response = connection.call :get_item_availability, message: {
+          "platformMsgs:itemAvailabilityFilter" => {
+            "platformCore:item" => ref_list.to_record
+          }
+        }
+        return false unless response.success?
+
+        result = response.body[:get_item_availability_response][:get_item_availability_result]
+        unless result[:status][:@is_success] == "true"
+          return false
+        end
+        if result[:item_availability_list]
+          result[:item_availability_list][:item_availability].map do |row|
+            NetSuite::Records::ItemAvailability.new(row)
+          end
+        else
+          []
+        end
+      end
+
       def initialize(attributes = {})
         initialize_from_attributes_hash(attributes)
       end

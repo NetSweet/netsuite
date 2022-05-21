@@ -1,0 +1,46 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>WEBSERVICES_3868171_122020162073815481885806769_24761121647f</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getItemAvailabilityResponse xmlns="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <platformCore:getItemAvailabilityResult xmlns:platformCore="urn:core_2016_2.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:itemAvailabilityList>
+          <platformCore:itemAvailability>
+            <platformCore:item internalId="57" type="inventoryItem">
+              <platformCore:name>CD-R</platformCore:name>
+            </platformCore:item>
+            <platformCore:lastQtyAvailableChange>2022-05-05T03:40:06.000-07:00</platformCore:lastQtyAvailableChange>
+            <platformCore:locationId internalId="1" type="location">
+              <platformCore:name>Warehouse - East Coast</platformCore:name>
+            </platformCore:locationId>
+            <platformCore:quantityOnHand>264.0</platformCore:quantityOnHand>
+            <platformCore:onHandValueMli>129.36</platformCore:onHandValueMli>
+            <platformCore:reorderPoint>50.0</platformCore:reorderPoint>
+            <platformCore:quantityOnOrder>0.0</platformCore:quantityOnOrder>
+            <platformCore:quantityCommitted>0.0</platformCore:quantityCommitted>
+            <platformCore:quantityAvailable>264.0</platformCore:quantityAvailable>
+          </platformCore:itemAvailability>
+          <platformCore:itemAvailability>
+            <platformCore:item internalId="57" type="inventoryItem">
+              <platformCore:name>CD-R</platformCore:name>
+            </platformCore:item>
+            <platformCore:lastQtyAvailableChange>2020-04-27T08:38:20.000-07:00</platformCore:lastQtyAvailableChange>
+            <platformCore:locationId internalId="2" type="location">
+              <platformCore:name>Warehouse - West Coast</platformCore:name>
+            </platformCore:locationId>
+            <platformCore:quantityOnHand>-1.0</platformCore:quantityOnHand>
+            <platformCore:onHandValueMli>0.0</platformCore:onHandValueMli>
+            <platformCore:reorderPoint>50.0</platformCore:reorderPoint>
+            <platformCore:quantityOnOrder>0.0</platformCore:quantityOnOrder>
+            <platformCore:quantityCommitted>0.0</platformCore:quantityCommitted>
+            <platformCore:quantityAvailable>0.0</platformCore:quantityAvailable>
+          </platformCore:itemAvailability>
+        </platformCore:itemAvailabilityList>
+      </platformCore:getItemAvailabilityResult>
+    </getItemAvailabilityResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
