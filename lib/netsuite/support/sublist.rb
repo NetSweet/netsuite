@@ -31,7 +31,7 @@ module NetSuite
       end
 
       def initialize(attributes = {})
-        initialize_from_attributes_hash(attributes)
+        initialize_from_attributes_hash(attributes || {})
       end
 
       def to_record

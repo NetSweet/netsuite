@@ -35,14 +35,6 @@ describe NetSuite::Actions::GetSelectValue do
       let(:response) { File.read('spec/support/fixtures/get_select_value/empty_result.xml') }
 
       it 'returns an empty list' do
-        # NoMethodError:
-        #   private method `select' called for nil:NilClass
-        # # ./lib/netsuite/support/attributes.rb:14:in `initialize_from_attributes_hash'
-        # # ./lib/netsuite/support/sublist.rb:34:in `initialize'
-        # # ./lib/netsuite/actions/get_select_value.rb:52:in `new'
-        # # ./lib/netsuite/actions/get_select_value.rb:52:in `get_select_value'
-        # # ./spec/netsuite/actions/get_select_value_spec.rb:9:in `block (3 levels) in <top (required)>'
-        # # ./spec/netsuite/actions/get_select_value_spec.rb:38:in `block (4 levels) in <top (required)>'
         expect(subject).to be_kind_of(NetSuite::Records::BaseRefList)
         expect(subject.base_refs).to be_empty
       end
