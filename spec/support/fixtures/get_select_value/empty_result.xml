@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>REDACTED</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getSelectValueResponse xmlns="urn:messages_2016_2.platform.webservices.netsuite.com">
+      <platformCore:getSelectValueResult xmlns:platformCore="urn:core_2016_2.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true">
+          <platformCore:statusDetail type="WARN">
+            <platformCore:code>WARNING</platformCore:code>
+            <platformCore:message>Results are incomplete. You must provide a value for field entity.</platformCore:message>
+          </platformCore:statusDetail>
+        </platformCore:status>
+        <platformCore:totalRecords>0</platformCore:totalRecords>
+        <platformCore:totalPages>0</platformCore:totalPages>
+      </platformCore:getSelectValueResult>
+    </getSelectValueResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

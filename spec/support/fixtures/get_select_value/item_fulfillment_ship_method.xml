@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header>
+    <platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2021_2.platform.webservices.netsuite.com">
+      <platformMsgs:nsId>REDACTED</platformMsgs:nsId>
+    </platformMsgs:documentInfo>
+  </soapenv:Header>
+  <soapenv:Body>
+    <getSelectValueResponse xmlns="urn:messages_2021_2.platform.webservices.netsuite.com">
+      <platformCore:getSelectValueResult xmlns:platformCore="urn:core_2021_2.platform.webservices.netsuite.com">
+        <platformCore:status isSuccess="true"/>
+        <platformCore:totalRecords>8</platformCore:totalRecords>
+        <platformCore:totalPages>1</platformCore:totalPages>
+        <platformCore:baseRefList>
+          <platformCore:baseRef internalId="94" xsi:type="platformCore:RecordRef">
+            <platformCore:name>Ground (Custom)</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="2" xsi:type="platformCore:RecordRef">
+            <platformCore:name>Pick-up</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="3" xsi:type="platformCore:RecordRef">
+            <platformCore:name>Special Delivery</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="91" xsi:type="platformCore:RecordRef">
+            <platformCore:name>UPS 2nd Day Air AM&amp;#174;</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="92" xsi:type="platformCore:RecordRef">
+            <platformCore:name>UPS Ground</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="77" xsi:type="platformCore:RecordRef">
+            <platformCore:name>UPS Next Day Air?</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="96" xsi:type="platformCore:RecordRef">
+            <platformCore:name>UPS Next Day Air® Early A.M.®</platformCore:name>
+          </platformCore:baseRef>
+          <platformCore:baseRef internalId="95" xsi:type="platformCore:RecordRef">
+            <platformCore:name>UPS® Ground</platformCore:name>
+          </platformCore:baseRef>
+        </platformCore:baseRefList>
+      </platformCore:getSelectValueResult>
+    </getSelectValueResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
