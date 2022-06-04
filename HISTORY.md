@@ -5,6 +5,8 @@
 The following were moved from `fields` to `record_refs`: `buying_reason`, `buying_time_frame`, `campaign_category`, `image`, `opening_balance_account`, `pref_cc_processor`, `representing_subsidiary`, `sales_group`, `sales_readiness`
 The following were removed as `fields` since their sublist class is not yet implemented: `download_list`, `group_pricing_list`, `item_pricing_list`
 * Add search-only fields to `Customer` (#535)
+* Add `attach_file` action to `Customer` records (#544)
+* Add `update` action to `File` records (#544)
 
 ### Fixed
 

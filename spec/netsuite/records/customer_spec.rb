@@ -440,6 +440,35 @@ describe NetSuite::Records::Customer do
     end
   end
 
+  describe '#attach_file' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+    let(:file) { double('file') }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        customer = NetSuite::Records::Customer.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([customer, file], {}).
+          and_return(response)
+        expect(customer.attach_file(file)).to be_truthy
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        customer = NetSuite::Records::Customer.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([customer, file], {}).
+          and_return(response)
+        expect(customer.attach_file(file)).to be_falsey
+      end
+    end
+  end
+
   describe '#to_record' do
     let(:customer) { NetSuite::Records::Customer.new(:entity_id => 'TEST CUSTOMER', :is_person => true) }
 
