@@ -7,6 +7,7 @@ The following were removed as `fields` since their sublist class is not yet impl
 * Add search-only fields to `Customer` (#535)
 * Add `attach_file` action to `Customer` records (#544)
 * Add `update` action to `File` records (#544)
+* Expose `errors` after calls to `delete` action (#545)
 
 ### Fixed
 
