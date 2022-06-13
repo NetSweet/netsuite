@@ -476,4 +476,25 @@ describe NetSuite::Configuration do
     end
   end
 
+  describe '#proxy' do
+    it 'defaults to nil' do
+      expect(config.proxy).to be_nil
+    end
+
+    it 'can be set with proxy=' do
+      config.proxy = "https://my-proxy"
+
+      expect(config.proxy).to eql("https://my-proxy")
+
+      # ensure no exception is raised
+      config.connection
+    end
+
+    it 'can be set with proxy(value)' do
+      config.proxy("https://my-proxy")
+
+      expect(config.proxy).to eql("https://my-proxy")
+    end
+  end
+
 end
