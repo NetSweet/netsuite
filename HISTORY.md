@@ -8,6 +8,7 @@ The following were removed as `fields` since their sublist class is not yet impl
 * Add `attach_file` action to `Customer` records (#544)
 * Add `update` action to `File` records (#544)
 * Expose `errors` after calls to `delete` action (#545)
+* Add `update_list` action where missing on supported item records (#546)
 
 ### Fixed
 
