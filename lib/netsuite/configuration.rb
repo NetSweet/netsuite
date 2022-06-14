@@ -15,6 +15,8 @@ module NetSuite
     end
 
     def connection(params={}, credentials={})
+      proxy_params = proxy ? {proxy: proxy} : {}
+      
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
         endpoint: endpoint,
@@ -27,8 +29,7 @@ module NetSuite
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
-        proxy: proxy,
-      }.update(params))
+      }.update(proxy_params).update(params))
       cache_wsdl(client)
       return client
     end
