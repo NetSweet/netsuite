@@ -51,7 +51,7 @@ module NetSuite
     end
 
     def wsdl_cache
-      @wsdl_cache ||= {}
+      Thread.current[:netsuite_gem_wsdl_cache] ||= {}
     end
 
     def clear_wsdl_cache

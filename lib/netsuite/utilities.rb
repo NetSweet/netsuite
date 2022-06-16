@@ -203,7 +203,6 @@ module NetSuite
       opts[:external_id] ||= false
 
       if opts[:cache]
-        netsuite_get_record_cache ||= {}
         netsuite_get_record_cache[record_klass.to_s] ||= {}
 
         if netsuite_get_record_cache[record_klass.to_s].has_key?(id.to_i)
@@ -228,7 +227,7 @@ module NetSuite
       rescue ::NetSuite::RecordNotFound
         # log.warn("record not found", ns_record_type: record_klass.name, ns_record_id: id)
         if opts[:cache]
-          @netsuite_get_record_cache[record_klass.to_s][id.to_i] = nil
+          netsuite_get_record_cache[record_klass.to_s][id.to_i] = nil
         end
 
         return nil
@@ -243,8 +242,6 @@ module NetSuite
       # FIXME: Records that have the same name but different types will break
       # the cache
       names.each do |name|
-        netsuite_find_record_cache ||= {}
-
         if netsuite_find_record_cache.has_key?(name)
           return netsuite_find_record_cache[name]
         end
