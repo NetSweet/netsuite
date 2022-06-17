@@ -53,10 +53,11 @@ describe NetSuite::Actions::Add do
         NetSuite::Actions::Add.call([invoice])
       end
 
-      it 'returns a valid Response object' do
+      it 'returns a valid Response object with no errors' do
         response = NetSuite::Actions::Add.call([invoice])
         expect(response).to be_kind_of(NetSuite::Response)
         expect(response).to be_success
+        expect(response.errors).to be_empty
       end
     end
 
@@ -136,10 +137,11 @@ describe NetSuite::Actions::Add do
         NetSuite::Actions::Add.call([file])
       end
 
-      it 'returns a valid Response object' do
+      it 'returns a valid Response object with no errors' do
         response = NetSuite::Actions::Add.call([file])
         expect(response).to be_kind_of(NetSuite::Response)
         expect(response).to be_success
+        expect(response.errors).to be_empty
       end
 
       it 'properly extracts internal ID from response' do
