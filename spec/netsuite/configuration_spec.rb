@@ -14,6 +14,20 @@ describe NetSuite::Configuration do
       config.reset!
       expect(config.attributes).to be_empty
     end
+
+    it 'ensures that attributes are not shared between threads' do
+      config.attributes[:blah] = 'something'
+      expect(config.attributes[:blah]).to eq('something')
+
+      thread = Thread.new {
+        config.attributes[:blah] = 'something_else'
+        expect(config.attributes[:blah]).to eq('something_else')
+      }
+
+      thread.join
+
+      expect(config.attributes[:blah]).to eq('something')
+    end
   end
 
   describe '#filters' do
