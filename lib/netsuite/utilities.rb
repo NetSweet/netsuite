@@ -7,9 +7,18 @@ module NetSuite
     # TODO need structured logger for various statements
 
     def clear_cache!
-      @netsuite_get_record_cache = {}
-      @netsuite_find_record_cache = {}
+      Thread.current[:netsuite_gem_netsuite_get_record_cache] = {}
+      Thread.current[:netsuite_gem_netsuite_find_record_cache] = {}
+
       DataCenter.clear_cache!
+    end
+
+    def netsuite_get_record_cache
+      Thread.current[:netsuite_gem_netsuite_get_record_cache] ||= {}
+    end
+
+    def netsuite_find_record_cache
+      Thread.current[:netsuite_gem_netsuite_find_record_cache] ||= {}
     end
 
     def append_memo(ns_record, added_memo, opts = {})
@@ -194,11 +203,10 @@ module NetSuite
       opts[:external_id] ||= false
 
       if opts[:cache]
-        @netsuite_get_record_cache ||= {}
-        @netsuite_get_record_cache[record_klass.to_s] ||= {}
+        netsuite_get_record_cache[record_klass.to_s] ||= {}
 
-        if @netsuite_get_record_cache[record_klass.to_s].has_key?(id.to_i)
-          return @netsuite_get_record_cache[record_klass.to_s][id.to_i]
+        if netsuite_get_record_cache[record_klass.to_s].has_key?(id.to_i)
+          return netsuite_get_record_cache[record_klass.to_s][id.to_i]
         end
       end
 
@@ -212,14 +220,14 @@ module NetSuite
         end
 
         if opts[:cache]
-          @netsuite_get_record_cache[record_klass.to_s][id.to_i] = ns_record
+          netsuite_get_record_cache[record_klass.to_s][id.to_i] = ns_record
         end
 
         return ns_record
       rescue ::NetSuite::RecordNotFound
         # log.warn("record not found", ns_record_type: record_klass.name, ns_record_id: id)
         if opts[:cache]
-          @netsuite_get_record_cache[record_klass.to_s][id.to_i] = nil
+          netsuite_get_record_cache[record_klass.to_s][id.to_i] = nil
         end
 
         return nil
@@ -234,10 +242,8 @@ module NetSuite
       # FIXME: Records that have the same name but different types will break
       # the cache
       names.each do |name|
-        @netsuite_find_record_cache ||= {}
-
-        if @netsuite_find_record_cache.has_key?(name)
-          return @netsuite_find_record_cache[name]
+        if netsuite_find_record_cache.has_key?(name)
+          return netsuite_find_record_cache[name]
         end
 
         # sniff for an email-like input; useful for employee/customer searches
@@ -263,7 +269,7 @@ module NetSuite
         }) }
 
         if search.results.first
-          return @netsuite_find_record_cache[name] = search.results.first
+          return netsuite_find_record_cache[name] = search.results.first
         end
       end
 

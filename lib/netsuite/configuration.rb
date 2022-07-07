@@ -11,7 +11,7 @@ module NetSuite
     end
 
     def attributes
-      @attributes ||= {}
+      Thread.current[:netsuite_gem_attributes] ||= {}
     end
 
     def connection(params={}, credentials={})
@@ -51,11 +51,11 @@ module NetSuite
     end
 
     def wsdl_cache
-      @wsdl_cache ||= {}
+      Thread.current[:netsuite_gem_wsdl_cache] ||= {}
     end
 
     def clear_wsdl_cache
-      @wsdl_cache = {}
+      Thread.current[:netsuite_gem_wsdl_cache] = {}
     end
 
     def cached_wsdl
