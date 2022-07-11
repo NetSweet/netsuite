@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.1'
   gem.metadata['changelog_uri'] = 'https://github.com/netsweet/netsuite/blob/master/HISTORY.md'
   gem.metadata['mailing_list_uri'] = 'http://opensuite-slackin.herokuapp.com'
-  gem.metadata['rubygems_mfa_required'] = true
+  gem.metadata['rubygems_mfa_required'] = 'true'
 
   gem.add_dependency 'savon', '>= 2.3.0'
 
