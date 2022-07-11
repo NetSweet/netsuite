@@ -1,6 +1,14 @@
 ## Unreleased
 
+
 ### Added
+### Fixed
+### Breaking Changes
+
+## 0.9.0
+
+### Added
+
 * Update `Customer` record fields/record refs for 2021.2. (#535)
 The following were moved from `fields` to `record_refs`: `buying_reason`, `buying_time_frame`, `campaign_category`, `image`, `opening_balance_account`, `pref_cc_processor`, `representing_subsidiary`, `sales_group`, `sales_readiness`
 The following were removed as `fields` since their sublist class is not yet implemented: `download_list`, `group_pricing_list`, `item_pricing_list`
@@ -12,8 +20,6 @@ The following were removed as `fields` since their sublist class is not yet impl
 * Ignore `after_submit_failed` status details (>= 2018.2) when collating errors in add action (#550)
 * Add `NullFieldList` to `SalesOrder` (#552)
 * Add thread safety to NetSuite configuration and utilities (#549)
-
-### Fixed
 
 ### Breaking Changes
 * Rename `CustomerSubscriptionsList` to `SubscriptionsList` and `CustomerSubscription` to `Subscription` to match NetSuite naming (#535)
