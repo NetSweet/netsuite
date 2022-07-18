@@ -11,7 +11,7 @@ module NetSuite
     end
 
     def attributes
-      @attributes ||= {}
+      Thread.current[:netsuite_gem_attributes] ||= {}
     end
 
     def connection(params={}, credentials={})
@@ -27,6 +27,7 @@ module NetSuite
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
+        proxy: proxy,
       }.update(params))
       cache_wsdl(client)
       return client
@@ -50,11 +51,11 @@ module NetSuite
     end
 
     def wsdl_cache
-      @wsdl_cache ||= {}
+      Thread.current[:netsuite_gem_wsdl_cache] ||= {}
     end
 
     def clear_wsdl_cache
-      @wsdl_cache = {}
+      Thread.current[:netsuite_gem_wsdl_cache] = {}
     end
 
     def cached_wsdl
@@ -393,6 +394,18 @@ module NetSuite
 
     def log_level=(value)
       attributes[:log_level] = value
+    end
+
+    def proxy=(proxy)
+      attributes[:proxy] = proxy
+    end
+
+    def proxy(proxy = nil)
+      if proxy
+        self.proxy = proxy
+      else
+        attributes[:proxy]
+      end
     end
   end
 end

@@ -23,6 +23,23 @@ describe NetSuite::Records::SalesOrder do
     end
   end
 
+  it 'has all the right fields with specific classes' do
+    {
+      billing_address: NetSuite::Records::Address,
+      custom_field_list: NetSuite::Records::CustomFieldList,
+      gift_cert_redemption_list: NetSuite::Records::GiftCertRedemptionList,
+      item_list: NetSuite::Records::SalesOrderItemList,
+      null_field_list: NetSuite::Records::NullFieldList,
+      promotions_list: NetSuite::Records::PromotionsList,
+      ship_group_list: NetSuite::Records::SalesOrderShipGroupList,
+      shipping_address: NetSuite::Records::Address,
+      transaction_bill_address: NetSuite::Records::BillAddress,
+      transaction_ship_address: NetSuite::Records::ShipAddress,
+    }.each do |field, klass|
+      expect(salesorder).to have_field(field, klass)
+    end
+  end
+
   it 'has all the right record refs' do
     [
       :account, :bill_address_list, :created_from, :currency, :custom_form, :department, :discount_item,

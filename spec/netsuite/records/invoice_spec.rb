@@ -32,6 +32,20 @@ describe NetSuite::Records::Invoice do
     end
   end
 
+  it 'has all the right fields with specific classes' do
+    {
+      transaction_bill_address: NetSuite::Records::BillAddress,
+      transaction_ship_address: NetSuite::Records::ShipAddress,
+      item_list: NetSuite::Records::InvoiceItemList,
+      custom_field_list: NetSuite::Records::CustomFieldList,
+      shipping_address: NetSuite::Records::Address,
+      billing_address: NetSuite::Records::Address,
+      null_field_list: NetSuite::Records::NullFieldList,
+    }.each do |field, klass|
+      expect(invoice).to have_field(field, klass)
+    end
+  end
+
   it 'has all the right read_only_fields' do
     [
       :sub_total, :discount_total, :total, :alt_handling_cost, :alt_shipping_cost, :gift_cert_applied,

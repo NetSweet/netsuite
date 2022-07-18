@@ -21,7 +21,7 @@ module NetSuite
       end
 
       def soap_type
-        @object.class.to_s.split('::').last.lower_camelcase
+        NetSuite::Support::Records.netsuite_type(@object)
       end
 
       # <soap:Body>
@@ -65,6 +65,20 @@ module NetSuite
         @response_body ||= response_hash[:base_ref]
       end
 
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.class == Hash
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
+      end
+
       module Support
         def delete(options = {}, credentials={})
           response =  if options.empty?
@@ -72,6 +86,9 @@ module NetSuite
                       else
                         NetSuite::Actions::Delete.call([self, options], credentials)
                       end
+
+          @errors = response.errors
+
           response.success?
         end
       end

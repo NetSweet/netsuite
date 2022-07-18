@@ -14,6 +14,20 @@ describe NetSuite::Configuration do
       config.reset!
       expect(config.attributes).to be_empty
     end
+
+    it 'ensures that attributes are not shared between threads' do
+      config.attributes[:blah] = 'something'
+      expect(config.attributes[:blah]).to eq('something')
+
+      thread = Thread.new {
+        config.attributes[:blah] = 'something_else'
+        expect(config.attributes[:blah]).to eq('something_else')
+      }
+
+      thread.join
+
+      expect(config.attributes[:blah]).to eq('something')
+    end
   end
 
   describe '#filters' do
@@ -473,6 +487,27 @@ describe NetSuite::Configuration do
 
       # ensure no exception is raised
       config.connection
+    end
+  end
+
+  describe '#proxy' do
+    it 'defaults to nil' do
+      expect(config.proxy).to be_nil
+    end
+
+    it 'can be set with proxy=' do
+      config.proxy = "https://my-proxy"
+
+      expect(config.proxy).to eql("https://my-proxy")
+
+      # ensure no exception is raised
+      config.connection
+    end
+
+    it 'can be set with proxy(value)' do
+      config.proxy("https://my-proxy")
+
+      expect(config.proxy).to eql("https://my-proxy")
     end
   end
 

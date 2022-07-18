@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class CustomerSubscription
+    class Subscription
       include Support::Fields
       include Support::Records
       include Support::RecordRefs

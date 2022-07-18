@@ -176,6 +176,7 @@ describe NetSuite::Records::LotNumberedInventoryItem do
       matrix_option_list: NetSuite::Records::MatrixOptionList,
       pricing_matrix: NetSuite::Records::PricingMatrix,
       subsidiary_list: NetSuite::Records::RecordRefList,
+      translations_list: NetSuite::Records::TranslationList,
     }.each do |field, klass|
       expect(item).to have_field(field, klass)
     end

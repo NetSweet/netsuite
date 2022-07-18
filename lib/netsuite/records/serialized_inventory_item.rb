@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert
+      actions :get, :get_deleted, :get_list, :add, :delete, :search, :update, :update_list, :upsert
 
       record_refs :soft_descriptor,
         :stock_unit,
@@ -214,7 +214,7 @@ module NetSuite
       # site_category_list	SiteCategoryList
       # sitemap_priority	SitemapPriority
       # subsidiary_list	RecordRefList
-      # translations_list	TranslationList
+      field :translations_list, TranslationList
       # vsoe_deferral	VsoeDeferral
       # vsoe_permit_discount	VsoePermitDiscount
       # vsoe_sop_group	VsoeSopGroup

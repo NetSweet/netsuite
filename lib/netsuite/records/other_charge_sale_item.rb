@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :update, :delete, :upsert, :search
+      actions :get, :get_deleted, :get_list, :add, :update, :update_list, :delete, :upsert, :search
 
       attr_reader   :internal_id
       attr_accessor :external_id
@@ -53,7 +53,7 @@ module NetSuite
 
       field :custom_field_list, CustomFieldList
       field :pricing_matrix, PricingMatrix
-      # :translations_list,
+      field :translations_list, TranslationList
       # :matrix_option_list,
       # :item_options_list
       field :subsidiary_list, RecordRefList

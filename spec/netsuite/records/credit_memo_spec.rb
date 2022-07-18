@@ -20,6 +20,20 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  it 'has all the right fields with specific classes' do
+    {
+      custom_field_list: NetSuite::Records::CustomFieldList,
+      item_list: NetSuite::Records::CreditMemoItemList,
+      apply_list: NetSuite::Records::CreditMemoApplyList,
+      ship_group_list: NetSuite::Records::SalesOrderShipGroupList,
+      null_field_list: NetSuite::Records::NullFieldList,
+      transaction_bill_address: NetSuite::Records::BillAddress,
+      billing_address: NetSuite::Records::Address,
+    }.each do |field, klass|
+      expect(memo).to have_field(field, klass)
+    end
+  end
+
   it 'has all the right record refs' do
     [
       :account, :bill_address_list, :created_from, :custom_form, :department, :discount_item, :entity, :gift_cert,

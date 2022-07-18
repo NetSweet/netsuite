@@ -70,8 +70,9 @@ module NetSuite
         error_obj = response_hash[:status][:status_detail]
         error_obj = [error_obj] if error_obj.class == Hash
         error_obj.map do |error|
+          next if error.keys == [:after_submit_failed]
           NetSuite::Error.new(error)
-        end
+        end.compact
       end
 
       module Support

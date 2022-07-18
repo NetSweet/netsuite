@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :update, :delete, :upsert, :search
+      actions :get, :get_deleted, :get_list, :add, :update, :update_list, :delete, :upsert, :search
 
       fields :amortization_period,
             :available_to_partners,
@@ -134,7 +134,7 @@ module NetSuite
       # TODO: field :hierarchy_versions_list, ServiceResaleItemHierarchyVersionsList
       # TODO: field :presentation_item_list, PresentationItemList
       # TODO: field :site_category_list, SiteCategoryList
-      # TODO: field :translations_list, TranslationList
+      field :translations_list, TranslationList
 
       attr_reader   :internal_id
       attr_accessor :external_id

@@ -20,7 +20,7 @@ module NetSuite
       end
 
       def soap_type
-        @object.class.to_s.split('::').last.lower_camelcase
+        NetSuite::Support::Records.netsuite_type(@object)
       end
 
       # <soap:Body>

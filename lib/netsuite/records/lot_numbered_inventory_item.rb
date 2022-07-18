@@ -25,9 +25,9 @@ module NetSuite
       # TODO: field :presentation_item_list, PresentationItemList
       # TODO: field :product_feed_list, ProductFeedList
       # TODO: field :site_category_list, SiteCategoryList
-      # TODO: field :translations_list, TranslationList
+      field :translations_list, TranslationList
 
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert, :update_list
+      actions :get, :get_deleted, :get_list, :add, :delete, :search, :update, :upsert, :update_list
 
       record_refs :alternate_demand_source_item,
                   :asset_account,
