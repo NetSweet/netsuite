@@ -11,7 +11,7 @@ module NetSuite
     end
 
     def attributes
-      Thread.current[:netsuite_gem_attributes] ||= {}
+      Thread.current[:netsuite_gem_attributes] ||= (Thread.main[:netsuite_gem_attributes] || {}).dup
     end
 
     def connection(params={}, credentials={})

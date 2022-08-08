@@ -3,6 +3,8 @@
 
 ### Added
 ### Fixed
+* Copy configuration attributes from main thread to child threads (#555)
+
 ### Breaking Changes
 
 ## 0.9.0

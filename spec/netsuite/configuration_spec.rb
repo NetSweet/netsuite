@@ -15,11 +15,12 @@ describe NetSuite::Configuration do
       expect(config.attributes).to be_empty
     end
 
-    it 'ensures that attributes are not shared between threads' do
+    it 'ensures that attributes are copied from the main thread but changes within a child thread are not shared back to the main thread' do
       config.attributes[:blah] = 'something'
       expect(config.attributes[:blah]).to eq('something')
 
       thread = Thread.new {
+        expect(config.attributes[:blah]).to eq('something')
         config.attributes[:blah] = 'something_else'
         expect(config.attributes[:blah]).to eq('something_else')
       }
