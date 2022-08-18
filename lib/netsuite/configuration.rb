@@ -11,7 +11,11 @@ module NetSuite
     end
 
     def attributes
-      Thread.current[:netsuite_gem_attributes] ||= {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_attributes] ||= {}
+      else
+        @attributes ||= {}
+      end
     end
 
     def connection(params={}, credentials={})
@@ -51,11 +55,19 @@ module NetSuite
     end
 
     def wsdl_cache
-      Thread.current[:netsuite_gem_wsdl_cache] ||= {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_wsdl_cache] ||= {}
+      else
+        @wsdl_cache ||= {}
+      end
     end
 
     def clear_wsdl_cache
-      Thread.current[:netsuite_gem_wsdl_cache] = {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_wsdl_cache] = {}
+      else
+        @wsdl_cache = {}
+      end
     end
 
     def cached_wsdl
@@ -406,6 +418,14 @@ module NetSuite
       else
         attributes[:proxy]
       end
+    end
+
+    def multi_tenant!
+      @multi_tenant = true
+    end
+
+    def multi_tenant?
+      @multi_tenant
     end
   end
 end

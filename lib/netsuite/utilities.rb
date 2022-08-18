@@ -7,18 +7,31 @@ module NetSuite
     # TODO need structured logger for various statements
 
     def clear_cache!
-      Thread.current[:netsuite_gem_netsuite_get_record_cache] = {}
-      Thread.current[:netsuite_gem_netsuite_find_record_cache] = {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_get_record_cache] = {}
+        Thread.current[:netsuite_gem_netsuite_find_record_cache] = {}
+      else
+        @netsuite_get_record_cache = {}
+        @netsuite_find_record_cache = {}
+      end
 
       DataCenter.clear_cache!
     end
 
     def netsuite_get_record_cache
-      Thread.current[:netsuite_gem_netsuite_get_record_cache] ||= {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_get_record_cache] ||= {}
+      else
+        @netsuite_get_record_cache ||= {}
+      end
     end
 
     def netsuite_find_record_cache
-      Thread.current[:netsuite_gem_netsuite_find_record_cache] ||= {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_find_record_cache] ||= {}
+      else
+        @netsuite_find_record_cache ||= {}
+      end
     end
 
     def append_memo(ns_record, added_memo, opts = {})

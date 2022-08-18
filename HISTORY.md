@@ -2,6 +2,8 @@
 
 
 ### Added
+* Add `Configuration#multi_tenant!` for opting into multi-tentant support where configuration/caching is per-thread (#556)
+
 ### Fixed
 * Locked Savon to version `< 2.13` to prevent XML parsing issues.
 ### Breaking Changes
