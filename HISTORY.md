@@ -3,6 +3,7 @@
 
 ### Added
 ### Fixed
+* Locked Savon to version `< 2.13` to prevent XML parsing issues.
 ### Breaking Changes
 
 ## 0.9.0
