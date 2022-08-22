@@ -3,8 +3,8 @@ require File.expand_path('../lib/netsuite/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.licenses      = ['MIT']
-  gem.authors       = ['Ryan Moran', 'Michael Bianco']
-  gem.email         = ['ryan.moran@gmail.com', 'mike@mikebian.co']
+  gem.authors       = ['Ryan Moran', 'Michael Bianco', 'Chris Gunther']
+  gem.email         = ['ryan.moran@gmail.com', 'mike@mikebian.co', 'chris@room118solutions.com']
   gem.description   = %q{NetSuite SuiteTalk API Wrapper}
   gem.summary       = %q{NetSuite SuiteTalk API (SOAP) Wrapper}
   gem.homepage      = 'https://github.com/NetSweet/netsuite'
