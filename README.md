@@ -159,6 +159,32 @@ NetSuite.configure do
 end
 ```
 
+### Multi-Tenancy
+
+If you're interacting with multiple NetSuite accounts, each in separate threads, you can enable multi-tenancy to prevent your configuration and caches from being shared between threads.
+
+From your main thread, you'd want to enable multi-tenancy:
+
+```ruby
+NetSuite.configure do
+  multi_tentant!
+end
+```
+
+Note that `multi_tenant!` is a special configuration option which is _not_ effected by `reset!`.
+
+Then in each child thread, you'd perform any configuration specific to the NetSuite account you're interacting with for that thread, all of which will be specific to that thread only:
+
+```ruby
+NetSuite.configure do
+  reset!
+
+  account ENV['NETSUITE_ACCOUNT']
+
+  # The rest of your usual configuration...
+end
+```
+
 # Usage
 
 ## CRUD Operations

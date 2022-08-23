@@ -15,18 +15,42 @@ describe NetSuite::Configuration do
       expect(config.attributes).to be_empty
     end
 
-    it 'ensures that attributes are not shared between threads' do
+    it 'treats attributes as shared/global in default single tenant mode' do
       config.attributes[:blah] = 'something'
       expect(config.attributes[:blah]).to eq('something')
 
       thread = Thread.new {
+        expect(config.attributes[:blah]).to eq('something')
+
         config.attributes[:blah] = 'something_else'
         expect(config.attributes[:blah]).to eq('something_else')
       }
 
       thread.join
 
-      expect(config.attributes[:blah]).to eq('something')
+      expect(config.attributes[:blah]).to eq('something_else')
+    end
+
+    it 'treats attributes as thread-local in multi-tenant mode, which each thread starting with empty attributes' do
+      begin
+        config.multi_tenant!
+
+        config.attributes[:blah] = 'something'
+        expect(config.attributes[:blah]).to eq('something')
+
+        thread = Thread.new {
+          expect(config.attributes[:blah]).to be_nil
+
+          config.attributes[:blah] = 'something_else'
+          expect(config.attributes[:blah]).to eq('something_else')
+        }
+
+        thread.join
+
+        expect(config.attributes[:blah]).to eq('something')
+      ensure
+        config.instance_variable_set(:@multi_tenant, false)
+      end
     end
   end
 
