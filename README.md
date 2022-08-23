@@ -171,6 +171,8 @@ NetSuite.configure do
 end
 ```
 
+Note that `multi_tenant!` is a special configuration option which is _not_ effected by `reset!`.
+
 Then in each child thread, you'd perform any configuration specific to the NetSuite account you're interacting with for that thread, all of which will be specific to that thread only:
 
 ```ruby
