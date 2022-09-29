@@ -102,6 +102,16 @@ describe NetSuite::Support::Fields do
       expect(klass).to receive(:field).with(:one)
       klass.search_only_field(:one)
     end
+
+    it 'becomes a no-op if the field was previously defined as a regular field' do
+      klass.field :one
+
+      expect(klass).to_not receive(:field)
+
+      klass.search_only_field(:one)
+
+      expect(klass.search_only_fields).to_not include(:one)
+    end
   end
 
 end

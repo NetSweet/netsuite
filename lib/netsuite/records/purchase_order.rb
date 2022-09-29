@@ -30,6 +30,8 @@ module NetSuite
                   :order_status, :purchase_contract, :ship_method, :ship_to, :subsidiary,
                   :terms
 
+      include Searches::TransactionSearchRowBasic
+
       attr_reader :internal_id
       attr_accessor :external_id
 
