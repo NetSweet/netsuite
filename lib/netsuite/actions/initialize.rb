@@ -28,12 +28,12 @@ module NetSuite
       def request_body
         {
           'platformMsgs:initializeRecord' => {
-            'platformCore:type'      => @klass.to_s.split('::').last.lower_camelcase,
+            'platformCore:type'      => NetSuite::Support::Records.netsuite_type(@klass),
             'platformCore:reference' => {},
             :attributes!             => {
               'platformCore:reference' => {
                 'internalId' => @object.internal_id,
-                :type        => @object.class.to_s.split('::').last.lower_camelcase
+                :type        => NetSuite::Support::Records.netsuite_type(@object)
               }
             }
           }

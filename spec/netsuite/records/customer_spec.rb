@@ -5,30 +5,268 @@ describe NetSuite::Records::Customer do
 
   it 'has all the right fields' do
     [
-      :account_number, :aging, :alt_email, :alt_name, :alt_phone, :balance, :bill_pay,
-      :buying_reason, :buying_time_frame, :campaign_category, :click_stream, :comments, :company_name,
-      :consol_aging, :consol_balance, :consol_days_overdue, :consol_deposit_balance, :consol_overdue_balance,
-      :consol_unbilled_orders, :contrib_pct, :credit_hold_override, :credit_limit,
-      :date_created, :days_overdue, :default_address,
-      :deposit_balance, :download_list, :email, :email_preference, :email_transactions, :end_date, :entity_id,
-      :estimated_budget, :fax, :fax_transactions, :first_name, :first_visit, :give_access, :global_subscription_status,
-      :group_pricing_list, :home_phone, :image, :is_budget_approved, :is_inactive, :is_person, :item_pricing_list, :keywords,
-      :language, :last_modified_date, :last_name, :last_page_visited, :last_visit, :middle_name, :mobile_phone,
-      :opening_balance, :opening_balance_account, :opening_balance_date, :overdue_balance,
-      :password, :password2, :phone, :phonetic_name, :pref_cc_processor,:print_on_check_as,
-      :print_transactions, :referrer, :reminder_days, :representing_subsidiary, :require_pwd_change, :resale_number,
-      :sales_group, :sales_readiness, :salutation, :send_email, :ship_complete,
-      :stage, :start_date, :sync_partner_teams, :tax_exempt, :taxable,
-      :third_party_acct, :third_party_country, :third_party_zipcode, :title, :unbilled_orders, :url,
-      :vat_reg_number, :visits, :web_lead
+      :account_number,
+      :aging,
+      :aging1,
+      :aging2,
+      :aging3,
+      :aging4,
+      :alcohol_recipient_type,
+      :alt_email,
+      :alt_name,
+      :alt_phone,
+      :bill_pay,
+      :click_stream,
+      :comments,
+      :company_name,
+      :consol_aging,
+      :consol_aging1,
+      :consol_aging2,
+      :consol_aging3,
+      :consol_aging4,
+      :consol_days_overdue,
+      :contrib_pct,
+      :credit_hold_override,
+      :credit_limit,
+      :date_created,
+      :days_overdue,
+      :default_address,
+      :default_order_priority,
+      :display_symbol,
+      :email,
+      :email_preference,
+      :email_transactions,
+      :end_date,
+      :entity_id,
+      :estimated_budget,
+      :fax,
+      :fax_transactions,
+      :first_name,
+      :first_visit,
+      :give_access,
+      :global_subscription_status,
+      :home_phone,
+      :is_budget_approved,
+      :is_inactive,
+      :is_person,
+      :keywords,
+      :language,
+      :last_modified_date,
+      :last_name,
+      :last_page_visited,
+      :last_visit,
+      :middle_name,
+      :mobile_phone,
+      :monthly_closing,
+      :negative_number_format,
+      :number_format,
+      :opening_balance,
+      :opening_balance_date,
+      :override_currency_format,
+      :password,
+      :password2,
+      :phone,
+      :phonetic_name,
+      :print_on_check_as,
+      :print_transactions,
+      :referrer,
+      :reminder_days,
+      :require_pwd_change,
+      :resale_number,
+      :salutation,
+      :send_email,
+      :ship_complete,
+      :stage,
+      :start_date,
+      :symbol_placement,
+      :sync_partner_teams,
+      :taxable,
+      :tax_exempt,
+      :third_party_acct,
+      :third_party_country,
+      :third_party_zipcode,
+      :title,
+      :url,
+      :vat_reg_number,
+      :visits,
+      :web_lead,
     ].each do |field|
       expect(customer).to have_field(field)
     end
   end
 
+  it 'has all the right fields with specific classes' do
+    {
+      addressbook_list: NetSuite::Records::CustomerAddressbookList,
+      contact_roles_list: NetSuite::Records::ContactAccessRolesList,
+      credit_cards_list: NetSuite::Records::CustomerCreditCardsList,
+      currency_list: NetSuite::Records::CustomerCurrencyList,
+      custom_field_list: NetSuite::Records::CustomFieldList,
+      # download_list: NetSuite::Records::CustomerDownloadList, # TODO Implement me
+      # group_pricing_list: NetSuite::Records::CustomerGroupPricingList, # TODO: Implement me
+      # item_pricing_list: NetSuite::Records::CustomerItemPricingList, # TODO: Implement me
+      partners_list: NetSuite::Records::CustomerPartnersList,
+      sales_team_list: NetSuite::Records::CustomerSalesTeamList,
+      subscriptions_list: NetSuite::Records::SubscriptionsList,
+      # tax_registration_list: NetSuite::Records::CustomerTaxRegistrationList, # TODO: Implement me
+    }.each do |field, klass|
+      expect(customer).to have_field(field, klass)
+    end
+  end
+
+  it 'has all the right read_only_fields' do
+    [
+      :balance,
+      :consol_balance,
+      :deposit_balance,
+      :consol_deposit_balance,
+      :overdue_balance,
+      :consol_overdue_balance,
+      :unbilled_orders,
+      :consol_unbilled_orders,
+    ].each do |field|
+      expect(NetSuite::Records::Customer).to have_read_only_field(field)
+    end
+  end
+
+  it 'has all the right search_only_fields' do
+    [
+      :address,
+      :address1,
+      :address2,
+      :address3,
+      :addressee,
+      :address_internal_id,
+      :address_label,
+      :address_phone,
+      :alt_contact,
+      :assigned_site,
+      :assigned_site_id,
+      :attention,
+      :available_offline,
+      :bill_address,
+      :bill_address1,
+      :bill_address2,
+      :bill_address3,
+      :bill_addressee,
+      :bill_attention,
+      :bill_city,
+      :bill_country,
+      :bill_country_code,
+      :bill_phone,
+      :bill_state,
+      :bill_zip_code,
+      :cc_customer_code,
+      :cc_default,
+      :cc_exp_date,
+      :cc_holder_name,
+      :cc_internal_id,
+      :cc_number,
+      :cc_state,
+      :cc_state_from,
+      :cc_type,
+      :city,
+      :contact,
+      :contribution,
+      :contribution_primary,
+      :conversion_date,
+      :country,
+      :country_code,
+      :credit_hold,
+      :date_closed,
+      :entity_number,
+      :explicit_conversion,
+      :first_order_date,
+      :first_sale_date,
+      :fx_balance,
+      :fx_consol_balance,
+      :fx_consol_unbilled_orders,
+      :fx_unbilled_orders,
+      :group_pricing_level,
+      :has_duplicates,
+      :is_default_billing,
+      :is_default_shipping,
+      :is_ship_address,
+      :item_pricing_level,
+      :item_pricing_unit_price,
+      :job_end_date,
+      :job_projected_end,
+      :job_start_date,
+      :job_type,
+      :last_order_date,
+      :last_sale_date,
+      :lead_date,
+      :level,
+      :manual_credit_hold,
+      :on_credit_hold,
+      :partner_contribution,
+      :partner_role,
+      :partner_team_member,
+      :pec,
+      :permission,
+      :pricing_group,
+      :pricing_item,
+      :prospect_date,
+      :role,
+      :sales_team_member,
+      :sales_team_role,
+      :ship_address,
+      :ship_address1,
+      :ship_address2,
+      :ship_address3,
+      :ship_addressee,
+      :ship_attention,
+      :ship_city,
+      :ship_country,
+      :ship_country_code,
+      :ship_phone,
+      :ship_state,
+      :ship_zip,
+      :source_site,
+      :source_site_id,
+      :state,
+      :subscription,
+      :subscription_date,
+      :subscription_status,
+      :zip_code,
+    ].each do |field|
+      expect(NetSuite::Records::Customer).to have_search_only_field(field)
+    end
+  end
+
   it 'has the right record_refs' do
     [
-      :access_role, :currency, :custom_form, :entity_status, :partner, :sales_rep, :terms, :parent, :territory, :shipping_item, :tax_item
+      :access_role,
+      :assigned_web_site,
+      :buying_reason,
+      :buying_time_frame,
+      :campaign_category,
+      :category,
+      :currency,
+      :custom_form,
+      :default_allocation_strategy,
+      :default_tax_reg,
+      :dr_account,
+      :entity_status,
+      :fx_account,
+      :image,
+      :lead_source,
+      :opening_balance_account,
+      :parent,
+      :partner,
+      :pref_cc_processor,
+      :price_level,
+      :receivables_account,
+      :representing_subsidiary,
+      :sales_group,
+      :sales_readiness,
+      :sales_rep,
+      :shipping_item,
+      :source_web_site,
+      :subsidiary,
+      :tax_item,
+      :terms,
+      :territory,
     ].each do |record_ref|
       expect(customer).to have_record_ref(record_ref)
     end
@@ -115,12 +353,12 @@ describe NetSuite::Records::Customer do
           }
         ]
       }
-      expect(customer.subscriptions_list).to be_kind_of(NetSuite::Records::CustomerSubscriptionsList)
+      expect(customer.subscriptions_list).to be_kind_of(NetSuite::Records::SubscriptionsList)
       expect(customer.subscriptions_list.subscriptions.length).to eql(1)
     end
 
-    it 'can be set from a CustomerSubscriptionsList object' do
-      customer_subscriptions_list = NetSuite::Records::CustomerSubscriptionsList.new
+    it 'can be set from a SubscriptionsList object' do
+      customer_subscriptions_list = NetSuite::Records::SubscriptionsList.new
       customer.subscriptions_list = customer_subscriptions_list
       expect(customer.subscriptions_list).to eql(customer_subscriptions_list)
     end
@@ -198,6 +436,35 @@ describe NetSuite::Records::Customer do
             with([customer], {}).
             and_return(response)
         expect(customer.delete).to be_falsey
+      end
+    end
+  end
+
+  describe '#attach_file' do
+    let(:test_data) { { :email => 'test@example.com', :fax => '1234567890' } }
+    let(:file) { double('file') }
+
+    context 'when the response is successful' do
+      let(:response) { NetSuite::Response.new(:success => true, :body => { :internal_id => '1' }) }
+
+      it 'returns true' do
+        customer = NetSuite::Records::Customer.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([customer, file], {}).
+          and_return(response)
+        expect(customer.attach_file(file)).to be_truthy
+      end
+    end
+
+    context 'when the response is unsuccessful' do
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+
+      it 'returns false' do
+        customer = NetSuite::Records::Customer.new(test_data)
+        expect(NetSuite::Actions::AttachFile).to receive(:call).
+          with([customer, file], {}).
+          and_return(response)
+        expect(customer.attach_file(file)).to be_falsey
       end
     end
   end

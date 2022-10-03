@@ -20,7 +20,7 @@ module NetSuite
       #     }
       #  ]
       #
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert, :update_list
+      actions :get, :get_deleted, :get_list, :add, :delete, :search, :update, :upsert, :update_list
 
       fields :auto_lead_time,
             :auto_preferred_stock_level,

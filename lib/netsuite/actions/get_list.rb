@@ -33,7 +33,7 @@ module NetSuite
             }
           end
         else
-          type = @klass.to_s.split('::').last.lower_camelcase
+          type = NetSuite::Support::Records.netsuite_type(@klass)
           record_type = 'platformCore:RecordRef'
 
           list.map do |internal_id|

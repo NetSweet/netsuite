@@ -9,7 +9,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/record/file.html
 
-      actions :get, :add, :delete, :search, :get_list
+      actions :get, :add, :delete, :search, :get_list, :update
 
       fields :content, :description, :name, :media_type_name, :file_type, :text_file_encoding, :created_date, :last_modified_date
 

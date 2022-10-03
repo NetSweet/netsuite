@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe NetSuite::Records::CustomerSubscriptionsList do
-  let(:list) { NetSuite::Records::CustomerSubscriptionsList.new }
+describe NetSuite::Records::SubscriptionsList do
+  let(:list) { NetSuite::Records::SubscriptionsList.new }
 
   it 'has a subscriptions attribute' do
     expect(list.subscriptions).to be_kind_of(Array)
