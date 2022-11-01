@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getList.html
 module NetSuite
   module Actions
-    class GetList
+    class GetList < AbstractAction
       include Support::Requests
 
       def initialize(klass, options = { })
@@ -10,10 +10,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call(:get_list, :message => request_body)
-      end
 
       def request_body
         # list of all netsuite types; useful for debugging
@@ -62,6 +58,10 @@ module NetSuite
         @response_body ||= @response.body[:get_list_response][:read_response_list][:read_response]
         @response_body = [@response_body] unless @response_body.is_a? Array
         @response_body
+      end
+
+      def request_options_hash
+        {}
       end
 
       def success?

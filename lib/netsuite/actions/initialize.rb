@@ -1,22 +1,12 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/initializeinitializeList.html
 module NetSuite
   module Actions
-    class Initialize
+    class Initialize < AbstractAction
       include Support::Requests
 
       def initialize(klass, object)
         @klass  = klass
         @object = object
-      end
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs'    => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore'    => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCoreTyp' => "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-          }}, credentials
-        ).call :initialize, :message => request_body
       end
 
       # <platformMsgs:initializeRecord>
@@ -50,6 +40,14 @@ module NetSuite
 
       def response_body
         @response_body ||= response_hash[:record]
+      end
+
+      def request_options_hash
+        {namespaces: {
+          'xmlns:platformMsgs'    => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+          'xmlns:platformCore'    => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+          'xmlns:platformCoreTyp' => "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+        }}
       end
 
       module Support

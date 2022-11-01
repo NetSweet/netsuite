@@ -1,6 +1,6 @@
 module NetSuite
   module Actions
-    class DeleteList
+    class DeleteList < AbstractAction
       include Support::Requests
 
       def initialize(klass, options = { })
@@ -9,15 +9,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :delete_list, message: request_body
-      end
 
       # <soap:Body>
       #   <platformMsgs:deleteList>
@@ -69,6 +60,13 @@ module NetSuite
         if response_list.any? { |r| r[:status][:@is_success] == 'false' }
           @response_errors ||= errors
         end
+      end
+
+      def request_options_hash
+        {namespaces: {
+          'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+          'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+        }}
       end
 
       def errors

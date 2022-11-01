@@ -43,12 +43,12 @@ module NetSuite
       ns_record
     end
 
-    def netsuite_server_time
-      server_time_response = NetSuite::Utilities.backoff { NetSuite::Configuration.connection.call(:get_server_time) }
+    def netsuite_server_time(credentials={})
+      server_time_response = NetSuite::Utilities.backoff { NetSuite::Configuration.connection({}, credentials).call(:get_server_time) }
       server_time_response.body[:get_server_time_response][:get_server_time_result][:server_time]
     end
 
-    def netsuite_data_center_urls(account_id)
+    def netsuite_data_center_urls(account_id, credentials={})
       data_center_call_response = NetSuite::Configuration.connection({
         # NOTE force a production WSDL so the sandbox settings are ignored
         #      as of 1/20/18 NS will start using the account ID to determine
@@ -62,7 +62,7 @@ module NetSuite
         },
 
         soap_header: {}
-      }).call(:get_data_center_urls, message: {
+      }, credentials).call(:get_data_center_urls, message: {
         'platformMsgs:account' => account_id
       })
 

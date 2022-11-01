@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/add.html
 module NetSuite
   module Actions
-    class Add
+    class Add < AbstractAction
       include Support::Requests
 
       attr_reader :response_hash
@@ -11,10 +11,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call(:add, :message => request_body)
-      end
 
       # <soap:Body>
       #   <platformMsgs:add>
@@ -60,6 +56,10 @@ module NetSuite
         if response_hash[:status] && response_hash[:status][:status_detail]
           @response_errors ||= errors
         end
+      end
+
+      def request_options_hash
+        {}
       end
 
       def response_hash

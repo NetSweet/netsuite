@@ -1,6 +1,6 @@
 module NetSuite
   module Actions
-    class AttachFile
+    class AttachFile < AbstractAction
       include Support::Requests
 
       def initialize(object, file)
@@ -9,10 +9,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials = {})
-        NetSuite::Configuration.connection({}, credentials).call(:attach, :message => request_body)
-      end
 
       # <soap:Body>
       #   <platformMsgs:attach>
@@ -54,6 +50,10 @@ module NetSuite
         if response_hash[:status] && response_hash[:status][:status_detail]
           @response_errors ||= errors
         end
+      end
+
+      def request_options_hash
+        {}
       end
 
       def response_hash
