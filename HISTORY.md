@@ -1,13 +1,22 @@
 ## Unreleased
 
+### Added
+
+### Fixed
+
+### Breaking Changes
+
+## v0.9.1
 
 ### Added
 * Add `Configuration#multi_tenant!` for opting into multi-tentant support where configuration/caching is per-thread (#556)
 
 ### Fixed
 * Avoid Savon version `2.13.0` to prevent generating invalid envelopes. (#558, #563)
+* Retry on `HTTPI::SSLError` and `HTTPI::TimeoutError` in backoff (#566)
 
 ### Breaking Changes
+* Update default API version to 2016_2 from 2015_1 when `api_version` is not explicitly set (#554)
 
 ## 0.9.0
 
