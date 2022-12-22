@@ -240,6 +240,7 @@ module NetSuite
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
         'GB' => '_unitedKingdom',
+        'UK' => '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
