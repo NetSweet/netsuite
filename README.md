@@ -1,5 +1,5 @@
 [![Ruby](https://github.com/NetSweet/netsuite/actions/workflows/main.yml/badge.svg)](https://github.com/NetSweet/netsuite/actions/workflows/main.yml)
-[![Slack Status](https://opensuite-slackin.herokuapp.com/badge.svg)](http://opensuite-slackin.herokuapp.com)
+[![Slack Status](https://netsuite-slackin.fly.dev/badge.svg)](https://netsuite-slackin.fly.dev)
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
 
 # NetSuite SuiteTalk API Ruby Gem
