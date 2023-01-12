@@ -10,7 +10,7 @@
 
 # Help & Support
 
-Join the [Slack channel](http://opensuite-slackin.herokuapp.com) for help with any NetSuite issues. Please do not post usage questions as issues in GitHub.
+Join the [Slack channel](https://netsuite-slackin.fly.dev) for help with any NetSuite issues. Please do not post usage questions as issues in GitHub.
 
 There is some additional helpful resources for NetSuite development [listed here](https://dashboard.suitesync.io/docs/resources#netsuite).
 
