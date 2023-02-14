@@ -16,7 +16,14 @@ describe NetSuite::Records::EstimateItem do
 
   it 'has all the right record refs' do
     [
-      :item, :job, :price, :tax_code, :units
+      :department,
+      :item,
+      :job,
+      :klass,
+      :location,
+      :price,
+      :tax_code,
+      :units,
     ].each do |record_ref|
       expect(item).to have_record_ref(record_ref)
     end
