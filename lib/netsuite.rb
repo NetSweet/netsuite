@@ -49,6 +49,7 @@ module NetSuite
 
   module Actions
     autoload :Add,              'netsuite/actions/add'
+    autoload :AsyncAddList,     'netsuite/actions/async_add_list'
     autoload :Attach,           'netsuite/actions/attach'
     autoload :Delete,           'netsuite/actions/delete'
     autoload :DeleteList,       'netsuite/actions/delete_list'
