@@ -13,7 +13,7 @@ module NetSuite
       def request(credentials={})
         NetSuite::Configuration.connection(
           {}, credentials
-        ).call(:async_add_list, message: request_body)
+        ).call(:async_add_list, message: [request_body])
       end
 
       # <soap:Body>
