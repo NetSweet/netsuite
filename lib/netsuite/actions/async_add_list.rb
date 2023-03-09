@@ -13,7 +13,7 @@ module NetSuite
       def request(credentials={})
         NetSuite::Configuration.connection(
           {}, credentials
-        ).call(:async_add_list, message: [request_body])
+        ).call(:async_add_list, message: request_body)
       end
 
       # <soap:Body>
@@ -49,7 +49,6 @@ module NetSuite
       end
 
       def response_hash
-        binding.pry
         @response_hash ||= Array[@response.body[:async_add_list_response][:async_status_result]]
       end
 
@@ -58,7 +57,6 @@ module NetSuite
       end
 
       def response_errors
-        binding.pry
         if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
           @response_errors ||= errors
         end
@@ -78,44 +76,22 @@ module NetSuite
       end
 
       def success?
-        #binding.pry
         response_hash[0][:job_id]
       end
 
       module Support
+        def async_add_list(credentials={})
+          response = NetSuite::Actions::AsyncAddList.call([self], credentials)
+          @errors = response.errors
 
-        def self.included(base)
-          base.extend(ClassMethods)
-        end
-
-        module ClassMethods
-          def async_add_list(records, credentials = {})
-            netsuite_records = records.map do |r|
-              if r.kind_of?(self)
-                r
-              else
-                self.new(r)
-              end
-            end
-
-            response = NetSuite::Actions::AsyncAddList.call(netsuite_records, credentials)
-
-            if response.success?
-              response.body.map do |attr|
-                record = netsuite_records.find do |r|
-                  r.external_id == attr[:@external_id]
-                end
-
-                record.instance_variable_set('@internal_id', attr[:@internal_id])
-              end
-
-              netsuite_records
-
-            else
-              false
-            end
+          if response.success?
+            response.body unless response.body.class == Nori::StringIOFile
+            true
+          else
+            false
           end
         end
+
       end
     end
   end
