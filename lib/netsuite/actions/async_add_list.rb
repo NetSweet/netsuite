@@ -49,18 +49,18 @@ module NetSuite
       end
 
       def response_hash
-        @response_hash ||= response.body #Array[@response.body[:async_add_list_response][:async_status_result]]
+        @response_hash ||= Array[@response.body[:async_add_list_response][:async_status_result]]
       end
 
       def response_body
         @response_body ||= response_hash #.map { |h| h[:job_id] }
       end
 
-      def response_errors
-        if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
-          @response_errors ||= errors
-        end
-      end
+      # def response_errors
+      #   if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
+      #     @response_errors ||= errors
+      #   end
+      # end
 
       def errors
         errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
