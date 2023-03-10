@@ -82,14 +82,15 @@ module NetSuite
       module Support
         def async_add_list(credentials={})
           response = NetSuite::Actions::AsyncAddList.call([self], credentials)
-          @errors = response.errors
+          return response
+          # @errors = response.errors
 
-          if response.success?
-            response.body unless response.body.class == Nori::StringIOFile
-            true
-          else
-            false
-          end
+          # if response.success?
+          #   response.body unless response.body.class == Nori::StringIOFile
+          #   true
+          # else
+          #   false
+          # end
         end
 
       end
