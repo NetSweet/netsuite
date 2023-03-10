@@ -49,7 +49,7 @@ module NetSuite
       end
 
       def response_hash
-        @response_hash ||= response.body #Array[@response.body[:async_add_list_response][:async_status_result]]
+        @response_hash ||= @response.body #Array[@response.body[:async_add_list_response][:async_status_result]]
       end
 
       def response_body
