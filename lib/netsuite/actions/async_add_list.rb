@@ -56,27 +56,28 @@ module NetSuite
         @response_body ||= response_hash #.map { |h| h[:job_id] }
       end
 
-      # def response_errors
-      #   if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
-      #     @response_errors ||= errors
-      #   end
-      # end
+      def response_errors
+        @response_errors ||= response_hash unless success?
+        # if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
+        #   @response_errors ||= errors
+        # end
+      end
 
       def errors
-        errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
-          error_obj = obj[:status][:status_detail]
-          error_obj = [error_obj] if error_obj.class == Hash
-          errors = error_obj.map do |error|
-            NetSuite::Error.new(error)
-          end
+        # errors = response_hash.select { |h| h[:status] && h[:status][:status_detail] }.map do |obj|
+        #   error_obj = obj[:status][:status_detail]
+        #   error_obj = [error_obj] if error_obj.class == Hash
+        #   errors = error_obj.map do |error|
+        #     NetSuite::Error.new(error)
+        #   end
 
-          [obj[:base_ref][:@external_id], errors]
-        end
-        Hash[errors]
+        #   [obj[:base_ref][:@external_id], errors]
+        # end
+        # Hash[errors]
       end
 
       def success?
-        response_hash[0][:job_id]
+        !response_hash[0][:job_id].nil?
       end
 
       module Support
