@@ -57,9 +57,9 @@ module NetSuite
       end
 
       def response_errors
-        if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
-          @response_errors ||= errors
-        end
+        # if response_hash[0].any? { |h| h[:status] && h[:status][:status_detail] }
+        #   @response_errors ||= errors
+        # end
       end
 
       def errors
