@@ -15,18 +15,42 @@ describe NetSuite::Configuration do
       expect(config.attributes).to be_empty
     end
 
-    it 'ensures that attributes are not shared between threads' do
+    it 'treats attributes as shared/global in default single tenant mode' do
       config.attributes[:blah] = 'something'
       expect(config.attributes[:blah]).to eq('something')
 
       thread = Thread.new {
+        expect(config.attributes[:blah]).to eq('something')
+
         config.attributes[:blah] = 'something_else'
         expect(config.attributes[:blah]).to eq('something_else')
       }
 
       thread.join
 
-      expect(config.attributes[:blah]).to eq('something')
+      expect(config.attributes[:blah]).to eq('something_else')
+    end
+
+    it 'treats attributes as thread-local in multi-tenant mode, which each thread starting with empty attributes' do
+      begin
+        config.multi_tenant!
+
+        config.attributes[:blah] = 'something'
+        expect(config.attributes[:blah]).to eq('something')
+
+        thread = Thread.new {
+          expect(config.attributes[:blah]).to be_nil
+
+          config.attributes[:blah] = 'something_else'
+          expect(config.attributes[:blah]).to eq('something_else')
+        }
+
+        thread.join
+
+        expect(config.attributes[:blah]).to eq('something')
+      ensure
+        config.instance_variable_set(:@multi_tenant, false)
+      end
     end
   end
 
@@ -101,7 +125,7 @@ describe NetSuite::Configuration do
 
     context 'when the wsdl has not been set' do
       it 'returns a path to the WSDL to use for the API' do
-        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2015_1_0/netsuite.wsdl")
+        expect(config.wsdl).to eq("https://webservices.netsuite.com/wsdl/v2016_2_0/netsuite.wsdl")
       end
     end
 
@@ -351,8 +375,8 @@ describe NetSuite::Configuration do
 
   describe '#api_version' do
     context 'when no api_version is defined' do
-      it 'defaults to 2015_1' do
-        expect(config.api_version).to eq('2015_1')
+      it 'defaults to 2016_2' do
+        expect(config.api_version).to eq('2016_2')
       end
     end
   end

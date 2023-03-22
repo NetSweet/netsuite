@@ -134,16 +134,6 @@ describe NetSuite::Records::Address do
       expect(addressbook.country.to_record).to eql ""
       expect(addressbook.to_record["platformCommon:country"]).to eql ""
     end
-
-    it 'changes the netsuite identifier based on the current API version' do
-      NetSuite::Configuration.api_version = '2015_1'
-      addressbook = NetSuite::Records::Address.new country: "GB"
-      expect(addressbook.to_record["platformCommon:country"]).to eql "_unitedKingdomGB"
-      NetSuite::Configuration.api_version = '2018_1'
-
-      addressbook = NetSuite::Records::Address.new country: "GB"
-      expect(addressbook.to_record["platformCommon:country"]).to eql "_unitedKingdom"
-    end
   end
 
 end

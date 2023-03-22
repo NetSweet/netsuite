@@ -7,18 +7,31 @@ module NetSuite
     # TODO need structured logger for various statements
 
     def clear_cache!
-      Thread.current[:netsuite_gem_netsuite_get_record_cache] = {}
-      Thread.current[:netsuite_gem_netsuite_find_record_cache] = {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_get_record_cache] = {}
+        Thread.current[:netsuite_gem_netsuite_find_record_cache] = {}
+      else
+        @netsuite_get_record_cache = {}
+        @netsuite_find_record_cache = {}
+      end
 
       DataCenter.clear_cache!
     end
 
     def netsuite_get_record_cache
-      Thread.current[:netsuite_gem_netsuite_get_record_cache] ||= {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_get_record_cache] ||= {}
+      else
+        @netsuite_get_record_cache ||= {}
+      end
     end
 
     def netsuite_find_record_cache
-      Thread.current[:netsuite_gem_netsuite_find_record_cache] ||= {}
+      if NetSuite::Configuration.multi_tenant?
+        Thread.current[:netsuite_gem_netsuite_find_record_cache] ||= {}
+      else
+        @netsuite_find_record_cache ||= {}
+      end
     end
 
     def append_memo(ns_record, added_memo, opts = {})
@@ -112,6 +125,8 @@ module NetSuite
         exceptions_to_retry << OpenSSL::SSL::SSLErrorWaitReadable if defined?(OpenSSL::SSL::SSLErrorWaitReadable)
 
         # depends on the http library chosen
+        exceptions_to_retry << HTTPI::SSLError if defined?(HTTPI::SSLError)
+        exceptions_to_retry << HTTPI::TimeoutError if defined?(HTTPI::TimeoutError)
         exceptions_to_retry << HTTPClient::TimeoutError if defined?(HTTPClient::TimeoutError)
         exceptions_to_retry << HTTPClient::ConnectTimeoutError if defined?(HTTPClient::ConnectTimeoutError)
         exceptions_to_retry << HTTPClient::ReceiveTimeoutError if defined?(HTTPClient::ReceiveTimeoutError)
