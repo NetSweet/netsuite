@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getSelectValue.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class GetSelectValue < AbstractAction
@@ -32,6 +34,10 @@ module NetSuite
           'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
           'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
         }}
+      end
+
+      def action_name
+        :get_select_value
       end
 
       module Support

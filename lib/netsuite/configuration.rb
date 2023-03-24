@@ -18,14 +18,14 @@ module NetSuite
       end
     end
 
-    def connection(params={}, credentials={})
+    def connection(params={}, credentials={}, soap_header_extra_info={})
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
         endpoint: endpoint,
         read_timeout: read_timeout,
         open_timeout: open_timeout,
         namespaces: namespaces,
-        soap_header: auth_header(credentials).update(soap_header),
+        soap_header: auth_header(credentials).update(soap_header).merge(soap_header_extra_info),
         pretty_print_xml: true,
         filters: filters,
         logger: logger,

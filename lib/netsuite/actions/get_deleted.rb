@@ -1,3 +1,5 @@
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class GetDeleted < AbstractAction
@@ -68,6 +70,10 @@ module NetSuite
           'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
           'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
         }}
+      end
+
+      def action_name
+        :get_deleted
       end
 
       module Support

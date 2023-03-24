@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/update.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class Update < AbstractAction
@@ -67,6 +69,10 @@ module NetSuite
 
       def request_options_hash
         {}
+      end
+
+      def action_name
+        :update
       end
 
       module Support

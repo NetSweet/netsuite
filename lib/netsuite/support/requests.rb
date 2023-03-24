@@ -22,9 +22,9 @@ module NetSuite
 
       private
 
-      def request
-        raise NotImplementedError, 'Please implement a #request method'
-      end
+      # def request
+      #   raise NotImplementedError, 'Please implement a #request method'
+      # end
 
       def build_response
         Response.new(success: success?, header: response_header, body: response_body, errors: response_errors)

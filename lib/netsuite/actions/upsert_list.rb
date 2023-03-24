@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/upsertList.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class UpsertList < AbstractAction
@@ -71,6 +73,10 @@ module NetSuite
 
       def request_options_hash
         { element_form_default: :unqualified }
+      end
+
+      def action_name
+        :upsert_list
       end
 
       module Support

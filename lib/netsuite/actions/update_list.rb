@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/updateList.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class UpdateList < AbstractAction
@@ -75,6 +77,10 @@ module NetSuite
 
       def request_options_hash
         { element_form_default: :unqualified }
+      end
+
+      def action_name
+        :update_list
       end
 
       module Support

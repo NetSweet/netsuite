@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/search.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class Search < AbstractAction
@@ -202,19 +204,7 @@ module NetSuite
       end
 
       def request_options_hash
-        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
-        # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
-
-        preferences = NetSuite::Configuration.auth_header(credentials)
-          .update(NetSuite::Configuration.soap_header)
-          .merge(
-            (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-              h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
-              h
-            end
-          )
-
-        { soap_header: preferences }
+        {}
       end
 
       def soap_method
@@ -239,6 +229,20 @@ module NetSuite
         else
           @response.body[:search_response]
         end[:search_result]
+      end
+
+      def action_name
+        @options.has_key?(:search_id)? :search_more_with_id : :search
+      end
+
+      def soap_header_extra_info
+        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
+        # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
+
+        (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+          h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
+          h
+        end
       end
 
       def success?

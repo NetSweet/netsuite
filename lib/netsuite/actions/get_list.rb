@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getList.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class GetList < AbstractAction
@@ -62,6 +64,10 @@ module NetSuite
 
       def request_options_hash
         {}
+      end
+
+      def action_name
+        :get_list
       end
 
       def success?

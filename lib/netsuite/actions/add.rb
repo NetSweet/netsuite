@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/add.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class Add < AbstractAction
@@ -64,6 +66,10 @@ module NetSuite
 
       def response_hash
         @response_hash ||= @response.to_hash[:add_response][:write_response]
+      end
+
+      def action_name
+        :add
       end
 
       def errors

@@ -1,3 +1,5 @@
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class AttachFile < AbstractAction
@@ -58,6 +60,10 @@ module NetSuite
 
       def response_hash
         @response_hash ||= @response.to_hash[:attach_response][:write_response]
+      end
+
+      def action_name
+        :attach
       end
 
       def errors

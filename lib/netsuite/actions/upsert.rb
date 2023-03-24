@@ -1,4 +1,6 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/upsert.html
+require_relative 'abstract_action'
+
 module NetSuite
   module Actions
     class Upsert < AbstractAction
@@ -66,6 +68,10 @@ module NetSuite
 
       def request_options_hash
         {}
+      end
+
+      def action_name
+        :upsert
       end
 
       module Support
