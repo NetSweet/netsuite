@@ -207,10 +207,6 @@ module NetSuite
         {}
       end
 
-      def soap_method
-        (@options.has_key?(:search_id)? :search_more_with_id : :search)
-      end
-
       def response_header
         @response_header ||= response_header_hash
       end
@@ -239,10 +235,11 @@ module NetSuite
         # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
         # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
 
-        (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-          h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
-          h
-        end
+        (@options.delete(:preferences) || {})
+          .inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+            h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
+            h
+          end
       end
 
       def success?

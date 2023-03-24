@@ -50,11 +50,12 @@ module NetSuite
       end
 
       def request_options_hash
-        # delete this??
-        {namespaces: {
+        {
+          namespaces: {
           'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
           'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-        }}
+          }
+        }
       end
 
       def action_name

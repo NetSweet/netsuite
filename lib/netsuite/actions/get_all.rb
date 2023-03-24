@@ -46,7 +46,9 @@ module NetSuite
       end
 
       def request_options_hash
-        { element_form_default: :unqualified }
+        {
+          element_form_default: :unqualified
+        }
       end
 
       def action_name
