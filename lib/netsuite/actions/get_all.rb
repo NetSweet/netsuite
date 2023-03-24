@@ -45,7 +45,7 @@ module NetSuite
         @response_hash ||= @response.body[:get_all_response][:get_all_result]
       end
 
-      def request_options_hash
+      def request_options
         {
           element_form_default: :unqualified
         }

@@ -203,7 +203,7 @@ module NetSuite
         end
       end
 
-      def request_options_hash
+      def request_options
         {}
       end
 

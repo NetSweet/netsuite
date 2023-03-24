@@ -65,7 +65,7 @@ module NetSuite
         @response_body ||= response_hash[:get_deleted_result]
       end
 
-      def request_options_hash
+      def request_options
         {
           namespaces: {
             'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",

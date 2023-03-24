@@ -49,7 +49,7 @@ module NetSuite
         @response_hash = @response.body[:get_response][:read_response]
       end
 
-      def request_options_hash
+      def request_options
         {
           namespaces: {
           'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",

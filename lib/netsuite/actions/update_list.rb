@@ -75,7 +75,7 @@ module NetSuite
         @success ||= response_hash.all? { |h| h[:status][:@is_success] == 'true' }
       end
 
-      def request_options_hash
+      def request_options
         {
           element_form_default: :unqualified
         }

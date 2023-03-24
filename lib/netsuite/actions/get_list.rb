@@ -62,7 +62,7 @@ module NetSuite
         @response_body
       end
 
-      def request_options_hash
+      def request_options
         {}
       end
 

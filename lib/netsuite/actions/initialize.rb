@@ -44,7 +44,7 @@ module NetSuite
         @response_body ||= response_hash[:record]
       end
 
-      def request_options_hash
+      def request_options
         {
           namespaces: 
           {

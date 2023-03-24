@@ -2,7 +2,7 @@ module NetSuite
   module Actions
     class AbstractAction
       def request(credentials={})
-        NetSuite::Configuration.connection(request_options_hash, credentials, soap_header_extra_info).call(action_name, message: request_body)
+        NetSuite::Configuration.connection(request_options, credentials, soap_header_extra_info).call(action_name, message: request_body)
       end
 
       protected
@@ -19,7 +19,7 @@ module NetSuite
         raise NotImplementedError, 'Not implemented on abstract class'
       end
 
-      def request_options_hash(credentials)
+      def request_options
         raise NotImplementedError, 'Not implemented on abstract class'
       end
 
