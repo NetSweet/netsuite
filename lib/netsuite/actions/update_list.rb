@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/updateList.html
 module NetSuite
   module Actions
-    class UpdateList
+    class UpdateList < AbstractAction
       include Support::Requests
 
       def initialize(*objects)
@@ -9,12 +9,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          { element_form_default: :unqualified }, credentials
-        ).call(:update_list, message: request_body)
-      end
 
       # <soap:Body>
       #   <updateList>
@@ -77,6 +71,16 @@ module NetSuite
 
       def success?
         @success ||= response_hash.all? { |h| h[:status][:@is_success] == 'true' }
+      end
+
+      def request_options
+        {
+          element_form_default: :unqualified
+        }
+      end
+
+      def action_name
+        :update_list
       end
 
       module Support

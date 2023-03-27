@@ -25,7 +25,7 @@ module NetSuite
         :other_ref_num, :partners_list, :rev_rec_end_date,
         :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
         :sales_group, :sales_team_list, :ship_date, :ship_group_list,
-        :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :shipping_tax_code, :source, :start_date,
+        :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :source, :start_date,
         :status, :sync_partner_teams, :sync_sales_teams, :tax_2_total,
         :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
         :time_discount, :time_list, :time_tax_code, :time_tax_rate_1, :time_tax_rate_2, :to_be_emailed, :to_be_faxed,
@@ -138,7 +138,8 @@ module NetSuite
 
       record_refs :account, :bill_address_list, :custom_form, :department, :entity, :klass, :partner,
                   :posting_period, :ship_address_list, :terms, :location, :sales_rep, :tax_item, :created_from,
-                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status, :job, :discount_item
+                  :ship_method, :lead_source, :promo_code, :subsidiary, :currency, :approval_status, :job, :discount_item,
+                  :shipping_tax_code
 
       attr_reader   :internal_id
       attr_accessor :external_id

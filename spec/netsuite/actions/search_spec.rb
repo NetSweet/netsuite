@@ -5,22 +5,29 @@ describe NetSuite::Actions::Search do
   after(:all) { savon.unmock! }
 
   it "handles custom auth credentials" do
-    allow(NetSuite::Configuration).to receive(:connection).and_return(double().as_null_object)
-
     credentials = {
       email: 'fake@domain.com',
       password: 'fake'
     }
-    NetSuite::Records::Customer.search({}, credentials)
 
-    expect(NetSuite::Configuration).to have_received(:connection).with({:soap_header=>{
+    connection = NetSuite::Configuration.connection({}, credentials)
+
+    soap_header = {
       "platformMsgs:passport"=>{
         "platformCore:email"=>"fake@domain.com",
         "platformCore:password"=>"fake",
         "platformCore:account"=>"1234",
         "platformCore:role"=>{:@internalId=>"3"}
-      }, "platformMsgs:SearchPreferences"=>{}}}, credentials
-    )
+      }
+    }
+
+    expect(connection.instance_variable_get('@globals')[:soap_header]).to eq soap_header
+
+    allow(NetSuite::Configuration).to receive(:connection).and_return(double().as_null_object)
+
+    NetSuite::Records::Customer.search({}, credentials)
+
+    expect(NetSuite::Configuration).to have_received(:connection).with({}, credentials, { "platformMsgs:SearchPreferences"=>{} })
   end
 
   context "search class name" do

@@ -1,6 +1,27 @@
 ## Unreleased
 
 ### Added
+
+### Fixed
+
+### Breaking Changes
+
+## v0.9.1
+
+### Added
+* Add `Configuration#multi_tenant!` for opting into multi-tentant support where configuration/caching is per-thread (#556)
+
+### Fixed
+* Avoid Savon version `2.13.0` to prevent generating invalid envelopes. (#558, #563)
+* Retry on `HTTPI::SSLError` and `HTTPI::TimeoutError` in backoff (#566)
+
+### Breaking Changes
+* Update default API version to 2016_2 from 2015_1 when `api_version` is not explicitly set (#554)
+
+## 0.9.0
+
+### Added
+
 * Update `Customer` record fields/record refs for 2021.2. (#535)
 The following were moved from `fields` to `record_refs`: `buying_reason`, `buying_time_frame`, `campaign_category`, `image`, `opening_balance_account`, `pref_cc_processor`, `representing_subsidiary`, `sales_group`, `sales_readiness`
 The following were removed as `fields` since their sublist class is not yet implemented: `download_list`, `group_pricing_list`, `item_pricing_list`
@@ -12,6 +33,9 @@ The following were removed as `fields` since their sublist class is not yet impl
 * Add `proxy` attribute to `NetSuite::Configuration` to set a proxy used by the savon client (#547)
 
 ### Fixed
+* Ignore `after_submit_failed` status details (>= 2018.2) when collating errors in add action (#550)
+* Add `NullFieldList` to `SalesOrder` (#552)
+* Add thread safety to NetSuite configuration and utilities (#549)
 
 ### Breaking Changes
 * Rename `CustomerSubscriptionsList` to `SubscriptionsList` and `CustomerSubscription` to `Subscription` to match NetSuite naming (#535)

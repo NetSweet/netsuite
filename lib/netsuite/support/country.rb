@@ -240,6 +240,7 @@ module NetSuite
         'UA' => '_ukraine',
         'AE' => '_unitedArabEmirates',
         'GB' => '_unitedKingdom',
+        'UK' => '_unitedKingdom',
         'US' => '_unitedStates',
         'UY' => '_uruguay',
         'UM' => '_uSMinorOutlyingIslands',
@@ -280,12 +281,7 @@ module NetSuite
       end
 
       def iso_to_netsuite
-        # NOTE GB country code changed on 2016_1
-        if NetSuite::Configuration.api_version <= "2015_2"
-          ISO_TO_NETSUITE.merge({ 'GB' => '_unitedKingdomGB' })
-        else
-          ISO_TO_NETSUITE
-        end
+        ISO_TO_NETSUITE
       end
 
     end
