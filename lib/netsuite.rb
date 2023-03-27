@@ -48,7 +48,7 @@ module NetSuite
   end
 
   module Actions
-    autoload :AbstractAction    'netsuite/actions/abstract_action'
+    autoload :AbstractAction,    'netsuite/actions/abstract_action'
     autoload :Add,              'netsuite/actions/add'
     autoload :AttachFile,       'netsuite/actions/attach_file'
     autoload :Delete,           'netsuite/actions/delete'
