@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getAll.html
 module NetSuite
   module Actions
-    class GetAll
+    class GetAll < AbstractAction
       include Support::Requests
 
       def initialize(klass)
@@ -9,12 +9,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          { element_form_default: :unqualified }, credentials
-        ).call(:get_all, message: request_body)
-      end
 
       # <soap:Body>
       #   <platformMsgs:getAll>
@@ -47,6 +41,16 @@ module NetSuite
 
       def response_hash
         @response_hash ||= @response.body[:get_all_response][:get_all_result]
+      end
+
+      def request_options
+        {
+          element_form_default: :unqualified
+        }
+      end
+
+      def action_name
+        :get_all
       end
 
       module Support
