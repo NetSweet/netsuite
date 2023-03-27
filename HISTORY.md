@@ -6,6 +6,29 @@
 
 ### Breaking Changes
 
+## v0.9.3
+
+### Added
+* Create abstract action parent class by @andrewdicken-stripe in https://github.com/NetSweet/netsuite/pull/568
+
+### Fixed
+* Add department, klass and location EstimateItem/record_refs by @nickdufresne in https://github.com/NetSweet/netsuite/pull/572
+* Invoice shipping_tax_code should be a record_ref by @stevewoodcock in https://github.com/NetSweet/netsuite/pull/573
+* dont crash if suitetalk returns empty <platformCore:searchRowList/> by @ericcj in https://github.com/NetSweet/netsuite/pull/574
+* Add :klass field to record VendorReturnAuthorizationItem & VendorReturnAuthorization by @shubhrathasetty in https://github.com/NetSweet/netsuite/pull/576
+* Optionally pass in `proxy` parameter to Savon by @dbecker-stripe in https://github.com/NetSweet/netsuite/pull/548
+
+## v0.9.2
+
+### Fixed
+
+* Update rspec requirement from ~> 3.11.0 to ~> 3.12.0 by @dependabot in https://github.com/NetSweet/netsuite/pull/567
+* [Adding UK country mapping](https://github.com/NetSweet/netsuite/commit/5fe96ed28fb8341b6926e169cf50d817632b5b8d)
+
+### Breaking Changes
+
+* [remove country mapping hack for old API versions](https://github.com/NetSweet/netsuite/commit/a0357f0a9e08eb3a4a80f1d1e7a37f95bcb17d4f)
+
 ## v0.9.1
 
 ### Added
