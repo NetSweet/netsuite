@@ -8,7 +8,7 @@ module NetSuite
 
       fields :amortization_end_date, :amortization_residual, :amount, :bin_numbers, :description,
       :gross_amt, :is_billable, :is_closed, :is_drop_shipment, :line, :order_line, :quantity,
-      :rate, :vendor_name
+      :rate, :vendor_name, :klass
 
       field :inventory_detail, InventoryDetail
 

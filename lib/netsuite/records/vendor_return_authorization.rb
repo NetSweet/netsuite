@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :search
 
-      fields :billing_address, :created_date, :memo, :tran_date, :tran_id
+      fields :billing_address, :created_date, :memo, :tran_date, :tran_id, :klass
 
       record_refs :bill_address_list, :department, :entity, :location
 
