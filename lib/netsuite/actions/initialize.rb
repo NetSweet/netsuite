@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/initializeinitializeList.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class Initialize < AbstractAction
@@ -46,8 +44,7 @@ module NetSuite
 
       def request_options
         {
-          namespaces: 
-          {
+          namespaces: {
             'xmlns:platformMsgs'    => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCore'    => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCoreTyp' => "urn:types.core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",

@@ -1,5 +1,3 @@
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class DeleteList < AbstractAction
@@ -65,10 +63,12 @@ module NetSuite
       end
 
       def request_options
-        {namespaces: {
+        {
+          namespaces: {
           'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
           'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-        }}
+          }
+        }
       end
 
       def action_name

@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/search.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class Search < AbstractAction
@@ -201,10 +199,6 @@ module NetSuite
             }
           }
         end
-      end
-
-      def request_options
-        {}
       end
 
       def response_header

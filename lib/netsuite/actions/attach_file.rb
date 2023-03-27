@@ -1,5 +1,3 @@
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class AttachFile < AbstractAction
@@ -52,10 +50,6 @@ module NetSuite
         if response_hash[:status] && response_hash[:status][:status_detail]
           @response_errors ||= errors
         end
-      end
-
-      def request_options
-        {}
       end
 
       def response_hash

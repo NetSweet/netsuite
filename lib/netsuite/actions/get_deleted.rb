@@ -1,5 +1,3 @@
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class GetDeleted < AbstractAction

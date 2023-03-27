@@ -20,7 +20,7 @@ module NetSuite
       end
 
       def request_options
-        raise NotImplementedError, 'Not implemented on abstract class'
+        {}
       end
 
       def soap_header_extra_info

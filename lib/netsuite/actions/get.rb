@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/get.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class Get < AbstractAction

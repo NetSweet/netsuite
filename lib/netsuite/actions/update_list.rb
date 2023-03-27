@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/updateList.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class UpdateList < AbstractAction

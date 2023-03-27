@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getList.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class GetList < AbstractAction
@@ -60,10 +58,6 @@ module NetSuite
         @response_body ||= @response.body[:get_list_response][:read_response_list][:read_response]
         @response_body = [@response_body] unless @response_body.is_a? Array
         @response_body
-      end
-
-      def request_options
-        {}
       end
 
       def action_name

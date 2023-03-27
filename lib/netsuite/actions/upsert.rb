@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/upsert.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class Upsert < AbstractAction
@@ -64,10 +62,6 @@ module NetSuite
         error_obj.map do |error|
           NetSuite::Error.new(error)
         end
-      end
-
-      def request_options
-        {}
       end
 
       def action_name

@@ -1,6 +1,4 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/add.html
-require_relative 'abstract_action'
-
 module NetSuite
   module Actions
     class Add < AbstractAction
@@ -58,10 +56,6 @@ module NetSuite
         if response_hash[:status] && response_hash[:status][:status_detail]
           @response_errors ||= errors
         end
-      end
-
-      def request_options
-        {}
       end
 
       def response_hash
