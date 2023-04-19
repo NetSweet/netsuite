@@ -53,9 +53,6 @@ The following were removed as `fields` since their sublist class is not yet impl
 * Add `update` action to `File` records (#544)
 * Expose `errors` after calls to `delete` action (#545)
 * Add `update_list` action where missing on supported item records (#546)
-* Add `proxy` attribute to `NetSuite::Configuration` to set a proxy used by the savon client (#547)
-
-### Fixed
 * Ignore `after_submit_failed` status details (>= 2018.2) when collating errors in add action (#550)
 * Add `NullFieldList` to `SalesOrder` (#552)
 * Add thread safety to NetSuite configuration and utilities (#549)

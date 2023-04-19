@@ -519,21 +519,13 @@ describe NetSuite::Configuration do
       expect(config.proxy).to be_nil
     end
 
-    it 'does not pass in nil proxy to savon' do
-      connection = config.connection
-
-      expect(connection.globals.include?(:proxy)).to eql(false)
-    end
-
     it 'can be set with proxy=' do
       config.proxy = "https://my-proxy"
 
       expect(config.proxy).to eql("https://my-proxy")
 
       # ensure no exception is raised
-      connection = config.connection
-
-      expect(connection.globals.include?(:proxy)).to eql(true)
+      config.connection
     end
 
     it 'can be set with proxy(value)' do
