@@ -1,6 +1,6 @@
 module NetSuite
   module Records
-    class SubtotalItem
+    class DescriptionItem
       include Support::Fields
       include Support::RecordRefs
       include Support::Records
