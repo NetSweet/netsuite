@@ -1,6 +1,6 @@
 module NetSuite
   module Actions
-    class GetDeleted
+    class GetDeleted < AbstractAction
       include Support::Requests
 
       def initialize(object = nil, options = {})
@@ -10,17 +10,8 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :get_deleted, message: request_body
-      end
-
       def soap_type
-        @object.class.to_s.split('::').last.lower_camelcase
+        NetSuite::Support::Records.netsuite_type(@object)
       end
 
       # <soap:Body>
@@ -70,6 +61,19 @@ module NetSuite
 
       def response_body
         @response_body ||= response_hash[:get_deleted_result]
+      end
+
+      def request_options
+        {
+          namespaces: {
+            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          }
+        }
+      end
+
+      def action_name
+        :get_deleted
       end
 
       module Support

@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::ListAcct
 
-      actions :get, :get_list, :add, :delete, :search, :update, :upsert
+      actions :get, :get_deleted, :get_list, :add, :delete, :search, :update, :update_list, :upsert
 
       fields :available_to_partners, :cost_estimate, :created_date, :defer_rev_rec, :description, :display_name,
         :dont_show_price, :enforce_min_qty_internally, :exclude_from_sitemap, :featured_description, :handling_cost,
@@ -49,7 +49,7 @@ module NetSuite
       # field :product_feed_list, ProductFeedList
       # field :site_category_list, SiteCategoryList
       # field :sitemap_priority, SitemapPriority
-      # field :translations_list, TranslationList
+      field :translations_list, TranslationList
       # field :vsoe_deferral, VsoeDeferral
       # field :vsoe_permit_discount, VsoePermitDiscount
       # field :vsoe_sop_group, VsoeSopGroup

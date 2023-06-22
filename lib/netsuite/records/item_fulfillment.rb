@@ -9,7 +9,7 @@ module NetSuite
 
       actions :get, :get_list, :add, :initialize, :update, :delete, :search, :upsert, :upsert_list
 
-      fields :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
+      fields :created_from_ship_group, :tran_date, :tran_id, :shipping_cost, :memo, :ship_company, :ship_attention, :ship_addr1,
         :ship_addr2, :ship_city, :ship_state, :ship_zip, :ship_phone, :ship_is_residential,
         :ship_status, :last_modified_date, :created_date, :status
 
@@ -26,11 +26,13 @@ module NetSuite
 
       field :item_list,                ItemFulfillmentItemList
       field :package_list,             ItemFulfillmentPackageList
+      field :package_fed_ex_list,      ItemFulfillmentPackageFedExList      
+      field :package_ups_list,         ItemFulfillmentPackageUpsList
+      field :package_usps_list,        ItemFulfillmentPackageUspsList
       field :custom_field_list,        CustomFieldList
 
       attr_reader   :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

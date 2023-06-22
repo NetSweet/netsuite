@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/search.html
 module NetSuite
   module Actions
-    class Search
+    class Search < AbstractAction
       include Support::Requests
 
       def initialize(klass, options = { })
@@ -18,24 +18,6 @@ module NetSuite
       end
 
       private
-      def request(credentials={})
-        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
-        # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
-
-        preferences = NetSuite::Configuration.auth_header(credentials)
-          .update(NetSuite::Configuration.soap_header)
-          .merge(
-            (@options.delete(:preferences) || {}).inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
-              h['platformMsgs:SearchPreferences'][k.to_s.lower_camelcase] = v
-              h
-            end
-          )
-
-        NetSuite::Configuration
-          .connection({ soap_header: preferences }, credentials)
-          .call (@options.has_key?(:search_id)? :search_more_with_id : :search), :message => request_body
-      end
-
       # basic search XML
 
       # <soap:Body>
@@ -144,12 +126,23 @@ module NetSuite
                 h[element_name] = {
                   '@operator' => condition[:operator],
                   '@xsi:type' => 'platformCore:SearchMultiSelectField',
-                  "platformCore:searchValue" => {
-                    :content! => condition[:value].map(&:to_record),
-                    '@internalId' => condition[:value].map(&:internal_id),
-                    '@xsi:type' => 'platformCore:RecordRef',
-                    '@type' => 'account'
-                  }
+                  "platformCore:searchValue" => condition[:value].map do |value|
+                    search_value = {
+                      :content! => value.to_record,
+                      '@xsi:type' => 'platformCore:RecordRef',
+                      '@type' => 'account'
+                    }
+
+                    if value.internal_id
+                      search_value['@internalId'] = value.internal_id
+                    end
+
+                    if value.external_id
+                      search_value['@externalId'] = value.external_id
+                    end
+
+                    search_value
+                  end
                 }
               elsif condition[:value].is_a?(Array) && condition[:type] == 'SearchDateField'
                 # date ranges are handled via searchValue (start range) and searchValue2 (end range)
@@ -228,6 +221,21 @@ module NetSuite
         end[:search_result]
       end
 
+      def action_name
+        @options.has_key?(:search_id)? :search_more_with_id : :search
+      end
+
+      def soap_header_extra_info
+        # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SettingSearchPreferences.html
+        # https://webservices.netsuite.com/xsd/platform/v2012_2_0/messages.xsd
+
+        (@options.delete(:preferences) || {})
+          .inject({'platformMsgs:SearchPreferences' => {}}) do |h, (k, v)|
+            h['platformMsgs:SearchPreferences'][NetSuite::Utilities::Strings.lower_camelcase(k.to_s)] = v
+            h
+          end
+      end
+
       def success?
         @success ||= search_result[:status][:@is_success] == 'true'
       end
@@ -235,6 +243,8 @@ module NetSuite
       module Support
         def self.included(base)
           base.extend(ClassMethods)
+
+          attr_accessor :search_joins
         end
 
         module ClassMethods

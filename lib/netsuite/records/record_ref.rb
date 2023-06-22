@@ -21,7 +21,7 @@ module NetSuite
           record = attributes_or_record
           @internal_id = record.internal_id if record.respond_to?(:internal_id)
           @external_id = record.external_id if record.respond_to?(:external_id)
-          @type        = record.class.to_s.split('::').last.lower_camelcase
+          @type        = NetSuite::Support::Records.netsuite_type(record)
         end
       end
 

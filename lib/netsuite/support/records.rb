@@ -6,8 +6,8 @@ module NetSuite
 
       def to_record
         attributes.reject { |k,v| self.class.read_only_fields.include?(k) || self.class.search_only_fields.include?(k) }.inject({}) do |hash, (k,v)|
-          kname = "#{record_namespace}:"
-          kname += k == :klass ? 'class' : k.to_s.lower_camelcase
+          kname = "#{v.is_a?(NetSuite::Records::NullFieldList) ? v.record_namespace : record_namespace}:"
+          kname += k == :klass ? 'class' : NetSuite::Utilities::Strings.lower_camelcase(k.to_s)
 
           to_attributes!(hash, kname, v)
 
@@ -38,18 +38,26 @@ module NetSuite
         if v.kind_of?(NetSuite::Records::RecordRef) && v.type
           hash[:attributes!] ||= {}
           hash[:attributes!][kname] ||= {}
-          hash[:attributes!][kname]['type'] = v.type.lower_camelcase
+          hash[:attributes!][kname]['type'] = NetSuite::Utilities::Strings.lower_camelcase(v.type)
         end
 
         if v.kind_of?(NetSuite::Records::CustomRecordRef) && v.type_id
           hash[:attributes!] ||= {}
           hash[:attributes!][kname] ||= {}
-          hash[:attributes!][kname]['typeId'] = v.type_id.lower_camelcase
+          hash[:attributes!][kname]['typeId'] = NetSuite::Utilities::Strings.lower_camelcase(v.type_id)
         end
       end
 
       def record_type
-        "#{record_namespace}:#{self.class.to_s.split('::').last}"
+        "#{record_namespace}:#{record_type_without_namespace}"
+      end
+
+      def netsuite_type
+        Records.netsuite_type(self)
+      end
+
+      def record_type_without_namespace
+        Records.record_type_without_namespace(self)
       end
 
       def refresh(credentials = {})
@@ -65,6 +73,15 @@ module NetSuite
         self.errors = nil
 
         self
+      end
+
+      def self.netsuite_type(obj)
+        NetSuite::Utilities::Strings.lower_camelcase(record_type_without_namespace(obj))
+      end
+
+      def self.record_type_without_namespace(obj)
+        klass = obj.is_a?(Class) ? obj : obj.class
+        "#{klass.to_s.split('::').last}"
       end
 
     end

@@ -17,12 +17,12 @@ module NetSuite
         :show_last_modified, :show_notes, :show_owner, :show_owner_allow_change, :show_owner_on_list, :use_permissions
 
       field :custom_field_list, CustomFieldList
+      field :translations_list, TranslationList
 
       record_refs :custom_form, :owner, :rec_type, :parent
 
       attr_reader :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

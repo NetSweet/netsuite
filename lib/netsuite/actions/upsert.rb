@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/upsert.html
 module NetSuite
   module Actions
-    class Upsert
+    class Upsert < AbstractAction
       include Support::Requests
 
       attr_reader :response_hash
@@ -11,10 +11,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection({}, credentials).call :upsert, :message => request_body
-      end
 
       # <soap:Body>
       #   <platformMsgs:upsert>
@@ -66,6 +62,10 @@ module NetSuite
         error_obj.map do |error|
           NetSuite::Error.new(error)
         end
+      end
+
+      def action_name
+        :upsert
       end
 
       module Support

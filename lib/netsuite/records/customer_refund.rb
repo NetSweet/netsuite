@@ -20,11 +20,10 @@ module NetSuite
       read_only_fields :balance, :total
 
       record_refs :account, :ar_acct, :credit_card, :credit_card_processor, :custom_form, :customer, :department, :klass,
-        :location, :payment_method, :posting_period, :subsidiary, :void_journal, :currency
+        :location, :payment_method, :posting_period, :subsidiary, :void_journal, :currency, :payment_option
 
       attr_reader :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

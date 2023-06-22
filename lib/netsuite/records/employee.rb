@@ -9,7 +9,7 @@ module NetSuite
 
       # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/script/record/employee.html
 
-      actions :get, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
+      actions :get, :get_deleted, :get_list, :add, :update, :upsert, :upsert_list, :delete, :search
 
       fields :alt_name, :phone, :first_name, :last_name, :is_inactive, :email, :give_access, :send_email, :is_support_rep,
              :birth_date, :hire_date, :last_review_date, :next_review_date, :title, :home_phone, :office_phone,

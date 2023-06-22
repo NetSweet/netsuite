@@ -48,7 +48,8 @@ module NetSuite
             end
           elsif response.body.has_key? :search_row_list
             # advanced search results
-            record_list = response.body[:search_row_list][:search_row]
+            record_list = response.body[:search_row_list]
+            record_list = record_list ? record_list[:search_row] : []
             record_list = [record_list] unless record_list.is_a?(Array)
 
             record_list.each do |record|

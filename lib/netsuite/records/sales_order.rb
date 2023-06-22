@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranSales
 
-      actions :get, :get_list, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search
+      actions :attach_file, :get, :get_list, :add, :initialize, :delete, :update, :upsert, :upsert_list, :search
 
       fields :alt_handling_cost, :alt_shipping_cost, :amount_paid, :amount_remaining, :auto_apply, :balance,
         :bill_address, :cc_approved, :contrib_pct, :created_date, :currency_name, :deferred_revenue, :discount_rate, :email, :end_date,
@@ -33,6 +33,7 @@ module NetSuite
       field :gift_cert_redemption_list,   GiftCertRedemptionList
       field :ship_group_list,             SalesOrderShipGroupList
       field :promotions_list,             PromotionsList
+      field :null_field_list,             NullFieldList
 
       read_only_fields :applied, :discount_total, :sub_total, :tax_total, :total, :unapplied,
                        :est_gross_profit_percent
@@ -43,7 +44,6 @@ module NetSuite
 
       attr_reader :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)

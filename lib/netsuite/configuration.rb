@@ -11,23 +11,28 @@ module NetSuite
     end
 
     def attributes
-      @attributes ||= {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_attributes] ||= {}
+      else
+        @attributes ||= {}
+      end
     end
 
-    def connection(params={}, credentials={})
+    def connection(params={}, credentials={}, soap_header_extra_info={})
       client = Savon.client({
         wsdl: cached_wsdl || wsdl,
         endpoint: endpoint,
         read_timeout: read_timeout,
         open_timeout: open_timeout,
         namespaces: namespaces,
-        soap_header: auth_header(credentials).update(soap_header),
+        soap_header: auth_header(credentials).update(soap_header).merge(soap_header_extra_info),
         pretty_print_xml: true,
         filters: filters,
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
       }.update(params))
+      client.globals.proxy(proxy) if proxy
       cache_wsdl(client)
       return client
     end
@@ -50,11 +55,19 @@ module NetSuite
     end
 
     def wsdl_cache
-      @wsdl_cache ||= {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_wsdl_cache] ||= {}
+      else
+        @wsdl_cache ||= {}
+      end
     end
 
     def clear_wsdl_cache
-      @wsdl_cache = {}
+      if multi_tenant?
+        Thread.current[:netsuite_gem_wsdl_cache] = {}
+      else
+        @wsdl_cache = {}
+      end
     end
 
     def cached_wsdl
@@ -82,7 +95,7 @@ module NetSuite
       if version
         self.api_version = version
       else
-        attributes[:api_version] ||= '2015_1'
+        attributes[:api_version] ||= '2016_2'
       end
     end
 
@@ -393,6 +406,26 @@ module NetSuite
 
     def log_level=(value)
       attributes[:log_level] = value
+    end
+
+    def proxy=(proxy)
+      attributes[:proxy] = proxy
+    end
+
+    def proxy(proxy = nil)
+      if proxy
+        self.proxy = proxy
+      else
+        attributes[:proxy]
+      end
+    end
+
+    def multi_tenant!
+      @multi_tenant = true
+    end
+
+    def multi_tenant?
+      @multi_tenant
     end
   end
 end

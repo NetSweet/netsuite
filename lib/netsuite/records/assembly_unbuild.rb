@@ -5,6 +5,7 @@ module NetSuite
       include Support::RecordRefs
       include Support::Records
       include Support::Actions
+	  #include Support::Fields
       include Namespaces::TranInvt
 
       actions :get, :add, :initialize, :delete, :update, :upsert, :upsert_list,
@@ -25,7 +26,6 @@ module NetSuite
 
       attr_reader   :internal_id
       attr_accessor :external_id
-      attr_accessor :search_joins
 
       def initialize(attributes = {})
         @internal_id = attributes.delete(:internal_id) || attributes.delete(:@internal_id)
