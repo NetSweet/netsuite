@@ -12,7 +12,7 @@ module NetSuite
         :options, :order_line, :percent_complete, :quantity, :quantity_available, :quantity_fulfilled,
         :quantity_on_hand, :quantity_ordered, :rate, :rev_rec_end_date, :rev_rec_start_date,
         :serial_numbers, :ship_group, :tax1_amt, :tax_rate1, :tax_rate2, :vsoe_allocation, :vsoe_amount, :vsoe_deferral,
-        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price
+        :vsoe_delivered, :vsoe_permit_discount, :vsoe_price, :create_wo
 
       field :custom_field_list, CustomFieldList
 
