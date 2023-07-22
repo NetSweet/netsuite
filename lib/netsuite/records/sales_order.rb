@@ -18,7 +18,8 @@ module NetSuite
         :start_date, :status, :sync_partner_teams, :sync_sales_teams, :tax2_total, :tax_rate, :to_be_emailed, :to_be_faxed,
         :to_be_printed, :total_cost_estimate, :tran_date, :tran_id, :tran_is_vsoe_bundle, :vat_reg_num,
         :linked_tracking_numbers, :vsoe_auto_calc, :quantity, :bill_city, :bill_state, :ship_city, :ship_state, :cost_estimate,
-        :amount, :is_ship_address, :auth_code, :pn_ref_num, :is_multi_ship_to
+        :amount, :is_ship_address, :auth_code, :pn_ref_num, :is_multi_ship_to, :cc_number, :cc_name, :cc_expire_date, :cc_avs_street_match,
+        :cc_avs_zip_match, :cc_security_code_match
 
       # NOTE API >= 2014_2 only
       field :shipping_address, Address
