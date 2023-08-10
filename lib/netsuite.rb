@@ -234,6 +234,8 @@ module NetSuite
     autoload :Opportunity,                      'netsuite/records/opportunity'
     autoload :OpportunityItem,                  'netsuite/records/opportunity_item'
     autoload :OpportunityItemList,              'netsuite/records/opportunity_item_list'
+    autoload :OtherChargePurchaseItem,          'netsuite/records/other_charge_purchase_item'
+    autoload :OtherChargeResaleItem,            'netsuite/records/other_charge_resale_item'
     autoload :OtherChargeSaleItem,              'netsuite/records/other_charge_sale_item'
     autoload :Partner,                          'netsuite/records/partner'
     autoload :PaymentItem,                      'netsuite/records/payment_item'
