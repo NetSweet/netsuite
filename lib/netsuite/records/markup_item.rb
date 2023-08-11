@@ -19,12 +19,11 @@ module NetSuite
 
       record_refs :klass,
                   :department,
-                  :expense_account,
+                  :account,
                   :location,
                   :tax_schedule
 
       field :custom_field_list, CustomFieldList
-      field :item_vendor_list, ItemVendorList
 
       attr_reader   :internal_id
       attr_accessor :external_id
