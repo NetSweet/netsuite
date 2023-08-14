@@ -33,6 +33,7 @@ module NetSuite
     autoload :SetupCustom,    'netsuite/namespaces/setup_custom'
     autoload :ListEmp,        'netsuite/namespaces/list_emp'
     autoload :ListMkt,        'netsuite/namespaces/list_mkt'
+    autoload :ListBom,        'netsuite/namespaces/list_bom'
   end
 
   module Support
@@ -89,6 +90,8 @@ module NetSuite
     autoload :BinTransfer,                      'netsuite/records/bin_transfer'
     autoload :BinTransferInventory,             'netsuite/records/bin_transfer_inventory'
     autoload :BinTransferInventoryList,         'netsuite/records/bin_transfer_inventory_list'
+    autoload :Bom,                              'netsuite/records/bom'
+    autoload :BomRevision,                      'netsuite/records/bom_revision'
     autoload :CashSale,                         'netsuite/records/cash_sale'
     autoload :CashSaleItem,                     'netsuite/records/cash_sale_item'
     autoload :CashSaleItemList,                 'netsuite/records/cash_sale_item_list'
