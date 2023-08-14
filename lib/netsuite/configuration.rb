@@ -32,8 +32,8 @@ module NetSuite
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
+        proxy: proxy,
       }.update(params))
-      client.globals.proxy(proxy) if proxy
       cache_wsdl(client)
       return client
     end
