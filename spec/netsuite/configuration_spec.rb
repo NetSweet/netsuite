@@ -500,17 +500,14 @@ describe NetSuite::Configuration do
     it 'has defaults' do
       expect(config.read_timeout).to eql(60)
       expect(config.open_timeout).to be_nil
-      expect(config.write_timeout).to be_nil
     end
 
     it 'sets timeouts' do
       config.read_timeout = 100
       config.open_timeout = 60
-      config.write_timeout = 14
 
       expect(config.read_timeout).to eql(100)
       expect(config.open_timeout).to eql(60)
-      expect(config.write_timeout).to eql(14)
 
       # ensure no exception is raised
       config.connection

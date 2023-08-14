@@ -24,7 +24,6 @@ module NetSuite
         endpoint: endpoint,
         read_timeout: read_timeout,
         open_timeout: open_timeout,
-        write_timeout: write_timeout,
         namespaces: namespaces,
         soap_header: auth_header(credentials).update(soap_header).merge(soap_header_extra_info),
         pretty_print_xml: true,
@@ -363,18 +362,6 @@ module NetSuite
         self.open_timeout = timeout
       else
         attributes[:open_timeout]
-      end
-    end
-
-    def write_timeout=(timeout)
-      attributes[:write_timeout] = timeout
-    end
-
-    def write_timeout(timeout = nil)
-      if timeout
-        self.write_timeout = timeout
-      else
-        attributes[:write_timeout]
       end
     end
 
