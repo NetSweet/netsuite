@@ -78,13 +78,29 @@ describe NetSuite::Configuration do
       expect(config.savon_params).to include(log: false)
     end
 
-    it 'includes the expected timeouts' do
-      config.read_timeout = 9.1
-      config.open_timeout = 10.2
-      config.write_timeout = 11.3
-      expect(config.savon_params).to include(read_timeout: be_within(0.01).of(9.1))
-      expect(config.savon_params).to include(open_timeout: be_within(0.01).of(10.2))
-      expect(config.savon_params).to include(write_timeout: be_within(0.01).of(11.3))
+    context "when savon is on a recent version" do
+      before { stub_const "Savon::VERSION", "2.13.0" }
+
+      it 'includes the expected timeouts' do
+        config.read_timeout = 9.1
+        config.open_timeout = 10.2
+        config.write_timeout = 11.3
+        expect(config.savon_params).to include(read_timeout: be_within(0.01).of(9.1))
+        expect(config.savon_params).to include(open_timeout: be_within(0.01).of(10.2))
+        expect(config.savon_params).to include(write_timeout: be_within(0.01).of(11.3))
+      end
+    end
+
+    context "when savon is on an older version" do
+      before { stub_const "Savon::VERSION", "2.12.1" }
+
+      it 'includes the expected timeouts' do
+        config.read_timeout = 9.1
+        config.open_timeout = 10.2
+        expect(config.savon_params).to include(read_timeout: be_within(0.01).of(9.1))
+        expect(config.savon_params).to include(open_timeout: be_within(0.01).of(10.2))
+        expect(config.savon_params).not_to include(:write_timeout)
+      end
     end
 
     it 'constructs the appropriate soap headers' do
@@ -561,23 +577,49 @@ describe NetSuite::Configuration do
   end
 
   describe 'timeouts' do
-    it 'has defaults' do
-      expect(config.read_timeout).to eql(60)
-      expect(config.open_timeout).to be_nil
-      expect(config.write_timeout).to be_nil
+    context "when savon is on a recent version" do
+      before { stub_const "Savon::VERSION", "2.13.0" }
+
+      it 'has defaults' do
+        expect(config.read_timeout).to eql(60)
+        expect(config.open_timeout).to be_nil
+        expect(config.write_timeout).to be_nil
+      end
+
+      it 'sets timeouts' do
+        config.read_timeout = 100
+        config.open_timeout = 60
+        config.write_timeout = 14
+
+        expect(config.read_timeout).to eql(100)
+        expect(config.open_timeout).to eql(60)
+        expect(config.write_timeout).to eql(14)
+
+        # ensure no exception is raised
+        config.connection
+      end
     end
 
-    it 'sets timeouts' do
-      config.read_timeout = 100
-      config.open_timeout = 60
-      config.write_timeout = 14
+    context "when savon is on an older version" do
+      before { stub_const "Savon::VERSION", "2.12.1" }
 
-      expect(config.read_timeout).to eql(100)
-      expect(config.open_timeout).to eql(60)
-      expect(config.write_timeout).to eql(14)
+      it 'has defaults' do
+        expect(config.read_timeout).to eql(60)
+        expect(config.open_timeout).to be_nil
+      end
 
-      # ensure no exception is raised
-      config.connection
+      it 'sets timeouts' do
+        config.read_timeout = 100
+        config.open_timeout = 60
+        expect { config.write_timeout = 14 }.to raise_error(NetSuite::ConfigurationError, /doesn't support/)
+        expect { config.write_timeout(15) }.to raise_error(NetSuite::ConfigurationError, /doesn't support/)
+
+        expect(config.read_timeout).to eql(100)
+        expect(config.open_timeout).to eql(60)
+
+        # ensure no exception is raised
+        config.connection
+      end
     end
   end
 
