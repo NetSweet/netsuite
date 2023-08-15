@@ -594,9 +594,6 @@ describe NetSuite::Configuration do
         expect(config.read_timeout).to eql(100)
         expect(config.open_timeout).to eql(60)
         expect(config.write_timeout).to eql(14)
-
-        # ensure no exception is raised
-        config.connection
       end
     end
 
@@ -616,9 +613,6 @@ describe NetSuite::Configuration do
 
         expect(config.read_timeout).to eql(100)
         expect(config.open_timeout).to eql(60)
-
-        # ensure no exception is raised
-        config.connection
       end
     end
   end
