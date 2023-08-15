@@ -66,6 +66,70 @@ describe NetSuite::Configuration do
     end
   end
 
+  describe "#savon_params" do
+    it 'includes the expectd logging details' do
+      fake_logger = double "fake logger"
+      config.logger = fake_logger
+      config.log_level = :fake_level
+      config.silent = true
+
+      expect(config.savon_params).to include(logger: fake_logger)
+      expect(config.savon_params).to include(log_level: :fake_level)
+      expect(config.savon_params).to include(log: false)
+    end
+
+    it 'includes the expected timeouts' do
+      config.read_timeout = 9.1
+      config.open_timeout = 10.2
+      config.write_timeout = 11.3
+      expect(config.savon_params).to include(read_timeout: be_within(0.01).of(9.1))
+      expect(config.savon_params).to include(open_timeout: be_within(0.01).of(10.2))
+      expect(config.savon_params).to include(write_timeout: be_within(0.01).of(11.3))
+    end
+
+    it 'constructs the appropriate soap headers' do
+      config.soap_header = { :foo => "foo-1" }
+      credentials = { :bar => "bar-2" }
+      soap_header_extra_info = { :baz => "baz-3" }
+
+      savon_params = config.savon_params({}, credentials, soap_header_extra_info)
+      expect(savon_params[:soap_header]).to include(:foo => "foo-1", :baz => "baz-3")
+      expect(savon_params[:soap_header]).to include("platformMsgs:passport")
+    end
+
+    it 'includes the correct wsdl' do
+      uncached_wsdl = double('uncached wsdl')
+      allow(config).to receive(:wsdl).and_return(uncached_wsdl)
+
+      cached_wsdl = double('cached wsdl')
+      allow(config).to receive(:cached_wsdl).and_return(cached_wsdl)
+      expect(config.savon_params[:wsdl]).to eq(cached_wsdl)
+
+      allow(config).to receive(:cached_wsdl).and_return(nil)
+      expect(config.savon_params[:wsdl]).to eq(uncached_wsdl)
+    end
+
+    it 'includes the other parameters' do
+      config.endpoint = "fake endpoint"
+      expect(config.savon_params).to include(:endpoint => "fake endpoint")
+
+      expect(config.savon_params).to include(:pretty_print_xml => true)
+
+      config.filters = [:a, :b]
+      expect(config.savon_params).to include(:filters => [:a, :b])
+
+      config.proxy = "fake proxy"
+      expect(config.savon_params).to include(:proxy => "fake proxy")
+
+      expect(config.savon_params[:namespaces]).to eq(config.namespaces)
+    end
+
+    it 'merges in the supplied params' do
+      supplied_params = { :foo => "bar", :baz => "blam" }
+      expect(config.savon_params(supplied_params)).to include(supplied_params)
+    end
+  end
+
   describe '#connection' do
     EXAMPLE_ENDPOINT = 'https://1023.suitetalk.api.netsuite.com/services/NetSuitePort_2020_2'
     before(:each) do
