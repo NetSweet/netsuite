@@ -13,7 +13,11 @@ describe NetSuite::Records::CashRefundItem do
 
   it 'has all the right record refs' do
     [
-      :item, :klass
+      :department,
+      :item,
+      :klass,
+      :location,
+      :price
     ].each do |record_ref|
       expect(item).to have_record_ref(record_ref)
     end
