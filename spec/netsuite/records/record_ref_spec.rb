@@ -43,6 +43,14 @@ describe NetSuite::Records::RecordRef do
         expect(record_ref.name).to eql('This is a record_ref')
         expect(record_ref.banana).to eql('for monkeys')
       end
+
+      it 'should have truthy result for respond_to existing attribute' do
+        record_ref.respond_to?(:name).should be_true
+      end
+
+      it 'should have false result for respond_to missing attribute' do
+        record_ref.respond_to?(:apple).should be_false
+      end
     end
   end
 
