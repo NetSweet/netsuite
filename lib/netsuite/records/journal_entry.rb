@@ -7,7 +7,7 @@ module NetSuite
       include Support::Actions
       include Namespaces::TranGeneral
 
-      actions :get, :get_list, :add, :delete, :search, :upsert
+      actions :get, :get_list, :add, :delete, :search, :upsert, :upsertlist
 
       fields :approved, :created_date, :exchange_rate, :last_modified_date, :memo, :reversal_date, :reversal_defer, :reversal_entry,
         :tran_date, :tran_id
