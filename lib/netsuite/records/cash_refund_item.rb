@@ -9,7 +9,11 @@ module NetSuite
       fields :amount, :gross_amt, :rate, :quantity, :is_taxable, :order_line, :line, :description
       field :custom_field_list,    CustomFieldList
 
-      record_refs :item, :klass, :price
+      record_refs :department,
+        :item,
+        :klass,
+        :location,
+        :price
 
       def initialize(attributes_or_record = {})
         initialize_from_attributes_hash(attributes_or_record)
