@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/delete.html
 module NetSuite
   module Actions
-    class Delete
+    class Delete < AbstractAction
       include Support::Requests
 
       def initialize(object = nil, options = {})
@@ -10,15 +10,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :delete, message: request_body
-      end
 
       def soap_type
         NetSuite::Support::Records.netsuite_type(@object)
@@ -69,6 +60,19 @@ module NetSuite
         if response_hash[:status] && response_hash[:status][:status_detail]
           @response_errors ||= errors
         end
+      end
+
+      def request_options
+        {
+          namespaces: {
+          'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+          'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          }
+        }
+      end
+
+      def action_name
+        :delete
       end
 
       def errors

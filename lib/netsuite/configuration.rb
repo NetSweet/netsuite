@@ -18,24 +18,32 @@ module NetSuite
       end
     end
 
-    def connection(params={}, credentials={})
-      client = Savon.client({
+    def connection(params={}, credentials={}, soap_header_extra_info={})
+      client = Savon.client(savon_params(params, credentials, soap_header_extra_info))
+      cache_wsdl(client)
+      client
+    end
+
+    def savon_params(params={}, credentials={}, soap_header_extra_info={})
+      full_params = {
         wsdl: cached_wsdl || wsdl,
         endpoint: endpoint,
         read_timeout: read_timeout,
         open_timeout: open_timeout,
         namespaces: namespaces,
-        soap_header: auth_header(credentials).update(soap_header),
+        soap_header: auth_header(credentials).update(soap_header).merge(soap_header_extra_info),
         pretty_print_xml: true,
         filters: filters,
         logger: logger,
         log_level: log_level,
         log: !silent, # turn off logging entirely if configured
         proxy: proxy,
-      }.update(params))
-      cache_wsdl(client)
-      return client
+      }
+      full_params.update(params)
+      full_params.update(write_timeout: write_timeout) if supports_write_timeout?
+      full_params
     end
+
 
     def filters(list = nil)
       if list
@@ -365,6 +373,20 @@ module NetSuite
       end
     end
 
+    def write_timeout=(timeout)
+      write_timeout_not_supported! unless supports_write_timeout?
+      attributes[:write_timeout] = timeout
+    end
+
+    def write_timeout(timeout = nil)
+      if timeout
+        write_timeout_not_supported! unless supports_write_timeout?
+        self.write_timeout = timeout
+      else
+        attributes[:write_timeout]
+      end
+    end
+
     def log=(path)
       attributes[:log] = path
     end
@@ -426,6 +448,16 @@ module NetSuite
 
     def multi_tenant?
       @multi_tenant
+    end
+
+    private
+
+    def supports_write_timeout?
+      Savon::VERSION >= "2.13.0"
+    end
+
+    def write_timeout_not_supported!
+      fail(ConfigurationError, "Savon doesn't support write_timeout until version 2.13.0")
     end
   end
 end

@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/getSelectValue.html
 module NetSuite
   module Actions
-    class GetSelectValue
+    class GetSelectValue < AbstractAction
       include Support::Requests
 
       def initialize(klass, options = {})
@@ -11,13 +11,8 @@ module NetSuite
 
       private
 
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          {namespaces: {
-            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
-            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
-          }}, credentials
-        ).call :get_select_value, :message => @options
+      def request_body
+        @options
       end
 
       def success?
@@ -30,6 +25,19 @@ module NetSuite
 
       def response_hash
         @response_hash = @response.body[:get_select_value_response][:get_select_value_result]
+      end
+
+      def request_options
+        {
+          namespaces: {
+            'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
+            'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com"
+          }
+        }
+      end
+
+      def action_name
+        :get_select_value
       end
 
       module Support

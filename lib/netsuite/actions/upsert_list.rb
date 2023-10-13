@@ -1,7 +1,7 @@
 # https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/upsertList.html
 module NetSuite
   module Actions
-    class UpsertList
+    class UpsertList < AbstractAction
       include Support::Requests
 
       def initialize(*objects)
@@ -9,12 +9,6 @@ module NetSuite
       end
 
       private
-
-      def request(credentials={})
-        NetSuite::Configuration.connection(
-          { element_form_default: :unqualified }, credentials
-        ).call(:upsert_list, message: request_body)
-      end
 
       # <soap:Body>
       #   <upsertList>
@@ -73,6 +67,16 @@ module NetSuite
 
       def success?
         @success ||= response_hash.all? { |h| h[:status][:@is_success] == 'true' }
+      end
+
+      def request_options
+        {
+          element_form_default: :unqualified
+        }
+      end
+
+      def action_name
+        :upsert_list
       end
 
       module Support
