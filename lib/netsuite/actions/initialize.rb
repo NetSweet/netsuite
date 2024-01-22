@@ -56,6 +56,20 @@ module NetSuite
         :initialize
       end
 
+      def response_errors
+        if response_hash[:status] && response_hash[:status][:status_detail]
+          @response_errors ||= errors
+        end
+      end
+
+      def errors
+        error_obj = response_hash[:status][:status_detail]
+        error_obj = [error_obj] if error_obj.instance_of?(Hash)
+        error_obj.map do |error|
+          NetSuite::Error.new(error)
+        end
+      end
+
       module Support
 
         def self.included(base)
@@ -74,13 +88,11 @@ module NetSuite
             if response.success?
               new(response.body)
             else
-              raise InitializationError, "#{self}.initialize with #{object} failed."
+              raise InitializationError, response.errors.find { |e| e.type == 'ERROR' }.message
             end
           end
-
         end
       end
-
     end
   end
 end
