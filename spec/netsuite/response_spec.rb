@@ -14,6 +14,23 @@ describe NetSuite::Response do
       response = NetSuite::Response.new(:success => true)
       expect(response).to be_success
     end
+
+    it 'throws PermissionError when response failed to INSUFFICIENT_PERMISSION' do
+      expect {
+        NetSuite::Response.new(
+          :success => false,
+          :body => {
+            status: {
+              status_detail: {
+                :@type => 'ERROR',
+                :code => 'INSUFFICIENT_PERMISSION',
+                :message => 'Permission Violation: The subsidiary restrictions on your role prevent you from seeing this record.'
+              }
+            }
+          }
+        )
+      }.to raise_error(NetSuite::PermissionError)
+    end
   end
 
   describe '#body' do
