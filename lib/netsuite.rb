@@ -5,6 +5,7 @@ require 'netsuite/version'
 require 'netsuite/errors'
 require 'netsuite/utilities'
 require 'netsuite/core_ext/string/lower_camelcase'
+require 'netsuite/core_ext/uri/unescape'
 
 module NetSuite
   autoload :Configuration, 'netsuite/configuration'
