@@ -2,6 +2,9 @@
 [![Slack Status](https://netsuite-slackin.fly.dev/badge.svg)](https://netsuite-slackin.fly.dev)
 [![Gem Version](https://badge.fury.io/rb/netsuite.svg)](http://badge.fury.io/rb/netsuite)
 
+> [!WARNING]  
+> I ([@ilovetaly](https://github.com/iloveitaly) am not actively using this gem for any projects (I'm using [this python package](https://github.com/jacobsvante/netsuite) instead) and do not have time for further maintenance. I'll need monthly sponsors, paid consulting around this gem, or if anyone else wants to help with maintenance, please drop me a note. Apologies!
+
 # NetSuite SuiteTalk API Ruby Gem
 
 * This gem will act as a wrapper around the NetSuite SuiteTalk Web Services API.
@@ -10,9 +13,9 @@
 
 # Help & Support
 
-Join the [Slack channel](https://netsuite-slackin.fly.dev) for help with any NetSuite issues. Please do not post usage questions as issues in GitHub.
+Join the [Slack channel](https://netsuite-slackin.fly.dev) for help with NetSuite issues. Please do not post usage questions as issues in GitHub.
 
-There is some additional helpful resources for NetSuite development [listed here](https://dashboard.suitesync.io/docs/resources#netsuite).
+There are some additional helpful resources for NetSuite development [listed here](https://dashboard.suitesync.io/docs/resources#netsuite).
 
 # Testing
 
