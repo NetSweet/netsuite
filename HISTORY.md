@@ -2,6 +2,7 @@
 
 ### Added
 * Add `get_deleted` action to `CustomerCategory` (#595)
+* Add `get_deleted` action to `Customer` (#605)
 
 ### Fixed
 * Revert recent proxy changes which breaks proxy usage by @andrewdicken-stripe in https://github.com/NetSweet/netsuite/pull/579
