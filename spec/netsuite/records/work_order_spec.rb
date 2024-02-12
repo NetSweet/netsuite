@@ -25,6 +25,10 @@ describe NetSuite::Records::WorkOrder do
     end
   end
 
+  it 'includes TransactionSearchRowBasic for search_only_fields' do
+    expect(work_order.is_a?(NetSuite::Searches::TransactionSearchRowBasic)).to be_truthy
+  end
+
   describe '#custom_field_list' do
     it 'can be set from attributes' do
       attributes = {

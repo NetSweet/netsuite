@@ -37,6 +37,8 @@ module NetSuite
         :handling_tax_code, :job, :klass, :lead_source, :location, :message_sel, :partner, :posting_period, :promo_code,
         :sales_group, :sales_rep, :ship_method, :shipping_tax_code, :subsidiary, :tax_item, :currency
 
+      include Searches::TransactionSearchRowBasic
+
       attr_reader :internal_id
       attr_accessor :external_id
 

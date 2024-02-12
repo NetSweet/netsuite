@@ -24,6 +24,8 @@ module NetSuite
         :department, :entity, :job, :location, :manufacturing_routing,
         :revision, :subsidiary, :units
 
+      include Searches::TransactionSearchRowBasic
+
       attr_reader   :internal_id
       attr_accessor :external_id
 
