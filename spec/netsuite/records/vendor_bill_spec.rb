@@ -138,14 +138,16 @@ describe NetSuite::Records::VendorBill do
     end
 
     context 'when the response is unsuccessful' do
-      let(:response) { NetSuite::Response.new(:success => false, :body => {}) }
+      let(:error1) { NetSuite::Error.new(:@type => 'ERROR', :message => 'You can not initialize vendorbill: invalid reference.') }
+      let(:error2) { NetSuite::Error.new(:@type => 'ERROR', :message => 'some message') }
+      let(:response) { NetSuite::Response.new(:success => false, :body => {}, :errors => [error1, error2]) }
 
-      it 'raises a InitializationError exception' do
+      it 'raises a InitializationError exception capturing the message of the first error in the response object' do
         expect(NetSuite::Actions::Initialize).to receive(:call).with([NetSuite::Records::VendorBill, vendor], {}).and_return(response)
         expect {
           NetSuite::Records::VendorBill.initialize(vendor)
         }.to raise_error(NetSuite::InitializationError,
-                         /NetSuite::Records::VendorBill.initialize with .+ failed./)
+                         /You can not initialize vendorbill: invalid reference/)
       end
     end
   end
