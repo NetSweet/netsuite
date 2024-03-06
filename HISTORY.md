@@ -6,6 +6,7 @@
 
 ### Fixed
 * Revert recent proxy changes which breaks proxy usage by @andrewdicken-stripe in https://github.com/NetSweet/netsuite/pull/579
+* Fix incompatibility with Nori v2.7+ after it removed `Object#blank?` monkey patch (#607)
 
 ### Breaking Changes
 

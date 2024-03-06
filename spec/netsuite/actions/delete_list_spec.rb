@@ -76,6 +76,9 @@ describe NetSuite::Actions::DeleteList do
 
       it 'constructs error objects' do
         response = NetSuite::Actions::DeleteList.call([klass, :list => customer_list_with_error])
+
+        expect(response).to_not be_success
+
         expect(response.errors.keys).to match_array(customer_with_error.internal_id)
         expect(response.errors[customer_with_error.internal_id].first.code).to eq('USER_EXCEPTION')
         expect(response.errors[customer_with_error.internal_id].first.message).to eq('Invalid record: type=event,id=100015,scompid=TSTDRV96')
