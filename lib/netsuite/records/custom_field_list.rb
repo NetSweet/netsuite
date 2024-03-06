@@ -60,8 +60,8 @@ module NetSuite
         super(sym, *args, &block)
       end
 
-      def respond_to?(sym, include_private = false)
-        return true if @custom_fields_assoc.include?(sym)
+      def respond_to?(method, include_private = false)
+        return true if @custom_fields_assoc.include?(method.to_sym)
         super
       end
 
