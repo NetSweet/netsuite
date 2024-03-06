@@ -53,7 +53,7 @@ module NetSuite
       end
 
       def success?
-        @success ||= response_errors.blank?
+        @success ||= (response_errors.nil? || response_errors.empty?)
       end
 
       def response_errors
