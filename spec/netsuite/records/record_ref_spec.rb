@@ -40,8 +40,16 @@ describe NetSuite::Records::RecordRef do
 
     context 'readers' do
       it 'can take on arbitrary attributes into itself on initialization' do
+        expect(record_ref).to respond_to(:name)
+        expect(record_ref).to respond_to('name')
         expect(record_ref.name).to eql('This is a record_ref')
+
+        expect(record_ref).to respond_to(:banana)
+        expect(record_ref).to respond_to('banana')
         expect(record_ref.banana).to eql('for monkeys')
+
+        expect(record_ref).to_not respond_to(:non_existant_field)
+        expect(record_ref).to_not respond_to('non_existant_field')
       end
     end
   end
