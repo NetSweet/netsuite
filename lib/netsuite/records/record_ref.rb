@@ -33,6 +33,11 @@ module NetSuite
         end
       end
 
+      def respond_to?(m, include_private = false)
+        return true if attributes.keys.map(&:to_sym).include?(m.to_sym)
+        super
+      end
+
     end
   end
 end
