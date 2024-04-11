@@ -6,7 +6,7 @@ module NetSuite
 
       def initialize(klass, options = { })
         @klass = klass
-        @options = options
+        @options = options.dup
       end
 
       def class_name
@@ -42,7 +42,7 @@ module NetSuite
 
         # columns is only needed for advanced search results
         columns = @options[:columns] || {}
-        criteria = @options[:criteria] || @options
+        criteria = @options[:criteria].dup || @options
 
         # TODO find cleaner solution for pulling the namespace of the record, which is a instance method
         namespace = if @klass.respond_to?(:search_class_namespace)
@@ -114,6 +114,7 @@ module NetSuite
 
               # https://github.com/NetSweet/netsuite/commit/54d7b011d9485dad33504135dfe8153c86cae9a0#commitcomment-8443976
               if NetSuite::Configuration.api_version < "2013_2"
+                h[element_name][:attributes!]['platformCore:customField'] = h[element_name][:attributes!]['platformCore:customField'].dup
                 h[element_name][:attributes!]['platformCore:customField']['internalId'] = h[element_name][:attributes!]['platformCore:customField'].delete('scriptId')
               end
 
