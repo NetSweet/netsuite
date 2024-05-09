@@ -30,9 +30,12 @@ module NetSuite
           return false
         end
         if result[:item_availability_list]
-          result[:item_availability_list][:item_availability].map do |row|
-            NetSuite::Records::ItemAvailability.new(row)
+          rows = result[:item_availability_list][:item_availability]
+          unless rows.respond_to?(:to_ary)
+            rows = [rows]
           end
+
+          rows.map{|row| NetSuite::Records::ItemAvailability.new(row) }
         else
           []
         end
