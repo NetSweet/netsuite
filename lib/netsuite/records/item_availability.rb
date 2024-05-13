@@ -30,6 +30,7 @@ module NetSuite
           return false
         end
         if result[:item_availability_list]
+          # TODO: switch to Array.wrap when support for Ruby < 3.0 is dropped
           rows = result[:item_availability_list][:item_availability]
           unless rows.respond_to?(:to_ary)
             rows = [rows]
