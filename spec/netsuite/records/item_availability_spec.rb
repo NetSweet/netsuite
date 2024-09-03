@@ -32,28 +32,46 @@ describe NetSuite::Records::ItemAvailability do
     }
     let(:result) { NetSuite::Records::ItemAvailability.get_item_availability(inventory_item_ref_list) }
 
-    before do
-      savon.expects(:get_item_availability).with(:message => {
-        "platformMsgs:itemAvailabilityFilter" => {
-          "platformCore:item"=>{"platformCore:recordRef"=>[{:@internalId=>57}]}
-        }
-      }).returns(File.read('spec/support/fixtures/get_item_availability/get_item_availability.xml'))
+    context 'with two results' do
+      before do
+        savon.expects(:get_item_availability).with(:message => {
+          "platformMsgs:itemAvailabilityFilter" => {
+            "platformCore:item"=>{"platformCore:recordRef"=>[{:@internalId=>57}]}
+          }
+        }).returns(File.read('spec/support/fixtures/get_item_availability/get_item_availability.xml'))
+      end
+
+      it 'returns ItemAvailability records' do
+        expect(result).to be_kind_of(Array)
+        expect(result).not_to be_empty
+        expect(result[0]).to be_kind_of(NetSuite::Records::ItemAvailability)
+        expect(result[0]).to have_attributes(
+          item: be_kind_of(NetSuite::Records::InventoryItem),
+          location_id: NetSuite::Records::Location,
+          quantity_on_hand: '264.0',
+          on_hand_value_mli: '129.36',
+          reorder_point: '50.0',
+          quantity_on_order: '0.0',
+          quantity_committed: '0.0',
+          quantity_available: '264.0',
+        )
+      end
     end
 
-    it 'returns ItemAvailability records' do
-      expect(result).to be_kind_of(Array)
-      expect(result).not_to be_empty
-      expect(result[0]).to be_kind_of(NetSuite::Records::ItemAvailability)
-      expect(result[0]).to have_attributes(
-        item: be_kind_of(NetSuite::Records::InventoryItem),
-        location_id: NetSuite::Records::Location,
-        quantity_on_hand: '264.0',
-        on_hand_value_mli: '129.36',
-        reorder_point: '50.0',
-        quantity_on_order: '0.0',
-        quantity_committed: '0.0',
-        quantity_available: '264.0',
-      )
+    context 'single result' do
+      before do
+        savon.expects(:get_item_availability).with(:message => {
+          "platformMsgs:itemAvailabilityFilter" => {
+            "platformCore:item"=>{"platformCore:recordRef"=>[{:@internalId=>57}]}
+          }
+        }).returns(File.read('spec/support/fixtures/get_item_availability/get_item_availability_single_result.xml'))
+      end
+
+      it 'returns ItemAvailability records' do
+        expect(result).to be_kind_of(Array)
+        expect(result.length).to eq(1)
+        expect(result[0]).to be_kind_of(NetSuite::Records::ItemAvailability)
+      end
     end
   end
 end
