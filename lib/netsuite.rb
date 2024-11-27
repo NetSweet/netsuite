@@ -135,6 +135,7 @@ module NetSuite
     autoload :CustomerRefundDeposit,            'netsuite/records/customer_refund_deposit'
     autoload :CustomerRefundDepositList,        'netsuite/records/customer_refund_deposit_list'
     autoload :CustomerStatus,                   'netsuite/records/customer_status'
+    autoload :CustomerSubsidiaryRelationship,   'netsuite/records/customer_subsidiary_relationship'
     autoload :CustomerPartner,                  'netsuite/records/customer_partner'
     autoload :CustomerSalesTeam,                'netsuite/records/customer_sales_team'
     autoload :CustomerSalesTeamList,            'netsuite/records/customer_sales_team_list'
