@@ -23,5 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'savon', '>= 2.3.0', '!= 2.13.0'
 
   gem.add_development_dependency 'rspec', '~> 3.13.0'
-  gem.add_development_dependency 'rake', '~> 12.3.3'
+  gem.add_development_dependency 'rake', '~> 13.2.1'
 end
