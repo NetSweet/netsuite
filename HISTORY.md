@@ -6,6 +6,7 @@
 
 ### Fixed
 * Revert recent proxy changes which breaks proxy usage by @andrewdicken-stripe in https://github.com/NetSweet/netsuite/pull/579
+* Handle string field names in `CustomFieldList#respond_to?` (#606)
 
 ### Breaking Changes
 

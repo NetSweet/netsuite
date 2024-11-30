@@ -273,8 +273,14 @@ describe NetSuite::Records::CustomFieldList do
 
         # field accessors are tested elsewhere, but let's run tests here to check various field types
         expect(list).to respond_to(:custbody_multipleselectfield)
+        expect(list).to respond_to('custbody_multipleselectfield')
         expect(list).to respond_to(:custbody_salesclassification)
+        expect(list).to respond_to('custbody_salesclassification')
         expect(list).to respond_to(:custentity_registeredonline)
+        expect(list).to respond_to('custentity_registeredonline')
+
+        expect(list).to_not respond_to(:non_existant_field)
+        expect(list).to_not respond_to('non_existant_field')
 
         expect(list.to_record).to eql(record)
         expect(list.to_record.length).to eq(1)
