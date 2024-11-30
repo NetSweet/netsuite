@@ -67,6 +67,10 @@ module NetSuite
     autoload :Login,            'netsuite/actions/login'
   end
 
+  module Searches
+    autoload :TransactionSearchRowBasic, 'netsuite/searches/transaction_search_row_basic'
+  end
+
   module Records
     autoload :AssemblyItem,                     'netsuite/records/assembly_item'
     autoload :AssemblyBuild,                    'netsuite/records/assembly_build'

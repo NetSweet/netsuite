@@ -44,6 +44,10 @@ describe NetSuite::Records::CreditMemo do
     end
   end
 
+  it 'includes TransactionSearchRowBasic for search_only_fields' do
+    expect(memo.is_a?(NetSuite::Searches::TransactionSearchRowBasic)).to be_truthy
+  end
+
   describe '#item_list' do
     it 'can be set from attributes' do
       attributes = {

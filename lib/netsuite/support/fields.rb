@@ -76,6 +76,9 @@ module NetSuite
 
         def search_only_field(name)
           name_sym = name.to_sym
+
+          return if fields.include?(name_sym)
+
           search_only_fields << name_sym
           field name
         end
