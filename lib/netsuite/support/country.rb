@@ -259,7 +259,7 @@ module NetSuite
       }
 
       def initialize(iso_or_name = '')
-        if iso_or_name =~ /^[A-Z]{2}/
+        if iso_or_name.to_s.upcase =~ /^[A-Z]{2}/
           @id = iso_to_netsuite.fetch(iso_or_name)
         else
           @id = iso_or_name
