@@ -24,7 +24,7 @@ module NetSuite
         :linked_tracking_numbers, :memo, :message, :message_sel, :on_credit_hold, :opportunity,
         :other_ref_num, :partners_list, :rev_rec_end_date,
         :rev_rec_on_rev_commitment, :rev_rec_schedule, :rev_rec_start_date, :revenue_status, :sales_effective_date,
-        :sales_group, :sales_team_list, :ship_date, :ship_group_list,
+        :sales_group, :ship_date, :ship_group_list,
         :shipping_cost, :shipping_tax_1_rate, :shipping_tax_2_rate, :source, :start_date,
         :status, :sync_partner_teams, :sync_sales_teams, :tax_2_total,
         :tax_total, :time_disc_amount, :time_disc_print, :time_disc_rate, :time_disc_tax_1_amt, :time_disc_taxable,
@@ -36,6 +36,7 @@ module NetSuite
       field :transaction_ship_address, ShipAddress
       field :item_list,                InvoiceItemList
       field :custom_field_list,        CustomFieldList
+      field :sales_team_list,          InvoiceSalesTeamList
       field :shipping_address,         Address
       field :billing_address,          Address
       field :null_field_list,          NullFieldList
